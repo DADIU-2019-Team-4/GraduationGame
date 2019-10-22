@@ -9,15 +9,11 @@ public class LoadResources : MonoBehaviour
     private AssetBundle bundleRequest;
     private UnityWebRequest request;
     public string link;
+    public string objectName;
 
     private void Start()
     {
         StartCoroutine(LoadAsset());
-    }
-
-    private void Update()
-    {
-
     }
     IEnumerator  LoadAsset()
     {
@@ -27,7 +23,7 @@ public class LoadResources : MonoBehaviour
         bundleRequest = DownloadHandlerAssetBundle.GetContent(request);
         if (bundleRequest != null)
         {
-            GameObject platform = bundleRequest.LoadAsset<GameObject>("CHIMERA_model");
+            GameObject platform = bundleRequest.LoadAsset<GameObject>(objectName);
             Instantiate(platform);
         }
         else
