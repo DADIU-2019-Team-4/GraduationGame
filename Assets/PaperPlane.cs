@@ -18,6 +18,13 @@ public class PaperPlane : MonoBehaviour
     {
         transform.position += Vector3.forward * speed*Time.deltaTime;
     }
+
+    private void OnTriggerEnter (Collider other)
+    {
+        Debug.Log("Plane Collision");
+        if (other.gameObject.tag == "Obsticle")
+            Destroy(gameObject);
+    }
 }
 
 

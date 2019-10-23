@@ -47,7 +47,7 @@ public class WallShooter : MonoBehaviour
         }
         else
         {
-            Debug.Log("Spawn on Cooldown: "+currentSpawnCooldown);
+            //Debug.Log("Spawn on Cooldown: "+currentSpawnCooldown);
         }
        
     }
