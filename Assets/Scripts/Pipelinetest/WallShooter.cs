@@ -29,7 +29,10 @@ public class WallShooter : MonoBehaviour
         {
             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.right) * hit.distance, Color.yellow);
             Debug.Log("Did Hit");
-            SpawnPlane();
+            if (hit.transform.tag== "Player")
+            {
+                SpawnPlane();
+            }
         }
         else
         {
