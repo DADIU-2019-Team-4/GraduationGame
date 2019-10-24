@@ -55,6 +55,7 @@ public class MovementController : MonoBehaviour
     private bool isOutOfMoves;
     private bool hasDied;
     private bool reachedGoal;
+    private bool hitWall;
 
     public bool TriggerCoyoteTime { get; set; }
 
@@ -120,14 +121,12 @@ public class MovementController : MonoBehaviour
             return;
         }
 
-        UpdateMovesText(MoveCost);
-
         var startCell = grid.WorldToCell(transform.position);
         previousCell = startCell;
         var difference = moveDirection * MoveDistance;
         var targetCell = startCell + difference;
 
-        StartCoroutine(MoveRoutine(targetCell, MoveDuration));
+        StartCoroutine(MoveRoutine(targetCell, MoveDuration, MoveCost));
     }
 
     /// <summary>
@@ -151,8 +150,6 @@ public class MovementController : MonoBehaviour
             return;
         }
 
-        UpdateMovesText(DashCost);
-
         isDashing = true;
         trailRenderer.enabled = true;
 
@@ -161,7 +158,7 @@ public class MovementController : MonoBehaviour
         var difference = dashDirection * DashDistance;
         var targetCell = startCell + difference;
 
-        StartCoroutine(MoveRoutine(targetCell, DashDuration));
+        StartCoroutine(MoveRoutine(targetCell, DashDuration, DashCost));
 
         ResetDash();
     }
@@ -196,6 +193,30 @@ public class MovementController : MonoBehaviour
     }
 
     /// <summary>
+    /// CoRoutine responsible for moving the Player.
+    /// </summary>
+    private IEnumerator MoveRoutine(Vector3Int target, float duration, int cost)
+    {
+        IsMoving = true;
+
+        var toPosition = grid.GetCellCenterWorld(target);
+        rigidBody.DOMove(toPosition, duration);
+
+        yield return new WaitForSeconds(duration);
+
+        if (!hitWall)
+            UpdateMovesAmount(cost);
+        else
+            hitWall = false;
+
+        trailRenderer.enabled = false;
+        IsMoving = false;
+
+        if (isDashing)
+            isDashing = false;
+    }
+
+    /// <summary>
     /// CoRoutine responsible for changing the color of the moves text.
     /// </summary>
     private IEnumerator ChangeTextColorRoutine()
@@ -209,7 +230,7 @@ public class MovementController : MonoBehaviour
     /// <summary>
     /// Updates the moves text.
     /// </summary>
-    private void UpdateMovesText(int cost)
+    private void UpdateMovesAmount(int cost)
     {
         AmountOfMoves -= cost;
         MovesText.text = AmountOfMoves.ToString();
@@ -248,13 +269,10 @@ public class MovementController : MonoBehaviour
         }
         else if (col.gameObject.CompareTag("Wall"))
         {
-            int cost;
-            if (isDashing)
-                cost = DashCost;
-            else
-                cost = MoveCost;
-            AmountOfMoves += cost;
-            MovesText.text = AmountOfMoves.ToString();
+            //int cost = isDashing ? DashCost : MoveCost;
+            //AmountOfMoves += cost;
+            //MovesText.text = AmountOfMoves.ToString();
+            hitWall = true;
             StartCoroutine(MoveRoutine(previousCell, MoveDuration));
         }
         else if (col.gameObject.CompareTag("PickUp"))
