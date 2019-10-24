@@ -7,30 +7,42 @@ using UnityEngine.SceneManagement;
 public class MovementController : MonoBehaviour
 {
     [Header("General Settings")]
+    [Tooltip("Value of pick ups that add to your amount of moves.")]
     public int PickUpValue = 3;
+    [Tooltip("Amount of moves at the start of the game.")]
     public int AmountOfMoves = 10;
 
     [Header("Move Settings")]
+    [Tooltip("Duration of a move in seconds (so speed of a move).")]
     public float MoveDuration = 0.2f;
+    [Tooltip("Distance of a move in grid cells.")]
     public int MoveDistance = 1;
+    [Tooltip("Cost of a move.")]
     public int MoveCost = 1;
 
     [Header("Dash Settings")]
-    public float ChargeThreshold = 0.25f;
+    [Tooltip("Time in seconds for how long you need to tap and hold for it to be recognized as a dash.")]
+    public float DashThreshold = 0.25f;
+    [Tooltip("Duration of a dash in seconds (so speed of a dash).")]
     public float DashDuration = 0.1f;
+    [Tooltip("Distance of a dash in grid cells.")]
     public int DashDistance = 2;
+    [Tooltip("Cost of a dash.")]
     public int DashCost = 3;
 
     [Header("Canvas Fields")]
     public TMP_Text MovesText;
-    public GameObject OutOfMovesText;
     public GameObject WinText;
+    public GameObject OutOfMovesText;
+    public GameObject DiedText;
     public GameObject RestartButton;
 
     private Rigidbody rigidBody;
     private Material material;
     private float colorValue = 1;
     private float changeTextColorDuration = 0.2f;
+    private float stayInColliderThreshold = 0.1f;
+    private float timer;
 
     private Grid grid;
     private TrailRenderer trailRenderer;
@@ -39,6 +51,7 @@ public class MovementController : MonoBehaviour
     private bool isMoving;
     private bool isDashing;
     private bool isOutOfMoves;
+    private bool hasDied;
     private bool reachedGoal;
 
     public float Timer { get; set; }
@@ -64,8 +77,10 @@ public class MovementController : MonoBehaviour
     {
         if (reachedGoal)
             WinText.SetActive(true);
-        else
+        else if (isOutOfMoves)
             OutOfMovesText.SetActive(true);
+        else if (hasDied)
+            DiedText.SetActive(true);
 
         RestartButton.SetActive(true);
     }
@@ -83,7 +98,7 @@ public class MovementController : MonoBehaviour
 
     public void StartMove(Vector3Int moveDirection)
     {
-        if (isOutOfMoves || reachedGoal)
+        if (isOutOfMoves || reachedGoal || hasDied)
             return;
 
         if (isMoving)
@@ -101,7 +116,7 @@ public class MovementController : MonoBehaviour
 
     public void StartDash(Vector3Int dashDirection)
     {
-        if (isOutOfMoves || reachedGoal)
+        if (isOutOfMoves || reachedGoal || hasDied)
             return;
 
         if (isMoving)
@@ -181,16 +196,36 @@ public class MovementController : MonoBehaviour
         {
             if (!isDashing)
             {
-                AmountOfMoves += MoveCost;
-                MovesText.text = AmountOfMoves.ToString();
-                StartCoroutine(MoveRoutine(previousCell, MoveDuration));
+                hasDied = true;
+                MakeRestartButtonVisible();
             }
+        }
+        else if (col.gameObject.CompareTag("Wall"))
+        {
+            AmountOfMoves += MoveCost;
+            MovesText.text = AmountOfMoves.ToString();
+            StartCoroutine(MoveRoutine(previousCell, MoveDuration));
         }
         else if (col.gameObject.CompareTag("PickUp"))
         {
             AmountOfMoves += PickUpValue;
             MovesText.text = AmountOfMoves.ToString();
             Destroy(col.gameObject);
+        }
+    }
+
+    private void OnTriggerStay(Collider col)
+    {
+        if (col.gameObject.CompareTag("Obstacle"))
+        {
+            if (timer > stayInColliderThreshold)
+            {
+                hasDied = true;
+                MakeRestartButtonVisible();
+                timer = 0;
+            }
+            else
+                timer += Time.deltaTime;
         }
     }
 }

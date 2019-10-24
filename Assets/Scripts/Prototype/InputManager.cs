@@ -80,7 +80,7 @@ public class InputManager : MonoBehaviour
             else if (touch.phase == TouchPhase.Stationary)
             {
                 timer += Time.deltaTime;
-                if (timer >= movementController.ChargeThreshold)
+                if (timer >= movementController.DashThreshold)
                 {
                     movementController.ChargeDash();
                     movementController.IsDashCharged = true;
@@ -122,7 +122,7 @@ public class InputManager : MonoBehaviour
         if (Input.GetMouseButton(0))
         {
             timer += Time.deltaTime;
-            if (timer >= movementController.ChargeThreshold)
+            if (timer >= movementController.DashThreshold)
             {
                 movementController.ChargeDash();
                 movementController.IsDashCharged = true;

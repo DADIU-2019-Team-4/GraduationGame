@@ -120,7 +120,7 @@ public class PlayerMovement : MonoBehaviour
     //        if (lastPosition == transform.position)
     //        {
     //            Timer += Time.deltaTime;
-    //            if (Timer >= ChargeThreshold)
+    //            if (Timer >= DashThreshold)
     //            {
     //                ChargeDash();
     //                IsDashCharged = true;
