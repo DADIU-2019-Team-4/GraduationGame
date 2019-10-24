@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 
 public class WallShooter : MonoBehaviour
 {
@@ -54,18 +56,18 @@ public class WallShooter : MonoBehaviour
 }
 
 
-[CustomEditor(typeof(WallShooter))]
-public class SomeScriptEditor : Editor
-{
-    public override void OnInspectorGUI()
-    {
-        DrawDefaultInspector();
+//[CustomEditor(typeof(WallShooter))]
+//public class SomeScriptEditor : Editor
+//{
+//    public override void OnInspectorGUI()
+//    {
+//        DrawDefaultInspector();
 
 
-        WallShooter wallShooter = (WallShooter)target;
-        if (GUILayout.Button("spawn 'very cool' plane"))
-        {
-            wallShooter.SpawnPlane();
-        }
-    }
-}
+//        WallShooter wallShooter = (WallShooter)target;
+//        if (GUILayout.Button("spawn 'very cool' plane"))
+//        {
+//            wallShooter.SpawnPlane();
+//        }
+//    }
+//}

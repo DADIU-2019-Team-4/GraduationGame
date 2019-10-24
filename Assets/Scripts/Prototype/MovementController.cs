@@ -49,11 +49,14 @@ public class MovementController : MonoBehaviour
     private TrailRenderer trailRenderer;
     private Vector3Int previousCell;
 
-    private bool isMoving;
+    public bool IsMoving { get; set; }
+
     private bool isDashing;
     private bool isOutOfMoves;
     private bool hasDied;
     private bool reachedGoal;
+
+    public bool TriggerCoyoteTime { get; set; }
 
     public bool IsDashCharged { get; set; }
 
@@ -82,14 +85,14 @@ public class MovementController : MonoBehaviour
             WinText.SetActive(true);
             NextSceneButton.SetActive(true);
         }
-        else if (isOutOfMoves)
-        {
-            OutOfMovesText.SetActive(true);
-            RestartButton.SetActive(true);
-        }
         else if (hasDied)
         {
             DiedText.SetActive(true);
+            RestartButton.SetActive(true);
+        }
+        else if (isOutOfMoves)
+        {
+            OutOfMovesText.SetActive(true);
             RestartButton.SetActive(true);
         }
     }
@@ -111,8 +114,11 @@ public class MovementController : MonoBehaviour
         if (isOutOfMoves || reachedGoal || hasDied)
             return;
 
-        if (isMoving)
+        if (IsMoving)
+        {
+            TriggerCoyoteTime = true;
             return;
+        }
 
         UpdateMovesText(MoveCost);
 
@@ -132,8 +138,11 @@ public class MovementController : MonoBehaviour
         if (isOutOfMoves || reachedGoal || hasDied)
             return;
 
-        if (isMoving)
+        if (IsMoving)
+        {
+            TriggerCoyoteTime = true;
             return;
+        }
 
         int movesLeft = AmountOfMoves - DashCost;
         if (movesLeft < 0)
@@ -148,6 +157,7 @@ public class MovementController : MonoBehaviour
         trailRenderer.enabled = true;
 
         var startCell = grid.WorldToCell(transform.position);
+        previousCell = startCell;
         var difference = dashDirection * DashDistance;
         var targetCell = startCell + difference;
 
@@ -171,7 +181,7 @@ public class MovementController : MonoBehaviour
     /// </summary>
     private IEnumerator MoveRoutine(Vector3Int target, float duration)
     {
-        isMoving = true;
+        IsMoving = true;
 
         var toPosition = grid.GetCellCenterWorld(target);
         rigidBody.DOMove(toPosition, duration);
@@ -179,7 +189,7 @@ public class MovementController : MonoBehaviour
         yield return new WaitForSeconds(duration);
 
         trailRenderer.enabled = false;
-        isMoving = false;
+        IsMoving = false;
 
         if (isDashing)
             isDashing = false;
@@ -222,6 +232,9 @@ public class MovementController : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Goal"))
         {
+            Vector3Int cell = grid.WorldToCell(col.gameObject.transform.position);
+            StartCoroutine(MoveRoutine(cell, MoveDuration));
+
             reachedGoal = true;
             MakeButtonVisible();
         }
@@ -235,7 +248,12 @@ public class MovementController : MonoBehaviour
         }
         else if (col.gameObject.CompareTag("Wall"))
         {
-            AmountOfMoves += MoveCost;
+            int cost;
+            if (isDashing)
+                cost = DashCost;
+            else
+                cost = MoveCost;
+            AmountOfMoves += cost;
             MovesText.text = AmountOfMoves.ToString();
             StartCoroutine(MoveRoutine(previousCell, MoveDuration));
         }

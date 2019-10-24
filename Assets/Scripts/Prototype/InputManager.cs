@@ -21,8 +21,6 @@ public class InputManager : MonoBehaviour
     private float coyoteTime = 0.5f;
     private float coyoteTimer;
 
-    private bool swipeRegistered;
-
     private void Awake()
     {
         movementController = FindObjectOfType<MovementController>();
@@ -45,25 +43,6 @@ public class InputManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Handles the coyote swipe (game still registers a swipe during a move for some amount of time: coyote time)
-    /// </summary>
-    private void HandleCoyoteSwipe()
-    {
-        if (!swipeRegistered) return;
-
-        if (hasSwiped || !(coyoteTimer < coyoteTime)) return;
-
-        CheckSwipe();
-        if (hasSwiped)
-        {
-            swipeRegistered = false;
-            coyoteTimer = 0;
-        }
-        else
-            coyoteTime += Time.deltaTime;
-    }
-
-    /// <summary>
     /// Handles the input.
     /// </summary>
     private void HandleInput()
@@ -74,6 +53,26 @@ public class InputManager : MonoBehaviour
         MobileInput();
 #endif
     }
+
+    /// <summary>
+    /// Handles the coyote swipe (game still registers a swipe during a move for some amount of time: coyote time)
+    /// </summary>
+    private void HandleCoyoteSwipe()
+    {
+        if (!movementController.TriggerCoyoteTime) return;
+
+        if (!(coyoteTimer < coyoteTime) && !movementController.IsMoving) return;
+
+        CheckSwipe();
+        if (movementController.IsMoving)
+        {
+            coyoteTime = 0;
+            movementController.TriggerCoyoteTime = false;
+        }
+        else
+            coyoteTime += Time.deltaTime;
+    }
+
 
     /// <summary>
     /// Handles mobile input.
@@ -109,8 +108,6 @@ public class InputManager : MonoBehaviour
                     lastPosition = touch.position;
                     CheckSwipe();
                 }
-                else if (!swipeRegistered)
-                    swipeRegistered = true;
             }
             // Player's finger stops touching the screen
             else if (touch.phase == TouchPhase.Ended)
@@ -149,12 +146,13 @@ public class InputManager : MonoBehaviour
         if (Input.GetMouseButtonUp(0))
         {
             trackMouse = false;
+            hasSwiped = false;
             chargeDashTimer = 0;
             movementController.ResetDash();
         }
 
         // track the mouse position if the mouse button is pressed down.
-        if (trackMouse)
+        if (trackMouse && !hasSwiped)
         {
             lastPosition = Input.mousePosition;
             CheckSwipe();
@@ -174,6 +172,8 @@ public class InputManager : MonoBehaviour
             ApplyAction(HorizontalSwipe());
         else
             ApplyAction(VerticalSwipe());
+
+        hasSwiped = true;
     }
 
     /// <summary>
@@ -185,8 +185,6 @@ public class InputManager : MonoBehaviour
             movementController.Dash(direction);
         else
             movementController.Move(direction);
-
-        hasSwiped = true;
     }
 
     /// <summary>
