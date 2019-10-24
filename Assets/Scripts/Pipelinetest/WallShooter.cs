@@ -42,7 +42,7 @@ public class WallShooter : MonoBehaviour
     {
         if (currentSpawnCooldown<0)
         {
-            GameObject.Instantiate(plane, transform.position, Quaternion.identity);
+            GameObject.Instantiate(plane, transform.position, this.transform.rotation);
             currentSpawnCooldown = spawnCooldown;
         }
         else
