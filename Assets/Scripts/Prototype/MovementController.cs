@@ -2,7 +2,6 @@
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class MovementController : MonoBehaviour
 {
@@ -73,6 +72,9 @@ public class MovementController : MonoBehaviour
         transform.position = grid.GetCellCenterWorld(cell);
     }
 
+    /// <summary>
+    /// Makes the restart or next scene button visible depending on game state.
+    /// </summary>
     private void MakeButtonVisible()
     {
         if (reachedGoal)
@@ -92,13 +94,19 @@ public class MovementController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Visualizes charging the dash.
+    /// </summary>
     public void ChargeDash()
     {
         material.color = new Color(1, colorValue, colorValue, 1);
         colorValue -= 0.05f;
     }
 
-    public void StartMove(Vector3Int moveDirection)
+    /// <summary>
+    /// Performs Move Action.
+    /// </summary>
+    public void Move(Vector3Int moveDirection)
     {
         if (isOutOfMoves || reachedGoal || hasDied)
             return;
@@ -116,7 +124,10 @@ public class MovementController : MonoBehaviour
         StartCoroutine(MoveRoutine(targetCell, MoveDuration));
     }
 
-    public void StartDash(Vector3Int dashDirection)
+    /// <summary>
+    /// Performs Dash Action.
+    /// </summary>
+    public void Dash(Vector3Int dashDirection)
     {
         if (isOutOfMoves || reachedGoal || hasDied)
             return;
@@ -145,6 +156,9 @@ public class MovementController : MonoBehaviour
         ResetDash();
     }
 
+    /// <summary>
+    /// Resets the charging dash state.
+    /// </summary>
     public void ResetDash()
     {
         material.SetColor("_Color", Color.black);
@@ -152,6 +166,9 @@ public class MovementController : MonoBehaviour
         IsDashCharged = false;
     }
 
+    /// <summary>
+    /// CoRoutine responsible for moving the Player.
+    /// </summary>
     private IEnumerator MoveRoutine(Vector3Int target, float duration)
     {
         isMoving = true;
@@ -168,6 +185,9 @@ public class MovementController : MonoBehaviour
             isDashing = false;
     }
 
+    /// <summary>
+    /// CoRoutine responsible for changing the color of the moves text.
+    /// </summary>
     private IEnumerator ChangeTextColorRoutine()
     {
         MovesText.DOColor(Color.red, changeTextColorDuration);
@@ -176,6 +196,9 @@ public class MovementController : MonoBehaviour
         yield return new WaitForSeconds(changeTextColorDuration);
     }
 
+    /// <summary>
+    /// Updates the moves text.
+    /// </summary>
     private void UpdateMovesText(int cost)
     {
         AmountOfMoves -= cost;
@@ -184,6 +207,10 @@ public class MovementController : MonoBehaviour
             StartCoroutine(WaitOutOfMovesRoutine());
     }
 
+    /// <summary>
+    /// CoRoutine responsible for waiting a bit before triggering the out of moves state.
+    /// So we can first check if the Player reached the goal.
+    /// </summary>
     private IEnumerator WaitOutOfMovesRoutine()
     {
         yield return new WaitForSeconds(outOfMovesDuration);

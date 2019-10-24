@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+[ExecuteInEditMode]
 public class SpawnObject : MonoBehaviour
 {
     private Grid grid;

@@ -15,11 +15,10 @@ public class InputManager : MonoBehaviour
     private bool trackMouse;
 
     private MovementController movementController;
-    private float timer;
+    private float chargeDashTimer;
 
     [SerializeField]
     private float coyoteTime = 0.5f;
-
     private float coyoteTimer;
 
     private bool swipeRegistered;
@@ -42,14 +41,26 @@ public class InputManager : MonoBehaviour
     {
         HandleInput();
 
-        //if (swipeRegistered)
-        //{
-        //    if (!hasSwiped && coyoteTimer < coyoteTime)
-        //    {
-        //        CheckSwipe();
-        //    }
-        //    // todo fix this
-        //}
+        HandleCoyoteSwipe();
+    }
+
+    /// <summary>
+    /// Handles the coyote swipe (game still registers a swipe during a move for some amount of time: coyote time)
+    /// </summary>
+    private void HandleCoyoteSwipe()
+    {
+        if (!swipeRegistered) return;
+
+        if (hasSwiped || !(coyoteTimer < coyoteTime)) return;
+
+        CheckSwipe();
+        if (hasSwiped)
+        {
+            swipeRegistered = false;
+            coyoteTimer = 0;
+        }
+        else
+            coyoteTime += Time.deltaTime;
     }
 
     /// <summary>
@@ -72,36 +83,40 @@ public class InputManager : MonoBehaviour
         if (Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);
+            // Player's finger starts touching the screen
             if (touch.phase == TouchPhase.Began)
             {
                 firstPosition = touch.position;
                 lastPosition = touch.position;
             }
+            // Player's finger touches the screen but hasn't moved
             else if (touch.phase == TouchPhase.Stationary)
             {
-                timer += Time.deltaTime;
-                if (timer >= movementController.DashThreshold)
+                // Charge up dash
+                chargeDashTimer += Time.deltaTime;
+                if (chargeDashTimer >= movementController.DashThreshold)
                 {
                     movementController.ChargeDash();
                     movementController.IsDashCharged = true;
                 }
             }
+            // Player's finger touches the screen and moves on the screen
             else if (touch.phase == TouchPhase.Moved)
             {
+                // Checks for a swipe
                 if (!hasSwiped)
                 {
                     lastPosition = touch.position;
                     CheckSwipe();
                 }
                 else if (!swipeRegistered)
-                {
                     swipeRegistered = true;
-                }
             }
+            // Player's finger stops touching the screen
             else if (touch.phase == TouchPhase.Ended)
             {
                 hasSwiped = false;
-                timer = 0;
+                chargeDashTimer = 0;
                 movementController.ResetDash();
             }
         }
@@ -112,6 +127,7 @@ public class InputManager : MonoBehaviour
     /// </summary>
     private void PcInput()
     {
+        // mouse button is pressed down
         if (Input.GetMouseButtonDown(0))
         {
             trackMouse = true;
@@ -121,21 +137,23 @@ public class InputManager : MonoBehaviour
 
         if (Input.GetMouseButton(0))
         {
-            timer += Time.deltaTime;
-            if (timer >= movementController.DashThreshold)
+            chargeDashTimer += Time.deltaTime;
+            if (chargeDashTimer >= movementController.DashThreshold)
             {
                 movementController.ChargeDash();
                 movementController.IsDashCharged = true;
             }
         }
 
+        // mouse button is released
         if (Input.GetMouseButtonUp(0))
         {
             trackMouse = false;
-            timer = 0;
+            chargeDashTimer = 0;
             movementController.ResetDash();
         }
 
+        // track the mouse position if the mouse button is pressed down.
         if (trackMouse)
         {
             lastPosition = Input.mousePosition;
@@ -144,7 +162,7 @@ public class InputManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Checks how to player has swiped.
+    /// Checks how to player has swiped and applies the swipe to an action.
     /// </summary>
     private void CheckSwipe()
     {
@@ -153,31 +171,36 @@ public class InputManager : MonoBehaviour
         if (SwipedLongEnough(directionVector)) return;
 
         if (Mathf.Abs(directionVector.x) > Mathf.Abs(directionVector.y))
-        {
-            if (movementController.IsDashCharged)
-                movementController.StartDash(HorizontalSwipe());
-            else
-                movementController.StartMove(HorizontalSwipe());
-
-            hasSwiped = true;
-        }
+            ApplyAction(HorizontalSwipe());
         else
-        {
-            if (movementController.IsDashCharged)
-                movementController.StartDash(VerticalSwipe());
-            else
-                movementController.StartMove(VerticalSwipe());
-
-            hasSwiped = true;
-        }
+            ApplyAction(VerticalSwipe());
     }
 
+    /// <summary>
+    /// Applies the action, in this case a move or dash.
+    /// </summary>
+    private void ApplyAction(Vector3Int direction)
+    {
+        if (movementController.IsDashCharged)
+            movementController.Dash(direction);
+        else
+            movementController.Move(direction);
+
+        hasSwiped = true;
+    }
+
+    /// <summary>
+    /// Calculates if the player has swiped long enough.
+    /// </summary>
     private bool SwipedLongEnough(Vector3 direction)
     {
         return (!(Math.Abs(direction.x) > horizontalSwipeDistance) &&
             !(Math.Abs(direction.y) > verticalSwipeDistance));
     }
 
+    /// <summary>
+    /// Determines if the player has swiped left or right.
+    /// </summary>
     private Vector3Int HorizontalSwipe()
     {
         if (lastPosition.x > firstPosition.x)
@@ -186,6 +209,9 @@ public class InputManager : MonoBehaviour
         return Vector3Int.left;
     }
 
+    /// <summary>
+    /// Determines if the player has swiped up or down.
+    /// </summary>
     private Vector3Int VerticalSwipe()
     {
         if (lastPosition.y > firstPosition.y)

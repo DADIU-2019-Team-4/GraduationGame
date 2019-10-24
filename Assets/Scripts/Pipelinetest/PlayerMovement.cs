@@ -136,7 +136,7 @@ public class PlayerMovement : MonoBehaviour
     //            else
     //            {
     //                Vector3 dashDirection = (transform.position - lastPosition).normalized;
-    //                StartDash(dashDirection);
+    //                Dash(dashDirection);
     //            }
     //        }
 
