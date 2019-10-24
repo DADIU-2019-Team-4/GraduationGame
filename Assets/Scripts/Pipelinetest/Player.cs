@@ -55,6 +55,7 @@ public class Player : MonoBehaviour
             Debug.Log("Collision with:" + other.gameObject.name);
             gameObject.transform.SetParent(other.gameObject.transform);
             gameObject.transform.position = gameObject.transform.parent.position;
+            gameObject.GetComponent<Rigidbody>().velocity = new Vector3();
             _attached = true;
         }
     }
