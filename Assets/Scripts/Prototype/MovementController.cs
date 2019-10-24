@@ -36,13 +36,15 @@ public class MovementController : MonoBehaviour
     public GameObject OutOfMovesText;
     public GameObject DiedText;
     public GameObject RestartButton;
+    public GameObject NextSceneButton;
 
     private Rigidbody rigidBody;
     private Material material;
     private float colorValue = 1;
     private float changeTextColorDuration = 0.2f;
     private float stayInColliderThreshold = 0.1f;
-    private float timer;
+    private float stayInColliderTimer;
+    private float outOfMovesDuration = 0.1f;
 
     private Grid grid;
     private TrailRenderer trailRenderer;
@@ -53,8 +55,6 @@ public class MovementController : MonoBehaviour
     private bool isOutOfMoves;
     private bool hasDied;
     private bool reachedGoal;
-
-    public float Timer { get; set; }
 
     public bool IsDashCharged { get; set; }
 
@@ -73,21 +73,23 @@ public class MovementController : MonoBehaviour
         transform.position = grid.GetCellCenterWorld(cell);
     }
 
-    private void MakeRestartButtonVisible()
+    private void MakeButtonVisible()
     {
         if (reachedGoal)
+        {
             WinText.SetActive(true);
+            NextSceneButton.SetActive(true);
+        }
         else if (isOutOfMoves)
+        {
             OutOfMovesText.SetActive(true);
+            RestartButton.SetActive(true);
+        }
         else if (hasDied)
+        {
             DiedText.SetActive(true);
-
-        RestartButton.SetActive(true);
-    }
-
-    public void RestartScene()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            RestartButton.SetActive(true);
+        }
     }
 
     public void ChargeDash()
@@ -179,10 +181,14 @@ public class MovementController : MonoBehaviour
         AmountOfMoves -= cost;
         MovesText.text = AmountOfMoves.ToString();
         if (AmountOfMoves <= 0)
-        {
-            isOutOfMoves = true;
-            MakeRestartButtonVisible();
-        }
+            StartCoroutine(WaitOutOfMovesRoutine());
+    }
+
+    private IEnumerator WaitOutOfMovesRoutine()
+    {
+        yield return new WaitForSeconds(outOfMovesDuration);
+        isOutOfMoves = true;
+        MakeButtonVisible();
     }
 
     private void OnTriggerEnter(Collider col)
@@ -190,14 +196,14 @@ public class MovementController : MonoBehaviour
         if (col.gameObject.CompareTag("Goal"))
         {
             reachedGoal = true;
-            MakeRestartButtonVisible();
+            MakeButtonVisible();
         }
         else if (col.gameObject.CompareTag("Obstacle"))
         {
             if (!isDashing)
             {
                 hasDied = true;
-                MakeRestartButtonVisible();
+                MakeButtonVisible();
             }
         }
         else if (col.gameObject.CompareTag("Wall"))
@@ -218,14 +224,14 @@ public class MovementController : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Obstacle"))
         {
-            if (timer > stayInColliderThreshold)
+            if (stayInColliderTimer > stayInColliderThreshold)
             {
                 hasDied = true;
-                MakeRestartButtonVisible();
-                timer = 0;
+                MakeButtonVisible();
+                stayInColliderTimer = 0;
             }
             else
-                timer += Time.deltaTime;
+                stayInColliderTimer += Time.deltaTime;
         }
     }
 }
