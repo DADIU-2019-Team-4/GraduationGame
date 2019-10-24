@@ -46,8 +46,8 @@ public class WallShooter : MonoBehaviour
     {
         if (currentSpawnCooldown<0)
         {
-            plane = GameObject.Instantiate(plane, transform.position, this.transform.rotation);
-            plane.GetComponent<PaperPlane>().speed = planeSpeed;
+            GameObject planeRef = GameObject.Instantiate(plane, transform.position, this.transform.rotation);
+            planeRef.GetComponent<PaperPlane>().speed = planeSpeed;
             currentSpawnCooldown = spawnCooldown;
         }
         else

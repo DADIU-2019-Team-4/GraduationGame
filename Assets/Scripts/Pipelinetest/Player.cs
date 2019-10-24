@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -40,14 +41,15 @@ public class Player : MonoBehaviour
         {
             if (_attached)
             {
-                Transform parentPosition = gameObject.transform.parent;
-                gameObject.transform.parent = parentPosition;
-                gameObject.transform.parent.DetachChildren();
-                _attached = false;
+                Detach(false);
+                //Transform parentPosition = gameObject.transform.parent;
+                //gameObject.transform.parent = parentPosition;
             }
             rb.AddForce(rb.velocity * dashSpeed, ForceMode.Impulse);
         }
     }
+
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Projectile")
@@ -55,6 +57,7 @@ public class Player : MonoBehaviour
             Debug.Log("Collision with:" + other.gameObject.name);
             gameObject.transform.SetParent(other.gameObject.transform);
             gameObject.transform.position = gameObject.transform.parent.position;
+            gameObject.GetComponent<Rigidbody>().useGravity = false;
             gameObject.GetComponent<Rigidbody>().velocity = new Vector3();
             _attached = true;
         }
@@ -65,11 +68,19 @@ public class Player : MonoBehaviour
         if (collision.gameObject.tag == "Obsticle")
         {
             Debug.Log("Collision with:" + collision.gameObject.name);
-            var parent = gameObject.transform.parent;
-            parent.DetachChildren();
-            _attached = false;
-            Destroy(parent.gameObject);
+            Detach(true);
         }
     }
- 
+    
+    private void Detach(bool destroy)
+    {
+        Transform parent = gameObject.transform.parent;
+        parent.DetachChildren();
+        gameObject.GetComponent<Rigidbody>().useGravity = true;
+        _attached = false;
+
+        if(destroy)
+            Destroy(parent.gameObject);
+    }
+
 }
