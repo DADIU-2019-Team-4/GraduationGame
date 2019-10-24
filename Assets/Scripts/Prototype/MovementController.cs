@@ -6,18 +6,22 @@ using UnityEngine.SceneManagement;
 
 public class MovementController : MonoBehaviour
 {
-    public float CoolDownValue = 0.1f;
-    public float ChargeThreshold = 0.25f;
-    public float DashDuration = 0.1f;
-    public float MoveDuration = 0.2f;
-
-    public int MoveDistance = 1;
-    public int DashDistance = 2;
-    public int MoveCost = 1;
-    public int DashCost = 3;
-
+    [Header("General Settings")]
     public int PickUpValue = 3;
     public int AmountOfMoves = 10;
+
+    [Header("Move Settings")]
+    public float MoveDuration = 0.2f;
+    public int MoveDistance = 1;
+    public int MoveCost = 1;
+
+    [Header("Dash Settings")]
+    public float ChargeThreshold = 0.25f;
+    public float DashDuration = 0.1f;
+    public int DashDistance = 2;
+    public int DashCost = 3;
+
+    [Header("Canvas Fields")]
     public TMP_Text MovesText;
     public GameObject OutOfMovesText;
     public GameObject WinText;
@@ -141,8 +145,6 @@ public class MovementController : MonoBehaviour
         yield return new WaitForSeconds(duration);
 
         trailRenderer.enabled = false;
-
-        yield return new WaitForSeconds(CoolDownValue);
         isMoving = false;
 
         if (isDashing)
