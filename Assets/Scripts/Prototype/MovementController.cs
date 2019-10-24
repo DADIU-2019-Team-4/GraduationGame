@@ -235,18 +235,10 @@ public class MovementController : MonoBehaviour
         AmountOfMoves -= cost;
         MovesText.text = AmountOfMoves.ToString();
         if (AmountOfMoves <= 0)
-            StartCoroutine(WaitOutOfMovesRoutine());
-    }
-
-    /// <summary>
-    /// CoRoutine responsible for waiting a bit before triggering the out of moves state.
-    /// So we can first check if the Player reached the goal.
-    /// </summary>
-    private IEnumerator WaitOutOfMovesRoutine()
-    {
-        yield return new WaitForSeconds(outOfMovesDuration);
-        isOutOfMoves = true;
-        MakeButtonVisible();
+        {
+            isOutOfMoves = true;
+            MakeButtonVisible();
+        }
     }
 
     private void OnTriggerEnter(Collider col)
@@ -269,9 +261,6 @@ public class MovementController : MonoBehaviour
         }
         else if (col.gameObject.CompareTag("Wall"))
         {
-            //int cost = isDashing ? DashCost : MoveCost;
-            //AmountOfMoves += cost;
-            //MovesText.text = AmountOfMoves.ToString();
             hitWall = true;
             StartCoroutine(MoveRoutine(previousCell, MoveDuration));
         }
