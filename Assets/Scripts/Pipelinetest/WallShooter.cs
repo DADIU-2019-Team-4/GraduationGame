@@ -11,6 +11,7 @@ public class WallShooter : MonoBehaviour
     public float spawnCooldown;
     [SerializeField]
     private float currentSpawnCooldown=0;
+    public float planeSpeed;
 
     // Start is called before the first frame update
     void Start()
@@ -42,7 +43,8 @@ public class WallShooter : MonoBehaviour
     {
         if (currentSpawnCooldown<0)
         {
-            GameObject.Instantiate(plane, transform.position, this.transform.rotation);
+            plane = GameObject.Instantiate(plane, transform.position, this.transform.rotation);
+            plane.GetComponent<PaperPlane>().speed = planeSpeed;
             currentSpawnCooldown = spawnCooldown;
         }
         else

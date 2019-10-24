@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PaperPlane : MonoBehaviour
 {
-
+    [HideInInspector]
     public float speed = 25;
 
     // Start is called before the first frame update
