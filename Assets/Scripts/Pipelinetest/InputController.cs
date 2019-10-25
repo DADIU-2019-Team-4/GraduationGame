@@ -46,6 +46,7 @@ public class InputController : MonoBehaviour
     {
         HandleInput();
 
+        /*
         if (swipeRegistered)
         {
             if (!hasSwiped && coyoteTimer < coyoteTime)
@@ -54,6 +55,7 @@ public class InputController : MonoBehaviour
             }
             // todo fix this
         }
+        */
     }
 
 

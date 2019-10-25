@@ -99,6 +99,18 @@ public class PlayerMovement : MonoBehaviour
         if (isMoving)
             return;
 
+        Player player = null;
+        try { player = gameObject.GetComponent<Player>(); }
+        catch (NullReferenceException e)
+        {
+
+        }
+
+        if (player != null && player.transform.parent != null)
+        {
+            return;
+        }
+
         isMoving = true;
 
         rigidBody.velocity = Vector3.zero;
