@@ -18,6 +18,8 @@ public class MovementController : MonoBehaviour
     public int MoveDistance = 1;
     [Tooltip("Cost of a move.")]
     public int MoveCost = 1;
+    [Tooltip("Duration in seconds of how long the trail of the move should be visible.")]
+    public float MoveTrailDuration = 0.25f;
 
     [Header("Dash Settings")]
     [Tooltip("Time in seconds for how long you need to tap and hold for it to be recognized as a dash.")]
@@ -28,6 +30,8 @@ public class MovementController : MonoBehaviour
     public int DashDistance = 2;
     [Tooltip("Cost of a dash.")]
     public int DashCost = 3;
+    [Tooltip("Duration in seconds of how long the trail of the dash should be visible.")]
+    public float DashTrailDuration = 0.5f;
 
     [Header("Canvas Fields")]
     public TMP_Text MovesText;
@@ -121,6 +125,9 @@ public class MovementController : MonoBehaviour
             return;
         }
 
+        trailRenderer.enabled = true;
+        trailRenderer.time = MoveTrailDuration;
+
         var startCell = grid.WorldToCell(transform.position);
         previousCell = startCell;
         var difference = moveDirection * MoveDistance;
@@ -152,6 +159,7 @@ public class MovementController : MonoBehaviour
 
         isDashing = true;
         trailRenderer.enabled = true;
+        trailRenderer.time = DashTrailDuration;
 
         var startCell = grid.WorldToCell(transform.position);
         previousCell = startCell;
