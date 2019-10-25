@@ -12,20 +12,20 @@ public class ContinuousMovementController : MonoBehaviour
     public int AmountOfMoves = 10;
 
     [Header("Move Settings")]
-    [Tooltip("Duration of a move in seconds (so speed of a move).")]
+    [Tooltip("Duration of a move in seconds (how long it takes to get to target position).")]
     public float MoveDuration = 0.2f;
     [Tooltip("Distance of a move.")]
-    public int MoveDistance = 1;
+    public int MoveDistance = 50;
     [Tooltip("Cost of a move.")]
     public int MoveCost = 1;
 
     [Header("Dash Settings")]
     [Tooltip("Time in seconds for how long you need to tap and hold for it to be recognized as a dash.")]
     public float DashThreshold = 0.25f;
-    [Tooltip("Duration of a dash in seconds (so speed of a dash).")]
+    [Tooltip("Duration of a dash in seconds (how long it takes to get to target position).")]
     public float DashDuration = 0.1f;
     [Tooltip("Distance of a dash.")]
-    public int DashDistance = 2;
+    public int DashDistance = 100;
     [Tooltip("Cost of a dash.")]
     public int DashCost = 3;
 
@@ -45,9 +45,8 @@ public class ContinuousMovementController : MonoBehaviour
     private float stayInColliderTimer;
     private float outOfMovesDuration = 0.1f;
 
-    private Grid grid;
     private TrailRenderer trailRenderer;
-    private Vector3Int previousCell;
+    private Vector3 previousPosition;
 
     public bool IsMoving { get; set; }
 
@@ -68,12 +67,8 @@ public class ContinuousMovementController : MonoBehaviour
 
         rigidBody = GetComponent<Rigidbody>();
         material = GetComponent<Renderer>().material;
-        grid = FindObjectOfType<Grid>();
         trailRenderer = GetComponent<TrailRenderer>();
         trailRenderer.enabled = false;
-
-        Vector3Int cell = grid.WorldToCell(transform.position);
-        transform.position = grid.GetCellCenterWorld(cell);
     }
 
     /// <summary>
@@ -110,7 +105,7 @@ public class ContinuousMovementController : MonoBehaviour
     /// <summary>
     /// Performs Move Action.
     /// </summary>
-    public void Move(Vector3Int moveDirection)
+    public void Move(Vector3 moveDirection)
     {
         if (isOutOfMoves || reachedGoal || hasDied)
             return;
@@ -121,18 +116,16 @@ public class ContinuousMovementController : MonoBehaviour
             return;
         }
 
-        var startCell = grid.WorldToCell(transform.position);
-        previousCell = startCell;
-        var difference = moveDirection * MoveDistance;
-        var targetCell = startCell + difference;
+        previousPosition = transform.position;
+        Vector3 targetPosition = transform.position + moveDirection * MoveDistance;
 
-        StartCoroutine(MoveRoutine(targetCell, MoveDuration, MoveCost));
+        StartCoroutine(MoveRoutine(targetPosition, MoveDuration, MoveCost));
     }
 
     /// <summary>
     /// Performs Dash Action.
     /// </summary>
-    public void Dash(Vector3Int dashDirection)
+    public void Dash(Vector3 dashDirection)
     {
         if (isOutOfMoves || reachedGoal || hasDied)
             return;
@@ -153,12 +146,10 @@ public class ContinuousMovementController : MonoBehaviour
         isDashing = true;
         trailRenderer.enabled = true;
 
-        var startCell = grid.WorldToCell(transform.position);
-        previousCell = startCell;
-        var difference = dashDirection * DashDistance;
-        var targetCell = startCell + difference;
+        previousPosition = transform.position;
+        Vector3 targetPosition = transform.position + dashDirection * DashDistance;
 
-        StartCoroutine(MoveRoutine(targetCell, DashDuration, DashCost));
+        StartCoroutine(MoveRoutine(targetPosition, DashDuration, DashCost));
 
         ResetDash();
     }
@@ -176,12 +167,11 @@ public class ContinuousMovementController : MonoBehaviour
     /// <summary>
     /// CoRoutine responsible for moving the Player.
     /// </summary>
-    private IEnumerator MoveRoutine(Vector3Int target, float duration)
+    private IEnumerator MoveRoutine(Vector3 target, float duration)
     {
         IsMoving = true;
 
-        var toPosition = grid.GetCellCenterWorld(target);
-        rigidBody.DOMove(toPosition, duration);
+        rigidBody.DOMove(target, duration);
 
         yield return new WaitForSeconds(duration);
 
@@ -195,12 +185,11 @@ public class ContinuousMovementController : MonoBehaviour
     /// <summary>
     /// CoRoutine responsible for moving the Player.
     /// </summary>
-    private IEnumerator MoveRoutine(Vector3Int target, float duration, int cost)
+    private IEnumerator MoveRoutine(Vector3 target, float duration, int cost)
     {
         IsMoving = true;
 
-        var toPosition = grid.GetCellCenterWorld(target);
-        rigidBody.DOMove(toPosition, duration);
+        rigidBody.DOMove(target, duration);
 
         yield return new WaitForSeconds(duration);
 
@@ -245,8 +234,9 @@ public class ContinuousMovementController : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Goal"))
         {
-            Vector3Int cell = grid.WorldToCell(col.gameObject.transform.position);
-            StartCoroutine(MoveRoutine(cell, MoveDuration));
+            StartCoroutine(isDashing
+                ? MoveRoutine(col.gameObject.transform.position, DashDuration)
+                : MoveRoutine(col.gameObject.transform.position, MoveDuration));
 
             reachedGoal = true;
             MakeButtonVisible();
@@ -262,7 +252,10 @@ public class ContinuousMovementController : MonoBehaviour
         else if (col.gameObject.CompareTag("Wall"))
         {
             hitWall = true;
-            StartCoroutine(MoveRoutine(previousCell, MoveDuration));
+
+            StartCoroutine(isDashing
+                ? MoveRoutine(previousPosition, DashDuration)
+                : MoveRoutine(previousPosition, MoveDuration));
         }
         else if (col.gameObject.CompareTag("PickUp"))
         {
@@ -285,5 +278,11 @@ public class ContinuousMovementController : MonoBehaviour
             else
                 stayInColliderTimer += Time.deltaTime;
         }
+    }
+
+    private void OnTriggerExit(Collider col)
+    {
+        if (col.gameObject.CompareTag("Obstacle"))
+            stayInColliderTimer = 0;
     }
 }
