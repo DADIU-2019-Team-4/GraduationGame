@@ -303,6 +303,7 @@ public class MovementController : MonoBehaviour
                 AmountOfMoves += PickUpValue;
                 MovesText.text = AmountOfMoves.ToString();
                 Destroy(col.gameObject);
+                stayInColliderTimer = 0;
             }
             else
                 stayInColliderTimer += Time.deltaTime;
