@@ -286,4 +286,10 @@ public class MovementController : MonoBehaviour
                 stayInColliderTimer += Time.deltaTime;
         }
     }
+
+    private void OnTriggerExit(Collider col)
+    {
+        if (col.gameObject.CompareTag("Obstacle"))
+            stayInColliderTimer = 0;
+    }
 }
