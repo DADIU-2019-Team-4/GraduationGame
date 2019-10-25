@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using TMPro;
 using UnityEngine;
+using System;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -65,6 +66,18 @@ public class PlayerMovement : MonoBehaviour
 
         trailRenderer.enabled = true;
         isMoving = true;
+
+        Player player = null;
+        try { player = gameObject.GetComponent<Player>(); }
+        catch (NullReferenceException e)
+        {
+
+        }
+        
+        if (player != null)
+        {
+            player.Detach(false);
+        }
 
         rigidBody.velocity = Vector3.zero;
         rigidBody.AddForce(dashDirection * DashMultiplier);
