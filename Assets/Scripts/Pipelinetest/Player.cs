@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     private bool _attached;
     [Range(10.0f, 25.0f)]
     public float speed;
+    [Header("test")]
     [Range(1.0f, 3.0f)]
     public float dashSpeed;
     void Start()
