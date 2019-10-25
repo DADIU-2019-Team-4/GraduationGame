@@ -74,7 +74,7 @@ public class PlayerMovement : MonoBehaviour
 
         }
         
-        if (player != null)
+        if (player != null && player.transform.parent != null)
         {
             player.Detach(false);
         }
