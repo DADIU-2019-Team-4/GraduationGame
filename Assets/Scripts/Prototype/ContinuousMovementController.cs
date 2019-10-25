@@ -117,7 +117,7 @@ public class ContinuousMovementController : MonoBehaviour
         }
 
         previousPosition = transform.position;
-        Vector3 targetPosition = transform.position + moveDirection * MoveDistance;
+        Vector3 targetPosition = transform.position + new Vector3(moveDirection.x, 0, moveDirection.y) * MoveDistance;
 
         StartCoroutine(MoveRoutine(targetPosition, MoveDuration, MoveCost));
     }
@@ -147,7 +147,7 @@ public class ContinuousMovementController : MonoBehaviour
         trailRenderer.enabled = true;
 
         previousPosition = transform.position;
-        Vector3 targetPosition = transform.position + dashDirection * DashDistance;
+        Vector3 targetPosition = transform.position + new Vector3(dashDirection.x, 0, dashDirection.y) * DashDistance;
 
         StartCoroutine(MoveRoutine(targetPosition, DashDuration, DashCost));
 
