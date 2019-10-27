@@ -6,9 +6,10 @@ using UnityEditor.SceneManagement;
 
 public class SceneNavigation : EditorWindow
 {
-    string[] scenesMain;
-    string[] scenesAdditive;
+    List<string> scenesMain;
+    List<string> scenesAdditive;
     List<string> activeScenesList;
+    GUIStyle horizontalLine;
 
     // Add menu item named "My Window" to the Window menu
     [MenuItem("Tools/Scene Navigation")]
@@ -20,25 +21,15 @@ public class SceneNavigation : EditorWindow
 
     void OnGUI()
     {
-
-        GUILayout.Label("Scenes:", EditorStyles.boldLabel);
+        setHorizontalLine();
         scenesMain = ReadNames("main");
         scenesAdditive = ReadNames("additive");
         GUILayout.Label("Editor part:", EditorStyles.boldLabel);
-        DrawUI("Editor", 0, "Load:", scenesMain);
-        GUILayout.Label("List of additive scenes :", EditorStyles.boldLabel);
-        DrawUI("Editor", 1, "Load:", scenesAdditive);
-        GUILayout.Label("Loaded Scenes:", EditorStyles.boldLabel);
-        DrawUI("Editor", 0, "Unload:", activeScenesList.ToArray());
-
+        DrawList("Editor");
         GUILayout.Label("Playmode part:", EditorStyles.boldLabel);
-        DrawUI("Playmode", 0, "Load:",scenesMain);
-        GUILayout.Label("List of additive scenes :", EditorStyles.boldLabel);
-        DrawUI("Playmode", 1, "Load:", scenesAdditive);
-        GUILayout.Label("Loaded Scenes:", EditorStyles.boldLabel);
-        DrawUI("Playmode", 1, "Unload:", activeScenesList.ToArray());
+        DrawList("Playmode");
     }
-    private static string[] ReadNames(string value)
+    private static List<string> ReadNames(string value)
     {
         List<string> temp = new List<string>();
         foreach (EditorBuildSettingsScene S in EditorBuildSettings.scenes)
@@ -52,18 +43,18 @@ public class SceneNavigation : EditorWindow
                     temp.Add(name);
             }
         }
-        return temp.ToArray();
+        return temp;
     }
     void OnInspectorUpdate()
     {
         Repaint();
     }
-    void DrawUI(string type, int value, string load,string[] scenes)
+    void DrawUI(string type, int value, string load,List<string> scenes)
     {
-        for (int i = 0; i <= scenes.Length - 1; i++)
+        for (int i = 0; i <= scenes.Count - 1 ; i++)
         {
             EditorGUILayout.BeginHorizontal();
-            EditorGUILayout.LabelField(scenes[i]);
+            EditorGUILayout.LabelField(scenes[i], EditorStyles.miniBoldLabel);
             if (load == "Load:")
             {
                 if (GUILayout.Button(load + scenes[i], GUILayout.Width(200f), GUILayout.Height(15f)))
@@ -83,7 +74,8 @@ public class SceneNavigation : EditorWindow
                                 EditorSceneManager.OpenScene("Assets/Scenes/" + scenes[i] + ".unity", OpenSceneMode.Additive);
                             else
                                 SceneManager.LoadScene(scenes[i], LoadSceneMode.Additive);
-                            activeScenesList.Add(scenes[i]);
+                            if(!activeScenesList.Contains(scenes[i]))
+                                activeScenesList.Add(scenes[i]);
                             break;
                     }
                 }
@@ -115,5 +107,31 @@ public class SceneNavigation : EditorWindow
             GUILayout.Space(2f);
         }
         GUILayout.Space(10f);
+        HorizontalLine(Color.white);
+    }
+     void HorizontalLine(Color color)
+    {
+        var c = GUI.color;
+        GUI.color = color;
+        GUILayout.Box(GUIContent.none, horizontalLine);
+        GUI.color = c;
+    }
+    void setHorizontalLine()
+    {
+        horizontalLine = new GUIStyle();
+        horizontalLine.normal.background = EditorGUIUtility.whiteTexture;
+        horizontalLine.margin = new RectOffset(0, 0, 4, 4);
+        horizontalLine.fixedHeight = 1;
+    }
+    void DrawList(string type)
+    {
+        HorizontalLine(Color.white);
+        GUILayout.Label("Base scenes:");
+        DrawUI(type, 0, "Load:", scenesMain);
+        GUILayout.Label("Additive scenes:");
+        DrawUI(type, 1, "Load:", scenesAdditive);
+        GUILayout.Label("Loaded Scenes:", EditorStyles.boldLabel);
+        if (activeScenesList != null)
+            DrawUI(type, 0, "Unload:", activeScenesList);
     }
 }
