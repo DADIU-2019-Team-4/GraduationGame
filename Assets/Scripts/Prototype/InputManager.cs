@@ -3,23 +3,24 @@ using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
-    [SerializeField]
-    private float minSwipeDistanceInPercentage = 0.10f;
+    public float MinSwipeDistanceInPercentage = 0.10f;
     private float verticalSwipeDistance;
     private float horizontalSwipeDistance;
 
     private Vector3 firstPosition;
     private Vector3 lastPosition;
     private bool hasSwiped;
+    private bool isHolding;
 
     private bool trackMouse;
 
     private MovementController movementController;
     private float chargeDashTimer;
 
-    [SerializeField]
-    private float coyoteTime = 0.5f;
+    public float CoyoteTime = 0.5f;
     private float coyoteTimer;
+
+    public GameObject ArrowParent;
 
     private void Awake()
     {
@@ -28,8 +29,10 @@ public class InputManager : MonoBehaviour
 
     private void Start()
     {
-        verticalSwipeDistance = Screen.height * minSwipeDistanceInPercentage;
-        horizontalSwipeDistance = Screen.width * minSwipeDistanceInPercentage;
+        verticalSwipeDistance = Screen.height * MinSwipeDistanceInPercentage;
+        horizontalSwipeDistance = Screen.width * MinSwipeDistanceInPercentage;
+
+        ArrowParent.SetActive(false);
     }
 
     /// <summary>
@@ -40,6 +43,30 @@ public class InputManager : MonoBehaviour
         HandleInput();
 
         HandleCoyoteSwipe();
+
+        if (isHolding)
+        {
+            ArrowParent.SetActive(true);
+            SetAimingDirection();
+        }
+        else
+            ArrowParent.SetActive(false);
+    }
+
+    private void SetAimingDirection()
+    {
+        RaycastHit hit;
+        Ray ray = Camera.main.ScreenPointToRay(lastPosition);
+        if (Physics.Raycast(ray, out hit))
+        {
+            Vector3 targetPos = hit.point;
+            Debug.Log("targetPos: " + targetPos);
+            movementController.transform.LookAt(movementController.transform.position -
+                                                (targetPos - movementController.transform.position));
+            movementController.transform.rotation =
+                new Quaternion(0, movementController.transform.rotation.y, 0, movementController.transform.rotation.w);
+            Debug.Log("arrowPos: " + (movementController.transform.position - targetPos));
+        }
     }
 
     /// <summary>
@@ -61,16 +88,16 @@ public class InputManager : MonoBehaviour
     {
         if (!movementController.TriggerCoyoteTime) return;
 
-        if (!(coyoteTimer < coyoteTime) && !movementController.IsMoving) return;
+        if (!(coyoteTimer < CoyoteTime) && !movementController.IsMoving) return;
 
         CheckSwipe();
         if (movementController.IsMoving)
         {
-            coyoteTime = 0;
+            CoyoteTime = 0;
             movementController.TriggerCoyoteTime = false;
         }
         else
-            coyoteTime += Time.deltaTime;
+            CoyoteTime += Time.deltaTime;
     }
 
 
@@ -89,16 +116,16 @@ public class InputManager : MonoBehaviour
                 lastPosition = touch.position;
             }
             // Player's finger touches the screen but hasn't moved
-            else if (touch.phase == TouchPhase.Stationary)
-            {
-                // Charge up dash
-                chargeDashTimer += Time.deltaTime;
-                if (chargeDashTimer >= movementController.DashThreshold)
-                {
-                    movementController.ChargeDash();
-                    movementController.IsDashCharged = true;
-                }
-            }
+            //else if (touch.phase == TouchPhase.Stationary)
+            //{
+            //    // Charge up dash
+            //    chargeDashTimer += Time.deltaTime;
+            //    if (chargeDashTimer >= movementController.DashThreshold)
+            //    {
+            //        movementController.ChargeDash();
+            //        movementController.IsDashCharged = true;
+            //    }
+            //}
             // Player's finger touches the screen and moves on the screen
             else if (touch.phase == TouchPhase.Moved)
             {
@@ -128,24 +155,26 @@ public class InputManager : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             trackMouse = true;
+            isHolding = true;
             firstPosition = Input.mousePosition;
             lastPosition = Input.mousePosition;
         }
 
-        if (Input.GetMouseButton(0))
-        {
-            chargeDashTimer += Time.deltaTime;
-            if (chargeDashTimer >= movementController.DashThreshold)
-            {
-                movementController.ChargeDash();
-                movementController.IsDashCharged = true;
-            }
-        }
+        //if (Input.GetMouseButton(0))
+        //{
+        //    chargeDashTimer += Time.deltaTime;
+        //    if (chargeDashTimer >= movementController.DashThreshold)
+        //    {
+        //        movementController.ChargeDash();
+        //        movementController.IsDashCharged = true;
+        //    }
+        //}
 
         // mouse button is released
         if (Input.GetMouseButtonUp(0))
         {
             trackMouse = false;
+            isHolding = false;
             hasSwiped = false;
             chargeDashTimer = 0;
             movementController.ResetDash();
@@ -155,7 +184,7 @@ public class InputManager : MonoBehaviour
         if (trackMouse && !hasSwiped)
         {
             lastPosition = Input.mousePosition;
-            CheckSwipe();
+            //CheckSwipe();
         }
     }
 

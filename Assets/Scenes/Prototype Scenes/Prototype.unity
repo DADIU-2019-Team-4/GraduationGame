@@ -267,6 +267,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3015388746143253195, guid: 79bfe6d923c3bf84f8d15ae6d2d5787a,
+        type: 3}
+      propertyPath: ArrowParent
+      value: 
+      objectReference: {fileID: 1638085245}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 79bfe6d923c3bf84f8d15ae6d2d5787a, type: 3}
 --- !u!1 &558198435
@@ -1542,7 +1547,7 @@ PrefabInstance:
     - target: {fileID: 714748535622932569, guid: c3488568424b8814bad4703ac36407fb,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -41.1
+      value: -1.4
       objectReference: {fileID: 0}
     - target: {fileID: 714748535622932569, guid: c3488568424b8814bad4703ac36407fb,
         type: 3}
@@ -1614,18 +1619,24 @@ PrefabInstance:
       propertyPath: NextSceneButton
       value: 
       objectReference: {fileID: 1185351803}
-    - target: {fileID: 3202629566038322268, guid: c3488568424b8814bad4703ac36407fb,
+    - target: {fileID: 8655084343937826452, guid: c3488568424b8814bad4703ac36407fb,
         type: 3}
-      propertyPath: MoveDistance
-      value: 10
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 3202629566038322268, guid: c3488568424b8814bad4703ac36407fb,
+    - target: {fileID: 196460062602409186, guid: c3488568424b8814bad4703ac36407fb,
         type: 3}
-      propertyPath: DashDistance
-      value: 25
+      propertyPath: m_LocalPosition.z
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c3488568424b8814bad4703ac36407fb, type: 3}
+--- !u!1 &1638085245 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8655084343937826452, guid: c3488568424b8814bad4703ac36407fb,
+    type: 3}
+  m_PrefabInstance: {fileID: 1638085244}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1793690779
 GameObject:
   m_ObjectHideFlags: 0
