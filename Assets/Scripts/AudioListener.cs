@@ -5,6 +5,8 @@ using UnityEngine;
 public class AudioListener : MonoBehaviour
 {
     //Wwise component variables
+    [SerializeField, Rename("Wwise Bank component")]
+    private AK.Wwise.Bank _wwiseBank;
     [SerializeField, Rename("Wwise Event component")]
     private AK.Wwise.Event _wwiseEvent;
     [SerializeField, Rename("Wwise RTPC component")]
