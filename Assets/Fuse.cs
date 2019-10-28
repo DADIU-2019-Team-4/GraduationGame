@@ -8,6 +8,7 @@ public class Fuse : MonoBehaviour
     public float FollowSpeed = 0.5f;
 
     private bool isUsed;
+    private bool reversedPositions;
     private LineRenderer lineRenderer;
     private Vector3[] pointsToFollow;
     private MovementController movementController;
@@ -29,8 +30,16 @@ public class Fuse : MonoBehaviour
         if (OnlyUsedOnce && isUsed)
             return;
 
-        if (pointType == StartPoint.PointType.End)
+        if (pointType == StartPoint.PointType.End && !reversedPositions)
+        {
             System.Array.Reverse(pointsToFollow);
+            reversedPositions = true;
+        }
+        else if (pointType == StartPoint.PointType.Start && reversedPositions)
+        {
+            System.Array.Reverse(pointsToFollow);
+            reversedPositions = false;
+        }
 
         movementController.IsFuseMoving = true;
         StartCoroutine(FollowRoutine());
