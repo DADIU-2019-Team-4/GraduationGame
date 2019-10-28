@@ -57,6 +57,5 @@ public class Fuse : MonoBehaviour
 
         isUsed = true;
         movementController.IsFuseMoving = false;
-        movementController.SnapToGrid();
     }
 }
