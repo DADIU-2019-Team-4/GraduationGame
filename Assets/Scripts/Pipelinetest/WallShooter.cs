@@ -27,7 +27,7 @@ public class WallShooter : MonoBehaviour
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.right), out hit, detectionDistance))
         {
             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.right) * hit.distance, Color.yellow);
-            Debug.Log("Did Hit");
+            
             if (hit.transform.tag== "Player")
             {
                 SpawnPlane();
@@ -36,7 +36,7 @@ public class WallShooter : MonoBehaviour
         else
         {
             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.right) * detectionDistance, Color.white);
-            Debug.Log("Did not Hit");
+           
         }
 
     }
