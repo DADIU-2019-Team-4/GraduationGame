@@ -28,6 +28,9 @@ public class SceneNavigation : EditorWindow
         DrawList("Editor");
         GUILayout.Label("Playmode part:", EditorStyles.boldLabel);
         DrawList("Playmode");
+        GUILayout.TextArea("The tool for loading/unloading main and aditive scenes that are in build settings. \n" +
+            "The scenes should be saved in Assest/Scenes/ folder to fully fucntion in Editor part. \n" +
+            "If new functionality is needed, please inform Vlad about changes that needs to be done. \n");
     }
     private static List<string> ReadNames(string value)
     {
@@ -74,8 +77,11 @@ public class SceneNavigation : EditorWindow
                                 EditorSceneManager.OpenScene("Assets/Scenes/" + scenes[i] + ".unity", OpenSceneMode.Additive);
                             else
                                 SceneManager.LoadScene(scenes[i], LoadSceneMode.Additive);
-                            if(!activeScenesList.Contains(scenes[i]))
-                                activeScenesList.Add(scenes[i]);
+                            if (activeScenesList != null)
+                            {
+                                if (!activeScenesList.Contains(scenes[i]))
+                                    activeScenesList.Add(scenes[i]);
+                            }
                             break;
                     }
                 }
