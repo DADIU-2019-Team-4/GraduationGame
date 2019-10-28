@@ -23,14 +23,18 @@ public class SceneNavigation : EditorWindow
     {
         setHorizontalLine();
         scenesMain = ReadNames("main");
+        var activeScene = SceneManager.GetActiveScene().name;
         scenesAdditive = ReadNames("additive");
+        if (!activeScenesList.Contains(activeScene))
+            activeScenesList.Add(activeScene);
         GUILayout.Label("Editor part:", EditorStyles.boldLabel);
         DrawList("Editor");
         GUILayout.Label("Playmode part:", EditorStyles.boldLabel);
         DrawList("Playmode");
         GUILayout.TextArea("The tool for loading/unloading main and aditive scenes that are in build settings. \n" +
             "The scenes should be saved in Assest/Scenes/ folder to fully fucntion in Editor part. \n" +
-            "If new functionality is needed, please inform Vlad about changes that needs to be done. \n");
+            "If new functionality is needed, please inform Vlad about changes that needs to be done. \n"
+            +"P.S. All scenes cannot be removed, so the last one left in inspector won't unload till you won't add another additive scene.");
     }
     private static List<string> ReadNames(string value)
     {
