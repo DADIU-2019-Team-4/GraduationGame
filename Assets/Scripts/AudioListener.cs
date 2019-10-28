@@ -63,20 +63,20 @@ public class AudioListener : MonoBehaviour
                 else
                     _wwiseEvent.Post(gameObject);
             }
-            if(_wwiseTrigger != null)
+            if (_wwiseTrigger != null)
             {
                 _wwiseTrigger.Post(gameObject);
             }
             _played = true;
         }
-    void CallBackFunction(object in_cookie, AkCallbackType in_type, object in_info)
+        void CallBackFunction(object in_cookie, AkCallbackType in_type, object in_info)
         {
-            if (in_info is AkMarkerCallbackInfo markerInfo)
+            var markerInfo = in_info is AkMarkerCallbackInfo;
+            if (markerInfo != null)
             {
-                var Label = markerInfo.strLabel;
-                Debug.Log(Label);
-
+                //do something (usage of callbacks)
             }
+
         }
     }
 }
