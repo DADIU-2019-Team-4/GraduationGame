@@ -25,7 +25,7 @@ public class SceneNavigation : EditorWindow
         scenesMain = ReadNames("main");
         var activeScene = SceneManager.GetActiveScene().name;
         scenesAdditive = ReadNames("additive");
-        if (!activeScenesList.Contains(activeScene))
+        if (!activeScenesList.Contains(activeScene) && activeScenesList != null)
             activeScenesList.Add(activeScene);
         GUILayout.Label("Editor part:", EditorStyles.boldLabel);
         DrawList("Editor");
