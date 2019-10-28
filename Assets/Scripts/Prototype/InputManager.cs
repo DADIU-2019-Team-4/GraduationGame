@@ -202,8 +202,12 @@ public class InputManager : MonoBehaviour
     private Vector3Int HorizontalSwipe()
     {
         if (lastPosition.x > firstPosition.x)
+        {
+            movementController.CurrentDirection = MovementController.Direction.Right;
             return Vector3Int.right;
+        }
 
+        movementController.CurrentDirection = MovementController.Direction.Left;
         return Vector3Int.left;
     }
 
@@ -213,8 +217,12 @@ public class InputManager : MonoBehaviour
     private Vector3Int VerticalSwipe()
     {
         if (lastPosition.y > firstPosition.y)
+        {
+            movementController.CurrentDirection = MovementController.Direction.Up;
             return Vector3Int.up;
+        }
 
+        movementController.CurrentDirection = MovementController.Direction.Down;
         return Vector3Int.down;
     }
 }

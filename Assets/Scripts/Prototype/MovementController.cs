@@ -57,23 +57,33 @@ public class MovementController : MonoBehaviour
     private bool reachedGoal;
     private bool hitWall;
 
+    public bool IsFuseMoving { get; set; }
+
     public bool TriggerCoyoteTime { get; set; }
 
     public bool IsDashCharged { get; set; }
+
+    public enum Direction { Up, Down, Left, Right }
+
+    [HideInInspector]
+    public Direction CurrentDirection;
+
+    private void Awake()
+    {
+        rigidBody = GetComponent<Rigidbody>();
+        material = GetComponent<Renderer>().material;
+        grid = FindObjectOfType<Grid>();
+        trailRenderer = GetComponent<TrailRenderer>();
+    }
 
     // Start is called before the first frame update
     private void Start()
     {
         MovesText.text = AmountOfMoves.ToString();
 
-        rigidBody = GetComponent<Rigidbody>();
-        material = GetComponent<Renderer>().material;
-        grid = FindObjectOfType<Grid>();
-        trailRenderer = GetComponent<TrailRenderer>();
         trailRenderer.enabled = false;
 
-        Vector3Int cell = grid.WorldToCell(transform.position);
-        transform.position = grid.GetCellCenterWorld(cell);
+        SnapToGrid();
     }
 
     /// <summary>
@@ -259,7 +269,12 @@ public class MovementController : MonoBehaviour
                 MakeButtonVisible();
             }
         }
-        else if (col.gameObject.CompareTag("Wall"))
+        else if (col.gameObject.CompareTag("FusePoint"))
+        {
+            StartPoint startPoint = col.gameObject.GetComponent<StartPoint>();
+            CheckFuseDirection(startPoint);
+        }
+        else if (col.gameObject.CompareTag("Wall") || col.gameObject.CompareTag("Fuse") && !IsFuseMoving)
         {
             hitWall = true;
             StartCoroutine(MoveRoutine(previousCell, MoveDuration));
@@ -269,6 +284,37 @@ public class MovementController : MonoBehaviour
             AmountOfMoves += PickUpValue;
             MovesText.text = AmountOfMoves.ToString();
             Destroy(col.gameObject);
+        }
+    }
+
+    private void CheckFuseDirection(StartPoint startPoint)
+    {
+        switch (CurrentDirection)
+        {
+            case Direction.Up:
+            {
+                if (startPoint.acceptedDirection == StartPoint.AcceptedDirection.Up)
+                    startPoint.StartFollowingFuse();
+                break;
+            }
+            case Direction.Down:
+            {
+                if (startPoint.acceptedDirection == StartPoint.AcceptedDirection.Down)
+                    startPoint.StartFollowingFuse();
+                break;
+            }
+            case Direction.Left:
+            {
+                if (startPoint.acceptedDirection == StartPoint.AcceptedDirection.Left)
+                    startPoint.StartFollowingFuse();
+                break;
+            }
+            case Direction.Right:
+            {
+                if (startPoint.acceptedDirection == StartPoint.AcceptedDirection.Right)
+                    startPoint.StartFollowingFuse();
+                break;
+            }
         }
     }
 
@@ -291,5 +337,11 @@ public class MovementController : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Obstacle"))
             stayInColliderTimer = 0;
+    }
+
+    public void SnapToGrid()
+    {
+        Vector3Int cell = grid.WorldToCell(transform.position);
+        transform.position = grid.GetCellCenterWorld(cell);
     }
 }
