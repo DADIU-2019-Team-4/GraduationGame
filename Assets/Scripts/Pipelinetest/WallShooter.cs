@@ -1,9 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-#if UNITY_EDITOR
-using UnityEditor;
-#endif
 
 public class WallShooter : MonoBehaviour
 {
@@ -13,6 +10,7 @@ public class WallShooter : MonoBehaviour
     public float spawnCooldown;
     [SerializeField]
     private float currentSpawnCooldown=0;
+    public float planeSpeed;
 
     // Start is called before the first frame update
     void Start()
@@ -26,15 +24,18 @@ public class WallShooter : MonoBehaviour
         currentSpawnCooldown -= Time.deltaTime;
         RaycastHit hit;
         // Does the ray intersect any objects excluding the player layer
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, detectionDistance))
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.right), out hit, detectionDistance))
         {
-            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
+            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.right) * hit.distance, Color.yellow);
             Debug.Log("Did Hit");
-            SpawnPlane();
+            if (hit.transform.tag== "Player")
+            {
+                SpawnPlane();
+            }
         }
         else
         {
-            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * detectionDistance, Color.white);
+            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.right) * detectionDistance, Color.white);
             Debug.Log("Did not Hit");
         }
 
@@ -44,7 +45,8 @@ public class WallShooter : MonoBehaviour
     {
         if (currentSpawnCooldown<0)
         {
-            GameObject.Instantiate(plane, transform.position, Quaternion.identity);
+            GameObject planeRef = GameObject.Instantiate(plane, transform.position, this.transform.rotation);
+            planeRef.GetComponent<PaperPlane>().speed = planeSpeed;
             currentSpawnCooldown = spawnCooldown;
         }
         else
@@ -56,18 +58,3 @@ public class WallShooter : MonoBehaviour
 }
 
 
-//[CustomEditor(typeof(WallShooter))]
-//public class SomeScriptEditor : Editor
-//{
-//    public override void OnInspectorGUI()
-//    {
-//        DrawDefaultInspector();
-
-
-//        WallShooter wallShooter = (WallShooter)target;
-//        if (GUILayout.Button("spawn 'very cool' plane"))
-//        {
-//            wallShooter.SpawnPlane();
-//        }
-//    }
-//}
