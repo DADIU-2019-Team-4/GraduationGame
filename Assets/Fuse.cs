@@ -33,13 +33,13 @@ public class Fuse : MonoBehaviour
         if (pointType == StartPoint.PointType.End && !reversedPositions)
         {
             System.Array.Reverse(pointsToFollow);
-            reversedPositions = true;
+            //reversedPositions = true;
         }
-        else if (pointType == StartPoint.PointType.Start && reversedPositions)
-        {
-            System.Array.Reverse(pointsToFollow);
-            reversedPositions = false;
-        }
+        //else if (pointType == StartPoint.PointType.Start && reversedPositions)
+        //{
+        //    System.Array.Reverse(pointsToFollow);
+        //    reversedPositions = false;
+        //}
 
         movementController.IsFuseMoving = true;
         StartCoroutine(FollowRoutine());
