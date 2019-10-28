@@ -128,7 +128,7 @@ public class MovementController : MonoBehaviour
         }
 
         previousPosition = transform.position;
-        Vector3 targetPosition = transform.position + new Vector3(moveDirection.x, 0, moveDirection.y) * MoveDistance;
+        Vector3 targetPosition = transform.position + new Vector3(moveDirection.x, 0, moveDirection.z) * MoveDistance;
 
         StartCoroutine(MoveRoutine(targetPosition, MoveDuration, MoveCost));
     }
@@ -158,7 +158,7 @@ public class MovementController : MonoBehaviour
         trailRenderer.enabled = true;
 
         previousPosition = transform.position;
-        Vector3 targetPosition = transform.position + new Vector3(dashDirection.x, 0, dashDirection.y) * DashDistance;
+        Vector3 targetPosition = transform.position + new Vector3(dashDirection.x, 0, dashDirection.z) * DashDistance;
 
         StartCoroutine(MoveRoutine(targetPosition, DashDuration, DashCost));
 
@@ -281,6 +281,27 @@ public class MovementController : MonoBehaviour
         }
     }
 
+    private void OnTriggerStay(Collider col)
+    {
+        if (col.gameObject.CompareTag("Obstacle"))
+        {
+            if (stayInColliderTimer > stayInColliderThreshold)
+            {
+                hasDied = true;
+                MakeButtonVisible();
+                stayInColliderTimer = 0;
+            }
+            else
+                stayInColliderTimer += Time.deltaTime;
+        }
+    }
+
+    private void OnTriggerExit(Collider col)
+    {
+        if (col.gameObject.CompareTag("Obstacle"))
+            stayInColliderTimer = 0;
+    }
+
     private void CheckFuseDirection(StartPoint startPoint)
     {
         switch (CurrentDirection)
@@ -310,26 +331,5 @@ public class MovementController : MonoBehaviour
                 break;
             }
         }
-    }
-
-    private void OnTriggerStay(Collider col)
-    {
-        if (col.gameObject.CompareTag("Obstacle"))
-        {
-            if (stayInColliderTimer > stayInColliderThreshold)
-            {
-                hasDied = true;
-                MakeButtonVisible();
-                stayInColliderTimer = 0;
-            }
-            else
-                stayInColliderTimer += Time.deltaTime;
-        }
-    }
-
-    private void OnTriggerExit(Collider col)
-    {
-        if (col.gameObject.CompareTag("Obstacle"))
-            stayInColliderTimer = 0;
     }
 }
