@@ -3,7 +3,7 @@ using DG.Tweening;
 using TMPro;
 using UnityEngine;
 
-public class MovementController : MonoBehaviour
+public class ContinuousMovementController : MonoBehaviour
 {
     [Header("General Settings")]
     [Tooltip("Value of pick ups that add to your amount of moves.")]
@@ -12,26 +12,22 @@ public class MovementController : MonoBehaviour
     public int AmountOfMoves = 10;
 
     [Header("Move Settings")]
-    [Tooltip("Duration of a move in seconds (so speed of a move).")]
+    [Tooltip("Duration of a move in seconds (how long it takes to get to target position).")]
     public float MoveDuration = 0.2f;
-    [Tooltip("Distance of a move in grid cells.")]
-    public int MoveDistance = 1;
+    [Tooltip("Distance of a move.")]
+    public int MoveDistance = 50;
     [Tooltip("Cost of a move.")]
     public int MoveCost = 1;
-    [Tooltip("Duration in seconds of how long the trail of the move should be visible.")]
-    public float MoveTrailDuration = 0.25f;
 
     [Header("Dash Settings")]
     [Tooltip("Time in seconds for how long you need to tap and hold for it to be recognized as a dash.")]
     public float DashThreshold = 0.25f;
-    [Tooltip("Duration of a dash in seconds (so speed of a dash).")]
+    [Tooltip("Duration of a dash in seconds (how long it takes to get to target position).")]
     public float DashDuration = 0.1f;
-    [Tooltip("Distance of a dash in grid cells.")]
-    public int DashDistance = 2;
+    [Tooltip("Distance of a dash.")]
+    public int DashDistance = 100;
     [Tooltip("Cost of a dash.")]
     public int DashCost = 3;
-    [Tooltip("Duration in seconds of how long the trail of the dash should be visible.")]
-    public float DashTrailDuration = 0.5f;
 
     [Header("Canvas Fields")]
     public TMP_Text MovesText;
@@ -49,9 +45,8 @@ public class MovementController : MonoBehaviour
     private float stayInColliderTimer;
     private float outOfMovesDuration = 0.1f;
 
-    private Grid grid;
     private TrailRenderer trailRenderer;
-    private Vector3Int previousCell;
+    private Vector3 previousPosition;
 
     public bool IsMoving { get; set; }
 
@@ -72,12 +67,8 @@ public class MovementController : MonoBehaviour
 
         rigidBody = GetComponent<Rigidbody>();
         material = GetComponent<Renderer>().material;
-        grid = FindObjectOfType<Grid>();
         trailRenderer = GetComponent<TrailRenderer>();
         trailRenderer.enabled = false;
-
-        Vector3Int cell = grid.WorldToCell(transform.position);
-        transform.position = grid.GetCellCenterWorld(cell);
     }
 
     /// <summary>
@@ -114,7 +105,7 @@ public class MovementController : MonoBehaviour
     /// <summary>
     /// Performs Move Action.
     /// </summary>
-    public void Move(Vector3Int moveDirection)
+    public void Move(Vector3 moveDirection)
     {
         if (isOutOfMoves || reachedGoal || hasDied)
             return;
@@ -125,21 +116,16 @@ public class MovementController : MonoBehaviour
             return;
         }
 
-        trailRenderer.enabled = true;
-        trailRenderer.time = MoveTrailDuration;
+        previousPosition = transform.position;
+        Vector3 targetPosition = transform.position + new Vector3(moveDirection.x, 0, moveDirection.y) * MoveDistance;
 
-        var startCell = grid.WorldToCell(transform.position);
-        previousCell = startCell;
-        var difference = moveDirection * MoveDistance;
-        var targetCell = startCell + difference;
-
-        StartCoroutine(MoveRoutine(targetCell, MoveDuration, MoveCost));
+        StartCoroutine(MoveRoutine(targetPosition, MoveDuration, MoveCost));
     }
 
     /// <summary>
     /// Performs Dash Action.
     /// </summary>
-    public void Dash(Vector3Int dashDirection)
+    public void Dash(Vector3 dashDirection)
     {
         if (isOutOfMoves || reachedGoal || hasDied)
             return;
@@ -159,14 +145,11 @@ public class MovementController : MonoBehaviour
 
         isDashing = true;
         trailRenderer.enabled = true;
-        trailRenderer.time = DashTrailDuration;
 
-        var startCell = grid.WorldToCell(transform.position);
-        previousCell = startCell;
-        var difference = dashDirection * DashDistance;
-        var targetCell = startCell + difference;
+        previousPosition = transform.position;
+        Vector3 targetPosition = transform.position + new Vector3(dashDirection.x, 0, dashDirection.y) * DashDistance;
 
-        StartCoroutine(MoveRoutine(targetCell, DashDuration, DashCost));
+        StartCoroutine(MoveRoutine(targetPosition, DashDuration, DashCost));
 
         ResetDash();
     }
@@ -184,12 +167,11 @@ public class MovementController : MonoBehaviour
     /// <summary>
     /// CoRoutine responsible for moving the Player.
     /// </summary>
-    private IEnumerator MoveRoutine(Vector3Int target, float duration)
+    private IEnumerator MoveRoutine(Vector3 target, float duration)
     {
         IsMoving = true;
 
-        var toPosition = grid.GetCellCenterWorld(target);
-        rigidBody.DOMove(toPosition, duration);
+        rigidBody.DOMove(target, duration);
 
         yield return new WaitForSeconds(duration);
 
@@ -203,12 +185,11 @@ public class MovementController : MonoBehaviour
     /// <summary>
     /// CoRoutine responsible for moving the Player.
     /// </summary>
-    private IEnumerator MoveRoutine(Vector3Int target, float duration, int cost)
+    private IEnumerator MoveRoutine(Vector3 target, float duration, int cost)
     {
         IsMoving = true;
 
-        var toPosition = grid.GetCellCenterWorld(target);
-        rigidBody.DOMove(toPosition, duration);
+        rigidBody.DOMove(target, duration);
 
         yield return new WaitForSeconds(duration);
 
@@ -251,33 +232,37 @@ public class MovementController : MonoBehaviour
 
     private void OnTriggerEnter(Collider col)
     {
-        //if (col.gameObject.CompareTag("Goal"))
-        //{
-        //    Vector3Int cell = grid.WorldToCell(col.gameObject.transform.position);
-        //    StartCoroutine(MoveRoutine(cell, MoveDuration));
+        if (col.gameObject.CompareTag("Goal"))
+        {
+            StartCoroutine(isDashing
+                ? MoveRoutine(col.gameObject.transform.position, DashDuration)
+                : MoveRoutine(col.gameObject.transform.position, MoveDuration));
 
-        //    reachedGoal = true;
-        //    MakeButtonVisible();
-        //}
-        //else if (col.gameObject.CompareTag("Obstacle"))
-        //{
-        //    if (!isDashing)
-        //    {
-        //        hasDied = true;
-        //        MakeButtonVisible();
-        //    }
-        //}
-        if (col.gameObject.CompareTag("Wall"))
+            reachedGoal = true;
+            MakeButtonVisible();
+        }
+        else if (col.gameObject.CompareTag("Obstacle"))
+        {
+            if (!isDashing)
+            {
+                hasDied = true;
+                MakeButtonVisible();
+            }
+        }
+        else if (col.gameObject.CompareTag("Wall"))
         {
             hitWall = true;
-            StartCoroutine(MoveRoutine(previousCell, MoveDuration));
+
+            StartCoroutine(isDashing
+                ? MoveRoutine(previousPosition, DashDuration)
+                : MoveRoutine(previousPosition, MoveDuration));
         }
-        //else if (col.gameObject.CompareTag("PickUp"))
-        //{
-        //    AmountOfMoves += PickUpValue;
-        //    MovesText.text = AmountOfMoves.ToString();
-        //    Destroy(col.gameObject);
-        //}
+        else if (col.gameObject.CompareTag("PickUp"))
+        {
+            AmountOfMoves += PickUpValue;
+            MovesText.text = AmountOfMoves.ToString();
+            Destroy(col.gameObject);
+        }
     }
 
     private void OnTriggerStay(Collider col)
@@ -293,36 +278,6 @@ public class MovementController : MonoBehaviour
             else
                 stayInColliderTimer += Time.deltaTime;
         }
-        else if (col.gameObject.CompareTag("Goal"))
-        {
-            if (stayInColliderTimer > stayInColliderThreshold)
-            {
-                reachedGoal = true;
-                MakeButtonVisible();
-                stayInColliderTimer = 0;
-            }
-            else
-                stayInColliderTimer += Time.deltaTime;
-        }
-        else if (col.gameObject.CompareTag("PickUp"))
-        {
-            if (stayInColliderTimer > stayInColliderThreshold)
-            {
-                AmountOfMoves += PickUpValue;
-                MovesText.text = AmountOfMoves.ToString();
-                Destroy(col.gameObject);
-                stayInColliderTimer = 0;
-            }
-            else
-                stayInColliderTimer += Time.deltaTime;
-        }
-    }
-
-    private void OnTriggerExit(Collider col)
-    {
-        if (col.gameObject.CompareTag("Obstacle") || col.gameObject.CompareTag("Goal") ||
-            col.gameObject.CompareTag("PickUp"))
-            stayInColliderTimer = 0;
     }
 
     private void OnTriggerExit(Collider col)
