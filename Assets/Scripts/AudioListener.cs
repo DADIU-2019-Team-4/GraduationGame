@@ -63,6 +63,10 @@ public class AudioListener : MonoBehaviour
                 else
                     _wwiseEvent.Post(gameObject);
             }
+            if(_wwiseTrigger != null)
+            {
+                _wwiseTrigger.Post(gameObject);
+            }
             _played = true;
         }
     void CallBackFunction(object in_cookie, AkCallbackType in_type, object in_info)
