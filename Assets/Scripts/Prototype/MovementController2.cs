@@ -60,6 +60,7 @@ public class MovementController2 : MonoBehaviour
     private bool hasDied;
     private bool reachedGoal;
     private bool hitWall;
+    private Vector3Int lastDashDirection;
 
     public bool TriggerCoyoteTime { get; set; }
 
@@ -160,7 +161,7 @@ public class MovementController2 : MonoBehaviour
         isDashing = true;
         trailRenderer.enabled = true;
         trailRenderer.time = DashTrailDuration;
-
+        lastDashDirection = dashDirection;
         var startCell = grid.WorldToCell(transform.position);
         previousCell = startCell;
         var difference = dashDirection * DashDistance;
@@ -251,33 +252,51 @@ public class MovementController2 : MonoBehaviour
 
     private void OnTriggerEnter(Collider col)
     {
-        //if (col.gameObject.CompareTag("Goal"))
-        //{
-        //    Vector3Int cell = grid.WorldToCell(col.gameObject.transform.position);
-        //    StartCoroutine(MoveRoutine(cell, MoveDuration));
+        if (col.gameObject.CompareTag("Goal"))
+        {
+            Vector3Int cell = grid.WorldToCell(col.gameObject.transform.position);
+            StartCoroutine(MoveRoutine(cell, MoveDuration));
 
-        //    reachedGoal = true;
-        //    MakeButtonVisible();
-        //}
-        //else if (col.gameObject.CompareTag("Obstacle"))
-        //{
-        //    if (!isDashing)
-        //    {
-        //        hasDied = true;
-        //        MakeButtonVisible();
-        //    }
-        //}
+            reachedGoal = true;
+            MakeButtonVisible();
+        }
+        else if (col.gameObject.CompareTag("Obstacle"))
+        {
+            if (!isDashing)
+            {
+                StartCoroutine(MoveRoutine(previousCell, MoveDuration));
+                hasDied = true;
+                MakeButtonVisible();
+            }
+        }
         if (col.gameObject.CompareTag("Wall"))
         {
             hitWall = true;
             StartCoroutine(MoveRoutine(previousCell, MoveDuration));
         }
-        //else if (col.gameObject.CompareTag("PickUp"))
-        //{
-        //    AmountOfMoves += PickUpValue;
-        //    MovesText.text = AmountOfMoves.ToString();
-        //    Destroy(col.gameObject);
-        //}
+        else if (col.gameObject.CompareTag("PickUp"))
+        {
+            AmountOfMoves += PickUpValue;
+            MovesText.text = AmountOfMoves.ToString();
+            Destroy(col.gameObject);
+        }
+        else if (col.gameObject.CompareTag("Chargable"))
+        {
+            if (isDashing)
+            {
+                var targetCell = grid.WorldToCell(col.gameObject.transform.position) + (new Vector3Int(1, 1, 1) * lastDashDirection);
+                Debug.Log(targetCell);
+                StartCoroutine(MoveRoutine(targetCell, MoveDuration));
+                col.gameObject.GetComponent<Renderer>().material.DOFade(0f, 2f);
+                Destroy(col.gameObject, 2f);
+            }
+            else
+            {
+                hitWall = true;
+                StartCoroutine(MoveRoutine(previousCell, MoveDuration));
+            }
+
+        }
     }
 
     private void OnTriggerStay(Collider col)
@@ -321,7 +340,7 @@ public class MovementController2 : MonoBehaviour
     private void OnTriggerExit(Collider col)
     {
         if (col.gameObject.CompareTag("Obstacle") || col.gameObject.CompareTag("Goal") ||
-            col.gameObject.CompareTag("PickUp"))
+            col.gameObject.CompareTag("PickUp") || col.gameObject.CompareTag("Chargable"))
             stayInColliderTimer = 0;
     }
 }

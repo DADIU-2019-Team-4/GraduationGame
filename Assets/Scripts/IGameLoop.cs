@@ -14,7 +14,6 @@ public class IGameLoop : MonoBehaviour
     }
     public void CustomStart()
     {
-        _sceneTwo = GameObject.Find(objectName);
     }
     public void CustomUpdate()
     {
