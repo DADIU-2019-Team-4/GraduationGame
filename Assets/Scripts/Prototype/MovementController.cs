@@ -355,6 +355,4 @@ public class MovementController : MonoBehaviour
         if (col.gameObject.CompareTag("Obstacle"))
             stayInColliderTimer = 0;
     }
-
-    }
 }
