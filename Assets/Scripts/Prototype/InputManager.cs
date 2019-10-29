@@ -4,6 +4,7 @@ public class InputManager : MonoBehaviour
 {
     private Vector3 firstPosition;
     private Vector3 lastPosition;
+    private Vector3 targetPos;
     private bool isHolding;
     private bool trackMouse;
     private bool isInDashCircle;
@@ -15,6 +16,7 @@ public class InputManager : MonoBehaviour
 
     private MovementController movementController;
     public GameObject ArrowParent;
+    private GameObject arrow;
 
     private float moveArrowScale = 1f;
     private float dashArrowScale = 1.4f;
@@ -27,6 +29,7 @@ public class InputManager : MonoBehaviour
     private void Start()
     {
         ArrowParent.SetActive(false);
+        arrow = ArrowParent.transform.GetChild(0).gameObject;
     }
 
     /// <summary>
@@ -79,7 +82,7 @@ public class InputManager : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(lastPosition);
         if (Physics.Raycast(ray, out hit))
         {
-            Vector3 targetPos = hit.point;
+            targetPos = hit.point;
             movementController.transform.LookAt(movementController.transform.position -
                                                 (targetPos - movementController.transform.position));
             movementController.transform.rotation =
@@ -130,11 +133,7 @@ public class InputManager : MonoBehaviour
             // Player's finger starts touching the screen
             if (touch.phase == TouchPhase.Began)
             {
-                firstPosition = movementController.gameObject.transform.position;
-                lastPosition = touch.position;
-                isHolding = true;
-
-                CheckDashCircle();
+                InitialTouch(touch.position);
             }
             // Player's finger touches the screen and moves on the screen
             else if (touch.phase == TouchPhase.Moved)
@@ -144,9 +143,7 @@ public class InputManager : MonoBehaviour
             // Player's finger stops touching the screen
             else if (touch.phase == TouchPhase.Ended)
             {
-                isHolding = false;
-                isInDashCircle = false;
-                ApplyAction();
+                TouchEnd();
             }
         }
     }
@@ -159,21 +156,8 @@ public class InputManager : MonoBehaviour
         // mouse button is pressed down
         if (Input.GetMouseButtonDown(0))
         {
-            firstPosition = movementController.gameObject.transform.position;
-            lastPosition = Input.mousePosition;
+            InitialTouch(Input.mousePosition);
             trackMouse = true;
-            isHolding = true;
-
-            CheckDashCircle();
-        }
-
-        // mouse button is released
-        if (Input.GetMouseButtonUp(0))
-        {
-            trackMouse = false;
-            isHolding = false;
-            isInDashCircle = false;
-            ApplyAction();
         }
 
         // track the mouse position if the mouse button is pressed down.
@@ -181,6 +165,35 @@ public class InputManager : MonoBehaviour
         {
             lastPosition = Input.mousePosition;
         }
+
+        // mouse button is released
+        if (Input.GetMouseButtonUp(0))
+        {
+            trackMouse = false;
+            TouchEnd();
+        }
+    }
+
+    /// <summary>
+    /// Sets values and booleans when the player started touching the screen.
+    /// </summary>
+    private void InitialTouch(Vector3 position)
+    {
+        firstPosition = movementController.gameObject.transform.position;
+        lastPosition = position;
+        isHolding = true;
+
+        CheckDashCircle();
+    }
+
+    /// <summary>
+    /// Resets values and apply action when the player stopped touching the screen.
+    /// </summary>
+    private void TouchEnd()
+    {
+        isHolding = false;
+        isInDashCircle = false;
+        ApplyAction();
     }
 
     /// <summary>
@@ -195,12 +208,14 @@ public class InputManager : MonoBehaviour
             if (hit.transform.CompareTag("Player"))
             {
                 isInDashCircle = true;
-                ArrowParent.transform.GetChild(0).localScale = new Vector3(1, dashArrowScale, 1);
+                arrow.transform.localScale = new Vector3(1, dashArrowScale, 1);
+                arrow.GetComponent<SpriteRenderer>().color = Color.red;
             }
             else
             {
                 isInDashCircle = false;
-                ArrowParent.transform.GetChild(0).localScale = new Vector3(1, moveArrowScale, 1);
+                arrow.transform.localScale = new Vector3(1, moveArrowScale, 1);
+                arrow.GetComponent<SpriteRenderer>().color = Color.white;
             }
         }
     }
@@ -210,21 +225,15 @@ public class InputManager : MonoBehaviour
     /// </summary>
     private void ApplyAction()
     {
-        RaycastHit hit;
-        Ray ray = Camera.main.ScreenPointToRay(lastPosition);
-        if (Physics.Raycast(ray, out hit))
-        {
-            Vector3 targetPos = hit.point;
-            Vector3 directionVector = targetPos - firstPosition;
+        Vector3 directionVector = firstPosition - targetPos;
 
-            if (movementController.IsDashCharged)
-            {
-                movementController.Dash(-directionVector.normalized);
-                chargeDashTimer = 0;
-                movementController.ResetDash();
-            }
-            else
-                movementController.Move(-directionVector.normalized);
+        if (movementController.IsDashCharged)
+        {
+            movementController.Dash(directionVector.normalized);
+            chargeDashTimer = 0;
+            movementController.ResetDash();
         }
+        else
+            movementController.Move(directionVector.normalized);
     }
 }
