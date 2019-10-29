@@ -22,5 +22,5 @@ public abstract class IGameLoop : MonoBehaviour
     //}
 
     // Must be implemented by any inheritance.
-    public abstract void CustomUpdate();
+    public abstract void GameLoopUpdate();
 }
