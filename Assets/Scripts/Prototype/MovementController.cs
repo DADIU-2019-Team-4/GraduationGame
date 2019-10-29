@@ -203,7 +203,6 @@ public class MovementController : MonoBehaviour
     private IEnumerator MoveRoutine(Vector3 target, float duration, int cost)
     {
         IsMoving = true;
-
         rigidBody.DOMove(target, duration);
 
         yield return new WaitForSeconds(duration);
@@ -218,6 +217,7 @@ public class MovementController : MonoBehaviour
 
         if (isDashing)
             isDashing = false;
+        
     }
 
     /// <summary>
@@ -245,45 +245,75 @@ public class MovementController : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider col)
+    private void OnCollisionEnter(Collision collision)
     {
-        if (col.gameObject.CompareTag("Goal"))
+        if (collision.gameObject.CompareTag("Goal"))
         {
             StartCoroutine(isDashing
-                ? MoveRoutine(col.gameObject.transform.position, DashDuration)
-                : MoveRoutine(col.gameObject.transform.position, MoveDuration));
+                ? MoveRoutine(collision.gameObject.transform.position, DashDuration)
+                : MoveRoutine(collision.gameObject.transform.position, MoveDuration));
 
             reachedGoal = true;
             MakeButtonVisible();
         }
-        else if (col.gameObject.CompareTag("Obstacle"))
+        else if (collision.gameObject.CompareTag("Obstacle"))
         {
             if (!isDashing)
             {
+                var collisionPoint = collision.contacts[collision.contactCount - 1];
+                var heading = previousPosition - collisionPoint.point;
+                if(Mathf.Abs(heading.x) + Mathf.Abs(heading.z) > 9f)
+                    StartCoroutine(MoveRoutine(collisionPoint.point + (heading * 0.6f), MoveDuration));
+                else
+                    StartCoroutine(MoveRoutine(collisionPoint.point + heading, MoveDuration));
                 hasDied = true;
                 MakeButtonVisible();
             }
         }
-        else if (col.gameObject.CompareTag("FusePoint"))
+        else if (collision.gameObject.CompareTag("FusePoint"))
         {
-            StartPoint startPoint = col.gameObject.GetComponent<StartPoint>();
+            StartPoint startPoint = collision.gameObject.GetComponent<StartPoint>();
             CheckFuseDirection(startPoint);
         }
-        else if (col.gameObject.CompareTag("Wall"))
+        else if (collision.gameObject.CompareTag("Wall"))
         {
             hitWall = true;
-
-            StartCoroutine(isDashing
-                ? MoveRoutine(previousPosition, DashDuration)
-                : MoveRoutine(previousPosition, MoveDuration));
+            var collisionPoint = collision.contacts[0];
+            var heading = previousPosition - collisionPoint.point;
+            Debug.Log("Heading:" + heading);
+            if(Mathf.Abs(heading.x) + Mathf.Abs(heading.z) >9f)
+                StartCoroutine(isDashing
+                ? MoveRoutine(collisionPoint.point + (heading*0.3f), DashDuration)
+                : MoveRoutine(collisionPoint.point + (heading*0.6f), MoveDuration));
+            else
+                StartCoroutine(isDashing
+                ? MoveRoutine(collisionPoint.point + heading, DashDuration)
+                : MoveRoutine(collisionPoint.point + heading, MoveDuration));
         }
-        else if (col.gameObject.CompareTag("PickUp"))
+        else if (collision.gameObject.CompareTag("PickUp"))
         {
             AmountOfMoves += PickUpValue;
             if (AmountOfMoves > maxAmountOfMoves)
                 AmountOfMoves = maxAmountOfMoves;
             MovesText.text = AmountOfMoves.ToString();
-            Destroy(col.gameObject);
+            Destroy(collision.gameObject);
+        }
+        else if (collision.gameObject.CompareTag("Chargable"))
+        {
+            if (isDashing)
+            {
+                collision.gameObject.GetComponent<Renderer>().material.DOFade(0f, 2f);
+                Destroy(collision.gameObject, 2f);
+            }
+            else
+            {
+                var collisionPoint = collision.contacts[collision.contactCount - 1];
+                var heading = previousPosition - collisionPoint.point;
+                if (Mathf.Abs(heading.x) + Mathf.Abs(heading.z) > 9f)
+                    StartCoroutine(MoveRoutine(collisionPoint.point + (heading * 0.6f), MoveDuration));
+                else
+                    StartCoroutine(MoveRoutine(collisionPoint.point + heading, MoveDuration));
+            }
         }
     }
 
@@ -318,9 +348,9 @@ public class MovementController : MonoBehaviour
         }
     }
 
-    private void OnTriggerStay(Collider col)
+    private void OnCollisionStay(Collision collision)
     {
-        if (col.gameObject.CompareTag("Obstacle"))
+        if (collision.gameObject.CompareTag("Obstacle"))
         {
             if (stayInColliderTimer > stayInColliderThreshold)
             {
@@ -332,10 +362,10 @@ public class MovementController : MonoBehaviour
                 stayInColliderTimer += Time.deltaTime;
         }
     }
-
-    private void OnTriggerExit(Collider col)
+    private void OnCollisionExit(Collision collision)
     {
-        if (col.gameObject.CompareTag("Obstacle"))
+        if (collision.gameObject.CompareTag("Obstacle"))
             stayInColliderTimer = 0;
+        Debug.Log("Exit collision with:" + collision.gameObject.name);
     }
 }
