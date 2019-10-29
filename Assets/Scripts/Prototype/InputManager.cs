@@ -1,25 +1,25 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
-    [SerializeField]
-    private float minSwipeDistanceInPercentage = 0.10f;
-    private float verticalSwipeDistance;
-    private float horizontalSwipeDistance;
-
     private Vector3 firstPosition;
     private Vector3 lastPosition;
-    private bool hasSwiped;
-
+    private Vector3 targetPos;
+    private bool isHolding;
     private bool trackMouse;
+    private bool isInDashCircle;
 
-    private MovementController movementController;
     private float chargeDashTimer;
 
-    [SerializeField]
-    private float coyoteTime = 0.5f;
+    public float CoyoteTime = 0.5f;
     private float coyoteTimer;
+
+    private MovementController movementController;
+    public GameObject ArrowParent;
+    private GameObject arrow;
+
+    private float moveArrowScale = 1f;
+    private float dashArrowScale = 1.4f;
 
     private void Awake()
     {
@@ -28,8 +28,8 @@ public class InputManager : MonoBehaviour
 
     private void Start()
     {
-        verticalSwipeDistance = Screen.height * minSwipeDistanceInPercentage;
-        horizontalSwipeDistance = Screen.width * minSwipeDistanceInPercentage;
+        ArrowParent.SetActive(false);
+        arrow = ArrowParent.transform.GetChild(0).gameObject;
     }
 
     /// <summary>
@@ -40,6 +40,54 @@ public class InputManager : MonoBehaviour
         HandleInput();
 
         HandleCoyoteSwipe();
+        ShowArrow();
+
+        if (isInDashCircle)
+            ChargeUpDash();
+    }
+
+    /// <summary>
+    /// Shows the arrow.
+    /// </summary>
+    private void ShowArrow()
+    {
+        if (isHolding)
+        {
+            ArrowParent.SetActive(true);
+            SetAimingDirection();
+        }
+        else
+            ArrowParent.SetActive(false);
+    }
+
+    /// <summary>
+    /// Charges up the dash.
+    /// </summary>
+    private void ChargeUpDash()
+    {
+        chargeDashTimer += Time.deltaTime;
+        if (chargeDashTimer >= movementController.DashThreshold)
+        {
+            movementController.ChargeDash();
+            movementController.IsDashCharged = true;
+        }
+    }
+
+    /// <summary>
+    /// Sets the aiming direction of the arrow.
+    /// </summary>
+    private void SetAimingDirection()
+    {
+        RaycastHit hit;
+        Ray ray = Camera.main.ScreenPointToRay(lastPosition);
+        if (Physics.Raycast(ray, out hit))
+        {
+            targetPos = hit.point;
+            movementController.transform.LookAt(movementController.transform.position -
+                                                (targetPos - movementController.transform.position));
+            movementController.transform.rotation =
+                new Quaternion(0, movementController.transform.rotation.y, 0, movementController.transform.rotation.w);
+        }
     }
 
     /// <summary>
@@ -61,16 +109,16 @@ public class InputManager : MonoBehaviour
     {
         if (!movementController.TriggerCoyoteTime) return;
 
-        if (!(coyoteTimer < coyoteTime) && !movementController.IsMoving) return;
+        if (!(coyoteTimer < CoyoteTime) && !movementController.IsMoving) return;
 
-        CheckSwipe();
+        ApplyAction();
         if (movementController.IsMoving)
         {
-            coyoteTime = 0;
+            CoyoteTime = 0;
             movementController.TriggerCoyoteTime = false;
         }
         else
-            coyoteTime += Time.deltaTime;
+            CoyoteTime += Time.deltaTime;
     }
 
 
@@ -85,36 +133,17 @@ public class InputManager : MonoBehaviour
             // Player's finger starts touching the screen
             if (touch.phase == TouchPhase.Began)
             {
-                firstPosition = touch.position;
-                lastPosition = touch.position;
-            }
-            // Player's finger touches the screen but hasn't moved
-            else if (touch.phase == TouchPhase.Stationary)
-            {
-                // Charge up dash
-                chargeDashTimer += Time.deltaTime;
-                if (chargeDashTimer >= movementController.DashThreshold)
-                {
-                    movementController.ChargeDash();
-                    movementController.IsDashCharged = true;
-                }
+                InitialTouch(touch.position);
             }
             // Player's finger touches the screen and moves on the screen
             else if (touch.phase == TouchPhase.Moved)
             {
-                // Checks for a swipe
-                if (!hasSwiped)
-                {
-                    lastPosition = touch.position;
-                    CheckSwipe();
-                }
+                lastPosition = touch.position;
             }
             // Player's finger stops touching the screen
             else if (touch.phase == TouchPhase.Ended)
             {
-                hasSwiped = false;
-                chargeDashTimer = 0;
-                movementController.ResetDash();
+                TouchEnd();
             }
         }
     }
@@ -127,68 +156,84 @@ public class InputManager : MonoBehaviour
         // mouse button is pressed down
         if (Input.GetMouseButtonDown(0))
         {
+            InitialTouch(Input.mousePosition);
             trackMouse = true;
-            firstPosition = Input.mousePosition;
-            lastPosition = Input.mousePosition;
         }
 
-        if (Input.GetMouseButton(0))
+        // track the mouse position if the mouse button is pressed down.
+        if (trackMouse)
         {
-            chargeDashTimer += Time.deltaTime;
-            if (chargeDashTimer >= movementController.DashThreshold)
-            {
-                movementController.ChargeDash();
-                movementController.IsDashCharged = true;
-            }
+            lastPosition = Input.mousePosition;
         }
 
         // mouse button is released
         if (Input.GetMouseButtonUp(0))
         {
             trackMouse = false;
-            hasSwiped = false;
-            chargeDashTimer = 0;
-            movementController.ResetDash();
+            TouchEnd();
         }
+    }
 
-        // track the mouse position if the mouse button is pressed down.
-        if (trackMouse && !hasSwiped)
+    /// <summary>
+    /// Sets values and booleans when the player started touching the screen.
+    /// </summary>
+    private void InitialTouch(Vector3 position)
+    {
+        firstPosition = movementController.gameObject.transform.position;
+        lastPosition = position;
+        isHolding = true;
+
+        CheckDashCircle();
+    }
+
+    /// <summary>
+    /// Resets values and apply action when the player stopped touching the screen.
+    /// </summary>
+    private void TouchEnd()
+    {
+        isHolding = false;
+        isInDashCircle = false;
+        ApplyAction();
+    }
+
+    /// <summary>
+    /// Checks if you started in the dash circle, if so: it's a dash.
+    /// </summary>
+    private void CheckDashCircle()
+    {
+        RaycastHit hit;
+        Ray ray = Camera.main.ScreenPointToRay(lastPosition);
+        if (Physics.Raycast(ray, out hit))
         {
-            lastPosition = Input.mousePosition;
-            CheckSwipe();
+            if (hit.transform.CompareTag("Player"))
+            {
+                isInDashCircle = true;
+                arrow.transform.localScale = new Vector3(1, dashArrowScale, 1);
+                arrow.GetComponent<SpriteRenderer>().color = Color.red;
+            }
+            else
+            {
+                isInDashCircle = false;
+                arrow.transform.localScale = new Vector3(1, moveArrowScale, 1);
+                arrow.GetComponent<SpriteRenderer>().color = Color.white;
+            }
         }
     }
 
     /// <summary>
     /// Checks how to player has swiped and applies the swipe to an action.
     /// </summary>
-    private void CheckSwipe()
+    private void ApplyAction()
     {
-        Vector3 directionVector = lastPosition - firstPosition;
+        Vector3 directionVector = firstPosition - targetPos;
 
-        if (SwipedLongEnough(directionVector)) return;
-
-        ApplyAction(directionVector.normalized);
-        hasSwiped = true;
-    }
-
-    /// <summary>
-    /// Applies the action, in this case a move or dash.
-    /// </summary>
-    private void ApplyAction(Vector3 direction)
-    {
         if (movementController.IsDashCharged)
-            movementController.Dash(direction);
+        {
+            movementController.Dash(directionVector.normalized);
+            chargeDashTimer = 0;
+            movementController.ResetDash();
+        }
         else
-            movementController.Move(direction);
-    }
-
-    /// <summary>
-    /// Calculates if the player has swiped long enough.
-    /// </summary>
-    private bool SwipedLongEnough(Vector3 direction)
-    {
-        return (!(Math.Abs(direction.x) > horizontalSwipeDistance) &&
-            !(Math.Abs(direction.y) > verticalSwipeDistance));
+            movementController.Move(directionVector.normalized);
     }
 }

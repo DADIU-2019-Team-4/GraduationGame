@@ -111,8 +111,7 @@ public class MovementController : MonoBehaviour
         DetermineDirection(moveDirection);
 
         previousPosition = transform.position;
-        // todo change y to z when input scheme is merged
-        Vector3 targetPosition = transform.position + new Vector3(moveDirection.x, 0, moveDirection.y) * MoveDistance;
+        Vector3 targetPosition = transform.position + new Vector3(moveDirection.x, 0, moveDirection.z) * MoveDistance;
 
         StartCoroutine(MoveRoutine(targetPosition, MoveDuration, MoveCost));
     }
@@ -145,8 +144,7 @@ public class MovementController : MonoBehaviour
         DetermineDirection(dashDirection);
 
         previousPosition = transform.position;
-        // todo change y to z when input scheme is merged
-        Vector3 targetPosition = transform.position + new Vector3(dashDirection.x, 0, dashDirection.y) * DashDistance;
+        Vector3 targetPosition = transform.position + new Vector3(dashDirection.x, 0, dashDirection.z) * DashDistance;
 
         StartCoroutine(MoveRoutine(targetPosition, DashDuration, DashCost));
 
@@ -362,5 +360,7 @@ public class MovementController : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Obstacle"))
             stayInColliderTimer = 0;
+    }
+
     }
 }
