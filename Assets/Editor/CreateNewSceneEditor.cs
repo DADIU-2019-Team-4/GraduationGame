@@ -27,7 +27,8 @@ public class CreateNewSceneEditor : EditorWindow
         if (GUILayout.Button("CreateScene"))
             {
                 FileUtil.CopyFileOrDirectory("Assets/Scenes/Final Scenes/BaseScene.unity", "Assets/Scenes/Final Scenes/" + name +".unity");
-                Debug.Log("nothing here");
+                AssetDatabase.Refresh();
+                this.Close();
             }
         
         }
