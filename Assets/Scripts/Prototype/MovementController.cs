@@ -151,11 +151,11 @@ public class MovementController : MonoBehaviour
     private void DetermineDirection(Vector3 direction)
     {
         // player is moving horizontally 
-        if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
+        if (Mathf.Abs(direction.x) > Mathf.Abs(direction.z))
             CurrentDirection = direction.x < 0 ? Direction.Left : Direction.Right;
         // player is moving vertically
         else
-            CurrentDirection = direction.y < 0 ? Direction.Down : Direction.Up;
+            CurrentDirection = direction.z < 0 ? Direction.Down : Direction.Up;
     }
 
     /// <summary>
@@ -262,6 +262,10 @@ public class MovementController : MonoBehaviour
             gameController.GameOverOutOfMoves();
     }
 
+    /// <summary>
+    /// Checks if the player can enter a fuse.
+    /// </summary>
+    /// <param name="startPoint"></param>
     private void CheckFuseDirection(StartPoint startPoint)
     {
         switch (CurrentDirection)

@@ -12,13 +12,11 @@ public class Fuse : MonoBehaviour
     private LineRenderer lineRenderer;
     private Vector3[] pointsToFollow;
     private MovementController movementController;
-    private BoxCollider[] boxColliders;
 
     private void Awake()
     {
         lineRenderer = GetComponent<LineRenderer>();
         movementController = FindObjectOfType<MovementController>();
-        boxColliders = GetComponents<BoxCollider>();
     }
 
     private void Start()
