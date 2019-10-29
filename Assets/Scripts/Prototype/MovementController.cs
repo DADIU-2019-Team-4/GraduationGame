@@ -11,6 +11,8 @@ public class MovementController : MonoBehaviour
     [Tooltip("Amount of moves at the start of the game.")]
     public int AmountOfMoves = 10;
 
+    private int maxAmountOfMoves;
+
     [Header("Move Settings")]
     [Tooltip("Duration of a move in seconds (how long it takes to get to target position).")]
     public float MoveDuration = 0.2f;
@@ -80,6 +82,8 @@ public class MovementController : MonoBehaviour
         MovesText.text = AmountOfMoves.ToString();
 
         trailRenderer.enabled = false;
+
+        maxAmountOfMoves = AmountOfMoves;
     }
 
     /// <summary>
@@ -276,6 +280,8 @@ public class MovementController : MonoBehaviour
         else if (col.gameObject.CompareTag("PickUp"))
         {
             AmountOfMoves += PickUpValue;
+            if (AmountOfMoves > maxAmountOfMoves)
+                AmountOfMoves = maxAmountOfMoves;
             MovesText.text = AmountOfMoves.ToString();
             Destroy(col.gameObject);
         }
