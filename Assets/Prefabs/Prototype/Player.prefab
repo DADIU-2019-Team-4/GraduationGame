@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 714748535622932571}
   - component: {fileID: 3202629566038322268}
   m_Layer: 0
-  m_Name: ContinuousPlayer
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -220,12 +220,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PickUpValue: 3
   AmountOfMoves: 10
-  MoveSpeed: 0.2
-  MoveDistance: 1
+  MoveDuration: 0.2
+  MoveDistance: 10
   MoveCost: 1
   DashThreshold: 0.25
-  DashSpeed: 0.1
-  DashDistance: 2
+  DashDuration: 0.1
+  DashDistance: 25
   DashCost: 3
   MovesText: {fileID: 0}
   WinText: {fileID: 0}
@@ -233,3 +233,4 @@ MonoBehaviour:
   DiedText: {fileID: 0}
   RestartButton: {fileID: 0}
   NextSceneButton: {fileID: 0}
+  CurrentDirection: 0
