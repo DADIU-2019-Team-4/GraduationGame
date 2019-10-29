@@ -11,6 +11,8 @@ public class MovementController : MonoBehaviour
     [Tooltip("Amount of moves at the start of the game.")]
     public int AmountOfMoves = 10;
 
+    private int maxAmountOfMoves;
+
     [Header("Move Settings")]
     [Tooltip("Duration of a move in seconds (how long it takes to get to target position).")]
     public float MoveDuration = 0.2f;
@@ -80,6 +82,8 @@ public class MovementController : MonoBehaviour
         MovesText.text = AmountOfMoves.ToString();
 
         trailRenderer.enabled = false;
+
+        maxAmountOfMoves = AmountOfMoves;
     }
 
     /// <summary>
@@ -147,6 +151,7 @@ public class MovementController : MonoBehaviour
             return;
         }
 
+        // checks if you have enough moves left for a dash
         int movesLeft = AmountOfMoves - DashCost;
         if (movesLeft < 0)
         {
@@ -198,16 +203,21 @@ public class MovementController : MonoBehaviour
     /// </summary>
     private IEnumerator MoveRoutine(Vector3 target, float duration, int cost)
     {
+        UpdateMovesAmount(cost, true);
+
         IsMoving = true;
 
         rigidBody.DOMove(target, duration);
 
         yield return new WaitForSeconds(duration);
 
-        if (!hitWall)
-            UpdateMovesAmount(cost);
-        else
+        if (hitWall)
+        {
+            UpdateMovesAmount(cost, false);
             hitWall = false;
+        }
+
+        CheckMovesLeft();
 
         trailRenderer.enabled = false;
         IsMoving = false;
@@ -230,10 +240,20 @@ public class MovementController : MonoBehaviour
     /// <summary>
     /// Updates the moves text.
     /// </summary>
-    private void UpdateMovesAmount(int cost)
+    private void UpdateMovesAmount(int cost, bool subtract)
     {
-        AmountOfMoves -= cost;
+        if (subtract)
+            AmountOfMoves -= cost;
+        else
+            AmountOfMoves += cost;
         MovesText.text = AmountOfMoves.ToString();
+    }
+
+    /// <summary>
+    /// Checks if the player has moves left.
+    /// </summary>
+    private void CheckMovesLeft()
+    {
         if (AmountOfMoves <= 0)
         {
             isOutOfMoves = true;
@@ -276,6 +296,8 @@ public class MovementController : MonoBehaviour
         else if (col.gameObject.CompareTag("PickUp"))
         {
             AmountOfMoves += PickUpValue;
+            if (AmountOfMoves > maxAmountOfMoves)
+                AmountOfMoves = maxAmountOfMoves;
             MovesText.text = AmountOfMoves.ToString();
             Destroy(col.gameObject);
         }
