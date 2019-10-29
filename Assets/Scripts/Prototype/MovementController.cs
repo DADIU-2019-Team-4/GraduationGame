@@ -108,7 +108,10 @@ public class MovementController : MonoBehaviour
             return;
         }
 
+        DetermineDirection(moveDirection);
+
         previousPosition = transform.position;
+        // todo change y to z when input scheme is merged
         Vector3 targetPosition = transform.position + new Vector3(moveDirection.x, 0, moveDirection.y) * MoveDistance;
 
         StartCoroutine(MoveRoutine(targetPosition, MoveDuration, MoveCost));
@@ -139,12 +142,28 @@ public class MovementController : MonoBehaviour
         isDashing = true;
         trailRenderer.enabled = true;
 
+        DetermineDirection(dashDirection);
+
         previousPosition = transform.position;
+        // todo change y to z when input scheme is merged
         Vector3 targetPosition = transform.position + new Vector3(dashDirection.x, 0, dashDirection.y) * DashDistance;
 
         StartCoroutine(MoveRoutine(targetPosition, DashDuration, DashCost));
 
         ResetDash();
+    }
+
+    /// <summary>
+    /// Determines the moving direction of the player.
+    /// </summary>
+    private void DetermineDirection(Vector3 direction)
+    {
+        // player is moving horizontally 
+        if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
+            CurrentDirection = direction.x < 0 ? Direction.Left : Direction.Right;
+        // player is moving vertically
+        else
+            CurrentDirection = direction.y < 0 ? Direction.Down : Direction.Up;
     }
 
     /// <summary>
@@ -251,48 +270,6 @@ public class MovementController : MonoBehaviour
             gameController.GameOverOutOfMoves();
     }
 
-    private void OnTriggerEnter(Collider col)
-    {
-        if (col.gameObject.CompareTag("Goal"))
-        {
-            StartCoroutine(isDashing
-                ? MoveRoutine(col.gameObject.transform.position, DashDuration)
-                : MoveRoutine(col.gameObject.transform.position, MoveDuration));
-
-            reachedGoal = true;
-            CheckGameEnd();
-        }
-        else if (col.gameObject.CompareTag("Obstacle"))
-        {
-            if (!isDashing)
-            {
-                hasDied = true;
-                CheckGameEnd();
-            }
-        }
-        else if (col.gameObject.CompareTag("FusePoint"))
-        {
-            StartPoint startPoint = col.gameObject.GetComponent<StartPoint>();
-            CheckFuseDirection(startPoint);
-        }
-        else if (col.gameObject.CompareTag("Wall"))
-        {
-            hitWall = true;
-
-            StartCoroutine(isDashing
-                ? MoveRoutine(previousPosition, DashDuration)
-                : MoveRoutine(previousPosition, MoveDuration));
-        }
-        else if (col.gameObject.CompareTag("PickUp"))
-        {
-            AmountOfMoves += PickUpValue;
-            if (AmountOfMoves > maxAmountOfMoves)
-                AmountOfMoves = maxAmountOfMoves;
-            MovesText.text = AmountOfMoves.ToString();
-            Destroy(col.gameObject);
-        }
-    }
-
     private void CheckFuseDirection(StartPoint startPoint)
     {
         switch (CurrentDirection)
@@ -321,6 +298,48 @@ public class MovementController : MonoBehaviour
                     startPoint.StartFollowingFuse();
                 break;
             }
+        }
+    }
+
+    private void OnTriggerEnter(Collider col)
+    {
+        if (col.gameObject.CompareTag("Goal"))
+        {
+            StartCoroutine(isDashing
+                ? MoveRoutine(col.gameObject.transform.position, DashDuration)
+                : MoveRoutine(col.gameObject.transform.position, MoveDuration));
+
+            reachedGoal = true;
+            CheckGameEnd();
+        }
+        else if (col.gameObject.CompareTag("Obstacle"))
+        {
+            if (!isDashing)
+            {
+                hasDied = true;
+                CheckGameEnd();
+            }
+        }
+        else if (col.gameObject.CompareTag("FusePoint"))
+        {
+            StartPoint startPoint = col.gameObject.GetComponent<StartPoint>();
+            CheckFuseDirection(startPoint);
+        }
+        else if (col.gameObject.CompareTag("Wall") || col.gameObject.CompareTag("Fuse") && !IsFuseMoving)
+        {
+            hitWall = true;
+
+            StartCoroutine(isDashing
+                ? MoveRoutine(previousPosition, DashDuration)
+                : MoveRoutine(previousPosition, MoveDuration));
+        }
+        else if (col.gameObject.CompareTag("PickUp"))
+        {
+            AmountOfMoves += PickUpValue;
+            if (AmountOfMoves > maxAmountOfMoves)
+                AmountOfMoves = maxAmountOfMoves;
+            MovesText.text = AmountOfMoves.ToString();
+            Destroy(col.gameObject);
         }
     }
 

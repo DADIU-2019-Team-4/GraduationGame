@@ -12,11 +12,13 @@ public class Fuse : MonoBehaviour
     private LineRenderer lineRenderer;
     private Vector3[] pointsToFollow;
     private MovementController movementController;
+    private BoxCollider[] boxColliders;
 
     private void Awake()
     {
         lineRenderer = GetComponent<LineRenderer>();
         movementController = FindObjectOfType<MovementController>();
+        boxColliders = GetComponents<BoxCollider>();
     }
 
     private void Start()
@@ -33,13 +35,13 @@ public class Fuse : MonoBehaviour
         if (pointType == StartPoint.PointType.End && !reversedPositions)
         {
             System.Array.Reverse(pointsToFollow);
-            //reversedPositions = true;
+            reversedPositions = true;
         }
-        //else if (pointType == StartPoint.PointType.Start && reversedPositions)
-        //{
-        //    System.Array.Reverse(pointsToFollow);
-        //    reversedPositions = false;
-        //}
+        else if (pointType == StartPoint.PointType.Start && reversedPositions)
+        {
+            System.Array.Reverse(pointsToFollow);
+            reversedPositions = false;
+        }
 
         movementController.IsFuseMoving = true;
         StartCoroutine(FollowRoutine());

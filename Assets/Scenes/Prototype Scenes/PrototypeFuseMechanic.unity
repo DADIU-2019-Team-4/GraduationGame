@@ -793,6 +793,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NextLevelName: 
+  WinText: {fileID: 2000131667}
+  OutOfMovesText: {fileID: 558198435}
+  DiedText: {fileID: 592447630}
+  RestartButton: {fileID: 912360430}
+  NextSceneButton: {fileID: 1185351803}
 --- !u!4 &837692641
 Transform:
   m_ObjectHideFlags: 0
@@ -1692,6 +1697,11 @@ PrefabInstance:
         type: 3}
       propertyPath: DashDistance
       value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 3202629566038322268, guid: c3488568424b8814bad4703ac36407fb,
+        type: 3}
+      propertyPath: AmountOfMoves
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c3488568424b8814bad4703ac36407fb, type: 3}
