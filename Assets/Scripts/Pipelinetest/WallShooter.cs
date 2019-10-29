@@ -11,11 +11,13 @@ public class WallShooter : MonoBehaviour
     [SerializeField]
     private float currentSpawnCooldown=0;
     public float planeSpeed;
+    public LineRenderer lineRenderer;
+
 
     // Start is called before the first frame update
     void Start()
     {
-
+        lineRenderer = GetComponent<LineRenderer>();
     }
 
     // Update is called once per frame
@@ -27,7 +29,8 @@ public class WallShooter : MonoBehaviour
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.right), out hit, detectionDistance))
         {
             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.right) * hit.distance, Color.yellow);
-            
+            lineRenderer.SetPositions(new Vector3[2] { transform.position, transform.position + (transform.TransformDirection(Vector3.right) * hit.distance) });
+
             if (hit.transform.tag== "Player")
             {
                 SpawnPlane();
@@ -35,6 +38,7 @@ public class WallShooter : MonoBehaviour
         }
         else
         {
+            lineRenderer.SetPositions(new Vector3[2] { transform.position, transform.position + (transform.TransformDirection(Vector3.right) * detectionDistance) });
             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.right) * detectionDistance, Color.white);
            
         }
