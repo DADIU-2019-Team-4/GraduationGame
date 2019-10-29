@@ -33,30 +33,26 @@ public class MovementController : MonoBehaviour
 
     [Header("Canvas Fields")]
     public TMP_Text MovesText;
-    public GameObject WinText;
-    public GameObject OutOfMovesText;
-    public GameObject DiedText;
-    public GameObject RestartButton;
-    public GameObject NextSceneButton;
 
+    private GameController gameController;
     private Rigidbody rigidBody;
     private Material material;
+    private TrailRenderer trailRenderer;
+    private Vector3 previousPosition;
+
     private float colorValue = 1;
     private float changeTextColorDuration = 0.2f;
     private float stayInColliderThreshold = 0.1f;
     private float stayInColliderTimer;
     private float outOfMovesDuration = 0.1f;
 
-    private TrailRenderer trailRenderer;
-    private Vector3 previousPosition;
-
-    public bool IsMoving { get; set; }
-
     private bool isDashing;
+    private bool hitWall;
     private bool isOutOfMoves;
     private bool hasDied;
     private bool reachedGoal;
-    private bool hitWall;
+
+    public bool IsMoving { get; set; }
 
     public bool IsFuseMoving { get; set; }
 
@@ -74,6 +70,7 @@ public class MovementController : MonoBehaviour
         rigidBody = GetComponent<Rigidbody>();
         material = GetComponent<Renderer>().material;
         trailRenderer = GetComponent<TrailRenderer>();
+        gameController = FindObjectOfType<GameController>();
     }
 
     // Start is called before the first frame update
@@ -84,28 +81,8 @@ public class MovementController : MonoBehaviour
         trailRenderer.enabled = false;
 
         maxAmountOfMoves = AmountOfMoves;
-    }
 
-    /// <summary>
-    /// Makes the restart or next scene button visible depending on game state.
-    /// </summary>
-    private void MakeButtonVisible()
-    {
-        if (reachedGoal)
-        {
-            WinText.SetActive(true);
-            NextSceneButton.SetActive(true);
-        }
-        else if (hasDied)
-        {
-            DiedText.SetActive(true);
-            RestartButton.SetActive(true);
-        }
-        else if (isOutOfMoves)
-        {
-            OutOfMovesText.SetActive(true);
-            RestartButton.SetActive(true);
-        }
+        gameController.IsPlaying = true;
     }
 
     /// <summary>
@@ -122,7 +99,7 @@ public class MovementController : MonoBehaviour
     /// </summary>
     public void Move(Vector3 moveDirection)
     {
-        if (isOutOfMoves || reachedGoal || hasDied)
+        if (!gameController.IsPlaying)
             return;
 
         if (IsMoving)
@@ -142,7 +119,7 @@ public class MovementController : MonoBehaviour
     /// </summary>
     public void Dash(Vector3 dashDirection)
     {
-        if (isOutOfMoves || reachedGoal || hasDied)
+        if (!gameController.IsPlaying)
             return;
 
         if (IsMoving)
@@ -257,8 +234,21 @@ public class MovementController : MonoBehaviour
         if (AmountOfMoves <= 0)
         {
             isOutOfMoves = true;
-            MakeButtonVisible();
+            CheckGameEnd();
         }
+    }
+
+    /// <summary>
+    /// Checks how the game ended.
+    /// </summary>
+    public void CheckGameEnd()
+    {
+        if (reachedGoal)
+            gameController.Win();
+        else if (hasDied)
+            gameController.GameOverDied();
+        else if (isOutOfMoves)
+            gameController.GameOverOutOfMoves();
     }
 
     private void OnTriggerEnter(Collider col)
@@ -270,14 +260,14 @@ public class MovementController : MonoBehaviour
                 : MoveRoutine(col.gameObject.transform.position, MoveDuration));
 
             reachedGoal = true;
-            MakeButtonVisible();
+            CheckGameEnd();
         }
         else if (col.gameObject.CompareTag("Obstacle"))
         {
             if (!isDashing)
             {
                 hasDied = true;
-                MakeButtonVisible();
+                CheckGameEnd();
             }
         }
         else if (col.gameObject.CompareTag("FusePoint"))
@@ -341,7 +331,7 @@ public class MovementController : MonoBehaviour
             if (stayInColliderTimer > stayInColliderThreshold)
             {
                 hasDied = true;
-                MakeButtonVisible();
+                CheckGameEnd();
                 stayInColliderTimer = 0;
             }
             else
