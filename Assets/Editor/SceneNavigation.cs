@@ -46,7 +46,7 @@ public class SceneNavigation : EditorWindow
                 string name = S.path.Substring(S.path.LastIndexOf('/') + 1);
                 name = name.Substring(0, name.Length - 6);
                 string[] tempArray = name.Split(char.Parse("_"));
-                if (tempArray[1] == value)
+                if (tempArray[0] == value)
                     temp.Add(name);
             }
         }

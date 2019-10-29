@@ -260,10 +260,10 @@ public class MovementController : MonoBehaviour
         {
             if (!isDashing)
             {
-                var collisionPoint = collision.contacts[collision.contactCount - 1];
+                var collisionPoint = collision.contacts[0];
                 var heading = previousPosition - collisionPoint.point;
                 if(Mathf.Abs(heading.x) + Mathf.Abs(heading.z) > 9f)
-                    StartCoroutine(MoveRoutine(collisionPoint.point + (heading * 0.6f), MoveDuration));
+                    StartCoroutine(MoveRoutine(collisionPoint.point + (heading * 0.5f), MoveDuration));
                 else
                     StartCoroutine(MoveRoutine(collisionPoint.point + heading, MoveDuration));
                 hasDied = true;
@@ -280,11 +280,13 @@ public class MovementController : MonoBehaviour
             hitWall = true;
             var collisionPoint = collision.contacts[0];
             var heading = previousPosition - collisionPoint.point;
-            Debug.Log("Heading:" + heading);
-            if(Mathf.Abs(heading.x) + Mathf.Abs(heading.z) >9f)
+            var magnitudeHeading = Mathf.Abs(heading.x + heading.z);
+            var magnitudeObject = Mathf.Abs((gameObject.transform.position.magnitude - gameObject.transform.position.y) - (collisionPoint.point.magnitude - collisionPoint.point.y));
+            Debug.Log("Heading:" + magnitudeHeading + "gameObject Heading:" + magnitudeObject);
+            if(magnitudeHeading >13f && magnitudeObject < magnitudeHeading/3f && magnitudeObject<2.5f)
                 StartCoroutine(isDashing
-                ? MoveRoutine(collisionPoint.point + (heading*0.3f), DashDuration)
-                : MoveRoutine(collisionPoint.point + (heading*0.6f), MoveDuration));
+                ? MoveRoutine(collisionPoint.point + (heading*0.35f), DashDuration)
+                : MoveRoutine(collisionPoint.point + (heading*0.35f), MoveDuration));
             else
                 StartCoroutine(isDashing
                 ? MoveRoutine(collisionPoint.point + heading, DashDuration)
@@ -307,10 +309,10 @@ public class MovementController : MonoBehaviour
             }
             else
             {
-                var collisionPoint = collision.contacts[collision.contactCount - 1];
+                var collisionPoint = collision.contacts[0];
                 var heading = previousPosition - collisionPoint.point;
                 if (Mathf.Abs(heading.x) + Mathf.Abs(heading.z) > 9f)
-                    StartCoroutine(MoveRoutine(collisionPoint.point + (heading * 0.6f), MoveDuration));
+                    StartCoroutine(MoveRoutine(collisionPoint.point + (heading * 0.5f), MoveDuration));
                 else
                     StartCoroutine(MoveRoutine(collisionPoint.point + heading, MoveDuration));
             }
