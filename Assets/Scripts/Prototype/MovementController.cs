@@ -99,9 +99,6 @@ public class MovementController : MonoBehaviour
     /// </summary>
     public void Move(Vector3 moveDirection)
     {
-        if (!gameController.IsPlaying)
-            return;
-
         if (IsMoving)
         {
             TriggerCoyoteTime = true;
@@ -119,9 +116,6 @@ public class MovementController : MonoBehaviour
     /// </summary>
     public void Dash(Vector3 dashDirection)
     {
-        if (!gameController.IsPlaying)
-            return;
-
         if (IsMoving)
         {
             TriggerCoyoteTime = true;
