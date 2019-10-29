@@ -168,18 +168,14 @@ public class InputManager : MonoBehaviour
 
         if (SwipedLongEnough(directionVector)) return;
 
-        if (Mathf.Abs(directionVector.x) > Mathf.Abs(directionVector.y))
-            ApplyAction(HorizontalSwipe());
-        else
-            ApplyAction(VerticalSwipe());
-
+        ApplyAction(directionVector.normalized);
         hasSwiped = true;
     }
 
     /// <summary>
     /// Applies the action, in this case a move or dash.
     /// </summary>
-    private void ApplyAction(Vector3Int direction)
+    private void ApplyAction(Vector3 direction)
     {
         if (movementController.IsDashCharged)
             movementController.Dash(direction);
@@ -194,35 +190,5 @@ public class InputManager : MonoBehaviour
     {
         return (!(Math.Abs(direction.x) > horizontalSwipeDistance) &&
             !(Math.Abs(direction.y) > verticalSwipeDistance));
-    }
-
-    /// <summary>
-    /// Determines if the player has swiped left or right.
-    /// </summary>
-    private Vector3Int HorizontalSwipe()
-    {
-        if (lastPosition.x > firstPosition.x)
-        {
-            movementController.CurrentDirection = MovementController.Direction.Right;
-            return Vector3Int.right;
-        }
-
-        movementController.CurrentDirection = MovementController.Direction.Left;
-        return Vector3Int.left;
-    }
-
-    /// <summary>
-    /// Determines if the player has swiped up or down.
-    /// </summary>
-    private Vector3Int VerticalSwipe()
-    {
-        if (lastPosition.y > firstPosition.y)
-        {
-            movementController.CurrentDirection = MovementController.Direction.Up;
-            return Vector3Int.up;
-        }
-
-        movementController.CurrentDirection = MovementController.Direction.Down;
-        return Vector3Int.down;
     }
 }
