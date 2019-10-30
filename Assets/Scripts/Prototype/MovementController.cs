@@ -262,41 +262,6 @@ public class MovementController : MonoBehaviour
             gameController.GameOverOutOfMoves();
     }
 
-    /// <summary>
-    /// Checks if the player can enter a fuse.
-    /// </summary>
-    /// <param name="startPoint"></param>
-    private void CheckFuseDirection(StartPoint startPoint)
-    {
-        switch (CurrentDirection)
-        {
-            case Direction.Up:
-            {
-                if (startPoint.acceptedDirection == StartPoint.AcceptedDirection.Up)
-                    startPoint.StartFollowingFuse();
-                break;
-            }
-            case Direction.Down:
-            {
-                if (startPoint.acceptedDirection == StartPoint.AcceptedDirection.Down)
-                    startPoint.StartFollowingFuse();
-                break;
-            }
-            case Direction.Left:
-            {
-                if (startPoint.acceptedDirection == StartPoint.AcceptedDirection.Left)
-                    startPoint.StartFollowingFuse();
-                break;
-            }
-            case Direction.Right:
-            {
-                if (startPoint.acceptedDirection == StartPoint.AcceptedDirection.Right)
-                    startPoint.StartFollowingFuse();
-                break;
-            }
-        }
-    }
-
     private void OnTriggerEnter(Collider col)
     {
         if (col.gameObject.CompareTag("Goal"))
@@ -358,5 +323,40 @@ public class MovementController : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Obstacle"))
             stayInColliderTimer = 0;
+    }
+
+    /// <summary>
+    /// Checks if the player can enter a fuse.
+    /// </summary>
+    /// <param name="startPoint"></param>
+    private void CheckFuseDirection(StartPoint startPoint)
+    {
+        switch (CurrentDirection)
+        {
+            case Direction.Up:
+            {
+                if (startPoint.acceptedDirection == StartPoint.AcceptedDirection.Up)
+                    startPoint.StartFollowingFuse();
+                break;
+            }
+            case Direction.Down:
+            {
+                if (startPoint.acceptedDirection == StartPoint.AcceptedDirection.Down)
+                    startPoint.StartFollowingFuse();
+                break;
+            }
+            case Direction.Left:
+            {
+                if (startPoint.acceptedDirection == StartPoint.AcceptedDirection.Left)
+                    startPoint.StartFollowingFuse();
+                break;
+            }
+            case Direction.Right:
+            {
+                if (startPoint.acceptedDirection == StartPoint.AcceptedDirection.Right)
+                    startPoint.StartFollowingFuse();
+                break;
+            }
+        }
     }
 }
