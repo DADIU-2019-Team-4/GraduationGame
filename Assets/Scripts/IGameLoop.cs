@@ -15,6 +15,12 @@ public abstract class IGameLoop : MonoBehaviour
         game.instance.AddGameLoop(this);
     }
 
+    public void CustomStart()
+    {
+    }
+    public void CustomUpdate()
+    {
+    }
     // Michael: Might not be necessary.
     //public void CustomStart()
     //{
@@ -22,5 +28,5 @@ public abstract class IGameLoop : MonoBehaviour
     //}
 
     // Must be implemented by any inheritance.
-    public abstract void CustomUpdate();
+    public abstract void GameLoopUpdate();
 }

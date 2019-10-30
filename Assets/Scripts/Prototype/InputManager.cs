@@ -15,6 +15,7 @@ public class InputManager : MonoBehaviour
     private float coyoteTimer;
 
     private MovementController movementController;
+    private GameController gameController;
     public GameObject ArrowParent;
     private GameObject arrow;
 
@@ -24,6 +25,7 @@ public class InputManager : MonoBehaviour
     private void Awake()
     {
         movementController = FindObjectOfType<MovementController>();
+        gameController = FindObjectOfType<GameController>();
     }
 
     private void Start()
@@ -37,6 +39,8 @@ public class InputManager : MonoBehaviour
     /// </summary>
     public void Update()
     {
+        if (!gameController.IsPlaying) return;
+
         HandleInput();
 
         HandleCoyoteSwipe();
