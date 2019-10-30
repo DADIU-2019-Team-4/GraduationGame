@@ -177,7 +177,6 @@ public class MovementController : MonoBehaviour
         UpdateMovesAmount(cost, true);
 
         IsMoving = true;
-
         rigidBody.DOMove(target, duration);
 
         yield return new WaitForSeconds(duration);
@@ -195,6 +194,7 @@ public class MovementController : MonoBehaviour
 
         if (isDashing)
             isDashing = false;
+        
     }
 
     /// <summary>
@@ -245,67 +245,78 @@ public class MovementController : MonoBehaviour
             gameController.GameOverOutOfMoves();
     }
 
-    private void OnTriggerEnter(Collider col)
+    private void OnCollisionEnter(Collision collision)
     {
-        if (col.gameObject.CompareTag("Goal"))
+        if (collision.gameObject.CompareTag("Goal"))
         {
             StartCoroutine(isDashing
-                ? MoveRoutine(col.gameObject.transform.position, DashDuration)
-                : MoveRoutine(col.gameObject.transform.position, MoveDuration));
+                ? MoveRoutine(collision.gameObject.transform.position, DashDuration)
+                : MoveRoutine(collision.gameObject.transform.position, MoveDuration));
 
             reachedGoal = true;
             CheckGameEnd();
         }
-        else if (col.gameObject.CompareTag("Obstacle"))
+        else if (collision.gameObject.CompareTag("Obstacle"))
         {
             if (!isDashing)
             {
+                var collisionPoint = collision.contacts[0];
+                var heading = previousPosition - collisionPoint.point;
+                if(Mathf.Abs(heading.x) + Mathf.Abs(heading.z) > 9f)
+                    StartCoroutine(MoveRoutine(collisionPoint.point + (heading * 0.5f), MoveDuration));
+                else
+                    StartCoroutine(MoveRoutine(collisionPoint.point + heading, MoveDuration));
                 hasDied = true;
                 CheckGameEnd();
             }
         }
-        else if (col.gameObject.CompareTag("FusePoint"))
+        else if (collision.gameObject.CompareTag("FusePoint"))
         {
-            StartPoint startPoint = col.gameObject.GetComponent<StartPoint>();
+            StartPoint startPoint = collision.gameObject.GetComponent<StartPoint>();
             CheckFuseDirection(startPoint);
         }
-        else if (col.gameObject.CompareTag("Wall"))
+        else if (collision.gameObject.CompareTag("Wall"))
         {
             hitWall = true;
-
-            StartCoroutine(isDashing
-                ? MoveRoutine(previousPosition, DashDuration)
-                : MoveRoutine(previousPosition, MoveDuration));
+            var collisionPoint = collision.contacts[0];
+            var heading = previousPosition - collisionPoint.point;
+            var magnitudeHeading = Mathf.Abs(heading.x + heading.z);
+            var magnitudeObject = Mathf.Abs((gameObject.transform.position.magnitude - gameObject.transform.position.y) - (collisionPoint.point.magnitude - collisionPoint.point.y));
+            Debug.Log("Heading:" + magnitudeHeading + "gameObject Heading:" + magnitudeObject);
+            if(magnitudeHeading >13f && magnitudeObject < magnitudeHeading/3f && magnitudeObject<2.5f)
+                StartCoroutine(isDashing
+                ? MoveRoutine(collisionPoint.point + (heading*0.35f), DashDuration)
+                : MoveRoutine(collisionPoint.point + (heading*0.35f), MoveDuration));
+            else
+                StartCoroutine(isDashing
+                ? MoveRoutine(collisionPoint.point + heading, DashDuration)
+                : MoveRoutine(collisionPoint.point + heading, MoveDuration));
         }
-        else if (col.gameObject.CompareTag("PickUp"))
+        else if (collision.gameObject.CompareTag("PickUp"))
         {
             AmountOfMoves += PickUpValue;
             if (AmountOfMoves > maxAmountOfMoves)
                 AmountOfMoves = maxAmountOfMoves;
             MovesText.text = AmountOfMoves.ToString();
-            Destroy(col.gameObject);
+            Destroy(collision.gameObject);
         }
-    }
-
-    private void OnTriggerStay(Collider col)
-    {
-        if (col.gameObject.CompareTag("Obstacle"))
+        else if (collision.gameObject.CompareTag("Chargable"))
         {
-            if (stayInColliderTimer > stayInColliderThreshold)
+            if (isDashing)
             {
-                hasDied = true;
-                CheckGameEnd();
-                stayInColliderTimer = 0;
+                collision.gameObject.GetComponent<Renderer>().material.DOFade(0f, 2f);
+                Destroy(collision.gameObject, 2f);
             }
             else
-                stayInColliderTimer += Time.deltaTime;
+            {
+                var collisionPoint = collision.contacts[0];
+                var heading = previousPosition - collisionPoint.point;
+                if (Mathf.Abs(heading.x) + Mathf.Abs(heading.z) > 9f)
+                    StartCoroutine(MoveRoutine(collisionPoint.point + (heading * 0.5f), MoveDuration));
+                else
+                    StartCoroutine(MoveRoutine(collisionPoint.point + heading, MoveDuration));
+            }
         }
-    }
-
-    private void OnTriggerExit(Collider col)
-    {
-        if (col.gameObject.CompareTag("Obstacle"))
-            stayInColliderTimer = 0;
     }
 
     private void CheckFuseDirection(StartPoint startPoint)
@@ -338,4 +349,24 @@ public class MovementController : MonoBehaviour
             }
         }
     }
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Obstacle"))
+        {
+        	if (stayInColliderTimer > stayInColliderThreshold)
+        	{
+        		hasDied = true;
+        		CheckGameEnd();
+        		stayInColliderTimer = 0;
+        	}
+       		else
+        		stayInColliderTimer += Time.deltaTime;
+        }
+        
+	private void OnCollisionExit(Collision collision)
+	{
+        	if (collision.gameObject.CompareTag("Obstacle"))
+        		stayInColliderTimer = 0;
+       	 	Debug.Log("Exit collision with:" + collision.gameObject.name);
+       	}
 }
