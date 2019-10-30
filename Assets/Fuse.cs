@@ -12,11 +12,14 @@ public class Fuse : MonoBehaviour
     private LineRenderer lineRenderer;
     private Vector3[] pointsToFollow;
     private MovementController movementController;
+    private BoxCollider[] boxColliders;
+    private Coroutine moveIE;
 
     private void Awake()
     {
         lineRenderer = GetComponent<LineRenderer>();
         movementController = FindObjectOfType<MovementController>();
+        boxColliders = GetComponents<BoxCollider>();
     }
 
     private void Start()
@@ -47,15 +50,31 @@ public class Fuse : MonoBehaviour
 
     private IEnumerator FollowRoutine()
     {
-        foreach (var point in pointsToFollow)
-        {
-            Rigidbody rigidBody = movementController.GetComponent<Rigidbody>();
-            rigidBody.DOMove(point, FollowSpeed);
+        foreach (var boxCollider in boxColliders)
+            boxCollider.enabled = false;
 
-            yield return new WaitForSeconds(FollowSpeed);
+        for (int i = 0; i < pointsToFollow.Length; i++)
+        {
+            moveIE = StartCoroutine(Moving(i));
+            yield return moveIE;
         }
 
         isUsed = true;
+
+        foreach (var boxCollider in boxColliders)
+            boxCollider.enabled = true;
+
         movementController.IsFuseMoving = false;
+    }
+
+    private IEnumerator Moving(int currentPos)
+    {
+        while (movementController.transform.position != pointsToFollow[currentPos])
+        {
+            movementController.transform.position =
+                Vector3.MoveTowards(movementController.transform.position, pointsToFollow[currentPos],
+                    FollowSpeed * Time.deltaTime);
+            yield return null;
+        }
     }
 }
