@@ -42,7 +42,7 @@ public class Game : MonoBehaviour
         {
             if (!inErrorState)
                 foreach (var gameLoop in GameLoops)
-                    gameLoop.CustomUpdate();
+                    gameLoop.GameLoopUpdate();
         }
         catch (System.Exception e)
         {
