@@ -13,6 +13,12 @@ public class LevelEditor : EditorWindow
 
     // Called to draw the MapEditor windows.
     private bool paintMode = false;
+    private bool deleteMode = false;
+
+    private int floorXScale = 1;
+    private int floorZScale = 1;
+
+    private float objectRotation = 0;
 
     // Called to draw the MapEditor windows.
     [SerializeField]
@@ -21,7 +27,16 @@ public class LevelEditor : EditorWindow
     // Called to draw the MapEditor windows.
     private void OnGUI()
     {
-        paintMode = GUILayout.Toggle(paintMode, "Start painting", "Button", GUILayout.Height(60f));
+            paintMode = GUILayout.Toggle(paintMode, "Start painting", "Button", GUILayout.Height(60f));
+        
+            deleteMode = GUILayout.Toggle(deleteMode, "Delete", "Button", GUILayout.Height(60f));
+
+            floorXScale = EditorGUILayout.IntField("floor x",floorXScale);
+            floorZScale = EditorGUILayout.IntField("floor z", floorZScale);
+            objectRotation = EditorGUILayout.FloatField("rotation of objects", objectRotation);
+
+        if (paintMode)
+            deleteMode = false;
 
         // Get a list of previews, one for each of our prefabs
         List<GUIContent> paletteIcons = new List<GUIContent>();
@@ -57,12 +72,52 @@ public class LevelEditor : EditorWindow
             {
                 // Create the prefab instance while keeping the prefab link
                 GameObject prefab = palette[paletteIndex];
+
                 GameObject gameObject = PrefabUtility.InstantiatePrefab(prefab) as GameObject;
                 gameObject.transform.position = cellCenter;
+                gameObject.transform.Translate(new Vector3(0, gameObject.GetComponent<MeshRenderer>().bounds.size.y/2, 0)); 
+                gameObject.transform.Rotate(new Vector3(0, objectRotation,0));
+
+                if (prefab.name == "Floor Unit")
+                {
+                    gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x * floorXScale,0, gameObject.transform.localScale.z * floorZScale);
+
+                    if (floorXScale % 2 == 0)
+                    {
+                        gameObject.transform.Translate(new Vector3(1f,0,0));
+                    }
+                    if (floorZScale % 2 == 0)
+                    {
+                        gameObject.transform.Translate(new Vector3(0, 0, 1f));
+                    }
+
+                }
+
+                
+
+                if( GameObject.Find("Level Objects") == null)
+                {
+                    GameObject go = Instantiate(new GameObject(), new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
+                    go.transform.name = "Level Objects";
+                }else
+
+                gameObject.transform.parent = GameObject.Find("Level Objects").transform;
 
                 // Allow the use of Undo (Ctrl+Z, Ctrl+Y).
                 Undo.RegisterCreatedObjectUndo(gameObject, "");
             }
+        }
+
+        if (deleteMode) //delete objects
+        {
+            GameObject gameObject = GetClickedObject();
+
+            if(gameObject!= null)
+            {
+                Undo.DestroyObjectImmediate(gameObject);
+            }
+           
+            
         }
     }
 
@@ -142,5 +197,17 @@ public class LevelEditor : EditorWindow
         return cell * (int)cellSize.x;
     }
 
+    private GameObject GetClickedObject()
+    {
+        Ray ray = HandleUtility.GUIPointToWorldRay(Event.current.mousePosition);
+        RaycastHit hit;
+        if (Physics.Raycast(ray,out hit,100) && Event.current.type == EventType.MouseDown && Event.current.button == 0)
+        {
+            Debug.Log("Deleting:  " + hit.transform.gameObject.name);
+            return hit.transform.gameObject;
+        }
+
+        return null;
+    }
 
 }
