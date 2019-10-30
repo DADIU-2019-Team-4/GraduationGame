@@ -256,7 +256,7 @@ public class MovementController : MonoBehaviour
             reachedGoal = true;
             CheckGameEnd();
         }
-        else if (collision.gameObject.CompareTag("Obstacle"))
+        else if (collision.gameObject.CompareTag("Death"))
         {
             if (!isDashing)
             {
@@ -275,7 +275,7 @@ public class MovementController : MonoBehaviour
             StartPoint startPoint = collision.gameObject.GetComponent<StartPoint>();
             CheckFuseDirection(startPoint);
         }
-        else if (collision.gameObject.CompareTag("Wall"))
+        else if (collision.gameObject.CompareTag("Block"))
         {
             hitWall = true;
             var collisionPoint = collision.contacts[0];
@@ -300,7 +300,7 @@ public class MovementController : MonoBehaviour
             MovesText.text = AmountOfMoves.ToString();
             Destroy(collision.gameObject);
         }
-        else if (collision.gameObject.CompareTag("Chargable"))
+        else if (collision.gameObject.CompareTag("Break"))
         {
             if (isDashing)
             {
@@ -349,24 +349,4 @@ public class MovementController : MonoBehaviour
             }
         }
     }
-    private void OnCollisionStay(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Obstacle"))
-        {
-        	if (stayInColliderTimer > stayInColliderThreshold)
-        	{
-        		hasDied = true;
-        		CheckGameEnd();
-        		stayInColliderTimer = 0;
-        	}
-       		else
-        		stayInColliderTimer += Time.deltaTime;
-        }
-        
-	private void OnCollisionExit(Collision collision)
-	{
-        	if (collision.gameObject.CompareTag("Obstacle"))
-        		stayInColliderTimer = 0;
-       	 	Debug.Log("Exit collision with:" + collision.gameObject.name);
-       	}
 }
