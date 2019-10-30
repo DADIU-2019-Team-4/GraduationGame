@@ -287,12 +287,7 @@ public class MovementController : MonoBehaviour
                 CheckGameEnd();
             }
         }
-        else if (collision.gameObject.CompareTag("FusePoint"))
-        {
-            StartPoint startPoint = collision.gameObject.GetComponent<StartPoint>();
-            CheckFuseDirection(startPoint);
-        }
-        else if (col.gameObject.CompareTag("Block") || col.gameObject.CompareTag("Fuse") && !IsFuseMoving)
+        else if (collision.gameObject.CompareTag("Block") || collision.gameObject.CompareTag("Fuse") && !IsFuseMoving)
         {
             hitWall = true;
             var collisionPoint = collision.contacts[0];
@@ -333,6 +328,15 @@ public class MovementController : MonoBehaviour
                 else
                     StartCoroutine(MoveRoutine(collisionPoint.point + heading, MoveDuration));
             }
+        }
+    }
+
+    private void OnTriggerEnter(Collider col)
+    {
+        if (col.gameObject.CompareTag("FusePoint"))
+        {
+            StartPoint startPoint = col.gameObject.GetComponent<StartPoint>();
+            CheckFuseDirection(startPoint);
         }
     }
 
