@@ -7,34 +7,34 @@ public class Game : MonoBehaviour
 {
     private List<IGameLoop> GameLoops = new List<IGameLoop>();
     private bool inErrorState;
-    [SerializeField]
-    private Scene _additiveSceneOne;
-    [SerializeField]
-    private Scene _additiveSceneTwo;
+    //[SerializeField]
+    //private Scene _additiveSceneOne;
+    //[SerializeField]
+    //private Scene _additiveSceneTwo;
     [HideInInspector]
     public Game instance;
 
     public void Awake()
     {
         instance = this;
-        SceneManager.LoadScene("AdditiveScene1", LoadSceneMode.Additive);
-        SceneManager.LoadScene("AdditiveScene2", LoadSceneMode.Additive);
+        SceneManager.LoadScene("Level0_additive", LoadSceneMode.Additive);
+        SceneManager.LoadScene("Level0env_additive", LoadSceneMode.Additive);
     }
 
-    private void Start()
-    {
-        try
-        {
-            if (!inErrorState)
-                foreach (var gameLoop in GameLoops)
-                    gameLoop.CustomStart();
-        }
-        catch (System.Exception e)
-        {
-            HandleGameLoopException(e);
-            throw;
-        }
-    }
+    //private void Start()
+    //{
+    //    try
+    //    {
+    //        if (!inErrorState)
+    //            foreach (var gameLoop in GameLoops)
+    //                gameLoop.CustomStart();
+    //    }
+    //    catch (System.Exception e)
+    //    {
+    //        HandleGameLoopException(e);
+    //        throw;
+    //    }
+    //}
 
     void Update()
     {
@@ -42,7 +42,7 @@ public class Game : MonoBehaviour
         {
             if (!inErrorState)
                 foreach (var gameLoop in GameLoops)
-                    gameLoop.CustomUpdate();
+                    gameLoop.GameLoopUpdate();
         }
         catch (System.Exception e)
         {
@@ -54,7 +54,7 @@ public class Game : MonoBehaviour
     void HandleGameLoopException(System.Exception e)
     {
         Debug.Log("EXCEPTION: " + e.Message + "\n" + e.StackTrace);
-        // Time.timeScale = 0; // If certain game objects continue some behaviour, uncomment this line.
+        Time.timeScale = 0; // If certain game objects continue some behaviour, uncomment this line.
         inErrorState = true;
     }
 
