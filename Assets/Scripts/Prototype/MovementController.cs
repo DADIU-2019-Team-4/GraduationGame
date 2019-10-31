@@ -336,6 +336,7 @@ public class MovementController : MonoBehaviour
             }
             else
             {
+                SendAudioEvent(AudioEvent.AudioEventType.ObstacleBreakMute);
                 var collisionPoint = collision.contacts[0];
                 var heading = previousPosition - collisionPoint.point;
                 if (Mathf.Abs(heading.x) + Mathf.Abs(heading.z) > 9f)

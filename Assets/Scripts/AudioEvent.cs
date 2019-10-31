@@ -36,6 +36,7 @@ public class AudioEvent : IGameLoop
         ObstacleBlock,
         ObstacleDeath,
         ObstacleBreak,
+        ObstacleBreakMute,
         ChargedDash,
         BurningItem,
         WinPuzzle,
