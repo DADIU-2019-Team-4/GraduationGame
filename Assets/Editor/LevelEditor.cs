@@ -25,6 +25,9 @@ public class LevelEditor : EditorWindow
 
     private float objectRotation = 0;
 
+    private Vector3 currentCellSelected;
+    private Vector3 previousCellSelected;
+
     // Called to draw the MapEditor windows.
     [SerializeField]
     private int paletteIndex;
@@ -58,6 +61,7 @@ public class LevelEditor : EditorWindow
     }
 
 
+    private bool mouseDown = false;
 
     // Does the rendering of the map editor in the scene view.
     private void OnSceneGUI(SceneView sceneView)
@@ -66,31 +70,56 @@ public class LevelEditor : EditorWindow
         {
             Vector3 cellCenter = GetSelectedCell(); // Refactoring, I moved some code in this function
 
+            previousCellSelected = currentCellSelected;
+            currentCellSelected = cellCenter;
+
+            
 
             DisplayVisualHelp();
             HandleSceneViewInputs(cellCenter);
+
+            if (Event.current.type == EventType.MouseDown)
+            {
+                mouseDown = true;
+            }else if(Event.current.type == EventType.MouseUp)
+            {
+                mouseDown = false;
+            }
 
             // Refresh the view
             sceneView.Repaint();
 
             // We have a prefab selected and we are clicking in the scene view with the left button
-            if (paletteIndex < palette.Count && Event.current.type == EventType.MouseDown && Event.current.button == 0)
+            if (paletteIndex < palette.Count && 
+                mouseDown && 
+                previousCellSelected != currentCellSelected)
+            {
+                InstanciateObjects();
+            }else if (paletteIndex < palette.Count && 
+                      Event.current.type == EventType.MouseDown && 
+                      Event.current.button == 0)
+            {
+                InstanciateObjects();
+            }
+
+
+            void InstanciateObjects()
             {
                 // Create the prefab instance while keeping the prefab link
                 GameObject prefab = palette[paletteIndex];
 
                 GameObject gameObject = PrefabUtility.InstantiatePrefab(prefab) as GameObject;
                 gameObject.transform.position = cellCenter;
-                gameObject.transform.Translate(new Vector3(0, gameObject.GetComponent<MeshRenderer>().bounds.size.y/2, 0)); 
-                gameObject.transform.Rotate(new Vector3(0, objectRotation,0));
+                gameObject.transform.Translate(new Vector3(0, gameObject.GetComponent<MeshRenderer>().bounds.size.y / 2, 0));
+                gameObject.transform.Rotate(new Vector3(0, objectRotation, 0));
 
                 if (prefab.name == "Floor Unit")
                 {
-                    gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x * floorXScale* (gridScale/2), 0.1f, gameObject.transform.localScale.z * floorZScale * (gridScale / 2));
+                    gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x * floorXScale * (gridScale / 2), 0.1f, gameObject.transform.localScale.z * floorZScale * (gridScale / 2));
 
                     if (floorXScale % 2 == 0)
                     {
-                        gameObject.transform.Translate(new Vector3(1f,0,0));
+                        gameObject.transform.Translate(new Vector3(1f, 0, 0));
                     }
                     if (floorZScale % 2 == 0)
                     {
@@ -99,20 +128,23 @@ public class LevelEditor : EditorWindow
 
                 }
 
-                
 
-                if( GameObject.Find("Level Objects") == null)
+
+                if (GameObject.Find("Level Objects") == null)
                 {
                     GameObject go = Instantiate(new GameObject(), new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
                     go.transform.name = "Level Objects";
-                }else
+                }
+                else
 
-                gameObject.transform.parent = GameObject.Find("Level Objects").transform;
+                    gameObject.transform.parent = GameObject.Find("Level Objects").transform;
 
                 // Allow the use of Undo (Ctrl+Z, Ctrl+Y).
                 Undo.RegisterCreatedObjectUndo(gameObject, "");
             }
         }
+
+       
 
         if (deleteMode) //delete objects
         {
