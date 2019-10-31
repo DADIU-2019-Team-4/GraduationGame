@@ -49,6 +49,7 @@ public class MovementController : MonoBehaviour
     private bool hasDied;
     private bool reachedGoal;
 
+    private static bool _hasRun;
     private AudioEvent[] audioEvents;
 
     public bool IsMoving { get; set; }
@@ -92,6 +93,13 @@ public class MovementController : MonoBehaviour
     {
         material.color = new Color(1, colorValue, colorValue, 1);
         colorValue -= 0.05f;
+
+        if (!_hasRun)
+        {
+           // Debug.Log("Charging");
+            SendAudioEvent(AudioEvent.AudioEventType.ObstacleBreak);
+            _hasRun = true;
+        }
         
     }
 
@@ -130,6 +138,7 @@ public class MovementController : MonoBehaviour
         int movesLeft = AmountOfMoves - DashCost;
         if (movesLeft < 0)
         {
+            SendAudioEvent(AudioEvent.AudioEventType.ObstacleBlock);
             StartCoroutine(ChangeTextColorRoutine());
             return;
         }
@@ -168,6 +177,7 @@ public class MovementController : MonoBehaviour
         material.SetColor("_Color", Color.black);
         colorValue = 1f;
         IsDashCharged = false;
+        _hasRun = false;
     }
 
     /// <summary>
