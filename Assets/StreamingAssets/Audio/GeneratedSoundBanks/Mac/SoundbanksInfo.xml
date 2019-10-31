@@ -21,27 +21,32 @@
 			<ShortName>Room_1_Bank</ShortName>
 			<Path>Room_1_Bank.bnk</Path>
 			<IncludedEvents>
-				<Event Id="742914115" Name="ChargedDash" ObjectPath="\Events\Character\Dashing\ChargedDash" DurationType="OneShot" DurationMin="1.764603" DurationMax="1.764603"/>
-				<Event Id="735079116" Name="ChargingDash" ObjectPath="\Events\Character\Dashing\ChargingDash" DurationType="OneShot" DurationMin="0.866190" DurationMax="0.866190"/>
-				<Event Id="3201775563" Name="CollectingFire" ObjectPath="\Events\Character\CollectingFire" DurationType="OneShot" DurationMin="2.349819" DurationMax="2.349819"/>
+				<Event Id="742914115" Name="ChargedDash" ObjectPath="\Events\Character\Dashing\ChargedDash" DurationType="OneShot" DurationMin="1.697664" DurationMax="1.697664"/>
+				<Event Id="735079116" Name="ChargingDash" ObjectPath="\Events\Character\Dashing\ChargingDash" DurationType="OneShot" DurationMin="0.752018" DurationMax="0.752018"/>
+				<Event Id="1914703205" Name="ChargingRejection" ObjectPath="\Events\Character\Dashing\ChargingRejection" DurationType="OneShot" DurationMin="1.326893" DurationMax="1.326893"/>
+				<Event Id="2370884349" Name="CollectFire" ObjectPath="\Events\Character\CollectFire" DurationType="OneShot" DurationMin="2.349819" DurationMax="2.349819"/>
 				<Event Id="1016929228" Name="NormalDash" ObjectPath="\Events\Character\Dashing\NormalDash" DurationType="OneShot" DurationMin="1.746099" DurationMax="1.746099"/>
 			</IncludedEvents>
 			<IncludedMemoryFiles>
 				<File Id="8864511" Language="SFX">
 					<ShortName>Dash1.wav</ShortName>
-					<Path>SFX\Dash1_5BA8E89D.wem</Path>
+					<Path>SFX\Dash1_87E74C6D.wem</Path>
 				</File>
-				<File Id="87395738" Language="SFX">
-					<ShortName>ChargedDash3.wav</ShortName>
-					<Path>SFX\ChargedDash3_10C4C929.wem</Path>
+				<File Id="250295397" Language="SFX">
+					<ShortName>ChargingDisable.wav</ShortName>
+					<Path>SFX\ChargingDisable_6296B0F9.wem</Path>
 				</File>
-				<File Id="176833991" Language="SFX">
-					<ShortName>ChargingDash2.wav</ShortName>
-					<Path>SFX\ChargingDash2_10C4C929.wem</Path>
+				<File Id="356587367" Language="SFX">
+					<ShortName>ChargingDash4.wav</ShortName>
+					<Path>SFX\ChargingDash4_6296B0F9.wem</Path>
+				</File>
+				<File Id="367657170" Language="SFX">
+					<ShortName>ChargedDash4.wav</ShortName>
+					<Path>SFX\ChargedDash4_6296B0F9.wem</Path>
 				</File>
 				<File Id="785166258" Language="SFX">
 					<ShortName>CollectFire.wav</ShortName>
-					<Path>SFX\CollectFire_10C4C929.wem</Path>
+					<Path>SFX\CollectFire_6296B0F9.wem</Path>
 				</File>
 			</IncludedMemoryFiles>
 		</SoundBank>

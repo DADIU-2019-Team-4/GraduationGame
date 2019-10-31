@@ -97,7 +97,7 @@ public class MovementController : MonoBehaviour
         if (!_hasRun)
         {
            // Debug.Log("Charging");
-            SendAudioEvent(AudioEvent.AudioEventType.ObstacleBreak);
+            SendAudioEvent(AudioEvent.AudioEventType.ChargingDash);
             _hasRun = true;
         }
         
@@ -138,7 +138,7 @@ public class MovementController : MonoBehaviour
         int movesLeft = AmountOfMoves - DashCost;
         if (movesLeft < 0)
         {
-            SendAudioEvent(AudioEvent.AudioEventType.ObstacleBlock);
+            SendAudioEvent(AudioEvent.AudioEventType.ChargingRejection);
             StartCoroutine(ChangeTextColorRoutine());
             return;
         }
@@ -321,6 +321,7 @@ public class MovementController : MonoBehaviour
             if (AmountOfMoves > maxAmountOfMoves)
                 AmountOfMoves = maxAmountOfMoves;
             MovesText.text = AmountOfMoves.ToString();
+            SendAudioEvent(AudioEvent.AudioEventType.BurningItem);
             Destroy(collision.gameObject);
         }
         else if (collision.gameObject.CompareTag("Break"))
