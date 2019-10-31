@@ -27,6 +27,8 @@ public class WallCulling : IGameLoop
             var wallPosZ = walls[i].transform.forward;
             var angle = Vector3.Angle(gameObject.transform.forward, wallPosZ);
             var meshRenderer = walls[i].gameObject.GetComponent<MeshRenderer>();
+            //if(i ==1)
+                //Debug.Log("Object" + walls[i] + ",forward vector:" + wallPosZ + ",angle:" + angle);
             if (angle <= fixedAngle && meshRenderer.enabled)
                 meshRenderer.enabled = false;
             else if (angle > fixedAngle && !meshRenderer.enabled)
