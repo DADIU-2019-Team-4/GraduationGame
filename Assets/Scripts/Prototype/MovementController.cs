@@ -105,7 +105,7 @@ public class MovementController : MonoBehaviour
         DetermineDirection(moveDirection);
 
         previousPosition = transform.position;
-        Vector3 targetPosition = transform.position + new Vector3(moveDirection.x, 0, moveDirection.z) * MoveDistance;
+        Vector3 targetPosition = transform.position + moveDirection * MoveDistance;
 
         StartCoroutine(MoveRoutine(targetPosition, MoveDuration, MoveCost));
     }
@@ -135,7 +135,7 @@ public class MovementController : MonoBehaviour
         DetermineDirection(dashDirection);
 
         previousPosition = transform.position;
-        Vector3 targetPosition = transform.position + new Vector3(dashDirection.x, 0, dashDirection.z) * DashDistance;
+        Vector3 targetPosition = transform.position + dashDirection * DashDistance;
 
         StartCoroutine(MoveRoutine(targetPosition, DashDuration, DashCost));
 
