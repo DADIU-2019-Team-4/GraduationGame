@@ -52,6 +52,8 @@ public class MovementController : MonoBehaviour
     private bool hasDied;
     private bool reachedGoal;
 
+    private AudioEvent[] audioEvents;
+
     public bool IsMoving { get; set; }
 
     public bool IsFuseMoving { get; set; }
@@ -71,6 +73,7 @@ public class MovementController : MonoBehaviour
         material = GetComponent<Renderer>().material;
         trailRenderer = GetComponent<TrailRenderer>();
         gameController = FindObjectOfType<GameController>();
+        audioEvents = GetComponents<AudioEvent>();
     }
 
     // Start is called before the first frame update
@@ -92,6 +95,7 @@ public class MovementController : MonoBehaviour
     {
         material.color = new Color(1, colorValue, colorValue, 1);
         colorValue -= 0.05f;
+        
     }
 
     /// <summary>
@@ -107,7 +111,7 @@ public class MovementController : MonoBehaviour
 
         previousPosition = transform.position;
         Vector3 targetPosition = transform.position + new Vector3(moveDirection.x, 0, moveDirection.z) * MoveDistance;
-
+        SendAudioEvent(AudioEvent.AudioEventType.Dash);
         StartCoroutine(MoveRoutine(targetPosition, MoveDuration, MoveCost));
     }
 
@@ -132,10 +136,9 @@ public class MovementController : MonoBehaviour
 
         isDashing = true;
         trailRenderer.enabled = true;
-
         previousPosition = transform.position;
         Vector3 targetPosition = transform.position + new Vector3(dashDirection.x, 0, dashDirection.z) * DashDistance;
-
+        SendAudioEvent(AudioEvent.AudioEventType.ChargedDash);
         StartCoroutine(MoveRoutine(targetPosition, DashDuration, DashCost));
 
         ResetDash();
@@ -282,7 +285,6 @@ public class MovementController : MonoBehaviour
             var heading = previousPosition - collisionPoint.point;
             var magnitudeHeading = Mathf.Abs(heading.x + heading.z);
             var magnitudeObject = Mathf.Abs((gameObject.transform.position.magnitude - gameObject.transform.position.y) - (collisionPoint.point.magnitude - collisionPoint.point.y));
-            Debug.Log("Heading:" + magnitudeHeading + "gameObject Heading:" + magnitudeObject);
             if(magnitudeHeading >13f && magnitudeObject < magnitudeHeading/3f && magnitudeObject<2.5f)
                 StartCoroutine(isDashing
                 ? MoveRoutine(collisionPoint.point + (heading*0.35f), DashDuration)
@@ -347,6 +349,14 @@ public class MovementController : MonoBehaviour
                     startPoint.StartFollowingFuse();
                 break;
             }
+        }
+    }
+    private void SendAudioEvent(AudioEvent.AudioEventType type)
+    {
+        for (int i = 0; i<=audioEvents.Length-1;i++)
+        {
+            if (type == audioEvents[i].TriggerType)
+                audioEvents[i].AddAudioEvent(type, gameObject);
         }
     }
 }

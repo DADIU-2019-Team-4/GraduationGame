@@ -36,6 +36,7 @@ public class AudioEvent : IGameLoop
         ObstacleBlock,
         ObstacleDeath,
         ObstacleBreak,
+        ChargedDash,
     }
 
     #endregion
@@ -124,7 +125,7 @@ public class AudioEvent : IGameLoop
 
 
     // Use this function call as AudioEvent.AddAudioEvent(...) from anything that can produce audio.
-    public static void AddAudioEvent(AudioEventType audioEventType, GameObject trigger)
+    public void AddAudioEvent(AudioEventType audioEventType, GameObject trigger)
     {
         // Only game objects with Audio Components can make AudioEvents.
         if (trigger.GetComponent<AudioEvent>() != null)
@@ -134,7 +135,7 @@ public class AudioEvent : IGameLoop
     public override void GameLoopUpdate()
     {
         // Iterate backwards to allow removing elements while iterating.
-        for (int i = ListenerSpace.Count; i >= 0; --i)
+        for (int i = ListenerSpace.Count-1; i >= 0; --i)
         {
             (AudioEventType audioEvent, GameObject trigger) = ListenerSpace[i];
             if (audioEvent != TriggerType) continue;
@@ -153,5 +154,6 @@ public class AudioEvent : IGameLoop
             AkSoundEngine.SetRTPCValue(RTPCName, RTPCValue.Value);
         else if (WwiseType == WwiseFunction.State)
             AkSoundEngine.SetState(SetStateGroup, SetStateValue);
+        Debug.Log("Played event");
     }
 }
