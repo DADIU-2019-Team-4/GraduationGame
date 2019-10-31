@@ -11,6 +11,16 @@
 	<StreamedFiles/>
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
+		<SoundBank Id="22796248" Language="SFX">
+			<ObjectPath>\SoundBanks\Default Work Unit\Room_2_Bank</ObjectPath>
+			<ShortName>Room_2_Bank</ShortName>
+			<Path>Room_2_Bank.bnk</Path>
+		</SoundBank>
+		<SoundBank Id="1068922635" Language="SFX">
+			<ObjectPath>\SoundBanks\Default Work Unit\Hub_Bank</ObjectPath>
+			<ShortName>Hub_Bank</ShortName>
+			<Path>Hub_Bank.bnk</Path>
+		</SoundBank>
 		<SoundBank Id="1355168291" Language="SFX">
 			<ObjectPath>Init</ObjectPath>
 			<ShortName>Init</ShortName>
@@ -26,9 +36,9 @@
 				<Event Id="742914115" Name="ChargedDash" ObjectPath="\Events\Character\Dashing\ChargedDash" DurationType="OneShot" DurationMin="1.697664" DurationMax="1.697664"/>
 				<Event Id="735079116" Name="ChargingDash" ObjectPath="\Events\Character\Dashing\ChargingDash" DurationType="OneShot" DurationMin="0.752018" DurationMax="0.752018"/>
 				<Event Id="1914703205" Name="ChargingRejection" ObjectPath="\Events\Character\Dashing\ChargingRejection" DurationType="OneShot" DurationMin="1.326893" DurationMax="1.326893"/>
-				<Event Id="2370884349" Name="CollectFire" ObjectPath="\Events\Character\CollectFire" DurationType="OneShot" DurationMin="2.349819" DurationMax="2.349819"/>
+				<Event Id="2370884349" Name="CollectFire" ObjectPath="\Events\Character\Objects\CollectFire" DurationType="OneShot" DurationMin="2.349819" DurationMax="2.349819"/>
 				<Event Id="679539432" Name="DeathObject" ObjectPath="\Events\Character\Objects\DeathObject" DurationType="OneShot" DurationMin="1.538095" DurationMax="1.538095"/>
-				<Event Id="1016929228" Name="NormalDash" ObjectPath="\Events\Character\Dashing\NormalDash" DurationType="OneShot" DurationMin="1.308097" DurationMax="2.330763"/>
+				<Event Id="1016929228" Name="NormalDash" ObjectPath="\Events\Character\Dashing\NormalDash" DurationType="OneShot" DurationMin="1.385880" DurationMax="2.199948"/>
 				<Event Id="3044105157" Name="WinPuzzle" ObjectPath="\Events\InGame_UI\WinPuzzle" DurationType="OneShot" DurationMin="1.367528" DurationMax="1.367528"/>
 			</IncludedEvents>
 			<IncludedMemoryFiles>
@@ -65,6 +75,11 @@
 					<Path>SFX\CollectFire_6296B0F9.wem</Path>
 				</File>
 			</IncludedMemoryFiles>
+		</SoundBank>
+		<SoundBank Id="2658994711" Language="SFX">
+			<ObjectPath>\SoundBanks\Default Work Unit\Room_3_Bank</ObjectPath>
+			<ShortName>Room_3_Bank</ShortName>
+			<Path>Room_3_Bank.bnk</Path>
 		</SoundBank>
 	</SoundBanks>
 </SoundBanksInfo>

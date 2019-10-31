@@ -24,31 +24,217 @@ MonoBehaviour:
     ParentPhysicalPath: 
     guid: 61773147c3e61341905ca4a6c975c8be
     GuidInternal: 
-    m_lastTime: -8586298689889736712
-    List: []
+    m_lastTime: -8586290646435700431
+    List:
+    - name: LargeVerb
+      guid: 4df29f5a7ef6c64484385fb4eb29a27f
+      id: 2757439665
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Master Audio Bus
+        ObjectType: 2
+      - ElementName: LargeVerb
+        ObjectType: 1
+      Path: Default Work Unit\Master Audio Bus\LargeVerb
+    - name: MidVerb
+      guid: 211d45291e0f9541a734c6f0a835bc85
+      id: 3210245118
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Master Audio Bus
+        ObjectType: 2
+      - ElementName: MidVerb
+        ObjectType: 1
+      Path: Default Work Unit\Master Audio Bus\MidVerb
+    - name: SmallVerb
+      guid: 42fcaad7c24ef548aaf4674aecafd5e9
+      id: 117523933
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Master Audio Bus
+        ObjectType: 2
+      - ElementName: SmallVerb
+        ObjectType: 1
+      Path: Default Work Unit\Master Audio Bus\SmallVerb
   BankWwu:
   - PhysicalPath: SoundBanks\Default Work Unit.wwu
     ParentPhysicalPath: 
     guid: 72425237053ab44b82427a05c1308321
     GuidInternal: 
-    m_lastTime: -8586298684039094090
+    m_lastTime: -8586290646434724106
     List:
-    - name: Soundbank1
-      guid: 50ccd700ff33684fb6d92be8efdf4b23
-      id: 1647770721
+    - name: Hub_Bank
+      guid: 614ceedb9bd86f4fafd8a0c7178d79e1
+      id: 1068922635
       PathAndIcons:
       - ElementName: Default Work Unit
         ObjectType: 12
-      - ElementName: Soundbank1
+      - ElementName: Hub_Bank
         ObjectType: 7
-      Path: Default Work Unit\Soundbank1
+      Path: Default Work Unit\Hub_Bank
+    - name: Room_1_Bank
+      guid: e0606da1b37faa4b9eea4fea19ea8b94
+      id: 1963399553
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Room_1_Bank
+        ObjectType: 7
+      Path: Default Work Unit\Room_1_Bank
+    - name: Room_2_Bank
+      guid: 84bb62a8e05a844db36f1193473e8cf7
+      id: 22796248
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Room_2_Bank
+        ObjectType: 7
+      Path: Default Work Unit\Room_2_Bank
+    - name: Room_3_Bank
+      guid: 682455cd73880d4c8c1a9eea7eb58684
+      id: 2658994711
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Room_3_Bank
+        ObjectType: 7
+      Path: Default Work Unit\Room_3_Bank
   EventWwu:
   - PhysicalPath: Events\Character.wwu
     ParentPhysicalPath: 
     guid: 85519e3dd9af71428bf05cf3b19b0630
     GuidInternal: 
-    m_lastTime: -8586298686736017607
-    List: []
+    m_lastTime: -8586290646434962826
+    List:
+    - name: BlockObject
+      guid: befac980a8fde244859299081e1cd8af
+      id: 3914625789
+      PathAndIcons:
+      - ElementName: Character
+        ObjectType: 12
+      - ElementName: Objects
+        ObjectType: 4
+      - ElementName: BlockObject
+        ObjectType: 3
+      Path: Character\Objects\BlockObject
+      maxAttenuation: 0
+      maxDuration: 1326893
+      minDuration: 1326893
+    - name: BreakObject
+      guid: e554a8ad7f0d484c8c85ba76626ff80d
+      id: 2596983219
+      PathAndIcons:
+      - ElementName: Character
+        ObjectType: 12
+      - ElementName: Objects
+        ObjectType: 4
+      - ElementName: BreakObject
+        ObjectType: 3
+      Path: Character\Objects\BreakObject
+      maxAttenuation: 0
+      maxDuration: 3240786
+      minDuration: 2725166
+    - name: BreakObjectMute
+      guid: af8f23a58d62994e84e3b5bf9ec42b13
+      id: 384768216
+      PathAndIcons:
+      - ElementName: Character
+        ObjectType: 12
+      - ElementName: Objects
+        ObjectType: 4
+      - ElementName: BreakObjectMute
+        ObjectType: 3
+      Path: Character\Objects\BreakObjectMute
+      maxAttenuation: 0
+      maxDuration: 1326893
+      minDuration: 1326893
+    - name: ChargedDash
+      guid: d4eae6662ad0d248ab64c2517d4f8562
+      id: 742914115
+      PathAndIcons:
+      - ElementName: Character
+        ObjectType: 12
+      - ElementName: Dashing
+        ObjectType: 4
+      - ElementName: ChargedDash
+        ObjectType: 3
+      Path: Character\Dashing\ChargedDash
+      maxAttenuation: 0
+      maxDuration: 1697664
+      minDuration: 1697664
+    - name: ChargingDash
+      guid: 7064d9f3179e2b419c800744ead4036a
+      id: 735079116
+      PathAndIcons:
+      - ElementName: Character
+        ObjectType: 12
+      - ElementName: Dashing
+        ObjectType: 4
+      - ElementName: ChargingDash
+        ObjectType: 3
+      Path: Character\Dashing\ChargingDash
+      maxAttenuation: 0
+      maxDuration: 752018
+      minDuration: 752018
+    - name: ChargingRejection
+      guid: afb346c95acd8940b6296c80ffb599d6
+      id: 1914703205
+      PathAndIcons:
+      - ElementName: Character
+        ObjectType: 12
+      - ElementName: Dashing
+        ObjectType: 4
+      - ElementName: ChargingRejection
+        ObjectType: 3
+      Path: Character\Dashing\ChargingRejection
+      maxAttenuation: 0
+      maxDuration: 1326893
+      minDuration: 1326893
+    - name: CollectFire
+      guid: b98d5a6c02f1e344a4aad4a11919b71f
+      id: 2370884349
+      PathAndIcons:
+      - ElementName: Character
+        ObjectType: 12
+      - ElementName: Objects
+        ObjectType: 4
+      - ElementName: CollectFire
+        ObjectType: 3
+      Path: Character\Objects\CollectFire
+      maxAttenuation: 0
+      maxDuration: 2349819
+      minDuration: 2349819
+    - name: DeathObject
+      guid: 32dcf5edd786504cbdacad9f513d6171
+      id: 679539432
+      PathAndIcons:
+      - ElementName: Character
+        ObjectType: 12
+      - ElementName: Objects
+        ObjectType: 4
+      - ElementName: DeathObject
+        ObjectType: 3
+      Path: Character\Objects\DeathObject
+      maxAttenuation: 0
+      maxDuration: 1538095
+      minDuration: 1538095
+    - name: NormalDash
+      guid: e43973cbb69fc641bf82e9f6fdb05e52
+      id: 1016929228
+      PathAndIcons:
+      - ElementName: Character
+        ObjectType: 12
+      - ElementName: Dashing
+        ObjectType: 4
+      - ElementName: NormalDash
+        ObjectType: 3
+      Path: Character\Dashing\NormalDash
+      maxAttenuation: 0
+      maxDuration: 2199948
+      minDuration: 1385880
   - PhysicalPath: Events\Default Work Unit.wwu
     ParentPhysicalPath: 
     guid: 176f44b72cc15d4ba2418afac5f43146
@@ -61,46 +247,46 @@ MonoBehaviour:
     GuidInternal: 
     m_lastTime: -8586298684039473000
     List: []
+  - PhysicalPath: Events\InGame_UI.wwu
+    ParentPhysicalPath: 
+    guid: 9a9189c843fed44184f89467d8975824
+    GuidInternal: 
+    m_lastTime: -8586290750601970002
+    List:
+    - name: WinPuzzle
+      guid: d4e2d28f373c3d48ab0eb02f981e0c77
+      id: 3044105157
+      PathAndIcons:
+      - ElementName: InGame_UI
+        ObjectType: 12
+      - ElementName: WinPuzzle
+        ObjectType: 3
+      Path: InGame_UI\WinPuzzle
+      maxAttenuation: 0
+      maxDuration: 1367528
+      minDuration: 1367528
   - PhysicalPath: Events\Music.wwu
     ParentPhysicalPath: 
     guid: b354ec827c03c44399470a4771e70173
     GuidInternal: 
     m_lastTime: -8586298686931291126
     List: []
-  - PhysicalPath: Events\UI.wwu
-    ParentPhysicalPath: 
-    guid: 9a9189c843fed44184f89467d8975824
-    GuidInternal: 
-    m_lastTime: -8586298684039392949
-    List:
-    - name: New_Event
-      guid: d4e2d28f373c3d48ab0eb02f981e0c77
-      id: 3050945240
-      PathAndIcons:
-      - ElementName: UI
-        ObjectType: 12
-      - ElementName: New_Event
-        ObjectType: 3
-      Path: UI\New_Event
-      maxAttenuation: 0
-      maxDuration: 694354
-      minDuration: 694354
   RtpcWwu:
   - PhysicalPath: Game Parameters\Default Work Unit.wwu
     ParentPhysicalPath: 
     guid: 4e98cb7cf821544ba39897d46f0d9511
     GuidInternal: 
-    m_lastTime: -8586292475006647699
+    m_lastTime: -8586290897705944885
     List:
-    - name: New_Game_Parameter
+    - name: MoveCounter
       guid: 192ce6e176fcde4e951ebb262d1de75a
-      id: 3671138082
+      id: 4205191570
       PathAndIcons:
       - ElementName: Default Work Unit
         ObjectType: 12
-      - ElementName: New_Game_Parameter
+      - ElementName: MoveCounter
         ObjectType: 13
-      Path: Default Work Unit\New_Game_Parameter
+      Path: Default Work Unit\MoveCounter
   StateWwu:
   - PhysicalPath: States\Default Work Unit.wwu
     ParentPhysicalPath: 
@@ -124,9 +310,8 @@ MonoBehaviour:
     List: []
   ExpandedItems:
   - /GraduationGame_WwiseProject
-  - /GraduationGame_WwiseProject/Events
-  - /GraduationGame_WwiseProject/Events/UI
-  - /GraduationGame_WwiseProject/SoundBanks
-  - /GraduationGame_WwiseProject/SoundBanks/Default Work Unit
+  - /GraduationGame_WwiseProject/Auxiliary Busses
+  - /GraduationGame_WwiseProject/Auxiliary Busses/Default Work Unit
+  - /GraduationGame_WwiseProject/Auxiliary Busses/Default Work Unit/Master Audio Bus
   autoPopulateEnabled: 1
   CurrentPluginConfig: 
