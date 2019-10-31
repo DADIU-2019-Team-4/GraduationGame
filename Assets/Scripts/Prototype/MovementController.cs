@@ -42,9 +42,6 @@ public class MovementController : MonoBehaviour
 
     private float colorValue = 1;
     private float changeTextColorDuration = 0.2f;
-    private float stayInColliderThreshold = 0.1f;
-    private float stayInColliderTimer;
-    private float outOfMovesDuration = 0.1f;
 
     private bool isDashing;
     private bool hitWall;
