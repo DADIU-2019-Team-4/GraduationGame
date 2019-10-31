@@ -38,6 +38,7 @@ public class AudioEvent : IGameLoop
         ObstacleBreak,
         ChargedDash,
         BurningItem,
+        WinPuzzle,
     }
 
     #endregion

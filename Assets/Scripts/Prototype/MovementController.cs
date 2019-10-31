@@ -289,6 +289,7 @@ public class MovementController : MonoBehaviour
         {
             if (!isDashing)
             {
+                SendAudioEvent(AudioEvent.AudioEventType.ObstacleDeath);
                 var collisionPoint = collision.contacts[0];
                 var heading = previousPosition - collisionPoint.point;
                 if(Mathf.Abs(heading.x) + Mathf.Abs(heading.z) > 9f)
@@ -301,6 +302,7 @@ public class MovementController : MonoBehaviour
         }
         else if (collision.gameObject.CompareTag("Block") || collision.gameObject.CompareTag("Fuse") && !IsFuseMoving)
         {
+            SendAudioEvent(AudioEvent.AudioEventType.ObstacleBlock);
             hitWall = true;
             var collisionPoint = collision.contacts[0];
             var heading = previousPosition - collisionPoint.point;
@@ -330,6 +332,7 @@ public class MovementController : MonoBehaviour
             {
                 collision.gameObject.GetComponent<Renderer>().material.DOFade(0f, 2f);
                 Destroy(collision.gameObject, 2f);
+                SendAudioEvent(AudioEvent.AudioEventType.ObstacleBreak);
             }
             else
             {
