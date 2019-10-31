@@ -142,7 +142,7 @@ public class LevelEditor : EditorWindow
     [SerializeField]
     private List<GameObject> palette = new List<GameObject>();
 
-    private string path = "Assets/Prefabs/PipelineTest";
+    private string path = "Assets/Prefabs/Prototype";
 
     private void RefreshPalette()
     {
@@ -158,7 +158,7 @@ public class LevelEditor : EditorWindow
         SceneView.onSceneGUIDelegate -= this.OnSceneGUI;
     }
 
-    private Vector3 cellSize = new Vector3(2f, 2f, 2f);
+    private Vector3 cellSize = new Vector3(8f, 8f, 8f);
 
     private void DisplayVisualHelp()
     {
