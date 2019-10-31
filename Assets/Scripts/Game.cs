@@ -17,8 +17,8 @@ public class Game : MonoBehaviour
     public void Awake()
     {
         instance = this;
-        SceneManager.LoadScene("Level0_additive", LoadSceneMode.Additive);
-        SceneManager.LoadScene("Level0env_additive", LoadSceneMode.Additive);
+        //SceneManager.LoadScene("Level0_additive", LoadSceneMode.Additive);
+        //SceneManager.LoadScene("Level0env_additive", LoadSceneMode.Additive);
     }
 
     //private void Start()
