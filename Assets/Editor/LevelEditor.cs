@@ -6,6 +6,9 @@ public class LevelEditor : EditorWindow
 {
     // The window is selected if it already exists, else it's created.
     [MenuItem("Window/Custom Level Editor")]
+
+
+
     private static void ShowWindow()
     {
         EditorWindow.GetWindow(typeof(LevelEditor));
@@ -17,6 +20,8 @@ public class LevelEditor : EditorWindow
 
     private int floorXScale = 1;
     private int floorZScale = 1;
+
+    static private float gridScale = 8;
 
     private float objectRotation = 0;
 
@@ -44,11 +49,12 @@ public class LevelEditor : EditorWindow
         {
             // Get a preview for the prefab
             Texture2D texture = AssetPreview.GetAssetPreview(prefab);
-            paletteIcons.Add(new GUIContent(texture));
+            
+            paletteIcons.Add(new GUIContent(texture,prefab.transform.name));
         }
 
         // Display the grid
-        paletteIndex = GUILayout.SelectionGrid(paletteIndex, paletteIcons.ToArray(), 6);
+        paletteIndex = GUILayout.SelectionGrid(paletteIndex, paletteIcons.ToArray(), 4);
     }
 
 
@@ -80,7 +86,7 @@ public class LevelEditor : EditorWindow
 
                 if (prefab.name == "Floor Unit")
                 {
-                    gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x * floorXScale,0, gameObject.transform.localScale.z * floorZScale);
+                    gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x * floorXScale* (gridScale/2), 0.1f, gameObject.transform.localScale.z * floorZScale * (gridScale / 2));
 
                     if (floorXScale % 2 == 0)
                     {
@@ -132,8 +138,8 @@ public class LevelEditor : EditorWindow
 
     void OnFocus()
     {
-        SceneView.onSceneGUIDelegate -= this.OnSceneGUI; // Don't add twice
-        SceneView.onSceneGUIDelegate += this.OnSceneGUI;
+        SceneView.duringSceneGui -= this.OnSceneGUI; // Don't add twice
+        SceneView.duringSceneGui += this.OnSceneGUI;
 
         RefreshPalette(); // Refresh the palette (can be called uselessly, but there is no overhead.)
     }
@@ -142,7 +148,7 @@ public class LevelEditor : EditorWindow
     [SerializeField]
     private List<GameObject> palette = new List<GameObject>();
 
-    private string path = "Assets/Prefabs/Prototype";
+    private string path = "Assets/Prefabs/Prototype/LevelEditorPrefabs";
 
     private void RefreshPalette()
     {
@@ -158,7 +164,7 @@ public class LevelEditor : EditorWindow
         SceneView.onSceneGUIDelegate -= this.OnSceneGUI;
     }
 
-    private Vector3 cellSize = new Vector3(8f, 8f, 8f);
+    private Vector3 cellSize = new Vector3(gridScale, gridScale, gridScale);
 
     private void DisplayVisualHelp()
     {
