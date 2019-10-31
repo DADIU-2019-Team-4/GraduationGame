@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
     Rigidbody rb;
     [Header("Movement variables")]
     [SerializeField]
-    private bool _attached;
+    public bool _attached;
     [Range(10.0f, 25.0f)]
     public float speed;
     [Header("test")]
@@ -73,7 +73,7 @@ public class Player : MonoBehaviour
         }
     }
     
-    private void Detach(bool destroy)
+    public void Detach(bool destroy)
     {
         Transform parent = gameObject.transform.parent;
         parent.DetachChildren();

@@ -9,8 +9,6 @@ public class InputManager : MonoBehaviour
     private bool trackMouse;
     private bool isInDashCircle;
 
-    private float chargeDashTimer;
-
     public float CoyoteTime = 0.5f;
     private float coyoteTimer;
 
@@ -21,6 +19,8 @@ public class InputManager : MonoBehaviour
 
     private float moveArrowScale = 1f;
     private float dashArrowScale = 1.4f;
+
+    public float ArrowScaleFactor = 0.06f;
 
     private void Awake()
     {
@@ -69,12 +69,8 @@ public class InputManager : MonoBehaviour
     /// </summary>
     private void ChargeUpDash()
     {
-        chargeDashTimer += Time.deltaTime;
-        if (chargeDashTimer >= movementController.DashThreshold)
-        {
-            movementController.ChargeDash();
-            movementController.IsDashCharged = true;
-        }
+        movementController.ChargeDash();
+        movementController.IsDashCharged = true;
     }
 
     /// <summary>
@@ -212,16 +208,28 @@ public class InputManager : MonoBehaviour
             if (hit.transform.CompareTag("Player"))
             {
                 isInDashCircle = true;
-                arrow.transform.localScale = new Vector3(1, dashArrowScale, 1);
+                StretchArrow(hit, movementController.DashDistance);
                 arrow.GetComponent<SpriteRenderer>().color = Color.red;
             }
             else
             {
                 isInDashCircle = false;
-                arrow.transform.localScale = new Vector3(1, moveArrowScale, 1);
+                StretchArrow(hit, movementController.MoveDistance);
                 arrow.GetComponent<SpriteRenderer>().color = Color.white;
             }
         }
+    }
+
+    private void StretchArrow(RaycastHit hit, float distance)
+    {
+        Vector3 targetDirection = firstPosition - hit.point;
+        targetDirection.y = 0;
+        targetDirection = targetDirection.normalized;
+        Vector3 targetPosition = movementController.transform.position + targetDirection * distance;
+
+        var scale = ArrowParent.transform.localScale;
+        scale.z = Vector3.Distance(movementController.transform.position, targetPosition) * ArrowScaleFactor;
+        ArrowParent.transform.localScale = scale;
     }
 
     /// <summary>
@@ -230,11 +238,11 @@ public class InputManager : MonoBehaviour
     private void ApplyAction()
     {
         Vector3 directionVector = firstPosition - targetPos;
+        directionVector.y = 0;
 
         if (movementController.IsDashCharged)
         {
             movementController.Dash(directionVector.normalized);
-            chargeDashTimer = 0;
             movementController.ResetDash();
         }
         else

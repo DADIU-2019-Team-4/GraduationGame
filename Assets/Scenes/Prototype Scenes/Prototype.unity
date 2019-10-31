@@ -277,6 +277,11 @@ PrefabInstance:
       propertyPath: ArrowParent
       value: 
       objectReference: {fileID: 1638085245}
+    - target: {fileID: 3015388746143253195, guid: 79bfe6d923c3bf84f8d15ae6d2d5787a,
+        type: 3}
+      propertyPath: ArrowScaleFactor
+      value: 0.06
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 79bfe6d923c3bf84f8d15ae6d2d5787a, type: 3}
 --- !u!1 &558198435
@@ -1649,69 +1654,9 @@ PrefabInstance:
       objectReference: {fileID: 1973723700}
     - target: {fileID: 3202629566038322268, guid: c3488568424b8814bad4703ac36407fb,
         type: 3}
-      propertyPath: WinText
-      value: 
-      objectReference: {fileID: 2000131667}
-    - target: {fileID: 3202629566038322268, guid: c3488568424b8814bad4703ac36407fb,
-        type: 3}
-      propertyPath: OutOfMovesText
-      value: 
-      objectReference: {fileID: 558198435}
-    - target: {fileID: 3202629566038322268, guid: c3488568424b8814bad4703ac36407fb,
-        type: 3}
-      propertyPath: DiedText
-      value: 
-      objectReference: {fileID: 592447630}
-    - target: {fileID: 3202629566038322268, guid: c3488568424b8814bad4703ac36407fb,
-        type: 3}
-      propertyPath: RestartButton
-      value: 
-      objectReference: {fileID: 912360430}
-    - target: {fileID: 3202629566038322268, guid: c3488568424b8814bad4703ac36407fb,
-        type: 3}
-      propertyPath: NextSceneButton
-      value: 
-      objectReference: {fileID: 1185351803}
-    - target: {fileID: 3202629566038322268, guid: c3488568424b8814bad4703ac36407fb,
-        type: 3}
       propertyPath: AmountOfMoves
-      value: 10
+      value: 50
       objectReference: {fileID: 0}
-    - target: {fileID: 3202629566038322268, guid: c3488568424b8814bad4703ac36407fb,
-        type: 3}
-      propertyPath: MoveDistance
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 714748535622932571, guid: c3488568424b8814bad4703ac36407fb,
-        type: 3}
-      propertyPath: m_Parameters.widthMultiplier
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7276586228474938379, guid: c3488568424b8814bad4703ac36407fb,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2796474553118828786, guid: c3488568424b8814bad4703ac36407fb,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 196460062602409186, guid: c3488568424b8814bad4703ac36407fb,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5996929901617003477, guid: c3488568424b8814bad4703ac36407fb,
-        type: 3}
-      propertyPath: m_CastShadows
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3353871469318446024, guid: c3488568424b8814bad4703ac36407fb,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: dadcef182c7887a428d285a5c5a281ff, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c3488568424b8814bad4703ac36407fb, type: 3}
 --- !u!1 &1638085245 stripped
@@ -2758,6 +2703,31 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameController
       objectReference: {fileID: 0}
+    - target: {fileID: 7687038821585000238, guid: 7f579a59447f4be4cb6336d55ef7ac20,
+        type: 3}
+      propertyPath: WinText
+      value: 
+      objectReference: {fileID: 2000131667}
+    - target: {fileID: 7687038821585000238, guid: 7f579a59447f4be4cb6336d55ef7ac20,
+        type: 3}
+      propertyPath: OutOfMovesText
+      value: 
+      objectReference: {fileID: 558198435}
+    - target: {fileID: 7687038821585000238, guid: 7f579a59447f4be4cb6336d55ef7ac20,
+        type: 3}
+      propertyPath: DiedText
+      value: 
+      objectReference: {fileID: 592447630}
+    - target: {fileID: 7687038821585000238, guid: 7f579a59447f4be4cb6336d55ef7ac20,
+        type: 3}
+      propertyPath: RestartButton
+      value: 
+      objectReference: {fileID: 912360430}
+    - target: {fileID: 7687038821585000238, guid: 7f579a59447f4be4cb6336d55ef7ac20,
+        type: 3}
+      propertyPath: NextSceneButton
+      value: 
+      objectReference: {fileID: 1185351803}
     - target: {fileID: 7687038821585000239, guid: 7f579a59447f4be4cb6336d55ef7ac20,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2813,30 +2783,5 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7687038821585000238, guid: 7f579a59447f4be4cb6336d55ef7ac20,
-        type: 3}
-      propertyPath: WinText
-      value: 
-      objectReference: {fileID: 2000131667}
-    - target: {fileID: 7687038821585000238, guid: 7f579a59447f4be4cb6336d55ef7ac20,
-        type: 3}
-      propertyPath: OutOfMovesText
-      value: 
-      objectReference: {fileID: 558198435}
-    - target: {fileID: 7687038821585000238, guid: 7f579a59447f4be4cb6336d55ef7ac20,
-        type: 3}
-      propertyPath: DiedText
-      value: 
-      objectReference: {fileID: 592447630}
-    - target: {fileID: 7687038821585000238, guid: 7f579a59447f4be4cb6336d55ef7ac20,
-        type: 3}
-      propertyPath: RestartButton
-      value: 
-      objectReference: {fileID: 912360430}
-    - target: {fileID: 7687038821585000238, guid: 7f579a59447f4be4cb6336d55ef7ac20,
-        type: 3}
-      propertyPath: NextSceneButton
-      value: 
-      objectReference: {fileID: 1185351803}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7f579a59447f4be4cb6336d55ef7ac20, type: 3}

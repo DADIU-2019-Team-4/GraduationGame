@@ -42,9 +42,6 @@ public class MovementController : MonoBehaviour
 
     private float colorValue = 1;
     private float changeTextColorDuration = 0.2f;
-    private float stayInColliderThreshold = 0.1f;
-    private float stayInColliderTimer;
-    private float outOfMovesDuration = 0.1f;
 
     private bool isDashing;
     private bool hitWall;
@@ -109,9 +106,12 @@ public class MovementController : MonoBehaviour
             return;
         }
 
+        DetermineDirection(moveDirection);
+
         previousPosition = transform.position;
-        Vector3 targetPosition = transform.position + new Vector3(moveDirection.x, 0, moveDirection.z) * MoveDistance;
         SendAudioEvent(AudioEvent.AudioEventType.Dash);
+        Vector3 targetPosition = transform.position + moveDirection * MoveDistance;
+
         StartCoroutine(MoveRoutine(targetPosition, MoveDuration, MoveCost));
     }
 
@@ -137,11 +137,27 @@ public class MovementController : MonoBehaviour
         isDashing = true;
         trailRenderer.enabled = true;
         previousPosition = transform.position;
-        Vector3 targetPosition = transform.position + new Vector3(dashDirection.x, 0, dashDirection.z) * DashDistance;
         SendAudioEvent(AudioEvent.AudioEventType.ChargedDash);
+        DetermineDirection(dashDirection);
+        previousPosition = transform.position;
+        Vector3 targetPosition = transform.position + dashDirection * DashDistance;
+
         StartCoroutine(MoveRoutine(targetPosition, DashDuration, DashCost));
 
         ResetDash();
+    }
+
+    /// <summary>
+    /// Determines the moving direction of the player.
+    /// </summary>
+    private void DetermineDirection(Vector3 direction)
+    {
+        // player is moving horizontally 
+        if (Mathf.Abs(direction.x) > Mathf.Abs(direction.z))
+            CurrentDirection = direction.x < 0 ? Direction.Left : Direction.Right;
+        // player is moving vertically
+        else
+            CurrentDirection = direction.z < 0 ? Direction.Down : Direction.Up;
     }
 
     /// <summary>
@@ -273,12 +289,7 @@ public class MovementController : MonoBehaviour
                 CheckGameEnd();
             }
         }
-        else if (collision.gameObject.CompareTag("FusePoint"))
-        {
-            StartPoint startPoint = collision.gameObject.GetComponent<StartPoint>();
-            CheckFuseDirection(startPoint);
-        }
-        else if (collision.gameObject.CompareTag("Block"))
+        else if (collision.gameObject.CompareTag("Block") || collision.gameObject.CompareTag("Fuse") && !IsFuseMoving)
         {
             hitWall = true;
             var collisionPoint = collision.contacts[0];
@@ -321,6 +332,19 @@ public class MovementController : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter(Collider col)
+    {
+        if (col.gameObject.CompareTag("FusePoint"))
+        {
+            StartPoint startPoint = col.gameObject.GetComponent<StartPoint>();
+            CheckFuseDirection(startPoint);
+        }
+    }
+
+    /// <summary>
+    /// Checks if the player can enter a fuse.
+    /// </summary>
+    /// <param name="startPoint"></param>
     private void CheckFuseDirection(StartPoint startPoint)
     {
         switch (CurrentDirection)
