@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : IGameLoop
 {
     Rigidbody rb;
     [Header("Movement variables")]
@@ -20,7 +20,7 @@ public class Player : MonoBehaviour
         _attached = false;
     }
 
-    void Update()
+    public override void GameLoopUpdate()
     {
         if (Input.anyKey)
             CheckInput();
