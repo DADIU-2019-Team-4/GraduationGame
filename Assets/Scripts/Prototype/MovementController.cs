@@ -40,6 +40,8 @@ public class MovementController : MonoBehaviour
     private TrailRenderer trailRenderer;
     private Vector3 previousPosition;
 
+    private AttachToPlane attachToPlane;
+
     private float colorValue = 1;
     private float changeTextColorDuration = 0.2f;
 
@@ -71,6 +73,7 @@ public class MovementController : MonoBehaviour
         trailRenderer = GetComponent<TrailRenderer>();
         gameController = FindObjectOfType<GameController>();
         audioEvents = GetComponents<AudioEvent>();
+        attachToPlane = GetComponent<AttachToPlane>();
     }
 
     // Start is called before the first frame update
@@ -133,6 +136,8 @@ public class MovementController : MonoBehaviour
             StartCoroutine(ChangeTextColorRoutine());
             return;
         }
+
+        attachToPlane.Detach(false);
 
         isDashing = true;
         trailRenderer.enabled = true;
