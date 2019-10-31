@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class InputManager : MonoBehaviour
+public class InputManager : IGameLoop
 {
     private Vector3 firstPosition;
     private Vector3 lastPosition;
@@ -34,10 +34,7 @@ public class InputManager : MonoBehaviour
         arrow = ArrowParent.transform.GetChild(0).gameObject;
     }
 
-    /// <summary>
-    /// Update function.
-    /// </summary>
-    public void Update()
+    public override void GameLoopUpdate()
     {
         if (!gameController.IsPlaying) return;
 
