@@ -60,6 +60,8 @@ public class Fuse : MonoBehaviour
         }
 
         isUsed = true;
+        if (OnlyUsedOnce)
+            gameObject.SetActive(false);
 
         foreach (var boxCollider in boxColliders)
             boxCollider.enabled = true;
