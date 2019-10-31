@@ -336,8 +336,11 @@ public class MovementController : MonoBehaviour
     {
         if (col.gameObject.CompareTag("FusePoint"))
         {
-            StartPoint startPoint = col.gameObject.GetComponent<StartPoint>();
-            CheckFuseDirection(startPoint);
+            if (!IsFuseMoving)
+            {
+                StartPoint startPoint = col.gameObject.GetComponent<StartPoint>();
+                CheckFuseDirection(startPoint);
+            }
         }
     }
 
