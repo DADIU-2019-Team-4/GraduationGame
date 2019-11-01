@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class LevelEditor : EditorWindow
 {
     // The window is selected if it already exists, else it's created.
-    [MenuItem("Window/Custom Level Editor")]
+    [MenuItem("Tools/Custom Level Editor")]
 
 
 
@@ -144,7 +144,8 @@ public class LevelEditor : EditorWindow
 
                     GameObject gameObject = PrefabUtility.InstantiatePrefab(prefab) as GameObject;
                     gameObject.transform.position = spawnPos;
-                    gameObject.transform.Translate(new Vector3(0, gameObject.GetComponent<MeshRenderer>().bounds.size.y / 2, 0));
+                    gameObject.transform.Translate(new Vector3(0, gameObject.transform.position.y - gameObject.GetComponent<MeshRenderer>().bounds.min.y, 0));
+                    
                     gameObject.transform.Rotate(new Vector3(0, objectRotation, 0));
 
                     if (prefab.name == "Floor Unit")
