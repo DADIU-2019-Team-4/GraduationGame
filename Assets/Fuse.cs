@@ -25,6 +25,12 @@ public class Fuse : MonoBehaviour
         spline = GetComponent<Spline>();
     }
 
+    private void Start()
+    {
+        if (Follower == null)
+            Follower = movementController.gameObject;
+    }
+
     private void Update()
     {
         if (!movementController.IsFuseMoving)
@@ -45,9 +51,9 @@ public class Fuse : MonoBehaviour
 
     private void StopFollowing()
     {
+        movementController.IsFuseMoving = false;
         generated.transform.parent = null;
         isUsed = true;
-        movementController.IsFuseMoving = false;
         if (OnlyUsedOnce)
         	gameObject.SetActive(false);
     }
@@ -74,7 +80,7 @@ public class Fuse : MonoBehaviour
     public void FromStartToEnd()
     {
         rate += Time.deltaTime / DurationInSecond;
-        if (rate < spline.nodes.Count)
+        if (rate < spline.nodes.Count - 1)
             PlaceFollower();
         else
             StopFollowing();

@@ -22,6 +22,11 @@ namespace SplineMesh {
             generated.transform.parent = gameObject.transform;
         }
 
+        private void StopFollowing()
+        {
+            generated.transform.parent = null;
+        }
+
         private void Update() {
             FromEndToStart();
         }
