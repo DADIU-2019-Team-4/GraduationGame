@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using SplineMesh;
+﻿using SplineMesh;
 using UnityEngine;
 
 [RequireComponent(typeof(Spline))]
@@ -18,6 +17,8 @@ public class Fuse : MonoBehaviour
     public float DurationInSecond;
 
     private bool fromStart;
+    private bool isMoving;
+    private bool alreadyFinished;
 
     private void Awake()
     {
@@ -33,7 +34,7 @@ public class Fuse : MonoBehaviour
 
     private void Update()
     {
-        if (!movementController.IsFuseMoving)
+        if (!movementController.IsFuseMoving || !isMoving)
             return;
 
         if (fromStart)
@@ -47,15 +48,23 @@ public class Fuse : MonoBehaviour
         generated = Follower;
         generated.transform.parent = gameObject.transform;
         movementController.IsFuseMoving = true;
+        isMoving = true;
+        alreadyFinished = false;
     }
 
     private void StopFollowing()
     {
-        movementController.IsFuseMoving = false;
-        generated.transform.parent = null;
-        isUsed = true;
-        if (OnlyUsedOnce)
-        	gameObject.SetActive(false);
+        if (!alreadyFinished)
+        {
+            isMoving = false;
+            isUsed = true;
+            if (OnlyUsedOnce)
+                gameObject.SetActive(false);
+            if (generated.transform.parent != null)
+                generated.transform.parent = null;
+            movementController.IsFuseMoving = false;
+            alreadyFinished = true;
+        }
     }
 
     public void Follow(StartPoint.PointType pointType)
