@@ -39,6 +39,7 @@ public class MovementController : MonoBehaviour
     private Material material;
     private TrailRenderer trailRenderer;
     private Vector3 previousPosition;
+    private DialogCollision dialogCollision;
 
     private AttachToPlane attachToPlane;
 
@@ -75,6 +76,7 @@ public class MovementController : MonoBehaviour
         gameController = FindObjectOfType<GameController>();
         audioEvents = GetComponents<AudioEvent>();
         attachToPlane = GetComponent<AttachToPlane>();
+        dialogCollision = GetComponentInChildren<DialogCollision>();
     }
 
     // Start is called before the first frame update
@@ -338,6 +340,7 @@ public class MovementController : MonoBehaviour
             {
                 collision.gameObject.GetComponent<BurnObject>().SetObjectOnFire();
                 AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.ObstacleBreak, audioEvents, gameObject);
+                dialogCollision.EnableDialog();
             }
             else
             {
