@@ -31,15 +31,17 @@ public class AudioEvent : IGameLoop
     public enum AudioEventType
     {
         Dash,
-        BurnRope,
-        BurnPaperplane,
+        ChargingRejection,
+        ChargingDash,
         ObstacleBlock,
         ObstacleDeath,
         ObstacleBreak,
+        ObstacleBreakMute,
         ChargedDash,
-        Win,
+        WinPuzzle,
         OutOfMoves,
         Died,
+        BurningItem,
     }
 
     #endregion

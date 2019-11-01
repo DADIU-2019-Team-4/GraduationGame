@@ -21,35 +21,49 @@
 			<ShortName>Room_1_Bank</ShortName>
 			<Path>Room_1_Bank.bnk</Path>
 			<IncludedEvents>
-				<Event Id="742914115" Name="ChargedDash" ObjectPath="\Events\Character\Dashing\ChargedDash" DurationType="OneShot" DurationMin="0.554392" DurationMax="1.243515"/>
-				<Event Id="735079116" Name="ChargingDash" ObjectPath="\Events\Character\Dashing\ChargingDash" DurationType="OneShot" DurationMin="1.111497" DurationMax="1.111497"/>
-				<Event Id="3201775563" Name="CollectingFire" ObjectPath="\Events\Character\CollectingFire" DurationType="OneShot" DurationMin="2.349819" DurationMax="2.349819"/>
-				<Event Id="1016929228" Name="NormalDash" ObjectPath="\Events\Character\Dashing\NormalDash" DurationType="OneShot" DurationMin="2.019252" DurationMax="2.097574"/>
+				<Event Id="3914625789" Name="BlockObject" ObjectPath="\Events\Character\Objects\BlockObject" DurationType="OneShot" DurationMin="1.326893" DurationMax="1.326893"/>
+				<Event Id="2596983219" Name="BreakObject" ObjectPath="\Events\Character\Objects\BreakObject" DurationType="OneShot" DurationMin="2.725166" DurationMax="3.240786"/>
+				<Event Id="384768216" Name="BreakObjectMute" ObjectPath="\Events\Character\Objects\BreakObjectMute" DurationType="OneShot" DurationMin="1.326893" DurationMax="1.326893"/>
+				<Event Id="742914115" Name="ChargedDash" ObjectPath="\Events\Character\Dashing\ChargedDash" DurationType="OneShot" DurationMin="1.697664" DurationMax="1.697664"/>
+				<Event Id="735079116" Name="ChargingDash" ObjectPath="\Events\Character\Dashing\ChargingDash" DurationType="OneShot" DurationMin="0.752018" DurationMax="0.752018"/>
+				<Event Id="1914703205" Name="ChargingRejection" ObjectPath="\Events\Character\Dashing\ChargingRejection" DurationType="OneShot" DurationMin="1.326893" DurationMax="1.326893"/>
+				<Event Id="2370884349" Name="CollectFire" ObjectPath="\Events\Character\CollectFire" DurationType="OneShot" DurationMin="2.349819" DurationMax="2.349819"/>
+				<Event Id="679539432" Name="DeathObject" ObjectPath="\Events\Character\Objects\DeathObject" DurationType="OneShot" DurationMin="1.538095" DurationMax="1.538095"/>
+				<Event Id="1016929228" Name="NormalDash" ObjectPath="\Events\Character\Dashing\NormalDash" DurationType="OneShot" DurationMin="1.308097" DurationMax="2.330763"/>
+				<Event Id="3044105157" Name="WinPuzzle" ObjectPath="\Events\InGame_UI\WinPuzzle" DurationType="OneShot" DurationMin="1.367528" DurationMax="1.367528"/>
 			</IncludedEvents>
 			<IncludedMemoryFiles>
 				<File Id="8864511" Language="SFX">
 					<ShortName>Dash1.wav</ShortName>
-					<Path>SFX\Dash1_10C4C929.wem</Path>
+					<Path>SFX\Dash1_87E74C6D.wem</Path>
 				</File>
-				<File Id="319620229" Language="SFX">
-					<ShortName>ChargedDash2.wav</ShortName>
-					<Path>SFX\ChargedDash2_10C4C929.wem</Path>
+				<File Id="11914928" Language="SFX">
+					<ShortName>BreakObject1.wav</ShortName>
+					<Path>SFX\BreakObject1_6296B0F9.wem</Path>
 				</File>
-				<File Id="476691173" Language="SFX">
-					<ShortName>ChargingDash.wav</ShortName>
-					<Path>SFX\ChargingDash_10C4C929.wem</Path>
+				<File Id="93021929" Language="SFX">
+					<ShortName>DeathOneShot2.wav</ShortName>
+					<Path>SFX\DeathOneShot2_6296B0F9.wem</Path>
 				</File>
-				<File Id="579205759" Language="SFX">
-					<ShortName>Dash2.wav</ShortName>
-					<Path>SFX\Dash2_10C4C929.wem</Path>
+				<File Id="250295397" Language="SFX">
+					<ShortName>ChargingDisable.wav</ShortName>
+					<Path>SFX\ChargingDisable_6296B0F9.wem</Path>
 				</File>
-				<File Id="675214203" Language="SFX">
-					<ShortName>ChargedDash.wav</ShortName>
-					<Path>SFX\ChargedDash_D6BF4503.wem</Path>
+				<File Id="341212686" Language="SFX">
+					<ShortName>WinPuzzle.wav</ShortName>
+					<Path>SFX\WinPuzzle_6296B0F9.wem</Path>
+				</File>
+				<File Id="356587367" Language="SFX">
+					<ShortName>ChargingDash4.wav</ShortName>
+					<Path>SFX\ChargingDash4_6296B0F9.wem</Path>
+				</File>
+				<File Id="367657170" Language="SFX">
+					<ShortName>ChargedDash4.wav</ShortName>
+					<Path>SFX\ChargedDash4_6296B0F9.wem</Path>
 				</File>
 				<File Id="785166258" Language="SFX">
 					<ShortName>CollectFire.wav</ShortName>
-					<Path>SFX\CollectFire_10C4C929.wem</Path>
+					<Path>SFX\CollectFire_6296B0F9.wem</Path>
 				</File>
 			</IncludedMemoryFiles>
 		</SoundBank>

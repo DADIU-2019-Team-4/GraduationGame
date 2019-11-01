@@ -49,6 +49,7 @@ public class MovementController : MonoBehaviour
     private bool hasDied;
     private bool reachedGoal;
 
+    private static bool _hasRun;
     private AudioEvent[] audioEvents;
 
     public bool IsMoving { get; set; }
@@ -93,6 +94,13 @@ public class MovementController : MonoBehaviour
         material.color = new Color(1, colorValue, colorValue, 1);
         colorValue -= 0.05f;
 
+        if (!_hasRun)
+        {
+           // Debug.Log("Charging");
+            SendAudioEvent(AudioEvent.AudioEventType.ChargingDash);
+            _hasRun = true;
+        }
+        
     }
 
     /// <summary>
@@ -130,6 +138,7 @@ public class MovementController : MonoBehaviour
         int movesLeft = AmountOfMoves - DashCost;
         if (movesLeft < 0)
         {
+            SendAudioEvent(AudioEvent.AudioEventType.ChargingRejection);
             StartCoroutine(ChangeTextColorRoutine());
             return;
         }
@@ -168,6 +177,7 @@ public class MovementController : MonoBehaviour
         material.SetColor("_Color", Color.black);
         colorValue = 1f;
         IsDashCharged = false;
+        _hasRun = false;
     }
 
     /// <summary>
@@ -280,6 +290,7 @@ public class MovementController : MonoBehaviour
         {
             if (!isDashing)
             {
+                SendAudioEvent(AudioEvent.AudioEventType.ObstacleDeath);
                 var collisionPoint = collision.contacts[0];
                 var heading = previousPosition - collisionPoint.point;
                 if (Mathf.Abs(heading.x) + Mathf.Abs(heading.z) > 9f)
@@ -292,6 +303,7 @@ public class MovementController : MonoBehaviour
         }
         else if (collision.gameObject.CompareTag("Block") || collision.gameObject.CompareTag("Fuse") && !IsFuseMoving)
         {
+            SendAudioEvent(AudioEvent.AudioEventType.ObstacleBlock);
             hitWall = true;
             var collisionPoint = collision.contacts[0];
             var heading = previousPosition - collisionPoint.point;
@@ -312,6 +324,7 @@ public class MovementController : MonoBehaviour
             if (AmountOfMoves > maxAmountOfMoves)
                 AmountOfMoves = maxAmountOfMoves;
             MovesText.text = AmountOfMoves.ToString();
+            SendAudioEvent(AudioEvent.AudioEventType.BurningItem);
             Destroy(collision.gameObject);
         }
         else if (collision.gameObject.CompareTag("Break"))
@@ -320,9 +333,11 @@ public class MovementController : MonoBehaviour
             {
                 collision.gameObject.GetComponent<Renderer>().material.DOFade(0f, 2f);
                 Destroy(collision.gameObject, 2f);
+                SendAudioEvent(AudioEvent.AudioEventType.ObstacleBreak);
             }
             else
             {
+                SendAudioEvent(AudioEvent.AudioEventType.ObstacleBreakMute);
                 var collisionPoint = collision.contacts[0];
                 var heading = previousPosition - collisionPoint.point;
                 if (Mathf.Abs(heading.x) + Mathf.Abs(heading.z) > 9f)
