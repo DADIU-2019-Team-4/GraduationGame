@@ -1,31 +1,61 @@
 ﻿using System.Collections;
-using DG.Tweening;
+using SplineMesh;
 using UnityEngine;
 
+[RequireComponent(typeof(Spline))]
 public class Fuse : MonoBehaviour
 {
     public bool OnlyUsedOnce;
-    public float FollowSpeed = 0.5f;
 
     private bool isUsed;
-    private bool reversedPositions;
-    private LineRenderer lineRenderer;
-    private Vector3[] pointsToFollow;
     private MovementController movementController;
-    private BoxCollider[] boxColliders;
-    private Coroutine moveIE;
+
+    private GameObject generated;
+    private Spline spline;
+    private float rate;
+
+    public GameObject Follower;
+    public float DurationInSecond;
+
+    private bool fromStart;
 
     private void Awake()
     {
-        lineRenderer = GetComponent<LineRenderer>();
         movementController = FindObjectOfType<MovementController>();
-        boxColliders = GetComponents<BoxCollider>();
+        spline = GetComponent<Spline>();
     }
 
     private void Start()
     {
-        pointsToFollow = new Vector3[lineRenderer.positionCount];
-        lineRenderer.GetPositions(pointsToFollow);
+        if (Follower == null)
+            Follower = movementController.gameObject;
+    }
+
+    private void Update()
+    {
+        if (!movementController.IsFuseMoving)
+            return;
+
+        if (fromStart)
+            FromStartToEnd();
+        else
+            FromEndToStart();
+    }
+
+    private void StartFollowing()
+    {
+        generated = Follower;
+        generated.transform.parent = gameObject.transform;
+        movementController.IsFuseMoving = true;
+    }
+
+    private void StopFollowing()
+    {
+        movementController.IsFuseMoving = false;
+        generated.transform.parent = null;
+        isUsed = true;
+        if (OnlyUsedOnce)
+        	gameObject.SetActive(false);
     }
 
     public void Follow(StartPoint.PointType pointType)
@@ -33,50 +63,44 @@ public class Fuse : MonoBehaviour
         if (OnlyUsedOnce && isUsed)
             return;
 
-        if (pointType == StartPoint.PointType.End && !reversedPositions)
+        if (pointType == StartPoint.PointType.Start)
         {
-            System.Array.Reverse(pointsToFollow);
-            reversedPositions = true;
+            rate = 0;
+            fromStart = true;
         }
-        else if (pointType == StartPoint.PointType.Start && reversedPositions)
+        else if (pointType == StartPoint.PointType.End)
         {
-            System.Array.Reverse(pointsToFollow);
-            reversedPositions = false;
+            rate = spline.nodes.Count - 1;
+            fromStart = false;
         }
 
-        movementController.IsFuseMoving = true;
-        StartCoroutine(FollowRoutine());
+        StartFollowing();
     }
 
-    private IEnumerator FollowRoutine()
+    public void FromStartToEnd()
     {
-        foreach (var boxCollider in boxColliders)
-            boxCollider.enabled = false;
-
-        for (int i = 0; i < pointsToFollow.Length; i++)
-        {
-            moveIE = StartCoroutine(Moving(i));
-            yield return moveIE;
-        }
-
-        isUsed = true;
-        if (OnlyUsedOnce)
-            gameObject.SetActive(false);
-
-        foreach (var boxCollider in boxColliders)
-            boxCollider.enabled = true;
-
-        movementController.IsFuseMoving = false;
+        rate += Time.deltaTime / DurationInSecond;
+        if (rate < spline.nodes.Count - 1)
+            PlaceFollower();
+        else
+            StopFollowing();
     }
 
-    private IEnumerator Moving(int currentPos)
+    public void FromEndToStart()
     {
-        while (movementController.transform.position != pointsToFollow[currentPos])
+        rate -= Time.deltaTime / DurationInSecond;
+        if (rate >= 0)
+            PlaceFollower();
+        else
+            StopFollowing();
+    }
+
+    private void PlaceFollower()
+    {
+        if (generated != null)
         {
-            movementController.transform.position =
-                Vector3.MoveTowards(movementController.transform.position, pointsToFollow[currentPos],
-                    FollowSpeed * Time.deltaTime);
-            yield return null;
+            CurveSample sample = spline.GetSample(rate);
+            generated.transform.localPosition = sample.location;
         }
     }
 }

@@ -4,16 +4,6 @@ public class StartPoint : MonoBehaviour
 {
     private Fuse fuse;
 
-    public enum AcceptedDirection
-    {
-        Up,
-        Down,
-        Left,
-        Right
-    }
-
-    public AcceptedDirection acceptedDirection;
-
     public enum PointType
     {
         Start,

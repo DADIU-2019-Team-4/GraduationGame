@@ -62,11 +62,6 @@ public class MovementController : MonoBehaviour
 
     public bool IsDashCharged { get; set; }
 
-    public enum Direction { Up, Down, Left, Right }
-
-    [HideInInspector]
-    public Direction CurrentDirection;
-
     private void Awake()
     {
         rigidBody = GetComponent<Rigidbody>();
@@ -117,8 +112,6 @@ public class MovementController : MonoBehaviour
             return;
         }
 
-        DetermineDirection(moveDirection);
-
         previousPosition = transform.position;
         AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.Dash, audioEvents, gameObject);
         Vector3 targetPosition = transform.position + moveDirection * MoveDistance;
@@ -152,26 +145,12 @@ public class MovementController : MonoBehaviour
         trailRenderer.enabled = true;
         previousPosition = transform.position;
         AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.ChargedDash, audioEvents, gameObject);
-        DetermineDirection(dashDirection);
         previousPosition = transform.position;
         Vector3 targetPosition = transform.position + dashDirection * DashDistance;
 
         StartCoroutine(MoveRoutine(targetPosition, DashDuration, DashCost));
 
         ResetDash();
-    }
-
-    /// <summary>
-    /// Determines the moving direction of the player.
-    /// </summary>
-    private void DetermineDirection(Vector3 direction)
-    {
-        // player is moving horizontally 
-        if (Mathf.Abs(direction.x) > Mathf.Abs(direction.z))
-            CurrentDirection = direction.x < 0 ? Direction.Left : Direction.Right;
-        // player is moving vertically
-        else
-            CurrentDirection = direction.z < 0 ? Direction.Down : Direction.Up;
     }
 
     /// <summary>
@@ -356,45 +335,14 @@ public class MovementController : MonoBehaviour
     {
         if (col.gameObject.CompareTag("FusePoint"))
         {
-            StartPoint startPoint = col.gameObject.GetComponent<StartPoint>();
-            CheckFuseDirection(startPoint);
+            if (!IsFuseMoving)
+            {
+                StartPoint startPoint = col.gameObject.GetComponent<StartPoint>();
+                startPoint.StartFollowingFuse();
+            }
         }
     }
 
-    /// <summary>
-    /// Checks if the player can enter a fuse.
-    /// </summary>
-    /// <param name="startPoint"></param>
-    private void CheckFuseDirection(StartPoint startPoint)
-    {
-        switch (CurrentDirection)
-        {
-            case Direction.Up:
-                {
-                    if (startPoint.acceptedDirection == StartPoint.AcceptedDirection.Up)
-                        startPoint.StartFollowingFuse();
-                    break;
-                }
-            case Direction.Down:
-                {
-                    if (startPoint.acceptedDirection == StartPoint.AcceptedDirection.Down)
-                        startPoint.StartFollowingFuse();
-                    break;
-                }
-            case Direction.Left:
-                {
-                    if (startPoint.acceptedDirection == StartPoint.AcceptedDirection.Left)
-                        startPoint.StartFollowingFuse();
-                    break;
-                }
-            case Direction.Right:
-                {
-                    if (startPoint.acceptedDirection == StartPoint.AcceptedDirection.Right)
-                        startPoint.StartFollowingFuse();
-                    break;
-                }
-        }
-    }
     //private void SendAudioEvent(AudioEvent.AudioEventType type)
     //{
     //    for (int i = 0; i <= audioEvents.Length - 1; i++)
