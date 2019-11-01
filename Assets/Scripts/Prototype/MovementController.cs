@@ -330,8 +330,7 @@ public class MovementController : MonoBehaviour
         {
             if (isDashing)
             {
-                collision.gameObject.GetComponent<Renderer>().material.DOFade(0f, 2f);
-                Destroy(collision.gameObject, 2f);
+                collision.gameObject.GetComponent<BurnObject>().SetObjectOnFire();
                 SendAudioEvent(AudioEvent.AudioEventType.ObstacleBreak);
             }
             else

@@ -12,7 +12,7 @@ public abstract class IGameLoop : MonoBehaviour
     private void OnEnable()
     {
         var game = FindObjectOfType<Game>();
-        game.AddGameLoop(this);
+        game.instance.AddGameLoop(this);
     }
 
     public void CustomStart()
