@@ -72,9 +72,7 @@ public class LevelEditor : EditorWindow
 
             previousCellSelected = currentCellSelected;
             currentCellSelected = cellCenter;
-
             
-
             DisplayVisualHelp();
             HandleSceneViewInputs(cellCenter);
 
@@ -239,7 +237,7 @@ public class LevelEditor : EditorWindow
     {
         Ray ray = HandleUtility.GUIPointToWorldRay(Event.current.mousePosition);
         RaycastHit hit;
-        if (Physics.Raycast(ray,out hit,100) && Event.current.type == EventType.MouseDown && Event.current.button == 0)
+        if (Physics.Raycast(ray,out hit,1000) && Event.current.type == EventType.MouseDown && Event.current.button == 0)
         {
             Debug.Log("Deleting:  " + hit.transform.gameObject.name);
             return hit.transform.gameObject;
