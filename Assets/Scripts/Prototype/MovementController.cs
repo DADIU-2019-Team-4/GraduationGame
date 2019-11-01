@@ -50,6 +50,7 @@ public class MovementController : MonoBehaviour
     private bool isOutOfMoves;
     private bool hasDied;
     private bool reachedGoal;
+    private Vector3 targetPosition;
 
     private static bool _hasRun;
     private AudioEvent[] audioEvents;
@@ -188,6 +189,7 @@ public class MovementController : MonoBehaviour
     private IEnumerator MoveRoutine(Vector3 target, float duration, int cost)
     {
         UpdateMovesAmount(cost, true);
+        targetPosition = target;
 
         IsMoving = true;
         rigidBody.DOMove(target, duration);
@@ -261,75 +263,110 @@ public class MovementController : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Goal"))
-        {
-            StartCoroutine(isDashing
-                ? MoveRoutine(collision.gameObject.transform.position, DashDuration)
-                : MoveRoutine(collision.gameObject.transform.position, MoveDuration));
-
-            reachedGoal = true;
-            collision.gameObject.GetComponent<BoxCollider>().enabled = false;
-            CheckGameEnd();
-        }
+            CollideGoal(collision);
         else if (collision.gameObject.CompareTag("Death"))
-        {
-            if (!isDashing)
-            {
-                AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.ObstacleDeath, audioEvents, gameObject);
-                var collisionPoint = collision.contacts[0];
-                var heading = previousPosition - collisionPoint.point;
-                if (Mathf.Abs(heading.x) + Mathf.Abs(heading.z) > 9f)
-                    StartCoroutine(MoveRoutine(collisionPoint.point + (heading * 0.5f), MoveDuration));
-                else
-                    StartCoroutine(MoveRoutine(collisionPoint.point + heading, MoveDuration));
-                hasDied = true;
-                CheckGameEnd();
-            }
-        }
+            CollideDeathObstacle(collision);
         else if (collision.gameObject.CompareTag("Block") || collision.gameObject.CompareTag("Fuse") && !IsFuseMoving)
+            CollideBlockObstacle(collision);
+        else if (collision.gameObject.CompareTag("PickUp"))
+            CollidePickUp(collision);
+        else if (collision.gameObject.CompareTag("Break"))
+            CollideBreakObstacle(collision);
+    }
+
+    private void CollideBreakObstacle(Collision collision)
+    {
+        if (isDashing)
         {
-            AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.ObstacleBlock, audioEvents, gameObject);
-            hitWall = true;
+            collision.gameObject.GetComponent<BurnObject>().SetObjectOnFire();
+            AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.ObstacleBreak, audioEvents, gameObject);
+        }
+        else
+        {
+            AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.ObstacleBreakMute, audioEvents, gameObject);
             var collisionPoint = collision.contacts[0];
             var heading = previousPosition - collisionPoint.point;
-            var magnitudeHeading = Mathf.Abs(heading.x + heading.z);
-            var magnitudeObject = Mathf.Abs((gameObject.transform.position.magnitude - gameObject.transform.position.y) - (collisionPoint.point.magnitude - collisionPoint.point.y));
-            if (magnitudeHeading > 13f && magnitudeObject < magnitudeHeading / 3f && magnitudeObject < 2.5f)
-                StartCoroutine(isDashing
-                ? MoveRoutine(collisionPoint.point + (heading * 0.35f), DashDuration)
-                : MoveRoutine(collisionPoint.point + (heading * 0.35f), MoveDuration));
+            if (Mathf.Abs(heading.x) + Mathf.Abs(heading.z) > 9f)
+                StartCoroutine(MoveRoutine(collisionPoint.point + (heading * 0.5f), MoveDuration));
             else
-                StartCoroutine(isDashing
-                ? MoveRoutine(collisionPoint.point + heading, DashDuration)
-                : MoveRoutine(collisionPoint.point + heading, MoveDuration));
-        }
-        else if (collision.gameObject.CompareTag("PickUp"))
-        {
-            AmountOfMoves += PickUpValue;
-            if (AmountOfMoves > maxAmountOfMoves)
-                AmountOfMoves = maxAmountOfMoves;
-            MovesText.text = AmountOfMoves.ToString();
-            AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.BurningItem, audioEvents, gameObject);
-            Destroy(collision.gameObject);
-        }
-        else if (collision.gameObject.CompareTag("Break"))
-        {
-            if (isDashing)
-            {
-                collision.gameObject.GetComponent<BurnObject>().SetObjectOnFire();
-                AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.ObstacleBreak, audioEvents, gameObject);
-            }
-            else
-            {
-                AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.ObstacleBreakMute, audioEvents, gameObject);
-                var collisionPoint = collision.contacts[0];
-                var heading = previousPosition - collisionPoint.point;
-                if (Mathf.Abs(heading.x) + Mathf.Abs(heading.z) > 9f)
-                    StartCoroutine(MoveRoutine(collisionPoint.point + (heading * 0.5f), MoveDuration));
-                else
-                    StartCoroutine(MoveRoutine(collisionPoint.point + heading, MoveDuration));
-            }
+                StartCoroutine(MoveRoutine(collisionPoint.point + heading, MoveDuration));
         }
     }
+
+    private void CollidePickUp(Collision collision)
+    {
+        AmountOfMoves += PickUpValue;
+        if (AmountOfMoves > maxAmountOfMoves)
+            AmountOfMoves = maxAmountOfMoves;
+        MovesText.text = AmountOfMoves.ToString();
+        AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.BurningItem, audioEvents, gameObject);
+        Destroy(collision.gameObject);
+    }
+
+    private void CollideBlockObstacle(Collision collision)
+    {
+        AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.ObstacleBlock, audioEvents, gameObject);
+        hitWall = true;
+        var collisionPoint = collision.contacts[0];
+        var heading = previousPosition - collisionPoint.point;
+        var magnitudeHeading = Mathf.Abs(heading.x + heading.z);
+        var magnitudeObject = Mathf.Abs((gameObject.transform.position.magnitude - gameObject.transform.position.y) - (collisionPoint.point.magnitude - collisionPoint.point.y));
+        if (magnitudeHeading > 13f && magnitudeObject < magnitudeHeading / 3f && magnitudeObject < 2.5f)
+            StartCoroutine(isDashing
+            ? MoveRoutine(collisionPoint.point + (heading * 0.35f), DashDuration)
+            : MoveRoutine(collisionPoint.point + (heading * 0.35f), MoveDuration));
+        else
+            StartCoroutine(isDashing
+            ? MoveRoutine(collisionPoint.point + heading, DashDuration)
+            : MoveRoutine(collisionPoint.point + heading, MoveDuration));
+    }
+
+    private void CollideDeathObstacle(Collision collision)
+    {
+        if (PointInOABB(targetPosition, collision.gameObject.GetComponent<BoxCollider>()))
+        {
+            hasDied = true;
+            CheckGameEnd();
+        }
+
+        //if (!isDashing)
+        //{
+        //    AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.ObstacleDeath, audioEvents, gameObject);
+        //    var collisionPoint = collision.contacts[0];
+        //    var heading = previousPosition - collisionPoint.point;
+        //    if (Mathf.Abs(heading.x) + Mathf.Abs(heading.z) > 9f)
+        //        StartCoroutine(MoveRoutine(collisionPoint.point + (heading * 0.5f), MoveDuration));
+        //    else
+        //        StartCoroutine(MoveRoutine(collisionPoint.point + heading, MoveDuration));
+        //    hasDied = true;
+        //    CheckGameEnd();
+        //}
+    }
+
+    private void CollideGoal(Collision collision)
+    {
+        StartCoroutine(isDashing
+            ? MoveRoutine(collision.gameObject.transform.position, DashDuration)
+            : MoveRoutine(collision.gameObject.transform.position, MoveDuration));
+
+        reachedGoal = true;
+        collision.gameObject.GetComponent<BoxCollider>().enabled = false;
+        CheckGameEnd();
+    }
+
+    private bool PointInOABB(Vector3 point, BoxCollider box)
+    {
+        point = box.transform.InverseTransformPoint(point) - box.center;
+
+        float halfX = (box.size.x * 0.5f);
+        //float halfY = (box.size.y * 0.5f);
+        float halfZ = (box.size.z * 0.5f);
+
+        return (point.x < halfX && point.x > -halfX &&
+           //point.y < halfY && point.y > -halfY &&
+           point.z < halfZ && point.z > -halfZ);
+    }
+
 
     private void OnTriggerEnter(Collider col)
     {
