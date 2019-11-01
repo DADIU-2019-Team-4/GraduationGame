@@ -38,8 +38,10 @@ public class AudioEvent : IGameLoop
         ObstacleBreak,
         ObstacleBreakMute,
         ChargedDash,
-        BurningItem,
         WinPuzzle,
+        OutOfMoves,
+        Died,
+        BurningItem,
     }
 
     #endregion
@@ -158,5 +160,14 @@ public class AudioEvent : IGameLoop
         else if (WwiseType == WwiseFunction.State)
             AkSoundEngine.SetState(SetStateGroup, SetStateValue);
         Debug.Log("Played event");
+    }
+
+    public static void SendAudioEvent(AudioEventType type, AudioEvent[] audioEvents, GameObject gameObject)
+    {
+        for (int i = 0; i <= audioEvents.Length - 1; i++)
+        {
+            if (type == audioEvents[i].TriggerType)
+                audioEvents[i].AddAudioEvent(type, gameObject);
+        }
     }
 }
