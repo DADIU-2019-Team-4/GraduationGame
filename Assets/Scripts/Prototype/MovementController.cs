@@ -92,7 +92,7 @@ public class MovementController : MonoBehaviour
     {
         material.color = new Color(1, colorValue, colorValue, 1);
         colorValue -= 0.05f;
-        
+
     }
 
     /// <summary>
@@ -109,7 +109,7 @@ public class MovementController : MonoBehaviour
         DetermineDirection(moveDirection);
 
         previousPosition = transform.position;
-        SendAudioEvent(AudioEvent.AudioEventType.Dash);
+        AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.Dash, audioEvents, gameObject);
         Vector3 targetPosition = transform.position + moveDirection * MoveDistance;
 
         StartCoroutine(MoveRoutine(targetPosition, MoveDuration, MoveCost));
@@ -137,7 +137,7 @@ public class MovementController : MonoBehaviour
         isDashing = true;
         trailRenderer.enabled = true;
         previousPosition = transform.position;
-        SendAudioEvent(AudioEvent.AudioEventType.ChargedDash);
+        AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.ChargedDash, audioEvents, gameObject);
         DetermineDirection(dashDirection);
         previousPosition = transform.position;
         Vector3 targetPosition = transform.position + dashDirection * DashDistance;
@@ -213,7 +213,7 @@ public class MovementController : MonoBehaviour
 
         if (isDashing)
             isDashing = false;
-        
+
     }
 
     /// <summary>
@@ -273,6 +273,7 @@ public class MovementController : MonoBehaviour
                 : MoveRoutine(collision.gameObject.transform.position, MoveDuration));
 
             reachedGoal = true;
+            collision.gameObject.GetComponent<BoxCollider>().enabled = false;
             CheckGameEnd();
         }
         else if (collision.gameObject.CompareTag("Death"))
@@ -281,7 +282,7 @@ public class MovementController : MonoBehaviour
             {
                 var collisionPoint = collision.contacts[0];
                 var heading = previousPosition - collisionPoint.point;
-                if(Mathf.Abs(heading.x) + Mathf.Abs(heading.z) > 9f)
+                if (Mathf.Abs(heading.x) + Mathf.Abs(heading.z) > 9f)
                     StartCoroutine(MoveRoutine(collisionPoint.point + (heading * 0.5f), MoveDuration));
                 else
                     StartCoroutine(MoveRoutine(collisionPoint.point + heading, MoveDuration));
@@ -296,10 +297,10 @@ public class MovementController : MonoBehaviour
             var heading = previousPosition - collisionPoint.point;
             var magnitudeHeading = Mathf.Abs(heading.x + heading.z);
             var magnitudeObject = Mathf.Abs((gameObject.transform.position.magnitude - gameObject.transform.position.y) - (collisionPoint.point.magnitude - collisionPoint.point.y));
-            if(magnitudeHeading >13f && magnitudeObject < magnitudeHeading/3f && magnitudeObject<2.5f)
+            if (magnitudeHeading > 13f && magnitudeObject < magnitudeHeading / 3f && magnitudeObject < 2.5f)
                 StartCoroutine(isDashing
-                ? MoveRoutine(collisionPoint.point + (heading*0.35f), DashDuration)
-                : MoveRoutine(collisionPoint.point + (heading*0.35f), MoveDuration));
+                ? MoveRoutine(collisionPoint.point + (heading * 0.35f), DashDuration)
+                : MoveRoutine(collisionPoint.point + (heading * 0.35f), MoveDuration));
             else
                 StartCoroutine(isDashing
                 ? MoveRoutine(collisionPoint.point + heading, DashDuration)
@@ -350,37 +351,38 @@ public class MovementController : MonoBehaviour
         switch (CurrentDirection)
         {
             case Direction.Up:
-            {
-                if (startPoint.acceptedDirection == StartPoint.AcceptedDirection.Up)
-                    startPoint.StartFollowingFuse();
-                break;
-            }
+                {
+                    if (startPoint.acceptedDirection == StartPoint.AcceptedDirection.Up)
+                        startPoint.StartFollowingFuse();
+                    break;
+                }
             case Direction.Down:
-            {
-                if (startPoint.acceptedDirection == StartPoint.AcceptedDirection.Down)
-                    startPoint.StartFollowingFuse();
-                break;
-            }
+                {
+                    if (startPoint.acceptedDirection == StartPoint.AcceptedDirection.Down)
+                        startPoint.StartFollowingFuse();
+                    break;
+                }
             case Direction.Left:
-            {
-                if (startPoint.acceptedDirection == StartPoint.AcceptedDirection.Left)
-                    startPoint.StartFollowingFuse();
-                break;
-            }
+                {
+                    if (startPoint.acceptedDirection == StartPoint.AcceptedDirection.Left)
+                        startPoint.StartFollowingFuse();
+                    break;
+                }
             case Direction.Right:
-            {
-                if (startPoint.acceptedDirection == StartPoint.AcceptedDirection.Right)
-                    startPoint.StartFollowingFuse();
-                break;
-            }
+                {
+                    if (startPoint.acceptedDirection == StartPoint.AcceptedDirection.Right)
+                        startPoint.StartFollowingFuse();
+                    break;
+                }
         }
     }
-    private void SendAudioEvent(AudioEvent.AudioEventType type)
-    {
-        for (int i = 0; i<=audioEvents.Length-1;i++)
-        {
-            if (type == audioEvents[i].TriggerType)
-                audioEvents[i].AddAudioEvent(type, gameObject);
-        }
-    }
+    //private void SendAudioEvent(AudioEvent.AudioEventType type)
+    //{
+    //    for (int i = 0; i <= audioEvents.Length - 1; i++)
+    //    {
+    //        if (type == audioEvents[i].TriggerType)
+    //            audioEvents[i].AddAudioEvent(type, gameObject);
+    //    }
+    //}
+
 }
