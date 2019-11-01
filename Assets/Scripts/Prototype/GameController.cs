@@ -24,7 +24,7 @@ public class GameController : MonoBehaviour
 
     public void Win()
     {
-        AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.Win, audioEvents, gameObject);
+        AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.WinPuzzle, audioEvents, gameObject);
         GameEnd();
         WinText.SetActive(true);
         NextSceneButton.SetActive(true);
