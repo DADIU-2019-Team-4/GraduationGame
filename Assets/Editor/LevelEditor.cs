@@ -58,6 +58,10 @@ public class LevelEditor : EditorWindow
 
         // Display the grid
         paletteIndex = GUILayout.SelectionGrid(paletteIndex, paletteIcons.ToArray(), 4);
+
+
+        //roate 90 with r
+        
     }
 
 
@@ -70,6 +74,18 @@ public class LevelEditor : EditorWindow
     // Does the rendering of the map editor in the scene view.
     private void OnSceneGUI(SceneView sceneView)
     {
+        if (Event.current.type == EventType.KeyDown && Event.current.character == 'r')
+        {
+            Debug.Log("pressed r");
+            objectRotation += 90;
+
+            if (objectRotation >=360)
+            {
+                objectRotation = 0;
+            }
+            Repaint();
+        }
+
         if (paintMode)
         {
             Vector3 cellCenter = GetSelectedCell(); // Refactoring, I moved some code in this function
@@ -95,21 +111,7 @@ public class LevelEditor : EditorWindow
 
             // Refresh the view
             sceneView.Repaint();
-
-            // We have a prefab selected and we are clicking in the scene view with the left button
-            /*if (paletteIndex < palette.Count && 
-                mouseDown && 
-                previousCellSelected != currentCellSelected)
-            {
-                InstanciateObjects();
-            }else if (paletteIndex < palette.Count && 
-                      Event.current.type == EventType.MouseDown && 
-                      Event.current.button == 0)
-            {
-                InstanciateObjects();
-            }*/
-
-
+            
             void InstanciateObjects(Vector3 from, Vector3 to)
             {
                 //create parent object for all instantiated objects
@@ -161,6 +163,12 @@ public class LevelEditor : EditorWindow
                             gameObject.transform.Translate(new Vector3(0, 0, 1f));
                         }
 
+                    }
+
+                    //draw less often if it is a wall
+                    if(prefab.name == "InnerWall")
+                    {
+                        i += 2;
                     }
 
                     //set parent    
