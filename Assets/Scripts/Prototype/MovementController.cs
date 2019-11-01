@@ -2,6 +2,7 @@
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
+using Yarn.Unity;
 
 public class MovementController : MonoBehaviour
 {
@@ -39,7 +40,8 @@ public class MovementController : MonoBehaviour
     private Material material;
     private TrailRenderer trailRenderer;
     private Vector3 previousPosition;
-    private DialogCollision dialogCollision;
+    //private DialogCollision dialogCollision;
+    private DialogueRunner dialogRunner;
 
     private AttachToPlane attachToPlane;
 
@@ -76,7 +78,10 @@ public class MovementController : MonoBehaviour
         gameController = FindObjectOfType<GameController>();
         audioEvents = GetComponents<AudioEvent>();
         attachToPlane = GetComponent<AttachToPlane>();
-        dialogCollision = GetComponentInChildren<DialogCollision>();
+        //dialogCollision = GetComponentInChildren<DialogCollision>();
+        dialogRunner = FindObjectOfType<DialogueRunner>();
+
+
     }
 
     // Start is called before the first frame update
@@ -285,6 +290,7 @@ public class MovementController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Goal"))
         {
+            dialogRunner.StartDialogue("Goal");
             StartCoroutine(isDashing
                 ? MoveRoutine(collision.gameObject.transform.position, DashDuration)
                 : MoveRoutine(collision.gameObject.transform.position, MoveDuration));
@@ -297,6 +303,7 @@ public class MovementController : MonoBehaviour
         {
             if (!isDashing)
             {
+                dialogRunner.StartDialogue("Death");
                 AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.ObstacleDeath, audioEvents, gameObject);
                 var collisionPoint = collision.contacts[0];
                 var heading = previousPosition - collisionPoint.point;
@@ -312,6 +319,8 @@ public class MovementController : MonoBehaviour
         {
             AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.ObstacleBlock, audioEvents, gameObject);
             hitWall = true;
+            if(collision.gameObject.CompareTag("Block"))
+                dialogRunner.StartDialogue("Block");
             var collisionPoint = collision.contacts[0];
             var heading = previousPosition - collisionPoint.point;
             var magnitudeHeading = Mathf.Abs(heading.x + heading.z);
@@ -332,6 +341,7 @@ public class MovementController : MonoBehaviour
                 AmountOfMoves = maxAmountOfMoves;
             MovesText.text = AmountOfMoves.ToString();
             AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.BurningItem, audioEvents, gameObject);
+            dialogRunner.StartDialogue("PickUp");
             Destroy(collision.gameObject);
         }
         else if (collision.gameObject.CompareTag("Break"))
@@ -340,7 +350,7 @@ public class MovementController : MonoBehaviour
             {
                 collision.gameObject.GetComponent<BurnObject>().SetObjectOnFire();
                 AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.ObstacleBreak, audioEvents, gameObject);
-                dialogCollision.EnableDialog();
+                dialogRunner.StartDialogue("Break");
             }
             else
             {
