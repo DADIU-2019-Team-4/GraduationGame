@@ -15,7 +15,7 @@ public abstract class IGameLoop : MonoBehaviour
         if (game == null)
             Debug.Log(this.gameObject.name);
         else
-            game.instance.AddGameLoop(this);
+            game.Instance.AddGameLoop(this);
     }
 
     public void CustomStart()

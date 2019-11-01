@@ -12,11 +12,22 @@ public class Game : MonoBehaviour
     //[SerializeField]
     //private Scene _additiveSceneTwo;
     [HideInInspector]
-    public Game instance;
+    private Game instance;
+    public Game Instance { get
+        {
+            if (instance == null)
+                Instance = this;
+            return instance;
+        }
+        private set
+        {
+            instance = value;
+        }
+    }
 
     public void Awake()
     {
-        instance = this;
+        //Instance = this;
         //SceneManager.LoadScene("Level0_additive", LoadSceneMode.Additive);
         //SceneManager.LoadScene("Level0env_additive", LoadSceneMode.Additive);
     }
