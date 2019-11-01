@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 714748535622932581}
   - component: {fileID: 714748535622932571}
   - component: {fileID: 3202629566038322268}
+  - component: {fileID: 840397474}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -31,7 +32,7 @@ Transform:
   m_GameObject: {fileID: 714748535622932580}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -3.9, y: 5, z: -41.1}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7276586228474938379}
   - {fileID: 2796474553118828786}
@@ -93,8 +94,8 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
+  m_Radius: 0.3
+  m_Height: 1.7
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &714748535622932581
@@ -223,14 +224,29 @@ MonoBehaviour:
   PickUpValue: 3
   AmountOfMoves: 10
   MoveDuration: 0.2
-  MoveDistance: 15
+  MoveDistance: 2
   MoveCost: 1
   DashThreshold: 0.25
   DashDuration: 0.1
-  DashDistance: 25
+  DashDistance: 4
   DashCost: 3
   MovesText: {fileID: 0}
   CurrentDirection: 0
+--- !u!114 &840397474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 714748535622932580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b10a4c9841dd3e74db749118249d0eef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _attached: 0
+  speed: 0
+  dashSpeed: 0
 --- !u!1 &4333332830859161235
 GameObject:
   m_ObjectHideFlags: 0

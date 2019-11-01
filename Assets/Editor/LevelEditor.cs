@@ -21,7 +21,7 @@ public class LevelEditor : EditorWindow
     private int floorXScale = 1;
     private int floorZScale = 1;
 
-    static private float gridScale = 8;
+    static private float gridScale = 1;
 
     private float objectRotation = 0;
 
