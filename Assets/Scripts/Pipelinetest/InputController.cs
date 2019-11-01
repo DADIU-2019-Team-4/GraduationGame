@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-public class InputController : MonoBehaviour
+public class InputController : IGameLoop
 {
     [SerializeField]
     private float minSwipeDistanceInPercentage = 0.10f;
@@ -42,7 +42,7 @@ public class InputController : MonoBehaviour
     /// <summary>
     /// Update function.
     /// </summary>
-    public void Update()
+    public override void GameLoopUpdate()
     {
         HandleInput();
 

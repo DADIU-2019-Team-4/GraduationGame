@@ -33,13 +33,6 @@ public class TabEditor : MonoBehaviour
     public int toolbarTab;
     [HideInInspector]
     public string currentTab; 
-    void Start()
-    {
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 }
