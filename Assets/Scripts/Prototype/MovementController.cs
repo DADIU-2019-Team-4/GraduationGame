@@ -40,6 +40,8 @@ public class MovementController : MonoBehaviour
     private TrailRenderer trailRenderer;
     private Vector3 previousPosition;
 
+    private AttachToPlane attachToPlane;
+
     private float colorValue = 1;
     private float changeTextColorDuration = 0.2f;
 
@@ -49,6 +51,7 @@ public class MovementController : MonoBehaviour
     private bool hasDied;
     private bool reachedGoal;
 
+    private static bool _hasRun;
     private AudioEvent[] audioEvents;
 
     public bool IsMoving { get; set; }
@@ -71,6 +74,7 @@ public class MovementController : MonoBehaviour
         trailRenderer = GetComponent<TrailRenderer>();
         gameController = FindObjectOfType<GameController>();
         audioEvents = GetComponents<AudioEvent>();
+        attachToPlane = GetComponent<AttachToPlane>();
     }
 
     // Start is called before the first frame update
@@ -92,6 +96,13 @@ public class MovementController : MonoBehaviour
     {
         material.color = new Color(1, colorValue, colorValue, 1);
         colorValue -= 0.05f;
+
+        if (!_hasRun)
+        {
+            // Debug.Log("Charging");
+            AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.ChargingDash, audioEvents, gameObject);
+            _hasRun = true;
+        }
         
     }
 
@@ -109,7 +120,7 @@ public class MovementController : MonoBehaviour
         DetermineDirection(moveDirection);
 
         previousPosition = transform.position;
-        SendAudioEvent(AudioEvent.AudioEventType.Dash);
+        AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.Dash, audioEvents, gameObject);
         Vector3 targetPosition = transform.position + moveDirection * MoveDistance;
 
         StartCoroutine(MoveRoutine(targetPosition, MoveDuration, MoveCost));
@@ -130,14 +141,17 @@ public class MovementController : MonoBehaviour
         int movesLeft = AmountOfMoves - DashCost;
         if (movesLeft < 0)
         {
+            AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.ChargingRejection, audioEvents, gameObject);
             StartCoroutine(ChangeTextColorRoutine());
             return;
         }
 
+        attachToPlane.Detach(false);
+
         isDashing = true;
         trailRenderer.enabled = true;
         previousPosition = transform.position;
-        SendAudioEvent(AudioEvent.AudioEventType.ChargedDash);
+        AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.ChargedDash, audioEvents, gameObject);
         DetermineDirection(dashDirection);
         previousPosition = transform.position;
         Vector3 targetPosition = transform.position + dashDirection * DashDistance;
@@ -168,6 +182,7 @@ public class MovementController : MonoBehaviour
         material.SetColor("_Color", Color.black);
         colorValue = 1f;
         IsDashCharged = false;
+        _hasRun = false;
     }
 
     /// <summary>
@@ -213,7 +228,7 @@ public class MovementController : MonoBehaviour
 
         if (isDashing)
             isDashing = false;
-        
+
     }
 
     /// <summary>
@@ -273,15 +288,17 @@ public class MovementController : MonoBehaviour
                 : MoveRoutine(collision.gameObject.transform.position, MoveDuration));
 
             reachedGoal = true;
+            collision.gameObject.GetComponent<BoxCollider>().enabled = false;
             CheckGameEnd();
         }
         else if (collision.gameObject.CompareTag("Death"))
         {
             if (!isDashing)
             {
+                AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.ObstacleDeath, audioEvents, gameObject);
                 var collisionPoint = collision.contacts[0];
                 var heading = previousPosition - collisionPoint.point;
-                if(Mathf.Abs(heading.x) + Mathf.Abs(heading.z) > 9f)
+                if (Mathf.Abs(heading.x) + Mathf.Abs(heading.z) > 9f)
                     StartCoroutine(MoveRoutine(collisionPoint.point + (heading * 0.5f), MoveDuration));
                 else
                     StartCoroutine(MoveRoutine(collisionPoint.point + heading, MoveDuration));
@@ -291,15 +308,16 @@ public class MovementController : MonoBehaviour
         }
         else if (collision.gameObject.CompareTag("Block") || collision.gameObject.CompareTag("Fuse") && !IsFuseMoving)
         {
+            AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.ObstacleBlock, audioEvents, gameObject);
             hitWall = true;
             var collisionPoint = collision.contacts[0];
             var heading = previousPosition - collisionPoint.point;
             var magnitudeHeading = Mathf.Abs(heading.x + heading.z);
             var magnitudeObject = Mathf.Abs((gameObject.transform.position.magnitude - gameObject.transform.position.y) - (collisionPoint.point.magnitude - collisionPoint.point.y));
-            if(magnitudeHeading >13f && magnitudeObject < magnitudeHeading/3f && magnitudeObject<2.5f)
+            if (magnitudeHeading > 13f && magnitudeObject < magnitudeHeading / 3f && magnitudeObject < 2.5f)
                 StartCoroutine(isDashing
-                ? MoveRoutine(collisionPoint.point + (heading*0.35f), DashDuration)
-                : MoveRoutine(collisionPoint.point + (heading*0.35f), MoveDuration));
+                ? MoveRoutine(collisionPoint.point + (heading * 0.35f), DashDuration)
+                : MoveRoutine(collisionPoint.point + (heading * 0.35f), MoveDuration));
             else
                 StartCoroutine(isDashing
                 ? MoveRoutine(collisionPoint.point + heading, DashDuration)
@@ -311,17 +329,19 @@ public class MovementController : MonoBehaviour
             if (AmountOfMoves > maxAmountOfMoves)
                 AmountOfMoves = maxAmountOfMoves;
             MovesText.text = AmountOfMoves.ToString();
+            AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.BurningItem, audioEvents, gameObject);
             Destroy(collision.gameObject);
         }
         else if (collision.gameObject.CompareTag("Break"))
         {
             if (isDashing)
             {
-                collision.gameObject.GetComponent<Renderer>().material.DOFade(0f, 2f);
-                Destroy(collision.gameObject, 2f);
+                collision.gameObject.GetComponent<BurnObject>().SetObjectOnFire();
+                AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.ObstacleBreak, audioEvents, gameObject);
             }
             else
             {
+                AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.ObstacleBreakMute, audioEvents, gameObject);
                 var collisionPoint = collision.contacts[0];
                 var heading = previousPosition - collisionPoint.point;
                 if (Mathf.Abs(heading.x) + Mathf.Abs(heading.z) > 9f)
@@ -353,37 +373,38 @@ public class MovementController : MonoBehaviour
         switch (CurrentDirection)
         {
             case Direction.Up:
-            {
-                if (startPoint.acceptedDirection == StartPoint.AcceptedDirection.Up)
-                    startPoint.StartFollowingFuse();
-                break;
-            }
+                {
+                    if (startPoint.acceptedDirection == StartPoint.AcceptedDirection.Up)
+                        startPoint.StartFollowingFuse();
+                    break;
+                }
             case Direction.Down:
-            {
-                if (startPoint.acceptedDirection == StartPoint.AcceptedDirection.Down)
-                    startPoint.StartFollowingFuse();
-                break;
-            }
+                {
+                    if (startPoint.acceptedDirection == StartPoint.AcceptedDirection.Down)
+                        startPoint.StartFollowingFuse();
+                    break;
+                }
             case Direction.Left:
-            {
-                if (startPoint.acceptedDirection == StartPoint.AcceptedDirection.Left)
-                    startPoint.StartFollowingFuse();
-                break;
-            }
+                {
+                    if (startPoint.acceptedDirection == StartPoint.AcceptedDirection.Left)
+                        startPoint.StartFollowingFuse();
+                    break;
+                }
             case Direction.Right:
-            {
-                if (startPoint.acceptedDirection == StartPoint.AcceptedDirection.Right)
-                    startPoint.StartFollowingFuse();
-                break;
-            }
+                {
+                    if (startPoint.acceptedDirection == StartPoint.AcceptedDirection.Right)
+                        startPoint.StartFollowingFuse();
+                    break;
+                }
         }
     }
-    private void SendAudioEvent(AudioEvent.AudioEventType type)
-    {
-        for (int i = 0; i<=audioEvents.Length-1;i++)
-        {
-            if (type == audioEvents[i].TriggerType)
-                audioEvents[i].AddAudioEvent(type, gameObject);
-        }
-    }
+    //private void SendAudioEvent(AudioEvent.AudioEventType type)
+    //{
+    //    for (int i = 0; i <= audioEvents.Length - 1; i++)
+    //    {
+    //        if (type == audioEvents[i].TriggerType)
+    //            audioEvents[i].AddAudioEvent(type, gameObject);
+    //    }
+    //}
+
 }

@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using System;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : IGameLoop
 {
     public int DashMultiplier = 2500;
     public int MoveMultiplier = 1000;
@@ -43,8 +43,7 @@ public class PlayerMovement : MonoBehaviour
         transform.position = grid.GetCellCenterWorld(new Vector3Int(-1, 0, -4));
     }
 
-    // Update is called once per frame
-    private void Update()
+    public override void GameLoopUpdate()
     {
         if (rigidBody.position.y < maxNegativeY)
         {

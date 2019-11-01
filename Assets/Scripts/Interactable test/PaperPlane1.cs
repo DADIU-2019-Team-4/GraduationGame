@@ -9,25 +9,19 @@ public class PaperPlane1 : DashInteractable
 
     private Collider lastCollision;
 
-    // Start is called before the first frame update
-    void Start()
+    public override void GameLoopUpdate()
     {
-        
+        base.GameLoopUpdate();
+        transform.Translate(Vector3.right * speed * Time.deltaTime, Space.Self);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        transform.Translate(Vector3.right * speed * Time.deltaTime,Space.Self);
-    }
-
-    private void OnTriggerEnter (Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         Debug.Log("Plane Collision");
         lastCollision = other;
         if (lastCollision.gameObject.tag == "Obsticle")
             Destroy(gameObject);
-        
+
     }
 
     public override void Interact(GameObject player)

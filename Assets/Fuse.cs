@@ -48,6 +48,8 @@ public class Fuse : MonoBehaviour
         generated.transform.parent = null;
         isUsed = true;
         movementController.IsFuseMoving = false;
+        if (OnlyUsedOnce)
+        	gameObject.SetActive(false);
     }
 
     public void Follow(StartPoint.PointType pointType)

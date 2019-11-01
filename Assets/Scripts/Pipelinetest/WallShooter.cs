@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WallShooter : MonoBehaviour
+public class WallShooter : IGameLoop
 {
 
     public float detectionDistance = 5;
@@ -21,7 +21,7 @@ public class WallShooter : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public override void GameLoopUpdate()
     {
         currentSpawnCooldown -= Time.deltaTime;
         RaycastHit hit;
