@@ -131,7 +131,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1455506444166876667}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.72, y: 1, z: -7.73}
+  m_LocalPosition: {x: 1.7226505, y: 0.97796965, z: -7.775272}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1455506444343618401}
@@ -189,7 +189,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1455506444335011980}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.73, y: 1, z: -10.49}
+  m_LocalPosition: {x: 1.6957588, y: 0.8856962, z: -10.51192}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1455506444343618401}
@@ -231,9 +231,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1455506444343618401}
   - component: {fileID: 1455506444343618402}
-  - component: {fileID: 1455506444343618403}
-  - component: {fileID: 1455506444343618412}
+  - component: {fileID: 277951736783565329}
   - component: {fileID: 1455506444343618413}
+  - component: {fileID: 1455506444343618412}
   - component: {fileID: 7827202735473963338}
   m_Layer: 0
   m_Name: FuseRope
@@ -250,7 +250,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1455506444343618414}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -59.81, y: 0, z: 17.039999}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1455506445155529641}
@@ -307,22 +307,34 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!114 &1455506444343618403
+--- !u!114 &277951736783565329
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1455506444343618414}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24d1b6e1e070eb14fa89607942b123cf, type: 3}
+  m_Script: {fileID: 11500000, guid: 446f1cfcf0e529146a157cd7d12af66a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startScale: 2.65
-  endScale: 0.05
-  startRoll: 1
-  endRoll: 1
+  Scale: 1
+--- !u!114 &1455506444343618413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1455506444343618414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8500699ab15fc8a49b5588e0a2ab9874, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnlyUsedOnce: 0
+  Follower: {fileID: 0}
+  DurationInSecond: 2
 --- !u!114 &1455506444343618412
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -345,21 +357,6 @@ MonoBehaviour:
   updateInPlayMode: 0
   curveSpace: 1
   mode: 2
---- !u!114 &1455506444343618413
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1455506444343618414}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8500699ab15fc8a49b5588e0a2ab9874, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnlyUsedOnce: 0
-  Follower: {fileID: 0}
-  DurationInSecond: 10
 --- !u!114 &7827202735473963338
 MonoBehaviour:
   m_ObjectHideFlags: 0
