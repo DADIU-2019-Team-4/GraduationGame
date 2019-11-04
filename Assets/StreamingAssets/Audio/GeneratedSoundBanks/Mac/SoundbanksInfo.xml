@@ -11,16 +11,6 @@
 	<StreamedFiles/>
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
-		<SoundBank Id="22796248" Language="SFX">
-			<ObjectPath>\SoundBanks\Default Work Unit\Room_2_Bank</ObjectPath>
-			<ShortName>Room_2_Bank</ShortName>
-			<Path>Room_2_Bank.bnk</Path>
-		</SoundBank>
-		<SoundBank Id="1068922635" Language="SFX">
-			<ObjectPath>\SoundBanks\Default Work Unit\Hub_Bank</ObjectPath>
-			<ShortName>Hub_Bank</ShortName>
-			<Path>Hub_Bank.bnk</Path>
-		</SoundBank>
 		<SoundBank Id="1355168291" Language="SFX">
 			<ObjectPath>Init</ObjectPath>
 			<ShortName>Init</ShortName>
@@ -40,24 +30,57 @@
 				<Event Id="2370884349" Name="CollectFire" ObjectPath="\Events\Character\Objects\CollectFire" DurationType="OneShot" DurationMin="2.349819" DurationMax="2.349819"/>
 				<Event Id="679539432" Name="DeathObject" ObjectPath="\Events\Character\Objects\DeathObject" DurationType="OneShot" DurationMin="1.538095" DurationMax="1.538095"/>
 				<Event Id="1016929228" Name="NormalDash" ObjectPath="\Events\Character\Dashing\NormalDash" DurationType="OneShot" DurationMin="1.468289" DurationMax="2.076474"/>
+				<Event Id="3308074653" Name="Room01_Music" ObjectPath="\Events\Music\Room01_Music" DurationType="Infinite"/>
 				<Event Id="3044105157" Name="WinPuzzle" ObjectPath="\Events\InGame_UI\WinPuzzle" DurationType="OneShot" DurationMin="1.367528" DurationMax="1.367528"/>
 			</IncludedEvents>
 			<IncludedMemoryFiles>
 				<File Id="8864511" Language="SFX">
 					<ShortName>Dash1.wav</ShortName>
-					<Path>SFX\Dash1_87E74C6D.wem</Path>
+					<Path>SFX\Dash1_5748D111.wem</Path>
 				</File>
 				<File Id="11914928" Language="SFX">
 					<ShortName>BreakObject1.wav</ShortName>
 					<Path>SFX\BreakObject1_6296B0F9.wem</Path>
 				</File>
+				<File Id="13956236" Language="SFX">
+					<ShortName>Room1_var03_Drums_03_85bpm.wav</ShortName>
+					<Path>SFX\Room1_var03_Drums_03_85bpm_9B96ECC7.wem</Path>
+				</File>
+				<File Id="20796836" Language="SFX">
+					<ShortName>Room1_var01_BassValeyLow_01_80bpm.wav</ShortName>
+					<Path>SFX\Room1_var01_BassValeyLow_01_80bpm_9B96ECC7.wem</Path>
+				</File>
+				<File Id="80463372" Language="SFX">
+					<ShortName>Room1_var01_SynthLead_01_80bpm.wav</ShortName>
+					<Path>SFX\Room1_var01_SynthLead_01_80bpm_9B96ECC7.wem</Path>
+				</File>
 				<File Id="93021929" Language="SFX">
 					<ShortName>DeathOneShot2.wav</ShortName>
 					<Path>SFX\DeathOneShot2_6296B0F9.wem</Path>
 				</File>
+				<File Id="97738665" Language="SFX">
+					<ShortName>RISE_CYM FX_028.wav</ShortName>
+					<Path>SFX\RISE_CYM FX_028_9B96ECC7.wem</Path>
+				</File>
+				<File Id="126693540" Language="SFX">
+					<ShortName>Room1_var03_BassValleyLead_01_85bpm.wav</ShortName>
+					<Path>SFX\Room1_var03_BassValleyLead_01_85bpm_9B96ECC7.wem</Path>
+				</File>
+				<File Id="168933556" Language="SFX">
+					<ShortName>Room1_var01_Drums_02_80bpm.wav</ShortName>
+					<Path>SFX\Room1_var01_Drums_02_80bpm_9B96ECC7.wem</Path>
+				</File>
 				<File Id="250295397" Language="SFX">
 					<ShortName>ChargingDisable.wav</ShortName>
 					<Path>SFX\ChargingDisable_6296B0F9.wem</Path>
+				</File>
+				<File Id="267734159" Language="SFX">
+					<ShortName>Room1_var03_StringsLow_01_85bpm.wav</ShortName>
+					<Path>SFX\Room1_var03_StringsLow_01_85bpm_9B96ECC7.wem</Path>
+				</File>
+				<File Id="324862977" Language="SFX">
+					<ShortName>Room1_var01_Prophet_01_80bpm.wav</ShortName>
+					<Path>SFX\Room1_var01_Prophet_01_80bpm_9B96ECC7.wem</Path>
 				</File>
 				<File Id="341212686" Language="SFX">
 					<ShortName>WinPuzzle.wav</ShortName>
@@ -71,16 +94,39 @@
 					<ShortName>ChargedDash4.wav</ShortName>
 					<Path>SFX\ChargedDash4_6296B0F9.wem</Path>
 				</File>
+				<File Id="562835057" Language="SFX">
+					<ShortName>Room1_var01_BassValeyHigh_01_80bpm.wav</ShortName>
+					<Path>SFX\Room1_var01_BassValeyHigh_01_80bpm_9B96ECC7.wem</Path>
+				</File>
+				<File Id="583974311" Language="SFX">
+					<ShortName>Room1_var03_Drums_01_85bpm.wav</ShortName>
+					<Path>SFX\Room1_var03_Drums_01_85bpm_9B96ECC7.wem</Path>
+				</File>
+				<File Id="596086135" Language="SFX">
+					<ShortName>Room1_var03_Drums_02_85bpm.wav</ShortName>
+					<Path>SFX\Room1_var03_Drums_02_85bpm_9B96ECC7.wem</Path>
+				</File>
+				<File Id="612930949" Language="SFX">
+					<ShortName>Room1_var01_Drums_01_80bpm.wav</ShortName>
+					<Path>SFX\Room1_var01_Drums_01_80bpm_9B96ECC7.wem</Path>
+				</File>
+				<File Id="651556214" Language="SFX">
+					<ShortName>Room1_var01_StringsSpizz_01_80bpm.wav</ShortName>
+					<Path>SFX\Room1_var01_StringsSpizz_01_80bpm_9B96ECC7.wem</Path>
+				</File>
+				<File Id="688674783" Language="SFX">
+					<ShortName>Room1_var03_StringsHigh_01_85bpm.wav</ShortName>
+					<Path>SFX\Room1_var03_StringsHigh_01_85bpm_9B96ECC7.wem</Path>
+				</File>
+				<File Id="690796950" Language="SFX">
+					<ShortName>Room1_var03_Piano_01_85bpm.wav</ShortName>
+					<Path>SFX\Room1_var03_Piano_01_85bpm_9B96ECC7.wem</Path>
+				</File>
 				<File Id="785166258" Language="SFX">
 					<ShortName>CollectFire.wav</ShortName>
 					<Path>SFX\CollectFire_6296B0F9.wem</Path>
 				</File>
 			</IncludedMemoryFiles>
-		</SoundBank>
-		<SoundBank Id="2658994711" Language="SFX">
-			<ObjectPath>\SoundBanks\Default Work Unit\Room_3_Bank</ObjectPath>
-			<ShortName>Room_3_Bank</ShortName>
-			<Path>Room_3_Bank.bnk</Path>
 		</SoundBank>
 	</SoundBanks>
 </SoundBanksInfo>
