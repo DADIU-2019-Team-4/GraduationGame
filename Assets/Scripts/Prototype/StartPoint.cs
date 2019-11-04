@@ -3,16 +3,7 @@
 public class StartPoint : MonoBehaviour
 {
     private Fuse fuse;
-
-    public enum AcceptedDirection
-    {
-        Up,
-        Down,
-        Left,
-        Right
-    }
-
-    public AcceptedDirection acceptedDirection;
+    private TeleportFuse teleportFuse;
 
     public enum PointType
     {
@@ -25,10 +16,14 @@ public class StartPoint : MonoBehaviour
     private void Start()
     {
         fuse = GetComponentInParent<Fuse>();
+        teleportFuse = GetComponentInParent<TeleportFuse>();
     }
 
     public void StartFollowingFuse()
     {
-        fuse.Follow(pointType);
+        if (fuse != null)
+            fuse.Follow(pointType);
+        else
+            teleportFuse.Follow(pointType);
     }
 }

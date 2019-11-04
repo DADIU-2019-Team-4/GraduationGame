@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5939748589936556662}
   - component: {fileID: 5939748589936556657}
   - component: {fileID: 5939748589936556656}
+  - component: {fileID: 4057733286195164696}
   m_Layer: 0
   m_Name: BreakObject Unit
   m_TagString: Break
@@ -91,3 +92,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4057733286195164696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5939748589936556659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 420186023faa10d418f08885f52a6d61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isburnable: 1
+  burnNeighbors: []

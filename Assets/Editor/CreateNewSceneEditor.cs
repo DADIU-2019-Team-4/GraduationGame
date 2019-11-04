@@ -6,6 +6,7 @@ using UnityEditor;
 public class CreateNewSceneEditor : EditorWindow
 {
     public string name;
+    public string folder;
 
     [MenuItem("Tools/New Scene")]
     public static void ShowWindow()
@@ -21,12 +22,18 @@ public class CreateNewSceneEditor : EditorWindow
             //EditorGUILayout.Toggle("Mute All Sounds", false);
             //EditorGUILayout.IntField("Player Lifes", 3);
             name = EditorGUILayout.TextField("Scene Name", name);
+        folder = EditorGUILayout.TextField("Folder to save in (not working)", folder);
 
         GUILayout.FlexibleSpace();
 
         if (GUILayout.Button("CreateScene"))
             {
-                FileUtil.CopyFileOrDirectory("Assets/Scenes/Final Scenes/BaseScene.unity", "Assets/Scenes/Final Scenes/" + name +".unity");
+                if (folder == "")
+                {
+                folder = "Final Scenes";
+                }
+                folder = "Final Scenes";
+                FileUtil.CopyFileOrDirectory("Assets/Scenes/Final Scenes/BaseScene.unity", "Assets/Scenes/"+folder+"/" + name +".unity");
                 AssetDatabase.Refresh();
                 this.Close();
             }

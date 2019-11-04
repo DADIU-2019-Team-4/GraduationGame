@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class LevelEditor : EditorWindow
 {
     // The window is selected if it already exists, else it's created.
-    [MenuItem("Window/Custom Level Editor")]
+    [MenuItem("Tools/Custom Level Editor")]
 
 
 
@@ -58,14 +58,34 @@ public class LevelEditor : EditorWindow
 
         // Display the grid
         paletteIndex = GUILayout.SelectionGrid(paletteIndex, paletteIcons.ToArray(), 4);
+
+
+        //roate 90 with r
+        
     }
 
 
     private bool mouseDown = false;
+    private Vector3 clickedCell;
+    private Vector3 releasedCell;
+
+    private Color selectColor = Color.green;
 
     // Does the rendering of the map editor in the scene view.
     private void OnSceneGUI(SceneView sceneView)
     {
+        if (Event.current.type == EventType.KeyDown && Event.current.character == 'r')
+        {
+            Debug.Log("pressed r");
+            objectRotation += 90;
+
+            if (objectRotation >=360)
+            {
+                objectRotation = 0;
+            }
+            Repaint();
+        }
+
         if (paintMode)
         {
             Vector3 cellCenter = GetSelectedCell(); // Refactoring, I moved some code in this function
@@ -75,70 +95,91 @@ public class LevelEditor : EditorWindow
             
             DisplayVisualHelp();
             HandleSceneViewInputs(cellCenter);
+            
 
-            if (Event.current.type == EventType.MouseDown)
+            if (Event.current.type == EventType.MouseDown && Event.current.button == 0 && !Event.current.alt)
             {
                 mouseDown = true;
-            }else if(Event.current.type == EventType.MouseUp)
+                selectColor = Color.red;
+                clickedCell = cellCenter;
+            }else if(Event.current.type == EventType.MouseUp && Event.current.button == 0 && !Event.current.alt)
             {
                 mouseDown = false;
+                selectColor = Color.green;
+                InstanciateObjects(clickedCell,cellCenter);
             }
 
             // Refresh the view
             sceneView.Repaint();
-
-            // We have a prefab selected and we are clicking in the scene view with the left button
-            if (paletteIndex < palette.Count && 
-                mouseDown && 
-                previousCellSelected != currentCellSelected)
+            
+            void InstanciateObjects(Vector3 from, Vector3 to)
             {
-                InstanciateObjects();
-            }else if (paletteIndex < palette.Count && 
-                      Event.current.type == EventType.MouseDown && 
-                      Event.current.button == 0)
-            {
-                InstanciateObjects();
-            }
-
-
-            void InstanciateObjects()
-            {
-                // Create the prefab instance while keeping the prefab link
-                GameObject prefab = palette[paletteIndex];
-
-                GameObject gameObject = PrefabUtility.InstantiatePrefab(prefab) as GameObject;
-                gameObject.transform.position = cellCenter;
-                gameObject.transform.Translate(new Vector3(0, gameObject.GetComponent<MeshRenderer>().bounds.size.y / 2, 0));
-                gameObject.transform.Rotate(new Vector3(0, objectRotation, 0));
-
-                if (prefab.name == "Floor Unit")
-                {
-                    gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x * floorXScale * (gridScale / 2), 0.1f, gameObject.transform.localScale.z * floorZScale * (gridScale / 2));
-
-                    if (floorXScale % 2 == 0)
-                    {
-                        gameObject.transform.Translate(new Vector3(1f, 0, 0));
-                    }
-                    if (floorZScale % 2 == 0)
-                    {
-                        gameObject.transform.Translate(new Vector3(0, 0, 1f));
-                    }
-
-                }
-
-
-
+                //create parent object for all instantiated objects
                 if (GameObject.Find("Level Objects") == null)
                 {
                     GameObject go = Instantiate(new GameObject(), new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
                     go.transform.name = "Level Objects";
                 }
-                else
 
+                float distance = (from - to).magnitude;
+
+                for(int i=0; i<= distance; i++)
+                {
+
+                    Vector3 pos;
+                    if (distance > 0)
+                    {
+                        pos = Vector3.Lerp(from, to, i / distance);
+                    }
+                    else
+                    {
+                        pos = from;
+                    }
+                    
+
+                    Vector3Int cell = new Vector3Int(Mathf.RoundToInt(pos.x / cellSize.x), 0, Mathf.RoundToInt(pos.z / cellSize.z));
+                    Vector3 spawnPos = cell * (int)cellSize.x;
+
+
+                    // Create the prefab instance while keeping the prefab link
+                    GameObject prefab = palette[paletteIndex];
+
+                    GameObject gameObject = PrefabUtility.InstantiatePrefab(prefab) as GameObject;
+                    gameObject.transform.position = spawnPos;
+                    gameObject.transform.Translate(new Vector3(0, gameObject.transform.position.y - gameObject.GetComponent<MeshRenderer>().bounds.min.y, 0));
+                    
+                    gameObject.transform.Rotate(new Vector3(0, objectRotation, 0));
+
+                    if (prefab.name == "Floor Unit")
+                    {
+                        gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x * floorXScale * (gridScale / 2), 0.1f, gameObject.transform.localScale.z * floorZScale * (gridScale / 2));
+
+                        if (floorXScale % 2 == 0)
+                        {
+                            gameObject.transform.Translate(new Vector3(1f, 0, 0));
+                        }
+                        if (floorZScale % 2 == 0)
+                        {
+                            gameObject.transform.Translate(new Vector3(0, 0, 1f));
+                        }
+
+                    }
+
+                    //draw less often if it is a wall
+                    if(prefab.name == "InnerWall")
+                    {
+                        i += 2;
+                    }
+
+                    //set parent    
                     gameObject.transform.parent = GameObject.Find("Level Objects").transform;
 
-                // Allow the use of Undo (Ctrl+Z, Ctrl+Y).
-                Undo.RegisterCreatedObjectUndo(gameObject, "");
+
+                    // Allow the use of Undo (Ctrl+Z, Ctrl+Y).
+                    Undo.RegisterCreatedObjectUndo(gameObject, "");
+                }
+                
+               
             }
         }
 
@@ -217,7 +258,7 @@ public class LevelEditor : EditorWindow
         Vector3 bottomRight = cellCenter + Vector3.right * cellSize.x * 0.5f - Vector3.forward * cellSize.x * 0.5f;
 
         // Rendering
-        Handles.color = Color.green;
+        Handles.color = selectColor;
         Vector3[] lines = { topLeft, topRight, topRight, bottomRight, bottomRight, bottomLeft, bottomLeft, topLeft };
         Handles.DrawLines(lines);
     }

@@ -1,0 +1,255 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2171612574928378294
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2171612574928378295}
+  - component: {fileID: 2171612574928378293}
+  - component: {fileID: 2171612574928378292}
+  m_Layer: 0
+  m_Name: Spline
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2171612574928378295
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2171612574928378294}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 2171612576549472414}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2171612574928378293
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2171612574928378294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a85c5879d519aa4ab2ebbf42591149a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nodes:
+  - position: {x: -2.014862, y: 2.0840836, z: 1.7740531}
+    direction: {x: -2.014862, y: 2.0840836, z: -1.2259431}
+    up: {x: 0, y: 1, z: 0}
+    scale: {x: 0, y: 0}
+    roll: 0
+  - position: {x: 0.8957405, y: 4.2156754, z: 1.7954745}
+    direction: {x: 0.8957405, y: 5.4219837, z: 4.7954745}
+    up: {x: 0, y: 1, z: 0}
+    scale: {x: 0, y: 0}
+    roll: 0
+  - position: {x: -1.196598, y: 4.186574, z: -0.812152}
+    direction: {x: 0.6655121, y: 3.4347658, z: -1.6930283}
+    up: {x: 0, y: 1, z: 0}
+    scale: {x: 0, y: 0}
+    roll: 0
+  - position: {x: 1.477459, y: 1.6647615, z: 1.2939966}
+    direction: {x: 1.6397896, y: 0.9129534, z: 2.5892503}
+    up: {x: 0, y: 1, z: 0}
+    scale: {x: 0, y: 0}
+    roll: 0
+  - position: {x: -2.014862, y: 2.0840836, z: 1.7740531}
+    direction: {x: -2.014862, y: 2.0840836, z: -1.2259431}
+    up: {x: 0, y: 1, z: 0}
+    scale: {x: 0, y: 0}
+    roll: 0
+  curves:
+  - n1:
+      position: {x: -2.014862, y: 2.0840836, z: 1.7740531}
+      direction: {x: -2.014862, y: 2.0840836, z: -1.2259431}
+      up: {x: 0, y: 1, z: 0}
+      scale: {x: 0, y: 0}
+      roll: 0
+    n2:
+      position: {x: 0.8957405, y: 4.2156754, z: 1.7954745}
+      direction: {x: 0.8957405, y: 5.4219837, z: 4.7954745}
+      up: {x: 0, y: 1, z: 0}
+      scale: {x: 0, y: 0}
+      roll: 0
+    Changed:
+      m_PersistentCalls:
+        m_Calls: []
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+  - n1:
+      position: {x: 0.8957405, y: 4.2156754, z: 1.7954745}
+      direction: {x: 0.8957405, y: 5.4219837, z: 4.7954745}
+      up: {x: 0, y: 1, z: 0}
+      scale: {x: 0, y: 0}
+      roll: 0
+    n2:
+      position: {x: -1.196598, y: 4.186574, z: -0.812152}
+      direction: {x: 0.6655121, y: 3.4347658, z: -1.6930283}
+      up: {x: 0, y: 1, z: 0}
+      scale: {x: 0, y: 0}
+      roll: 0
+    Changed:
+      m_PersistentCalls:
+        m_Calls: []
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+  - n1:
+      position: {x: -1.196598, y: 4.186574, z: -0.812152}
+      direction: {x: 0.6655121, y: 3.4347658, z: -1.6930283}
+      up: {x: 0, y: 1, z: 0}
+      scale: {x: 0, y: 0}
+      roll: 0
+    n2:
+      position: {x: 1.477459, y: 1.6647615, z: 1.2939966}
+      direction: {x: 1.6397896, y: 0.9129534, z: 2.5892503}
+      up: {x: 0, y: 1, z: 0}
+      scale: {x: 0, y: 0}
+      roll: 0
+    Changed:
+      m_PersistentCalls:
+        m_Calls: []
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+  - n1:
+      position: {x: 1.477459, y: 1.6647615, z: 1.2939966}
+      direction: {x: 1.6397896, y: 0.9129534, z: 2.5892503}
+      up: {x: 0, y: 1, z: 0}
+      scale: {x: 0, y: 0}
+      roll: 0
+    n2:
+      position: {x: -2.014862, y: 2.0840836, z: 1.7740531}
+      direction: {x: -2.014862, y: 2.0840836, z: -1.2259431}
+      up: {x: 0, y: 1, z: 0}
+      scale: {x: 0, y: 0}
+      roll: 0
+    Changed:
+      m_PersistentCalls:
+        m_Calls: []
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+  Length: 23.060366
+  isLoop: 1
+  CurveChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+--- !u!114 &2171612574928378292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2171612574928378294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 371753988c008004ca1da9ce435ba75b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Follower: {fileID: 1931018082507708, guid: 65290c8a0968be743bf5b4c95114c272, type: 3}
+  DurationInSecond: 5
+--- !u!1 &2171612576549472409
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2171612576549472414}
+  - component: {fileID: 2171612576549472413}
+  - component: {fileID: 2171612576549472412}
+  - component: {fileID: 2171612576549472415}
+  m_Layer: 0
+  m_Name: generated by ExampleFollowSpline
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2171612576549472414
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2171612576549472409}
+  m_LocalRotation: {x: 0.025932169, y: 0.94971573, z: 0.081786186, w: -0.30112898}
+  m_LocalPosition: {x: -1.7434366, y: 2.0003772, z: 2.8718584}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2171612574928378295}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &2171612576549472413
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2171612576549472409}
+  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!136 &2171612576549472412
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2171612576549472409}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &2171612576549472415
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2171612576549472409}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 1
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
