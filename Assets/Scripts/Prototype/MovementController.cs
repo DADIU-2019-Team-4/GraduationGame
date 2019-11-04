@@ -280,6 +280,8 @@ public class MovementController : MonoBehaviour
             CollidePickUp(collision);
         else if (collision.gameObject.CompareTag("Break"))
             CollideBreakObstacle(collision);
+        else if (collision.gameObject.CompareTag("Candle"))
+            CollideCandle(collision);
     }
 
     private void CollideBreakObstacle(Collision collision)
@@ -366,7 +368,11 @@ public class MovementController : MonoBehaviour
         CheckGameEnd();
         dialogRunner.StartDialogue("Goal");
     }
-
+    private void CollideCandle(Collision collision)
+    {
+        Light light = collision.gameObject.GetComponentInChildren<Light>();
+        light.enabled = true;
+    }
     private bool PointInOABB(Vector3 point, BoxCollider box)
     {
         point = box.transform.InverseTransformPoint(point) - box.center;
