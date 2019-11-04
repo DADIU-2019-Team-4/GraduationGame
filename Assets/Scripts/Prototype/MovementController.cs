@@ -280,6 +280,8 @@ public class MovementController : MonoBehaviour
             CollidePickUp(collision);
         else if (collision.gameObject.CompareTag("Break"))
             CollideBreakObstacle(collision);
+        else if (collision.gameObject.CompareTag("Candle"))
+            CollideCandle(collision);
     }
 
     private void CollideBreakObstacle(Collision collision)
@@ -322,7 +324,7 @@ public class MovementController : MonoBehaviour
         var magnitudeHeading = Mathf.Abs(heading.x + heading.z);
         var magnitudeObject = Mathf.Abs((gameObject.transform.position.magnitude - gameObject.transform.position.y) - (collisionPoint.point.magnitude - collisionPoint.point.y));
         dialogRunner.StartDialogue("Block");
-        if (magnitudeHeading > 9f && magnitudeObject < magnitudeHeading / 3f && magnitudeObject < 2.5f)
+        if (magnitudeHeading > 7f && magnitudeObject < magnitudeHeading / 3f)
             StartCoroutine(isDashing
             ? MoveRoutine(collisionPoint.point + (heading * 0.35f), DashDuration)
             : MoveRoutine(collisionPoint.point + (heading * 0.35f), MoveDuration));
@@ -366,7 +368,11 @@ public class MovementController : MonoBehaviour
         CheckGameEnd();
         dialogRunner.StartDialogue("Goal");
     }
-
+    private void CollideCandle(Collision collision)
+    {
+        Light light = collision.gameObject.GetComponentInChildren<Light>();
+        light.enabled = true;
+    }
     private bool PointInOABB(Vector3 point, BoxCollider box)
     {
         point = box.transform.InverseTransformPoint(point) - box.center;
