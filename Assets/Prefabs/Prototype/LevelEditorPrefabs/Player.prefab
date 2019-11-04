@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 714748535622932571}
   - component: {fileID: 3202629566038322268}
   - component: {fileID: 840397474}
+  - component: {fileID: 4165270791555294119}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -232,7 +233,6 @@ MonoBehaviour:
   DashDistance: 4
   DashCost: 3
   MovesText: {fileID: 0}
-  CurrentDirection: 0
 --- !u!114 &840397474
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -248,6 +248,27 @@ MonoBehaviour:
   _attached: 0
   speed: 0
   dashSpeed: 0
+--- !u!114 &4165270791555294119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 714748535622932580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bec29c0a230741bdac901dba8da47ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sourceText: []
+  stringGroups: []
+  shouldOverrideLanguage: 0
+  overrideLanguage: 10
+  variableStorage: {fileID: 0}
+  dialogueUI: {fileID: 0}
+  startNode: Start
+  startAutomatically: 1
+  automaticCommands: 1
 --- !u!1 &4333332830859161235
 GameObject:
   m_ObjectHideFlags: 0
