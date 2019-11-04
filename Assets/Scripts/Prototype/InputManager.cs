@@ -36,7 +36,7 @@ public class InputManager : IGameLoop
 
     public override void GameLoopUpdate()
     {
-        if (!gameController.IsPlaying) return;
+        if (!gameController.IsPlaying || movementController.IsFuseMoving) return;
 
         HandleInput();
 
