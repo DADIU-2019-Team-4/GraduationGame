@@ -287,6 +287,7 @@ public class MovementController : MonoBehaviour
         {
             collision.gameObject.GetComponent<BurnObject>().SetObjectOnFire();
             AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.ObstacleBreak, audioEvents, gameObject);
+            dialogRunner.StartDialogue("Break");
         }
         else
         {
@@ -306,6 +307,7 @@ public class MovementController : MonoBehaviour
         if (AmountOfMoves > maxAmountOfMoves)
             AmountOfMoves = maxAmountOfMoves;
         MovesText.text = AmountOfMoves.ToString();
+        dialogRunner.StartDialogue("PickUp");
         AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.BurningItem, audioEvents, gameObject);
         Destroy(collision.gameObject);
     }
@@ -318,6 +320,7 @@ public class MovementController : MonoBehaviour
         var heading = previousPosition - collisionPoint.point;
         var magnitudeHeading = Mathf.Abs(heading.x + heading.z);
         var magnitudeObject = Mathf.Abs((gameObject.transform.position.magnitude - gameObject.transform.position.y) - (collisionPoint.point.magnitude - collisionPoint.point.y));
+        dialogRunner.StartDialogue("Block");
         if (magnitudeHeading > 13f && magnitudeObject < magnitudeHeading / 3f && magnitudeObject < 2.5f)
             StartCoroutine(isDashing
             ? MoveRoutine(collisionPoint.point + (heading * 0.35f), DashDuration)
@@ -332,6 +335,7 @@ public class MovementController : MonoBehaviour
     {
         if (PointInOABB(targetPosition, collision.gameObject.GetComponent<BoxCollider>()))
         {
+            dialogRunner.StartDialogue("Death");
             hasDied = true;
             CheckGameEnd();
         }
@@ -359,6 +363,7 @@ public class MovementController : MonoBehaviour
         reachedGoal = true;
         collision.gameObject.GetComponent<BoxCollider>().enabled = false;
         CheckGameEnd();
+        dialogRunner.StartDialogue("Goal");
     }
 
     private bool PointInOABB(Vector3 point, BoxCollider box)
