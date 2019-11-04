@@ -321,7 +321,7 @@ public class MovementController : MonoBehaviour
         var magnitudeHeading = Mathf.Abs(heading.x + heading.z);
         var magnitudeObject = Mathf.Abs((gameObject.transform.position.magnitude - gameObject.transform.position.y) - (collisionPoint.point.magnitude - collisionPoint.point.y));
         dialogRunner.StartDialogue("Block");
-        if (magnitudeHeading > 9f && magnitudeObject < magnitudeHeading / 3f && magnitudeObject < 2.5f)
+        if (magnitudeHeading > 7f && magnitudeObject < magnitudeHeading / 3f)
             StartCoroutine(isDashing
             ? MoveRoutine(collisionPoint.point + (heading * 0.35f), DashDuration)
             : MoveRoutine(collisionPoint.point + (heading * 0.35f), MoveDuration));
