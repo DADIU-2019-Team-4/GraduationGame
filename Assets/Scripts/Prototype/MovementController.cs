@@ -33,7 +33,7 @@ public class MovementController : MonoBehaviour
     public int DashCost = 3;
 
     [Header("Canvas Fields")]
-    public TMP_Text MovesText;
+    private TMP_Text MovesText;
 
     private GameController gameController;
     private Rigidbody rigidBody;
@@ -76,6 +76,7 @@ public class MovementController : MonoBehaviour
         attachToPlane = GetComponent<AttachToPlane>();
         //dialogCollision = GetComponentInChildren<DialogCollision>();
         dialogRunner = FindObjectOfType<DialogueRunner>();
+        MovesText = GameObject.Find("MovesText").GetComponent<TextMeshProUGUI>();
 
 
     }
