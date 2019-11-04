@@ -42,7 +42,6 @@ public class BurnObject : MonoBehaviour
 
     public void SetObjectOnFire()
     {
-        Debug.Log("LET IT BURN BLYEAT");
         _isBurning = true;
         gameObject.GetComponent<Collider>().enabled = false;
         var shader = gameObject.GetComponent<Renderer>().material;
