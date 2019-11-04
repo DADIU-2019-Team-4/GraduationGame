@@ -7,6 +7,7 @@ public class LevelEditor : EditorWindow
     // The window is selected if it already exists, else it's created.
     [MenuItem("Tools/Custom Level Editor")]
 
+    
 
 
     private static void ShowWindow()
@@ -146,7 +147,17 @@ public class LevelEditor : EditorWindow
 
                     GameObject gameObject = PrefabUtility.InstantiatePrefab(prefab) as GameObject;
                     gameObject.transform.position = spawnPos;
-                    gameObject.transform.Translate(new Vector3(0, gameObject.transform.position.y - gameObject.GetComponent<MeshRenderer>().bounds.min.y, 0));
+
+                    Transform[] children = gameObject.GetComponentsInChildren<Transform>();
+                    foreach(Transform child in children)
+                    {
+                        if (child.GetComponent<MeshRenderer>() != null)
+                        {
+                            Debug.Log(child.GetComponent<MeshRenderer>().bounds.min.y);
+                            child.transform.Translate(new Vector3(0, child.transform.position.y - child.GetComponent<MeshRenderer>().bounds.min.y, 0));
+                        }
+                    }
+                    
                     
                     gameObject.transform.Rotate(new Vector3(0, objectRotation, 0));
 
@@ -232,7 +243,8 @@ public class LevelEditor : EditorWindow
 
     void OnDestroy()
     {
-        SceneView.onSceneGUIDelegate -= this.OnSceneGUI;
+        SceneView.duringSceneGui -= this.OnSceneGUI;
+        Debug.Log("OnDestroy");
     }
 
     private Vector3 cellSize = new Vector3(gridScale, gridScale, gridScale);
@@ -287,4 +299,5 @@ public class LevelEditor : EditorWindow
         return null;
     }
 
+    
 }
