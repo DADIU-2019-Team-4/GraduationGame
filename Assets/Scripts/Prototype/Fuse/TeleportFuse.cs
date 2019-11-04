@@ -42,7 +42,9 @@ public class TeleportFuse : MonoBehaviour
     private IEnumerator FuseRoutine(Vector3 targetPosition)
     {
         yield return new WaitForSeconds(0.25f);
+        targetPosition.y = 0;
         movementController.transform.position = targetPosition;
+
         yield return new WaitForSeconds(0.5f);
         movementController.IsFuseMoving = false;
         isUsed = true;
