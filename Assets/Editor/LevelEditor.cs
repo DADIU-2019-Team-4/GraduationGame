@@ -7,7 +7,7 @@ public class LevelEditor : EditorWindow
     // The window is selected if it already exists, else it's created.
     [MenuItem("Tools/Custom Level Editor")]
 
-    
+
 
 
     private static void ShowWindow()
@@ -32,20 +32,46 @@ public class LevelEditor : EditorWindow
     // Called to draw the MapEditor windows.
     [SerializeField]
     private int paletteIndex;
+    private int toolbarIndex;
+
+    private enum Tools
+    {
+        Paint,
+        Delete,
+        More
+    }
+
+    private Tools currentTool;
+
+    private string[] toolbarTexts = new string[3] { "Paint", "Delete", "More" };
 
     // Called to draw the MapEditor windows.
     private void OnGUI()
     {
-            paintMode = GUILayout.Toggle(paintMode, "Start painting", "Button", GUILayout.Height(60f));
+            toolbarIndex = GUILayout.Toolbar(toolbarIndex, toolbarTexts, GUILayout.Height(60f));
+            /*paintMode = GUILayout.Toggle(paintMode, "Start painting", "Button", GUILayout.Height(60f));
         
-            deleteMode = GUILayout.Toggle(deleteMode, "Delete", "Button", GUILayout.Height(60f));
+            deleteMode = GUILayout.Toggle(deleteMode, "Delete", "Button", GUILayout.Height(60f));*/
 
             floorXScale = EditorGUILayout.IntField("floor x",floorXScale);
             floorZScale = EditorGUILayout.IntField("floor z", floorZScale);
             objectRotation = EditorGUILayout.FloatField("rotation of objects", objectRotation);
 
-        if (paintMode)
-            deleteMode = false;
+        switch (toolbarIndex)
+        {
+            case 0:
+                currentTool = Tools.Paint;
+                break;
+            case 1:
+                currentTool = Tools.Delete;
+                break;
+            case 2:
+                currentTool = Tools.More;
+                break;
+            default:
+                Debug.Log("Missing tool");
+                break;
+        }
 
         // Get a list of previews, one for each of our prefabs
         List<GUIContent> paletteIcons = new List<GUIContent>();
@@ -87,7 +113,7 @@ public class LevelEditor : EditorWindow
             Repaint();
         }
 
-        if (paintMode)
+        if (currentTool == Tools.Paint)
         {
             Vector3 cellCenter = GetSelectedCell(); // Refactoring, I moved some code in this function
 
@@ -196,7 +222,7 @@ public class LevelEditor : EditorWindow
 
        
 
-        if (deleteMode) //delete objects
+        if (currentTool == Tools.Delete) //delete objects
         {
             GameObject gameObject = GetClickedObject();
 
