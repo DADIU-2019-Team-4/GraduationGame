@@ -12445,7 +12445,10 @@ PrefabInstance:
       propertyPath: NextLevelName
       value: MathiasPuzzle3
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6747692002799717376, guid: 7f579a59447f4be4cb6336d55ef7ac20, type: 3}
+    - {fileID: 28717896765632770, guid: 7f579a59447f4be4cb6336d55ef7ac20, type: 3}
+    - {fileID: 1330186063321706240, guid: 7f579a59447f4be4cb6336d55ef7ac20, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 7f579a59447f4be4cb6336d55ef7ac20, type: 3}
 --- !u!1 &1880497328 stripped
 GameObject:
@@ -12472,28 +12475,6 @@ MonoBehaviour:
   RTPCValue: {fileID: 0}
   SetStateGroup: 
   SetStateValue: 
---- !u!114 &1880497330
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1880497328}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0cd4ce0dac235c4c8a6c3bd942544ae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_listeners:
-    initialListenerList: []
-    useDefaultListeners: 1
-  isEnvironmentAware: 1
-  isStaticObject: 0
-  m_positionOffsetData:
-    KeepMe: 0
-    positionOffset: {x: 0, y: 0, z: 0}
-  m_posOffsetData: {fileID: 0}
-  listenerMask: 1
 --- !u!114 &1880497331
 MonoBehaviour:
   m_ObjectHideFlags: 0
