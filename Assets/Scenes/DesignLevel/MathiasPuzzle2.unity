@@ -2611,7 +2611,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 1880497327}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1266715234}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 89132adbc7e36d3419c5b7a0362db678, type: 3}
@@ -2789,16 +2789,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 714748535622932582, guid: c3488568424b8814bad4703ac36407fb,
-        type: 3}
-      propertyPath: m_Height
-      value: 1.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 714748535622932582, guid: c3488568424b8814bad4703ac36407fb,
-        type: 3}
-      propertyPath: m_Radius
-      value: 0.3
-      objectReference: {fileID: 0}
     - target: {fileID: 3202629566038322268, guid: c3488568424b8814bad4703ac36407fb,
         type: 3}
       propertyPath: MovesText
@@ -2813,6 +2803,16 @@ PrefabInstance:
         type: 3}
       propertyPath: DashDistance
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 714748535622932582, guid: c3488568424b8814bad4703ac36407fb,
+        type: 3}
+      propertyPath: m_Height
+      value: 1.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 714748535622932582, guid: c3488568424b8814bad4703ac36407fb,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c3488568424b8814bad4703ac36407fb, type: 3}
@@ -3209,24 +3209,6 @@ MonoBehaviour:
     positionOffset: {x: 0, y: 0, z: 0}
   m_posOffsetData: {fileID: 0}
   listenerMask: 1
---- !u!1 &1266715234 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7687038821585000209, guid: 7f579a59447f4be4cb6336d55ef7ac20,
-    type: 3}
-  m_PrefabInstance: {fileID: 1880497327}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1266715236
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1266715234}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afff3d58abce5554d820ce91106eed70, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1307405067 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1104779112160943107, guid: 9c169667b98cf9a40aa1cd79348c5899,
@@ -4322,31 +4304,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameController (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 7687038821585000238, guid: 7f579a59447f4be4cb6336d55ef7ac20,
-        type: 3}
-      propertyPath: WinText
-      value: 
-      objectReference: {fileID: 753324614}
-    - target: {fileID: 7687038821585000238, guid: 7f579a59447f4be4cb6336d55ef7ac20,
-        type: 3}
-      propertyPath: OutOfMovesText
-      value: 
-      objectReference: {fileID: 664946839}
-    - target: {fileID: 7687038821585000238, guid: 7f579a59447f4be4cb6336d55ef7ac20,
-        type: 3}
-      propertyPath: DiedText
-      value: 
-      objectReference: {fileID: 77011055}
-    - target: {fileID: 7687038821585000238, guid: 7f579a59447f4be4cb6336d55ef7ac20,
-        type: 3}
-      propertyPath: RestartButton
-      value: 
-      objectReference: {fileID: 164683499}
-    - target: {fileID: 7687038821585000238, guid: 7f579a59447f4be4cb6336d55ef7ac20,
-        type: 3}
-      propertyPath: NextSceneButton
-      value: 
-      objectReference: {fileID: 1332248193}
     - target: {fileID: 7687038821585000239, guid: 7f579a59447f4be4cb6336d55ef7ac20,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4401,6 +4358,36 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7687038821585000238, guid: 7f579a59447f4be4cb6336d55ef7ac20,
+        type: 3}
+      propertyPath: WinText
+      value: 
+      objectReference: {fileID: 753324614}
+    - target: {fileID: 7687038821585000238, guid: 7f579a59447f4be4cb6336d55ef7ac20,
+        type: 3}
+      propertyPath: OutOfMovesText
+      value: 
+      objectReference: {fileID: 664946839}
+    - target: {fileID: 7687038821585000238, guid: 7f579a59447f4be4cb6336d55ef7ac20,
+        type: 3}
+      propertyPath: DiedText
+      value: 
+      objectReference: {fileID: 77011055}
+    - target: {fileID: 7687038821585000238, guid: 7f579a59447f4be4cb6336d55ef7ac20,
+        type: 3}
+      propertyPath: RestartButton
+      value: 
+      objectReference: {fileID: 164683499}
+    - target: {fileID: 7687038821585000238, guid: 7f579a59447f4be4cb6336d55ef7ac20,
+        type: 3}
+      propertyPath: NextSceneButton
+      value: 
+      objectReference: {fileID: 1332248193}
+    - target: {fileID: 7687038821585000238, guid: 7f579a59447f4be4cb6336d55ef7ac20,
+        type: 3}
+      propertyPath: NextLevelName
+      value: MathiasPuzzle4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7f579a59447f4be4cb6336d55ef7ac20, type: 3}
