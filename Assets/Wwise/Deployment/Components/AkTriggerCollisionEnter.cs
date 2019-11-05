@@ -12,6 +12,8 @@ public class AkTriggerCollisionEnter : AkTriggerBase
 	{
 		if (triggerDelegate != null && (triggerObject == null || triggerObject == in_other.gameObject))
 			triggerDelegate(in_other.gameObject);
+        // Debug.Log("SKIFT STATE");
+        AkSoundEngine.SetState("Room01", "var03");
 	}
 
 	private void OnTriggerEnter(UnityEngine.Collider in_other)
