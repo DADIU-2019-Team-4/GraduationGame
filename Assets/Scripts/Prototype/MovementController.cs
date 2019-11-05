@@ -184,11 +184,7 @@ public class MovementController : MonoBehaviour
 
         yield return new WaitForSeconds(duration);
 
-        trailRenderer.enabled = false;
-        IsMoving = false;
-
-        if (isDashing)
-            isDashing = false;
+        DashEnded();
     }
 
     /// <summary>
@@ -211,12 +207,19 @@ public class MovementController : MonoBehaviour
 
         CheckMovesLeft();
 
+        DashEnded();
+
+    }
+
+    private void DashEnded()
+    {
+        AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.DashEnded, audioEvents, gameObject);
+
         trailRenderer.enabled = false;
         IsMoving = false;
 
         if (isDashing)
             isDashing = false;
-
     }
 
     /// <summary>
