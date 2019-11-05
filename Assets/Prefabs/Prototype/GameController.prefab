@@ -11,6 +11,9 @@ GameObject:
   - component: {fileID: 7687038821585000239}
   - component: {fileID: 7687038821585000238}
   - component: {fileID: 1266715236}
+  - component: {fileID: 6747692002799717376}
+  - component: {fileID: 28717896765632770}
+  - component: {fileID: 1330186063321706240}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -63,6 +66,63 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afff3d58abce5554d820ce91106eed70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6747692002799717376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7687038821585000209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3f6a57ea9bb81040839eb22c9ccd632, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TriggerType: 8
+  WwiseType: 0
+  EventName: WinPuzzle
+  RTPCName: 
+  RTPCValue: {fileID: 0}
+  SetStateGroup: 
+  SetStateValue: 
+--- !u!114 &28717896765632770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7687038821585000209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3f6a57ea9bb81040839eb22c9ccd632, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TriggerType: 10
+  WwiseType: 0
+  EventName: Dead
+  RTPCName: 
+  RTPCValue: {fileID: 0}
+  SetStateGroup: 
+  SetStateValue: 
+--- !u!114 &1330186063321706240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7687038821585000209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3f6a57ea9bb81040839eb22c9ccd632, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TriggerType: 9
+  WwiseType: 0
+  EventName: Dead
+  RTPCName: 
+  RTPCValue: {fileID: 0}
+  SetStateGroup: 
+  SetStateValue: 
 --- !u!1001 &1564474834
 PrefabInstance:
   m_ObjectHideFlags: 0
