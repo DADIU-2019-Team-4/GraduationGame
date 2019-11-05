@@ -3,6 +3,7 @@ using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using Yarn.Unity;
+using UnityEngine.SceneManagement;
 
 public class MovementController : MonoBehaviour
 {
@@ -34,6 +35,8 @@ public class MovementController : MonoBehaviour
 
     [Header("Canvas Fields")]
     private TMP_Text MovesText;
+    [Header("Switch scenes"),SerializeField]
+    private string levelName;
 
     private GameController gameController;
     private Rigidbody rigidBody;
@@ -179,8 +182,8 @@ public class MovementController : MonoBehaviour
     private IEnumerator MoveRoutine(Vector3 target, float duration)
     {
         IsMoving = true;
-
         rigidBody.DOMove(target, duration);
+        //rigidBody.MovePosition(target);
 
         yield return new WaitForSeconds(duration);
 
@@ -201,6 +204,7 @@ public class MovementController : MonoBehaviour
 
         IsMoving = true;
         rigidBody.DOMove(target, duration);
+        //rigidBody.MovePosition(target);
 
         yield return new WaitForSeconds(duration);
 
@@ -367,6 +371,10 @@ public class MovementController : MonoBehaviour
         collision.gameObject.GetComponent<BoxCollider>().enabled = false;
         CheckGameEnd();
         dialogRunner.StartDialogue("Goal");
+        if (levelName != null)
+            SceneManager.LoadScene(levelName);
+
+
     }
     private void CollideCandle(Collision collision)
     {

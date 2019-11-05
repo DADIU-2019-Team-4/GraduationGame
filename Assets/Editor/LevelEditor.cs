@@ -37,13 +37,14 @@ public class LevelEditor : EditorWindow
     private enum Tools
     {
         Paint,
+        Block,
         Delete,
-        More
+        Blank
     }
 
     private Tools currentTool;
 
-    private string[] toolbarTexts = new string[3] { "Paint", "Delete", "More" };
+    private string[] toolbarTexts = new string[4] { "Paint", "Block", "Delete", "Blank" };
 
     // Called to draw the MapEditor windows.
     private void OnGUI()
@@ -63,10 +64,13 @@ public class LevelEditor : EditorWindow
                 currentTool = Tools.Paint;
                 break;
             case 1:
-                currentTool = Tools.Delete;
+                currentTool = Tools.Block;
                 break;
             case 2:
-                currentTool = Tools.More;
+                currentTool = Tools.Delete;
+                break;
+            case 3:
+                currentTool = Tools.Blank;
                 break;
             default:
                 Debug.Log("Missing tool");
@@ -167,53 +171,16 @@ public class LevelEditor : EditorWindow
                     Vector3Int cell = new Vector3Int(Mathf.RoundToInt(pos.x / cellSize.x), 0, Mathf.RoundToInt(pos.z / cellSize.z));
                     Vector3 spawnPos = cell * (int)cellSize.x;
 
-
-                    // Create the prefab instance while keeping the prefab link
                     GameObject prefab = palette[paletteIndex];
 
-                    GameObject gameObject = PrefabUtility.InstantiatePrefab(prefab) as GameObject;
-                    gameObject.transform.position = spawnPos;
-
-                    Transform[] children = gameObject.GetComponentsInChildren<Transform>();
-                    foreach(Transform child in children)
-                    {
-                        if (child.GetComponent<MeshRenderer>() != null)
-                        {
-                            Debug.Log(child.GetComponent<MeshRenderer>().bounds.min.y);
-                            child.transform.Translate(new Vector3(0, child.transform.position.y - child.GetComponent<MeshRenderer>().bounds.min.y, 0));
-                        }
-                    }
-                    
-                    
-                    gameObject.transform.Rotate(new Vector3(0, objectRotation, 0));
-
-                    if (prefab.name == "Floor Unit")
-                    {
-                        gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x * floorXScale * (gridScale / 2), 0.1f, gameObject.transform.localScale.z * floorZScale * (gridScale / 2));
-
-                        if (floorXScale % 2 == 0)
-                        {
-                            gameObject.transform.Translate(new Vector3(1f, 0, 0));
-                        }
-                        if (floorZScale % 2 == 0)
-                        {
-                            gameObject.transform.Translate(new Vector3(0, 0, 1f));
-                        }
-
-                    }
+                    SpawnPrefab(prefab, spawnPos, 1, 1);
 
                     //draw less often if it is a wall
-                    if(prefab.name == "InnerWall")
+                    if (prefab.name == "InnerWall")
                     {
                         i += 2;
                     }
-
-                    //set parent    
-                    gameObject.transform.parent = GameObject.Find("Level Objects").transform;
-
-
-                    // Allow the use of Undo (Ctrl+Z, Ctrl+Y).
-                    Undo.RegisterCreatedObjectUndo(gameObject, "");
+                    
                 }
                 
                
@@ -233,6 +200,50 @@ public class LevelEditor : EditorWindow
            
             
         }
+    }
+
+    private void SpawnPrefab(GameObject prefab, Vector3 pos, float scaleX, float scaleY)
+    {
+
+        GameObject gameObject = PrefabUtility.InstantiatePrefab(prefab) as GameObject;
+        gameObject.transform.position = pos;
+
+        Transform[] children = gameObject.GetComponentsInChildren<Transform>();
+        foreach (Transform child in children)
+        {
+            if (child.GetComponent<MeshRenderer>() != null)
+            {
+                Debug.Log(child.GetComponent<MeshRenderer>().bounds.min.y);
+                child.transform.Translate(new Vector3(0, child.transform.position.y - child.GetComponent<MeshRenderer>().bounds.min.y, 0));
+            }
+        }
+
+
+        gameObject.transform.Rotate(new Vector3(0, objectRotation, 0));
+
+        if (prefab.name == "Floor Unit")
+        {
+            gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x * floorXScale * (gridScale / 2), 0.1f, gameObject.transform.localScale.z * floorZScale * (gridScale / 2));
+
+            if (floorXScale % 2 == 0)
+            {
+                gameObject.transform.Translate(new Vector3(1f, 0, 0));
+            }
+            if (floorZScale % 2 == 0)
+            {
+                gameObject.transform.Translate(new Vector3(0, 0, 1f));
+            }
+
+        }
+
+        
+
+        //set parent    
+        gameObject.transform.parent = GameObject.Find("Level Objects").transform;
+
+
+        // Allow the use of Undo (Ctrl+Z, Ctrl+Y).
+        Undo.RegisterCreatedObjectUndo(gameObject, "");
     }
 
     private void HandleSceneViewInputs(Vector3 cellCenter)
