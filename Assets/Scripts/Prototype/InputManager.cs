@@ -84,7 +84,6 @@ public class InputManager : IGameLoop
             {
                 if(hiit.transform.tag == "Floor")
                 {
-                    Debug.Log("in");
                     targetPos = hiit.point;
                     movementController.transform.LookAt(movementController.transform.position -
                                                         (targetPos - movementController.transform.position));
