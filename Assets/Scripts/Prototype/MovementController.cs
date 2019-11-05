@@ -59,6 +59,14 @@ public class MovementController : MonoBehaviour
     private static bool _hasRun;
     private AudioEvent[] audioEvents;
 
+    [Header("Scriptable Objects")]
+    public FloatVariable GoalDistance;
+    public FloatVariable GoalDistanceRelative;
+    public FloatVariable HealthPercentage;
+
+    private Vector3 startPosition;
+    private Vector3 goalPosition;
+
     public bool IsMoving { get; set; }
 
     public bool IsFuseMoving { get; set; }
@@ -79,7 +87,6 @@ public class MovementController : MonoBehaviour
         dialogRunner = FindObjectOfType<DialogueRunner>();
         MovesText = GameObject.Find("MovesText").GetComponent<TextMeshProUGUI>();
 
-
     }
 
     // Start is called before the first frame update
@@ -92,6 +99,22 @@ public class MovementController : MonoBehaviour
         maxAmountOfMoves = AmountOfMoves;
 
         gameController.IsPlaying = true;
+
+        SetStartAndEndPositions();
+    }
+
+    public void SetStartAndEndPositions()
+    {
+        startPosition = rigidBody.position;
+
+        var goal = GameObject.FindGameObjectWithTag("Goal");
+        if (goal != null)
+            goalPosition = goal.transform.position;
+        else
+            goalPosition = Vector3.zero;
+
+        GoalDistanceRelative.Value = 0f;
+        UpdateGoalDistances();
     }
 
     /// <summary>
@@ -108,7 +131,7 @@ public class MovementController : MonoBehaviour
             AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.ChargingDash, audioEvents, gameObject);
             _hasRun = true;
         }
-        
+
     }
 
     /// <summary>
@@ -208,7 +231,6 @@ public class MovementController : MonoBehaviour
         CheckMovesLeft();
 
         DashEnded();
-
     }
 
     private void DashEnded()
@@ -220,6 +242,21 @@ public class MovementController : MonoBehaviour
 
         if (isDashing)
             isDashing = false;
+
+        HealthPercentage.Value = ((float)AmountOfMoves / (float)maxAmountOfMoves) * 100f;
+        UpdateGoalDistances();
+    }
+
+    private void UpdateGoalDistances()
+    {
+        if (goalPosition == Vector3.zero)
+            return;
+
+        GoalDistance.Value = (goalPosition - rigidBody.position).magnitude;
+        var baseDistance = (goalPosition - startPosition).magnitude;
+        GoalDistanceRelative.Value = (1f - GoalDistance.Value / baseDistance) * 100f;
+        if (GoalDistanceRelative.Value < 0f)
+            GoalDistanceRelative.Value = 0f;
     }
 
     /// <summary>
