@@ -232,13 +232,24 @@ public class LevelEditor : EditorWindow
         GameObject gameObject = PrefabUtility.InstantiatePrefab(prefab) as GameObject;
         gameObject.transform.position = pos;
 
+
+        //move objects
         Transform[] children = gameObject.GetComponentsInChildren<Transform>();
         foreach (Transform child in children)
         {
             if (child.GetComponent<MeshRenderer>() != null)
             {
                 Debug.Log(child.GetComponent<MeshRenderer>().bounds.min.y);
-                child.transform.Translate(new Vector3(0, child.transform.position.y - child.GetComponent<MeshRenderer>().bounds.min.y, 0));
+
+                if(child.transform.name == "Floor Unit")
+                {
+                    child.transform.Translate(new Vector3(0, child.transform.position.y + child.GetComponent<MeshRenderer>().bounds.min.y, 0));
+                }
+                else
+                {
+                    child.transform.Translate(new Vector3(0, child.transform.position.y - child.GetComponent<MeshRenderer>().bounds.min.y, 0));
+                }
+                
             }
         }
 
