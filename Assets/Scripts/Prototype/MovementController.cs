@@ -98,6 +98,8 @@ public class MovementController : MonoBehaviour
 
         maxAmountOfMoves = AmountOfMoves;
 
+        HealthPercentage.Value = ((float)AmountOfMoves / (float)maxAmountOfMoves) * 100f;
+
         gameController.IsPlaying = true;
 
         SetStartAndEndPositions();
