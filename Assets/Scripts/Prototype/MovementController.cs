@@ -126,7 +126,7 @@ public class MovementController : MonoBehaviour
 
         previousPosition = transform.position;
         AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.Dash, audioEvents, gameObject);
-        Vector3 targetPosition = transform.position + moveDirection * MoveDistance;
+        Vector3 targetPosition =  moveDirection * MoveDistance;
 
         StartCoroutine(MoveRoutine(targetPosition, MoveDuration, MoveCost));
     }
@@ -183,7 +183,6 @@ public class MovementController : MonoBehaviour
     {
         IsMoving = true;
         rigidBody.DOMove(target, duration);
-        //rigidBody.MovePosition(target);
 
         yield return new WaitForSeconds(duration);
 
@@ -204,8 +203,6 @@ public class MovementController : MonoBehaviour
 
         IsMoving = true;
         rigidBody.DOMove(target, duration);
-        //rigidBody.MovePosition(target);
-
         yield return new WaitForSeconds(duration);
 
         if (hitWall)
@@ -371,8 +368,6 @@ public class MovementController : MonoBehaviour
         collision.gameObject.GetComponent<BoxCollider>().enabled = false;
         CheckGameEnd();
         dialogRunner.StartDialogue("Goal");
-        if (levelName != null)
-            SceneManager.LoadScene(levelName);
 
 
     }

@@ -12,7 +12,8 @@ public class AkTriggerEnter : AkTriggerBase
 	{
 		if (triggerDelegate != null && (triggerObject == null || triggerObject == in_other.gameObject))
 			triggerDelegate(in_other.gameObject);
-	}
+        AkSoundEngine.SetState("Room01", "var03");
+    }
 }
 
 #endif // #if ! (UNITY_DASHBOARD_WIDGET || UNITY_WEBPLAYER || UNITY_WII || UNITY_WIIU || UNITY_NACL || UNITY_FLASH || UNITY_BLACKBERRY) // Disable under unsupported platforms.
