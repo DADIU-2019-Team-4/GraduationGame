@@ -7,20 +7,19 @@ public class LevelEnter : IGameLoop
     private string loadSceneName;
     [SerializeField]
     private bool isOpened;
-    private Light light;
 
     private void Start()
     {
-        light = GetComponent<Light>();
+        Renderer material = GetComponent<Renderer>();
         if (!PlayerPrefs.HasKey(gameObject.name))
             CreateKeys(gameObject.name);
         else
             ReadValues(gameObject.name);
         if (isOpened) ///Can be changed to open door animation when animation and door probs will be finished
-            light.color = Color.green;
+            material.material.color = Color.green;
         
         else
-            light.color = Color.red;
+            material.material.color = Color.red;
 
     }
 
