@@ -35,8 +35,6 @@ public class MovementController : MonoBehaviour
 
     [Header("Canvas Fields")]
     private TMP_Text MovesText;
-    [Header("Switch scenes"),SerializeField]
-    private string levelName;
 
     private GameController gameController;
     private Rigidbody rigidBody;
