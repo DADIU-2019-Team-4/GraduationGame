@@ -79,11 +79,20 @@ public class InputManager : IGameLoop
         Ray ray = Camera.main.ScreenPointToRay(lastPosition);
         if (Physics.Raycast(ray, out hit))
         {
-            targetPos = hit.point;
-            movementController.transform.LookAt(movementController.transform.position -
-                                                (targetPos - movementController.transform.position));
-            movementController.transform.rotation =
-                new Quaternion(0, movementController.transform.rotation.y, 0, movementController.transform.rotation.w);
+            RaycastHit[] hits = Physics.RaycastAll(ray);
+            foreach(RaycastHit hiit in hits)
+            {
+                if(hiit.transform.tag == "Floor")
+                {
+                    Debug.Log("in");
+                    targetPos = hiit.point;
+                    movementController.transform.LookAt(movementController.transform.position -
+                                                        (targetPos - movementController.transform.position));
+                    movementController.transform.rotation =
+                        new Quaternion(0, movementController.transform.rotation.y, 0, movementController.transform.rotation.w);
+                }
+            }
+            
         }
     }
 

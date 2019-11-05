@@ -124,8 +124,8 @@ public class LevelEditor : EditorWindow
         {
             Vector3 cellCenter = GetSelectedCell(); // Refactoring, I moved some code in this function
 
-            previousCellSelected = currentCellSelected;
-            currentCellSelected = cellCenter;
+            //previousCellSelected = currentCellSelected;
+            //currentCellSelected = cellCenter;
             
             DisplayVisualHelp();
             HandleSceneViewInputs(cellCenter);
@@ -263,7 +263,7 @@ public class LevelEditor : EditorWindow
         }
         else
         {
-            gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x * scaleX * gridScale, 1f, gameObject.transform.localScale.z * scaleZ * gridScale);
+            gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x * scaleX * gridScale, gameObject.transform.localScale.y, gameObject.transform.localScale.z * scaleZ * gridScale);
         }
         
         //set parent    
