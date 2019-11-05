@@ -37,13 +37,14 @@ public class LevelEditor : EditorWindow
     private enum Tools
     {
         Paint,
+        Block,
         Delete,
-        More
+        Blank
     }
 
     private Tools currentTool;
 
-    private string[] toolbarTexts = new string[3] { "Paint", "Delete", "More" };
+    private string[] toolbarTexts = new string[4] { "Paint", "Block", "Delete", "Blank" };
 
     // Called to draw the MapEditor windows.
     private void OnGUI()
@@ -63,10 +64,13 @@ public class LevelEditor : EditorWindow
                 currentTool = Tools.Paint;
                 break;
             case 1:
-                currentTool = Tools.Delete;
+                currentTool = Tools.Block;
                 break;
             case 2:
-                currentTool = Tools.More;
+                currentTool = Tools.Delete;
+                break;
+            case 3:
+                currentTool = Tools.Blank;
                 break;
             default:
                 Debug.Log("Missing tool");
