@@ -45,8 +45,8 @@ public class LevelEnter : IGameLoop
         }
         else
         {
-            PlayerPrefs.SetInt(name, 0);
-            isOpened = false;
+            PlayerPrefs.SetInt(name, 1);
+            isOpened = true;
         }
         PlayerPrefs.Save();
     }
