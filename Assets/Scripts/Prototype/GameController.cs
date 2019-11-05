@@ -49,6 +49,7 @@ public class GameController : MonoBehaviour
     public void RestartScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        AkSoundEngine.PostEvent("KillOnRestart", gameObject);
     }
 
     public void GoToNextScene()
