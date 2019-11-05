@@ -5925,21 +5925,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1014902396}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &840397474
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 840397472}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b10a4c9841dd3e74db749118249d0eef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _attached: 0
-  speed: 0
-  dashSpeed: 0
 --- !u!114 &840397476
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6012,101 +5997,6 @@ MonoBehaviour:
   TriggerType: 5
   WwiseType: 0
   EventName: BreakObject
-  RTPCName: 
-  RTPCValue: {fileID: 0}
-  SetStateGroup: 
-  SetStateValue: 
---- !u!114 &840397480
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 840397472}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3f6a57ea9bb81040839eb22c9ccd632, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TriggerType: 11
-  WwiseType: 0
-  EventName: CollectFire
-  RTPCName: 
-  RTPCValue: {fileID: 0}
-  SetStateGroup: 
-  SetStateValue: 
---- !u!114 &840397481
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 840397472}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3f6a57ea9bb81040839eb22c9ccd632, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TriggerType: 0
-  WwiseType: 0
-  EventName: NormalDash
-  RTPCName: 
-  RTPCValue: {fileID: 0}
-  SetStateGroup: 
-  SetStateValue: 
---- !u!114 &840397482
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 840397472}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3f6a57ea9bb81040839eb22c9ccd632, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TriggerType: 6
-  WwiseType: 0
-  EventName: BreakObjectMute
-  RTPCName: 
-  RTPCValue: {fileID: 0}
-  SetStateGroup: 
-  SetStateValue: 
---- !u!114 &840397483
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 840397472}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3f6a57ea9bb81040839eb22c9ccd632, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TriggerType: 1
-  WwiseType: 0
-  EventName: ChargingRejection
-  RTPCName: 
-  RTPCValue: {fileID: 0}
-  SetStateGroup: 
-  SetStateValue: 
---- !u!114 &840397484
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 840397472}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3f6a57ea9bb81040839eb22c9ccd632, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TriggerType: 2
-  WwiseType: 0
-  EventName: ChargingDash
   RTPCName: 
   RTPCValue: {fileID: 0}
   SetStateGroup: 
@@ -7521,7 +7411,15 @@ PrefabInstance:
       propertyPath: m_Radius
       value: 0.3
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6656989894390367569, guid: c3488568424b8814bad4703ac36407fb, type: 3}
+    - {fileID: 0}
+    - {fileID: -1292789878998922829, guid: c3488568424b8814bad4703ac36407fb, type: 3}
+    - {fileID: 2108756705155546726, guid: c3488568424b8814bad4703ac36407fb, type: 3}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: -8069058694036373769, guid: c3488568424b8814bad4703ac36407fb, type: 3}
+    - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: c3488568424b8814bad4703ac36407fb, type: 3}
 --- !u!4 &1018170795 stripped
 Transform:
