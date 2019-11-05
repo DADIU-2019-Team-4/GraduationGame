@@ -158,13 +158,10 @@ public class LevelEditor : EditorWindow
                 }
                 
             }
-
             // Refresh the view
             sceneView.Repaint();
-            
         }
         
-
         if (currentTool == Tools.Delete) //delete objects
         {
             GameObject gameObject = GetClickedObject();
@@ -173,8 +170,6 @@ public class LevelEditor : EditorWindow
             {
                 Undo.DestroyObjectImmediate(gameObject);
             }
-           
-            
         }
     }
 
@@ -247,26 +242,19 @@ public class LevelEditor : EditorWindow
             }
         }
 
-
+        //Rotate Object
         gameObject.transform.Rotate(new Vector3(0, objectRotation, 0));
 
+        //Scale Object
         if (prefab.name == "Floor Unit")
         {
-            gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x * floorXScale * (gridScale / 2), 0.1f, gameObject.transform.localScale.z * floorZScale * (gridScale / 2));
-
-            if (floorXScale % 2 == 0)
-            {
-                gameObject.transform.Translate(new Vector3(1f, 0, 0));
-            }
-            if (floorZScale % 2 == 0)
-            {
-                gameObject.transform.Translate(new Vector3(0, 0, 1f));
-            }
-
+            gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x * scaleX * gridScale, 0.1f, gameObject.transform.localScale.z * scaleZ * gridScale);
         }
-
-        gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x * scaleX * gridScale , 1f, gameObject.transform.localScale.z * scaleZ * gridScale );
-
+        else
+        {
+            gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x * scaleX * gridScale, 1f, gameObject.transform.localScale.z * scaleZ * gridScale);
+        }
+        
         //set parent    
         gameObject.transform.parent = GameObject.Find("Level Objects").transform;
         
