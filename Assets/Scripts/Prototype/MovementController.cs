@@ -126,7 +126,7 @@ public class MovementController : MonoBehaviour
 
         previousPosition = transform.position;
         AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.Dash, audioEvents, gameObject);
-        Vector3 targetPosition =  moveDirection * MoveDistance;
+        Vector3 targetPosition = transform.position + moveDirection * MoveDistance;
 
         StartCoroutine(MoveRoutine(targetPosition, MoveDuration, MoveCost));
     }
