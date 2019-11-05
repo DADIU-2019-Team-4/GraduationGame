@@ -124,8 +124,8 @@ public class LevelEditor : EditorWindow
         {
             Vector3 cellCenter = GetSelectedCell(); // Refactoring, I moved some code in this function
 
-            previousCellSelected = currentCellSelected;
-            currentCellSelected = cellCenter;
+            //previousCellSelected = currentCellSelected;
+            //currentCellSelected = cellCenter;
             
             DisplayVisualHelp();
             HandleSceneViewInputs(cellCenter);
