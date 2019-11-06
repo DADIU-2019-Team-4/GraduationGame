@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PaperPlane : IGameLoop
+public class PaperPlane1 : IGameLoop
 {
     [HideInInspector]
     public float speed = 25;
