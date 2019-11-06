@@ -5,15 +5,19 @@ using UnityEngine.SceneManagement;
 using UnityEditor;
 public class Game : MonoBehaviour
 {
-    private List<IGameLoop> GameLoops = new List<IGameLoop>();
+    private readonly List<IGameLoop> GameLoops = new List<IGameLoop>();
+    private readonly List<IGameLoop> LoopsToAdd = new List<IGameLoop>();
     private bool inErrorState;
+    private bool isUpdating;
     //[SerializeField]
     //private Scene _additiveSceneOne;
     //[SerializeField]
     //private Scene _additiveSceneTwo;
     [HideInInspector]
     private Game instance;
-    public Game Instance { get
+    public Game Instance
+    {
+        get
         {
             if (instance == null)
                 Instance = this;
@@ -47,13 +51,27 @@ public class Game : MonoBehaviour
     //    }
     //}
 
+    private void Start()
+    {
+        isUpdating = true;
+    }
+
     void Update()
     {
+
+
         try
         {
             if (!inErrorState)
                 foreach (var gameLoop in GameLoops)
                     gameLoop.GameLoopUpdate();
+
+            while (LoopsToAdd.Count != 0)
+            {
+                GameLoops.Add(LoopsToAdd[0]);
+                LoopsToAdd.RemoveAt(0);
+            }
+
         }
         catch (System.Exception e)
         {
@@ -69,7 +87,14 @@ public class Game : MonoBehaviour
         inErrorState = true;
     }
 
-    public void AddGameLoop(IGameLoop gameLoop) { GameLoops.Add(gameLoop);}
-    public void RemoveGameLoop(IGameLoop gameLoop) { GameLoops.Remove(gameLoop);}
+    public void AddGameLoop(IGameLoop gameLoop)
+    {
+        if (!isUpdating)
+            GameLoops.Add(gameLoop);
+        else
+            LoopsToAdd.Add(gameLoop);
+    }
+
+    public void RemoveGameLoop(IGameLoop gameLoop) { GameLoops.Remove(gameLoop); }
 }
 
