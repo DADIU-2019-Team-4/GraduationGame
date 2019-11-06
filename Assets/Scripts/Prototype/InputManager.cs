@@ -19,8 +19,8 @@ public class InputManager : IGameLoop
     private GameObject arrow;
 
     private float dragDistance;
-    public float MoveThreshold = 10f;
-    public float DashThreshold = 20f;
+    public float MoveThreshold = 2.5f;
+    public float DashThreshold = 4.5f;
 
     private float moveArrowScale = 1f;
     private float dashArrowScale = 1.4f;
@@ -59,7 +59,6 @@ public class InputManager : IGameLoop
         if (isHolding)
         {
             dragDistance = CalculateDragDistance();
-            Debug.Log("drag distance: " + dragDistance);
             // move
             if (dragDistance >= MoveThreshold && dragDistance < DashThreshold)
             {
