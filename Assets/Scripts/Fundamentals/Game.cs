@@ -7,13 +7,14 @@ public class Game : MonoBehaviour
 {
     private readonly List<IGameLoop> GameLoops = new List<IGameLoop>();
     private readonly List<IGameLoop> LoopsToAdd = new List<IGameLoop>();
+    private readonly List<IGameLoop> LoopsToRemove = new List<IGameLoop>();
     private bool inErrorState;
-    private bool isUpdating;
+
     //[SerializeField]
     //private Scene _additiveSceneOne;
     //[SerializeField]
     //private Scene _additiveSceneTwo;
-    [HideInInspector]
+
     private Game instance;
     public Game Instance
     {
@@ -23,18 +24,15 @@ public class Game : MonoBehaviour
                 Instance = this;
             return instance;
         }
-        private set
-        {
-            instance = value;
-        }
+        private set { instance = value; }
     }
 
-    public void Awake()
-    {
-        //Instance = this;
-        //SceneManager.LoadScene("Level0_additive", LoadSceneMode.Additive);
-        //SceneManager.LoadScene("Level0env_additive", LoadSceneMode.Additive);
-    }
+    //public void Awake()
+    //{
+    //Instance = this;
+    //SceneManager.LoadScene("Level0_additive", LoadSceneMode.Additive);
+    //SceneManager.LoadScene("Level0env_additive", LoadSceneMode.Additive);
+    //}
 
     //private void Start()
     //{
@@ -51,32 +49,36 @@ public class Game : MonoBehaviour
     //    }
     //}
 
-    private void Start()
-    {
-        isUpdating = true;
-    }
-
     void Update()
     {
-
-
         try
         {
             if (!inErrorState)
                 foreach (var gameLoop in GameLoops)
                     gameLoop.GameLoopUpdate();
 
-            while (LoopsToAdd.Count != 0)
-            {
-                GameLoops.Add(LoopsToAdd[0]);
-                LoopsToAdd.RemoveAt(0);
-            }
+            UpdateGameLoopList();
 
         }
         catch (System.Exception e)
         {
             HandleGameLoopException(e);
             throw;
+        }
+    }
+
+    private void UpdateGameLoopList()
+    {
+        while (LoopsToAdd.Count != 0)
+        {
+            GameLoops.Add(LoopsToAdd[0]);
+            LoopsToAdd.RemoveAt(0);
+        }
+
+        while (LoopsToRemove.Count != 0)
+        {
+            GameLoops.Remove(LoopsToRemove[0]);
+            LoopsToRemove.RemoveAt(0);
         }
     }
 
@@ -87,14 +89,8 @@ public class Game : MonoBehaviour
         inErrorState = true;
     }
 
-    public void AddGameLoop(IGameLoop gameLoop)
-    {
-        if (!isUpdating)
-            GameLoops.Add(gameLoop);
-        else
-            LoopsToAdd.Add(gameLoop);
-    }
+    public void AddGameLoop(IGameLoop gameLoop) { LoopsToAdd.Add(gameLoop); }
 
-    public void RemoveGameLoop(IGameLoop gameLoop) { GameLoops.Remove(gameLoop); }
+    public void RemoveGameLoop(IGameLoop gameLoop) { LoopsToRemove.Add(gameLoop); }
 }
 

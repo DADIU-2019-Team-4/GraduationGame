@@ -451,4 +451,8 @@ public class MovementController : MonoBehaviour
     //    }
     //}
 
+    public void InfiniteLives()
+    {
+        maxAmountOfMoves = AmountOfMoves = 999;
+    }
 }
