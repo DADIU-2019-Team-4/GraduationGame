@@ -587,11 +587,11 @@ Transform:
   m_Children:
   - {fileID: 775036279}
   - {fileID: 1144729248}
+  - {fileID: 756048043}
+  - {fileID: 139145140}
   - {fileID: 1387051724}
   - {fileID: 820957847}
   - {fileID: 1868524035}
-  - {fileID: 756048043}
-  - {fileID: 139145140}
   - {fileID: 420775414}
   - {fileID: 526085901}
   m_Father: {fileID: 0}
@@ -1798,6 +1798,31 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1542373588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1542373585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb865224da3502f4b892ac749d0958ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggerList: f7e1664c
+  useOtherObject: 0
+  data:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 1fec176a618f35e4d9f50f6455a38de1,
+      type: 2}
+  decodeBank: 0
+  loadAsynchronous: 0
+  saveDecodedBank: 0
+  unloadTriggerList: 958ca0ea
+  bankNameInternal: 
+  valueGuidInternal: 
 --- !u!1 &1620619447 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4066279059810398217, guid: 7f579a59447f4be4cb6336d55ef7ac20,
@@ -1950,6 +1975,11 @@ PrefabInstance:
       propertyPath: NextSceneButton
       value: 
       objectReference: {fileID: 1732142267}
+    - target: {fileID: 7687038821585000238, guid: 7f579a59447f4be4cb6336d55ef7ac20,
+        type: 3}
+      propertyPath: NextLevelName
+      value: MathiasPuzzle2
+      objectReference: {fileID: 0}
     - target: {fileID: 7687038821585000239, guid: 7f579a59447f4be4cb6336d55ef7ac20,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2004,11 +2034,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7687038821585000238, guid: 7f579a59447f4be4cb6336d55ef7ac20,
-        type: 3}
-      propertyPath: NextLevelName
-      value: MathiasPuzzle2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7f579a59447f4be4cb6336d55ef7ac20, type: 3}
