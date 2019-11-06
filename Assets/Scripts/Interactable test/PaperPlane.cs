@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PaperPlane1 : DashInteractable
+public class PaperPlane : DashInteractable
 {
     [HideInInspector]
     public float speed = 5;
