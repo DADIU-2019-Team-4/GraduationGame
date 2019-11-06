@@ -26,7 +26,7 @@ public class PaperPlane : DashInteractable
 
     public override void Interact(GameObject player)
     {
-        Player1 playerScript = player.GetComponent<Player1>();
+        AttachToPlane playerScript = player.GetComponent<AttachToPlane>();
 
         Debug.Log("Collision with: " + gameObject.name);
         player.transform.SetParent(gameObject.transform);
