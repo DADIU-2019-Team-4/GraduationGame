@@ -64,4 +64,9 @@ public class GameController : MonoBehaviour
     {
         IsPlaying = false;
     }
+
+    public void InfiniteLives()
+    {
+        GameObject.FindGameObjectWithTag("Player").GetComponent<MovementController>().InfiniteLives();
+    }
 }
