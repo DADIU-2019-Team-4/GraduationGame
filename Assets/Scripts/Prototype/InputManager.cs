@@ -7,7 +7,8 @@ public class InputManager : IGameLoop
     private Vector3 targetPos;
     private bool isHolding;
     private bool trackMouse;
-    private bool isInDashCircle;
+    private bool doMove;
+    private bool isOnPlayer;
 
     public float CoyoteTime = 0.5f;
     private float coyoteTimer;
@@ -16,6 +17,10 @@ public class InputManager : IGameLoop
     private GameController gameController;
     public GameObject ArrowParent;
     private GameObject arrow;
+
+    private float dragDistance;
+    public float MoveThreshold = 10f;
+    public float DashThreshold = 20f;
 
     private float moveArrowScale = 1f;
     private float dashArrowScale = 1.4f;
@@ -41,10 +46,59 @@ public class InputManager : IGameLoop
         HandleInput();
 
         HandleCoyoteSwipe();
-        ShowArrow();
 
-        if (isInDashCircle)
-            ChargeUpDash();
+        if (isOnPlayer)
+            DetermineMove();
+    }
+
+    /// <summary>
+    /// Determines which move it is (move, dash or cancel).
+    /// </summary>
+    private void DetermineMove()
+    {
+        if (isHolding)
+        {
+            dragDistance = CalculateDragDistance();
+            Debug.Log("drag distance: " + dragDistance);
+            // move
+            if (dragDistance >= MoveThreshold && dragDistance < DashThreshold)
+            {
+                doMove = true;
+                StretchArrow(movementController.MoveDistance);
+                arrow.GetComponent<SpriteRenderer>().color = Color.white;
+                ShowArrow();
+                movementController.ResetDash();
+            }
+            // dash
+            else if (dragDistance >= DashThreshold)
+            {
+                doMove = true;
+                StretchArrow(movementController.DashDistance);
+                arrow.GetComponent<SpriteRenderer>().color = Color.red;
+                ShowArrow();
+                ChargeUpDash();
+            }
+            // cancel
+            else
+            {
+                doMove = false;
+                ArrowParent.SetActive(false);
+                movementController.ResetDash();
+            }
+        }
+    }
+
+    /// <summary>
+    /// Calculates the distance between first touch and last touch.
+    /// </summary>
+    private float CalculateDragDistance()
+    {
+        RaycastHit raycastHit;
+        Ray ray = Camera.main.ScreenPointToRay(lastPosition);
+        if (Physics.Raycast(ray, out raycastHit))
+            return Vector3.Distance(movementController.transform.position, raycastHit.point);
+
+        return 0f;
     }
 
     /// <summary>
@@ -52,13 +106,8 @@ public class InputManager : IGameLoop
     /// </summary>
     private void ShowArrow()
     {
-        if (isHolding)
-        {
-            ArrowParent.SetActive(true);
-            SetAimingDirection();
-        }
-        else
-            ArrowParent.SetActive(false);
+        ArrowParent.SetActive(true);
+        SetAimingDirection();
     }
 
     /// <summary>
@@ -75,16 +124,16 @@ public class InputManager : IGameLoop
     /// </summary>
     private void SetAimingDirection()
     {
-        RaycastHit hit;
+        RaycastHit raycastHit;
         Ray ray = Camera.main.ScreenPointToRay(lastPosition);
-        if (Physics.Raycast(ray, out hit))
+        if (Physics.Raycast(ray, out raycastHit))
         {
             RaycastHit[] hits = Physics.RaycastAll(ray);
-            foreach(RaycastHit hiit in hits)
+            foreach(RaycastHit hit in hits)
             {
-                if(hiit.transform.tag == "Floor")
+                if(hit.transform.tag == "Floor")
                 {
-                    targetPos = hiit.point;
+                    targetPos = hit.point;
                     movementController.transform.LookAt(movementController.transform.position -
                                                         (targetPos - movementController.transform.position));
                     movementController.transform.rotation =
@@ -184,11 +233,18 @@ public class InputManager : IGameLoop
     /// </summary>
     private void InitialTouch(Vector3 position)
     {
-        firstPosition = movementController.gameObject.transform.position;
+        firstPosition = position;
         lastPosition = position;
         isHolding = true;
+        dragDistance = 0;
 
-        CheckDashCircle();
+        RaycastHit hit;
+        Ray ray = Camera.main.ScreenPointToRay(firstPosition);
+        if (Physics.Raycast(ray, out hit))
+        {
+            if (hit.transform.CompareTag("Player"))
+                isOnPlayer = true;
+        }
     }
 
     /// <summary>
@@ -197,37 +253,18 @@ public class InputManager : IGameLoop
     private void TouchEnd()
     {
         isHolding = false;
-        isInDashCircle = false;
-        ApplyAction();
+        isOnPlayer = false;
+        ArrowParent.SetActive(false);
+
+        if (doMove)
+            ApplyAction();
+
+        doMove = false;
     }
 
-    /// <summary>
-    /// Checks if you started in the dash circle, if so: it's a dash.
-    /// </summary>
-    private void CheckDashCircle()
+    private void StretchArrow(float distance)
     {
-        RaycastHit hit;
-        Ray ray = Camera.main.ScreenPointToRay(lastPosition);
-        if (Physics.Raycast(ray, out hit))
-        {
-            if (hit.transform.CompareTag("Player"))
-            {
-                isInDashCircle = true;
-                StretchArrow(hit, movementController.DashDistance);
-                arrow.GetComponent<SpriteRenderer>().color = Color.red;
-            }
-            else
-            {
-                isInDashCircle = false;
-                StretchArrow(hit, movementController.MoveDistance);
-                arrow.GetComponent<SpriteRenderer>().color = Color.white;
-            }
-        }
-    }
-
-    private void StretchArrow(RaycastHit hit, float distance)
-    {
-        Vector3 targetDirection = firstPosition - hit.point;
+        Vector3 targetDirection = movementController.gameObject.transform.position - targetPos;
         targetDirection.y = 0;
         targetDirection = targetDirection.normalized;
         Vector3 targetPosition = movementController.transform.position + targetDirection * distance;
@@ -242,7 +279,7 @@ public class InputManager : IGameLoop
     /// </summary>
     private void ApplyAction()
     {
-        Vector3 directionVector = firstPosition - targetPos;
+        Vector3 directionVector = movementController.gameObject.transform.position - targetPos;
         directionVector.y = 0;
 
         if (movementController.IsDashCharged)
