@@ -16,32 +16,37 @@ public class InputManager : IGameLoop
     private MovementController movementController;
     private GameController gameController;
     private Camera mainCamera;
-    public GameObject ArrowParent;
+
+    private GameObject arrowParent;
+    public float ArrowScaleFactor = 0.3f;
     private GameObject arrow;
+
+    private Canvas canvas;
     public GameObject DashCirclePrefab;
     private GameObject dashCircle;
-    private Canvas canvas;
 
     private float dragDistance;
     public float MoveThreshold = 0.0115f;
     public float DashThreshold = 0.028f;
-
-    public float ArrowScaleFactor = 0.3f;
 
     private void Awake()
     {
         movementController = FindObjectOfType<MovementController>();
         gameController = FindObjectOfType<GameController>();
         mainCamera = Camera.main;
+        arrowParent = GameObject.FindGameObjectWithTag("Arrow");
         canvas = FindObjectOfType<Canvas>();
     }
 
     private void Start()
     {
-        ArrowParent.SetActive(false);
-        arrow = ArrowParent.transform.GetChild(0).gameObject;
+        arrowParent.SetActive(false);
+        arrow = arrowParent.transform.GetChild(0).gameObject;
     }
 
+    /// <summary>
+    /// Update loop.
+    /// </summary>
     public override void GameLoopUpdate()
     {
         if (!gameController.IsPlaying || movementController.IsFuseMoving) return;
@@ -60,7 +65,6 @@ public class InputManager : IGameLoop
     private void DetermineMove()
     {
         dragDistance = CalculateDragDistance();
-        Debug.Log("drag distance: " + dragDistance);
         // move
         if (dragDistance >= MoveThreshold && dragDistance < DashThreshold)
         {
@@ -83,13 +87,13 @@ public class InputManager : IGameLoop
         else
         {
             doMove = false;
-            ArrowParent.SetActive(false);
+            arrowParent.SetActive(false);
             movementController.ResetDash();
         }
     }
 
     /// <summary>
-    /// Calculates the distance between first touch and last touch.
+    /// Calculates the distance between first touch and last touch on screen.
     /// </summary>
     private float CalculateDragDistance()
     {
@@ -101,7 +105,7 @@ public class InputManager : IGameLoop
     /// </summary>
     private void ShowArrow()
     {
-        ArrowParent.SetActive(true);
+        arrowParent.SetActive(true);
         SetAimingDirection();
     }
 
@@ -234,7 +238,7 @@ public class InputManager : IGameLoop
 
         isHolding = false;
         isOnPlayer = false;
-        ArrowParent.SetActive(false);
+        arrowParent.SetActive(false);
 
         if (doMove)
             ApplyAction();
@@ -242,6 +246,9 @@ public class InputManager : IGameLoop
         doMove = false;
     }
 
+    /// <summary>
+    /// Stretches the arrow according to the type of movement.
+    /// </summary>
     private void StretchArrow(float distance)
     {
         Vector3 targetDirection = firstPosition - lastPosition;
@@ -249,9 +256,9 @@ public class InputManager : IGameLoop
         targetDirection = targetDirection.normalized;
         Vector3 targetPosition = movementController.transform.position + targetDirection * distance;
 
-        var scale = ArrowParent.transform.localScale;
+        var scale = arrowParent.transform.localScale;
         scale.z = Vector3.Distance(movementController.transform.position, targetPosition) * ArrowScaleFactor;
-        ArrowParent.transform.localScale = scale;
+        arrowParent.transform.localScale = scale;
     }
 
     /// <summary>
