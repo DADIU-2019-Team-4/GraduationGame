@@ -27,7 +27,7 @@ public class InputManager : IGameLoop
 
     private float dragDistance;
     public float MoveThreshold = 0.0175f;
-    public float DashThreshold = 0.063f;
+    public float DashThreshold = 0.0585f;
 
     private void Awake()
     {
