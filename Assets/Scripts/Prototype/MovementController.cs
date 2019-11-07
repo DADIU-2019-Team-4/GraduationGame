@@ -348,7 +348,8 @@ public class MovementController : MonoBehaviour
     {
         if (isDashing)
         {
-            collision.gameObject.GetComponent<BurnObject>().SetObjectOnFire();
+            var collisionPoint = collision.contacts[0].point;
+            collision.gameObject.GetComponent<BurnObject>().SetObjectOnFire(collisionPoint);
             AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.ObstacleBreak, audioEvents, gameObject);
             dialogRunner.StartDialogue("Break");
         }
