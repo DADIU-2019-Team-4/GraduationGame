@@ -76,8 +76,6 @@ public class MovementController : MonoBehaviour
 
     public bool IsDashCharged { get; set; }
 
-    public bool stopMoving;
-
     private void Awake()
     {
         rigidBody = GetComponent<Rigidbody>();
@@ -106,12 +104,6 @@ public class MovementController : MonoBehaviour
         gameController.IsPlaying = true;
 
         SetStartAndEndPositions();
-    }
-
-    private void Update()
-    {
-        if (stopMoving)
-            StopMoving();
     }
 
     public void SetStartAndEndPositions()
