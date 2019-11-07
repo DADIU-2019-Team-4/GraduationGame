@@ -27,7 +27,7 @@ public class InputManager : IGameLoop
 
     private float dragDistance;
     public float MoveThreshold = 0.0175f;
-    public float DashThreshold = 0.0525f;
+    public float DashThreshold = 0.063f;
 
     private void Awake()
     {
@@ -65,11 +65,12 @@ public class InputManager : IGameLoop
     private void DetermineMove()
     {
         dragDistance = CalculateDragDistance();
-        Debug.Log("Drag Distance: " + dragDistance);
+        //Debug.Log("Drag Distance: " + dragDistance);
         // move
         if (dragDistance >= MoveThreshold && dragDistance < DashThreshold)
         {
             doMove = true;
+            movementController.MoveDistance = dragDistance * movementController.MoveDistanceFactor;
             StretchArrow(movementController.MoveDistance);
             arrow.GetComponent<SpriteRenderer>().color = Color.white;
             ShowArrow();
