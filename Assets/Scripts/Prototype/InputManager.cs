@@ -15,22 +15,25 @@ public class InputManager : IGameLoop
 
     private MovementController movementController;
     private GameController gameController;
+    private Camera mainCamera;
     public GameObject ArrowParent;
     private GameObject arrow;
+    public GameObject DashCirclePrefab;
+    private GameObject dashCircle;
+    private Canvas canvas;
 
     private float dragDistance;
-    public float MoveThreshold = 2.5f;
-    public float DashThreshold = 4.5f;
+    public float MoveThreshold = 0.0115f;
+    public float DashThreshold = 0.028f;
 
-    private float moveArrowScale = 1f;
-    private float dashArrowScale = 1.4f;
-
-    public float ArrowScaleFactor = 0.06f;
+    public float ArrowScaleFactor = 0.3f;
 
     private void Awake()
     {
         movementController = FindObjectOfType<MovementController>();
         gameController = FindObjectOfType<GameController>();
+        mainCamera = Camera.main;
+        canvas = FindObjectOfType<Canvas>();
     }
 
     private void Start()
@@ -47,7 +50,7 @@ public class InputManager : IGameLoop
 
         HandleCoyoteSwipe();
 
-        if (isOnPlayer)
+        if (isHolding)
             DetermineMove();
     }
 
@@ -56,34 +59,32 @@ public class InputManager : IGameLoop
     /// </summary>
     private void DetermineMove()
     {
-        if (isHolding)
+        dragDistance = CalculateDragDistance();
+        Debug.Log("drag distance: " + dragDistance);
+        // move
+        if (dragDistance >= MoveThreshold && dragDistance < DashThreshold)
         {
-            dragDistance = CalculateDragDistance();
-            // move
-            if (dragDistance >= MoveThreshold && dragDistance < DashThreshold)
-            {
-                doMove = true;
-                StretchArrow(movementController.MoveDistance);
-                arrow.GetComponent<SpriteRenderer>().color = Color.white;
-                ShowArrow();
-                movementController.ResetDash();
-            }
-            // dash
-            else if (dragDistance >= DashThreshold)
-            {
-                doMove = true;
-                StretchArrow(movementController.DashDistance);
-                arrow.GetComponent<SpriteRenderer>().color = Color.red;
-                ShowArrow();
-                ChargeUpDash();
-            }
-            // cancel
-            else
-            {
-                doMove = false;
-                ArrowParent.SetActive(false);
-                movementController.ResetDash();
-            }
+            doMove = true;
+            StretchArrow(movementController.MoveDistance);
+            arrow.GetComponent<SpriteRenderer>().color = Color.white;
+            ShowArrow();
+            movementController.ResetDash();
+        }
+        // dash
+        else if (dragDistance >= DashThreshold)
+        {
+            doMove = true;
+            StretchArrow(movementController.DashDistance);
+            arrow.GetComponent<SpriteRenderer>().color = Color.red;
+            ShowArrow();
+            ChargeUpDash();
+        }
+        // cancel
+        else
+        {
+            doMove = false;
+            ArrowParent.SetActive(false);
+            movementController.ResetDash();
         }
     }
 
@@ -92,12 +93,7 @@ public class InputManager : IGameLoop
     /// </summary>
     private float CalculateDragDistance()
     {
-        RaycastHit raycastHit;
-        Ray ray = Camera.main.ScreenPointToRay(lastPosition);
-        if (Physics.Raycast(ray, out raycastHit))
-            return Vector3.Distance(movementController.transform.position, raycastHit.point);
-
-        return 0f;
+        return Vector3.Distance(firstPosition, lastPosition);
     }
 
     /// <summary>
@@ -123,24 +119,9 @@ public class InputManager : IGameLoop
     /// </summary>
     private void SetAimingDirection()
     {
-        RaycastHit raycastHit;
-        Ray ray = Camera.main.ScreenPointToRay(lastPosition);
-        if (Physics.Raycast(ray, out raycastHit))
-        {
-            RaycastHit[] hits = Physics.RaycastAll(ray);
-            foreach(RaycastHit hit in hits)
-            {
-                if(hit.transform.tag == "Floor")
-                {
-                    targetPos = hit.point;
-                    movementController.transform.LookAt(movementController.transform.position -
-                                                        (targetPos - movementController.transform.position));
-                    movementController.transform.rotation =
-                        new Quaternion(0, movementController.transform.rotation.y, 0, movementController.transform.rotation.w);
-                }
-            }
-            
-        }
+        Vector3 lookDirection = firstPosition - lastPosition;
+        lookDirection.y = 0;
+        movementController.transform.rotation = Quaternion.LookRotation(lookDirection.normalized);
     }
 
     /// <summary>
@@ -191,7 +172,8 @@ public class InputManager : IGameLoop
             // Player's finger touches the screen and moves on the screen
             else if (touch.phase == TouchPhase.Moved)
             {
-                lastPosition = touch.position;
+                lastPosition = mainCamera.ScreenToWorldPoint(new Vector3(touch.position.x, touch.position.y,
+                    mainCamera.nearClipPlane));
             }
             // Player's finger stops touching the screen
             else if (touch.phase == TouchPhase.Ended)
@@ -216,7 +198,8 @@ public class InputManager : IGameLoop
         // track the mouse position if the mouse button is pressed down.
         if (trackMouse)
         {
-            lastPosition = Input.mousePosition;
+            lastPosition = mainCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y,
+                mainCamera.nearClipPlane));
         }
 
         // mouse button is released
@@ -232,18 +215,14 @@ public class InputManager : IGameLoop
     /// </summary>
     private void InitialTouch(Vector3 position)
     {
-        firstPosition = position;
-        lastPosition = position;
+        dashCircle = Instantiate(DashCirclePrefab, position, Quaternion.identity, canvas.transform);
+
+        firstPosition =
+            mainCamera.ScreenToWorldPoint(new Vector3(position.x, position.y, mainCamera.nearClipPlane));
+        lastPosition =
+            mainCamera.ScreenToWorldPoint(new Vector3(position.x, position.y, mainCamera.nearClipPlane));
         isHolding = true;
         dragDistance = 0;
-
-        RaycastHit hit;
-        Ray ray = Camera.main.ScreenPointToRay(firstPosition);
-        if (Physics.Raycast(ray, out hit))
-        {
-            if (hit.transform.CompareTag("Player"))
-                isOnPlayer = true;
-        }
     }
 
     /// <summary>
@@ -251,6 +230,8 @@ public class InputManager : IGameLoop
     /// </summary>
     private void TouchEnd()
     {
+        Destroy(dashCircle);
+
         isHolding = false;
         isOnPlayer = false;
         ArrowParent.SetActive(false);
@@ -263,7 +244,7 @@ public class InputManager : IGameLoop
 
     private void StretchArrow(float distance)
     {
-        Vector3 targetDirection = movementController.gameObject.transform.position - targetPos;
+        Vector3 targetDirection = firstPosition - lastPosition;
         targetDirection.y = 0;
         targetDirection = targetDirection.normalized;
         Vector3 targetPosition = movementController.transform.position + targetDirection * distance;
@@ -278,7 +259,7 @@ public class InputManager : IGameLoop
     /// </summary>
     private void ApplyAction()
     {
-        Vector3 directionVector = movementController.gameObject.transform.position - targetPos;
+        Vector3 directionVector = firstPosition - lastPosition;
         directionVector.y = 0;
 
         if (movementController.IsDashCharged)
