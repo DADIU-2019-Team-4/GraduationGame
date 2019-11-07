@@ -5,32 +5,34 @@ using UnityEngine.SceneManagement;
 using UnityEditor;
 public class Game : MonoBehaviour
 {
-    private List<IGameLoop> GameLoops = new List<IGameLoop>();
+    private readonly List<IGameLoop> GameLoops = new List<IGameLoop>();
+    private readonly List<IGameLoop> LoopsToAdd = new List<IGameLoop>();
+    private readonly List<IGameLoop> LoopsToRemove = new List<IGameLoop>();
     private bool inErrorState;
+
     //[SerializeField]
     //private Scene _additiveSceneOne;
     //[SerializeField]
     //private Scene _additiveSceneTwo;
-    [HideInInspector]
+
     private Game instance;
-    public Game Instance { get
+    public Game Instance
+    {
+        get
         {
             if (instance == null)
                 Instance = this;
             return instance;
         }
-        private set
-        {
-            instance = value;
-        }
+        private set { instance = value; }
     }
 
-    public void Awake()
-    {
-        //Instance = this;
-        //SceneManager.LoadScene("Level0_additive", LoadSceneMode.Additive);
-        //SceneManager.LoadScene("Level0env_additive", LoadSceneMode.Additive);
-    }
+    //public void Awake()
+    //{
+    //Instance = this;
+    //SceneManager.LoadScene("Level0_additive", LoadSceneMode.Additive);
+    //SceneManager.LoadScene("Level0env_additive", LoadSceneMode.Additive);
+    //}
 
     //private void Start()
     //{
@@ -54,11 +56,29 @@ public class Game : MonoBehaviour
             if (!inErrorState)
                 foreach (var gameLoop in GameLoops)
                     gameLoop.GameLoopUpdate();
+
+            UpdateGameLoopList();
+
         }
         catch (System.Exception e)
         {
             HandleGameLoopException(e);
             throw;
+        }
+    }
+
+    private void UpdateGameLoopList()
+    {
+        while (LoopsToAdd.Count != 0)
+        {
+            GameLoops.Add(LoopsToAdd[0]);
+            LoopsToAdd.RemoveAt(0);
+        }
+
+        while (LoopsToRemove.Count != 0)
+        {
+            GameLoops.Remove(LoopsToRemove[0]);
+            LoopsToRemove.RemoveAt(0);
         }
     }
 
@@ -69,7 +89,8 @@ public class Game : MonoBehaviour
         inErrorState = true;
     }
 
-    public void AddGameLoop(IGameLoop gameLoop) { GameLoops.Add(gameLoop);}
-    public void RemoveGameLoop(IGameLoop gameLoop) { GameLoops.Remove(gameLoop);}
+    public void AddGameLoop(IGameLoop gameLoop) { LoopsToAdd.Add(gameLoop); }
+
+    public void RemoveGameLoop(IGameLoop gameLoop) { LoopsToRemove.Add(gameLoop); }
 }
 

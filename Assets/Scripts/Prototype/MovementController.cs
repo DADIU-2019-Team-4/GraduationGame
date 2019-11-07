@@ -43,6 +43,7 @@ public class MovementController : MonoBehaviour
     private Vector3 previousPosition;
     //private DialogCollision dialogCollision;
     private DialogueRunner dialogRunner;
+    private Tweener moveTweener;
 
     private AttachToPlane attachToPlane;
 
@@ -204,8 +205,10 @@ public class MovementController : MonoBehaviour
     /// </summary>
     private IEnumerator MoveRoutine(Vector3 target, float duration)
     {
+        moveTweener?.Kill();
+
         IsMoving = true;
-        rigidBody.DOMove(target, duration);
+        moveTweener = rigidBody.DOMove(target, duration);
 
         yield return new WaitForSeconds(duration);
 
@@ -217,11 +220,13 @@ public class MovementController : MonoBehaviour
     /// </summary>
     private IEnumerator MoveRoutine(Vector3 target, float duration, int cost)
     {
+        moveTweener?.Kill();
+
         UpdateMovesAmount(cost, true);
         targetPosition = target;
 
         IsMoving = true;
-        rigidBody.DOMove(target, duration);
+        moveTweener = rigidBody.DOMove(target, duration);
         yield return new WaitForSeconds(duration);
 
         if (hitWall)
@@ -233,6 +238,12 @@ public class MovementController : MonoBehaviour
         CheckMovesLeft();
 
         DashEnded();
+    }
+
+    public void StopMoving()
+    {
+        moveTweener?.Kill();
+        StopCoroutine(nameof(MoveRoutine));
     }
 
     private void DashEnded()
@@ -451,4 +462,8 @@ public class MovementController : MonoBehaviour
     //    }
     //}
 
+    public void InfiniteLives()
+    {
+        maxAmountOfMoves = AmountOfMoves = 999;
+    }
 }
