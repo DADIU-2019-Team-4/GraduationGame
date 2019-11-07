@@ -18,8 +18,9 @@ public class MovementController : MonoBehaviour
     [Header("Move Settings")]
     [Tooltip("Duration of a move in seconds (how long it takes to get to target position).")]
     public float MoveDuration = 0.2f;
-    [Tooltip("Distance of a move.")]
-    public int MoveDistance = 50;
+    [Tooltip("This gets multiplied by the drag distance (value between 0-1) to get the distance of a move.")]
+    public float MoveDistanceFactor = 50;
+    public float MoveDistance { get; set; }
     [Tooltip("Cost of a move.")]
     public int MoveCost = 1;
 
@@ -29,7 +30,7 @@ public class MovementController : MonoBehaviour
     [Tooltip("Duration of a dash in seconds (how long it takes to get to target position).")]
     public float DashDuration = 0.1f;
     [Tooltip("Distance of a dash.")]
-    public int DashDistance = 100;
+    public float DashDistance = 100;
     [Tooltip("Cost of a dash.")]
     public int DashCost = 3;
 
@@ -76,8 +77,6 @@ public class MovementController : MonoBehaviour
 
     public bool IsDashCharged { get; set; }
 
-    public bool stopMoving;
-
     private void Awake()
     {
         rigidBody = GetComponent<Rigidbody>();
@@ -106,12 +105,6 @@ public class MovementController : MonoBehaviour
         gameController.IsPlaying = true;
 
         SetStartAndEndPositions();
-    }
-
-    private void Update()
-    {
-        if (stopMoving)
-            StopMoving();
     }
 
     public void SetStartAndEndPositions()

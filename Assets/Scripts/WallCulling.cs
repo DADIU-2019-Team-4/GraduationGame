@@ -21,7 +21,7 @@ public class WallCulling : IGameLoop
     }
     public void checkObjects()
     { 
-        walls = GameObject.FindGameObjectsWithTag("Wall");
+        walls = GameObject.FindGameObjectsWithTag("Block");
         for (int i = 0; i <= walls.Length - 1; i++)
         {
             var wallPosZ = walls[i].transform.forward;
