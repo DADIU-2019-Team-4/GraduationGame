@@ -4,7 +4,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "AssetsInformation", menuName = "ScriptableObjects/AssetsInformation")]
 public class AssetsInformation :ScriptableObject
 {
-    public string AssetName;
+    public string SceneAssetName;
     [Tooltip("Either download link from drive (https://sites.google.com/site/gdocs2direct/) or direct link in cloud server")]
     public string AssetLink;
     public bool isDownloaded;
