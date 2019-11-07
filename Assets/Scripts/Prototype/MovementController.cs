@@ -3,7 +3,6 @@ using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using Yarn.Unity;
-using UnityEngine.SceneManagement;
 
 public class MovementController : MonoBehaviour
 {
@@ -12,6 +11,8 @@ public class MovementController : MonoBehaviour
     public int PickUpValue = 3;
     [Tooltip("Amount of moves at the start of the game.")]
     public int AmountOfMoves = 10;
+    [Tooltip("How much the player should bounce of a wall when colliding.")]
+    public float BounceValue = 1f;
 
     private int maxAmountOfMoves;
 
@@ -348,12 +349,11 @@ public class MovementController : MonoBehaviour
         else
         {
             AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.ObstacleBreakMute, audioEvents, gameObject);
+            StopMoving();
             var collisionPoint = collision.contacts[0];
             var heading = previousPosition - collisionPoint.point;
-            if (Mathf.Abs(heading.x) + Mathf.Abs(heading.z) > 9f)
-                StartCoroutine(MoveRoutine(collisionPoint.point + (heading * 0.5f), MoveDuration));
-            else
-                StartCoroutine(MoveRoutine(collisionPoint.point + heading, MoveDuration));
+            heading.y = 0;
+            StartCoroutine(MoveRoutine(collisionPoint.point + heading.normalized * BounceValue, MoveDuration));
         }
     }
 
@@ -371,20 +371,13 @@ public class MovementController : MonoBehaviour
     private void CollideBlockObstacle(Collision collision)
     {
         AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.ObstacleBlock, audioEvents, gameObject);
+        dialogRunner.StartDialogue("Block");
         hitWall = true;
+        StopMoving();
         var collisionPoint = collision.contacts[0];
         var heading = previousPosition - collisionPoint.point;
-        var magnitudeHeading = Mathf.Abs(heading.x + heading.z);
-        var magnitudeObject = Mathf.Abs((gameObject.transform.position.magnitude - gameObject.transform.position.y) - (collisionPoint.point.magnitude - collisionPoint.point.y));
-        dialogRunner.StartDialogue("Block");
-        if (magnitudeHeading > 7f && magnitudeObject < magnitudeHeading / 3f)
-            StartCoroutine(isDashing
-            ? MoveRoutine(collisionPoint.point + (heading * 0.35f), DashDuration)
-            : MoveRoutine(collisionPoint.point + (heading * 0.35f), MoveDuration));
-        else
-            StartCoroutine(isDashing
-            ? MoveRoutine(collisionPoint.point + heading, DashDuration)
-            : MoveRoutine(collisionPoint.point + heading, MoveDuration));
+        heading.y = 0;
+        StartCoroutine(MoveRoutine(collisionPoint.point + heading.normalized * BounceValue, MoveDuration));
     }
 
     private void CollideDeathObstacle(Collision collision)
@@ -395,23 +388,12 @@ public class MovementController : MonoBehaviour
             hasDied = true;
             CheckGameEnd();
         }
-
-        //if (!isDashing)
-        //{
-        //    AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.ObstacleDeath, audioEvents, gameObject);
-        //    var collisionPoint = collision.contacts[0];
-        //    var heading = previousPosition - collisionPoint.point;
-        //    if (Mathf.Abs(heading.x) + Mathf.Abs(heading.z) > 9f)
-        //        StartCoroutine(MoveRoutine(collisionPoint.point + (heading * 0.5f), MoveDuration));
-        //    else
-        //        StartCoroutine(MoveRoutine(collisionPoint.point + heading, MoveDuration));
-        //    hasDied = true;
-        //    CheckGameEnd();
-        //}
     }
 
     private void CollideGoal(Collision collision)
     {
+        StopMoving();
+
         StartCoroutine(isDashing
             ? MoveRoutine(collision.gameObject.transform.position, DashDuration)
             : MoveRoutine(collision.gameObject.transform.position, MoveDuration));
@@ -420,14 +402,14 @@ public class MovementController : MonoBehaviour
         collision.gameObject.GetComponent<BoxCollider>().enabled = false;
         CheckGameEnd();
         dialogRunner.StartDialogue("Goal");
-
-
     }
+
     private void CollideCandle(Collision collision)
     {
         Light light = collision.gameObject.GetComponentInChildren<Light>();
         light.enabled = true;
     }
+
     private bool PointInOABB(Vector3 point, BoxCollider box)
     {
         point = box.transform.InverseTransformPoint(point) - box.center;
@@ -441,13 +423,13 @@ public class MovementController : MonoBehaviour
            point.z < halfZ && point.z > -halfZ);
     }
 
-
     private void OnTriggerEnter(Collider col)
     {
         if (col.gameObject.CompareTag("FusePoint"))
         {
             if (!IsFuseMoving)
             {
+                StopMoving();
                 StartPoint startPoint = col.gameObject.GetComponent<StartPoint>();
                 startPoint.StartFollowingFuse();
             }
