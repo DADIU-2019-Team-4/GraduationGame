@@ -26,8 +26,8 @@ public class InputManager : IGameLoop
     private GameObject dashCircle;
 
     private float dragDistance;
-    public float MoveThreshold = 0.0115f;
-    public float DashThreshold = 0.028f;
+    public float MoveThreshold = 0.0175f;
+    public float DashThreshold = 0.0525f;
 
     private void Awake()
     {
@@ -65,6 +65,7 @@ public class InputManager : IGameLoop
     private void DetermineMove()
     {
         dragDistance = CalculateDragDistance();
+        Debug.Log("Drag Distance: " + dragDistance);
         // move
         if (dragDistance >= MoveThreshold && dragDistance < DashThreshold)
         {
