@@ -26,8 +26,8 @@ public class InputManager : IGameLoop
     private GameObject dashCircle;
 
     private float dragDistance;
-    public float MoveThreshold = 0.0175f;
-    public float DashThreshold = 0.0585f;
+    public float MoveThreshold = 72f;
+    public float DashThreshold = 322f;
 
     private void Awake()
     {
@@ -65,7 +65,7 @@ public class InputManager : IGameLoop
     private void DetermineMove()
     {
         dragDistance = CalculateDragDistance();
-        //Debug.Log("Drag Distance: " + dragDistance);
+        Debug.Log("Drag Distance: " + dragDistance);
         // move
         if (dragDistance >= MoveThreshold && dragDistance < DashThreshold)
         {
@@ -125,9 +125,9 @@ public class InputManager : IGameLoop
     /// </summary>
     private void SetAimingDirection()
     {
-        Vector3 lookDirection = firstPosition - lastPosition;
-        lookDirection.y = 0;
-        movementController.transform.rotation = Quaternion.LookRotation(lookDirection.normalized);
+        Vector2 lookDirection = firstPosition - lastPosition;
+        Vector3 lookDirection3D = new Vector3(lookDirection.x, 0, lookDirection.y);
+        movementController.transform.rotation = Quaternion.LookRotation(lookDirection3D.normalized);
     }
 
     /// <summary>
@@ -178,8 +178,7 @@ public class InputManager : IGameLoop
             // Player's finger touches the screen and moves on the screen
             else if (touch.phase == TouchPhase.Moved)
             {
-                lastPosition = mainCamera.ScreenToWorldPoint(new Vector3(touch.position.x, touch.position.y,
-                    mainCamera.nearClipPlane));
+                lastPosition = touch.position;
             }
             // Player's finger stops touching the screen
             else if (touch.phase == TouchPhase.Ended)
@@ -204,8 +203,7 @@ public class InputManager : IGameLoop
         // track the mouse position if the mouse button is pressed down.
         if (trackMouse)
         {
-            lastPosition = mainCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y,
-                mainCamera.nearClipPlane));
+            lastPosition = Input.mousePosition;
         }
 
         // mouse button is released
@@ -223,10 +221,8 @@ public class InputManager : IGameLoop
     {
         dashCircle = Instantiate(DashCirclePrefab, position, Quaternion.identity, canvas.transform);
 
-        firstPosition =
-            mainCamera.ScreenToWorldPoint(new Vector3(position.x, position.y, mainCamera.nearClipPlane));
-        lastPosition =
-            mainCamera.ScreenToWorldPoint(new Vector3(position.x, position.y, mainCamera.nearClipPlane));
+        firstPosition = position;
+        lastPosition = position;
         isHolding = true;
         dragDistance = 0;
     }
@@ -253,10 +249,10 @@ public class InputManager : IGameLoop
     /// </summary>
     private void StretchArrow(float distance)
     {
-        Vector3 targetDirection = firstPosition - lastPosition;
-        targetDirection.y = 0;
-        targetDirection = targetDirection.normalized;
-        Vector3 targetPosition = movementController.transform.position + targetDirection * distance;
+        Vector2 targetDirection = firstPosition - lastPosition;
+        Vector3 targetDirection3D = new Vector3(targetDirection.x, 0, targetDirection.y);
+        targetDirection3D = targetDirection3D.normalized;
+        Vector3 targetPosition = movementController.transform.position + targetDirection3D * distance;
 
         var scale = arrowParent.transform.localScale;
         scale.z = Vector3.Distance(movementController.transform.position, targetPosition) * ArrowScaleFactor;
@@ -268,15 +264,15 @@ public class InputManager : IGameLoop
     /// </summary>
     private void ApplyAction()
     {
-        Vector3 directionVector = firstPosition - lastPosition;
-        directionVector.y = 0;
+        Vector2 directionVector = firstPosition - lastPosition;
+        Vector3 directionVector3D = new Vector3(directionVector.x, 0, directionVector.y);
 
         if (movementController.IsDashCharged)
         {
-            movementController.Dash(directionVector.normalized);
+            movementController.Dash(directionVector3D.normalized);
             movementController.ResetDash();
         }
         else
-            movementController.Move(directionVector.normalized);
+            movementController.Move(directionVector3D.normalized);
     }
 }
