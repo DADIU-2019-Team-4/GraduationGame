@@ -56,7 +56,6 @@ public class BurnObject : MonoBehaviour
 
     private void LongFire()
     {
-        Debug.Log(" long Burning");
         if (!_isDissasembling)
         {
             if (fireFloat >= -0.42f)

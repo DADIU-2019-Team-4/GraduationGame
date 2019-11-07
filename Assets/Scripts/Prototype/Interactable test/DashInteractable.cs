@@ -13,5 +13,6 @@ public abstract class DashInteractable : IGameLoop
     public override void GameLoopUpdate() { }
 
     public abstract void Interact(GameObject player);
+    public abstract void Interact(GameObject player, Collision collision);
 
 }

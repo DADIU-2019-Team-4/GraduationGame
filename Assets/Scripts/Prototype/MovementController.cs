@@ -77,6 +77,8 @@ public class MovementController : MonoBehaviour
 
     public bool IsDashCharged { get; set; }
 
+    public bool IsDashing { get { return isDashing; } }
+
     private void Awake()
     {
         rigidBody = GetComponent<Rigidbody>();
@@ -334,7 +336,7 @@ public class MovementController : MonoBehaviour
         else if (collision.gameObject.CompareTag("Break"))
             CollideBreakObstacle(collision);
         else if (collision.gameObject.CompareTag("Candle"))
-            CollideCandle(collision);
+            collision.gameObject.GetComponent<InteractibleObject>().Interact(gameObject, collision);
     }
 
     private void CollideBreakObstacle(Collision collision)
@@ -424,11 +426,6 @@ public class MovementController : MonoBehaviour
 
 
     }
-    private void CollideCandle(Collision collision)
-    {
-        Light light = collision.gameObject.GetComponentInChildren<Light>();
-        light.enabled = true;
-    }
     private bool PointInOABB(Vector3 point, BoxCollider box)
     {
         point = box.transform.InverseTransformPoint(point) - box.center;
@@ -454,15 +451,6 @@ public class MovementController : MonoBehaviour
             }
         }
     }
-
-    //private void SendAudioEvent(AudioEvent.AudioEventType type)
-    //{
-    //    for (int i = 0; i <= audioEvents.Length - 1; i++)
-    //    {
-    //        if (type == audioEvents[i].TriggerType)
-    //            audioEvents[i].AddAudioEvent(type, gameObject);
-    //    }
-    //}
 
     public void InfiniteLives()
     {

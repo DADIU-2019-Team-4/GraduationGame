@@ -35,6 +35,11 @@ public class PaperPlane : DashInteractable
         player.GetComponent<Rigidbody>().velocity = new Vector3();
         playerScript._attached = true;
     }
+
+    public override void Interact(GameObject player, Collision collision)
+    {
+
+    }
 }
 
 
