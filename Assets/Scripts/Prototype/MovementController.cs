@@ -12,6 +12,9 @@ public class MovementController : MonoBehaviour
     private float breakBounceShakeDur = 0.1f;
     private float breakShake = 0.4f;
 
+    //timeSlowdown
+    TimeSlowdown timeSlowdown;
+
 
     public const string StartShortDashTrigger = "Prepare for Short Dash";
     public const string StartLongDashTrigger = "Prepare for Long Dash";
@@ -94,6 +97,7 @@ public class MovementController : MonoBehaviour
 
     private void Awake()
     {
+        timeSlowdown = GameObject.FindGameObjectWithTag("VirtualCamera").GetComponent<TimeSlowdown>();
         cameraShake = GameObject.FindGameObjectWithTag("VirtualCamera").GetComponent<CameraShake>();
         rigidBody = GetComponent<Rigidbody>();
         animator = GameObject.Find("FireGirl").GetComponent<Animator>();
@@ -244,6 +248,7 @@ public class MovementController : MonoBehaviour
         if (isDashing)
         {
             cameraShake.setShakeElapsedTime(chargedDashShakeDur);
+
         }
         moveTweener?.Kill();
 
@@ -375,6 +380,7 @@ public class MovementController : MonoBehaviour
         {
             collision.gameObject.GetComponent<BurnObject>().SetObjectOnFire();
             cameraShake.setShakeElapsedTime(breakShake);
+            timeSlowdown.doSlowmotion();
             AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.ObstacleBreak, audioEvents, gameObject);
             dialogRunner.StartDialogue("Break");
         }
@@ -383,6 +389,7 @@ public class MovementController : MonoBehaviour
             AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.ObstacleBreakMute, audioEvents, gameObject);
             StopMoving();
             cameraShake.setShakeElapsedTime(breakBounceShakeDur);
+          
             var collisionPoint = collision.contacts[0];
             var heading = previousPosition - collisionPoint.point;
             heading.y = 0;
