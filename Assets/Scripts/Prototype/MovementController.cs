@@ -6,6 +6,13 @@ using Yarn.Unity;
 
 public class MovementController : MonoBehaviour
 {
+    //CameraShake
+    CameraShake cameraShake;
+    private float chargedDashShakeDur = 0.2f;
+    private float breakBounceShakeDur = 0.1f;
+    private float breakShake = 0.4f;
+
+
     public const string StartShortDashTrigger = "Prepare for Short Dash";
     public const string StartLongDashTrigger = "Prepare for Long Dash";
     public const string ShortDashTrigger = "Perform Short Dash";
@@ -87,6 +94,7 @@ public class MovementController : MonoBehaviour
 
     private void Awake()
     {
+        cameraShake = GameObject.FindGameObjectWithTag("VirtualCamera").GetComponent<CameraShake>();
         rigidBody = GetComponent<Rigidbody>();
         animator = GameObject.Find("FireGirl").GetComponent<Animator>();
         material = GetComponent<Renderer>().material;
@@ -233,6 +241,10 @@ public class MovementController : MonoBehaviour
     /// </summary>
     private IEnumerator MoveRoutine(Vector3 target, float duration, int cost)
     {
+        if (isDashing)
+        {
+            cameraShake.setShakeElapsedTime(chargedDashShakeDur);
+        }
         moveTweener?.Kill();
 
         UpdateMovesAmount(cost, true);
@@ -362,6 +374,7 @@ public class MovementController : MonoBehaviour
         if (isDashing)
         {
             collision.gameObject.GetComponent<BurnObject>().SetObjectOnFire();
+            cameraShake.setShakeElapsedTime(breakShake);
             AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.ObstacleBreak, audioEvents, gameObject);
             dialogRunner.StartDialogue("Break");
         }
@@ -369,6 +382,7 @@ public class MovementController : MonoBehaviour
         {
             AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.ObstacleBreakMute, audioEvents, gameObject);
             StopMoving();
+            cameraShake.setShakeElapsedTime(breakBounceShakeDur);
             var collisionPoint = collision.contacts[0];
             var heading = previousPosition - collisionPoint.point;
             heading.y = 0;
