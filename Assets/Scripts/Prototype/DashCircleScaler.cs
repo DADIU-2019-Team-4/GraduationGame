@@ -6,8 +6,9 @@ public class DashCircleScaler : MonoBehaviour
     private InputManager inputManager;
     public RectTransform InnerCircle;
     public RectTransform OuterCircle;
+    public float ScaleFactor = 2.019f;
 
-    private float ScaleFactor = 2.019f;
+    [Header("Use this to set the size of the input circles")]
     public float MoveThreshold = 72f;
     public float DashThreshold = 322f;
 
