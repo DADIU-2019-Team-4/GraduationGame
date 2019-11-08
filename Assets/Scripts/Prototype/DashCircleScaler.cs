@@ -16,6 +16,12 @@ public class DashCircleScaler : MonoBehaviour
         inputManager = FindObjectOfType<InputManager>();
     }
 
+    private void Start()
+    {
+        inputManager.MoveThreshold = MoveThreshold;
+        inputManager.DashThreshold = DashThreshold;
+    }
+
     // Update is called once per frame
     void Update()
     {
