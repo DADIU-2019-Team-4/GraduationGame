@@ -6,6 +6,12 @@ using Yarn.Unity;
 
 public class MovementController : MonoBehaviour
 {
+    public const string StartShortDashTrigger = "Prepare for Short Dash";
+    public const string StartLongDashTrigger = "Prepare for Long Dash";
+    public const string ShortDashTrigger = "Perform Short Dash";
+    public const string LongDashTrigger = "Perform Long Dash";
+    public const string LandTrigger = "Land";
+
     [Header("General Settings")]
     [Tooltip("Value of pick ups that add to your amount of moves.")]
     public int PickUpValue = 3;
@@ -39,6 +45,7 @@ public class MovementController : MonoBehaviour
     private TMP_Text MovesText;
 
     private GameController gameController;
+    private Animator animator;
     private Rigidbody rigidBody;
     private Material material;
     private TrailRenderer trailRenderer;
@@ -81,6 +88,7 @@ public class MovementController : MonoBehaviour
     private void Awake()
     {
         rigidBody = GetComponent<Rigidbody>();
+        animator = GameObject.Find("FireGirl Variant").GetComponent<Animator>();
         material = GetComponent<Renderer>().material;
         trailRenderer = GetComponent<TrailRenderer>();
         gameController = FindObjectOfType<GameController>();
@@ -89,7 +97,6 @@ public class MovementController : MonoBehaviour
         //dialogCollision = GetComponentInChildren<DialogCollision>();
         dialogRunner = FindObjectOfType<DialogueRunner>();
         MovesText = GameObject.Find("MovesText").GetComponent<TextMeshProUGUI>();
-
     }
 
     // Start is called before the first frame update
@@ -130,13 +137,15 @@ public class MovementController : MonoBehaviour
         material.color = new Color(1, colorValue, colorValue, 1);
         colorValue -= 0.05f;
 
+        // Play Animation
+        animator.SetTrigger(StartLongDashTrigger);
+
         if (!_hasRun)
         {
             // Debug.Log("Charging");
             AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.ChargingDash, audioEvents, gameObject);
             _hasRun = true;
         }
-
     }
 
     /// <summary>
@@ -212,6 +221,8 @@ public class MovementController : MonoBehaviour
         IsMoving = true;
         moveTweener = rigidBody.DOMove(target, duration);
 
+        // Collision
+
         yield return new WaitForSeconds(duration);
 
         DashEnded();
@@ -229,6 +240,11 @@ public class MovementController : MonoBehaviour
 
         IsMoving = true;
         moveTweener = rigidBody.DOMove(target, duration);
+
+        // Play Animation
+        // TODO Add ShortDashTrigger
+        animator.SetTrigger(isDashing ? LongDashTrigger : LongDashTrigger);
+
         yield return new WaitForSeconds(duration);
 
         if (hitWall)
@@ -260,6 +276,9 @@ public class MovementController : MonoBehaviour
 
         HealthPercentage.Value = ((float)AmountOfMoves / (float)maxAmountOfMoves) * 100f;
         UpdateGoalDistances();
+
+        // Play Animation
+        animator.SetTrigger(LandTrigger);
     }
 
     private void UpdateGoalDistances()

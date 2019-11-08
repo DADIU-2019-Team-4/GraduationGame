@@ -26,6 +26,7 @@ GameObject:
   - component: {fileID: -8069058694036373769}
   - component: {fileID: 4574719023188414092}
   - component: {fileID: 736132331884408619}
+  - component: {fileID: 1817040481}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -107,7 +108,7 @@ CapsuleCollider:
   m_Radius: 0.3
   m_Height: 1.7
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.85, z: 0}
 --- !u!54 &714748535622932581
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -122,7 +123,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 116
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!96 &714748535622932571
 TrailRenderer:
@@ -232,7 +233,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PickUpValue: 3
-  AmountOfMoves: 20
+  AmountOfMoves: 1000000
   BounceValue: 0.75
   MoveDuration: 0.2
   MoveDistanceFactor: 0.01
@@ -453,6 +454,22 @@ MonoBehaviour:
   RTPCValue: {fileID: 0}
   SetStateGroup: 
   SetStateValue: 
+--- !u!114 &1817040481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 714748535622932580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95b9abdace02946338b83553050348d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveTime: 10
+  inSafeZone: 1
+  timeText: {fileID: 0}
+  addToTimer: 2
 --- !u!1 &4429306999930308570
 GameObject:
   m_ObjectHideFlags: 0
@@ -570,6 +587,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 714748535622932569}
     m_Modifications:
+    - target: {fileID: 5180170456326966905, guid: cd47549aa60e11e4db1cb00669a5a6d3,
+        type: 3}
+      propertyPath: m_Name
+      value: FireGirl Variant
+      objectReference: {fileID: 0}
     - target: {fileID: 8194563737563266154, guid: cd47549aa60e11e4db1cb00669a5a6d3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -625,11 +647,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5180170456326966905, guid: cd47549aa60e11e4db1cb00669a5a6d3,
+    - target: {fileID: 2248126950203052304, guid: cd47549aa60e11e4db1cb00669a5a6d3,
         type: 3}
-      propertyPath: m_Name
-      value: FireGirl Variant
-      objectReference: {fileID: 0}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: ad6eb663eb7eba44d865cfd48ae05c46, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd47549aa60e11e4db1cb00669a5a6d3, type: 3}
 --- !u!4 &2813736243503467306 stripped
