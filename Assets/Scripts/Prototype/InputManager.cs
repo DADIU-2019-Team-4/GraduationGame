@@ -29,6 +29,8 @@ public class InputManager : IGameLoop
     public float MoveThreshold = 72f;
     public float DashThreshold = 322f;
 
+    public bool IsPerfectTopDownCamera;
+
     private void Awake()
     {
         movementController = FindObjectOfType<MovementController>();
@@ -125,16 +127,32 @@ public class InputManager : IGameLoop
     /// </summary>
     private void SetAimingDirection()
     {
-        Vector2 lookDirection = firstPosition - lastPosition;
-        float angle = Vector2.SignedAngle(Vector2.up, lookDirection);
-        Vector3 cameraRotation = mainCamera.transform.forward;
-        cameraRotation.y = 0;
-        Vector3 offset = Quaternion.AngleAxis(angle, Vector3.down) * cameraRotation;
-        Vector3 target = movementController.transform.position + offset;
-        movementController.transform.LookAt(target);
+        Vector3 directionVector = CalculateDirectionVector();
 
-        //Vector3 lookDirection3D = new Vector3(lookDirection.x, 0, lookDirection.y);
-        //movementController.transform.rotation = Quaternion.LookRotation(lookDirection3D.normalized);
+        if (!IsPerfectTopDownCamera)
+        {
+            Vector3 target = movementController.transform.position + directionVector.normalized;
+            movementController.transform.LookAt(target);
+        }
+        else
+            movementController.transform.rotation = Quaternion.LookRotation(directionVector.normalized);
+    }
+
+    /// <summary>
+    /// Calculates the direction vector.
+    /// </summary>
+    private Vector3 CalculateDirectionVector()
+    {
+        Vector2 targetDirection = firstPosition - lastPosition;
+        if (!IsPerfectTopDownCamera)
+        {
+            float angle = Vector2.SignedAngle(Vector2.up, targetDirection);
+            Vector3 cameraRotation = mainCamera.transform.forward;
+            cameraRotation.y = 0;
+            return Quaternion.AngleAxis(angle, Vector3.down) * cameraRotation;
+        }
+
+        return new Vector3(targetDirection.x, 0, targetDirection.y);
     }
 
     /// <summary>
@@ -256,13 +274,8 @@ public class InputManager : IGameLoop
     /// </summary>
     private void StretchArrow(float distance)
     {
-        Vector2 targetDirection = firstPosition - lastPosition;
-        float angle = Vector2.SignedAngle(Vector2.up, targetDirection);
-        Vector3 cameraRotation = mainCamera.transform.forward;
-        cameraRotation.y = 0;
-        Vector3 offset = Quaternion.AngleAxis(angle, Vector3.down) * cameraRotation;
-
-        Vector3 targetPosition = movementController.transform.position + offset * distance;
+        Vector3 directionVector = CalculateDirectionVector();
+        Vector3 targetPosition = movementController.transform.position + directionVector.normalized * distance;
 
         var scale = arrowParent.transform.localScale;
         scale.z = Vector3.Distance(movementController.transform.position, targetPosition) * ArrowScaleFactor;
@@ -274,19 +287,14 @@ public class InputManager : IGameLoop
     /// </summary>
     private void ApplyAction()
     {
-        Vector2 directionVector = firstPosition - lastPosition;
-        float angle = Vector2.SignedAngle(Vector2.up, directionVector);
-        Vector3 cameraRotation = mainCamera.transform.forward;
-        cameraRotation.y = 0;
-        Vector3 offset = Quaternion.AngleAxis(angle, Vector3.down) * cameraRotation;
-
+        Vector3 directionVector = CalculateDirectionVector();
 
         if (movementController.IsDashCharged)
         {
-            movementController.Dash(offset);
+            movementController.Dash(directionVector.normalized);
             movementController.ResetDash();
         }
         else
-            movementController.Move(offset);
+            movementController.Move(directionVector.normalized);
     }
 }
