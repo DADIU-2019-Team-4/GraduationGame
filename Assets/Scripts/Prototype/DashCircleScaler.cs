@@ -7,7 +7,9 @@ public class DashCircleScaler : MonoBehaviour
     public RectTransform InnerCircle;
     public RectTransform OuterCircle;
 
-    public float ScaleFactor = 2.019f;
+    private float ScaleFactor = 2.019f;
+    public float MoveThreshold = 72f;
+    public float DashThreshold = 322f;
 
     private void Awake()
     {
@@ -21,5 +23,8 @@ public class DashCircleScaler : MonoBehaviour
         float newDashScale = inputManager.DashThreshold * ScaleFactor;
         InnerCircle.sizeDelta = new Vector2(newMoveScale, newMoveScale);
         OuterCircle.sizeDelta = new Vector2(newDashScale, newDashScale);
+
+        inputManager.MoveThreshold = MoveThreshold;
+        inputManager.DashThreshold = DashThreshold;
     }
 }

@@ -26,8 +26,8 @@ public class InputManager : IGameLoop
     private GameObject dashCircle;
 
     private float dragDistance;
-    public float MoveThreshold = 72f;
-    public float DashThreshold = 322f;
+    public float MoveThreshold { get; set; }
+    public float DashThreshold { get; set; }
 
     public bool IsPerfectTopDownCamera;
 
