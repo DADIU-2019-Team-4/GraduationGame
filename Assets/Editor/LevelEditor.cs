@@ -200,7 +200,7 @@ public class LevelEditor : EditorWindow
             SpawnPrefab(prefab, spawnPos, 1, 1);
 
             //draw less often if it is a wall
-            if (prefab.name == "InnerWall")
+            if (prefab.name == "InnerWall" || prefab.name == "OuterWall")
             {
                 i += 2;
             }
@@ -239,7 +239,7 @@ public class LevelEditor : EditorWindow
         {
             if (child.GetComponent<MeshRenderer>() != null)
             {
-                Debug.Log(child.GetComponent<MeshRenderer>().bounds.min.y);
+                //Debug.Log(child.GetComponent<MeshRenderer>().bounds.min.y);
 
                 if(child.transform.name == "Floor Unit")
                 {
