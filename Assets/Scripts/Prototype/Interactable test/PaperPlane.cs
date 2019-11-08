@@ -36,7 +36,7 @@ public class PaperPlane : DashInteractable
         playerScript._attached = true;
     }
 
-    public override void Interact(GameObject player, Collision collision)
+    public override void Interact(Collision collision)
     {
 
     }
