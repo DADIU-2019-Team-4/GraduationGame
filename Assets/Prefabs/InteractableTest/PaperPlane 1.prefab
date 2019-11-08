@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6463440307218447913}
   - component: {fileID: 6463440307218447912}
   - component: {fileID: 6463440307218447915}
-  - component: {fileID: -8485679297175054145}
+  - component: {fileID: 1261354979470108132}
   m_Layer: 0
   m_Name: PaperPlane 1
   m_TagString: Projectile
@@ -92,7 +92,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.2, y: 0.2, z: 0.2}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &-8485679297175054145
+--- !u!114 &1261354979470108132
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -101,9 +101,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 6463440307218447917}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4045e6b1ec8bad444872f1644de7daae, type: 3}
+  m_Script: {fileID: 11500000, guid: e865a75c0adcd15428e633d6a1dd3de9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   test1: 0
   test2: 0
-  speed: 25
+  OnInteract:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  speed: 5
