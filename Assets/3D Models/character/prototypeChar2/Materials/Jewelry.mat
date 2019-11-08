@@ -7,10 +7,10 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: FireSurface 1
-  m_Shader: {fileID: 4800000, guid: 7028d954700535d4586b8a00e6534dc2, type: 3}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 0
+  m_Name: Jewelry
+  m_Shader: {fileID: 4800000, guid: c6594e811b09865478da64f906978096, type: 3}
+  m_ShaderKeywords: _EMISSION
+  m_LightmapFlags: 5
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -39,14 +39,6 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _FlameNoise:
-        m_Texture: {fileID: 2800000, guid: cd460ee4ac5c1e746b7a734cc7cc64dd, type: 3}
-        m_Scale: {x: 2, y: 2}
-        m_Offset: {x: 0, y: 0}
-    - _FlameWave:
-        m_Texture: {fileID: 2800000, guid: 9fbef4b79ca3b784ba023cb1331520d5, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -63,41 +55,29 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _texcoord:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     m_Floats:
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _F_bias: 0.267
-    - _F_power: 0.62
-    - _F_scale: 0.75
-    - _FlameHeight: 0.5
-    - _Flameon: 1
-    - _Float0: 1.09
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _Metallic: 0
+    - _Metallic: 0.381
+    - _Metallicness: -1.8
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
-    - _Speed: 1
     - _SrcBlend: 1
-    - _U: -0.1
     - _UVSec: 0
-    - _Y_mask: 2.22
     - _ZWrite: 1
     - __dirty: 0
-    - _v: -0.2
     m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _FlameColor: {r: 11.984314, g: 5.019608, b: 0, a: 1}
-    - _FlameDirection: {r: 0, g: 1, b: 0, a: 0}
-    - _Flamecolor2: {r: 11.98431, g: 4.012387, b: 0, a: 1}
+    - _Color: {r: 0.9528302, g: 0.56923497, b: 0.03146139, a: 1}
+    - _Color0: {r: 1.4142135, g: 0.74870133, b: 0, a: 0}
+    - _Color1: {r: 0.9150943, g: 0.5517548, b: 0.133811, a: 0}
+    - _EmissionColor: {r: 0.16037738, g: 0.06689579, b: 0.02950339, a: 1}
+    - _FresnelColor: {r: 2.9960785, g: 1.8196079, b: 0.4392157, a: 0}
+    - _MainColor: {r: 1.4980392, g: 0.5568628, b: 0, a: 0}

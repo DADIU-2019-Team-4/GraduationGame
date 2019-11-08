@@ -449,4 +449,6 @@ public class MovementController : MonoBehaviour
     {
         maxAmountOfMoves = AmountOfMoves = 999;
     }
+
+    public Vector3 DashDirection() { return targetPosition - rigidBody.position; }
 }
