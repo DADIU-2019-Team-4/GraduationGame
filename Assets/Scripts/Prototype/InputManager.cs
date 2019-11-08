@@ -25,6 +25,8 @@ public class InputManager : IGameLoop
     public GameObject DashCirclePrefab;
     private GameObject dashCircle;
 
+    private AudioEvent[] audioEvents;
+
     private float dragDistance;
     public float MoveThreshold { get; set; }
     public float DashThreshold { get; set; }
@@ -33,6 +35,7 @@ public class InputManager : IGameLoop
 
     private void Awake()
     {
+        audioEvents = GetComponents<AudioEvent>();
         movementController = FindObjectOfType<MovementController>();
         gameController = FindObjectOfType<GameController>();
         mainCamera = Camera.main;
@@ -93,6 +96,7 @@ public class InputManager : IGameLoop
             doMove = false;
             arrowParent.SetActive(false);
             movementController.ResetDash();
+            AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.DashCancelled, audioEvents, gameObject);
         }
     }
 
