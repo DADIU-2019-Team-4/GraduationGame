@@ -97,7 +97,6 @@ public class InteractibleObject : DashInteractable
     {
         AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.ObstacleBlock, audioEvents, gameObject);
         dialogRunner.StartDialogue("Block");
-        movementController.HitWall = true;
         movementController.StopMoving(collision);
     }
     private void Break(Collision collision)

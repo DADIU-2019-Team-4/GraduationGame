@@ -25,8 +25,8 @@ public class UpdateStartEndPoints : MonoBehaviour
             startPoint = transform.Find("StartPoint");
             endPoint = transform.Find("EndPoint");
 
-            startPoint.position = transform.position + spline.nodes[0].Position;
-            endPoint.position = transform.position + spline.nodes[spline.nodes.Count - 1].Position;
+            startPoint.position = transform.TransformPoint(spline.nodes[0].Position);
+            endPoint.position = transform.TransformPoint(spline.nodes[spline.nodes.Count - 1].Position);
         }
 
         

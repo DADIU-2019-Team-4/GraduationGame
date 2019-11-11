@@ -141,6 +141,7 @@ public class AudioEvent : IGameLoop
 
     public override void GameLoopUpdate()
     {
+        return;
         // Iterate backwards to allow removing elements while iterating.
         for (int i = ListenerSpace.Count - 1; i >= 0; --i)
         {

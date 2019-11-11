@@ -25,6 +25,7 @@ public class LevelEditor : EditorWindow
     static private float gridScale = 1;
 
     private float objectRotation = 0;
+    private int mathiasFix= 0;
 
     private Vector3 currentCellSelected;
     private Vector3 previousCellSelected;
@@ -60,6 +61,7 @@ public class LevelEditor : EditorWindow
         //floorXScale = EditorGUILayout.IntField("floor x",floorXScale);
         //    floorZScale = EditorGUILayout.IntField("floor z", floorZScale);
             objectRotation = EditorGUILayout.FloatField("rotation of objects", objectRotation);
+        mathiasFix = EditorGUILayout.IntField("Custom Mathias fix", mathiasFix);
 
         switch (toolbarIndex)
         {
@@ -93,7 +95,11 @@ public class LevelEditor : EditorWindow
 
         scrollPos = GUILayout.BeginScrollView(scrollPos, false, false, GUIStyle.none, GUI.skin.verticalScrollbar);
         // Display the grid
-        paletteIndex = GUILayout.SelectionGrid(paletteIndex, paletteIcons.ToArray(), 4, GUILayout.Width(Screen.width));
+
+        int width = Screen.width- mathiasFix;
+        
+
+        paletteIndex = GUILayout.SelectionGrid(paletteIndex, paletteIcons.ToArray(), 4, GUILayout.Width(width));
         GUILayout.EndScrollView();
 
         //roate 90 with r
