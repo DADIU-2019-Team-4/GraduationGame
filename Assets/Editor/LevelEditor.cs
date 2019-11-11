@@ -34,6 +34,8 @@ public class LevelEditor : EditorWindow
     private int paletteIndex;
     private int toolbarIndex = toolbarTexts.Length-1;
 
+    Vector2 scrollPos;
+
     private enum Tools
     {
         Paint,
@@ -89,12 +91,13 @@ public class LevelEditor : EditorWindow
             paletteIcons.Add(new GUIContent(texture,prefab.transform.name));
         }
 
+        scrollPos = GUILayout.BeginScrollView(scrollPos, false, false, GUIStyle.none, GUI.skin.verticalScrollbar);
         // Display the grid
-        paletteIndex = GUILayout.SelectionGrid(paletteIndex, paletteIcons.ToArray(), 4);
-
+        paletteIndex = GUILayout.SelectionGrid(paletteIndex, paletteIcons.ToArray(), 4, GUILayout.Width(Screen.width));
+        GUILayout.EndScrollView();
 
         //roate 90 with r
-        
+
     }
 
 
