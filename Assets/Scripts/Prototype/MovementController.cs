@@ -9,14 +9,6 @@ using System.Linq;
 
 public class MovementController : MonoBehaviour
 {
-
-
-    public const string StartShortDashTrigger = "Prepare for Short Dash";
-    public const string StartLongDashTrigger = "Prepare for Long Dash";
-    public const string ShortDashTrigger = "Perform Short Dash";
-    public const string LongDashTrigger = "Perform Long Dash";
-    public const string LandTrigger = "Land";
-
     [Header("General Settings")]
     [Tooltip("Value of pick ups that add to your amount of moves.")]
     public int PickUpValue = 3;
@@ -52,7 +44,7 @@ public class MovementController : MonoBehaviour
     private TMP_Text MovesText;
 
     private GameController gameController;
-    private Animator animator;
+    private FireGirlAnimationController animationController;
     private Rigidbody rigidBody;
     private Material material;
     private TrailRenderer trailRenderer;
@@ -66,10 +58,9 @@ public class MovementController : MonoBehaviour
     private float changeTextColorDuration = 0.2f;
 
     private bool isOutOfMoves;
+    private bool isCharged;
     private bool reachedGoal;
     private Vector3 targetPosition;
-
-    private static bool _hasRun;
 
     [Header("Scriptable Objects")]
     public FloatVariable GoalDistance;
@@ -81,7 +72,6 @@ public class MovementController : MonoBehaviour
 
     CameraShake cameraShake;
     private float chargedDashShakeDur = 0.2f;
-
 
     public bool IsMoving { get; set; }
 
@@ -97,7 +87,7 @@ public class MovementController : MonoBehaviour
     private void Awake()
     {
         rigidBody = GetComponent<Rigidbody>();
-        animator = GetComponentInChildren<Animator>();
+        animationController = GetComponentInChildren<FireGirlAnimationController>();
         material = GetComponent<Renderer>().material;
         trailRenderer = GetComponent<TrailRenderer>();
         gameController = FindObjectOfType<GameController>();
@@ -144,13 +134,13 @@ public class MovementController : MonoBehaviour
     /// </summary>
     public void ChargeDash()
     {
-        // Play Animation
-        //animator.SetTrigger(StartLongDashTrigger);
-
-        if (!_hasRun)
+        if (!isCharged)
         {
+            // Play Animation
+            animationController.ChargeDash();
+
             AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.ChargingDash, audioEvents, gameObject);
-            _hasRun = true;
+            isCharged = true;
         }
     }
 
@@ -202,9 +192,10 @@ public class MovementController : MonoBehaviour
         previousPosition = transform.position;
         Vector3 targetPosition = transform.position + dashDirection * DashDistance;
 
-        StartCoroutine(MoveRoutine(targetPosition, DashDuration));
+        // Play Animation
+        animationController.Dash();
 
-        ResetDash();
+        StartCoroutine(MoveRoutine(targetPosition, DashDuration, DashCost));
     }
 
     /// <summary>
@@ -212,10 +203,16 @@ public class MovementController : MonoBehaviour
     /// </summary>
     public void ResetDash()
     {
-        material.SetColor("_Color", Color.black);
+        if (isCharged)
+        {
+            // Play Animation
+            animationController.Cancel();
+        }
+
+        material.SetColor("_Color", Color.yellow);
         colorValue = 1f;
         IsDashCharged = false;
-        _hasRun = false;
+        isCharged = false;
     }
 
     /// <summary>
@@ -253,12 +250,8 @@ public class MovementController : MonoBehaviour
 
         IsMoving = true;
 
-        // Play Animation
-        //animator.SetTrigger(IsDashing ? LongDashTrigger : ShortDashTrigger);
-
         moveTweener = rigidBody.DOMove(target, duration);
         moveTweener.SetEase(IsDashing ? DashEase : MoveEase);
-
         yield return new WaitForSeconds(duration);
 
         CheckMovesLeft();
@@ -296,7 +289,7 @@ public class MovementController : MonoBehaviour
         UpdateGoalDistances();
 
         // Play Animation
-        //animator.SetTrigger(LandTrigger);
+        animationController.Land();
     }
 
     private void UpdateGoalDistances()
@@ -375,7 +368,6 @@ public class MovementController : MonoBehaviour
             AmountOfDashMoves = maxAmountOfDashMoves;
         MovesText.text = AmountOfDashMoves.ToString();
     }
-
 
     public void CollideGoal(Collision collision)
     {
