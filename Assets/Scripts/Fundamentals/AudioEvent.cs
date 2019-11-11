@@ -23,7 +23,7 @@ public class AudioEvent : IGameLoop
 
 
     // Made static as a shared AudioListener space.
-    private static readonly List<(AudioEventType, GameObject)> ListenerSpace = new List<(AudioEventType, GameObject)>();
+    public static readonly List<(AudioEventType, GameObject)> ListenerSpace = new List<(AudioEventType, GameObject)>();
 
     public enum WwiseFunction { PostEvent, RTPCValue, State }
 
@@ -147,6 +147,9 @@ public class AudioEvent : IGameLoop
         {
             (AudioEventType audioEvent, GameObject trigger) = ListenerSpace[i];
             if (audioEvent != TriggerType) continue;
+            Debug.Log("Audio Event:" + audioEvent + "Trigger:" + trigger + "Count:" + ListenerSpace.Count);
+            Debug.Log("Event:" + TriggerType);
+            Debug.Log("Local object:" + gameObject);
             if (trigger != gameObject) continue;
             ListenerSpace.RemoveAt(i);
             SendWwiseData();
@@ -163,9 +166,9 @@ public class AudioEvent : IGameLoop
             AkSoundEngine.SetState(SetStateGroup, SetStateValue);
     }
 
-    public static void SendAudioEvent(AudioEventType type, AudioEvent[] audioEvents, GameObject gameObject)
+    public static void SendAudioEvent(AudioEventType type,List <AudioEvent> audioEvents, GameObject gameObject)
     {
-        for (int i = 0; i <= audioEvents.Length - 1; i++)
+        for (int i = 0; i <= audioEvents.Count - 1; i++)
         {
             if (type == audioEvents[i].TriggerType)
             {

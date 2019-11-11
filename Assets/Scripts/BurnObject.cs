@@ -78,8 +78,8 @@ public class BurnObject : MonoBehaviour
                 fireFloat -= 0.02f;
                 fireObject.GetComponent<Renderer>().material.SetFloat("_FlameHeight", fireFloat);
             }
-            //else
-                //Destroy(gameObject,10f);
+            else
+                Destroy(gameObject);
         }
     }
     private void ShortFire()
@@ -107,8 +107,8 @@ public class BurnObject : MonoBehaviour
                 shader.SetFloat("_T", _burnedAmount);
                 fireObject.GetComponent<Renderer>().material.SetFloat("_FlameHeight", fireFloat);
             }
-          //else
-               //Destroy(gameObject,10f);
+          else
+               Destroy(gameObject);
         }
     }
     private void InfinityFire()
