@@ -41,7 +41,7 @@ public class InteractibleObject : DashInteractable
                 Goal(collision);
                 break;
             case InteractType.Block:
-                Block();
+                Block(collision);
                 break;
             case InteractType.Break:
                 Break(collision);
@@ -57,7 +57,7 @@ public class InteractibleObject : DashInteractable
                 break;
             case InteractType.Fuse:
                 if(!movementController.IsFuseMoving)
-                    Block();
+                    Block(collision);
                 break;
         }
 
@@ -81,26 +81,26 @@ public class InteractibleObject : DashInteractable
         dialogRunner.StartDialogue("Goal");
         movementController.CollideGoal(collision);
     }
-    private void Block()
+    private void Block(Collision collision)
     {
         AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.ObstacleBlock, audioEvents, gameObject);
         dialogRunner.StartDialogue("Block");
         movementController.HitWall = true;
-        movementController.StopMoving();
+        movementController.StopMoving(collision);
     }
     private void Break(Collision collision)
     {
         if (movementController.IsDashing)
         {
+            AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.ObstacleBreak, audioEvents, gameObject);
             var collisionPoint = collision.contacts[0].point;
             gameObject.GetComponent<BurnObject>().SetObjectOnFire(collisionPoint);
-            AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.ObstacleBreak, audioEvents, gameObject);
             dialogRunner.StartDialogue("Break");
         }
         else
         {
             AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.ObstacleBreakMute, audioEvents, gameObject);
-            movementController.StopMoving();
+            movementController.StopMoving(collision);
         }
     }
     private void Candle()

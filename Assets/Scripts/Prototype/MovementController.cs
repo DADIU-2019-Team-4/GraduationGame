@@ -11,8 +11,8 @@ public class MovementController : MonoBehaviour
     public int PickUpValue = 3;
     [Tooltip("Amount of moves at the start of the game.")]
     public int AmountOfMoves = 10;
-    [Tooltip("How much the player should bounce of a wall when colliding.")]
-    public float BounceValue = 1f;
+    [Tooltip("Force, applied for a bounce back after coliision"), Range(300f, 500f)]
+    public float BounceForce;
 
     private int maxAmountOfMoves;
 
@@ -24,6 +24,7 @@ public class MovementController : MonoBehaviour
     public float MoveDistance { get; set; }
     [Tooltip("Cost of a move.")]
     public int MoveCost = 1;
+    
 
     [Header("Dash Settings")]
     [Tooltip("Time in seconds for how long you need to tap and hold for it to be recognized as a dash.")]
@@ -44,7 +45,8 @@ public class MovementController : MonoBehaviour
     private TrailRenderer trailRenderer;
     private Vector3 previousPosition;
     private Tweener moveTweener;
-    private AudioEvent[] audioEvents;
+    [HideInInspector]
+    public AudioEvent[] audioEvents;
 
     private AttachToPlane attachToPlane;
 
@@ -87,8 +89,6 @@ public class MovementController : MonoBehaviour
         gameController = FindObjectOfType<GameController>();
         audioEvents = GetComponents<AudioEvent>();
         attachToPlane = GetComponent<AttachToPlane>();
-        //dialogCollision = GetComponentInChildren<DialogCollision>();
-        audioEvents = GetComponents<AudioEvent>();
         MovesText = GameObject.Find("MovesText").GetComponent<TextMeshProUGUI>();
 
     }
@@ -133,7 +133,6 @@ public class MovementController : MonoBehaviour
 
         if (!_hasRun)
         {
-            // Debug.Log("Charging");
             AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.ChargingDash, audioEvents, gameObject);
             _hasRun = true;
         }
@@ -247,6 +246,16 @@ public class MovementController : MonoBehaviour
     {
         moveTweener?.Kill();
         StopCoroutine(nameof(MoveRoutine));
+    }
+
+    public void StopMoving(Collision collision)
+    {
+        moveTweener?.Kill();
+        StopCoroutine(nameof(MoveRoutine));
+        var dir = collision.contacts[0].point - transform.position;
+        Debug.Log("Dir:" + dir);
+        dir = -dir.normalized;
+        gameObject.GetComponent<Rigidbody>().AddForce(dir * BounceForce);
     }
 
     private void DashEnded()

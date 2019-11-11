@@ -65,7 +65,7 @@ public class InputManager : IGameLoop
     private void DetermineMove()
     {
         dragDistance = CalculateDragDistance();
-        Debug.Log("Drag Distance: " + dragDistance);
+        //Debug.Log("Drag Distance: " + dragDistance);
         // move
         if (dragDistance >= MoveThreshold && dragDistance < DashThreshold)
         {

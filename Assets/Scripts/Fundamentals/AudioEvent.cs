@@ -142,12 +142,11 @@ public class AudioEvent : IGameLoop
     public override void GameLoopUpdate()
     {
         // Iterate backwards to allow removing elements while iterating.
-        for (int i = ListenerSpace.Count-1; i >= 0; --i)
+        for (int i = ListenerSpace.Count - 1; i >= 0; --i)
         {
             (AudioEventType audioEvent, GameObject trigger) = ListenerSpace[i];
             if (audioEvent != TriggerType) continue;
             if (trigger != gameObject) continue;
-
             ListenerSpace.RemoveAt(i);
             SendWwiseData();
         }
@@ -161,7 +160,6 @@ public class AudioEvent : IGameLoop
             AkSoundEngine.SetRTPCValue(RTPCName, RTPCValue.Value);
         else if (WwiseType == WwiseFunction.State)
             AkSoundEngine.SetState(SetStateGroup, SetStateValue);
-        Debug.Log("Played event");
     }
 
     public static void SendAudioEvent(AudioEventType type, AudioEvent[] audioEvents, GameObject gameObject)
@@ -169,7 +167,9 @@ public class AudioEvent : IGameLoop
         for (int i = 0; i <= audioEvents.Length - 1; i++)
         {
             if (type == audioEvents[i].TriggerType)
+            {
                 audioEvents[i].AddAudioEvent(type, gameObject);
+            }
         }
     }
 }
