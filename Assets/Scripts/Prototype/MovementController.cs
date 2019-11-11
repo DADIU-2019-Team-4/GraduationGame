@@ -54,8 +54,7 @@ public class MovementController : MonoBehaviour
     private TrailRenderer trailRenderer;
     private Vector3 previousPosition;
     private Tweener moveTweener;
-    [HideInInspector]
-    public AudioEvent[] audioEvents;
+    private AudioEvent[] audioEvents;
 
     private AttachToPlane attachToPlane;
 
@@ -97,7 +96,7 @@ public class MovementController : MonoBehaviour
     private void Awake()
     {
         rigidBody = GetComponent<Rigidbody>();
-        animator = GameObject.Find("FireGirl").GetComponent<Animator>();
+        //animator = GameObject.Find("FireGirl").GetComponent<Animator>();
         material = GetComponent<Renderer>().material;
         trailRenderer = GetComponent<TrailRenderer>();
         gameController = FindObjectOfType<GameController>();
@@ -146,7 +145,7 @@ public class MovementController : MonoBehaviour
         colorValue -= 0.05f;
 
         // Play Animation
-        animator.SetTrigger(StartLongDashTrigger);
+        //animator.SetTrigger(StartLongDashTrigger);
 
         if (!_hasRun)
         {
@@ -255,7 +254,7 @@ public class MovementController : MonoBehaviour
 
         // Play Animation
         // TODO Add ShortDashTrigger
-        animator.SetTrigger(isDashing ? LongDashTrigger : LongDashTrigger);
+        //animator.SetTrigger(isDashing ? LongDashTrigger : LongDashTrigger);
 
         yield return new WaitForSeconds(duration);
 
@@ -300,7 +299,7 @@ public class MovementController : MonoBehaviour
         UpdateGoalDistances();
 
         // Play Animation
-        animator.SetTrigger(LandTrigger);
+        //animator.SetTrigger(LandTrigger);
     }
 
     private void UpdateGoalDistances()

@@ -77,7 +77,7 @@ public class BurnObject : MonoBehaviour
                 shader.SetFloat("_T", _burnedAmount);
             }
             else
-                Destroy(gameObject);
+                Destroy(gameObject,5f);
         }
     }
     private void ShortFire()
@@ -104,7 +104,7 @@ public class BurnObject : MonoBehaviour
                 shader.SetFloat("_T", _burnedAmount);
             }
            else
-                Destroy(gameObject);
+                Destroy(gameObject,5f);
         }
     }
     private void InfinityFire()
