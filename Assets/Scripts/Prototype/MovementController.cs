@@ -3,6 +3,8 @@ using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using Yarn.Unity;
+using System.Collections.Generic;
+using System.Linq;
 
 public class MovementController : MonoBehaviour
 {
@@ -54,7 +56,7 @@ public class MovementController : MonoBehaviour
     private TrailRenderer trailRenderer;
     private Vector3 previousPosition;
     private Tweener moveTweener;
-    private AudioEvent[] audioEvents;
+    private List <AudioEvent> audioEvents;
 
     private AttachToPlane attachToPlane;
 
@@ -100,7 +102,7 @@ public class MovementController : MonoBehaviour
         material = GetComponent<Renderer>().material;
         trailRenderer = GetComponent<TrailRenderer>();
         gameController = FindObjectOfType<GameController>();
-        audioEvents = GetComponents<AudioEvent>();
+        audioEvents = GetComponents<AudioEvent>().ToList<AudioEvent>();
         attachToPlane = GetComponent<AttachToPlane>();
         MovesText = GameObject.Find("MovesText").GetComponent<TextMeshProUGUI>();
         //cameraShake = GameObject.FindGameObjectWithTag("VirtualCamera").GetComponent<CameraShake>();

@@ -25,14 +25,17 @@ public class SceneNavigation : EditorWindow
         scenesMain = ReadNames("main");
         var activeScene = SceneManager.GetActiveScene().name;
         scenesAdditive = ReadNames("additive");
-        if (!activeScenesList.Contains(activeScene) && activeScenesList != null && scenesMain.Contains(activeScene)||scenesAdditive.Contains(activeScene))
+        if (activeScenesList == null)
+        {
+            activeScenesList = new List<string>();
             activeScenesList.Add(activeScene);
+        }
         GUILayout.Label("Editor part:", EditorStyles.boldLabel);
         DrawList("Editor");
         GUILayout.Label("Playmode part:", EditorStyles.boldLabel);
         DrawList("Playmode");
         GUILayout.TextArea("The tool for loading/unloading main and aditive scenes that are in build settings. \n" +
-            "The scenes should be saved in Assest/Scenes/ folder to fully fucntion in Editor part. \n" +
+           "The scenes should be saved in Assest/Scenes/ folder to fully fucntion in Editor part. \n" +
             "If new functionality is needed, please inform Vlad about changes that needs to be done. \n"
             +"P.S. All scenes cannot be removed, so the last one left in inspector won't unload till you won't add another additive scene.");
     }
@@ -46,7 +49,8 @@ public class SceneNavigation : EditorWindow
                 string name = S.path.Substring(S.path.LastIndexOf('/') + 1);
                 name = name.Substring(0, name.Length - 6);
                 string[] tempArray = name.Split(char.Parse("_"));
-                if (tempArray[0] == value)
+                if (tempArray.Length < 2) continue;
+                if (tempArray[1] == value)
                     temp.Add(name);
             }
         }
@@ -81,10 +85,11 @@ public class SceneNavigation : EditorWindow
                                 EditorSceneManager.OpenScene("Assets/Scenes/" + scenes[i] + ".unity", OpenSceneMode.Additive);
                             else
                                 SceneManager.LoadScene(scenes[i], LoadSceneMode.Additive);
-                            if (activeScenesList != null)
+                            if (!activeScenesList.Contains(scenes[i]))
                             {
-                                if (!activeScenesList.Contains(scenes[i]))
-                                    activeScenesList.Add(scenes[i]);
+                                activeScenesList.Add(scenes[i]);
+                                Debug.Log("Added scene");
+                                Debug.Log(activeScenesList.Count); 
                             }
                             break;
                     }
