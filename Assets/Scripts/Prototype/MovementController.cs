@@ -6,6 +6,22 @@ using Yarn.Unity;
 
 public class MovementController : MonoBehaviour
 {
+    //CameraShake
+    CameraShake cameraShake;
+    private float chargedDashShakeDur = 0.2f;
+    private float breakBounceShakeDur = 0.1f;
+    private float breakShake = 0.4f;
+
+    //timeSlowdown
+    TimeSlowdown timeSlowdown;
+
+
+    public const string StartShortDashTrigger = "Prepare for Short Dash";
+    public const string StartLongDashTrigger = "Prepare for Long Dash";
+    public const string ShortDashTrigger = "Perform Short Dash";
+    public const string LongDashTrigger = "Perform Long Dash";
+    public const string LandTrigger = "Land";
+
     [Header("General Settings")]
     [Tooltip("Value of pick ups that add to your amount of moves.")]
     public int PickUpValue = 3;
@@ -40,6 +56,7 @@ public class MovementController : MonoBehaviour
     private TMP_Text MovesText;
 
     private GameController gameController;
+    private Animator animator;
     private Rigidbody rigidBody;
     private Material material;
     private TrailRenderer trailRenderer;
@@ -83,14 +100,16 @@ public class MovementController : MonoBehaviour
     public bool HasDied { set { hasDied = value; } }
     private void Awake()
     {
+        timeSlowdown = GameObject.FindGameObjectWithTag("VirtualCamera").GetComponent<TimeSlowdown>();
+        cameraShake = GameObject.FindGameObjectWithTag("VirtualCamera").GetComponent<CameraShake>();
         rigidBody = GetComponent<Rigidbody>();
+        animator = GameObject.Find("FireGirl").GetComponent<Animator>();
         material = GetComponent<Renderer>().material;
         trailRenderer = GetComponent<TrailRenderer>();
         gameController = FindObjectOfType<GameController>();
         audioEvents = GetComponents<AudioEvent>();
         attachToPlane = GetComponent<AttachToPlane>();
         MovesText = GameObject.Find("MovesText").GetComponent<TextMeshProUGUI>();
-
     }
 
     // Start is called before the first frame update
@@ -131,12 +150,14 @@ public class MovementController : MonoBehaviour
         material.color = new Color(1, colorValue, colorValue, 1);
         colorValue -= 0.05f;
 
+        // Play Animation
+        animator.SetTrigger(StartLongDashTrigger);
+
         if (!_hasRun)
         {
             AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.ChargingDash, audioEvents, gameObject);
             _hasRun = true;
         }
-
     }
 
     /// <summary>
@@ -212,6 +233,8 @@ public class MovementController : MonoBehaviour
         IsMoving = true;
         moveTweener = rigidBody.DOMove(target, duration);
 
+        // Collision
+
         yield return new WaitForSeconds(duration);
 
         DashEnded();
@@ -222,6 +245,11 @@ public class MovementController : MonoBehaviour
     /// </summary>
     private IEnumerator MoveRoutine(Vector3 target, float duration, int cost)
     {
+        if (isDashing)
+        {
+            cameraShake.setShakeElapsedTime(chargedDashShakeDur);
+
+        }
         moveTweener?.Kill();
 
         UpdateMovesAmount(cost, true);
@@ -229,6 +257,11 @@ public class MovementController : MonoBehaviour
 
         IsMoving = true;
         moveTweener = rigidBody.DOMove(target, duration);
+
+        // Play Animation
+        // TODO Add ShortDashTrigger
+        animator.SetTrigger(isDashing ? LongDashTrigger : LongDashTrigger);
+
         yield return new WaitForSeconds(duration);
 
         if (hitWall)
@@ -270,6 +303,9 @@ public class MovementController : MonoBehaviour
 
         HealthPercentage.Value = ((float)AmountOfMoves / (float)maxAmountOfMoves) * 100f;
         UpdateGoalDistances();
+
+        // Play Animation
+        animator.SetTrigger(LandTrigger);
     }
 
     private void UpdateGoalDistances()
@@ -341,6 +377,9 @@ public class MovementController : MonoBehaviour
                 intObj.Death(targetPosition);
             else
                 intObj.Interact(collision);
+            //cameraShake.setShakeElapsedTime(breakShake);
+            //timeSlowdown.doSlowmotion();
+            //cameraShake.setShakeElapsedTime(breakBounceShakeDur);      
         }
     }
 
@@ -374,4 +413,6 @@ public class MovementController : MonoBehaviour
     {
         maxAmountOfMoves = AmountOfMoves = 999;
     }
+
+    public Vector3 DashDirection() { return targetPosition - rigidBody.position; }
 }
