@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: MC_HairMat
-  m_Shader: {fileID: 4800000, guid: 08713106fc80b5c4088693daeaf2d8b6, type: 3}
+  m_Shader: {fileID: 4800000, guid: e3cb61f0f30694343bf2882b22b2d3a1, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
@@ -47,6 +47,14 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _FireTexA:
+        m_Texture: {fileID: 2800000, guid: 9fbef4b79ca3b784ba023cb1331520d5, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _FireTexB:
+        m_Texture: {fileID: 2800000, guid: cd460ee4ac5c1e746b7a734cc7cc64dd, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _FlameNoise:
         m_Texture: {fileID: 2800000, guid: cd460ee4ac5c1e746b7a734cc7cc64dd, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -59,11 +67,19 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _MainTexture:
+        m_Texture: {fileID: 2800000, guid: 7130c16fd8005b546b111d341310a9a4, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Normal:
+        m_Texture: {fileID: 2800000, guid: 7ddcba51d9fc0894d98b4ba77fbdfbd7, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMap:
         m_Texture: {fileID: 2800000, guid: 7ddcba51d9fc0894d98b4ba77fbdfbd7, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -75,6 +91,14 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _RedGlowTextureA:
+        m_Texture: {fileID: 2800000, guid: 61c0b9c0523734e0e91bc6043c72a490, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _RedGlowTextureB:
+        m_Texture: {fileID: 2800000, guid: cd460ee4ac5c1e746b7a734cc7cc64dd, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _TextureSample0:
         m_Texture: {fileID: 2800000, guid: 7130c16fd8005b546b111d341310a9a4, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -83,8 +107,44 @@ Material:
         m_Texture: {fileID: 2800000, guid: cd460ee4ac5c1e746b7a734cc7cc64dd, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _TextureSample14:
+        m_Texture: {fileID: 2800000, guid: cd460ee4ac5c1e746b7a734cc7cc64dd, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TextureSample15:
+        m_Texture: {fileID: 2800000, guid: cd460ee4ac5c1e746b7a734cc7cc64dd, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TextureSample16:
+        m_Texture: {fileID: 2800000, guid: 9fbef4b79ca3b784ba023cb1331520d5, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TextureSample17:
+        m_Texture: {fileID: 2800000, guid: cd460ee4ac5c1e746b7a734cc7cc64dd, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TextureSample18:
+        m_Texture: {fileID: 2800000, guid: 61c0b9c0523734e0e91bc6043c72a490, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TextureSample19:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _TextureSample2:
         m_Texture: {fileID: 2800000, guid: 61c0b9c0523734e0e91bc6043c72a490, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TextureSample20:
+        m_Texture: {fileID: 2800000, guid: c2f70a58c1100504ca5b09fc2c27dcec, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TextureSample21:
+        m_Texture: {fileID: 2800000, guid: 7130c16fd8005b546b111d341310a9a4, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TextureSample22:
+        m_Texture: {fileID: 2800000, guid: 7ddcba51d9fc0894d98b4ba77fbdfbd7, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _TextureSample3:
@@ -99,13 +159,22 @@ Material:
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
-    - _DissolveAmount: 0.142
+    - _DissolveAmount: 0
     - _DstBlend: 0
+    - _FireSpeedA: -0.2
+    - _FireSpeedB: -0.1
+    - _Float16: -0.1
+    - _Float17: 0.46186644
+    - _Float18: -0.2
+    - _Float20: 0.1913025
+    - _Float21: 0.19105881
+    - _Float25: 1
     - _Float3: 0.1913025
     - _Float4: 0.1669402
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
+    - _GlowAmount: 1
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
@@ -114,13 +183,18 @@ Material:
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
-    - _U: 0.4004652
+    - _U: 0.19105881
     - _UVSec: 0
+    - _V: 0.35600838
     - _ZWrite: 1
     - __dirty: 0
     - _v: -0.2
     m_Colors:
     - _BoduFireColor: {r: 1.502837, g: 0.161228, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color6: {r: 2.9960785, g: 0.6431373, b: 0, a: 0}
+    - _Color7: {r: 1.4980392, g: 1.137255, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _HairBoost: {r: 6.1880736, g: 5.9696712, b: 0.097067825, a: 0}
+    - _FireColorA: {r: 2.1185474, g: 0.34922835, b: 0, a: 0}
+    - _FireColorB: {r: 2.5882776, g: 1.9649228, b: 0, a: 0}
+    - _HairBoost: {r: 6.188075, g: 5.9936852, b: 0.097194895, a: 0}

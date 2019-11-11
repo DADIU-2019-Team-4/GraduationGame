@@ -21,12 +21,8 @@ GameObject:
   - component: {fileID: 8449966534212627757}
   - component: {fileID: 6656989894390367569}
   - component: {fileID: -194283484004441041}
-  - component: {fileID: -1292789878998922829}
-  - component: {fileID: 2108756705155546726}
   - component: {fileID: -8069058694036373769}
-  - component: {fileID: 4574719023188414092}
   - component: {fileID: 736132331884408619}
-  - component: {fileID: 1817040481}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -108,7 +104,7 @@ CapsuleCollider:
   m_Radius: 0.3
   m_Height: 1.7
   m_Direction: 1
-  m_Center: {x: 0, y: 0.85, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &714748535622932581
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -123,7 +119,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!96 &714748535622932571
 TrailRenderer:
@@ -233,7 +229,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PickUpValue: 3
-  AmountOfMoves: 1000000
+  AmountOfMoves: 99
   BounceValue: 0.75
   MoveDuration: 0.2
   MoveDistanceFactor: 0.01
@@ -359,44 +355,6 @@ MonoBehaviour:
   RTPCValue: {fileID: 0}
   SetStateGroup: 
   SetStateValue: 
---- !u!114 &-1292789878998922829
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 714748535622932580}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3f6a57ea9bb81040839eb22c9ccd632, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TriggerType: 3
-  WwiseType: 0
-  EventName: BlockObject
-  RTPCName: 
-  RTPCValue: {fileID: 0}
-  SetStateGroup: 
-  SetStateValue: 
---- !u!114 &2108756705155546726
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 714748535622932580}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3f6a57ea9bb81040839eb22c9ccd632, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TriggerType: 5
-  WwiseType: 0
-  EventName: BreakObject
-  RTPCName: 
-  RTPCValue: {fileID: 0}
-  SetStateGroup: 
-  SetStateValue: 
 --- !u!114 &-8069058694036373769
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -412,25 +370,6 @@ MonoBehaviour:
   TriggerType: 4
   WwiseType: 0
   EventName: DeathObject
-  RTPCName: 
-  RTPCValue: {fileID: 0}
-  SetStateGroup: 
-  SetStateValue: 
---- !u!114 &4574719023188414092
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 714748535622932580}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3f6a57ea9bb81040839eb22c9ccd632, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TriggerType: 6
-  WwiseType: 0
-  EventName: BreakObjectMute
   RTPCName: 
   RTPCValue: {fileID: 0}
   SetStateGroup: 
@@ -454,22 +393,6 @@ MonoBehaviour:
   RTPCValue: {fileID: 0}
   SetStateGroup: 
   SetStateValue: 
---- !u!114 &1817040481
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 714748535622932580}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95b9abdace02946338b83553050348d6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveTime: 10
-  inSafeZone: 1
-  timeText: {fileID: 0}
-  addToTimer: 2
 --- !u!1 &4429306999930308570
 GameObject:
   m_ObjectHideFlags: 0

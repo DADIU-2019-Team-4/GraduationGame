@@ -6,6 +6,8 @@ using Yarn.Unity;
 
 public class MovementController : MonoBehaviour
 {
+
+
     public const string StartShortDashTrigger = "Prepare for Short Dash";
     public const string StartLongDashTrigger = "Prepare for Long Dash";
     public const string ShortDashTrigger = "Perform Short Dash";
@@ -17,8 +19,8 @@ public class MovementController : MonoBehaviour
     public int PickUpValue = 3;
     [Tooltip("Amount of moves at the start of the game.")]
     public int AmountOfMoves = 10;
-    [Tooltip("How much the player should bounce of a wall when colliding.")]
-    public float BounceValue = 1f;
+    [Tooltip("Force, applied for a bounce back after coliision"), Range(300f, 500f)]
+    public float BounceForce;
 
     private int maxAmountOfMoves;
 
@@ -30,6 +32,7 @@ public class MovementController : MonoBehaviour
     public float MoveDistance { get; set; }
     [Tooltip("Cost of a move.")]
     public int MoveCost = 1;
+    
 
     [Header("Dash Settings")]
     [Tooltip("Time in seconds for how long you need to tap and hold for it to be recognized as a dash.")]
@@ -50,9 +53,9 @@ public class MovementController : MonoBehaviour
     private Material material;
     private TrailRenderer trailRenderer;
     private Vector3 previousPosition;
-    //private DialogCollision dialogCollision;
-    private DialogueRunner dialogRunner;
     private Tweener moveTweener;
+    [HideInInspector]
+    public AudioEvent[] audioEvents;
 
     private AttachToPlane attachToPlane;
 
@@ -67,7 +70,6 @@ public class MovementController : MonoBehaviour
     private Vector3 targetPosition;
 
     private static bool _hasRun;
-    private AudioEvent[] audioEvents;
 
     [Header("Scriptable Objects")]
     public FloatVariable GoalDistance;
@@ -77,6 +79,10 @@ public class MovementController : MonoBehaviour
     private Vector3 startPosition;
     private Vector3 goalPosition;
 
+    CameraShake cameraShake;
+    private float chargedDashShakeDur = 0.2f;
+
+
     public bool IsMoving { get; set; }
 
     public bool IsFuseMoving { get; set; }
@@ -85,6 +91,9 @@ public class MovementController : MonoBehaviour
 
     public bool IsDashCharged { get; set; }
 
+    public bool IsDashing { get { return isDashing; } }
+    public bool HitWall { set { hitWall = value; } }
+    public bool HasDied { set { hasDied = value; } }
     private void Awake()
     {
         rigidBody = GetComponent<Rigidbody>();
@@ -94,9 +103,8 @@ public class MovementController : MonoBehaviour
         gameController = FindObjectOfType<GameController>();
         audioEvents = GetComponents<AudioEvent>();
         attachToPlane = GetComponent<AttachToPlane>();
-        //dialogCollision = GetComponentInChildren<DialogCollision>();
-        dialogRunner = FindObjectOfType<DialogueRunner>();
         MovesText = GameObject.Find("MovesText").GetComponent<TextMeshProUGUI>();
+        cameraShake = GameObject.FindGameObjectWithTag("VirtualCamera").GetComponent<CameraShake>();
     }
 
     // Start is called before the first frame update
@@ -142,7 +150,6 @@ public class MovementController : MonoBehaviour
 
         if (!_hasRun)
         {
-            // Debug.Log("Charging");
             AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.ChargingDash, audioEvents, gameObject);
             _hasRun = true;
         }
@@ -233,6 +240,11 @@ public class MovementController : MonoBehaviour
     /// </summary>
     private IEnumerator MoveRoutine(Vector3 target, float duration, int cost)
     {
+        if (isDashing)
+        {
+            cameraShake.setShakeElapsedTime(chargedDashShakeDur);
+
+        }
         moveTweener?.Kill();
 
         UpdateMovesAmount(cost, true);
@@ -262,6 +274,16 @@ public class MovementController : MonoBehaviour
     {
         moveTweener?.Kill();
         StopCoroutine(nameof(MoveRoutine));
+    }
+
+    public void StopMoving(Collision collision)
+    {
+        moveTweener?.Kill();
+        StopCoroutine(nameof(MoveRoutine));
+        var dir = collision.contacts[0].point - transform.position;
+        Debug.Log("Dir:" + dir);
+        dir = -dir.normalized;
+        gameObject.GetComponent<Rigidbody>().AddForce(dir * BounceForce);
     }
 
     private void DashEnded()
@@ -343,129 +365,46 @@ public class MovementController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Goal"))
-            CollideGoal(collision);
-        else if (collision.gameObject.CompareTag("Death"))
-            CollideDeathObstacle(collision);
-        else if (collision.gameObject.CompareTag("Block") || collision.gameObject.CompareTag("Fuse") && !IsFuseMoving)
-            CollideBlockObstacle(collision);
-        else if (collision.gameObject.CompareTag("PickUp"))
-            CollidePickUp(collision);
-        else if (collision.gameObject.CompareTag("Break"))
-            CollideBreakObstacle(collision);
-        else if (collision.gameObject.CompareTag("Candle"))
-            CollideCandle(collision);
-    }
-
-    private void CollideBreakObstacle(Collision collision)
-    {
-        if (isDashing)
+        var intObj = collision.gameObject.GetComponent<InteractibleObject>();
+        if (intObj!=null)
         {
-            collision.gameObject.GetComponent<BurnObject>().SetObjectOnFire();
-            AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.ObstacleBreak, audioEvents, gameObject);
-            dialogRunner.StartDialogue("Break");
-        }
-        else
-        {
-            AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.ObstacleBreakMute, audioEvents, gameObject);
-            StopMoving();
-            var collisionPoint = collision.contacts[0];
-            var heading = previousPosition - collisionPoint.point;
-            heading.y = 0;
-            StartCoroutine(MoveRoutine(collisionPoint.point + heading.normalized * BounceValue, MoveDuration));
+            if(intObj.type == InteractibleObject.InteractType.Death)
+                intObj.Death(targetPosition);
+            else
+                intObj.Interact(collision);    
         }
     }
 
-    private void CollidePickUp(Collision collision)
+    public void CollidePickUp()
     {
         AmountOfMoves += PickUpValue;
         if (AmountOfMoves > maxAmountOfMoves)
             AmountOfMoves = maxAmountOfMoves;
         MovesText.text = AmountOfMoves.ToString();
-        dialogRunner.StartDialogue("PickUp");
-        AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.BurningItem, audioEvents, gameObject);
-        Destroy(collision.gameObject);
     }
 
-    private void CollideBlockObstacle(Collision collision)
-    {
-        AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.ObstacleBlock, audioEvents, gameObject);
-        dialogRunner.StartDialogue("Block");
-        hitWall = true;
-        StopMoving();
-        var collisionPoint = collision.contacts[0];
-        var heading = previousPosition - collisionPoint.point;
-        heading.y = 0;
-        StartCoroutine(MoveRoutine(collisionPoint.point + heading.normalized * BounceValue, MoveDuration));
-    }
 
-    private void CollideDeathObstacle(Collision collision)
-    {
-        if (PointInOABB(targetPosition, collision.gameObject.GetComponent<BoxCollider>()))
-        {
-            dialogRunner.StartDialogue("Death");
-            hasDied = true;
-            CheckGameEnd();
-        }
-    }
-
-    private void CollideGoal(Collision collision)
+    public void CollideGoal(Collision collision)
     {
         StopMoving();
-
         StartCoroutine(isDashing
             ? MoveRoutine(collision.gameObject.transform.position, DashDuration)
             : MoveRoutine(collision.gameObject.transform.position, MoveDuration));
-
         reachedGoal = true;
-        collision.gameObject.GetComponent<BoxCollider>().enabled = false;
         CheckGameEnd();
-        dialogRunner.StartDialogue("Goal");
-    }
-
-    private void CollideCandle(Collision collision)
-    {
-        Light light = collision.gameObject.GetComponentInChildren<Light>();
-        light.enabled = true;
-    }
-
-    private bool PointInOABB(Vector3 point, BoxCollider box)
-    {
-        point = box.transform.InverseTransformPoint(point) - box.center;
-
-        float halfX = (box.size.x * 0.5f);
-        //float halfY = (box.size.y * 0.5f);
-        float halfZ = (box.size.z * 0.5f);
-
-        return (point.x < halfX && point.x > -halfX &&
-           //point.y < halfY && point.y > -halfY &&
-           point.z < halfZ && point.z > -halfZ);
     }
 
     private void OnTriggerEnter(Collider col)
     {
-        if (col.gameObject.CompareTag("FusePoint"))
-        {
-            if (!IsFuseMoving)
-            {
-                StopMoving();
-                StartPoint startPoint = col.gameObject.GetComponent<StartPoint>();
-                startPoint.StartFollowingFuse();
-            }
-        }
+        var intObj = col.gameObject.GetComponent<InteractibleObject>();
+        if (intObj != null)
+            intObj.FusePoint();
     }
-
-    //private void SendAudioEvent(AudioEvent.AudioEventType type)
-    //{
-    //    for (int i = 0; i <= audioEvents.Length - 1; i++)
-    //    {
-    //        if (type == audioEvents[i].TriggerType)
-    //            audioEvents[i].AddAudioEvent(type, gameObject);
-    //    }
-    //}
 
     public void InfiniteLives()
     {
         maxAmountOfMoves = AmountOfMoves = 999;
     }
+
+    public Vector3 DashDirection() { return targetPosition - rigidBody.position; }
 }
