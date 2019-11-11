@@ -104,7 +104,7 @@ public class MovementController : MonoBehaviour
         audioEvents = GetComponents<AudioEvent>();
         attachToPlane = GetComponent<AttachToPlane>();
         MovesText = GameObject.Find("MovesText").GetComponent<TextMeshProUGUI>();
-        cameraShake = GameObject.FindGameObjectWithTag("VirtualCamera").GetComponent<CameraShake>();
+        //cameraShake = GameObject.FindGameObjectWithTag("VirtualCamera").GetComponent<CameraShake>();
     }
 
     // Start is called before the first frame update
@@ -242,8 +242,7 @@ public class MovementController : MonoBehaviour
     {
         if (isDashing)
         {
-            cameraShake.setShakeElapsedTime(chargedDashShakeDur);
-
+            //cameraShake.setShakeElapsedTime(chargedDashShakeDur);
         }
         moveTweener?.Kill();
 
