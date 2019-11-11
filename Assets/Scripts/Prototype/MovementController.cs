@@ -19,8 +19,8 @@ public class MovementController : MonoBehaviour
     public int PickUpValue = 3;
     [Tooltip("Amount of moves at the start of the game.")]
     public int AmountOfMoves = 10;
-    [Tooltip("Force, applied for a bounce back after coliision"), Range(300f, 500f)]
-    public float BounceForce;
+    [Tooltip("How much the player should bounce of a wall when colliding.")]
+    public float BounceValue = 1f;
 
     private int maxAmountOfMoves;
 
@@ -278,10 +278,10 @@ public class MovementController : MonoBehaviour
     {
         moveTweener?.Kill();
         StopCoroutine(nameof(MoveRoutine));
-        var dir = collision.contacts[0].point - transform.position;
-        Debug.Log("Dir:" + dir);
-        dir = -dir.normalized;
-        gameObject.GetComponent<Rigidbody>().AddForce(dir * BounceForce);
+        var collisionPoint = collision.contacts[0];
+        var heading = previousPosition - collisionPoint.point;
+        heading.y = 0;
+        StartCoroutine(MoveRoutine(collisionPoint.point + heading.normalized * BounceValue, MoveDuration));
     }
 
     private void DashEnded()
