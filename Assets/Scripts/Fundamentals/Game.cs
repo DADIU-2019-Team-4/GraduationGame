@@ -27,6 +27,11 @@ public class Game : MonoBehaviour
         private set { instance = value; }
     }
 
+    public void Awake()
+    {
+        Application.targetFrameRate = 60;
+    }
+
     //public void Awake()
     //{
     //Instance = this;

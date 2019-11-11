@@ -26,6 +26,7 @@ public class DashCircleScaler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+#if UNITY_EDITOR
         float newMoveScale = inputManager.MoveThreshold * ScaleFactor;
         float newDashScale = inputManager.DashThreshold * ScaleFactor;
         InnerCircle.sizeDelta = new Vector2(newMoveScale, newMoveScale);
@@ -33,5 +34,6 @@ public class DashCircleScaler : MonoBehaviour
 
         inputManager.MoveThreshold = MoveThreshold;
         inputManager.DashThreshold = DashThreshold;
+#endif
     }
 }
