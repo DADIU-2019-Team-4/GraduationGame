@@ -88,7 +88,7 @@ public class MovementController : MonoBehaviour
     private void Awake()
     {
         rigidBody = GetComponent<Rigidbody>();
-        animator = GameObject.Find("FireGirl Variant").GetComponent<Animator>();
+        animator = GetComponentInChildren<Animator>();
         material = GetComponent<Renderer>().material;
         trailRenderer = GetComponent<TrailRenderer>();
         gameController = FindObjectOfType<GameController>();
