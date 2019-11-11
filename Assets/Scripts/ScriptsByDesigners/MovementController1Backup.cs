@@ -376,7 +376,7 @@ public class MovementController1Backup : MonoBehaviour
     {
         if (isDashing)
         {
-            collision.gameObject.GetComponent<BurnObject>().SetObjectOnFire();
+            collision.gameObject.GetComponent<BurnObject>().SetObjectOnFire(collision.contacts[0].point);
             cameraShake.setShakeElapsedTime(breakBounceShakeDur);
             AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.ObstacleBreak, audioEvents, gameObject);
             dialogRunner.StartDialogue("Break");

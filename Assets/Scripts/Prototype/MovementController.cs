@@ -6,14 +6,6 @@ using Yarn.Unity;
 
 public class MovementController : MonoBehaviour
 {
-    //CameraShake
-    CameraShake cameraShake;
-    private float chargedDashShakeDur = 0.2f;
-    private float breakBounceShakeDur = 0.1f;
-    private float breakShake = 0.4f;
-
-    //timeSlowdown
-    TimeSlowdown timeSlowdown;
 
 
     public const string StartShortDashTrigger = "Prepare for Short Dash";
@@ -87,6 +79,10 @@ public class MovementController : MonoBehaviour
     private Vector3 startPosition;
     private Vector3 goalPosition;
 
+    CameraShake cameraShake;
+    private float chargedDashShakeDur = 0.2f;
+
+
     public bool IsMoving { get; set; }
 
     public bool IsFuseMoving { get; set; }
@@ -100,8 +96,6 @@ public class MovementController : MonoBehaviour
     public bool HasDied { set { hasDied = value; } }
     private void Awake()
     {
-        timeSlowdown = GameObject.FindGameObjectWithTag("VirtualCamera").GetComponent<TimeSlowdown>();
-        cameraShake = GameObject.FindGameObjectWithTag("VirtualCamera").GetComponent<CameraShake>();
         rigidBody = GetComponent<Rigidbody>();
         animator = GameObject.Find("FireGirl").GetComponent<Animator>();
         material = GetComponent<Renderer>().material;
@@ -110,6 +104,7 @@ public class MovementController : MonoBehaviour
         audioEvents = GetComponents<AudioEvent>();
         attachToPlane = GetComponent<AttachToPlane>();
         MovesText = GameObject.Find("MovesText").GetComponent<TextMeshProUGUI>();
+        cameraShake = GameObject.FindGameObjectWithTag("VirtualCamera").GetComponent<CameraShake>();
     }
 
     // Start is called before the first frame update
@@ -376,10 +371,7 @@ public class MovementController : MonoBehaviour
             if(intObj.type == InteractibleObject.InteractType.Death)
                 intObj.Death(targetPosition);
             else
-                intObj.Interact(collision);
-            //cameraShake.setShakeElapsedTime(breakShake);
-            //timeSlowdown.doSlowmotion();
-            //cameraShake.setShakeElapsedTime(breakBounceShakeDur);      
+                intObj.Interact(collision);    
         }
     }
 

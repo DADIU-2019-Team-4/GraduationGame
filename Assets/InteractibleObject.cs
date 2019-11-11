@@ -23,8 +23,19 @@ public class InteractibleObject : DashInteractable
     private AudioEvent[] audioEvents;
     private DialogueRunner dialogRunner;
 
+    //CameraShake
+    CameraShake cameraShake;
+    private float chargedDashShakeDur = 0.2f;
+    private float breakBounceShakeDur = 0.1f;
+    private float breakShake = 0.4f;
+
+    //timeSlowdown
+    TimeSlowdown timeSlowdown;
+
     private void Awake()
     {
+        timeSlowdown = GameObject.FindGameObjectWithTag("VirtualCamera").GetComponent<TimeSlowdown>();
+        cameraShake = GameObject.FindGameObjectWithTag("VirtualCamera").GetComponent<CameraShake>();
         movementController = FindObjectOfType<MovementController>();
         audioEvents = GetComponents<AudioEvent>();
         dialogRunner = FindObjectOfType<DialogueRunner>();
@@ -93,12 +104,15 @@ public class InteractibleObject : DashInteractable
         if (movementController.IsDashing)
         {
             AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.ObstacleBreak, audioEvents, gameObject);
+            cameraShake.setShakeElapsedTime(breakShake);
+            timeSlowdown.doSlowmotion();
             var collisionPoint = collision.contacts[0].point;
             gameObject.GetComponent<BurnObject>().SetObjectOnFire(collisionPoint);
             dialogRunner.StartDialogue("Break");
         }
         else
         {
+            cameraShake.setShakeElapsedTime(breakBounceShakeDur);   
             AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.ObstacleBreakMute, audioEvents, gameObject);
             movementController.StopMoving(collision);
         }
