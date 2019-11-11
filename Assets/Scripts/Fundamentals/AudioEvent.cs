@@ -146,6 +146,8 @@ public class AudioEvent : IGameLoop
         {
             (AudioEventType audioEvent, GameObject trigger) = ListenerSpace[i];
             if (audioEvent != TriggerType) continue;
+            Debug.Log("Should print gameObject name");
+            Debug.Log("GameObject:" + gameObject);
             if (trigger != gameObject) continue;
             ListenerSpace.RemoveAt(i);
             SendWwiseData();
