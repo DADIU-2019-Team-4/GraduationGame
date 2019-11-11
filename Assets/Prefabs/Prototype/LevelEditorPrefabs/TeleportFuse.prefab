@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3411447157970494757}
   - component: {fileID: 3411447157970494756}
   - component: {fileID: 1267561393134260400}
+  - component: {fileID: 6941809322978843068}
   m_Layer: 0
   m_Name: StartPoint
   m_TagString: FusePoint
@@ -122,6 +123,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 3
+--- !u!114 &6941809322978843068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3411447157970494758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ce2f35c75ca9e84fb3474d32def3e6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 9
 --- !u!1 &3411447158885549247
 GameObject:
   m_ObjectHideFlags: 0
@@ -182,6 +196,7 @@ GameObject:
   - component: {fileID: 3411447159253048467}
   - component: {fileID: 3411447159253048466}
   - component: {fileID: 4209065608499324773}
+  - component: {fileID: 6827294282448333522}
   m_Layer: 0
   m_Name: EndPoint
   m_TagString: FusePoint
@@ -290,3 +305,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 3
+--- !u!114 &6827294282448333522
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3411447159253048468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ce2f35c75ca9e84fb3474d32def3e6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 9
