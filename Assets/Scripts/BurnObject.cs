@@ -71,13 +71,15 @@ public class BurnObject : MonoBehaviour
         }
         else
         {
-            if (_burnedAmount < 1.7f)
+            if (_burnedAmount < 3f)
             {
                 _burnedAmount += 0.01f;
                 shader.SetFloat("_T", _burnedAmount);
+                fireFloat -= 0.02f;
+                fireObject.GetComponent<Renderer>().material.SetFloat("_FlameHeight", fireFloat);
             }
             //else
-                //Destroy(gameObject,5f);
+                //Destroy(gameObject,10f);
         }
     }
     private void ShortFire()
@@ -98,13 +100,15 @@ public class BurnObject : MonoBehaviour
         }
         else if (_isDissasembling)
         {
-            if (_burnedAmount < 1.7f)
+            if (_burnedAmount < 3f)
             {
                 _burnedAmount += 0.025f;
+                fireFloat -= 0.05f;
                 shader.SetFloat("_T", _burnedAmount);
+                fireObject.GetComponent<Renderer>().material.SetFloat("_FlameHeight", fireFloat);
             }
-           //else
-               //Destroy(gameObject,5f);
+          //else
+               //Destroy(gameObject,10f);
         }
     }
     private void InfinityFire()
