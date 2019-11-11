@@ -24,6 +24,7 @@ public class InputManager : IGameLoop
     private Canvas canvas;
     public GameObject DashCirclePrefab;
     private GameObject dashCircle;
+    private float dashTimer;
 
     private float dragDistance;
     public float MoveThreshold { get; set; }
@@ -77,6 +78,7 @@ public class InputManager : IGameLoop
             arrow.GetComponent<SpriteRenderer>().color = Color.white;
             ShowArrow();
             movementController.ResetDash();
+            dashTimer = 0;
         }
         // dash
         else if (dragDistance >= DashThreshold)
@@ -93,6 +95,7 @@ public class InputManager : IGameLoop
             doMove = false;
             arrowParent.SetActive(false);
             movementController.ResetDash();
+            dashTimer = 0;
         }
     }
 
@@ -119,7 +122,13 @@ public class InputManager : IGameLoop
     private void ChargeUpDash()
     {
         movementController.ChargeDash();
-        movementController.IsDashCharged = true;
+
+        dashTimer += Time.deltaTime;
+        if (dashTimer >= movementController.DashThreshold && !movementController.IsDashCharged)
+        {
+            movementController.IsDashCharged = true;
+            dashTimer = 0;
+        }
     }
 
     /// <summary>
@@ -293,6 +302,7 @@ public class InputManager : IGameLoop
         {
             movementController.Dash(directionVector.normalized);
             movementController.ResetDash();
+            dashTimer = 0;
         }
         else
             movementController.Move(directionVector.normalized);
