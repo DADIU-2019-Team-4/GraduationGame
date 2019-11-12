@@ -54,7 +54,7 @@ public class MovementController : MonoBehaviour
     private TrailRenderer trailRenderer;
     private Vector3 previousPosition;
     private Tweener moveTweener;
-    private List <AudioEvent> audioEvents;
+    public List <AudioEvent> audioEvents;
 
     private AttachToPlane attachToPlane;
 

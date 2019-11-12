@@ -12,6 +12,7 @@ public class BurnObject : MonoBehaviour
     //private List <BurnObject> burnNeighbors;
     private float _burnedAmount;
     Material shader;
+    private MovementController movementController;
 
     private Transform fireObject;
     private float fireFloat = -1f;
@@ -26,6 +27,8 @@ public class BurnObject : MonoBehaviour
     public void OnEnable()
     {
         shader = gameObject.GetComponent<Renderer>().material;
+        movementController = FindObjectOfType<MovementController>();
+
     }
     public void Update()
     {
@@ -35,7 +38,7 @@ public class BurnObject : MonoBehaviour
                 ShortFire();
             else if (firetype == FireType.Long)
                 LongFire();
-            else if (firetype == FireType.Infinity && fireFloat<-0.42f)
+            else if (firetype == FireType.Infinity && fireFloat < -0.42f)
                 InfinityFire();
         }
     }
@@ -79,7 +82,9 @@ public class BurnObject : MonoBehaviour
                 fireObject.GetComponent<Renderer>().material.SetFloat("_FlameHeight", fireFloat);
             }
             else
+            {
                 Destroy(gameObject);
+            }
         }
     }
     private void ShortFire()
@@ -107,8 +112,10 @@ public class BurnObject : MonoBehaviour
                 shader.SetFloat("_T", _burnedAmount);
                 fireObject.GetComponent<Renderer>().material.SetFloat("_FlameHeight", fireFloat);
             }
-          else
-               Destroy(gameObject);
+            else
+            {
+                Destroy(gameObject);
+            }
         }
     }
     private void InfinityFire()

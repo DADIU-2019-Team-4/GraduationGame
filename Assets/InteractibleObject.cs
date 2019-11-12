@@ -21,7 +21,7 @@ public class InteractibleObject : DashInteractable
     }
     public InteractType type;
     private MovementController movementController;
-    private List<AudioEvent> audioEvents;
+    public List<AudioEvent> audioEvents;
     private DialogueRunner dialogRunner;
 
     //CameraShake
