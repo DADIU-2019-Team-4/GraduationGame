@@ -38,7 +38,7 @@ public class InputManager : IGameLoop
         gameController = FindObjectOfType<GameController>();
         mainCamera = Camera.main;
         arrowParent = GameObject.FindGameObjectWithTag("Arrow");
-        canvas = FindObjectOfType<Canvas>();
+        canvas = gameController.GetComponentInChildren<Canvas>();
     }
 
     private void Start()
