@@ -270,17 +270,17 @@ public class MovementController : MonoBehaviour
     public void StopMoving()
     {
         moveTweener?.Kill();
+        StopCoroutine(nameof(MoveRoutine));
         StopCoroutine(nameof(MoveBackRoutine));
     }
 
-    public void StopMoving(Collision collision)
+    public void MoveBack()
     {
-        moveTweener?.Kill();
-        StopCoroutine(nameof(MoveBackRoutine));
-        var collisionPoint = collision.contacts[0];
-        var heading = previousPosition - collisionPoint.point;
-        heading.y = 0;
-        StartCoroutine(MoveBackRoutine(collisionPoint.point + heading.normalized * BounceValue, MoveDuration));
+        StopMoving();
+        var direction = previousPosition - transform.position;
+        direction.y = 0;
+
+        StartCoroutine(MoveBackRoutine(transform.position + direction.normalized * BounceValue, MoveDuration));
     }
 
     private void DashEnded()
