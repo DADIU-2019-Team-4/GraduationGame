@@ -32,6 +32,8 @@ public class MovementController : MonoBehaviour
     public float MoveDuration = 0.2f;
     [Tooltip("This gets multiplied by the drag distance (value between 0-1) to get the distance of a move.")]
     public float MoveDistanceFactor = 0.01f;
+    [Tooltip("Easing function of the move.")]
+    public Ease MoveEase = Ease.OutCubic;
     public float MoveDistance { get; set; }   
 
     [Header("Dash Settings")]
@@ -43,6 +45,8 @@ public class MovementController : MonoBehaviour
     public float DashDistance = 4;
     [Tooltip("Cost of a dash.")]
     public int DashCost = 1;
+    [Tooltip("Easing function of the dash.")]
+    public Ease DashEase = Ease.OutCubic;
 
     [Header("Canvas Fields")]
     private TMP_Text MovesText;
@@ -162,6 +166,7 @@ public class MovementController : MonoBehaviour
         previousPosition = transform.position;
         AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.Dash, audioEvents, gameObject);
         Vector3 targetPosition = transform.position + moveDirection * MoveDistance;
+        targetPosition.y = transform.position.y;
 
         StartCoroutine(MoveRoutine(targetPosition, MoveDuration));
     }
@@ -250,6 +255,7 @@ public class MovementController : MonoBehaviour
         //animator.SetTrigger(IsDashing ? LongDashTrigger : ShortDashTrigger);
 
         moveTweener = rigidBody.DOMove(target, duration);
+        moveTweener.SetEase(IsDashing ? DashEase : MoveEase);
 
         yield return new WaitForSeconds(duration);
 
@@ -389,6 +395,7 @@ public class MovementController : MonoBehaviour
     public void InfiniteLives()
     {
         maxAmountOfDashMoves = AmountOfDashMoves = 999;
+        MovesText.text = AmountOfDashMoves.ToString();
     }
 
     public Vector3 DashDirection() { return targetPosition - rigidBody.position; }
