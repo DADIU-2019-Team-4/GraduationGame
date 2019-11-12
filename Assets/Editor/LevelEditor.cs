@@ -213,9 +213,7 @@ public class LevelEditor : EditorWindow
             {
                 i += 2;
                 
-                    Debug.Log(prefab.transform.position);
                     instance.transform.Translate(new Vector3(0, 0, cellSize.x * 0.5f));
-                    Debug.Log(prefab.transform.position);
                 
             }
 
