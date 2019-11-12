@@ -166,6 +166,7 @@ public class MovementController : MonoBehaviour
         previousPosition = transform.position;
         AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.Dash, audioEvents, gameObject);
         Vector3 targetPosition = transform.position + moveDirection * MoveDistance;
+        targetPosition.y = transform.position.y;
 
         StartCoroutine(MoveRoutine(targetPosition, MoveDuration));
     }
@@ -394,6 +395,7 @@ public class MovementController : MonoBehaviour
     public void InfiniteLives()
     {
         maxAmountOfDashMoves = AmountOfDashMoves = 999;
+        MovesText.text = AmountOfDashMoves.ToString();
     }
 
     public Vector3 DashDirection() { return targetPosition - rigidBody.position; }
