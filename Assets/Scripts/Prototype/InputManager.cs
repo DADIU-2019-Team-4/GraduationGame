@@ -70,7 +70,7 @@ public class InputManager : IGameLoop
         dragDistance = CalculateDragDistance();
         //Debug.Log("Drag Distance: " + dragDistance);
         // move
-        if (dragDistance >= MoveThreshold && dragDistance < DashThreshold)
+        if (dragDistance > MoveThreshold && dragDistance <= DashThreshold)
         {
             doMove = true;
             movementController.MoveDistance = dragDistance * movementController.MoveDistanceFactor;
@@ -81,7 +81,7 @@ public class InputManager : IGameLoop
             dashTimer = 0;
         }
         // dash
-        else if (dragDistance >= DashThreshold)
+        else if (dragDistance > DashThreshold)
         {
             doMove = true;
             StretchArrow(movementController.DashDistance);
