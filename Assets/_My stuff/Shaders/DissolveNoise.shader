@@ -9,9 +9,9 @@ Shader "DissolveNoise"
 		_maintexture("main texture", 2D) = "white" {}
 		_noise("noise", 2D) = "white" {}
 		[HDR]_burnramp("burn ramp", 2D) = "white" {}
-		_Float3("Float 3", Float) = 0
-		_Float4("Float 4", Float) = 0.57
-		_Float5("Float 5", Float) = 0.5
+		_Float3("Float 3", Float) = 0.62
+		_Float4("Float 4", Float) = 7.31
+		_Float5("Float 5", Float) = 0.55
 		_T("T", Float) = 0
 		[HideInInspector] _texcoord( "", 2D ) = "white" {}
 		[HideInInspector] __dirty( "", Int ) = 1

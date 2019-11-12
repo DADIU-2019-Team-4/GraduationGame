@@ -253,7 +253,10 @@ public class InputManager : IGameLoop
     /// </summary>
     private void InitialTouch(Vector3 position)
     {
+        if (dashCircle != null)
+            Destroy(dashCircle);
         dashCircle = Instantiate(DashCirclePrefab, position, Quaternion.identity, canvas.transform);
+        dashCircle.transform.SetAsFirstSibling();
 
         firstPosition = position;
         lastPosition = position;

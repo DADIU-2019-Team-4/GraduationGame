@@ -23,7 +23,7 @@ public class AudioEvent : IGameLoop
 
 
     // Made static as a shared AudioListener space.
-    public static readonly List<(AudioEventType, GameObject)> ListenerSpace = new List<(AudioEventType, GameObject)>();
+    public List<(AudioEventType, GameObject)> ListenerSpace = new List<(AudioEventType, GameObject)>();
 
     public enum WwiseFunction { PostEvent, RTPCValue, State }
 
@@ -141,15 +141,11 @@ public class AudioEvent : IGameLoop
 
     public override void GameLoopUpdate()
     {
-        return;
         // Iterate backwards to allow removing elements while iterating.
         for (int i = ListenerSpace.Count - 1; i >= 0; --i)
         {
             (AudioEventType audioEvent, GameObject trigger) = ListenerSpace[i];
             if (audioEvent != TriggerType) continue;
-            Debug.Log("Audio Event:" + audioEvent + "Trigger:" + trigger + "Count:" + ListenerSpace.Count);
-            Debug.Log("Event:" + TriggerType);
-            Debug.Log("Local object:" + gameObject);
             if (trigger != gameObject) continue;
             ListenerSpace.RemoveAt(i);
             SendWwiseData();

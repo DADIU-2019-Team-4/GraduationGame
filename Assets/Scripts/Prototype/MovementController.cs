@@ -58,7 +58,7 @@ public class MovementController : MonoBehaviour
     private TrailRenderer trailRenderer;
     private Vector3 previousPosition;
     private Tweener moveTweener;
-    private List <AudioEvent> audioEvents;
+    public List <AudioEvent> audioEvents;
 
     private AttachToPlane attachToPlane;
 
@@ -103,13 +103,15 @@ public class MovementController : MonoBehaviour
         gameController = FindObjectOfType<GameController>();
         audioEvents = GetComponents<AudioEvent>().ToList<AudioEvent>();
         attachToPlane = GetComponent<AttachToPlane>();
-        MovesText = GameObject.Find("MovesText").GetComponent<TextMeshProUGUI>();
-        cameraShake = GameObject.FindGameObjectWithTag("VirtualCamera").GetComponent<CameraShake>();
+
     }
 
     // Start is called before the first frame update
     private void Start()
     {
+        MovesText = GameObject.Find("MovesText").GetComponent<TextMeshProUGUI>();
+        cameraShake = GameObject.FindGameObjectWithTag("VirtualCamera").GetComponent<CameraShake>();
+
         MovesText.text = AmountOfDashMoves.ToString();
 
         trailRenderer.enabled = false;
@@ -166,6 +168,7 @@ public class MovementController : MonoBehaviour
         previousPosition = transform.position;
         AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.Dash, audioEvents, gameObject);
         Vector3 targetPosition = transform.position + moveDirection * MoveDistance;
+        targetPosition.y = transform.position.y;
 
         StartCoroutine(MoveRoutine(targetPosition, MoveDuration));
     }
@@ -266,17 +269,17 @@ public class MovementController : MonoBehaviour
     public void StopMoving()
     {
         moveTweener?.Kill();
+        StopCoroutine(nameof(MoveRoutine));
         StopCoroutine(nameof(MoveBackRoutine));
     }
 
-    public void StopMoving(Collision collision)
+    public void MoveBack()
     {
-        moveTweener?.Kill();
-        StopCoroutine(nameof(MoveBackRoutine));
-        var collisionPoint = collision.contacts[0];
-        var heading = previousPosition - collisionPoint.point;
-        heading.y = 0;
-        StartCoroutine(MoveBackRoutine(collisionPoint.point + heading.normalized * BounceValue, MoveDuration));
+        StopMoving();
+        var direction = previousPosition - transform.position;
+        direction.y = 0;
+
+        StartCoroutine(MoveBackRoutine(transform.position + direction.normalized * BounceValue, MoveDuration));
     }
 
     private void DashEnded()
@@ -394,6 +397,7 @@ public class MovementController : MonoBehaviour
     public void InfiniteLives()
     {
         maxAmountOfDashMoves = AmountOfDashMoves = 999;
+        MovesText.text = AmountOfDashMoves.ToString();
     }
 
     public Vector3 DashDirection() { return targetPosition - rigidBody.position; }
