@@ -28,12 +28,23 @@ public class Fuse : MonoBehaviour
 
     private void Start()
     {
-        if (Follower == null)
+        if (Follower == null && movementController!=null)
             Follower = movementController.gameObject;
     }
 
     private void Update()
     {
+        if (movementController == null)
+        {
+            movementController = FindObjectOfType<MovementController>();
+            if (movementController == null)
+                return;
+            else
+            {
+                if(Follower == null)
+                    Follower = movementController.gameObject;
+            }
+        }
         if (!movementController.IsFuseMoving || !isMoving)
             return;
 

@@ -2,6 +2,8 @@
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine.UI;
+using UnityEditor.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
@@ -13,15 +15,18 @@ public class GameController : MonoBehaviour
     public GameObject DiedText;
     public GameObject RestartButton;
     public GameObject NextSceneButton;
+    public Text LevelNameText;
 
 
     public bool IsPlaying { get; set; }
 
     private List<AudioEvent> audioEvents;
 
+
     private void Start()
     {
         audioEvents = GetComponents<AudioEvent>().ToList<AudioEvent>();
+        LevelNameText.text = SceneManager.GetActiveScene().name;
     }
 
     public void Win()
