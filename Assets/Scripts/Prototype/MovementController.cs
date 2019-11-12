@@ -103,13 +103,15 @@ public class MovementController : MonoBehaviour
         gameController = FindObjectOfType<GameController>();
         audioEvents = GetComponents<AudioEvent>().ToList<AudioEvent>();
         attachToPlane = GetComponent<AttachToPlane>();
-        MovesText = GameObject.Find("MovesText").GetComponent<TextMeshProUGUI>();
-        cameraShake = GameObject.FindGameObjectWithTag("VirtualCamera").GetComponent<CameraShake>();
+
     }
 
     // Start is called before the first frame update
     private void Start()
     {
+        MovesText = GameObject.Find("MovesText").GetComponent<TextMeshProUGUI>();
+        cameraShake = GameObject.FindGameObjectWithTag("VirtualCamera").GetComponent<CameraShake>();
+
         MovesText.text = AmountOfDashMoves.ToString();
 
         trailRenderer.enabled = false;
