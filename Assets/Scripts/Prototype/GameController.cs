@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections.Generic;
+using System.Linq;
 
 public class GameController : MonoBehaviour
 {
@@ -15,11 +17,11 @@ public class GameController : MonoBehaviour
 
     public bool IsPlaying { get; set; }
 
-    private AudioEvent[] audioEvents;
+    private List<AudioEvent> audioEvents;
 
     private void Start()
     {
-        audioEvents = GetComponents<AudioEvent>();
+        audioEvents = GetComponents<AudioEvent>().ToList<AudioEvent>();
     }
 
     public void Win()
@@ -48,7 +50,7 @@ public class GameController : MonoBehaviour
 
     public void RestartScene()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         AkSoundEngine.PostEvent("KillOnRestart", gameObject);
     }
 
@@ -67,6 +69,6 @@ public class GameController : MonoBehaviour
 
     public void InfiniteLives()
     {
-        GameObject.FindGameObjectWithTag("Player").GetComponent<MovementController>().InfiniteLives();
+        FindObjectOfType<MovementController>().InfiniteLives();
     }
 }

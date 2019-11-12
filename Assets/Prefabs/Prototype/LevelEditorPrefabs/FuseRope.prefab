@@ -59,7 +59,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8de4aad423714f947b0dc0926b00a923, type: 2}
+  - {fileID: 2100000, guid: d9905ccc26e5dbc4fb27b3b520eb6a16, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -116,6 +116,7 @@ GameObject:
   - component: {fileID: 1455506444166876666}
   - component: {fileID: 1455506444166876664}
   - component: {fileID: 1455506444166876665}
+  - component: {fileID: 1331270898204232914}
   m_Layer: 0
   m_Name: EndPoint
   m_TagString: FusePoint
@@ -163,6 +164,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointType: 1
+--- !u!114 &1331270898204232914
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1455506444166876667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ce2f35c75ca9e84fb3474d32def3e6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 9
 --- !u!1 &1455506444335011980
 GameObject:
   m_ObjectHideFlags: 0
@@ -174,6 +188,7 @@ GameObject:
   - component: {fileID: 1455506444335011971}
   - component: {fileID: 1455506444335011969}
   - component: {fileID: 1455506444335011970}
+  - component: {fileID: 957147243801583107}
   m_Layer: 0
   m_Name: StartPoint
   m_TagString: FusePoint
@@ -221,6 +236,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointType: 0
+--- !u!114 &957147243801583107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1455506444335011980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ce2f35c75ca9e84fb3474d32def3e6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 9
 --- !u!1 &1455506444343618414
 GameObject:
   m_ObjectHideFlags: 0
@@ -235,6 +263,7 @@ GameObject:
   - component: {fileID: 1455506444343618413}
   - component: {fileID: 1455506444343618412}
   - component: {fileID: 7827202735473963338}
+  - component: {fileID: 4407690483301834656}
   m_Layer: 0
   m_Name: FuseRope
   m_TagString: Fuse
@@ -348,7 +377,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mesh: {fileID: 4300000, guid: 500594a39d643774c8e028335ee33da7, type: 3}
-  material: {fileID: 2100000, guid: 8de4aad423714f947b0dc0926b00a923, type: 2}
+  material: {fileID: 2100000, guid: d9905ccc26e5dbc4fb27b3b520eb6a16, type: 2}
   physicMaterial: {fileID: 0}
   translation: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 90, z: 0}
@@ -369,6 +398,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db02cc13a916e2c4381742258a2e1d2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4407690483301834656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1455506444343618414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ce2f35c75ca9e84fb3474d32def3e6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 2
 --- !u!1 &1455506445155529642
 GameObject:
   m_ObjectHideFlags: 0

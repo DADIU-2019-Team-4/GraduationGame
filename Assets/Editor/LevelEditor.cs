@@ -19,12 +19,13 @@ public class LevelEditor : EditorWindow
     private bool paintMode = false;
     private bool deleteMode = false;
 
-    private int floorXScale = 1;
-    private int floorZScale = 1;
+    //private int floorXScale = 1;
+    //private int floorZScale = 1;
 
     static private float gridScale = 1;
 
     private float objectRotation = 0;
+    private int mathiasFix= 0;
 
     private Vector3 currentCellSelected;
     private Vector3 previousCellSelected;
@@ -32,7 +33,9 @@ public class LevelEditor : EditorWindow
     // Called to draw the MapEditor windows.
     [SerializeField]
     private int paletteIndex;
-    private int toolbarIndex;
+    private int toolbarIndex = toolbarTexts.Length-1;
+
+    Vector2 scrollPos;
 
     private enum Tools
     {
@@ -44,7 +47,7 @@ public class LevelEditor : EditorWindow
 
     private Tools currentTool;
 
-    private string[] toolbarTexts = new string[4] { "Paint", "Block", "Delete", "Blank" };
+    static private string[] toolbarTexts = new string[4] { "Paint", "Block", "Delete", "Blank" };
 
     // Called to draw the MapEditor windows.
     private void OnGUI()
@@ -55,9 +58,10 @@ public class LevelEditor : EditorWindow
 
         deleteMode = GUILayout.Toggle(deleteMode, "Delete", "Button", GUILayout.Height(60f));*/
 
-        floorXScale = EditorGUILayout.IntField("floor x",floorXScale);
-            floorZScale = EditorGUILayout.IntField("floor z", floorZScale);
+        //floorXScale = EditorGUILayout.IntField("floor x",floorXScale);
+        //    floorZScale = EditorGUILayout.IntField("floor z", floorZScale);
             objectRotation = EditorGUILayout.FloatField("rotation of objects", objectRotation);
+        mathiasFix = EditorGUILayout.IntField("Custom Mathias fix", mathiasFix);
 
         switch (toolbarIndex)
         {
@@ -89,12 +93,17 @@ public class LevelEditor : EditorWindow
             paletteIcons.Add(new GUIContent(texture,prefab.transform.name));
         }
 
+        scrollPos = GUILayout.BeginScrollView(scrollPos, false, false, GUIStyle.none, GUI.skin.verticalScrollbar);
         // Display the grid
-        paletteIndex = GUILayout.SelectionGrid(paletteIndex, paletteIcons.ToArray(), 4);
 
+        int width = Screen.width- mathiasFix;
+        
+
+        paletteIndex = GUILayout.SelectionGrid(paletteIndex, paletteIcons.ToArray(), 4, GUILayout.Width(width));
+        GUILayout.EndScrollView();
 
         //roate 90 with r
-        
+
     }
 
 
@@ -197,12 +206,17 @@ public class LevelEditor : EditorWindow
 
             GameObject prefab = palette[paletteIndex];
 
-            SpawnPrefab(prefab, spawnPos, 1, 1);
+            GameObject instance = SpawnPrefab(prefab, spawnPos, 1, 1);
 
             //draw less often if it is a wall
-            if (prefab.name == "InnerWall" || prefab.name == "OuterWall")
+            if (instance.name == "InnerWall" || instance.name == "OuterWall")
             {
                 i += 2;
+                
+                    Debug.Log(prefab.transform.position);
+                    instance.transform.Translate(new Vector3(0, 0, cellSize.x * 0.5f));
+                    Debug.Log(prefab.transform.position);
+                
             }
 
         }
@@ -226,7 +240,7 @@ public class LevelEditor : EditorWindow
         SpawnPrefab(prefab, spawnPos, scaleX, scaleZ);
     }
 
-    private void SpawnPrefab(GameObject prefab, Vector3 pos, float scaleX, float scaleZ)
+    GameObject SpawnPrefab(GameObject prefab, Vector3 pos, float scaleX, float scaleZ)
     {
 
         GameObject gameObject = PrefabUtility.InstantiatePrefab(prefab) as GameObject;
@@ -271,6 +285,8 @@ public class LevelEditor : EditorWindow
         
         // Allow the use of Undo (Ctrl+Z, Ctrl+Y).
         Undo.RegisterCreatedObjectUndo(gameObject, "");
+
+        return gameObject;
     }
 
     private void HandleSceneViewInputs(Vector3 cellCenter)
@@ -295,13 +311,19 @@ public class LevelEditor : EditorWindow
     private List<GameObject> palette = new List<GameObject>();
 
     private string path = "Assets/Prefabs/Prototype/LevelEditorPrefabs";
+    private string path2 = "Assets/Prefabs/Prototype/LevelEditorPrefabsVisual";
+
 
     private void RefreshPalette()
     {
         palette.Clear();
 
         string[] prefabFiles = System.IO.Directory.GetFiles(path, "*.prefab");
+        string[] prefabFiles2 = System.IO.Directory.GetFiles(path2, "*.prefab");
         foreach (string prefabFile in prefabFiles)
+            palette.Add(AssetDatabase.LoadAssetAtPath(prefabFile, typeof(GameObject)) as GameObject);
+
+        foreach (string prefabFile in prefabFiles2)
             palette.Add(AssetDatabase.LoadAssetAtPath(prefabFile, typeof(GameObject)) as GameObject);
     }
 
@@ -351,7 +373,7 @@ public class LevelEditor : EditorWindow
     {
         Ray ray = HandleUtility.GUIPointToWorldRay(Event.current.mousePosition);
         RaycastHit hit;
-        if (Physics.Raycast(ray,out hit,1000) && Event.current.type == EventType.MouseDown && Event.current.button == 0)
+        if (Physics.Raycast(ray, out hit, 1000) && Event.current.type == EventType.MouseDown && Event.current.button == 0)
         {
             Debug.Log("Deleting:  " + hit.transform.gameObject.name);
             return hit.transform.gameObject;

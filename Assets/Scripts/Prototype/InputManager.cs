@@ -24,6 +24,7 @@ public class InputManager : IGameLoop
     private Canvas canvas;
     public GameObject DashCirclePrefab;
     private GameObject dashCircle;
+    private float dashTimer;
 
     private AudioEvent[] audioEvents;
 
@@ -70,7 +71,7 @@ public class InputManager : IGameLoop
     private void DetermineMove()
     {
         dragDistance = CalculateDragDistance();
-        Debug.Log("Drag Distance: " + dragDistance);
+        //Debug.Log("Drag Distance: " + dragDistance);
         // move
         if (dragDistance > MoveThreshold && dragDistance < DashThreshold)
         {
@@ -80,6 +81,7 @@ public class InputManager : IGameLoop
             arrow.GetComponent<SpriteRenderer>().color = Color.white;
             ShowArrow();
             movementController.ResetDash();
+            dashTimer = 0;
         }
         // dash
         else if (dragDistance > DashThreshold)
@@ -96,6 +98,7 @@ public class InputManager : IGameLoop
             doMove = false;
             arrowParent.SetActive(false);
             movementController.ResetDash();
+            dashTimer = 0;
         }
     }
 
@@ -122,7 +125,13 @@ public class InputManager : IGameLoop
     private void ChargeUpDash()
     {
         movementController.ChargeDash();
-        movementController.IsDashCharged = true;
+
+        dashTimer += Time.deltaTime;
+        if (dashTimer >= movementController.DashThreshold && !movementController.IsDashCharged)
+        {
+            movementController.IsDashCharged = true;
+            dashTimer = 0;
+        }
     }
 
     /// <summary>
@@ -248,6 +257,7 @@ public class InputManager : IGameLoop
     private void InitialTouch(Vector3 position)
     {
         dashCircle = Instantiate(DashCirclePrefab, position, Quaternion.identity, canvas.transform);
+        dashCircle.transform.SetAsFirstSibling();
 
         firstPosition = position;
         lastPosition = position;
@@ -296,6 +306,7 @@ public class InputManager : IGameLoop
         {
             movementController.Dash(directionVector.normalized);
             movementController.ResetDash();
+            dashTimer = 0;
         }
         else
             movementController.Move(directionVector.normalized);

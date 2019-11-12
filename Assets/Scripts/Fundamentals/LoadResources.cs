@@ -9,8 +9,6 @@ public class LoadResources : MonoBehaviour
 {
     private AssetBundle bundleRequest;
     private UnityWebRequest request;
-    public string link;
-    public string objectName;
     public AssetsInformation[] assetList;
 
     private void Start()
@@ -22,12 +20,12 @@ public class LoadResources : MonoBehaviour
         Time.timeScale = 0;
         for (int i = 0; i <= assetList.Length - 1; i++)
             {
-                request = UnityWebRequestAssetBundle.GetAssetBundle(link);
+                request = UnityWebRequestAssetBundle.GetAssetBundle(assetList[i].AssetLink,1,0);
                 yield return request.SendWebRequest();
                 bundleRequest = DownloadHandlerAssetBundle.GetContent(request);
                 if (bundleRequest != null)
                 {
-                    GameObject platform = bundleRequest.LoadAsset<GameObject>(objectName);
+                    GameObject platform = bundleRequest.LoadAsset<GameObject>(assetList[i].SceneAssetName);
                     Instantiate(platform);
                 }
                 else

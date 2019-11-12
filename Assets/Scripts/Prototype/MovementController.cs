@@ -3,9 +3,14 @@ using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using Yarn.Unity;
+using System.Collections.Generic;
+using System.Linq;
+
 
 public class MovementController : MonoBehaviour
 {
+
+
     public const string StartShortDashTrigger = "Prepare for Short Dash";
     public const string StartLongDashTrigger = "Prepare for Long Dash";
     public const string ShortDashTrigger = "Perform Short Dash";
@@ -16,20 +21,20 @@ public class MovementController : MonoBehaviour
     [Tooltip("Value of pick ups that add to your amount of moves.")]
     public int PickUpValue = 3;
     [Tooltip("Amount of moves at the start of the game.")]
-    public int AmountOfMoves = 10;
+    public int AmountOfDashMoves = 10;
     [Tooltip("How much the player should bounce of a wall when colliding.")]
     public float BounceValue = 1f;
 
-    private int maxAmountOfMoves;
+    private int maxAmountOfDashMoves;
 
     [Header("Move Settings")]
     [Tooltip("Duration of a move in seconds (how long it takes to get to target position).")]
     public float MoveDuration = 0.2f;
     [Tooltip("This gets multiplied by the drag distance (value between 0-1) to get the distance of a move.")]
     public float MoveDistanceFactor = 0.01f;
-    public float MoveDistance { get; set; }
-    [Tooltip("Cost of a move.")]
-    public int MoveCost = 1;
+    [Tooltip("Easing function of the move.")]
+    public Ease MoveEase = Ease.OutCubic;
+    public float MoveDistance { get; set; }   
 
     [Header("Dash Settings")]
     [Tooltip("Time in seconds for how long you need to tap and hold for it to be recognized as a dash.")]
@@ -39,7 +44,9 @@ public class MovementController : MonoBehaviour
     [Tooltip("Distance of a dash.")]
     public float DashDistance = 4;
     [Tooltip("Cost of a dash.")]
-    public int DashCost = 3;
+    public int DashCost = 1;
+    [Tooltip("Easing function of the dash.")]
+    public Ease DashEase = Ease.OutCubic;
 
     [Header("Canvas Fields")]
     private TMP_Text MovesText;
@@ -50,24 +57,19 @@ public class MovementController : MonoBehaviour
     private Material material;
     private TrailRenderer trailRenderer;
     private Vector3 previousPosition;
-    //private DialogCollision dialogCollision;
-    private DialogueRunner dialogRunner;
     private Tweener moveTweener;
+    public List <AudioEvent> audioEvents;
 
     private AttachToPlane attachToPlane;
 
     private float colorValue = 1;
     private float changeTextColorDuration = 0.2f;
 
-    private bool isDashing;
-    private bool hitWall;
     private bool isOutOfMoves;
-    private bool hasDied;
     private bool reachedGoal;
     private Vector3 targetPosition;
 
     private static bool _hasRun;
-    private AudioEvent[] audioEvents;
 
     [Header("Scriptable Objects")]
     public FloatVariable GoalDistance;
@@ -77,6 +79,10 @@ public class MovementController : MonoBehaviour
     private Vector3 startPosition;
     private Vector3 goalPosition;
 
+    CameraShake cameraShake;
+    private float chargedDashShakeDur = 0.2f;
+
+
     public bool IsMoving { get; set; }
 
     public bool IsFuseMoving { get; set; }
@@ -85,30 +91,34 @@ public class MovementController : MonoBehaviour
 
     public bool IsDashCharged { get; set; }
 
+    public bool IsDashing { get; set; }
+    public bool HasDied { get; set; }
+
     private void Awake()
     {
         rigidBody = GetComponent<Rigidbody>();
-        animator = GameObject.Find("FireGirl Variant").GetComponent<Animator>();
+        animator = GetComponentInChildren<Animator>();
         material = GetComponent<Renderer>().material;
         trailRenderer = GetComponent<TrailRenderer>();
         gameController = FindObjectOfType<GameController>();
-        audioEvents = GetComponents<AudioEvent>();
+        audioEvents = GetComponents<AudioEvent>().ToList<AudioEvent>();
         attachToPlane = GetComponent<AttachToPlane>();
-        //dialogCollision = GetComponentInChildren<DialogCollision>();
-        dialogRunner = FindObjectOfType<DialogueRunner>();
-        MovesText = GameObject.Find("MovesText").GetComponent<TextMeshProUGUI>();
+
     }
 
     // Start is called before the first frame update
     private void Start()
     {
-        MovesText.text = AmountOfMoves.ToString();
+        MovesText = GameObject.Find("MovesText").GetComponent<TextMeshProUGUI>();
+        cameraShake = GameObject.FindGameObjectWithTag("VirtualCamera").GetComponent<CameraShake>();
+
+        MovesText.text = AmountOfDashMoves.ToString();
 
         trailRenderer.enabled = false;
 
-        maxAmountOfMoves = AmountOfMoves;
+        maxAmountOfDashMoves = AmountOfDashMoves;
 
-        HealthPercentage.Value = ((float)AmountOfMoves / (float)maxAmountOfMoves) * 100f;
+        HealthPercentage.Value = ((float)AmountOfDashMoves / (float)maxAmountOfDashMoves) * 100f;
 
         gameController.IsPlaying = true;
 
@@ -134,15 +144,11 @@ public class MovementController : MonoBehaviour
     /// </summary>
     public void ChargeDash()
     {
-        material.color = new Color(1, colorValue, colorValue, 1);
-        colorValue -= 0.05f;
-
         // Play Animation
-        animator.SetTrigger(StartLongDashTrigger);
+        //animator.SetTrigger(StartLongDashTrigger);
 
         if (!_hasRun)
         {
-            // Debug.Log("Charging");
             AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.ChargingDash, audioEvents, gameObject);
             _hasRun = true;
         }
@@ -162,8 +168,9 @@ public class MovementController : MonoBehaviour
         previousPosition = transform.position;
         AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.Dash, audioEvents, gameObject);
         Vector3 targetPosition = transform.position + moveDirection * MoveDistance;
+        targetPosition.y = transform.position.y;
 
-        StartCoroutine(MoveRoutine(targetPosition, MoveDuration, MoveCost));
+        StartCoroutine(MoveRoutine(targetPosition, MoveDuration));
     }
 
     /// <summary>
@@ -178,7 +185,7 @@ public class MovementController : MonoBehaviour
         }
 
         // checks if you have enough moves left for a dash
-        int movesLeft = AmountOfMoves - DashCost;
+        int movesLeft = AmountOfDashMoves - DashCost;
         if (movesLeft < 0)
         {
             AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.ChargingRejection, audioEvents, gameObject);
@@ -188,14 +195,14 @@ public class MovementController : MonoBehaviour
 
         attachToPlane.Detach(false);
 
-        isDashing = true;
+        IsDashing = true;
         trailRenderer.enabled = true;
         previousPosition = transform.position;
         AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.ChargedDash, audioEvents, gameObject);
         previousPosition = transform.position;
         Vector3 targetPosition = transform.position + dashDirection * DashDistance;
 
-        StartCoroutine(MoveRoutine(targetPosition, DashDuration, DashCost));
+        StartCoroutine(MoveRoutine(targetPosition, DashDuration));
 
         ResetDash();
     }
@@ -213,16 +220,17 @@ public class MovementController : MonoBehaviour
     }
 
     /// <summary>
-    /// CoRoutine responsible for moving the Player.
+    /// CoRoutine responsible for moving the Player back (after a collision).
     /// </summary>
-    private IEnumerator MoveRoutine(Vector3 target, float duration)
+    private IEnumerator MoveBackRoutine(Vector3 target, float duration)
     {
         moveTweener?.Kill();
 
         IsMoving = true;
-        moveTweener = rigidBody.DOMove(target, duration);
 
-        // Collision
+        // Set animation trigger for Collision
+
+        moveTweener = rigidBody.DOMove(target, duration);
 
         yield return new WaitForSeconds(duration);
 
@@ -232,27 +240,27 @@ public class MovementController : MonoBehaviour
     /// <summary>
     /// CoRoutine responsible for moving the Player.
     /// </summary>
-    private IEnumerator MoveRoutine(Vector3 target, float duration, int cost)
+    private IEnumerator MoveRoutine(Vector3 target, float duration)
     {
         moveTweener?.Kill();
 
-        UpdateMovesAmount(cost, true);
+        if (IsDashing)
+        {
+            cameraShake.setShakeElapsedTime(chargedDashShakeDur);
+            UpdateDashMovesAmount();
+        }
+
         targetPosition = target;
 
         IsMoving = true;
-        moveTweener = rigidBody.DOMove(target, duration);
 
         // Play Animation
-        // TODO Add ShortDashTrigger
-        animator.SetTrigger(isDashing ? LongDashTrigger : LongDashTrigger);
+        //animator.SetTrigger(IsDashing ? LongDashTrigger : ShortDashTrigger);
+
+        moveTweener = rigidBody.DOMove(target, duration);
+        moveTweener.SetEase(IsDashing ? DashEase : MoveEase);
 
         yield return new WaitForSeconds(duration);
-
-        if (hitWall)
-        {
-            UpdateMovesAmount(cost, false);
-            hitWall = false;
-        }
 
         CheckMovesLeft();
 
@@ -262,7 +270,17 @@ public class MovementController : MonoBehaviour
     public void StopMoving()
     {
         moveTweener?.Kill();
-        StopCoroutine(nameof(MoveRoutine));
+        StopCoroutine(nameof(MoveBackRoutine));
+    }
+
+    public void StopMoving(Collision collision)
+    {
+        moveTweener?.Kill();
+        StopCoroutine(nameof(MoveBackRoutine));
+        var collisionPoint = collision.contacts[0];
+        var heading = previousPosition - collisionPoint.point;
+        heading.y = 0;
+        StartCoroutine(MoveBackRoutine(collisionPoint.point + heading.normalized * BounceValue, MoveDuration));
     }
 
     private void DashEnded()
@@ -272,14 +290,14 @@ public class MovementController : MonoBehaviour
         trailRenderer.enabled = false;
         IsMoving = false;
 
-        if (isDashing)
-            isDashing = false;
+        if (IsDashing)
+            IsDashing = false;
 
-        HealthPercentage.Value = ((float)AmountOfMoves / (float)maxAmountOfMoves) * 100f;
+        HealthPercentage.Value = ((float)AmountOfDashMoves / (float)maxAmountOfDashMoves) * 100f;
         UpdateGoalDistances();
 
         // Play Animation
-        animator.SetTrigger(LandTrigger);
+        //animator.SetTrigger(LandTrigger);
     }
 
     private void UpdateGoalDistances()
@@ -308,13 +326,10 @@ public class MovementController : MonoBehaviour
     /// <summary>
     /// Updates the moves text.
     /// </summary>
-    private void UpdateMovesAmount(int cost, bool subtract)
+    private void UpdateDashMovesAmount()
     {
-        if (subtract)
-            AmountOfMoves -= cost;
-        else
-            AmountOfMoves += cost;
-        MovesText.text = AmountOfMoves.ToString();
+        AmountOfDashMoves -= DashCost;
+        MovesText.text = AmountOfDashMoves.ToString();
     }
 
     /// <summary>
@@ -322,7 +337,7 @@ public class MovementController : MonoBehaviour
     /// </summary>
     private void CheckMovesLeft()
     {
-        if (AmountOfMoves <= 0)
+        if (AmountOfDashMoves <= 0)
         {
             isOutOfMoves = true;
             CheckGameEnd();
@@ -336,7 +351,7 @@ public class MovementController : MonoBehaviour
     {
         if (reachedGoal)
             gameController.Win();
-        else if (hasDied)
+        else if (HasDied)
             gameController.GameOverDied();
         else if (isOutOfMoves)
             gameController.GameOverOutOfMoves();
@@ -344,129 +359,47 @@ public class MovementController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Goal"))
-            CollideGoal(collision);
-        else if (collision.gameObject.CompareTag("Death"))
-            CollideDeathObstacle(collision);
-        else if (collision.gameObject.CompareTag("Block") || collision.gameObject.CompareTag("Fuse") && !IsFuseMoving)
-            CollideBlockObstacle(collision);
-        else if (collision.gameObject.CompareTag("PickUp"))
-            CollidePickUp(collision);
-        else if (collision.gameObject.CompareTag("Break"))
-            CollideBreakObstacle(collision);
-        else if (collision.gameObject.CompareTag("Candle"))
-            CollideCandle(collision);
-    }
-
-    private void CollideBreakObstacle(Collision collision)
-    {
-        if (isDashing)
+        var intObj = collision.gameObject.GetComponent<InteractibleObject>();
+        if (intObj!=null)
         {
-            collision.gameObject.GetComponent<BurnObject>().SetObjectOnFire();
-            AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.ObstacleBreak, audioEvents, gameObject);
-            dialogRunner.StartDialogue("Break");
-        }
-        else
-        {
-            AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.ObstacleBreakMute, audioEvents, gameObject);
-            StopMoving();
-            var collisionPoint = collision.contacts[0];
-            var heading = previousPosition - collisionPoint.point;
-            heading.y = 0;
-            StartCoroutine(MoveRoutine(collisionPoint.point + heading.normalized * BounceValue, MoveDuration));
+            if(intObj.type == InteractibleObject.InteractType.Death)
+                intObj.Death(targetPosition);
+            else
+                intObj.Interact(collision);    
         }
     }
 
-    private void CollidePickUp(Collision collision)
+    public void CollidePickUp()
     {
-        AmountOfMoves += PickUpValue;
-        if (AmountOfMoves > maxAmountOfMoves)
-            AmountOfMoves = maxAmountOfMoves;
-        MovesText.text = AmountOfMoves.ToString();
-        dialogRunner.StartDialogue("PickUp");
-        AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.BurningItem, audioEvents, gameObject);
-        Destroy(collision.gameObject);
+        AmountOfDashMoves += PickUpValue;
+        if (AmountOfDashMoves > maxAmountOfDashMoves)
+            AmountOfDashMoves = maxAmountOfDashMoves;
+        MovesText.text = AmountOfDashMoves.ToString();
     }
 
-    private void CollideBlockObstacle(Collision collision)
-    {
-        AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.ObstacleBlock, audioEvents, gameObject);
-        dialogRunner.StartDialogue("Block");
-        hitWall = true;
-        StopMoving();
-        var collisionPoint = collision.contacts[0];
-        var heading = previousPosition - collisionPoint.point;
-        heading.y = 0;
-        StartCoroutine(MoveRoutine(collisionPoint.point + heading.normalized * BounceValue, MoveDuration));
-    }
 
-    private void CollideDeathObstacle(Collision collision)
-    {
-        if (PointInOABB(targetPosition, collision.gameObject.GetComponent<BoxCollider>()))
-        {
-            dialogRunner.StartDialogue("Death");
-            hasDied = true;
-            CheckGameEnd();
-        }
-    }
-
-    private void CollideGoal(Collision collision)
+    public void CollideGoal(Collision collision)
     {
         StopMoving();
-
-        StartCoroutine(isDashing
-            ? MoveRoutine(collision.gameObject.transform.position, DashDuration)
-            : MoveRoutine(collision.gameObject.transform.position, MoveDuration));
-
+        StartCoroutine(IsDashing
+            ? MoveBackRoutine(collision.gameObject.transform.position, DashDuration)
+            : MoveBackRoutine(collision.gameObject.transform.position, MoveDuration));
         reachedGoal = true;
-        collision.gameObject.GetComponent<BoxCollider>().enabled = false;
         CheckGameEnd();
-        dialogRunner.StartDialogue("Goal");
-    }
-
-    private void CollideCandle(Collision collision)
-    {
-        Light light = collision.gameObject.GetComponentInChildren<Light>();
-        light.enabled = true;
-    }
-
-    private bool PointInOABB(Vector3 point, BoxCollider box)
-    {
-        point = box.transform.InverseTransformPoint(point) - box.center;
-
-        float halfX = (box.size.x * 0.5f);
-        //float halfY = (box.size.y * 0.5f);
-        float halfZ = (box.size.z * 0.5f);
-
-        return (point.x < halfX && point.x > -halfX &&
-           //point.y < halfY && point.y > -halfY &&
-           point.z < halfZ && point.z > -halfZ);
     }
 
     private void OnTriggerEnter(Collider col)
     {
-        if (col.gameObject.CompareTag("FusePoint"))
-        {
-            if (!IsFuseMoving)
-            {
-                StopMoving();
-                StartPoint startPoint = col.gameObject.GetComponent<StartPoint>();
-                startPoint.StartFollowingFuse();
-            }
-        }
+        var intObj = col.gameObject.GetComponent<InteractibleObject>();
+        if (intObj != null)
+            intObj.FusePoint();
     }
-
-    //private void SendAudioEvent(AudioEvent.AudioEventType type)
-    //{
-    //    for (int i = 0; i <= audioEvents.Length - 1; i++)
-    //    {
-    //        if (type == audioEvents[i].TriggerType)
-    //            audioEvents[i].AddAudioEvent(type, gameObject);
-    //    }
-    //}
 
     public void InfiniteLives()
     {
-        maxAmountOfMoves = AmountOfMoves = 999;
+        maxAmountOfDashMoves = AmountOfDashMoves = 999;
+        MovesText.text = AmountOfDashMoves.ToString();
     }
+
+    public Vector3 DashDirection() { return targetPosition - rigidBody.position; }
 }

@@ -17,13 +17,18 @@ public class UpdateStartEndPoints : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (spline == null)
-            return;
+        if (!Application.isPlaying)
+        {
+            if (spline == null)
+                return;
 
-        startPoint = transform.Find("StartPoint");
-        endPoint = transform.Find("EndPoint");
+            startPoint = transform.Find("StartPoint");
+            endPoint = transform.Find("EndPoint");
 
-        startPoint.position = transform.position + spline.nodes[0].Position;
-        endPoint.position = transform.position + spline.nodes[spline.nodes.Count - 1].Position;
+            startPoint.position = transform.TransformPoint(spline.nodes[0].Position);
+            endPoint.position = transform.TransformPoint(spline.nodes[spline.nodes.Count - 1].Position);
+        }
+
+        
     }
 }
