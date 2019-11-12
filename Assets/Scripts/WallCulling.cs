@@ -32,7 +32,6 @@ public class WallCulling : IGameLoop
             Vector3 fromWallToCam = gameObject.transform.position - walls[i].transform.position;
 
             var angleToCamPos = Vector3.Angle(fromWallToCam, wallPosZ);
-            Debug.Log(angleToCamPos);
 
             if (angle <= fixedAngle && angleToCamPos >= fixedAngle && meshRenderer.enabled)
                 meshRenderer.enabled = false;

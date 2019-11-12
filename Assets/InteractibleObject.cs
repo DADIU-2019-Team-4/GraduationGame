@@ -101,7 +101,6 @@ public class InteractibleObject : DashInteractable
     {
         AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.ObstacleBlock, audioEvents, gameObject);
         dialogRunner.StartDialogue("Block");
-        movementController.MoveBack();
     }
     private void Break(Collision collision)
     {
@@ -118,7 +117,6 @@ public class InteractibleObject : DashInteractable
         {
             cameraShake.setShakeElapsedTime(breakBounceShakeDur);   
             AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.ObstacleBreakMute, audioEvents, gameObject);
-            movementController.MoveBack();
         }
     }
     private void Candle()
