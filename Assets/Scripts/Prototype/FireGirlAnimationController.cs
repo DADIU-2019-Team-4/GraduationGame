@@ -48,11 +48,12 @@ public class FireGirlAnimationController : MonoBehaviour
         }
     }
 
+    // Unused for the time being
     public void Land()
     {
         foreach (Animator anim in this._animators)
         {
-            anim.SetTrigger(LandTrigger);
+            //anim.SetTrigger(LandTrigger);
         }
     }
 
