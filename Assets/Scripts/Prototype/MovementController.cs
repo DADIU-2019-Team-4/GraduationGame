@@ -15,7 +15,7 @@ public class MovementController : MonoBehaviour
     [Tooltip("Amount of moves at the start of the game.")]
     public int AmountOfDashMoves = 10;
     [Tooltip("How much the player should bounce of a wall when colliding.")]
-    public float BounceValue = 1f;
+    public float BounceValue = 0.3f;
 
     private int maxAmountOfDashMoves;
 
@@ -157,10 +157,10 @@ public class MovementController : MonoBehaviour
 
         previousPosition = transform.position;
         AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.Dash, audioEvents, gameObject);
-        Vector3 targetPosition = transform.position + moveDirection * MoveDistance;
-        targetPosition.y = transform.position.y;
+        Vector3 targetPos = transform.position + moveDirection * MoveDistance;
+        targetPos.y = transform.position.y;
 
-        StartCoroutine(MoveRoutine(targetPosition, MoveDuration));
+        StartCoroutine(MoveRoutine(targetPos, MoveDuration));
     }
 
     /// <summary>
@@ -190,12 +190,12 @@ public class MovementController : MonoBehaviour
         previousPosition = transform.position;
         AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.ChargedDash, audioEvents, gameObject);
         previousPosition = transform.position;
-        Vector3 targetPosition = transform.position + dashDirection * DashDistance;
-
-        // Play Animation
+        Vector3 targetPos = transform.position + dashDirection * DashDistance;
+        
+        //Play Animation
         animationController.Dash();
 
-        StartCoroutine(MoveRoutine(targetPosition, DashDuration));
+        StartCoroutine(MoveRoutine(targetPos, DashDuration));
     }
 
     /// <summary>
@@ -250,7 +250,9 @@ public class MovementController : MonoBehaviour
 
         IsMoving = true;
 
-        moveTweener = rigidBody.DOMove(target, duration);
+        CheckCollision();
+
+        moveTweener = rigidBody.DOMove(targetPosition, duration);
         moveTweener.SetEase(IsDashing ? DashEase : MoveEase);
         yield return new WaitForSeconds(duration);
 
@@ -259,20 +261,42 @@ public class MovementController : MonoBehaviour
         DashEnded();
     }
 
+    /// <summary>
+    /// Checks the collision.
+    /// </summary>
+    private void CheckCollision()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(new Vector3(transform.position.x, 0.5f, transform.position.z), transform.forward, out hit,
+            Vector3.Distance(transform.position, targetPosition)))
+        {
+            InteractibleObject interactableObj = hit.transform.gameObject.GetComponent<InteractibleObject>();
+            if (interactableObj == null)
+                return;
+
+            if (interactableObj.type == InteractibleObject.InteractType.Block)
+            {
+                Vector3 targetPos = hit.point;
+                targetPosition = targetPos - transform.forward * BounceValue;
+            }
+            else if (interactableObj.type == InteractibleObject.InteractType.Break)
+            {
+                if (IsDashing)
+                {
+
+                }
+
+                Vector3 targetPos = hit.point;
+                targetPosition = targetPos - transform.forward * BounceValue;
+            }
+        }
+    }
+
     public void StopMoving()
     {
         moveTweener?.Kill();
         StopCoroutine(nameof(MoveRoutine));
         StopCoroutine(nameof(MoveBackRoutine));
-    }
-
-    public void MoveBack()
-    {
-        StopMoving();
-        var direction = previousPosition - transform.position;
-        direction.y = 0;
-
-        StartCoroutine(MoveBackRoutine(transform.position + direction.normalized * BounceValue, MoveDuration));
     }
 
     private void DashEnded()
@@ -352,13 +376,12 @@ public class MovementController : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         var intObj = collision.gameObject.GetComponent<InteractibleObject>();
-        if (intObj!=null)
-        {
-            if(intObj.type == InteractibleObject.InteractType.Death)
-                intObj.Death(targetPosition);
-            else
-                intObj.Interact(collision);    
-        }
+        if (intObj == null) return;
+
+        if(intObj.type == InteractibleObject.InteractType.Death)
+            intObj.Death(targetPosition);
+        else
+            intObj.Interact(collision);
     }
 
     public void CollidePickUp()
