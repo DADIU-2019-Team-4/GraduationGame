@@ -14,6 +14,7 @@ public class AssignRandomOuterWall : MonoBehaviour
 
     public Material bark;
     public Material window;
+    public Material master;
     
     private void Awake()
     {
@@ -36,13 +37,17 @@ public class AssignRandomOuterWall : MonoBehaviour
             
             if(meshFilter.sharedMesh.name == "wall_outerTree01")
             {
-                Material[] mat = new Material[2] { rend.sharedMaterial ,bark};
+                Material[] mat = new Material[2] { master, bark};
                 rend.sharedMaterials = mat;
             }
             else if (meshFilter.sharedMesh.name == "cons_wall_window01")
             {
-                Material[] mat = new Material[2] { rend.sharedMaterial, window};
-                Debug.Log("YESYES");
+                Material[] mat = new Material[2] { master, window};
+                rend.sharedMaterials = mat;
+            }
+            else
+            {
+                Material[] mat = new Material[2] { master, master };
                 rend.sharedMaterials = mat;
             }
 

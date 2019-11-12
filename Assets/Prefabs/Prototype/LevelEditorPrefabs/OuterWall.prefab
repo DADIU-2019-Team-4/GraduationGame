@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 7119099096570955540}
   - component: {fileID: 3598542694103743469}
   - component: {fileID: -5052409948961974937}
+  - component: {fileID: 1097180774043353474}
+  - component: {fileID: 1246349229611124903}
   m_Layer: 0
   m_Name: OuterWall
   m_TagString: Untagged
@@ -58,8 +60,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: dace803c609cfc640bdaec85340c7155, type: 2}
-  - {fileID: 2100000, guid: dace803c609cfc640bdaec85340c7155, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -101,3 +103,30 @@ MonoBehaviour:
   - {fileID: -3474836806856507831, guid: dfd0f983a2b2b2649817d1cbb11e6caf, type: 3}
   bark: {fileID: 2100000, guid: 3b7a4da03518d8a459159e307b762a09, type: 2}
   window: {fileID: 2100000, guid: c4141d5c44cfea74eba20ed574b909c3, type: 2}
+  master: {fileID: 2100000, guid: dace803c609cfc640bdaec85340c7155, type: 2}
+--- !u!65 &1097180774043353474
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3011854333688106801}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.3160486, y: 2.504868, z: 0.7108252}
+  m_Center: {x: -0.00000017881393, y: 0, z: -0.000000044703484}
+--- !u!114 &1246349229611124903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3011854333688106801}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ce2f35c75ca9e84fb3474d32def3e6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 4
