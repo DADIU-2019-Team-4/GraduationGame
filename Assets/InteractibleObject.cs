@@ -35,11 +35,15 @@ public class InteractibleObject : DashInteractable
 
     private void Awake()
     {
-        timeSlowdown = GameObject.FindGameObjectWithTag("VirtualCamera").GetComponent<TimeSlowdown>();
-        cameraShake = GameObject.FindGameObjectWithTag("VirtualCamera").GetComponent<CameraShake>();
         movementController = FindObjectOfType<MovementController>();
         audioEvents = GetComponents<AudioEvent>().ToList<AudioEvent>();
         dialogRunner = FindObjectOfType<DialogueRunner>();
+    }
+
+    private void Start()
+    {
+        timeSlowdown = GameObject.FindGameObjectWithTag("VirtualCamera").GetComponent<TimeSlowdown>();
+        cameraShake = GameObject.FindGameObjectWithTag("VirtualCamera").GetComponent<CameraShake>();
     }
 
     public override void Interact(Collision collision)
