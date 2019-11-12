@@ -283,7 +283,7 @@ public class MovementController : MonoBehaviour
             {
                 if (IsDashing)
                 {
-
+                    return;
                 }
 
                 Vector3 targetPos = hit.point;
