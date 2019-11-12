@@ -195,7 +195,7 @@ public class MovementController : MonoBehaviour
         // Play Animation
         animationController.Dash();
 
-        StartCoroutine(MoveRoutine(targetPosition, DashDuration, DashCost));
+        StartCoroutine(MoveRoutine(targetPosition, DashDuration));
     }
 
     /// <summary>
