@@ -5,6 +5,7 @@ using UnityEngine;
 using Yarn.Unity;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine.Events;
 
 
 public class MovementController : MonoBehaviour
@@ -60,7 +61,7 @@ public class MovementController : MonoBehaviour
     private bool isOutOfMoves;
     private bool isCharged;
     private bool reachedGoal;
-    private Vector3 targetPosition;
+    public Vector3 TargetPosition;
 
     [Header("Scriptable Objects")]
     public FloatVariable GoalDistance;
@@ -83,6 +84,10 @@ public class MovementController : MonoBehaviour
 
     public bool IsDashing { get; set; }
     public bool HasDied { get; set; }
+
+    public GameObject UpcomingFusePoint;
+
+    public UnityEvent FuseEvent;
 
     private void Awake()
     {
@@ -113,6 +118,14 @@ public class MovementController : MonoBehaviour
         gameController.IsPlaying = true;
 
         SetStartAndEndPositions();
+
+        if (FuseEvent == null)
+            FuseEvent = new UnityEvent();
+    }
+
+    private void Update()
+    {
+        Debug.DrawRay(new Vector3(transform.position.x, 0.5f, transform.position.z), transform.forward * DashDistance, Color.magenta);
     }
 
     public void SetStartAndEndPositions()
@@ -224,8 +237,6 @@ public class MovementController : MonoBehaviour
 
         IsMoving = true;
 
-        // Set animation trigger for Collision
-
         moveTweener = rigidBody.DOMove(target, duration);
 
         yield return new WaitForSeconds(duration);
@@ -246,19 +257,20 @@ public class MovementController : MonoBehaviour
             UpdateDashMovesAmount();
         }
 
-        targetPosition = target;
+        TargetPosition = target;
 
         IsMoving = true;
 
         CheckCollision();
 
-        moveTweener = rigidBody.DOMove(targetPosition, duration);
+        moveTweener = rigidBody.DOMove(TargetPosition, duration);
         moveTweener.SetEase(IsDashing ? DashEase : MoveEase);
         yield return new WaitForSeconds(duration);
 
         CheckMovesLeft();
-
         DashEnded();
+
+        FuseEvent.Invoke();
     }
 
     /// <summary>
@@ -268,27 +280,13 @@ public class MovementController : MonoBehaviour
     {
         RaycastHit hit;
         if (Physics.Raycast(new Vector3(transform.position.x, 0.5f, transform.position.z), transform.forward, out hit,
-            Vector3.Distance(transform.position, targetPosition)))
+            Vector3.Distance(transform.position, TargetPosition)))
         {
             InteractibleObject interactableObj = hit.transform.gameObject.GetComponent<InteractibleObject>();
             if (interactableObj == null)
                 return;
 
-            if (interactableObj.type == InteractibleObject.InteractType.Block)
-            {
-                Vector3 targetPos = hit.point;
-                targetPosition = targetPos - transform.forward * BounceValue;
-            }
-            else if (interactableObj.type == InteractibleObject.InteractType.Break)
-            {
-                if (IsDashing)
-                {
-                    return;
-                }
-
-                Vector3 targetPos = hit.point;
-                targetPosition = targetPos - transform.forward * BounceValue;
-            }
+            interactableObj.Interact(hit.point);
         }
     }
 
@@ -373,15 +371,11 @@ public class MovementController : MonoBehaviour
             gameController.GameOverOutOfMoves();
     }
 
-    private void OnCollisionEnter(Collision collision)
+    public void CollideFusePoint()
     {
-        var intObj = collision.gameObject.GetComponent<InteractibleObject>();
-        if (intObj == null) return;
-
-        if(intObj.type == InteractibleObject.InteractType.Death)
-            intObj.Death(targetPosition);
-        else
-            intObj.Interact(collision);
+        FuseEvent.RemoveListener(CollideFusePoint);
+        StartPoint startPoint = UpcomingFusePoint.GetComponent<StartPoint>();
+        startPoint.StartFollowingFuse();
     }
 
     public void CollidePickUp()
@@ -392,21 +386,13 @@ public class MovementController : MonoBehaviour
         MovesText.text = AmountOfDashMoves.ToString();
     }
 
-    public void CollideGoal(Collision collision)
+    public void CollideGoal(GameObject goal)
     {
-        StopMoving();
         StartCoroutine(IsDashing
-            ? MoveBackRoutine(collision.gameObject.transform.position, DashDuration)
-            : MoveBackRoutine(collision.gameObject.transform.position, MoveDuration));
+            ? MoveBackRoutine(goal.transform.position, DashDuration)
+            : MoveBackRoutine(goal.transform.position, MoveDuration));
         reachedGoal = true;
         CheckGameEnd();
-    }
-
-    private void OnTriggerEnter(Collider col)
-    {
-        var intObj = col.gameObject.GetComponent<InteractibleObject>();
-        if (intObj != null)
-            intObj.FusePoint();
     }
 
     public void InfiniteLives()
@@ -415,5 +401,5 @@ public class MovementController : MonoBehaviour
         MovesText.text = AmountOfDashMoves.ToString();
     }
 
-    public Vector3 DashDirection() { return targetPosition - rigidBody.position; }
+    public Vector3 DashDirection() { return TargetPosition - rigidBody.position; }
 }

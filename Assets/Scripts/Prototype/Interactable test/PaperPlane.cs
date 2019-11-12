@@ -36,7 +36,7 @@ public class PaperPlane : DashInteractable
         playerScript._attached = true;
     }
 
-    public override void Interact(Collision collision)
+    public override void Interact(Vector3 hitpoint)
     {
 
     }
