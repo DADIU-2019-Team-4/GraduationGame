@@ -209,6 +209,7 @@ public class MovementController : MonoBehaviour
         colorValue = 1f;
         IsDashCharged = false;
         _hasRun = false;
+        AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.DashCancelled, audioEvents, gameObject);
     }
 
     /// <summary>

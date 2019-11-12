@@ -24,12 +24,12 @@
 				<Event Id="3914625789" Name="BlockObject" ObjectPath="\Events\Character\Objects\BlockObject" DurationType="OneShot" DurationMin="0.620000" DurationMax="0.620000"/>
 				<Event Id="2596983219" Name="BreakObject" ObjectPath="\Events\Character\Objects\BreakObject" DurationType="OneShot" DurationMin="2.440125" DurationMax="2.901814"/>
 				<Event Id="384768216" Name="BreakObjectMute" ObjectPath="\Events\Character\Objects\BreakObjectMute" DurationType="OneShot" DurationMin="0.620000" DurationMax="0.620000"/>
-				<Event Id="742914115" Name="ChargedDash" ObjectPath="\Events\Character\Dashing\ChargedDash" DurationType="OneShot" DurationMin="2.503546" DurationMax="2.810136"/>
+				<Event Id="742914115" Name="ChargedDash" ObjectPath="\Events\Character\Dashing\ChargedDash" DurationType="OneShot" DurationMin="2.410993" DurationMax="2.554358"/>
 				<Event Id="735079116" Name="ChargingDash" ObjectPath="\Events\Character\Dashing\ChargingDash" DurationType="Infinite"/>
 				<Event Id="1914703205" Name="ChargingRejection" ObjectPath="\Events\Character\Dashing\ChargingRejection" DurationType="OneShot" DurationMin="1.326893" DurationMax="1.326893"/>
 				<Event Id="2370884349" Name="CollectFire" ObjectPath="\Events\Character\Objects\CollectFire" DurationType="OneShot" DurationMin="5.076939" DurationMax="5.076939"/>
 				<Event Id="2850533655" Name="DashCancel" ObjectPath="\Events\Character\Dashing\DashCancel" MaxAttenuation="0.000000" DurationType="OneShot" DurationMin="0.000000" DurationMax="0.000000"/>
-				<Event Id="2044049779" Name="Dead" ObjectPath="\Events\Character\PlayerHealth\Dead" DurationType="OneShot" DurationMin="0.781509" DurationMax="0.887639"/>
+				<Event Id="2044049779" Name="Dead" ObjectPath="\Events\Character\PlayerHealth\Dead" DurationType="OneShot" DurationMin="0.781509" DurationMax="5.634581"/>
 				<Event Id="679539432" Name="DeathObject" ObjectPath="\Events\Character\Objects\DeathObject" DurationType="OneShot" DurationMin="1.538095" DurationMax="1.538095"/>
 				<Event Id="1330879727" Name="KillOnRestart" ObjectPath="\Events\GameController\KillOnRestart" MaxAttenuation="0.000000" DurationType="OneShot" DurationMin="0.000000" DurationMax="0.000000"/>
 				<Event Id="1016929228" Name="NormalDash" ObjectPath="\Events\Character\Dashing\NormalDash" DurationType="OneShot" DurationMin="1.601180" DurationMax="1.904135"/>
@@ -142,10 +142,6 @@
 					<ShortName>Room1_var01_StringsSpizz_01_80bpm.wav</ShortName>
 					<Path>SFX\Room1_var01_StringsSpizz_01_80bpm_9B96ECC7.wem</Path>
 				</File>
-				<File Id="653211893" Language="SFX">
-					<ShortName>ChargedDash17.wav</ShortName>
-					<Path>SFX\ChargedDash17_6296B0F9.wem</Path>
-				</File>
 				<File Id="655227849" Language="SFX">
 					<ShortName>BreakObject2.wav</ShortName>
 					<Path>SFX\BreakObject2_6296B0F9.wem</Path>
@@ -176,11 +172,11 @@
 				</File>
 				<File Id="875590832" Language="SFX">
 					<ShortName>Death5.wav</ShortName>
-					<Path>SFX\Death5_E4333E93.wem</Path>
+					<Path>SFX\Death5_57BEFBF0.wem</Path>
 				</File>
 				<File Id="902231320" Language="SFX">
 					<ShortName>ChargingDash18.wav</ShortName>
-					<Path>SFX\ChargingDash18_6296B0F9.wem</Path>
+					<Path>SFX\ChargingDash18_FFEA55BB.wem</Path>
 				</File>
 				<File Id="932705826" Language="SFX">
 					<ShortName>CollectFire6.wav</ShortName>
@@ -193,6 +189,14 @@
 				<File Id="1001948929" Language="SFX">
 					<ShortName>CollectFire3.wav</ShortName>
 					<Path>SFX\CollectFire3_6296B0F9.wem</Path>
+				</File>
+				<File Id="1032642195" Language="SFX">
+					<ShortName>ChargingDash19 (no voice).wav</ShortName>
+					<Path>SFX\ChargingDash19 (no voice)_6296B0F9.wem</Path>
+				</File>
+				<File Id="1035655178" Language="SFX">
+					<ShortName>ChargingDash19 (voiceOnly).wav</ShortName>
+					<Path>SFX\ChargingDash19 (voiceOnly)_106A1F92.wem</Path>
 				</File>
 				<File Id="1036702409" Language="SFX">
 					<ShortName>ChargeHold2.wav</ShortName>

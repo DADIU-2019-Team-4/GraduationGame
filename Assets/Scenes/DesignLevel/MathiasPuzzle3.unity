@@ -1108,6 +1108,25 @@ MonoBehaviour:
   RTPCValue: {fileID: 11400000, guid: f685f7b974a1c084a8554bb9e8c13bf2, type: 2}
   SetStateGroup: 
   SetStateValue: 
+--- !u!114 &840397493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 840397472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3f6a57ea9bb81040839eb22c9ccd632, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TriggerType: 14
+  WwiseType: 0
+  EventName: DashCancel
+  RTPCName: 
+  RTPCValue: {fileID: 0}
+  SetStateGroup: 
+  SetStateValue: 
 --- !u!1001 &883425734
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2163,36 +2182,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameController (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 7687038821585000238, guid: 7f579a59447f4be4cb6336d55ef7ac20,
-        type: 3}
-      propertyPath: WinText
-      value: 
-      objectReference: {fileID: 1620619447}
-    - target: {fileID: 7687038821585000238, guid: 7f579a59447f4be4cb6336d55ef7ac20,
-        type: 3}
-      propertyPath: OutOfMovesText
-      value: 
-      objectReference: {fileID: 739145530}
-    - target: {fileID: 7687038821585000238, guid: 7f579a59447f4be4cb6336d55ef7ac20,
-        type: 3}
-      propertyPath: DiedText
-      value: 
-      objectReference: {fileID: 1196983973}
-    - target: {fileID: 7687038821585000238, guid: 7f579a59447f4be4cb6336d55ef7ac20,
-        type: 3}
-      propertyPath: RestartButton
-      value: 
-      objectReference: {fileID: 1632094968}
-    - target: {fileID: 7687038821585000238, guid: 7f579a59447f4be4cb6336d55ef7ac20,
-        type: 3}
-      propertyPath: NextSceneButton
-      value: 
-      objectReference: {fileID: 1732142267}
-    - target: {fileID: 7687038821585000238, guid: 7f579a59447f4be4cb6336d55ef7ac20,
-        type: 3}
-      propertyPath: NextLevelName
-      value: MathiasPuzzle2
-      objectReference: {fileID: 0}
     - target: {fileID: 7687038821585000239, guid: 7f579a59447f4be4cb6336d55ef7ac20,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2247,6 +2236,36 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7687038821585000238, guid: 7f579a59447f4be4cb6336d55ef7ac20,
+        type: 3}
+      propertyPath: WinText
+      value: 
+      objectReference: {fileID: 1620619447}
+    - target: {fileID: 7687038821585000238, guid: 7f579a59447f4be4cb6336d55ef7ac20,
+        type: 3}
+      propertyPath: OutOfMovesText
+      value: 
+      objectReference: {fileID: 739145530}
+    - target: {fileID: 7687038821585000238, guid: 7f579a59447f4be4cb6336d55ef7ac20,
+        type: 3}
+      propertyPath: DiedText
+      value: 
+      objectReference: {fileID: 1196983973}
+    - target: {fileID: 7687038821585000238, guid: 7f579a59447f4be4cb6336d55ef7ac20,
+        type: 3}
+      propertyPath: RestartButton
+      value: 
+      objectReference: {fileID: 1632094968}
+    - target: {fileID: 7687038821585000238, guid: 7f579a59447f4be4cb6336d55ef7ac20,
+        type: 3}
+      propertyPath: NextSceneButton
+      value: 
+      objectReference: {fileID: 1732142267}
+    - target: {fileID: 7687038821585000238, guid: 7f579a59447f4be4cb6336d55ef7ac20,
+        type: 3}
+      propertyPath: NextLevelName
+      value: MathiasPuzzle2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7f579a59447f4be4cb6336d55ef7ac20, type: 3}
