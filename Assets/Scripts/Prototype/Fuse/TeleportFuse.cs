@@ -26,7 +26,10 @@ public class TeleportFuse : MonoBehaviour
     {
         if (OnlyUsedOnce && isUsed)
             return;
-
+        if (movementController==null)
+        {
+            movementController = FindObjectOfType<MovementController>();
+        }
         movementController.IsFuseMoving = true;
 
         if (pointType == StartPoint.PointType.Start)

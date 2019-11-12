@@ -33,21 +33,12 @@ public class InteractibleObject : DashInteractable
     //timeSlowdown
     TimeSlowdown timeSlowdown;
 
-    private void Awake()
-    {
-        movementController = FindObjectOfType<MovementController>();
-        audioEvents = GetComponents<AudioEvent>().ToList<AudioEvent>();
-        dialogRunner = FindObjectOfType<DialogueRunner>();
-    }
-
-    private void Start()
-    {
-        timeSlowdown = GameObject.FindGameObjectWithTag("VirtualCamera").GetComponent<TimeSlowdown>();
-        cameraShake = GameObject.FindGameObjectWithTag("VirtualCamera").GetComponent<CameraShake>();
-    }
-
     public override void Interact(Collision collision)
     {
+        if(movementController== null)
+        {
+            AssignDependencies();
+        }
         switch (type)
         {
             case InteractType.Projectile:
@@ -82,6 +73,8 @@ public class InteractibleObject : DashInteractable
     {
         if (PointInOABB(targetPosition, gameObject.GetComponent<BoxCollider>()))
         {
+            if(movementController==null)
+                AssignDependencies();
             movementController.HasDied = true;
             dialogRunner.StartDialogue("Death");
             movementController.CheckGameEnd();
@@ -137,7 +130,7 @@ public class InteractibleObject : DashInteractable
         Destroy(gameObject);
         movementController.CollidePickUp();
     }
-    public void FusePoint()
+    public void FusePoint(MovementController movementController)
     {
         if (!movementController.IsFuseMoving)
         {
@@ -162,5 +155,14 @@ public class InteractibleObject : DashInteractable
         return (point.x < halfX && point.x > -halfX &&
            //point.y < halfY && point.y > -halfY &&
            point.z < halfZ && point.z > -halfZ);
+    }
+
+    private void AssignDependencies()
+    {
+        movementController = FindObjectOfType<MovementController>();
+        audioEvents = GetComponents<AudioEvent>().ToList<AudioEvent>();
+        dialogRunner = FindObjectOfType<DialogueRunner>();
+        timeSlowdown = GameObject.FindGameObjectWithTag("VirtualCamera").GetComponent<TimeSlowdown>();
+        cameraShake = GameObject.FindGameObjectWithTag("VirtualCamera").GetComponent<CameraShake>();
     }
 }

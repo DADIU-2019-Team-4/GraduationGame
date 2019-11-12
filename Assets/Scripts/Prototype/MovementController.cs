@@ -391,7 +391,7 @@ public class MovementController : MonoBehaviour
     {
         var intObj = col.gameObject.GetComponent<InteractibleObject>();
         if (intObj != null)
-            intObj.FusePoint();
+            intObj.FusePoint(this);
     }
 
     public void InfiniteLives()
