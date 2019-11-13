@@ -50,7 +50,7 @@ public class AttachToPlane : MonoBehaviour
             _attached = false;
 
             if (destroy)
-                Destroy(parent.gameObject);
+                parent.gameObject.SetActive(false);
         }
        
     }
