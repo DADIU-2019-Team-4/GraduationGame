@@ -71,8 +71,8 @@ public class GameController : MonoBehaviour
         IsPlaying = false;
     }
 
-    public void InfiniteLives()
+    public void InfiniteMoves()
     {
-        FindObjectOfType<MovementController>().InfiniteLives();
+        FindObjectOfType<MovementController>().InfiniteMoves();
     }
 }
