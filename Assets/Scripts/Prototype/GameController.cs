@@ -14,7 +14,7 @@ public class GameController : MonoBehaviour
     public GameObject DiedText;
     public GameObject RestartButton;
     public GameObject NextSceneButton;
-    public Text LevelNameText;
+    //public Text LevelNameText;
 
 
     public bool IsPlaying { get; set; }
@@ -25,7 +25,7 @@ public class GameController : MonoBehaviour
     private void Start()
     {
         audioEvents = GetComponents<AudioEvent>().ToList<AudioEvent>();
-        LevelNameText.text = SceneManager.GetActiveScene().name;
+        //LevelNameText.text = SceneManager.GetActiveScene().name;
     }
 
     public void Win()

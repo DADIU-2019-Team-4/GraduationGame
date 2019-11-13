@@ -38,7 +38,7 @@ public class InputManager : IGameLoop
         gameController = FindObjectOfType<GameController>();
         mainCamera = Camera.main;
         arrowParent = GameObject.FindGameObjectWithTag("Arrow");
-        canvas = FindObjectOfType<Canvas>();
+        canvas = gameController.GetComponentInChildren<Canvas>();
     }
 
     private void Start()
@@ -84,10 +84,12 @@ public class InputManager : IGameLoop
         else if (dragDistance > DashThreshold)
         {
             doMove = true;
-            StretchArrow(movementController.DashDistance);
-            arrow.GetComponent<SpriteRenderer>().color = Color.red;
             ShowArrow();
             ChargeUpDash();
+
+            if (!movementController.IsDashCharged) return;
+            StretchArrow(movementController.DashDistance);
+            arrow.GetComponent<SpriteRenderer>().color = Color.red;
         }
         // cancel
         else
@@ -308,6 +310,9 @@ public class InputManager : IGameLoop
             dashTimer = 0;
         }
         else
+        {
+            movementController.ResetDash();
             movementController.Move(directionVector.normalized);
+        }
     }
 }
