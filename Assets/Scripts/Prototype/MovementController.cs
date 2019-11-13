@@ -252,7 +252,7 @@ public class MovementController : MonoBehaviour
         moveTweener.SetEase(IsDashing ? DashEase : MoveEase);
         yield return new WaitForSeconds(duration);
 
-        CheckMovesLeft();
+        CheckFireLeft();
         DashEnded();
 
         FuseEvent.Invoke();
@@ -327,6 +327,8 @@ public class MovementController : MonoBehaviour
     private void UpdateFireAmount(float cost)
     {
         currentFireAmount -= cost;
+        if (currentFireAmount < 0)
+            currentFireAmount = 0;
         UpdateFireAmountText();
     }
 
@@ -341,7 +343,7 @@ public class MovementController : MonoBehaviour
     /// <summary>
     /// Checks if the player has moves left.
     /// </summary>
-    private void CheckMovesLeft()
+    private void CheckFireLeft()
     {
         if (currentFireAmount <= 0)
         {
