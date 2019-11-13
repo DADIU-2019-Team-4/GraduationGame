@@ -11,6 +11,8 @@ public class WallShooter : IGameLoop
     [SerializeField]
     private float currentSpawnCooldown=0;
     public float planeSpeed;
+    public float planeBurnDuration;
+    public float distancePlaneCanTravel;
     public LineRenderer lineRenderer;
 
 
@@ -29,19 +31,21 @@ public class WallShooter : IGameLoop
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.right), out hit, detectionDistance))
         {
             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.right) * hit.distance, Color.yellow);
-            lineRenderer.SetPositions(new Vector3[2] { transform.position, transform.position + (transform.TransformDirection(Vector3.right) * hit.distance) });
+            //lineRenderer.SetPositions(new Vector3[2] { transform.position, transform.position + (transform.TransformDirection(Vector3.right) * hit.distance) });
 
             if (hit.transform.tag== "Player")
             {
-                SpawnPlane();
+                //do nothing
             }
         }
         else
         {
-            lineRenderer.SetPositions(new Vector3[2] { transform.position, transform.position + (transform.TransformDirection(Vector3.right) * detectionDistance) });
+            //lineRenderer.SetPositions(new Vector3[2] { transform.position, transform.position + (transform.TransformDirection(Vector3.right) * detectionDistance) });
             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.right) * detectionDistance, Color.white);
            
         }
+
+        SpawnPlane();
 
     }
 
@@ -51,6 +55,8 @@ public class WallShooter : IGameLoop
         {
             GameObject planeRef = GameObject.Instantiate(plane, transform.position, this.transform.rotation);
             planeRef.GetComponent<PaperPlane>().speed = planeSpeed;
+            planeRef.GetComponent<PaperPlane>().burnDuration = planeBurnDuration;
+            planeRef.GetComponent<PaperPlane>().distanceToTravel = distancePlaneCanTravel;
             currentSpawnCooldown = spawnCooldown;
         }
         else

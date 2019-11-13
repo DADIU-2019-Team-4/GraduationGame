@@ -6,34 +6,90 @@ public class PaperPlane : DashInteractable
 {
     [HideInInspector]
     public float speed = 5;
+    public float burnDuration;
+    public float distanceToTravel;
+    public float distanceTraveled=0;
 
+    public bool playerAttachedToThis = false;
+    private bool isBurning;
     private Collider lastCollision;
+    private AttachToPlane playerAttached;
+
 
     public override void GameLoopUpdate()
     {
         base.GameLoopUpdate();
-        transform.Translate(Vector3.right * speed * Time.deltaTime, Space.Self);
+
+        Vector3 movement = Vector3.right * speed * Time.deltaTime;
+        distanceTraveled += movement.magnitude;
+
+        transform.Translate(movement, Space.Self);
+
+        if (isBurning)
+        {
+            if (burnDuration < 0)
+            {
+                DestroyPlane();
+            }
+            else
+            {
+                burnDuration -= Time.deltaTime;
+            }
+        }
+
+        if (distanceTraveled>distanceToTravel)
+        {
+            DestroyPlane();
+        }
+        
+    }
+
+    private void DestroyPlane()
+    {
+        if (playerAttachedToThis)
+        {
+            playerAttached.Detach(false);
+            Destroy(gameObject);
+            //gameObject.SetActive(false);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+        RemoveFromGameLoop();
+        
     }
 
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("Plane Collision");
         lastCollision = other;
-        if (lastCollision.gameObject.tag == "Obsticle")
-            Destroy(gameObject);
+        if (lastCollision.gameObject.tag != "Player")
+        {
+            if (transform.childCount !=0)
+            {
+                transform.GetChild(0).GetComponent<AttachToPlane>().Detach(true);
+            }
+
+            //gameObject.SetActive(false);
+        }
+            
 
     }
 
     public override void Interact(GameObject player)
     {
-        AttachToPlane playerScript = player.GetComponent<AttachToPlane>();
+        playerAttached = player.GetComponent<AttachToPlane>();
+        playerAttachedToThis = true;
 
         Debug.Log("Collision with: " + gameObject.name);
         player.transform.SetParent(gameObject.transform);
         player.transform.position = player.transform.parent.position;
         player.GetComponent<Rigidbody>().useGravity = false;
         player.GetComponent<Rigidbody>().velocity = new Vector3();
-        playerScript._attached = true;
+        playerAttached._attached = true;
+
+        isBurning = true;
     }
 
     public override void Interact(Vector3 hitpoint)
