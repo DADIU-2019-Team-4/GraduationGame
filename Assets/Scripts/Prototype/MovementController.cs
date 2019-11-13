@@ -94,7 +94,7 @@ public class MovementController : MonoBehaviour
         rigidBody = GetComponent<Rigidbody>();
         animationController = GetComponentInChildren<FireGirlAnimationController>();
         material = GetComponent<Renderer>().material;
-        trailRenderer = GetComponent<TrailRenderer>();
+        trailRenderer = GetComponentInChildren<TrailRenderer>();
         gameController = FindObjectOfType<GameController>();
         audioEvents = GetComponents<AudioEvent>().ToList<AudioEvent>();
         attachToPlane = GetComponent<AttachToPlane>();
