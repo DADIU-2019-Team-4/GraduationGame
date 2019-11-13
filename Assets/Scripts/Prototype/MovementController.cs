@@ -285,8 +285,11 @@ public class MovementController : MonoBehaviour
             InteractibleObject interactableObj = hit.transform.gameObject.GetComponent<InteractibleObject>();
             if (interactableObj == null)
                 return;
-
+            Debug.Log("TargetPos before: " + TargetPosition);
             interactableObj.Interact(hit.point);
+            Debug.Log("TargetPos after: " + TargetPosition);
+            if ((IsDashing && interactableObj.IsBreakable) || interactableObj.type == InteractibleObject.InteractType.PickUp)
+                CheckCollision();
         }
     }
 

@@ -24,6 +24,8 @@ public class InteractibleObject : DashInteractable
     public List<AudioEvent> audioEvents;
     private DialogueRunner dialogRunner;
 
+    public bool IsBreakable { get; set; }
+
     //CameraShake
     CameraShake cameraShake;
     private float chargedDashShakeDur = 0.2f;
@@ -32,6 +34,16 @@ public class InteractibleObject : DashInteractable
 
     //timeSlowdown
     TimeSlowdown timeSlowdown;
+
+    private void Start()
+    {
+        if (type == InteractType.Break)
+            IsBreakable = true;
+        else if (type == InteractType.PickUp)
+            IsBreakable = true;
+        else
+            IsBreakable = false;
+    }
 
     public override void Interact(Vector3 hitPoint)
     {
@@ -134,7 +146,8 @@ public class InteractibleObject : DashInteractable
     {
         dialogRunner.StartDialogue("PickUp");
         AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.BurningItem, audioEvents, gameObject);
-        Destroy(gameObject);
+        gameObject.GetComponent<Collider>().enabled = false;
+        gameObject.SetActive(false);
         movementController.CollidePickUp();
     }
 
