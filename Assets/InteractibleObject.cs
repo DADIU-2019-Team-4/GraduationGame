@@ -66,7 +66,7 @@ public class InteractibleObject : DashInteractable
                 FusePoint(hitPoint);
                 break;
             case InteractType.Death:
-                Death();
+                Death(hitPoint);
                 break;
             case InteractType.Fuse:
                 if(!movementController.IsFuseMoving)
@@ -75,16 +75,15 @@ public class InteractibleObject : DashInteractable
         }
 
     }
-    public void Death ()
+
+    public void Death(Vector3 hitpoint)
     {
-        if (PointInOABB(movementController.TargetPosition, gameObject.GetComponent<BoxCollider>()))
-        {
-            if(movementController==null)
-                AssignDependencies();
-            movementController.HasDied = true;
-            dialogRunner.StartDialogue("Death");
-            movementController.CheckGameEnd();
-        }
+        if (movementController == null)
+            AssignDependencies();
+        movementController.TargetPosition = hitpoint + movementController.transform.forward * movementController.BounceValue;
+        movementController.HasDied = true;
+        dialogRunner.StartDialogue("Death");
+        movementController.CheckGameEnd();
     }
 
     private void Projectile()
