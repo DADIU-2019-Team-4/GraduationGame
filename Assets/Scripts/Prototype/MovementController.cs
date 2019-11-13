@@ -11,20 +11,19 @@ using UnityEngine.Events;
 public class MovementController : MonoBehaviour
 {
     [Header("General Settings")]
-    [Tooltip("Value of pick ups that add to your amount of moves.")]
-    public int PickUpValue = 3;
-    [Tooltip("Amount of moves at the start of the game.")]
-    public int AmountOfDashMoves = 10;
+    [Tooltip("Total Fire amount after dashing into breakable objects.")]
+    public float FireValue = 100f;
     [Tooltip("How much the player should bounce of a wall when colliding.")]
     public float BounceValue = 0.3f;
-
-    private int maxAmountOfDashMoves;
 
     [Header("Move Settings")]
     [Tooltip("Duration of a move in seconds (how long it takes to get to target position).")]
     public float MoveDuration = 0.2f;
     [Tooltip("This gets multiplied by the drag distance (value between 0-1) to get the distance of a move.")]
     public float MoveDistanceFactor = 0.01f;
+    [Tooltip("Cost of a move in percentage.")]
+    [Range(0f, 100f)]
+    public float MoveCostInPercentage;
     [Tooltip("Easing function of the move.")]
     public Ease MoveEase = Ease.OutCubic;
     public float MoveDistance { get; set; }   
@@ -36,32 +35,30 @@ public class MovementController : MonoBehaviour
     public float DashDuration = 0.1f;
     [Tooltip("Distance of a dash.")]
     public float DashDistance = 4;
-    [Tooltip("Cost of a dash.")]
-    public int DashCost = 1;
+    [Tooltip("Cost of a dash in percentage.")]
+    [Range(0f, 100f)]
+    public float DashCostInPercentage = 7.5f;
     [Tooltip("Easing function of the dash.")]
     public Ease DashEase = Ease.OutCubic;
 
     [Header("Canvas Fields")]
-    private TMP_Text MovesText;
+    private TMP_Text FireAmountText;
 
     private GameController gameController;
     private FireGirlAnimationController animationController;
     private Rigidbody rigidBody;
     private Material material;
     private TrailRenderer trailRenderer;
-    private Vector3 previousPosition;
     private Tweener moveTweener;
-    public List <AudioEvent> audioEvents;
+    private List<AudioEvent> audioEvents;
 
     private AttachToPlane attachToPlane;
 
-    private float colorValue = 1;
-    private float changeTextColorDuration = 0.2f;
-
-    private bool isOutOfMoves;
+    private float currentFireAmount;
+    private float maxFireAmount = 100f;
+    private bool isOutOfFire;
     private bool isCharged;
     private bool reachedGoal;
-    public Vector3 TargetPosition;
 
     [Header("Scriptable Objects")]
     public FloatVariable GoalDistance;
@@ -85,9 +82,11 @@ public class MovementController : MonoBehaviour
     public bool IsDashing { get; set; }
     public bool HasDied { get; set; }
 
-    public GameObject UpcomingFusePoint;
+    public GameObject UpcomingFusePoint { get; set; }
 
-    public UnityEvent FuseEvent;
+    public UnityEvent FuseEvent { get; set; }
+
+    public Vector3 TargetPosition { get; set; }
 
     private void Awake()
     {
@@ -98,22 +97,19 @@ public class MovementController : MonoBehaviour
         gameController = FindObjectOfType<GameController>();
         audioEvents = GetComponents<AudioEvent>().ToList<AudioEvent>();
         attachToPlane = GetComponent<AttachToPlane>();
-
     }
 
     // Start is called before the first frame update
     private void Start()
     {
-        MovesText = GameObject.Find("MovesText").GetComponent<TextMeshProUGUI>();
+        FireAmountText = GameObject.Find("FireAmountText").GetComponent<TextMeshProUGUI>();
         cameraShake = GameObject.FindGameObjectWithTag("VirtualCamera").GetComponent<CameraShake>();
-
-        MovesText.text = AmountOfDashMoves.ToString();
 
         trailRenderer.enabled = false;
 
-        maxAmountOfDashMoves = AmountOfDashMoves;
-
-        HealthPercentage.Value = ((float)AmountOfDashMoves / (float)maxAmountOfDashMoves) * 100f;
+        currentFireAmount = maxFireAmount;
+        UpdateFireAmountText();
+        HealthPercentage.Value = currentFireAmount;
 
         gameController.IsPlaying = true;
 
@@ -168,7 +164,6 @@ public class MovementController : MonoBehaviour
             return;
         }
 
-        previousPosition = transform.position;
         AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.Dash, audioEvents, gameObject);
         Vector3 targetPos = transform.position + moveDirection * MoveDistance;
         targetPos.y = transform.position.y;
@@ -187,22 +182,11 @@ public class MovementController : MonoBehaviour
             return;
         }
 
-        // checks if you have enough moves left for a dash
-        int movesLeft = AmountOfDashMoves - DashCost;
-        if (movesLeft < 0)
-        {
-            AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.ChargingRejection, audioEvents, gameObject);
-            StartCoroutine(ChangeTextColorRoutine());
-            return;
-        }
-
         attachToPlane.Detach(false);
 
         IsDashing = true;
         trailRenderer.enabled = true;
-        previousPosition = transform.position;
         AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.ChargedDash, audioEvents, gameObject);
-        previousPosition = transform.position;
         Vector3 targetPos = transform.position + dashDirection * DashDistance;
         
         //Play Animation
@@ -223,7 +207,6 @@ public class MovementController : MonoBehaviour
         }
 
         material.SetColor("_Color", Color.yellow);
-        colorValue = 1f;
         IsDashCharged = false;
         isCharged = false;
     }
@@ -254,8 +237,10 @@ public class MovementController : MonoBehaviour
         if (IsDashing)
         {
             cameraShake.setShakeElapsedTime(chargedDashShakeDur);
-            UpdateDashMovesAmount();
+            UpdateFireAmount(DashCostInPercentage);
         }
+        else
+            UpdateFireAmount(MoveCostInPercentage);
 
         TargetPosition = target;
 
@@ -285,11 +270,18 @@ public class MovementController : MonoBehaviour
             InteractibleObject interactableObj = hit.transform.gameObject.GetComponent<InteractibleObject>();
             if (interactableObj == null)
                 return;
-            Debug.Log("TargetPos before: " + TargetPosition);
             interactableObj.Interact(hit.point);
-            Debug.Log("TargetPos after: " + TargetPosition);
-            if ((IsDashing && interactableObj.IsBreakable) || interactableObj.type == InteractibleObject.InteractType.PickUp)
+            if ((IsDashing && interactableObj.IsBreakable) ||
+                interactableObj.type == InteractibleObject.InteractType.PickUp)
+            {
+                if (currentFireAmount < FireValue)
+                {
+                    currentFireAmount = FireValue;
+                    UpdateFireAmountText();
+                }
+
                 CheckCollision();
+            }
         }
     }
 
@@ -310,7 +302,7 @@ public class MovementController : MonoBehaviour
         if (IsDashing)
             IsDashing = false;
 
-        HealthPercentage.Value = ((float)AmountOfDashMoves / (float)maxAmountOfDashMoves) * 100f;
+        HealthPercentage.Value = currentFireAmount;
         UpdateGoalDistances();
 
         // Play Animation
@@ -330,23 +322,20 @@ public class MovementController : MonoBehaviour
     }
 
     /// <summary>
-    /// CoRoutine responsible for changing the color of the moves text.
+    /// Updates the fire amount.
     /// </summary>
-    private IEnumerator ChangeTextColorRoutine()
+    private void UpdateFireAmount(float cost)
     {
-        MovesText.DOColor(Color.red, changeTextColorDuration);
-        yield return new WaitForSeconds(changeTextColorDuration);
-        MovesText.DOColor(Color.white, changeTextColorDuration);
-        yield return new WaitForSeconds(changeTextColorDuration);
+        currentFireAmount -= cost;
+        UpdateFireAmountText();
     }
 
     /// <summary>
-    /// Updates the moves text.
+    /// Updates the fire amount text.
     /// </summary>
-    private void UpdateDashMovesAmount()
+    private void UpdateFireAmountText()
     {
-        AmountOfDashMoves -= DashCost;
-        MovesText.text = AmountOfDashMoves.ToString();
+        FireAmountText.text = currentFireAmount + "%";
     }
 
     /// <summary>
@@ -354,9 +343,9 @@ public class MovementController : MonoBehaviour
     /// </summary>
     private void CheckMovesLeft()
     {
-        if (AmountOfDashMoves <= 0)
+        if (currentFireAmount <= 0)
         {
-            isOutOfMoves = true;
+            isOutOfFire = true;
             CheckGameEnd();
         }
     }
@@ -370,7 +359,7 @@ public class MovementController : MonoBehaviour
             gameController.Win();
         else if (HasDied)
             gameController.GameOverDied();
-        else if (isOutOfMoves)
+        else if (isOutOfFire)
             gameController.GameOverOutOfMoves();
     }
 
@@ -383,10 +372,10 @@ public class MovementController : MonoBehaviour
 
     public void CollidePickUp()
     {
-        AmountOfDashMoves += PickUpValue;
-        if (AmountOfDashMoves > maxAmountOfDashMoves)
-            AmountOfDashMoves = maxAmountOfDashMoves;
-        MovesText.text = AmountOfDashMoves.ToString();
+        currentFireAmount += FireValue;
+        if (currentFireAmount > maxFireAmount)
+            currentFireAmount = maxFireAmount;
+        FireAmountText.text = currentFireAmount.ToString();
     }
 
     public void CollideGoal(GameObject goal)
@@ -398,10 +387,10 @@ public class MovementController : MonoBehaviour
         CheckGameEnd();
     }
 
-    public void InfiniteLives()
+    public void InfiniteMoves()
     {
-        maxAmountOfDashMoves = AmountOfDashMoves = 999;
-        MovesText.text = AmountOfDashMoves.ToString();
+        MoveCostInPercentage = 0;
+        DashCostInPercentage = 0;
     }
 
     public Vector3 DashDirection() { return TargetPosition - rigidBody.position; }
