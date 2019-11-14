@@ -26,11 +26,13 @@ public class BurnObject : MonoBehaviour
 
     public Material dissolveShader;
     private Renderer renderer;
+    private Texture texture;
 
     public void Start()
     {
         renderer = gameObject.GetComponent<Renderer>();
         movementController = FindObjectOfType<MovementController>();
+        texture = renderer.material.mainTexture;
     }
 
     public void Update()
@@ -49,6 +51,7 @@ public class BurnObject : MonoBehaviour
     public void SetObjectOnFire(Vector3 collisionPoint)
     {
         renderer.material = dissolveShader;
+        renderer.material.SetTexture("_maintexture", texture);
         _isBurning = true;
         gameObject.GetComponent<Collider>().enabled = false;
         renderer.material.SetVector("_StartPoint", collisionPoint);
