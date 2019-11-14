@@ -7,6 +7,10 @@ public class PaperPlane : DashInteractable
     [HideInInspector]
     public float speed = 5;
     public float burnDuration;
+    public float distanceToTravel;
+    public float distanceTraveled=0;
+
+    public bool playerAttachedToThis = false;
     private bool isBurning;
     private Collider lastCollision;
     private AttachToPlane playerAttached;
@@ -15,20 +19,44 @@ public class PaperPlane : DashInteractable
     public override void GameLoopUpdate()
     {
         base.GameLoopUpdate();
-        transform.Translate(Vector3.right * speed * Time.deltaTime, Space.Self);
+
+        Vector3 movement = Vector3.right * speed * Time.deltaTime;
+        distanceTraveled += movement.magnitude;
+
+        transform.Translate(movement, Space.Self);
 
         if (isBurning)
         {
             if (burnDuration < 0)
             {
-                playerAttached.Detach(false);
-                gameObject.SetActive(false);
+                DestroyPlane();
             }
             else
             {
                 burnDuration -= Time.deltaTime;
             }
         }
+
+        if (distanceTraveled>distanceToTravel)
+        {
+            DestroyPlane();
+        }
+        
+    }
+
+    private void DestroyPlane()
+    {
+        if (playerAttachedToThis)
+        {
+            playerAttached.Detach(false);
+            Destroy(gameObject);
+            //gameObject.SetActive(false);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+        RemoveFromGameLoop();
         
     }
 
@@ -52,6 +80,7 @@ public class PaperPlane : DashInteractable
     public override void Interact(GameObject player)
     {
         playerAttached = player.GetComponent<AttachToPlane>();
+        playerAttachedToThis = true;
 
         Debug.Log("Collision with: " + gameObject.name);
         player.transform.SetParent(gameObject.transform);
