@@ -12,6 +12,7 @@ public class WallShooter : IGameLoop
     private float currentSpawnCooldown=0;
     public float planeSpeed;
     public float planeBurnDuration;
+    public float distancePlaneCanTravel;
     public LineRenderer lineRenderer;
 
 
@@ -55,6 +56,7 @@ public class WallShooter : IGameLoop
             GameObject planeRef = GameObject.Instantiate(plane, transform.position, this.transform.rotation);
             planeRef.GetComponent<PaperPlane>().speed = planeSpeed;
             planeRef.GetComponent<PaperPlane>().burnDuration = planeBurnDuration;
+            planeRef.GetComponent<PaperPlane>().distanceToTravel = distancePlaneCanTravel;
             currentSpawnCooldown = spawnCooldown;
         }
         else
