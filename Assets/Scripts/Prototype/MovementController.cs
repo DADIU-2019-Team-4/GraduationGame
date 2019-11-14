@@ -64,8 +64,8 @@ public class MovementController : MonoBehaviour
     public FloatVariable GoalDistance;
     public FloatVariable GoalDistanceRelative;
     public FloatVariable HealthPercentage;
-    public FloatVariable ArrowLengthScriptableObject;
-    public FloatVariable DashThresholdScriptableObject;
+    public FloatVariable ArrowLength;
+    public FloatVariable DashHoldPercentage;
 
     private Vector3 startPosition;
     private Vector3 goalPosition;
