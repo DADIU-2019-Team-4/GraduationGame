@@ -48,7 +48,6 @@ public class MovementController : MonoBehaviour
     private FireGirlAnimationController animationController;
     private Rigidbody rigidBody;
     private Material material;
-    private TrailRenderer trailRenderer;
     private Tweener moveTweener;
     private List<AudioEvent> audioEvents;
 
@@ -95,7 +94,6 @@ public class MovementController : MonoBehaviour
         rigidBody = GetComponent<Rigidbody>();
         animationController = GetComponentInChildren<FireGirlAnimationController>();
         material = GetComponent<Renderer>().material;
-        trailRenderer = GetComponentInChildren<TrailRenderer>();
         gameController = FindObjectOfType<GameController>();
         audioEvents = GetComponents<AudioEvent>().ToList<AudioEvent>();
         attachToPlane = GetComponent<AttachToPlane>();
@@ -106,8 +104,6 @@ public class MovementController : MonoBehaviour
     {
         FireAmountText = GameObject.Find("FireAmountText").GetComponent<TextMeshProUGUI>();
         cameraShake = GameObject.FindGameObjectWithTag("VirtualCamera").GetComponent<CameraShake>();
-
-        trailRenderer.enabled = false;
 
         currentFireAmount = maxFireAmount;
         UpdateFireAmountText();
@@ -187,7 +183,7 @@ public class MovementController : MonoBehaviour
         attachToPlane.Detach(false);
 
         IsDashing = true;
-        trailRenderer.enabled = true;
+        //trailRenderer.enabled = true;
         AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.ChargedDash, audioEvents, gameObject);
         Vector3 targetPos = transform.position + dashDirection * DashDistance;
         
@@ -299,7 +295,6 @@ public class MovementController : MonoBehaviour
     {
         AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.DashEnded, audioEvents, gameObject);
 
-        trailRenderer.enabled = false;
         IsMoving = false;
 
         if (IsDashing)
