@@ -24,7 +24,7 @@ MonoBehaviour:
     ParentPhysicalPath: 
     guid: 61773147c3e61341905ca4a6c975c8be
     GuidInternal: 
-    m_lastTime: -8586287030407099926
+    m_lastTime: -8586285538401719164
     List:
     - name: LargeVerb
       guid: 4df29f5a7ef6c64484385fb4eb29a27f
@@ -80,7 +80,7 @@ MonoBehaviour:
     ParentPhysicalPath: 
     guid: 85519e3dd9af71428bf05cf3b19b0630
     GuidInternal: 
-    m_lastTime: -8586287030984173214
+    m_lastTime: -8586283976277430842
     List:
     - name: BlockObject
       guid: befac980a8fde244859299081e1cd8af
@@ -136,8 +136,8 @@ MonoBehaviour:
         ObjectType: 3
       Path: Character\Dashing\ChargedDash
       maxAttenuation: 0
-      maxDuration: 1866553
-      minDuration: 1662910
+      maxDuration: 2810136
+      minDuration: 2503546
     - name: ChargingDash
       guid: 7064d9f3179e2b419c800744ead4036a
       id: 735079116
@@ -150,8 +150,8 @@ MonoBehaviour:
         ObjectType: 3
       Path: Character\Dashing\ChargingDash
       maxAttenuation: 0
-      maxDuration: 887547
-      minDuration: 790714
+      maxDuration: -1
+      minDuration: -1
     - name: ChargingRejection
       guid: afb346c95acd8940b6296c80ffb599d6
       id: 1914703205
@@ -180,6 +180,20 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: 5076939
       minDuration: 5076939
+    - name: DashCancel
+      guid: b09df4b9feaf8444a1f53e6c9bc6c0f0
+      id: 2850533655
+      PathAndIcons:
+      - ElementName: Character
+        ObjectType: 12
+      - ElementName: Dashing
+        ObjectType: 4
+      - ElementName: DashCancel
+        ObjectType: 3
+      Path: Character\Dashing\DashCancel
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
     - name: Dead
       guid: 00af8debc8554f4780caec32b68e37cb
       id: 2044049779
@@ -192,8 +206,8 @@ MonoBehaviour:
         ObjectType: 3
       Path: Character\PlayerHealth\Dead
       maxAttenuation: 0
-      maxDuration: 5634581
-      minDuration: 5634581
+      maxDuration: 887639
+      minDuration: 781509
     - name: DeathObject
       guid: 32dcf5edd786504cbdacad9f513d6171
       id: 679539432
@@ -222,6 +236,20 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: 1904135
       minDuration: 1601180
+    - name: PlayerHealth
+      guid: 653c463d1cd8eb4d858f140998f5a864
+      id: 151362964
+      PathAndIcons:
+      - ElementName: Character
+        ObjectType: 12
+      - ElementName: PlayerHealth
+        ObjectType: 4
+      - ElementName: PlayerHealth
+        ObjectType: 3
+      Path: Character\PlayerHealth\PlayerHealth
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
   - PhysicalPath: Events\Default Work Unit.wwu
     ParentPhysicalPath: 
     guid: 176f44b72cc15d4ba2418afac5f43146
@@ -238,7 +266,7 @@ MonoBehaviour:
     ParentPhysicalPath: 
     guid: 08b89f9c90ef23468f370115d452e20c
     GuidInternal: 
-    m_lastTime: -8586287012794146767
+    m_lastTime: -8586285539619176911
     List:
     - name: KillOnRestart
       guid: 8a2c7db59cad7346a8013a106d5e1e0e
@@ -293,7 +321,7 @@ MonoBehaviour:
     ParentPhysicalPath: 
     guid: 4e98cb7cf821544ba39897d46f0d9511
     GuidInternal: 
-    m_lastTime: -8586288945974948205
+    m_lastTime: -8586285549612019126
     List:
     - name: GoalDistance
       guid: 827716b225a5fe459a787af7293376e2
@@ -304,15 +332,15 @@ MonoBehaviour:
       - ElementName: GoalDistance
         ObjectType: 13
       Path: Default Work Unit\GoalDistance
-    - name: MoveCounter
+    - name: PlayerHealth
       guid: 192ce6e176fcde4e951ebb262d1de75a
-      id: 4205191570
+      id: 151362964
       PathAndIcons:
       - ElementName: Default Work Unit
         ObjectType: 12
-      - ElementName: MoveCounter
+      - ElementName: PlayerHealth
         ObjectType: 13
-      Path: Default Work Unit\MoveCounter
+      Path: Default Work Unit\PlayerHealth
   StateWwu:
   - PhysicalPath: States\Default Work Unit.wwu
     ParentPhysicalPath: 
@@ -388,6 +416,9 @@ MonoBehaviour:
       Path: Music\Stinger01
   ExpandedItems:
   - /GraduationGame_WwiseProject
+  - /GraduationGame_WwiseProject/Events
+  - /GraduationGame_WwiseProject/Events/Character
+  - /GraduationGame_WwiseProject/Events/Character/PlayerHealth
   - /GraduationGame_WwiseProject/SoundBanks
   - /GraduationGame_WwiseProject/SoundBanks/Default Work Unit
   autoPopulateEnabled: 1

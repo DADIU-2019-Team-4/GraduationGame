@@ -1,4 +1,5 @@
 Event	ID	Name			Wwise Object Path	Notes
+	151362964	PlayerHealth			\Character\PlayerHealth\PlayerHealth	
 	384768216	BreakObjectMute			\Character\Objects\BreakObjectMute	
 	679539432	DeathObject			\Character\Objects\DeathObject	
 	735079116	ChargingDash			\Character\Dashing\ChargingDash	
@@ -9,6 +10,7 @@ Event	ID	Name			Wwise Object Path	Notes
 	2044049779	Dead			\Character\PlayerHealth\Dead	
 	2370884349	CollectFire			\Character\Objects\CollectFire	
 	2596983219	BreakObject			\Character\Objects\BreakObject	
+	2850533655	DashCancel			\Character\Dashing\DashCancel	
 	3044105157	WinPuzzle			\InGame_UI\WinPuzzle	
 	3308074653	Room01_Music			\Music\Room01_Music	
 	3914625789	BlockObject			\Character\Objects\BlockObject	
@@ -22,9 +24,12 @@ State	ID	Name	State Group			Notes
 	3890185710	var02	Room01			
 	3890185711	var03	Room01			
 
+Game Parameter	ID	Name			Wwise Object Path	Notes
+	151362964	PlayerHealth			\Default Work Unit\PlayerHealth	
+
 Audio Bus	ID	Name			Wwise Object Path	Notes
 	20270801	Menu_UI			\Default Work Unit\Master Audio Bus\Menu_UI	
-	436743010	Character			\Default Work Unit\Master Audio Bus\Character	
+	592691923	PlayerCharacter			\Default Work Unit\Master Audio Bus\PlayerCharacter	
 	1229948536	Environment			\Default Work Unit\Master Audio Bus\Environment	
 	3803692087	Master Audio Bus			\Default Work Unit\Master Audio Bus	
 	3991942870	Music			\Default Work Unit\Master Audio Bus\Music	
@@ -40,28 +45,42 @@ Effect plug-ins	ID	Name	Type				Notes
 	1159390747	Room_Medium_Tiled	Wwise RoomVerb			
 	2995775460	Room_Small	Wwise RoomVerb			
 
+Source plug-ins	ID	Name	Type		Wwise Object Path	Notes
+	180851320	Wwise Silence	Wwise Silence		\Actor-Mixer Hierarchy\Default Work Unit\Player\Movement\ChargedDash\ChargedDash_Container\VoiceOnly-RandomContainer\Silence_07\Wwise Silence	
+	192858808	Wwise Silence	Wwise Silence		\Actor-Mixer Hierarchy\Default Work Unit\Player\Movement\ChargedDash\ChargedDash_Container\VoiceOnly-RandomContainer\Silence_10\Wwise Silence	
+	255831950	Wwise Silence	Wwise Silence		\Actor-Mixer Hierarchy\Default Work Unit\Player\Movement\ChargedDash\ChargedDash_Container\VoiceOnly-RandomContainer\Silence_05\Wwise Silence	
+	295714832	Wwise Silence	Wwise Silence		\Actor-Mixer Hierarchy\Default Work Unit\Player\Movement\ChargedDash\ChargedDash_Container\VoiceOnly-RandomContainer\Silence_02\Wwise Silence	
+	322339794	Wwise Silence	Wwise Silence		\Actor-Mixer Hierarchy\Default Work Unit\Player\Movement\ChargedDash\ChargedDash_Container\VoiceOnly-RandomContainer\Silence_01\Wwise Silence	
+	494357072	Wwise Silence	Wwise Silence		\Actor-Mixer Hierarchy\Default Work Unit\Player\Movement\ChargedDash\ChargedDash_Container\VoiceOnly-RandomContainer\Silence_06\Wwise Silence	
+	721616158	Wwise Silence	Wwise Silence		\Actor-Mixer Hierarchy\Default Work Unit\Player\Movement\ChargedDash\ChargedDash_Container\VoiceOnly-RandomContainer\Silence_04\Wwise Silence	
+	726550335	Wwise Silence	Wwise Silence		\Actor-Mixer Hierarchy\Default Work Unit\Player\Movement\ChargedDash\ChargedDash_Container\VoiceOnly-RandomContainer\Silence_09\Wwise Silence	
+	730197020	Wwise Silence	Wwise Silence		\Actor-Mixer Hierarchy\Default Work Unit\Player\Movement\ChargedDash\ChargedDash_Container\VoiceOnly-RandomContainer\Silence_08\Wwise Silence	
+	752693348	Wwise Silence	Wwise Silence		\Actor-Mixer Hierarchy\Default Work Unit\Player\Movement\ChargedDash\ChargedDash_Container\VoiceOnly-RandomContainer\Silence\Wwise Silence	
+	960435305	Wwise Silence	Wwise Silence		\Actor-Mixer Hierarchy\Default Work Unit\Player\Movement\ChargedDash\ChargedDash_Container\VoiceOnly-RandomContainer\Silence_03\Wwise Silence	
+
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	8864511	Dash1	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\Dash1_5748D111.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Movement\Dash1		23449
 	13956236	Room1_var03_Drums_03_85bpm	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\Room1_var03_Drums_03_85bpm_9B96ECC7.wem		\Interactive Music Hierarchy\Default Work Unit\Room01\Room01_var03_Playlist\Room01_var03\Room1_var03_Drums_03_85bpm		227391
 	20796836	Room1_var01_BassValeyLow_01_80bpm	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\Room1_var01_BassValeyLow_01_80bpm_9B96ECC7.wem		\Interactive Music Hierarchy\Default Work Unit\Room01\Room01_var01_Playlist\Room01_var01\Room1_var01_BassValeyLow_01_80bpm		336972
 	21778772	CollectFire2	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\CollectFire2_6296B0F9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\CollectFire_Container\CollectFire2		77145
+	24427636	HealthHighLoop	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\HealthHighLoop3_9B96ECC7.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\PlayerHealth\PlayerHealthContainer\HealthHighLoop		117949
 	27031706	CollectFire	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\CollectFire10_6296B0F9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\CollectFire_Container\CollectFire		77304
 	80463372	Room1_var01_SynthLead_01_80bpm	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\Room1_var01_SynthLead_01_80bpm_9B96ECC7.wem		\Interactive Music Hierarchy\Default Work Unit\Room01\Room01_var01_Playlist\Room01_var01\Room1_var01_SynthLead_01_80bpm		569304
 	97738665	Room1_var03_Pre-Entry_01	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\RISE_CYM FX_028_9B96ECC7.wem		\Interactive Music Hierarchy\Default Work Unit\Room01\Room01_var03_Playlist\Room01_var03\Room1_var03_Pre-Entry_01		45306
 	126693540	Room1_var03_BassValleyLead_01_85bpm	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\Room1_var03_BassValleyLead_01_85bpm_9B96ECC7.wem		\Interactive Music Hierarchy\Default Work Unit\Room01\Room01_var03_Playlist\Room01_var03\Room1_var03_BassValleyLead_01_85bpm		260278
 	168933556	Room1_var01_Drums_02_80bpm	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\Room1_var01_Drums_02_80bpm_9B96ECC7.wem		\Interactive Music Hierarchy\Default Work Unit\Room01\Room01_var01_Playlist\Room01_var01\Room1_var01_Drums_02_80bpm		380446
-	173938990	Death4	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\Death4_0B773E7B.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\PlayerHealth\DeathOneShot_Container\Death4		10965
+	173938990	Death4	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\Death4_4B6E41CF.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\PlayerHealth\DeathOneShot_Container\Death4		10965
 	176317321	CollectFire8	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\CollectFire8_6296B0F9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\CollectFire_Container\CollectFire8		75310
 	250295397	ChargingRejection	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\ChargingDisable_6296B0F9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Movement\ChargingRejection		25951
 	267734159	Room1_var03_StringsLow_01_85bpm	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\Room1_var03_StringsLow_01_85bpm_9B96ECC7.wem		\Interactive Music Hierarchy\Default Work Unit\Room01\Room01_var03_Playlist\Room01_var03\Room1_var03_StringsLow_01_85bpm		265695
 	284502584	BlockObject	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\BlockObject1_6296B0F9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\BlockObject		10295
 	324862977	Room1_var01_Prophet_01_80bpm	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\Room1_var01_Prophet_01_80bpm_9B96ECC7.wem		\Interactive Music Hierarchy\Default Work Unit\Room01\Room01_var01_Playlist\Room01_var01\Room1_var01_Prophet_01_80bpm		390609
-	338621514	ChargingDash	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\ChargingDash7_6296B0F9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Movement\ChargingDash		15662
+	344642825	HealthLowLoop	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\Fire, Acid Burn Flesh SND22212_42180552.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\PlayerHealth\PlayerHealthContainer\HealthLowLoop		27926
 	402908849	WinPuzzle	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\WinPuzzle3_6296B0F9.wem		\Actor-Mixer Hierarchy\Default Work Unit\InGame_UI\WinPuzzle		113369
-	433939939	ChargeHold	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\ChargeHold_9B96ECC7.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Movement\ChargeHold		18817
 	494364959	CollectFire7	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\CollectFire7_6296B0F9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\CollectFire_Container\CollectFire7		76940
 	537868889	CollectFire4	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\CollectFire4_6296B0F9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\CollectFire_Container\CollectFire4		76252
 	562835057	Room1_var01_BassValeyHigh_01_80bpm	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\Room1_var01_BassValeyHigh_01_80bpm_9B96ECC7.wem		\Interactive Music Hierarchy\Default Work Unit\Room01\Room01_var01_Playlist\Room01_var01\Room1_var01_BassValeyHigh_01_80bpm		496017
+	576304305	HealthMediumLoop	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\HealthMediumLoop_9B96ECC7.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\PlayerHealth\PlayerHealthContainer\HealthMediumLoop		123840
 	583974311	Room1_var03_Drums_01_85bpm	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\Room1_var03_Drums_01_85bpm_9B96ECC7.wem		\Interactive Music Hierarchy\Default Work Unit\Room01\Room01_var03_Playlist\Room01_var03\Room1_var03_Drums_01_85bpm		265328
 	596086135	Room1_var03_Drums_02_85bpm	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\Room1_var03_Drums_02_85bpm_9B96ECC7.wem		\Interactive Music Hierarchy\Default Work Unit\Room01\Room01_var03_Playlist\Room01_var03\Room1_var03_Drums_02_85bpm		232937
 	612930949	Room1_var01_Drums_01_80bpm	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\Room1_var01_Drums_01_80bpm_9B96ECC7.wem		\Interactive Music Hierarchy\Default Work Unit\Room01\Room01_var01_Playlist\Room01_var01\Room1_var01_Drums_01_80bpm		412022
@@ -72,10 +91,13 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	690796950	Room1_var03_Piano_01_85bpm	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\Room1_var03_Piano_01_85bpm_9B96ECC7.wem		\Interactive Music Hierarchy\Default Work Unit\Room01\Room01_var03_Playlist\Room01_var03\Room1_var03_Piano_01_85bpm		226538
 	720716067	CollectFire5	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\CollectFire5_6296B0F9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\CollectFire_Container\CollectFire5		76725
 	798873615	CollectFire9	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\CollectFire9_6296B0F9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\CollectFire_Container\CollectFire9		76272
-	843149497	ChargedDash9	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\ChargedDash9_6296B0F9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Movement\ChargedDash\ChargedDash9		27720
-	862304514	Death2	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\Death2_CF9A454E.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\PlayerHealth\DeathOneShot_Container\Death2		12813
-	875590832	DeathOneShot	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\Death5_B8C293D4.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\PlayerHealth\DeathOneShot_Container\DeathOneShot		11861
+	862304514	Death2	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\Death2_83FA4F2E.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\PlayerHealth\DeathOneShot_Container\Death2		12813
+	875590832	DeathOneShot	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\Death5_57BEFBF0.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\PlayerHealth\DeathOneShot_Container\DeathOneShot		81023
+	902231320	ChargingDash15	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\ChargingDash18_FFEA55BB.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Movement\ChargingDash15		20131
 	932705826	CollectFire6	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\CollectFire6_6296B0F9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\CollectFire_Container\CollectFire6		76494
-	970490790	Death3	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\Death3_0DA4EFE7.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\PlayerHealth\DeathOneShot_Container\Death3		10860
+	970490790	Death3	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\Death3_7F17EEFF.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\PlayerHealth\DeathOneShot_Container\Death3		10860
 	1001948929	CollectFire3	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\CollectFire3_6296B0F9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\CollectFire_Container\CollectFire3		76800
+	1032642195	ChargedDash13	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\ChargingDash19 (no voice)_6296B0F9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Movement\ChargedDash\ChargedDash_Container\ChargedDash13		41266
+	1035655178	ChargedDash19 (voiceOnly)	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\ChargingDash19 (voiceOnly)_106A1F92.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Movement\ChargedDash\ChargedDash_Container\VoiceOnly-RandomContainer\ChargedDash19 (voiceOnly)		34155
+	1036702409	ChargeHold2	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\ChargeHold2_9B96ECC7.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Movement\ChargeHold2		27638
 

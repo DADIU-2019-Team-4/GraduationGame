@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: -194283484004441041}
   - component: {fileID: -8069058694036373769}
   - component: {fileID: 736132331884408619}
+  - component: {fileID: 3921696630609676427}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -299,6 +300,25 @@ MonoBehaviour:
   RTPCValue: {fileID: 0}
   SetStateGroup: 
   SetStateValue: 
+--- !u!114 &3921696630609676427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 714748535622932580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3f6a57ea9bb81040839eb22c9ccd632, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TriggerType: 14
+  WwiseType: 0
+  EventName: DashCancel
+  RTPCName: 
+  RTPCValue: {fileID: 0}
+  SetStateGroup: 
+  SetStateValue: 
 --- !u!1 &995650893284561722
 GameObject:
   m_ObjectHideFlags: 0
@@ -542,11 +562,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 714748535622932569}
     m_Modifications:
-    - target: {fileID: 4137381471443338100, guid: 60049d6017dabf040af5c77a725784c6,
-        type: 3}
-      propertyPath: m_Name
-      value: FireGirlPacked
-      objectReference: {fileID: 0}
     - target: {fileID: 4137381471443338103, guid: 60049d6017dabf040af5c77a725784c6,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -601,6 +616,61 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4137381471443338100, guid: 60049d6017dabf040af5c77a725784c6,
+        type: 3}
+      propertyPath: m_Name
+      value: FireGirlPacked
+      objectReference: {fileID: 0}
+    - target: {fileID: 7775645123844836007, guid: 60049d6017dabf040af5c77a725784c6,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: d7324dbb558936045b82012a4baa40b7, type: 2}
+    - target: {fileID: 2924454100558862567, guid: 60049d6017dabf040af5c77a725784c6,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: d7324dbb558936045b82012a4baa40b7, type: 2}
+    - target: {fileID: 7583953678217829880, guid: 60049d6017dabf040af5c77a725784c6,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.0026844707
+      objectReference: {fileID: 0}
+    - target: {fileID: 7583953678217829880, guid: 60049d6017dabf040af5c77a725784c6,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.08909839
+      objectReference: {fileID: 0}
+    - target: {fileID: 4319257367269694375, guid: 60049d6017dabf040af5c77a725784c6,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.0026844707
+      objectReference: {fileID: 0}
+    - target: {fileID: 4319257367269694375, guid: 60049d6017dabf040af5c77a725784c6,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.08909839
+      objectReference: {fileID: 0}
+    - target: {fileID: 3045143881027878053, guid: 60049d6017dabf040af5c77a725784c6,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.0026844707
+      objectReference: {fileID: 0}
+    - target: {fileID: 3045143881027878053, guid: 60049d6017dabf040af5c77a725784c6,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.08909839
+      objectReference: {fileID: 0}
+    - target: {fileID: 8686333421082344186, guid: 60049d6017dabf040af5c77a725784c6,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.0026844707
+      objectReference: {fileID: 0}
+    - target: {fileID: 8686333421082344186, guid: 60049d6017dabf040af5c77a725784c6,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.08909839
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 60049d6017dabf040af5c77a725784c6, type: 3}

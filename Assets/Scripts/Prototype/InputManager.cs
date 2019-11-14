@@ -26,6 +26,8 @@ public class InputManager : IGameLoop
     private GameObject dashCircle;
     private float dashTimer;
 
+    private AudioEvent[] audioEvents;
+
     private float dragDistance;
     public float MoveThreshold { get; set; }
     public float DashThreshold { get; set; }
@@ -34,6 +36,7 @@ public class InputManager : IGameLoop
 
     private void Awake()
     {
+        audioEvents = GetComponents<AudioEvent>();
         movementController = FindObjectOfType<MovementController>();
         gameController = FindObjectOfType<GameController>();
         mainCamera = Camera.main;
@@ -70,7 +73,7 @@ public class InputManager : IGameLoop
         dragDistance = CalculateDragDistance();
         //Debug.Log("Drag Distance: " + dragDistance);
         // move
-        if (dragDistance > MoveThreshold && dragDistance <= DashThreshold)
+        if (dragDistance > MoveThreshold && dragDistance < DashThreshold)
         {
             doMove = true;
             movementController.MoveDistance = dragDistance * movementController.MoveDistanceFactor;
