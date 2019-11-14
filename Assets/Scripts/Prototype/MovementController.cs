@@ -117,11 +117,6 @@ public class MovementController : MonoBehaviour
             FuseEvent = new UnityEvent();
     }
 
-    private void Update()
-    {
-        Debug.DrawRay(new Vector3(transform.position.x, 0.5f, transform.position.z), transform.forward * DashDistance, Color.magenta);
-    }
-
     public void SetStartAndEndPositions()
     {
         startPosition = rigidBody.position;
@@ -198,12 +193,7 @@ public class MovementController : MonoBehaviour
     /// </summary>
     public void ResetDash()
     {
-        if (isCharged)
-        {
-            // Play Animation
-            animationController.Cancel();
-        }
-
+        animationController.Cancel();
         material.SetColor("_Color", Color.yellow);
         IsDashCharged = false;
         AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.DashCancelled, audioEvents, gameObject);
