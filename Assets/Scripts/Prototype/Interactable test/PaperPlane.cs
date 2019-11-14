@@ -12,7 +12,7 @@ public class PaperPlane : DashInteractable
 
     public bool playerAttachedToThis = false;
     private bool isBurning;
-    private Collider lastCollision;
+    private Collision lastCollision;
     private AttachToPlane playerAttached;
 
 
@@ -60,7 +60,7 @@ public class PaperPlane : DashInteractable
         
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision other)
     {
         Debug.Log("Plane Collision");
         lastCollision = other;
@@ -71,7 +71,7 @@ public class PaperPlane : DashInteractable
                 transform.GetChild(0).GetComponent<AttachToPlane>().Detach(true);
             }
 
-            //gameObject.SetActive(false);
+            Destroy(gameObject);
         }
             
 
