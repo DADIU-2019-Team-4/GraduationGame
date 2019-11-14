@@ -44,6 +44,7 @@ public class AudioEvent : IGameLoop
         BurningItem,
         OnCollision,
         DashEnded,
+        DashCancelled,
     }
 
     #endregion
