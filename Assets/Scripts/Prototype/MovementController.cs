@@ -274,14 +274,20 @@ public class MovementController : MonoBehaviour
             if ((IsDashing && interactableObj.IsBreakable) ||
                 interactableObj.type == InteractibleObject.InteractType.PickUp)
             {
-                if (currentFireAmount < FireValue)
-                {
-                    currentFireAmount = FireValue;
-                    UpdateFireAmountText();
-                }
-
+                RestoreFire();
                 CheckCollision();
             }
+            //else if (interactableObj.type == InteractibleObject.InteractType.FusePoint)
+            //    RestoreFire();
+        }
+    }
+
+    public void RestoreFire()
+    {
+        if (currentFireAmount < FireValue)
+        {
+            currentFireAmount = FireValue;
+            UpdateFireAmountText();
         }
     }
 
