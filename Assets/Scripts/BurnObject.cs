@@ -11,7 +11,6 @@ public class BurnObject : MonoBehaviour
     //[SerializeField]
     //private List <BurnObject> burnNeighbors;
     private float _burnedAmount;
-    Material shader;
     private MovementController movementController;
 
     private Transform fireObject;
@@ -24,12 +23,16 @@ public class BurnObject : MonoBehaviour
         Infinity
     }
     public FireType firetype;
-    public void OnEnable()
-    {
-        shader = gameObject.GetComponent<Renderer>().material;
-        movementController = FindObjectOfType<MovementController>();
 
+    public Material dissolveShader;
+    private Renderer renderer;
+
+    public void Start()
+    {
+        renderer = gameObject.GetComponent<Renderer>();
+        movementController = FindObjectOfType<MovementController>();
     }
+
     public void Update()
     {
         if (_isBurning)
@@ -45,13 +48,13 @@ public class BurnObject : MonoBehaviour
 
     public void SetObjectOnFire(Vector3 collisionPoint)
     {
+        renderer.material = dissolveShader;
         _isBurning = true;
         gameObject.GetComponent<Collider>().enabled = false;
-        shader = gameObject.GetComponent<Renderer>().material;
-        shader.SetVector("_StartPoint", gameObject.transform.position);
+        renderer.material.SetVector("_StartPoint", collisionPoint);
         fireObject = gameObject.transform.GetChild(0);
         fireObject.gameObject.SetActive(true);
-        fireObject.GetComponent<Renderer>().material.SetVector("_StartPoint", gameObject.transform.position);
+        fireObject.GetComponent<Renderer>().material.SetVector("_StartPoint", collisionPoint);
         fireObject.GetComponent<Renderer>().material.SetFloat("_FlameHeight", fireFloat);
 
     }
@@ -64,7 +67,7 @@ public class BurnObject : MonoBehaviour
             {
                 _isDissasembling = true;
                 _burnedAmount = 1.15f;
-                shader.SetFloat("_T", _burnedAmount);
+                renderer.material.SetFloat("_T", _burnedAmount);
             }
             else
             {
@@ -77,7 +80,7 @@ public class BurnObject : MonoBehaviour
             if (_burnedAmount < 3f)
             {
                 _burnedAmount += 0.01f;
-                shader.SetFloat("_T", _burnedAmount);
+                renderer.material.SetFloat("_T", _burnedAmount);
                 fireFloat -= 0.02f;
                 fireObject.GetComponent<Renderer>().material.SetFloat("_FlameHeight", fireFloat);
             }
@@ -95,7 +98,7 @@ public class BurnObject : MonoBehaviour
             {
                 _isDissasembling = true;
                 _burnedAmount = 1.15f;
-                shader.SetFloat("_T", _burnedAmount);
+                renderer.material.SetFloat("_T", _burnedAmount);
             }
             else
             {
@@ -109,7 +112,7 @@ public class BurnObject : MonoBehaviour
             {
                 _burnedAmount += 0.025f;
                 fireFloat -= 0.05f;
-                shader.SetFloat("_T", _burnedAmount);
+                renderer.material.SetFloat("_T", _burnedAmount);
                 fireObject.GetComponent<Renderer>().material.SetFloat("_FlameHeight", fireFloat);
             }
             else
