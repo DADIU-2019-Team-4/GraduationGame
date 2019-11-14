@@ -46,7 +46,7 @@ public class AttachToPlane : MonoBehaviour
         if(parent != null)
         {
             parent.GetComponent<PaperPlane>().playerAttachedToThis = false;
-            parent.DetachChildren();
+            transform.parent = null;
             gameObject.GetComponent<Rigidbody>().useGravity = true;
             _attached = false;
 
