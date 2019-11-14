@@ -6,14 +6,17 @@ Event	ID	Name			Wwise Object Path	Notes
 	742914115	ChargedDash			\Character\Dashing\ChargedDash	
 	1016929228	NormalDash			\Character\Dashing\NormalDash	
 	1330879727	KillOnRestart			\GameController\KillOnRestart	
+	1766390728	OffRope			\Character\Rope Mechanic\OffRope	
 	1914703205	ChargingRejection			\Character\Dashing\ChargingRejection	
 	2044049779	Dead			\Character\PlayerHealth\Dead	
+	2346684474	OnRope			\Character\Rope Mechanic\OnRope	
 	2370884349	CollectFire			\Character\Objects\CollectFire	
 	2596983219	BreakObject			\Character\Objects\BreakObject	
 	2850533655	DashCancel			\Character\Dashing\DashCancel	
 	3044105157	WinPuzzle			\InGame_UI\WinPuzzle	
 	3308074653	Room01_Music			\Music\Room01_Music	
 	3914625789	BlockObject			\Character\Objects\BlockObject	
+	4018333041	ArrowPull			\Character\Dashing\ArrowPull	
 
 State Group	ID	Name			Wwise Object Path	Notes
 	348022313	Room01			\Default Work Unit\Room01	
@@ -26,6 +29,7 @@ State	ID	Name	State Group			Notes
 
 Game Parameter	ID	Name			Wwise Object Path	Notes
 	151362964	PlayerHealth			\Default Work Unit\PlayerHealth	
+	2495094760	ArrowLenght			\Default Work Unit\ArrowLenght	
 
 Audio Bus	ID	Name			Wwise Object Path	Notes
 	20270801	Menu_UI			\Default Work Unit\Master Audio Bus\Menu_UI	
@@ -43,23 +47,24 @@ Auxiliary Bus	ID	Name			Wwise Object Path	Notes
 Effect plug-ins	ID	Name	Type				Notes
 	602546716	Room_Large	Wwise RoomVerb			
 	1159390747	Room_Medium_Tiled	Wwise RoomVerb			
+	2547645744	Boost_3dB_100Hz	Wwise Parametric EQ			
 	2995775460	Room_Small	Wwise RoomVerb			
 
 Source plug-ins	ID	Name	Type		Wwise Object Path	Notes
+	65868349	SoundSeed Air Woosh	SoundSeed Air Woosh		\Actor-Mixer Hierarchy\Default Work Unit\RopeMechanic\OnRope\SoundSeed Air Woosh	
 	180851320	Wwise Silence	Wwise Silence		\Actor-Mixer Hierarchy\Default Work Unit\Player\Movement\ChargedDash\ChargedDash_Container\VoiceOnly-RandomContainer\Silence_07\Wwise Silence	
-	192858808	Wwise Silence	Wwise Silence		\Actor-Mixer Hierarchy\Default Work Unit\Player\Movement\ChargedDash\ChargedDash_Container\VoiceOnly-RandomContainer\Silence_10\Wwise Silence	
 	255831950	Wwise Silence	Wwise Silence		\Actor-Mixer Hierarchy\Default Work Unit\Player\Movement\ChargedDash\ChargedDash_Container\VoiceOnly-RandomContainer\Silence_05\Wwise Silence	
 	295714832	Wwise Silence	Wwise Silence		\Actor-Mixer Hierarchy\Default Work Unit\Player\Movement\ChargedDash\ChargedDash_Container\VoiceOnly-RandomContainer\Silence_02\Wwise Silence	
 	322339794	Wwise Silence	Wwise Silence		\Actor-Mixer Hierarchy\Default Work Unit\Player\Movement\ChargedDash\ChargedDash_Container\VoiceOnly-RandomContainer\Silence_01\Wwise Silence	
+	438200855	Wwise Tone Generator	Wwise Tone Generator		\Actor-Mixer Hierarchy\Default Work Unit\Player\Movement\ArrowPull\Wwise Tone Generator	
 	494357072	Wwise Silence	Wwise Silence		\Actor-Mixer Hierarchy\Default Work Unit\Player\Movement\ChargedDash\ChargedDash_Container\VoiceOnly-RandomContainer\Silence_06\Wwise Silence	
 	721616158	Wwise Silence	Wwise Silence		\Actor-Mixer Hierarchy\Default Work Unit\Player\Movement\ChargedDash\ChargedDash_Container\VoiceOnly-RandomContainer\Silence_04\Wwise Silence	
-	726550335	Wwise Silence	Wwise Silence		\Actor-Mixer Hierarchy\Default Work Unit\Player\Movement\ChargedDash\ChargedDash_Container\VoiceOnly-RandomContainer\Silence_09\Wwise Silence	
 	730197020	Wwise Silence	Wwise Silence		\Actor-Mixer Hierarchy\Default Work Unit\Player\Movement\ChargedDash\ChargedDash_Container\VoiceOnly-RandomContainer\Silence_08\Wwise Silence	
 	752693348	Wwise Silence	Wwise Silence		\Actor-Mixer Hierarchy\Default Work Unit\Player\Movement\ChargedDash\ChargedDash_Container\VoiceOnly-RandomContainer\Silence\Wwise Silence	
 	960435305	Wwise Silence	Wwise Silence		\Actor-Mixer Hierarchy\Default Work Unit\Player\Movement\ChargedDash\ChargedDash_Container\VoiceOnly-RandomContainer\Silence_03\Wwise Silence	
 
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
-	8864511	Dash1	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Mac\SFX\Dash1_5748D111.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Movement\Dash1		23449
+	8864511	Dash	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Mac\SFX\Dash1_5748D111.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Movement\Dash		23449
 	13956236	Room1_var03_Drums_03_85bpm	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Mac\SFX\Room1_var03_Drums_03_85bpm_9B96ECC7.wem		\Interactive Music Hierarchy\Default Work Unit\Room01\Room01_var03_Playlist\Room01_var03\Room1_var03_Drums_03_85bpm		227391
 	20796836	Room1_var01_BassValeyLow_01_80bpm	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Mac\SFX\Room1_var01_BassValeyLow_01_80bpm_9B96ECC7.wem		\Interactive Music Hierarchy\Default Work Unit\Room01\Room01_var01_Playlist\Room01_var01\Room1_var01_BassValeyLow_01_80bpm		336972
 	21778772	CollectFire2	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Mac\SFX\CollectFire2_6296B0F9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\CollectFire_Container\CollectFire2		77145
@@ -93,11 +98,11 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	798873615	CollectFire9	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Mac\SFX\CollectFire9_6296B0F9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\CollectFire_Container\CollectFire9		76272
 	862304514	Death2	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Mac\SFX\Death2_83FA4F2E.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\PlayerHealth\DeathOneShot_Container\Death2		12813
 	875590832	DeathOneShot	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Mac\SFX\Death5_57BEFBF0.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\PlayerHealth\DeathOneShot_Container\DeathOneShot		81023
-	902231320	ChargingDash15	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Mac\SFX\ChargingDash18_FFEA55BB.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Movement\ChargingDash15		20131
+	902231320	ChargingDash	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Mac\SFX\ChargingDash18_25BDF890.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Movement\ChargingDash		20131
 	932705826	CollectFire6	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Mac\SFX\CollectFire6_6296B0F9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\CollectFire_Container\CollectFire6		76494
 	970490790	Death3	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Mac\SFX\Death3_7F17EEFF.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\PlayerHealth\DeathOneShot_Container\Death3		10860
 	1001948929	CollectFire3	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Mac\SFX\CollectFire3_6296B0F9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\CollectFire_Container\CollectFire3		76800
 	1032642195	ChargedDash13	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Mac\SFX\ChargingDash19 (no voice)_6296B0F9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Movement\ChargedDash\ChargedDash_Container\ChargedDash13		41266
-	1035655178	ChargedDash19 (voiceOnly)	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Mac\SFX\ChargingDash19 (voiceOnly)_106A1F92.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Movement\ChargedDash\ChargedDash_Container\VoiceOnly-RandomContainer\ChargedDash19 (voiceOnly)		34155
-	1036702409	ChargeHold2	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Mac\SFX\ChargeHold2_9B96ECC7.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Movement\ChargeHold2		27638
+	1035655178	ChargedDash19 (voiceOnly)	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Mac\SFX\ChargingDash19 (voiceOnly)_21A754EE.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Movement\ChargedDash\ChargedDash_Container\VoiceOnly-RandomContainer\ChargedDash19 (voiceOnly)		34155
+	1036702409	ChargeHold	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Mac\SFX\ChargeHold2_9B96ECC7.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Movement\ChargeHold		27638
 

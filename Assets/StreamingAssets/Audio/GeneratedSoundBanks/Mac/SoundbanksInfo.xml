@@ -21,6 +21,7 @@
 			<ShortName>Room_1_Bank</ShortName>
 			<Path>Room_1_Bank.bnk</Path>
 			<IncludedEvents>
+				<Event Id="4018333041" Name="ArrowPull" ObjectPath="\Events\Character\Dashing\ArrowPull" DurationType="Infinite"/>
 				<Event Id="3914625789" Name="BlockObject" ObjectPath="\Events\Character\Objects\BlockObject" DurationType="OneShot" DurationMin="0.620000" DurationMax="0.620000"/>
 				<Event Id="2596983219" Name="BreakObject" ObjectPath="\Events\Character\Objects\BreakObject" DurationType="OneShot" DurationMin="2.440125" DurationMax="2.901814"/>
 				<Event Id="384768216" Name="BreakObjectMute" ObjectPath="\Events\Character\Objects\BreakObjectMute" DurationType="OneShot" DurationMin="0.620000" DurationMax="0.620000"/>
@@ -33,6 +34,8 @@
 				<Event Id="679539432" Name="DeathObject" ObjectPath="\Events\Character\Objects\DeathObject" DurationType="OneShot" DurationMin="1.538095" DurationMax="1.538095"/>
 				<Event Id="1330879727" Name="KillOnRestart" ObjectPath="\Events\GameController\KillOnRestart" MaxAttenuation="0.000000" DurationType="OneShot" DurationMin="0.000000" DurationMax="0.000000"/>
 				<Event Id="1016929228" Name="NormalDash" ObjectPath="\Events\Character\Dashing\NormalDash" DurationType="OneShot" DurationMin="1.601180" DurationMax="1.904135"/>
+				<Event Id="1766390728" Name="OffRope" ObjectPath="\Events\Character\Rope Mechanic\OffRope" MaxAttenuation="0.000000" DurationType="OneShot" DurationMin="0.000000" DurationMax="0.000000"/>
+				<Event Id="2346684474" Name="OnRope" ObjectPath="\Events\Character\Rope Mechanic\OnRope" DurationType="OneShot" DurationMin="8.000000" DurationMax="8.000000"/>
 				<Event Id="151362964" Name="PlayerHealth" ObjectPath="\Events\Character\PlayerHealth\PlayerHealth" DurationType="Infinite"/>
 				<Event Id="3308074653" Name="Room01_Music" ObjectPath="\Events\Music\Room01_Music" DurationType="Infinite"/>
 				<Event Id="3044105157" Name="WinPuzzle" ObjectPath="\Events\InGame_UI\WinPuzzle" DurationType="OneShot" DurationMin="7.245805" DurationMax="7.245805"/>
@@ -176,7 +179,7 @@
 				</File>
 				<File Id="902231320" Language="SFX">
 					<ShortName>ChargingDash18.wav</ShortName>
-					<Path>SFX\ChargingDash18_FFEA55BB.wem</Path>
+					<Path>SFX\ChargingDash18_25BDF890.wem</Path>
 				</File>
 				<File Id="932705826" Language="SFX">
 					<ShortName>CollectFire6.wav</ShortName>
@@ -196,7 +199,7 @@
 				</File>
 				<File Id="1035655178" Language="SFX">
 					<ShortName>ChargingDash19 (voiceOnly).wav</ShortName>
-					<Path>SFX\ChargingDash19 (voiceOnly)_106A1F92.wem</Path>
+					<Path>SFX\ChargingDash19 (voiceOnly)_21A754EE.wem</Path>
 				</File>
 				<File Id="1036702409" Language="SFX">
 					<ShortName>ChargeHold2.wav</ShortName>
