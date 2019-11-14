@@ -64,6 +64,8 @@ public class MovementController : MonoBehaviour
     public FloatVariable GoalDistance;
     public FloatVariable GoalDistanceRelative;
     public FloatVariable HealthPercentage;
+    public FloatVariable ArrowLengthScriptableObject;
+    public FloatVariable DashThresholdScriptableObject;
 
     private Vector3 startPosition;
     private Vector3 goalPosition;
@@ -275,20 +277,14 @@ public class MovementController : MonoBehaviour
             if ((IsDashing && interactableObj.IsBreakable) ||
                 interactableObj.type == InteractibleObject.InteractType.PickUp)
             {
-                RestoreFire();
+                if (currentFireAmount < FireValue)
+                {
+                    currentFireAmount = FireValue;
+                    UpdateFireAmountText();
+                }
+
                 CheckCollision();
             }
-            //else if (interactableObj.type == InteractibleObject.InteractType.FusePoint)
-            //    RestoreFire();
-        }
-    }
-
-    public void RestoreFire()
-    {
-        if (currentFireAmount < FireValue)
-        {
-            currentFireAmount = FireValue;
-            UpdateFireAmountText();
         }
     }
 
