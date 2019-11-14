@@ -24,6 +24,9 @@ GameObject:
   - component: {fileID: 736132331884408619}
   - component: {fileID: 3921696630609676427}
   - component: {fileID: 3057241387645550270}
+  - component: {fileID: 1022385352}
+  - component: {fileID: 1022385353}
+  - component: {fileID: 1022385354}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -333,11 +336,68 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3f6a57ea9bb81040839eb22c9ccd632, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TriggerType: 0
-  WwiseType: 2
+  TriggerType: 13
+  WwiseType: 1
   EventName: 
+  RTPCName: PlayerHealth
+  RTPCValue: {fileID: 11400000, guid: f685f7b974a1c084a8554bb9e8c13bf2, type: 2}
+  SetStateGroup: 
+  SetStateValue: 
+--- !u!114 &1022385352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 714748535622932580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3f6a57ea9bb81040839eb22c9ccd632, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TriggerType: 17
+  WwiseType: 0
+  EventName: ArrowPull
   RTPCName: 
   RTPCValue: {fileID: 0}
+  SetStateGroup: 
+  SetStateValue: 
+--- !u!114 &1022385353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 714748535622932580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3f6a57ea9bb81040839eb22c9ccd632, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TriggerType: 0
+  WwiseType: 1
+  EventName: 
+  RTPCName: DashHold
+  RTPCValue: {fileID: 11400000, guid: dc5b64d349726ea44a577104960a4518, type: 2}
+  SetStateGroup: 
+  SetStateValue: 
+--- !u!114 &1022385354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 714748535622932580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3f6a57ea9bb81040839eb22c9ccd632, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TriggerType: 0
+  WwiseType: 1
+  EventName: 
+  RTPCName: ArrowLenght
+  RTPCValue: {fileID: 11400000, guid: 2350e26cfd81cc541bcde223f6b8cb2e, type: 2}
   SetStateGroup: 
   SetStateValue: 
 --- !u!114 &1014902403
