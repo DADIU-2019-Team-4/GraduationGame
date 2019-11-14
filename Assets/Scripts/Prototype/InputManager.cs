@@ -77,11 +77,12 @@ public class InputManager : IGameLoop
         {
             doMove = true;
             movementController.MoveDistance = dragDistance * movementController.MoveDistanceFactor;
+            // value between 0.6 and 3.2
+            movementController.ArrowLengthScriptableObject.Value = movementController.MoveDistance;
             StretchArrow(movementController.MoveDistance);
             arrow.GetComponent<SpriteRenderer>().color = Color.white;
             ShowArrow();
-            movementController.ResetDash();
-            dashTimer = 0;
+            ResetDash();
         }
         // dash
         else if (dragDistance > DashThreshold)
@@ -93,14 +94,14 @@ public class InputManager : IGameLoop
             if (!movementController.IsDashCharged) return;
             StretchArrow(movementController.DashDistance);
             arrow.GetComponent<SpriteRenderer>().color = Color.red;
+            movementController.ArrowLengthScriptableObject.Value = 0;
         }
         // cancel
         else
         {
             doMove = false;
             arrowParent.SetActive(false);
-            movementController.ResetDash();
-            dashTimer = 0;
+            ResetDash();
         }
     }
 
@@ -134,6 +135,7 @@ public class InputManager : IGameLoop
             movementController.IsDashCharged = true;
             dashTimer = 0;
         }
+        movementController.DashThresholdScriptableObject.Value = dashTimer;
     }
 
     /// <summary>
@@ -284,6 +286,7 @@ public class InputManager : IGameLoop
             ApplyAction();
 
         doMove = false;
+        movementController.ArrowLengthScriptableObject.Value = 0;
     }
 
     /// <summary>
@@ -309,13 +312,22 @@ public class InputManager : IGameLoop
         if (movementController.IsDashCharged)
         {
             movementController.Dash(directionVector.normalized);
-            movementController.ResetDash();
-            dashTimer = 0;
+            ResetDash();
         }
         else
         {
             movementController.ResetDash();
             movementController.Move(directionVector.normalized);
         }
+    }
+
+    /// <summary>
+    /// Resets the dash.
+    /// </summary>
+    private void ResetDash()
+    {
+        movementController.ResetDash();
+        dashTimer = 0;
+        movementController.DashThresholdScriptableObject.Value = dashTimer;
     }
 }
