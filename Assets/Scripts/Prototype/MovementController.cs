@@ -5,33 +5,25 @@ using UnityEngine;
 using Yarn.Unity;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine.Events;
 
 
 public class MovementController : MonoBehaviour
 {
-
-
-    public const string StartShortDashTrigger = "Prepare for Short Dash";
-    public const string StartLongDashTrigger = "Prepare for Long Dash";
-    public const string ShortDashTrigger = "Perform Short Dash";
-    public const string LongDashTrigger = "Perform Long Dash";
-    public const string LandTrigger = "Land";
-
     [Header("General Settings")]
-    [Tooltip("Value of pick ups that add to your amount of moves.")]
-    public int PickUpValue = 3;
-    [Tooltip("Amount of moves at the start of the game.")]
-    public int AmountOfDashMoves = 10;
+    [Tooltip("Total Fire amount after dashing into breakable objects.")]
+    public float FireValue = 100f;
     [Tooltip("How much the player should bounce of a wall when colliding.")]
-    public float BounceValue = 1f;
-
-    private int maxAmountOfDashMoves;
+    public float BounceValue = 0.3f;
 
     [Header("Move Settings")]
     [Tooltip("Duration of a move in seconds (how long it takes to get to target position).")]
     public float MoveDuration = 0.2f;
     [Tooltip("This gets multiplied by the drag distance (value between 0-1) to get the distance of a move.")]
     public float MoveDistanceFactor = 0.01f;
+    [Tooltip("Cost of a move in percentage.")]
+    [Range(0f, 100f)]
+    public float MoveCostInPercentage;
     [Tooltip("Easing function of the move.")]
     public Ease MoveEase = Ease.OutCubic;
     public float MoveDistance { get; set; }   
@@ -43,33 +35,30 @@ public class MovementController : MonoBehaviour
     public float DashDuration = 0.1f;
     [Tooltip("Distance of a dash.")]
     public float DashDistance = 4;
-    [Tooltip("Cost of a dash.")]
-    public int DashCost = 1;
+    [Tooltip("Cost of a dash in percentage.")]
+    [Range(0f, 100f)]
+    public float DashCostInPercentage = 7.5f;
     [Tooltip("Easing function of the dash.")]
     public Ease DashEase = Ease.OutCubic;
 
     [Header("Canvas Fields")]
-    private TMP_Text MovesText;
+    private TMP_Text FireAmountText;
 
     private GameController gameController;
-    private Animator animator;
+    private FireGirlAnimationController animationController;
     private Rigidbody rigidBody;
     private Material material;
     private TrailRenderer trailRenderer;
-    private Vector3 previousPosition;
     private Tweener moveTweener;
-    public List <AudioEvent> audioEvents;
+    private List<AudioEvent> audioEvents;
 
     private AttachToPlane attachToPlane;
 
-    private float colorValue = 1;
-    private float changeTextColorDuration = 0.2f;
-
-    private bool isOutOfMoves;
+    private float currentFireAmount;
+    private float maxFireAmount = 100f;
+    private bool isOutOfFire;
+    private bool isCharged;
     private bool reachedGoal;
-    private Vector3 targetPosition;
-
-    private static bool _hasRun;
 
     [Header("Scriptable Objects")]
     public FloatVariable GoalDistance;
@@ -82,7 +71,6 @@ public class MovementController : MonoBehaviour
     CameraShake cameraShake;
     private float chargedDashShakeDur = 0.2f;
 
-
     public bool IsMoving { get; set; }
 
     public bool IsFuseMoving { get; set; }
@@ -94,35 +82,46 @@ public class MovementController : MonoBehaviour
     public bool IsDashing { get; set; }
     public bool HasDied { get; set; }
 
+    public GameObject UpcomingFusePoint { get; set; }
+
+    public UnityEvent FuseEvent { get; set; }
+
+    public Vector3 TargetPosition { get; set; }
+
     private void Awake()
     {
         rigidBody = GetComponent<Rigidbody>();
-        animator = GetComponentInChildren<Animator>();
+        animationController = GetComponentInChildren<FireGirlAnimationController>();
         material = GetComponent<Renderer>().material;
-        trailRenderer = GetComponent<TrailRenderer>();
+        trailRenderer = GetComponentInChildren<TrailRenderer>();
         gameController = FindObjectOfType<GameController>();
         audioEvents = GetComponents<AudioEvent>().ToList<AudioEvent>();
         attachToPlane = GetComponent<AttachToPlane>();
-
     }
 
     // Start is called before the first frame update
     private void Start()
     {
-        MovesText = GameObject.Find("MovesText").GetComponent<TextMeshProUGUI>();
+        FireAmountText = GameObject.Find("FireAmountText").GetComponent<TextMeshProUGUI>();
         cameraShake = GameObject.FindGameObjectWithTag("VirtualCamera").GetComponent<CameraShake>();
-
-        MovesText.text = AmountOfDashMoves.ToString();
 
         trailRenderer.enabled = false;
 
-        maxAmountOfDashMoves = AmountOfDashMoves;
-
-        HealthPercentage.Value = ((float)AmountOfDashMoves / (float)maxAmountOfDashMoves) * 100f;
+        currentFireAmount = maxFireAmount;
+        UpdateFireAmountText();
+        HealthPercentage.Value = currentFireAmount;
 
         gameController.IsPlaying = true;
 
         SetStartAndEndPositions();
+
+        if (FuseEvent == null)
+            FuseEvent = new UnityEvent();
+    }
+
+    private void Update()
+    {
+        Debug.DrawRay(new Vector3(transform.position.x, 0.5f, transform.position.z), transform.forward * DashDistance, Color.magenta);
     }
 
     public void SetStartAndEndPositions()
@@ -144,13 +143,13 @@ public class MovementController : MonoBehaviour
     /// </summary>
     public void ChargeDash()
     {
-        // Play Animation
-        //animator.SetTrigger(StartLongDashTrigger);
-
-        if (!_hasRun)
+        if (!isCharged)
         {
+            // Play Animation
+            animationController.ChargeDash();
+
             AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.ChargingDash, audioEvents, gameObject);
-            _hasRun = true;
+            isCharged = true;
         }
     }
 
@@ -165,12 +164,11 @@ public class MovementController : MonoBehaviour
             return;
         }
 
-        previousPosition = transform.position;
         AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.Dash, audioEvents, gameObject);
-        Vector3 targetPosition = transform.position + moveDirection * MoveDistance;
-        targetPosition.y = transform.position.y;
+        Vector3 targetPos = transform.position + moveDirection * MoveDistance;
+        targetPos.y = transform.position.y;
 
-        StartCoroutine(MoveRoutine(targetPosition, MoveDuration));
+        StartCoroutine(MoveRoutine(targetPos, MoveDuration));
     }
 
     /// <summary>
@@ -184,27 +182,17 @@ public class MovementController : MonoBehaviour
             return;
         }
 
-        // checks if you have enough moves left for a dash
-        int movesLeft = AmountOfDashMoves - DashCost;
-        if (movesLeft < 0)
-        {
-            AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.ChargingRejection, audioEvents, gameObject);
-            StartCoroutine(ChangeTextColorRoutine());
-            return;
-        }
-
         attachToPlane.Detach(false);
 
         IsDashing = true;
         trailRenderer.enabled = true;
-        previousPosition = transform.position;
         AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.ChargedDash, audioEvents, gameObject);
-        previousPosition = transform.position;
-        Vector3 targetPosition = transform.position + dashDirection * DashDistance;
+        Vector3 targetPos = transform.position + dashDirection * DashDistance;
+        
+        //Play Animation
+        animationController.Dash();
 
-        StartCoroutine(MoveRoutine(targetPosition, DashDuration));
-
-        ResetDash();
+        StartCoroutine(MoveRoutine(targetPos, DashDuration));
     }
 
     /// <summary>
@@ -212,11 +200,17 @@ public class MovementController : MonoBehaviour
     /// </summary>
     public void ResetDash()
     {
-        material.SetColor("_Color", Color.black);
-        colorValue = 1f;
+        if (isCharged)
+        {
+            // Play Animation
+            animationController.Cancel();
+        }
+
+        material.SetColor("_Color", Color.yellow);
         IsDashCharged = false;
         _hasRun = false;
         AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.DashCancelled, audioEvents, gameObject);
+        isCharged = false;
     }
 
     /// <summary>
@@ -227,8 +221,6 @@ public class MovementController : MonoBehaviour
         moveTweener?.Kill();
 
         IsMoving = true;
-
-        // Set animation trigger for Collision
 
         moveTweener = rigidBody.DOMove(target, duration);
 
@@ -247,24 +239,52 @@ public class MovementController : MonoBehaviour
         if (IsDashing)
         {
             cameraShake.setShakeElapsedTime(chargedDashShakeDur);
-            UpdateDashMovesAmount();
+            UpdateFireAmount(DashCostInPercentage);
         }
+        else
+            UpdateFireAmount(MoveCostInPercentage);
 
-        targetPosition = target;
+        TargetPosition = target;
 
         IsMoving = true;
 
-        // Play Animation
-        //animator.SetTrigger(IsDashing ? LongDashTrigger : ShortDashTrigger);
+        CheckCollision();
 
-        moveTweener = rigidBody.DOMove(target, duration);
+        moveTweener = rigidBody.DOMove(TargetPosition, duration);
         moveTweener.SetEase(IsDashing ? DashEase : MoveEase);
-
         yield return new WaitForSeconds(duration);
 
-        CheckMovesLeft();
-
+        CheckFireLeft();
         DashEnded();
+
+        FuseEvent.Invoke();
+    }
+
+    /// <summary>
+    /// Checks the collision.
+    /// </summary>
+    private void CheckCollision()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(new Vector3(transform.position.x, 0.5f, transform.position.z), transform.forward, out hit,
+            Vector3.Distance(transform.position, TargetPosition)))
+        {
+            InteractibleObject interactableObj = hit.transform.gameObject.GetComponent<InteractibleObject>();
+            if (interactableObj == null)
+                return;
+            interactableObj.Interact(hit.point);
+            if ((IsDashing && interactableObj.IsBreakable) ||
+                interactableObj.type == InteractibleObject.InteractType.PickUp)
+            {
+                if (currentFireAmount < FireValue)
+                {
+                    currentFireAmount = FireValue;
+                    UpdateFireAmountText();
+                }
+
+                CheckCollision();
+            }
+        }
     }
 
     public void StopMoving()
@@ -272,15 +292,6 @@ public class MovementController : MonoBehaviour
         moveTweener?.Kill();
         StopCoroutine(nameof(MoveRoutine));
         StopCoroutine(nameof(MoveBackRoutine));
-    }
-
-    public void MoveBack()
-    {
-        StopMoving();
-        var direction = previousPosition - transform.position;
-        direction.y = 0;
-
-        StartCoroutine(MoveBackRoutine(transform.position + direction.normalized * BounceValue, MoveDuration));
     }
 
     private void DashEnded()
@@ -293,11 +304,11 @@ public class MovementController : MonoBehaviour
         if (IsDashing)
             IsDashing = false;
 
-        HealthPercentage.Value = ((float)AmountOfDashMoves / (float)maxAmountOfDashMoves) * 100f;
+        HealthPercentage.Value = currentFireAmount;
         UpdateGoalDistances();
 
         // Play Animation
-        //animator.SetTrigger(LandTrigger);
+        animationController.Land();
     }
 
     private void UpdateGoalDistances()
@@ -313,33 +324,32 @@ public class MovementController : MonoBehaviour
     }
 
     /// <summary>
-    /// CoRoutine responsible for changing the color of the moves text.
+    /// Updates the fire amount.
     /// </summary>
-    private IEnumerator ChangeTextColorRoutine()
+    private void UpdateFireAmount(float cost)
     {
-        MovesText.DOColor(Color.red, changeTextColorDuration);
-        yield return new WaitForSeconds(changeTextColorDuration);
-        MovesText.DOColor(Color.white, changeTextColorDuration);
-        yield return new WaitForSeconds(changeTextColorDuration);
+        currentFireAmount -= cost;
+        if (currentFireAmount < 0)
+            currentFireAmount = 0;
+        UpdateFireAmountText();
     }
 
     /// <summary>
-    /// Updates the moves text.
+    /// Updates the fire amount text.
     /// </summary>
-    private void UpdateDashMovesAmount()
+    private void UpdateFireAmountText()
     {
-        AmountOfDashMoves -= DashCost;
-        MovesText.text = AmountOfDashMoves.ToString();
+        FireAmountText.text = currentFireAmount + "%";
     }
 
     /// <summary>
     /// Checks if the player has moves left.
     /// </summary>
-    private void CheckMovesLeft()
+    private void CheckFireLeft()
     {
-        if (AmountOfDashMoves <= 0)
+        if (currentFireAmount <= 0)
         {
-            isOutOfMoves = true;
+            isOutOfFire = true;
             CheckGameEnd();
         }
     }
@@ -353,53 +363,39 @@ public class MovementController : MonoBehaviour
             gameController.Win();
         else if (HasDied)
             gameController.GameOverDied();
-        else if (isOutOfMoves)
+        else if (isOutOfFire)
             gameController.GameOverOutOfMoves();
     }
 
-    private void OnCollisionEnter(Collision collision)
+    public void CollideFusePoint()
     {
-        var intObj = collision.gameObject.GetComponent<InteractibleObject>();
-        if (intObj!=null)
-        {
-            if(intObj.type == InteractibleObject.InteractType.Death)
-                intObj.Death(targetPosition);
-            else
-                intObj.Interact(collision);    
-        }
+        FuseEvent.RemoveListener(CollideFusePoint);
+        StartPoint startPoint = UpcomingFusePoint.GetComponent<StartPoint>();
+        startPoint.StartFollowingFuse();
     }
 
     public void CollidePickUp()
     {
-        AmountOfDashMoves += PickUpValue;
-        if (AmountOfDashMoves > maxAmountOfDashMoves)
-            AmountOfDashMoves = maxAmountOfDashMoves;
-        MovesText.text = AmountOfDashMoves.ToString();
+        currentFireAmount += FireValue;
+        if (currentFireAmount > maxFireAmount)
+            currentFireAmount = maxFireAmount;
+        FireAmountText.text = currentFireAmount.ToString();
     }
 
-
-    public void CollideGoal(Collision collision)
+    public void CollideGoal(GameObject goal)
     {
-        StopMoving();
         StartCoroutine(IsDashing
-            ? MoveBackRoutine(collision.gameObject.transform.position, DashDuration)
-            : MoveBackRoutine(collision.gameObject.transform.position, MoveDuration));
+            ? MoveBackRoutine(goal.transform.position, DashDuration)
+            : MoveBackRoutine(goal.transform.position, MoveDuration));
         reachedGoal = true;
         CheckGameEnd();
     }
 
-    private void OnTriggerEnter(Collider col)
+    public void InfiniteMoves()
     {
-        var intObj = col.gameObject.GetComponent<InteractibleObject>();
-        if (intObj != null)
-            intObj.FusePoint();
+        MoveCostInPercentage = 0;
+        DashCostInPercentage = 0;
     }
 
-    public void InfiniteLives()
-    {
-        maxAmountOfDashMoves = AmountOfDashMoves = 999;
-        MovesText.text = AmountOfDashMoves.ToString();
-    }
-
-    public Vector3 DashDirection() { return targetPosition - rigidBody.position; }
+    public Vector3 DashDirection() { return TargetPosition - rigidBody.position; }
 }

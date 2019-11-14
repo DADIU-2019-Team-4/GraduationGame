@@ -43,7 +43,6 @@ public class AssignRandomFloorTile : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log(rotationY);
         transform.eulerAngles = new Vector3(0, rotationY, 0);
     }
 

@@ -24,6 +24,8 @@ public class InteractibleObject : DashInteractable
     public List<AudioEvent> audioEvents;
     private DialogueRunner dialogRunner;
 
+    public bool IsBreakable { get; set; }
+
     //CameraShake
     CameraShake cameraShake;
     private float chargedDashShakeDur = 0.2f;
@@ -33,34 +35,35 @@ public class InteractibleObject : DashInteractable
     //timeSlowdown
     TimeSlowdown timeSlowdown;
 
-    private void Awake()
-    {
-        movementController = FindObjectOfType<MovementController>();
-        audioEvents = GetComponents<AudioEvent>().ToList<AudioEvent>();
-        dialogRunner = FindObjectOfType<DialogueRunner>();
-    }
-
     private void Start()
     {
-        timeSlowdown = GameObject.FindGameObjectWithTag("VirtualCamera").GetComponent<TimeSlowdown>();
-        cameraShake = GameObject.FindGameObjectWithTag("VirtualCamera").GetComponent<CameraShake>();
+        if (type == InteractType.Break)
+            IsBreakable = true;
+        else if (type == InteractType.PickUp)
+            IsBreakable = true;
+        else
+            IsBreakable = false;
     }
 
-    public override void Interact(Collision collision)
+    public override void Interact(Vector3 hitPoint)
     {
+        if(movementController== null)
+        {
+            AssignDependencies();
+        }
         switch (type)
         {
             case InteractType.Projectile:
                 Projectile();
                 break;
             case InteractType.Goal:
-                Goal(collision);
+                Goal();
                 break;
             case InteractType.Block:
-                Block(collision);
+                Block(hitPoint);
                 break;
             case InteractType.Break:
-                Break(collision);
+                Break(hitPoint);
                 break;
             case InteractType.Candle:
                 Candle();
@@ -71,54 +74,63 @@ public class InteractibleObject : DashInteractable
             case InteractType.PickUp:
                 PickUp();
                 break;
+            case InteractType.FusePoint:
+                FusePoint(hitPoint);
+                break;
+            case InteractType.Death:
+                Death(hitPoint);
+                break;
             case InteractType.Fuse:
                 if(!movementController.IsFuseMoving)
-                    Block(collision);
+                    Block(hitPoint);
                 break;
         }
 
     }
-    public void Death (Vector3 targetPosition)
+
+    public void Death(Vector3 hitpoint)
     {
-        if (PointInOABB(targetPosition, gameObject.GetComponent<BoxCollider>()))
-        {
-            movementController.HasDied = true;
-            dialogRunner.StartDialogue("Death");
-            movementController.CheckGameEnd();
-        }
+        if (movementController == null)
+            AssignDependencies();
+        movementController.TargetPosition = hitpoint + movementController.transform.forward * movementController.BounceValue;
+        movementController.HasDied = true;
+        dialogRunner.StartDialogue("Death");
+        movementController.CheckGameEnd();
     }
+
     private void Projectile()
     {
 
     }
-    private void Goal(Collision collision)
+    private void Goal()
     {
         gameObject.GetComponent<BoxCollider>().enabled = false;
         dialogRunner.StartDialogue("Goal");
-        movementController.CollideGoal(collision);
+        movementController.CollideGoal(gameObject);
     }
-    private void Block(Collision collision)
+
+    private void Block(Vector3 hitpoint)
     {
         AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.ObstacleBlock, audioEvents, gameObject);
         dialogRunner.StartDialogue("Block");
-        movementController.MoveBack();
+        movementController.TargetPosition = hitpoint - movementController.transform.forward * movementController.BounceValue;
     }
-    private void Break(Collision collision)
+
+    private void Break(Vector3 hitpoint)
     {
         if (movementController.IsDashing)
         {
             AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.ObstacleBreak, audioEvents, gameObject);
             cameraShake.setShakeElapsedTime(breakShake);
             timeSlowdown.doSlowmotion();
-            var collisionPoint = collision.contacts[0].point;
-            gameObject.GetComponent<BurnObject>().SetObjectOnFire(collisionPoint);
+            gameObject.GetComponent<BurnObject>().SetObjectOnFire(hitpoint);
             dialogRunner.StartDialogue("Break");
         }
         else
         {
             cameraShake.setShakeElapsedTime(breakBounceShakeDur);   
             AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.ObstacleBreakMute, audioEvents, gameObject);
-            movementController.MoveBack();
+            movementController.TargetPosition = hitpoint - movementController.transform.forward * movementController.BounceValue;
         }
     }
     private void Candle()
@@ -134,16 +146,18 @@ public class InteractibleObject : DashInteractable
     {
         dialogRunner.StartDialogue("PickUp");
         AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.BurningItem, audioEvents, gameObject);
-        Destroy(gameObject);
+        gameObject.GetComponent<Collider>().enabled = false;
+        gameObject.SetActive(false);
         movementController.CollidePickUp();
     }
-    public void FusePoint()
+
+    public void FusePoint(Vector3 hitpoint)
     {
         if (!movementController.IsFuseMoving)
         {
-            movementController.StopMoving();
-            StartPoint startPoint = gameObject.GetComponent<StartPoint>();
-            startPoint.StartFollowingFuse();
+            movementController.TargetPosition = hitpoint;
+            movementController.UpcomingFusePoint = gameObject;
+            movementController.FuseEvent.AddListener(movementController.CollideFusePoint);
         }
     }
 
@@ -162,5 +176,14 @@ public class InteractibleObject : DashInteractable
         return (point.x < halfX && point.x > -halfX &&
            //point.y < halfY && point.y > -halfY &&
            point.z < halfZ && point.z > -halfZ);
+    }
+
+    private void AssignDependencies()
+    {
+        movementController = FindObjectOfType<MovementController>();
+        audioEvents = GetComponents<AudioEvent>().ToList<AudioEvent>();
+        dialogRunner = FindObjectOfType<DialogueRunner>();
+        timeSlowdown = GameObject.FindGameObjectWithTag("VirtualCamera").GetComponent<TimeSlowdown>();
+        cameraShake = GameObject.FindGameObjectWithTag("VirtualCamera").GetComponent<CameraShake>();
     }
 }

@@ -9,7 +9,8 @@ public class WallCulling : IGameLoop
     // Start is called before the first frame update
     [Header("Object culling variables")]
     [Tooltip("Defines celling value of angle between camera and object. If angle between object and camera's forward vector is lower that setted one, object will be set as transperent")]
-    public float fixedAngle;
+    [Range(80,100)]
+    public float fixedAngle = 90;
     [SerializeField]
     private bool cameraMoved = false;
 
@@ -27,10 +28,15 @@ public class WallCulling : IGameLoop
             var wallPosZ = walls[i].transform.forward;
             var angle = Vector3.Angle(gameObject.transform.forward, wallPosZ);
             var meshRenderer = walls[i].gameObject.GetComponent<MeshRenderer>();
-            if (angle <= fixedAngle && meshRenderer.enabled)
-                meshRenderer.enabled = false;
-            else if (angle > fixedAngle && !meshRenderer.enabled)
-                meshRenderer.enabled = true;
+
+            Vector3 fromWallToCam = gameObject.transform.position - walls[i].transform.position;
+
+            var angleToCamPos = Vector3.Angle(fromWallToCam, wallPosZ);
+            if(meshRenderer!=null)
+                if (angle <= fixedAngle && angleToCamPos >= fixedAngle && meshRenderer.enabled)
+                    meshRenderer.enabled = false;
+                else if ((angle > fixedAngle || angleToCamPos < fixedAngle) && !meshRenderer.enabled)
+                    meshRenderer.enabled = true;
         }
     }
 }
