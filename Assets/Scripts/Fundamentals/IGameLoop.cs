@@ -9,12 +9,9 @@ public abstract class IGameLoop : MonoBehaviour
     //public string objectName;
 
     // Michael: We may later decide to not automate this.
-
-    private Game game;
-
     private void OnEnable()
     {
-        game = FindObjectOfType<Game>();
+        var game = FindObjectOfType<Game>();
         if (game == null)
             Debug.Log(this.gameObject.name);
         else
@@ -35,9 +32,4 @@ public abstract class IGameLoop : MonoBehaviour
 
     // Must be implemented by any inheritance.
     public abstract void GameLoopUpdate();
-
-    public void RemoveFromGameLoop()
-    {
-        game.Instance.RemoveGameLoop(this);
-    }
 }
