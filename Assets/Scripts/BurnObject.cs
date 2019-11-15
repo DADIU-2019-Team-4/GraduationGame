@@ -11,12 +11,14 @@ public class BurnObject : MonoBehaviour
     //private List <BurnObject> burnNeighbors;
     private float _burnedAmount;
 
-    private Transform fireObject;
+    private GameObject _fireObject;
     private float fireFloat = -1f;
+    private GameObject _fire;
 
     public Material dissolveShader;
     private Renderer renderer;
     private Texture texture;
+
 
     [Range(0, 1)]
     public float burnSpeed = 0.1f;
@@ -32,10 +34,10 @@ public class BurnObject : MonoBehaviour
 
     public void Start()
     {
-        shader = gameObject.GetComponent<Renderer>().material;
         renderer = gameObject.GetComponent<Renderer>();
         texture = renderer.material.mainTexture;
-        Instantiate(FireObject, transform);
+        _fire = Instantiate(FireObject, transform);
+        
     }
     /* public override void GameLoopUpdate()
      {
@@ -70,10 +72,10 @@ public class BurnObject : MonoBehaviour
         _isBurning = true;
         gameObject.GetComponent<Collider>().enabled = false;
         renderer.material.SetVector("_StartPoint", collisionPoint);
-        fireObject = gameObject.transform.Find("Fire");
-        fireObject.gameObject.SetActive(true);
-        fireObject.GetComponent<Renderer>().material.SetVector("_StartPoint", collisionPoint);
-        fireObject.GetComponent<Renderer>().material.SetFloat("_FlameHeight", fireFloat);
+        _fireObject = _fire;
+        _fireObject.SetActive(true);
+        _fireObject.GetComponent<Renderer>().material.SetVector("_StartPoint", collisionPoint);
+        _fireObject.GetComponent<Renderer>().material.SetFloat("_FlameHeight", fireFloat);
 
     }
 
@@ -92,7 +94,7 @@ public class BurnObject : MonoBehaviour
             else
             {
                 fireFloat += 0.01f;
-                fireObject.GetComponent<Renderer>().material.SetFloat("_FlameHeight", fireFloat);
+               _fireObject.GetComponent<Renderer>().material.SetFloat("_FlameHeight", fireFloat);
             }
         }
         else
@@ -102,7 +104,7 @@ public class BurnObject : MonoBehaviour
                 _burnedAmount += 0.01f;
                 renderer.material.SetFloat("_T", _burnedAmount);
                 fireFloat -= 0.02f;
-                fireObject.GetComponent<Renderer>().material.SetFloat("_FlameHeight", fireFloat);
+               _fireObject.GetComponent<Renderer>().material.SetFloat("_FlameHeight", fireFloat);
             }
             else if (destroyAtTheEndOfFire)
             {
@@ -113,7 +115,7 @@ public class BurnObject : MonoBehaviour
     }*/
     private void ShortFire()
     {
-        shader.SetVector("_StartPoint", gameObject.transform.position); 
+        renderer.material.SetVector("_StartPoint", gameObject.transform.position); 
 
         if (!_isDissasembling)
         {
@@ -126,7 +128,7 @@ public class BurnObject : MonoBehaviour
             else
             {
                 fireFloat += 0.025f;
-                fireObject.GetComponent<Renderer>().material.SetFloat("_FlameHeight", fireFloat);
+               _fireObject.GetComponent<Renderer>().material.SetFloat("_FlameHeight", fireFloat);
             }
         }
         else if (_isDissasembling)
@@ -136,7 +138,7 @@ public class BurnObject : MonoBehaviour
                 _burnedAmount += burnSpeed;
                 fireFloat -= 0.05f;
                 renderer.material.SetFloat("_T", _burnedAmount);
-                fireObject.GetComponent<Renderer>().material.SetFloat("_FlameHeight", fireFloat);
+               _fireObject.GetComponent<Renderer>().material.SetFloat("_FlameHeight", fireFloat);
             }
             else if (destroyAtTheEndOfFire)
             {
@@ -151,7 +153,7 @@ public class BurnObject : MonoBehaviour
         if (fireFloat >= -0.42f)
             return;
         fireFloat += 0.05f;
-        fireObject.GetComponent<Renderer>().material.SetFloat("_FlameHeight", fireFloat);
+       _fireObject.GetComponent<Renderer>().material.SetFloat("_FlameHeight", fireFloat);
     }
 }
     //if (_burnedAmount >= 0.6f) If need to burn a neighbours
