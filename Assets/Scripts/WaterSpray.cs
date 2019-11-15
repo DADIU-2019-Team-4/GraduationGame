@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class WaterSpray : IGameLoop
+public class WaterSpray : MonoBehaviour
 {
     public float OnTimer = 4;
     public float OffTimer = 5;
@@ -24,7 +24,7 @@ public class WaterSpray : IGameLoop
             TurnOff();
     }
 
-    public override void GameLoopUpdate()
+    private void Update()
     {
         timer += Time.deltaTime;
         if (isActivated)
