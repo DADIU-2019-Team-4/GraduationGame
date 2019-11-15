@@ -44,7 +44,7 @@ public class AttachToPlane : MonoBehaviour
     {
         if (other.gameObject.tag == "Projectile")
         {
-            other.GetComponent<DashInteractable>().Interact(this.gameObject);
+            other.GetComponent<PaperPlane>().Consume();
         }
     }
     

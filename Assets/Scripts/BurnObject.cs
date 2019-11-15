@@ -9,7 +9,7 @@ public class BurnObject : MonoBehaviour
     private bool _isDissasembling = true;
     //[SerializeField]
     //private List <BurnObject> burnNeighbors;
-    private float _burnedAmount;
+    private float _burnedAmount =0.7f;
 
     private GameObject _fireObject;
     private float fireFloat = -1f;
@@ -76,6 +76,7 @@ public class BurnObject : MonoBehaviour
         _fireObject.SetActive(true);
         _fireObject.GetComponent<Renderer>().material.SetVector("_StartPoint", collisionPoint);
         _fireObject.GetComponent<Renderer>().material.SetFloat("_FlameHeight", fireFloat);
+        //_burnedAmount = renderer.material.GetFloat("_T");
 
     }
 

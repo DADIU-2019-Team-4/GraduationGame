@@ -13,6 +13,7 @@ public class PaperPlane : DashInteractable
 
     public bool playerAttachedToThis = false;
     private bool isBurning;
+    private bool _destroyThis;
     private Collision lastCollision;
     private AttachToPlane playerAttached;
 
@@ -49,6 +50,11 @@ public class PaperPlane : DashInteractable
         {
             DestroyPlane();
         }
+
+        if (_destroyThis)
+        {
+            DestroyPlane();
+        }
         
     }
 
@@ -66,6 +72,10 @@ public class PaperPlane : DashInteractable
         }
         RemoveFromGameLoop();
         
+    }
+    public void Consume()
+    {
+        _destroyThis = true;
     }
 
     private void OnCollisionEnter(Collision other)

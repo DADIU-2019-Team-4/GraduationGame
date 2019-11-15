@@ -157,6 +157,8 @@ public class MovementController : MonoBehaviour
             return;
         }
 
+        attachToPlane.Detach(false);
+
         AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.Dash, audioEvents, gameObject);
         Vector3 targetPos = transform.position + moveDirection * MoveDistance;
         targetPos.y = transform.position.y;
