@@ -25,6 +25,7 @@ Event	ID	Name			Wwise Object Path	Notes
 	2850533655	DashCancel			\Character\Dashing\DashCancel	
 	3044105157	WinPuzzle			\InGame_UI\WinPuzzle	
 	3308074653	Room01_Music			\Music\Room01_Music	
+	3564400826	OutsideAmbience			\Environment\OutsideAmbience	
 	3601776784	Fireplace2			\Environment\Fireplace\Fireplace2	
 	3601776787	Fireplace1			\Environment\Fireplace\Fireplace1	
 	3724569835	BumpIntoWall			\Environment\BumpInto\BumpIntoWall	
@@ -76,6 +77,8 @@ Source plug-ins	ID	Name	Type		Wwise Object Path	Notes
 	255831950	Wwise Silence	Wwise Silence		\Actor-Mixer Hierarchy\Default Work Unit\Player\Movement\ChargedDash\ChargedDash_Container\VoiceOnly-RandomContainer\Silence_05\Wwise Silence	
 	295714832	Wwise Silence	Wwise Silence		\Actor-Mixer Hierarchy\Default Work Unit\Player\Movement\ChargedDash\ChargedDash_Container\VoiceOnly-RandomContainer\Silence_02\Wwise Silence	
 	322339794	Wwise Silence	Wwise Silence		\Actor-Mixer Hierarchy\Default Work Unit\Player\Movement\ChargedDash\ChargedDash_Container\VoiceOnly-RandomContainer\Silence_01\Wwise Silence	
+	325756654	SoundSeed Air Wind	SoundSeed Air Wind		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\OutsideAmbience\OusideAmbience_Container\OusideWind\OutsideWind_02\SoundSeed Air Wind	
+	380019647	SoundSeed Air Wind	SoundSeed Air Wind		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\OutsideAmbience\OusideAmbience_Container\OusideWind\OutsideWind_04\SoundSeed Air Wind	
 	399463161	Wwise Silence	Wwise Silence		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\Room_02\ChildLaugh+MusicBox_Container\Silence_13\Wwise Silence	
 	405395221	Wwise Silence	Wwise Silence		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\Room_02\ChildLaugh+MusicBox_Container\Silence_19\Wwise Silence	
 	438200855	Wwise Tone Generator	Wwise Tone Generator		\Actor-Mixer Hierarchy\Default Work Unit\Player\Movement\ArrowPull\Wwise Tone Generator	
@@ -83,14 +86,17 @@ Source plug-ins	ID	Name	Type		Wwise Object Path	Notes
 	505510674	Wwise Silence	Wwise Silence		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\Room_02\ChildLaugh+MusicBox_Container\Silence_09\Wwise Silence	
 	508851971	Wwise Silence	Wwise Silence		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\Room_02\ChildLaugh+MusicBox_Container\Silence_06\Wwise Silence	
 	578474340	Wwise Silence	Wwise Silence		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\Room_02\ChildLaugh+MusicBox_Container\Silence_11\Wwise Silence	
+	583808842	SoundSeed Air Wind	SoundSeed Air Wind		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\OutsideAmbience\OusideAmbience_Container\OusideWind\OutsideWind_05\SoundSeed Air Wind	
 	598264422	Wwise Silence	Wwise Silence		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\Room_02\ChildLaugh+MusicBox_Container\Silence_05\Wwise Silence	
 	629330161	Wwise Silence	Wwise Silence		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\Room_02\ChildLaugh+MusicBox_Container\Silence_15\Wwise Silence	
 	637202746	Wwise Silence	Wwise Silence		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\Room_02\ChildLaugh+MusicBox_Container\Silence_04\Wwise Silence	
 	721616158	Wwise Silence	Wwise Silence		\Actor-Mixer Hierarchy\Default Work Unit\Player\Movement\ChargedDash\ChargedDash_Container\VoiceOnly-RandomContainer\Silence_04\Wwise Silence	
 	752693348	Wwise Silence	Wwise Silence		\Actor-Mixer Hierarchy\Default Work Unit\Player\Movement\ChargedDash\ChargedDash_Container\VoiceOnly-RandomContainer\Silence\Wwise Silence	
+	757675491	SoundSeed Air Wind	SoundSeed Air Wind		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\OutsideAmbience\OusideAmbience_Container\OusideWind\OutsideWind_01\SoundSeed Air Wind	
 	789049350	Wwise Silence	Wwise Silence		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\Room_02\ChildLaugh+MusicBox_Container\Silence_17\Wwise Silence	
 	852653469	Wwise Silence	Wwise Silence		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\Room_02\ChildLaugh+MusicBox_Container\Silence_01\Wwise Silence	
 	862033178	Wwise Silence	Wwise Silence		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\Room_02\ChildLaugh+MusicBox_Container\Silence_02\Wwise Silence	
+	898845393	SoundSeed Air Wind	SoundSeed Air Wind		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\OutsideAmbience\OusideAmbience_Container\OusideWind\OutsideWind_03\SoundSeed Air Wind	
 	931719558	Wwise Silence	Wwise Silence		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\Room_02\ChildLaugh+MusicBox_Container\Silence_12\Wwise Silence	
 	960435305	Wwise Silence	Wwise Silence		\Actor-Mixer Hierarchy\Default Work Unit\Player\Movement\ChargedDash\ChargedDash_Container\VoiceOnly-RandomContainer\Silence_03\Wwise Silence	
 	1005440425	Wwise Silence	Wwise Silence		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\Room_02\ChildLaugh+MusicBox_Container\Silence_16\Wwise Silence	
@@ -131,7 +137,7 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	334364651	Breaking_Wood_4	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Android\SFX\Breaking_Wood_4_1EDA331F.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\BumpInto\BumpIntoTree\Breaking_Wood_4		20034
 	344642825	HealthLowLoop	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Android\SFX\Fire, Acid Burn Flesh SND22212_42180552.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\PlayerHealth\PlayerHealthContainer\HealthLowLoop		27926
 	347112927	OnRope_03	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Android\SFX\184519__soundslikewillem__fuse_B6C35CD1.wem		\Actor-Mixer Hierarchy\Default Work Unit\RopeMechanic\OnRope_Container\OnRope_03		138049
-	353383574	Ambience, Forest, Pine Trees, Bird Chirps  SND0626	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Android\SFX\Ambience, Forest, Pine Trees, Bird Chirps  SND0626_9B96ECC7.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\Room_01\OusideBirds\Ambience, Forest, Pine Trees, Bird Chirps  SND0626		114425
+	353383574	Ambience, Forest, Pine Trees, Bird Chirps  SND0626	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Android\SFX\Ambience, Forest, Pine Trees, Bird Chirps  SND0626_9B96ECC7.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\OutsideAmbience\OusideAmbience_Container\OusideBirds\Ambience, Forest, Pine Trees, Bird Chirps  SND0626		114425
 	355194853	Breaking_Wood_1	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Android\SFX\Breaking_Wood_1_6296B0F9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\BumpInto\BumpIntoTree\Breaking_Wood_1		15686
 	359505339	Breaking_Wood_5	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Android\SFX\Breaking_Wood_5_6296B0F9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\BumpInto\BumpIntoTree\Breaking_Wood_5		17830
 	373280851	Breaking_Wood_7	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Android\SFX\Breaking_Wood_7_836C4E7D.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\BumpInto\BumpIntoTree\Breaking_Wood_7		11073
