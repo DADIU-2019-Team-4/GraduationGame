@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class PaperPlane : DashInteractable
@@ -14,6 +15,13 @@ public class PaperPlane : DashInteractable
     private bool isBurning;
     private Collision lastCollision;
     private AttachToPlane playerAttached;
+
+    private List<AudioEvent> audioEvents;
+
+    private void Awake()
+    {
+        audioEvents = GetComponents<AudioEvent>().ToList<AudioEvent>();
+    }
 
 
     public override void GameLoopUpdate()
@@ -79,6 +87,9 @@ public class PaperPlane : DashInteractable
 
     public override void Interact(GameObject player)
     {
+
+        AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.OnPlane, audioEvents, gameObject);
+
         playerAttached = player.GetComponent<AttachToPlane>();
         playerAttachedToThis = true;
 
