@@ -15,13 +15,14 @@ public class InteractibleObject : DashInteractable
         Block,
         Break,
         Candle,
-        Arrow,
         PickUp,
-        FusePoint
+        FusePoint,
+        Damage
     }
     public InteractType type;
+    public float DamageValue;
     private MovementController movementController;
-    public List<AudioEvent> audioEvents;
+    private List<AudioEvent> audioEvents;
     private DialogueRunner dialogRunner;
 
     public bool IsBreakable { get; set; }
@@ -68,9 +69,6 @@ public class InteractibleObject : DashInteractable
             case InteractType.Candle:
                 Candle();
                 break;
-            case InteractType.Arrow:
-                Arrow();
-                break;
             case InteractType.PickUp:
                 PickUp();
                 break;
@@ -83,6 +81,9 @@ public class InteractibleObject : DashInteractable
             case InteractType.Fuse:
                 if(!movementController.IsFuseMoving)
                     Block(hitPoint);
+                break;
+            case InteractType.Damage:
+                DamagePlayer(hitPoint);
                 break;
         }
 
@@ -105,6 +106,7 @@ public class InteractibleObject : DashInteractable
         gameObject.GetComponent<DashInteractable>().Interact(GameObject.FindGameObjectWithTag("Player"));
 
     }
+
     private void Goal()
     {
         gameObject.GetComponent<BoxCollider>().enabled = false;
@@ -137,15 +139,13 @@ public class InteractibleObject : DashInteractable
             movementController.TargetPosition = hitpoint - movementController.transform.forward * movementController.BounceValue;
         }
     }
+
     private void Candle()
     {
         Light light = gameObject.GetComponentInChildren<Light>();
         light.enabled = true;
     }
-    private void Arrow()
-    {
 
-    }
     private void PickUp()
     {
         dialogRunner.StartDialogue("PickUp");
@@ -155,7 +155,7 @@ public class InteractibleObject : DashInteractable
         movementController.CollidePickUp();
     }
 
-    public void FusePoint(Vector3 hitpoint)
+    private void FusePoint(Vector3 hitpoint)
     {
         if (!movementController.IsFuseMoving)
         {
@@ -165,10 +165,17 @@ public class InteractibleObject : DashInteractable
         }
     }
 
+    private void DamagePlayer(Vector3 hitpoint)
+    {
+        movementController.UpdateFireAmount(DamageValue);
+        movementController.TargetPosition = hitpoint;
+    }
+
     public override void Interact(GameObject player)
     {
 
     }
+
     private bool PointInOABB(Vector3 point, BoxCollider box)
     {
         point = box.transform.InverseTransformPoint(point) - box.center;

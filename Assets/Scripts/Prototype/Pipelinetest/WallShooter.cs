@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WallShooter : IGameLoop
+public class WallShooter : MonoBehaviour
 {
 
     //public float detectionDistance = 5;
@@ -20,7 +20,7 @@ public class WallShooter : IGameLoop
     }
 
     // Update is called once per frame
-    public override void GameLoopUpdate()
+    private void Update()
     {
         currentSpawnCooldown -= Time.deltaTime;
         SpawnPlane();

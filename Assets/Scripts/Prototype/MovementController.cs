@@ -12,9 +12,11 @@ public class MovementController : MonoBehaviour
 {
     [Header("General Settings")]
     [Tooltip("Total Fire amount after dashing into breakable objects.")]
-    public float FireValue = 100f;
-    [Tooltip("How much the player should bounce of a wall when colliding.")]
+    public float FireHealValue = 100f;
+    [HideInInspector]
     public float BounceValue = 0.3f;
+    [Tooltip("How much the player should bounce of an object when damaged.")]
+    public float DamageBounceValue = 1f;
 
     [Header("Move Settings")]
     [Tooltip("Duration of a move in seconds (how long it takes to get to target position).")]
@@ -205,7 +207,7 @@ public class MovementController : MonoBehaviour
     /// <summary>
     /// CoRoutine responsible for moving the Player back (after a collision).
     /// </summary>
-    private IEnumerator MoveBackRoutine(Vector3 target, float duration)
+    public IEnumerator MoveBackRoutine(Vector3 target, float duration)
     {
         moveTweener?.Kill();
 
@@ -265,9 +267,9 @@ public class MovementController : MonoBehaviour
             if ((IsDashing && interactableObj.IsBreakable) ||
                 interactableObj.type == InteractibleObject.InteractType.PickUp)
             {
-                if (currentFireAmount < FireValue)
+                if (currentFireAmount < FireHealValue)
                 {
-                    currentFireAmount = FireValue;
+                    currentFireAmount = FireHealValue;
                     UpdateFireAmountText();
                 }
 
@@ -314,7 +316,7 @@ public class MovementController : MonoBehaviour
     /// <summary>
     /// Updates the fire amount.
     /// </summary>
-    private void UpdateFireAmount(float cost)
+    public void UpdateFireAmount(float cost)
     {
         currentFireAmount -= cost;
         if (currentFireAmount < 0)
@@ -364,7 +366,7 @@ public class MovementController : MonoBehaviour
 
     public void CollidePickUp()
     {
-        currentFireAmount += FireValue;
+        currentFireAmount += FireHealValue;
         if (currentFireAmount > maxFireAmount)
             currentFireAmount = maxFireAmount;
         FireAmountText.text = currentFireAmount.ToString();

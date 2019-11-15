@@ -1,14 +1,16 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class WaterSpray : IGameLoop
+public class WaterSpray : MonoBehaviour
 {
-    public float Interval = 5;
+    public float OnTimer = 4;
+    public float OffTimer = 5;
     private float timer;
     private ParticleSystem particleSystem;
     private BoxCollider boxCollider;
-    private bool isActivated = true;
+    private bool isActivated;
+    public bool StartTurnedOn = true;
+
+    public ParticleSystem ParticlesOnCollision;
 
     private void Awake()
     {
@@ -16,25 +18,62 @@ public class WaterSpray : IGameLoop
         boxCollider = GetComponent<BoxCollider>();
     }
 
-    public override void GameLoopUpdate()
+    private void Start()
+    {
+        if (StartTurnedOn)
+            isActivated = true;
+        else
+            TurnOff();
+    }
+
+    private void Update()
     {
         timer += Time.deltaTime;
-        if (timer >= Interval)
+        if (isActivated)
         {
-            if (isActivated)
+            if (timer >= OnTimer)
+                TurnOff();
+        }
+        else
+        {
+            if (timer >= OffTimer)
+                TurnOn();
+        }
+    }
+
+    private void TurnOn()
+    {
+        particleSystem.Play();
+        isActivated = true;
+        boxCollider.enabled = true;
+        timer = 0;
+    }
+
+    private void TurnOff()
+    {
+        particleSystem.Stop();
+        isActivated = false;
+        boxCollider.enabled = false;
+        timer = 0;
+    }
+
+    private void OnTriggerEnter(Collider col)
+    {
+        if (col.CompareTag("Player"))
+        {
+            MovementController movementController = col.GetComponent<MovementController>();
+            if (ParticlesOnCollision != null)
             {
-                particleSystem.Stop();
-                isActivated = false;
-                boxCollider.enabled = false;
-            }
-            else
-            {
-                particleSystem.Play();
-                isActivated = true;
-                boxCollider.enabled = true;
+                Vector3 position = movementController.transform.position;
+                position.y = 0.5f;
+                Instantiate(ParticlesOnCollision, position, Quaternion.identity);
             }
 
-            timer = 0;
+            StartCoroutine(
+                movementController.MoveBackRoutine(movementController.transform.position - movementController.transform.forward *
+                                                   movementController.DamageBounceValue,
+                    movementController.MoveDuration));
+
         }
     }
 }

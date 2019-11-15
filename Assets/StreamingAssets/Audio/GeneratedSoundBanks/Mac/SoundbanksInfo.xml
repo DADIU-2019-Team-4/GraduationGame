@@ -11,15 +11,10 @@
 	<StreamedFiles/>
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
-		<SoundBank Id="1355168291" Language="SFX">
-			<ObjectPath>Init</ObjectPath>
-			<ShortName>Init</ShortName>
-			<Path>Init.bnk</Path>
-		</SoundBank>
-		<SoundBank Id="1963399553" Language="SFX">
-			<ObjectPath>\SoundBanks\Default Work Unit\Room_1_Bank</ObjectPath>
-			<ShortName>Room_1_Bank</ShortName>
-			<Path>Room_1_Bank.bnk</Path>
+		<SoundBank Id="22796248" Language="SFX">
+			<ObjectPath>\SoundBanks\Default Work Unit\Room_2_Bank</ObjectPath>
+			<ShortName>Room_2_Bank</ShortName>
+			<Path>Room_2_Bank.bnk</Path>
 			<IncludedEvents>
 				<Event Id="4018333041" Name="ArrowPull" ObjectPath="\Events\Character\Dashing\ArrowPull" DurationType="Infinite"/>
 				<Event Id="3914625789" Name="BlockObject" ObjectPath="\Events\Character\Objects\BlockObject" DurationType="OneShot" DurationMin="0.620000" DurationMax="0.620000"/>
@@ -36,6 +31,7 @@
 				<Event Id="735079116" Name="ChargingDash" ObjectPath="\Events\Character\Dashing\ChargingDash" DurationType="Infinite"/>
 				<Event Id="1914703205" Name="ChargingRejection" ObjectPath="\Events\Character\Dashing\ChargingRejection" DurationType="OneShot" DurationMin="1.326893" DurationMax="1.326893"/>
 				<Event Id="2370884349" Name="CollectFire" ObjectPath="\Events\Character\Objects\CollectFire" DurationType="OneShot" DurationMin="5.076939" DurationMax="5.076939"/>
+				<Event Id="1750432780" Name="DadsMouth" ObjectPath="\Events\Environment\Fireplace\DadsMouth" MaxAttenuation="50.000000" DurationType="Infinite"/>
 				<Event Id="2850533655" Name="DashCancel" ObjectPath="\Events\Character\Dashing\DashCancel" MaxAttenuation="0.000000" DurationType="OneShot" DurationMin="0.000000" DurationMax="0.000000"/>
 				<Event Id="2044049779" Name="Dead" ObjectPath="\Events\Character\PlayerHealth\Dead" DurationType="OneShot" DurationMin="0.781509" DurationMax="5.634581"/>
 				<Event Id="679539432" Name="DeathObject" ObjectPath="\Events\Character\Objects\DeathObject" DurationType="OneShot" DurationMin="1.538095" DurationMax="1.538095"/>
@@ -416,6 +412,11 @@
 					<Path>SFX\ChargeHold2_9B96ECC7.wem</Path>
 				</File>
 			</IncludedMemoryFiles>
+		</SoundBank>
+		<SoundBank Id="1355168291" Language="SFX">
+			<ObjectPath>Init</ObjectPath>
+			<ShortName>Init</ShortName>
+			<Path>Init.bnk</Path>
 		</SoundBank>
 	</SoundBanks>
 </SoundBanksInfo>
