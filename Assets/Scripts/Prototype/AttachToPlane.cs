@@ -56,10 +56,32 @@ public class AttachToPlane : MonoBehaviour
         Transform parent = gameObject.transform.parent;
         if(parent != null)
         {
+
+
+            //water temp fix
+            Collider[] colls = Physics.OverlapSphere(transform.position, 0.3f);
+
+            foreach (Collider coll in colls)
+            {
+                if (coll.gameObject.GetComponent<InteractibleObject>() != null)
+                {
+
+                    if (coll.gameObject != transform.parent)
+                    {
+                        Debug.Log(coll.gameObject.name + "was here");
+                        coll.gameObject.GetComponent<InteractibleObject>().Interact(coll.transform.position);
+                    }
+
+
+                }
+            }
+
             parent.GetComponent<PaperPlane>().playerAttachedToThis = false;
             transform.parent = null;
             gameObject.GetComponent<Rigidbody>().useGravity = true;
             _attached = false;
+
+            
 
             if (destroy)
                 Destroy(parent.gameObject);
