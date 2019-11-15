@@ -372,9 +372,6 @@ public class MovementController : MonoBehaviour
 
     public void CollideGoal(GameObject goal)
     {
-        StartCoroutine(IsDashing
-            ? MoveBackRoutine(goal.transform.position, DashDuration)
-            : MoveBackRoutine(goal.transform.position, MoveDuration));
         reachedGoal = true;
         CheckGameEnd();
     }

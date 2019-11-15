@@ -289,7 +289,7 @@ MonoBehaviour:
       - ElementName: PlayerHealth
         ObjectType: 3
       Path: Character\PlayerHealth\PlayerHealth
-      maxAttenuation: 0
+      maxAttenuation: 100000000
       maxDuration: -1
       minDuration: -1
   - PhysicalPath: Events\Default Work Unit.wwu
@@ -302,7 +302,7 @@ MonoBehaviour:
     ParentPhysicalPath: 
     guid: 798a08f7a060c94bb31dbf2936cc7894
     GuidInternal: 
-    m_lastTime: -8586278340154425102
+    m_lastTime: -8586277969859466705
     List:
     - name: BumpIntoBooks
       guid: a5e678f91e46db45a6085d8dd485fb67
@@ -400,8 +400,8 @@ MonoBehaviour:
         ObjectType: 3
       Path: Environment\BumpInto\BumpIntoWall
       maxAttenuation: 0
-      maxDuration: 991714
-      minDuration: 516063
+      maxDuration: 1106718
+      minDuration: 952388
     - name: Fireplace1
       guid: 5e4055c1bc3ab144aa3ed112c9a6c633
       id: 3601776787
@@ -428,6 +428,18 @@ MonoBehaviour:
         ObjectType: 3
       Path: Environment\Fireplace\Fireplace2
       maxAttenuation: 15000000
+      maxDuration: -1
+      minDuration: -1
+    - name: OutsideAmbience
+      guid: 7319791b9ce4a548b2bc67993e80c530
+      id: 3564400826
+      PathAndIcons:
+      - ElementName: Environment
+        ObjectType: 12
+      - ElementName: OutsideAmbience
+        ObjectType: 3
+      Path: Environment\OutsideAmbience
+      maxAttenuation: 0
       maxDuration: -1
       minDuration: -1
     - name: RoomTone_01
