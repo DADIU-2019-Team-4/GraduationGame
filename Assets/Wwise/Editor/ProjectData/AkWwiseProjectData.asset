@@ -24,7 +24,7 @@ MonoBehaviour:
     ParentPhysicalPath: 
     guid: 61773147c3e61341905ca4a6c975c8be
     GuidInternal: 
-    m_lastTime: -8586285538401719164
+    m_lastTime: -8586278375120767264
     List:
     - name: LargeVerb
       guid: 4df29f5a7ef6c64484385fb4eb29a27f
@@ -64,7 +64,7 @@ MonoBehaviour:
     ParentPhysicalPath: 
     guid: 72425237053ab44b82427a05c1308321
     GuidInternal: 
-    m_lastTime: -8586287012048800163
+    m_lastTime: -8586278497226975073
     List:
     - name: Room_1_Bank
       guid: e0606da1b37faa4b9eea4fea19ea8b94
@@ -80,8 +80,22 @@ MonoBehaviour:
     ParentPhysicalPath: 
     guid: 85519e3dd9af71428bf05cf3b19b0630
     GuidInternal: 
-    m_lastTime: -8586283976277430842
+    m_lastTime: -8586278430346645762
     List:
+    - name: ArrowPull
+      guid: 608bf70bea70904ba9e045c9b78b6c3a
+      id: 4018333041
+      PathAndIcons:
+      - ElementName: Character
+        ObjectType: 12
+      - ElementName: Dashing
+        ObjectType: 4
+      - ElementName: ArrowPull
+        ObjectType: 3
+      Path: Character\Dashing\ArrowPull
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
     - name: BlockObject
       guid: befac980a8fde244859299081e1cd8af
       id: 3914625789
@@ -136,8 +150,8 @@ MonoBehaviour:
         ObjectType: 3
       Path: Character\Dashing\ChargedDash
       maxAttenuation: 0
-      maxDuration: 2810136
-      minDuration: 2503546
+      maxDuration: 2554358
+      minDuration: 2410993
     - name: ChargingDash
       guid: 7064d9f3179e2b419c800744ead4036a
       id: 735079116
@@ -206,7 +220,7 @@ MonoBehaviour:
         ObjectType: 3
       Path: Character\PlayerHealth\Dead
       maxAttenuation: 0
-      maxDuration: 887639
+      maxDuration: 5634581
       minDuration: 781509
     - name: DeathObject
       guid: 32dcf5edd786504cbdacad9f513d6171
@@ -236,6 +250,34 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: 1904135
       minDuration: 1601180
+    - name: OffRope
+      guid: a00036995aaba745aa30ee3028ec1a97
+      id: 1766390728
+      PathAndIcons:
+      - ElementName: Character
+        ObjectType: 12
+      - ElementName: Rope Mechanic
+        ObjectType: 4
+      - ElementName: OffRope
+        ObjectType: 3
+      Path: Character\Rope Mechanic\OffRope
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
+    - name: OnRope
+      guid: 18a3b678ef957440b6aad640362b000a
+      id: 2346684474
+      PathAndIcons:
+      - ElementName: Character
+        ObjectType: 12
+      - ElementName: Rope Mechanic
+        ObjectType: 4
+      - ElementName: OnRope
+        ObjectType: 3
+      Path: Character\Rope Mechanic\OnRope
+      maxAttenuation: 0
+      maxDuration: 21067520
+      minDuration: 18234708
     - name: PlayerHealth
       guid: 653c463d1cd8eb4d858f140998f5a864
       id: 151362964
@@ -260,13 +302,195 @@ MonoBehaviour:
     ParentPhysicalPath: 
     guid: 798a08f7a060c94bb31dbf2936cc7894
     GuidInternal: 
-    m_lastTime: -8586298684039473000
-    List: []
+    m_lastTime: -8586278340154425102
+    List:
+    - name: BumpIntoBooks
+      guid: a5e678f91e46db45a6085d8dd485fb67
+      id: 382525071
+      PathAndIcons:
+      - ElementName: Environment
+        ObjectType: 12
+      - ElementName: BumpInto
+        ObjectType: 4
+      - ElementName: BumpIntoBooks
+        ObjectType: 3
+      Path: Environment\BumpInto\BumpIntoBooks
+      maxAttenuation: 0
+      maxDuration: 2059830
+      minDuration: 594985
+    - name: BumpIntoBottles
+      guid: 39cc6e7eb3ddc44dbc417438811731f2
+      id: 1029928262
+      PathAndIcons:
+      - ElementName: Environment
+        ObjectType: 12
+      - ElementName: BumpInto
+        ObjectType: 4
+      - ElementName: BumpIntoBottles
+        ObjectType: 3
+      Path: Environment\BumpInto\BumpIntoBottles
+      maxAttenuation: 0
+      maxDuration: 882098
+      minDuration: 269666
+    - name: BumpIntoPlants
+      guid: 1012aaa19a1bc2448c4194f2c54696c9
+      id: 2362129349
+      PathAndIcons:
+      - ElementName: Environment
+        ObjectType: 12
+      - ElementName: BumpInto
+        ObjectType: 4
+      - ElementName: BumpIntoPlants
+        ObjectType: 3
+      Path: Environment\BumpInto\BumpIntoPlants
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
+    - name: BumpIntoStroller
+      guid: b6dec8db7518e54791346e04546d2947
+      id: 1507701038
+      PathAndIcons:
+      - ElementName: Environment
+        ObjectType: 12
+      - ElementName: BumpInto
+        ObjectType: 4
+      - ElementName: BumpIntoStroller
+        ObjectType: 3
+      Path: Environment\BumpInto\BumpIntoStroller
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
+    - name: BumpIntoTeddyBear
+      guid: 5890cc84f350734b87bccce46bcfbf08
+      id: 1429775881
+      PathAndIcons:
+      - ElementName: Environment
+        ObjectType: 12
+      - ElementName: BumpInto
+        ObjectType: 4
+      - ElementName: BumpIntoTeddyBear
+        ObjectType: 3
+      Path: Environment\BumpInto\BumpIntoTeddyBear
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
+    - name: BumpIntoTree
+      guid: 75ce3cf870fc6249b1fe7ba5ff52394e
+      id: 2089387979
+      PathAndIcons:
+      - ElementName: Environment
+        ObjectType: 12
+      - ElementName: BumpInto
+        ObjectType: 4
+      - ElementName: BumpIntoTree
+        ObjectType: 3
+      Path: Environment\BumpInto\BumpIntoTree
+      maxAttenuation: 0
+      maxDuration: 1802605
+      minDuration: 331908
+    - name: BumpIntoWall
+      guid: 6aebb66d941bf0428d5d70e8243427f8
+      id: 3724569835
+      PathAndIcons:
+      - ElementName: Environment
+        ObjectType: 12
+      - ElementName: BumpInto
+        ObjectType: 4
+      - ElementName: BumpIntoWall
+        ObjectType: 3
+      Path: Environment\BumpInto\BumpIntoWall
+      maxAttenuation: 0
+      maxDuration: 991714
+      minDuration: 516063
+    - name: Fireplace1
+      guid: 5e4055c1bc3ab144aa3ed112c9a6c633
+      id: 3601776787
+      PathAndIcons:
+      - ElementName: Environment
+        ObjectType: 12
+      - ElementName: Fireplace
+        ObjectType: 4
+      - ElementName: Fireplace1
+        ObjectType: 3
+      Path: Environment\Fireplace\Fireplace1
+      maxAttenuation: 15000000
+      maxDuration: -1
+      minDuration: -1
+    - name: Fireplace2
+      guid: b1fb1775be0e6a4dbd0e82f429a3f667
+      id: 3601776784
+      PathAndIcons:
+      - ElementName: Environment
+        ObjectType: 12
+      - ElementName: Fireplace
+        ObjectType: 4
+      - ElementName: Fireplace2
+        ObjectType: 3
+      Path: Environment\Fireplace\Fireplace2
+      maxAttenuation: 15000000
+      maxDuration: -1
+      minDuration: -1
+    - name: RoomTone_01
+      guid: e61e714d984f0c459c13e4e5aca7eb6a
+      id: 1539660446
+      PathAndIcons:
+      - ElementName: Environment
+        ObjectType: 12
+      - ElementName: RoomTones
+        ObjectType: 4
+      - ElementName: RoomTone_01
+        ObjectType: 3
+      Path: Environment\RoomTones\RoomTone_01
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: RoomTone_02
+      guid: d22fec1eda781547a397c097942209dd
+      id: 1539660445
+      PathAndIcons:
+      - ElementName: Environment
+        ObjectType: 12
+      - ElementName: RoomTones
+        ObjectType: 4
+      - ElementName: RoomTone_02
+        ObjectType: 3
+      Path: Environment\RoomTones\RoomTone_02
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: RoomTone_Hub
+      guid: cc7e26a2131b594e8c517c4ad1682886
+      id: 1090191588
+      PathAndIcons:
+      - ElementName: Environment
+        ObjectType: 12
+      - ElementName: RoomTones
+        ObjectType: 4
+      - ElementName: RoomTone_Hub
+        ObjectType: 3
+      Path: Environment\RoomTones\RoomTone_Hub
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: Torch1
+      guid: 5438787736f0364d9458c9914cc09adc
+      id: 1159579802
+      PathAndIcons:
+      - ElementName: Environment
+        ObjectType: 12
+      - ElementName: Torches
+        ObjectType: 4
+      - ElementName: Torch1
+        ObjectType: 3
+      Path: Environment\Torches\Torch1
+      maxAttenuation: 15000000
+      maxDuration: -1
+      minDuration: -1
   - PhysicalPath: Events\GameController.wwu
     ParentPhysicalPath: 
     guid: 08b89f9c90ef23468f370115d452e20c
     GuidInternal: 
-    m_lastTime: -8586285539619176911
+    m_lastTime: -8586278795008356224
     List:
     - name: KillOnRestart
       guid: 8a2c7db59cad7346a8013a106d5e1e0e
@@ -321,8 +545,26 @@ MonoBehaviour:
     ParentPhysicalPath: 
     guid: 4e98cb7cf821544ba39897d46f0d9511
     GuidInternal: 
-    m_lastTime: -8586285549612019126
+    m_lastTime: -8586278453621159887
     List:
+    - name: ArrowLenght
+      guid: 9a705b640a989b4f9bda55dce1b2a4de
+      id: 2495094760
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: ArrowLenght
+        ObjectType: 13
+      Path: Default Work Unit\ArrowLenght
+    - name: DashHold
+      guid: def84e8eb31cb24f96e958305e1f7dd2
+      id: 2270170198
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: DashHold
+        ObjectType: 13
+      Path: Default Work Unit\DashHold
     - name: GoalDistance
       guid: 827716b225a5fe459a787af7293376e2
       id: 3234477337
@@ -346,7 +588,7 @@ MonoBehaviour:
     ParentPhysicalPath: 
     guid: 766c0dfff68df343a7b439ad43be7727
     GuidInternal: 
-    m_lastTime: -8586288916645865248
+    m_lastTime: -8586278795008525754
     List:
     - name: Room01
       guid: b5854ef4fda925428bec2d41db9ae29f
@@ -417,9 +659,7 @@ MonoBehaviour:
   ExpandedItems:
   - /GraduationGame_WwiseProject
   - /GraduationGame_WwiseProject/Events
-  - /GraduationGame_WwiseProject/Events/Character
-  - /GraduationGame_WwiseProject/Events/Character/PlayerHealth
-  - /GraduationGame_WwiseProject/SoundBanks
-  - /GraduationGame_WwiseProject/SoundBanks/Default Work Unit
+  - /GraduationGame_WwiseProject/Events/Environment
+  - /GraduationGame_WwiseProject/Events/Environment/RoomTones
   autoPopulateEnabled: 1
   CurrentPluginConfig: 

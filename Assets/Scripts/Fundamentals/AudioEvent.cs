@@ -48,6 +48,7 @@ public class AudioEvent : IGameLoop
         OnRope,
         OffRope,
         ArrowPull,
+        Health,
     }
 
     #endregion
