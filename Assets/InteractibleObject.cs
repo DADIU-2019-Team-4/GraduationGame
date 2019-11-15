@@ -107,6 +107,7 @@ public class InteractibleObject : DashInteractable
         gameObject.GetComponent<BoxCollider>().enabled = false;
         dialogRunner.StartDialogue("Goal");
         movementController.CollideGoal(gameObject);
+        movementController.TargetPosition = gameObject.transform.position;
     }
 
     private void Block(Vector3 hitpoint)
