@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 7967016736169859637}
   - component: {fileID: 5526843600437440786}
   - component: {fileID: 7182736113804651782}
+  - component: {fileID: -3165221591422314034}
   m_Layer: 0
   m_Name: PaperPlane 1
   m_TagString: Projectile
@@ -143,3 +144,22 @@ MonoBehaviour:
   burnSpeed: 0.005
   destroyAtTheEndOfFire: 0
   firetype: 0
+--- !u!114 &-3165221591422314034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6463440307218447917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3f6a57ea9bb81040839eb22c9ccd632, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TriggerType: 15
+  WwiseType: 0
+  EventName: OnPlane
+  RTPCName: 
+  RTPCValue: {fileID: 0}
+  SetStateGroup: 
+  SetStateValue: 

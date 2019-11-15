@@ -51,13 +51,13 @@ public class AttachToPlane : MonoBehaviour
     public void Detach(bool destroy)
     {
 
-        AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.OffPlane, audioEvents, gameObject);
+
 
         Transform parent = gameObject.transform.parent;
         if(parent != null)
         {
 
-
+            AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.OffPlane, audioEvents, gameObject);
             //water temp fix
             Collider[] colls = Physics.OverlapSphere(transform.position, 0.3f);
 
