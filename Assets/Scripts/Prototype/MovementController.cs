@@ -21,8 +21,8 @@ public class MovementController : MonoBehaviour
     [Header("Move Settings")]
     [Tooltip("Duration of a move in seconds (how long it takes to get to target position).")]
     public float MoveDuration = 0.2f;
-    [Tooltip("This gets multiplied by the drag distance (value between 0-1) to get the distance of a move.")]
-    public float MoveDistanceFactor = 0.01f;
+    [Tooltip("Curve for setting the distance of the move.")]
+    public AnimationCurve MoveDistanceCurve;
     [Tooltip("Cost of a move in percentage.")]
     [Range(0f, 100f)]
     public float MoveCostInPercentage;
