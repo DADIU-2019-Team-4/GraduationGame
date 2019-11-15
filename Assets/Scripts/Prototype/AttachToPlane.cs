@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class AttachToPlane : MonoBehaviour
@@ -15,6 +16,13 @@ public class AttachToPlane : MonoBehaviour
     public float dashSpeed;
 
     private BoxCollider boxCollider;
+
+    private List<AudioEvent> audioEvents;
+
+    private void Awake()
+    {
+        audioEvents = GetComponents<AudioEvent>().ToList<AudioEvent>();
+    }
 
     void Start()
     {
@@ -36,17 +44,20 @@ public class AttachToPlane : MonoBehaviour
     {
         if (other.gameObject.tag == "Projectile")
         {
-            other.GetComponent<DashInteractable>().Interact(this.gameObject);
+            other.GetComponent<PaperPlane>().Consume();
         }
     }
     
     public void Detach(bool destroy)
     {
+
+        AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.OffPlane, audioEvents, gameObject);
+
         Transform parent = gameObject.transform.parent;
         if(parent != null)
         {
             parent.GetComponent<PaperPlane>().playerAttachedToThis = false;
-            parent.DetachChildren();
+            transform.parent = null;
             gameObject.GetComponent<Rigidbody>().useGravity = true;
             _attached = false;
 

@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 6463440307218447912}
   - component: {fileID: 6463440307218447915}
   - component: {fileID: 7967016736169859637}
+  - component: {fileID: 5526843600437440786}
+  - component: {fileID: 7182736113804651782}
   m_Layer: 0
   m_Name: PaperPlane 1
   m_TagString: Projectile
@@ -90,7 +92,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.2, y: 0.2, z: 0.2}
+  m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &7967016736169859637
 MonoBehaviour:
@@ -109,3 +111,35 @@ MonoBehaviour:
   distanceToTravel: 0
   distanceTraveled: 0
   playerAttachedToThis: 0
+--- !u!114 &5526843600437440786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6463440307218447917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ce2f35c75ca9e84fb3474d32def3e6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 1
+  audioEvents: []
+--- !u!114 &7182736113804651782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6463440307218447917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 420186023faa10d418f08885f52a6d61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FireObject: {fileID: 5590989098238041260, guid: b130e385e49fa8c48ac96ceb16de5cb9,
+    type: 3}
+  dissolveShader: {fileID: 2100000, guid: 46d9632cf3dabcb40a3f0686e45be8eb, type: 2}
+  burnSpeed: 0.005
+  destroyAtTheEndOfFire: 0
+  firetype: 0

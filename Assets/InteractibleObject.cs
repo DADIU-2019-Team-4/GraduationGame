@@ -102,6 +102,9 @@ public class InteractibleObject : DashInteractable
     private void Projectile()
     {
 
+        gameObject.GetComponent<BurnObject>().SetObjectOnFire(new Vector3(0,0,0));
+        gameObject.GetComponent<DashInteractable>().Interact(GameObject.Find("Player"));
+
     }
 
     private void Goal()
