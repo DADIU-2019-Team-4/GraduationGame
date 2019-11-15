@@ -85,15 +85,13 @@ public class PaperPlane : DashInteractable
         lastCollision = other;
         if (lastCollision.gameObject.tag != "Player")
         {
-            if (transform.childCount >1)
+            if (transform.childCount >1 && !other.isTrigger)
             {
                 transform.Find("Player").GetComponent<AttachToPlane>().Detach(false);
-            }
-
-            if (!other.isTrigger)
-            {
                 _destroyThis = true;
             }
+
+            
            
         }
             
