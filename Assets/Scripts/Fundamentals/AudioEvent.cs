@@ -45,6 +45,10 @@ public class AudioEvent : IGameLoop
         OnCollision,
         DashEnded,
         DashCancelled,
+        OnRope,
+        OffRope,
+        ArrowPull,
+        Health,
     }
 
     #endregion

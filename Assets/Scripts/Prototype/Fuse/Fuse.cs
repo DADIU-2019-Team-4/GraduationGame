@@ -1,4 +1,6 @@
 ﻿using SplineMesh;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [RequireComponent(typeof(Spline))]
@@ -16,6 +18,8 @@ public class Fuse : MonoBehaviour
     public GameObject Follower;
     public float DurationInSecond;
 
+    private List<AudioEvent> audioEvents;
+
     private bool fromStart;
     private bool isMoving;
     private bool alreadyFinished;
@@ -24,6 +28,7 @@ public class Fuse : MonoBehaviour
     {
         movementController = FindObjectOfType<MovementController>();
         spline = GetComponent<Spline>();
+        audioEvents = GetComponents<AudioEvent>().ToList<AudioEvent>();
     }
 
     private void Start()
@@ -61,6 +66,7 @@ public class Fuse : MonoBehaviour
         movementController.IsFuseMoving = true;
         isMoving = true;
         alreadyFinished = false;
+        AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.OnRope, audioEvents, gameObject);
     }
 
     private void StopFollowing()
@@ -75,6 +81,7 @@ public class Fuse : MonoBehaviour
                 generated.transform.parent = null;
             movementController.IsFuseMoving = false;
             alreadyFinished = true;
+            AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.OffRope, audioEvents, gameObject);
         }
     }
 
