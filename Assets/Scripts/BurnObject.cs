@@ -4,14 +4,12 @@ using UnityEngine;
 
 public class BurnObject : MonoBehaviour
 {
-    [SerializeField]
-    private bool _isburnable;
+    public GameObject FireObject;
     private bool _isBurning = false;
     private bool _isDissasembling = false;
     //[SerializeField]
     //private List <BurnObject> burnNeighbors;
     private float _burnedAmount;
-    private MovementController movementController;
 
     private Transform fireObject;
     private float fireFloat = -1f;
@@ -31,8 +29,8 @@ public class BurnObject : MonoBehaviour
     public void Start()
     {
         renderer = gameObject.GetComponent<Renderer>();
-        movementController = FindObjectOfType<MovementController>();
         texture = renderer.material.mainTexture;
+        Instantiate(FireObject, transform);
     }
 
     public void Update()
