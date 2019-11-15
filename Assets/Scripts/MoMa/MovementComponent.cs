@@ -69,15 +69,14 @@ namespace MoMa
             return future;
         }
 
-        private Vector3 Step(Vector3 current, Vector3 inputVector, ref Vector3 currentVelocity)
+        private Vector3 Step(Vector3 current, Vector3 target, ref Vector3 currentVelocity)
         {
             Vector3 destination = Vector3.SmoothDamp(
                 current,
-                current + inputVector * _speed,
+                target,
                 ref currentVelocity,
-                inputVector == Vector3.zero ?
-                    CharacterController.StopDampTime :
-                    CharacterController.DefaultDampTime
+                (target-current).magnitude / _speed,
+                _speed
                 );
 
             return destination;

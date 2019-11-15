@@ -59,18 +59,18 @@ public class Bone
             this.localVelocity = nextLocalPosition - this.localPosition;
         }
 
-        public Data BlendWith(Data data, float weight)
+        public Data BlendWith(Data targetData, float weight)
         {
-            this.position = this.position  * (1-weight) + data.position * weight;
+            this.position = Vector3.Slerp(this.position , targetData.position, weight);
 
             // TODO: Not sure if weight here is used correcltly
-            this.rotation = Quaternion.Slerp(data.rotation, this.rotation, weight);
+            //this.rotation = Quaternion.Slerp(this.rotation, targetData.rotation, weight);
+            //this.rotation = Quaternion.Euler(Vector3.Lerp(this.rotation.eulerAngles, targetData.rotation.eulerAngles, weight));
 
-            // Check head's rotation (in Euler)
-            //Debug.Log()
-
-            this.localPosition = this.localPosition * (1 - weight) + data.localPosition * weight;
-            this.localVelocity = this.localVelocity * (1 - weight) + data.localVelocity * weight;
+            this.localPosition = Vector3.Slerp(this.localPosition, targetData.localPosition, weight);
+            this.localVelocity = Vector3.Slerp(this.localVelocity, targetData.localPosition, weight);
+            //this.localPosition = this.localPosition * (1 - weight) + targetData.localPosition * weight;
+            //this.localVelocity = this.localVelocity * (1 - weight) + targetData.localVelocity * weight;
 
             return this;
         }
