@@ -10,6 +10,8 @@ public class WaterSpray : MonoBehaviour
     private bool isActivated;
     public bool StartTurnedOn = true;
 
+    public ParticleSystem ParticlesOnCollision;
+
     private void Awake()
     {
         particleSystem = GetComponent<ParticleSystem>();
@@ -60,10 +62,18 @@ public class WaterSpray : MonoBehaviour
         if (col.CompareTag("Player"))
         {
             MovementController movementController = col.GetComponent<MovementController>();
+            if (ParticlesOnCollision != null)
+            {
+                Vector3 position = movementController.transform.position;
+                position.y = 0.5f;
+                Instantiate(ParticlesOnCollision, position, Quaternion.identity);
+            }
+
             StartCoroutine(
                 movementController.MoveBackRoutine(movementController.transform.position - movementController.transform.forward *
                                                    movementController.DamageBounceValue,
                     movementController.MoveDuration));
+
         }
     }
 }

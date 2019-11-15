@@ -16,7 +16,7 @@ public class MovementController : MonoBehaviour
     [HideInInspector]
     public float BounceValue = 0.3f;
     [Tooltip("How much the player should bounce of an object when damaged.")]
-    public float DamageBounceValue = 0.7f;
+    public float DamageBounceValue = 1f;
 
     [Header("Move Settings")]
     [Tooltip("Duration of a move in seconds (how long it takes to get to target position).")]
