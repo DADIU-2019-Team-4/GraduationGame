@@ -14,10 +14,11 @@ public class PaperPlane : DashInteractable
     public bool playerAttachedToThis = false;
     private bool isBurning;
     private bool _destroyThis;
-    private Collision lastCollision;
+    private Collider lastCollision;
     private AttachToPlane playerAttached;
 
     private List<AudioEvent> audioEvents;
+    
 
     private void Awake()
     {
@@ -78,18 +79,22 @@ public class PaperPlane : DashInteractable
         _destroyThis = true;
     }
 
-    private void OnCollisionEnter(Collision other)
+    private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Plane Collision");
+        
         lastCollision = other;
         if (lastCollision.gameObject.tag != "Player")
         {
-            if (transform.childCount !=0)
+            if (transform.childCount >1)
             {
-                transform.GetChild(0).GetComponent<AttachToPlane>().Detach(true);
+                transform.Find("Player").GetComponent<AttachToPlane>().Detach(false);
             }
 
-            Destroy(gameObject);
+            if (!other.isTrigger)
+            {
+                _destroyThis = true;
+            }
+           
         }
             
 

@@ -70,7 +70,12 @@ public class BurnObject : MonoBehaviour
         renderer.material = dissolveShader;
         renderer.material.SetTexture("_maintexture", texture);
         _isBurning = true;
-        gameObject.GetComponent<Collider>().enabled = false;
+
+        Collider coll = gameObject.GetComponent<Collider>();
+        if (!gameObject.GetComponent<Collider>().isTrigger)
+        {
+            gameObject.GetComponent<Collider>().enabled = false;
+        }
         renderer.material.SetVector("_StartPoint", collisionPoint);
         _fireObject = _fire;
         _fireObject.SetActive(true);
