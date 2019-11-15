@@ -48,7 +48,6 @@ public class MovementController : MonoBehaviour
     private FireGirlAnimationController animationController;
     private Rigidbody rigidBody;
     private Material material;
-    private TrailRenderer trailRenderer;
     private Tweener moveTweener;
     private List<AudioEvent> audioEvents;
 
@@ -64,8 +63,8 @@ public class MovementController : MonoBehaviour
     public FloatVariable GoalDistance;
     public FloatVariable GoalDistanceRelative;
     public FloatVariable HealthPercentage;
-    public FloatVariable ArrowLengthScriptableObject;
-    public FloatVariable DashThresholdScriptableObject;
+    public FloatVariable ArrowLength;
+    public FloatVariable DashHoldPercentage;
 
     private Vector3 startPosition;
     private Vector3 goalPosition;
@@ -95,7 +94,6 @@ public class MovementController : MonoBehaviour
         rigidBody = GetComponent<Rigidbody>();
         animationController = GetComponentInChildren<FireGirlAnimationController>();
         material = GetComponent<Renderer>().material;
-        trailRenderer = GetComponentInChildren<TrailRenderer>();
         gameController = FindObjectOfType<GameController>();
         audioEvents = GetComponents<AudioEvent>().ToList<AudioEvent>();
         attachToPlane = GetComponent<AttachToPlane>();
@@ -107,8 +105,6 @@ public class MovementController : MonoBehaviour
         FireAmountText = GameObject.Find("FireAmountText").GetComponent<TextMeshProUGUI>();
         cameraShake = GameObject.FindGameObjectWithTag("VirtualCamera").GetComponent<CameraShake>();
 
-        trailRenderer.enabled = false;
-
         currentFireAmount = maxFireAmount;
         UpdateFireAmountText();
         HealthPercentage.Value = currentFireAmount;
@@ -119,11 +115,6 @@ public class MovementController : MonoBehaviour
 
         if (FuseEvent == null)
             FuseEvent = new UnityEvent();
-    }
-
-    private void Update()
-    {
-        Debug.DrawRay(new Vector3(transform.position.x, 0.5f, transform.position.z), transform.forward * DashDistance, Color.magenta);
     }
 
     public void SetStartAndEndPositions()
@@ -187,7 +178,7 @@ public class MovementController : MonoBehaviour
         attachToPlane.Detach(false);
 
         IsDashing = true;
-        trailRenderer.enabled = true;
+        //trailRenderer.enabled = true;
         AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.ChargedDash, audioEvents, gameObject);
         Vector3 targetPos = transform.position + dashDirection * DashDistance;
         
@@ -202,12 +193,7 @@ public class MovementController : MonoBehaviour
     /// </summary>
     public void ResetDash()
     {
-        if (isCharged)
-        {
-            // Play Animation
-            animationController.Cancel();
-        }
-
+        animationController.Cancel();
         material.SetColor("_Color", Color.yellow);
         IsDashCharged = false;
         AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.DashCancelled, audioEvents, gameObject);
@@ -299,7 +285,6 @@ public class MovementController : MonoBehaviour
     {
         AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.DashEnded, audioEvents, gameObject);
 
-        trailRenderer.enabled = false;
         IsMoving = false;
 
         if (IsDashing)

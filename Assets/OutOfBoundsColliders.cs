@@ -11,7 +11,7 @@ public class OutOfBoundsColliders : MonoBehaviour
         var renderer = GetComponent<Renderer>();
         Vector3 extend = renderer.bounds.extents;
         Vector3 position = gameObject.transform.position;
-        Quaternion rotation = gameObject.transform.parent.rotation;
+        Quaternion rotation = gameObject.transform.rotation;
         var wall1 = Instantiate(marker, position + new Vector3(0, 0, extend.z), rotation, gameObject.transform);
         var wall2 = Instantiate(marker, position - new Vector3(0, 0, extend.z), rotation, gameObject.transform);
         var wall3 = Instantiate(marker, position + new Vector3(extend.x, 0, 0), rotation, gameObject.transform);

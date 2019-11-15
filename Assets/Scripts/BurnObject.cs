@@ -4,18 +4,23 @@ using UnityEngine;
 
 public class BurnObject : MonoBehaviour
 {
-    [SerializeField]
-    private bool _isburnable;
+    public GameObject FireObject;
     private bool _isBurning = false;
     private bool _isDissasembling = true;
     //[SerializeField]
     //private List <BurnObject> burnNeighbors;
     private float _burnedAmount;
-    Material shader;
-    private MovementController movementController;
 
     private Transform fireObject;
     private float fireFloat = -1f;
+
+    public Material dissolveShader;
+    private Renderer renderer;
+    private Texture texture;
+
+    [Range(0, 1)]
+    public float burnSpeed = 0.1f;
+    public bool destroyAtTheEndOfFire = true;
 
     public enum FireType
     {
@@ -24,14 +29,13 @@ public class BurnObject : MonoBehaviour
         Infinity
     }
     public FireType firetype;
-    [Range(0, 1)]
-    public float burnSpeed = 0.1f;
-    public bool destroyAtTheEndOfFire = true;
-    public void OnEnable()
+
+    public void Start()
     {
         shader = gameObject.GetComponent<Renderer>().material;
-        movementController = FindObjectOfType<MovementController>();
-
+        renderer = gameObject.GetComponent<Renderer>();
+        texture = renderer.material.mainTexture;
+        Instantiate(FireObject, transform);
     }
     /* public override void GameLoopUpdate()
      {
@@ -61,13 +65,14 @@ public class BurnObject : MonoBehaviour
 
     public void SetObjectOnFire(Vector3 collisionPoint)
     {
+        renderer.material = dissolveShader;
+        renderer.material.SetTexture("_maintexture", texture);
         _isBurning = true;
         gameObject.GetComponent<Collider>().enabled = false;
-        shader = gameObject.GetComponent<Renderer>().material;
-        shader.SetVector("_StartPoint", gameObject.transform.position);
+        renderer.material.SetVector("_StartPoint", collisionPoint);
         fireObject = gameObject.transform.Find("Fire");
         fireObject.gameObject.SetActive(true);
-        fireObject.GetComponent<Renderer>().material.SetVector("_StartPoint", gameObject.transform.position);
+        fireObject.GetComponent<Renderer>().material.SetVector("_StartPoint", collisionPoint);
         fireObject.GetComponent<Renderer>().material.SetFloat("_FlameHeight", fireFloat);
 
     }
@@ -82,7 +87,7 @@ public class BurnObject : MonoBehaviour
             {
                 _isDissasembling = true;
                 _burnedAmount = 1.15f;
-                shader.SetFloat("_T", _burnedAmount);
+                renderer.material.SetFloat("_T", _burnedAmount);
             }
             else
             {
@@ -95,7 +100,7 @@ public class BurnObject : MonoBehaviour
             if (_burnedAmount < 3f)
             {
                 _burnedAmount += 0.01f;
-                shader.SetFloat("_T", _burnedAmount);
+                renderer.material.SetFloat("_T", _burnedAmount);
                 fireFloat -= 0.02f;
                 fireObject.GetComponent<Renderer>().material.SetFloat("_FlameHeight", fireFloat);
             }
@@ -116,7 +121,7 @@ public class BurnObject : MonoBehaviour
             {
                 _isDissasembling = true;
                 _burnedAmount = 1.15f;
-                shader.SetFloat("_T", _burnedAmount);
+                renderer.material.SetFloat("_T", _burnedAmount);
             }
             else
             {
@@ -130,7 +135,7 @@ public class BurnObject : MonoBehaviour
             {
                 _burnedAmount += burnSpeed;
                 fireFloat -= 0.05f;
-                shader.SetFloat("_T", _burnedAmount);
+                renderer.material.SetFloat("_T", _burnedAmount);
                 fireObject.GetComponent<Renderer>().material.SetFloat("_FlameHeight", fireFloat);
             }
             else if (destroyAtTheEndOfFire)

@@ -46,7 +46,11 @@ public class AudioEvent : IGameLoop
         DashEnded,
         DashCancelled,
         OnPlane,
-        OffPlane
+        OffPlane,
+        OnRope,
+        OffRope,
+        ArrowPull,
+        Health,
     }
 
     #endregion
