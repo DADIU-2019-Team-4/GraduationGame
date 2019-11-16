@@ -5,57 +5,25 @@ using UnityEngine.UI;
 
 public class PopUpObject : MonoBehaviour
 {
-    public const string PopUpImageContainerName = "PopUpImageContainer";
-    public const string PopUpImageName = "PopUpImage";
-
+    public const string PopUpCanvasTag = "PopUpCanvas";
     public Sprite Sprite;
-    GameObject _imageObject;
-    private Image _imageComponent;
-    private bool _isShown;
 
-    // Start is called before the first frame update
-    void Start()
+    private bool _isShown = false;
+
+    public void PopUp()
     {
-        Canvas canvas = FindObjectOfType<Canvas>();
-
-        if (!Sprite) Debug.LogWarning("A pop-up object has no image assigned to it");
-        if (!canvas) Debug.LogWarning("Found no Canvas to display pop-up objects on");
-
-        if (Sprite && canvas)
+        if (!_isShown)
         {
-            GameObject _imageContainer = canvas.transform.Find(PopUpImageContainerName).gameObject;
+            GameObject canvas = GameObject.FindGameObjectWithTag(PopUpCanvasTag);
 
-            if (!_imageContainer) Debug.LogWarning("Found no conatiner to display pop-up objects in");
+            if(!canvas) Debug.LogWarning("Unable to find Pop-up canvas to display image on");
             else
             {
-                _imageObject = _imageContainer.transform.GetChild(0).gameObject;
-                _imageComponent = _imageObject.GetComponent<Image>();
+                PopUpCanvas popUpCanvasComponent = canvas.GetComponent<PopUpCanvas>();
+                popUpCanvasComponent.SetImage(Sprite);
+                popUpCanvasComponent.ShowPopUp();
+                _isShown = true;
             }
-        }
-        
-        _isShown = false;
-    }
-
-    public void ShowPopUp()
-    {
-        if (Sprite && _imageComponent && !_isShown)
-        {
-            Debug.Log("Spawning pop-up with name: " + Sprite.name);
-
-            _imageComponent.sprite = Sprite;
-            _imageComponent.enabled = true;
-            _imageObject.gameObject.SetActive(true);
-            _isShown = true;
-        }
-    }
-
-    public void DestroyPopUp()
-    {
-        Debug.Log("Destroying pop-up");
-
-        if (_imageObject)
-        {
-            _imageObject.gameObject.SetActive(false);
         }
     }
 }

@@ -24,7 +24,7 @@ public class InteractibleObject : DashInteractable
     private MovementController movementController;
     private List<AudioEvent> audioEvents;
     private DialogueRunner dialogRunner;
-    private PopUpObject popUpController;
+    private PopUpObject popUpObject;
 
     public bool IsBreakable { get; set; }
 
@@ -47,7 +47,7 @@ public class InteractibleObject : DashInteractable
             IsBreakable = false;
 
         // This is null most of the time
-        popUpController = this.gameObject.GetComponent<PopUpObject>();
+        popUpObject = this.gameObject.GetComponent<PopUpObject>();
     }
 
     public override void Interact(Vector3 hitPoint)
@@ -92,9 +92,9 @@ public class InteractibleObject : DashInteractable
         }
         
         // If this is a pop-up Object, trigger the pop-up
-        if (popUpController)
+        if (popUpObject)
         {
-            popUpController.ShowPopUp();
+            popUpObject.PopUp();
         }
     }
 
