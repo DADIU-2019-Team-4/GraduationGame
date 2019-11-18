@@ -190,7 +190,7 @@ public class InteractibleObject : DashInteractable
     private void DangerZone()
     {
         AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.DangerZone, audioEvents, gameObject);
-        movementController.UpdateFireAmount(DamageValue);
+        movementController.UpdateFireAmount(DamageValue * Time.deltaTime);
         movementController.CheckFireLeft();
     }
 

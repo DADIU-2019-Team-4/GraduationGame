@@ -23,11 +23,11 @@ public class InteractableObjectEditor : Editor
         {
 
             case InteractibleObject.InteractType.Damage:
-                EditorGUILayout.PropertyField(DamageValueProperty, new GUIContent("DamageValue"));
+                EditorGUILayout.PropertyField(DamageValueProperty, new GUIContent("Damage Value"));
                 break;
 
             case InteractibleObject.InteractType.DangerZone:
-                EditorGUILayout.PropertyField(DamageValueProperty, new GUIContent("DamageValue"));
+                EditorGUILayout.PropertyField(DamageValueProperty, new GUIContent("Damage Per Second"));
                 break;
                 
         }
