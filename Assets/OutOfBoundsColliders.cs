@@ -5,13 +5,21 @@ using UnityEngine;
 public class OutOfBoundsColliders : MonoBehaviour
 {
     public GameObject marker;
+    private Quaternion rotation;
     // Start is called before the first frame update
     void Start()
     {
         var renderer = GetComponent<Renderer>();
         Vector3 extend = renderer.bounds.extents;
         Vector3 position = gameObject.transform.position;
-        Quaternion rotation = gameObject.transform.rotation;
+        if (gameObject.transform.parent != null)
+        {
+            rotation = new Quaternion(0, gameObject.transform.rotation.y + gameObject.transform.parent.rotation.y, 0, 0);
+        }
+        else
+        {
+            rotation = new Quaternion(0, gameObject.transform.rotation.y, 0, 0);
+        }
         var wall1 = Instantiate(marker, position + new Vector3(0, 0, extend.z), rotation, gameObject.transform);
         var wall2 = Instantiate(marker, position - new Vector3(0, 0, extend.z), rotation, gameObject.transform);
         var wall3 = Instantiate(marker, position + new Vector3(extend.x, 0, 0), rotation, gameObject.transform);
