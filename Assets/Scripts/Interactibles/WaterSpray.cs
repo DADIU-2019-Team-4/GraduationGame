@@ -77,7 +77,7 @@ public class WaterSpray : MonoBehaviour
 
             StartCoroutine(
                 movementController.MoveBackRoutine(movementController.transform.position - movementController.transform.forward *
-                                                   movementController.DamageBounceValue, MovementController.MoveDuration));
+                                                   movementController.DamageBounceValue, movementController.MoveDuration));
 
         }
     }
