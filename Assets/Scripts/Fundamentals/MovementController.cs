@@ -20,7 +20,7 @@ public class MovementController : MonoBehaviour
 
     [Header("Move Settings")]
     [Tooltip("Duration of a move in seconds (how long it takes to get to target position).")]
-    public static float MoveDuration = 0.2f;
+    public float MoveDuration = 0.5f;
     [Tooltip("Curve for setting the distance of the move.")]
     public AnimationCurve MoveDistanceCurve;
     [Tooltip("Cost of a move in percentage.")]
