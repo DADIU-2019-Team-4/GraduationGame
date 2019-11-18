@@ -14,12 +14,17 @@ public class OutOfBoundsColliders : MonoBehaviour
         Vector3 position = gameObject.transform.position;
         if (gameObject.transform.parent != null)
         {
-            rotation = new Quaternion(0, gameObject.transform.rotation.y + gameObject.transform.parent.rotation.y, 0, 0);
+            if(gameObject.transform.parent.rotation.y >0)
+                rotation = new Quaternion(0, gameObject.transform.rotation.y + gameObject.transform.parent.rotation.y, 0, 0);
+            else
+                rotation = new Quaternion(0, gameObject.transform.rotation.y - gameObject.transform.parent.rotation.y, 0, 0);
         }
         else
         {
+            Debug.Log("ISn't Parent");
             rotation = new Quaternion(0, gameObject.transform.rotation.y, 0, 0);
         }
+        var localRotation = gameObject.transform.rotation;
         var wall1 = Instantiate(marker, position + new Vector3(0, 0, extend.z), rotation, gameObject.transform);
         var wall2 = Instantiate(marker, position - new Vector3(0, 0, extend.z), rotation, gameObject.transform);
         var wall3 = Instantiate(marker, position + new Vector3(extend.x, 0, 0), rotation, gameObject.transform);
