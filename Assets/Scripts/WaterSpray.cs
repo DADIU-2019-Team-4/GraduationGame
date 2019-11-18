@@ -10,6 +10,8 @@ public class WaterSpray : MonoBehaviour
     private bool isActivated;
     public bool StartTurnedOn = true;
 
+    public float StartOffsetTimer;
+
     public ParticleSystem ParticlesOnCollision;
 
     private void Awake()
@@ -20,10 +22,14 @@ public class WaterSpray : MonoBehaviour
 
     private void Start()
     {
+        
+
         if (StartTurnedOn)
             isActivated = true;
         else
             TurnOff();
+
+        timer -= StartOffsetTimer;
     }
 
     private void Update()

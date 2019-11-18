@@ -12,12 +12,13 @@ public class WallShooter : MonoBehaviour
     public float planeSpeed;
     public float planeBurnDuration;
     public float distancePlaneCanTravel;
+    public float startSpawnOffset;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        currentSpawnCooldown = spawnCooldown;
+        currentSpawnCooldown = spawnCooldown + startSpawnOffset;
     }
 
     // Update is called once per frame
