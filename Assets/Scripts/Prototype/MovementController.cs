@@ -72,6 +72,7 @@ public class MovementController : MonoBehaviour
     private Vector3 goalPosition;
 
     CameraShake cameraShake;
+    private MoMa.CharacterController _salamander;
     private float chargedDashShakeDur = 0.2f;
 
     public bool IsMoving { get; set; }
@@ -106,6 +107,12 @@ public class MovementController : MonoBehaviour
     {
         FireAmountText = GameObject.Find("FireAmountText").GetComponent<TextMeshProUGUI>();
         cameraShake = GameObject.FindGameObjectWithTag("VirtualCamera").GetComponent<CameraShake>();
+        _salamander = FindObjectOfType<MoMa.CharacterController>();
+
+        if (_salamander == null)
+        {
+            Debug.LogWarning("Unable to find the Salamander's Character Controller");
+        }
 
         currentFireAmount = maxFireAmount;
         UpdateFireAmountText();
@@ -247,6 +254,13 @@ public class MovementController : MonoBehaviour
 
         CheckFireLeft();
         DashEnded();
+
+        // TODO: Remove the check, once the Salamander is in the game
+        if (_salamander != null)
+        {
+            _salamander.UpdateTarget(target.GetXZVector3());
+            Debug.Log(target.GetXZVector3());
+        }
 
         FuseEvent.Invoke();
     }
