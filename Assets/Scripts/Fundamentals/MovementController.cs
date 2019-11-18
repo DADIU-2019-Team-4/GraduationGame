@@ -32,7 +32,7 @@ public class MovementController : MonoBehaviour
 
     [Header("Dash Settings")]
     [Tooltip("Time in seconds for how long you need to tap and hold for it to be recognized as a dash. Affects Animation")]
-    public static float DashThreshold = 0.25f;
+    public static float DashThreshold = 1f;
     [Tooltip("Duration of a dash in seconds (how long it takes to get to target position). Affects Animation")]
     public static float DashDuration = 0.6f; // worked great with 0.8f, but needed to be faster
     [Tooltip("Distance of a dash.")]
