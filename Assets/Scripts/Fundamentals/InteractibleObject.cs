@@ -191,6 +191,7 @@ public class InteractibleObject : DashInteractable
     {
         AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.DangerZone, audioEvents, gameObject);
         movementController.UpdateFireAmount(DamageValue);
+        movementController.CheckFireLeft();
     }
 
     public override void Interact(GameObject player)

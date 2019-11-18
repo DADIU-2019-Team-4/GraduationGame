@@ -354,7 +354,7 @@ public class MovementController : MonoBehaviour
     /// <summary>
     /// Checks if the player has moves left.
     /// </summary>
-    private void CheckFireLeft()
+    public void CheckFireLeft()
     {
         if (currentFireAmount <= 0)
         {
@@ -407,7 +407,8 @@ public class MovementController : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         InteractibleObject Interact= other.GetComponent<InteractibleObject>();
-        if (Interact.type == InteractibleObject.InteractType.DangerZone)
+        if (Interact != null &&
+            Interact.type == InteractibleObject.InteractType.DangerZone)
         {
             other.GetComponent<InteractibleObject>().Interact(other.transform.position);
         }
