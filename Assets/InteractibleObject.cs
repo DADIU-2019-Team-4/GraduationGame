@@ -17,7 +17,8 @@ public class InteractibleObject : DashInteractable
         Candle,
         PickUp,
         FusePoint,
-        Damage
+        Damage,
+        DangerZone
     }
     public InteractType type;
     public float DamageValue;
@@ -45,6 +46,8 @@ public class InteractibleObject : DashInteractable
             IsBreakable = true;
         else
             IsBreakable = false;
+
+
 
         // This is null most of the time
         popUpObject = this.gameObject.GetComponent<PopUpObject>();
@@ -88,6 +91,9 @@ public class InteractibleObject : DashInteractable
                 break;
             case InteractType.Damage:
                 DamagePlayer(hitPoint);
+                break;
+            case InteractType.DangerZone:
+                DangerZone();
                 break;
         }
         
@@ -178,6 +184,11 @@ public class InteractibleObject : DashInteractable
     {
         movementController.UpdateFireAmount(DamageValue);
         movementController.TargetPosition = hitpoint;
+    }
+
+    private void DangerZone()
+    {
+        movementController.UpdateFireAmount(DamageValue);
     }
 
     public override void Interact(GameObject player)

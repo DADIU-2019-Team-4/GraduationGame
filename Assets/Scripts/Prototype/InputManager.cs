@@ -129,15 +129,15 @@ public class InputManager : IGameLoop
     {
         movementController.ChargeDash();
 
-        if (dashTimer >= movementController.DashThreshold && !movementController.IsDashCharged)
+        if (dashTimer >= MovementController.DashThreshold && !movementController.IsDashCharged)
         {
-            dashTimer = movementController.DashThreshold;
-            movementController.IsDashCharged = true;
+            dashTimer = MovementController.DashThreshold;
+            movementController.DashCharged();
         }
         else if (!movementController.IsDashCharged)
             dashTimer += Time.deltaTime;
 
-        movementController.DashHoldPercentage.Value = dashTimer / movementController.DashThreshold;
+        movementController.DashHoldPercentage.Value = dashTimer / MovementController.DashThreshold;
     }
 
     /// <summary>

@@ -21,9 +21,15 @@ public class InteractableObjectEditor : Editor
         InteractibleObject.InteractType type = (InteractibleObject.InteractType)TypeProperty.enumValueIndex;
         switch (type)
         {
+
             case InteractibleObject.InteractType.Damage:
                 EditorGUILayout.PropertyField(DamageValueProperty, new GUIContent("DamageValue"));
                 break;
+
+            case InteractibleObject.InteractType.DangerZone:
+                EditorGUILayout.PropertyField(DamageValueProperty, new GUIContent("DamageValue"));
+                break;
+                
         }
 
         serializedObject.ApplyModifiedProperties();
