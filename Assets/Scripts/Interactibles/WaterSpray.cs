@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using System.Linq;
+using System.Collections.Generic;
 
 public class WaterSpray : MonoBehaviour
 {
@@ -12,12 +14,15 @@ public class WaterSpray : MonoBehaviour
 
     public float StartOffsetTimer;
 
+    private List<AudioEvent> audioEvents;
+
     public ParticleSystem ParticlesOnCollision;
 
     private void Awake()
     {
         particleSystem = GetComponent<ParticleSystem>();
         boxCollider = GetComponent<BoxCollider>();
+        audioEvents = GetComponents<AudioEvent>().ToList<AudioEvent>();
     }
 
     private void Start()
@@ -53,6 +58,7 @@ public class WaterSpray : MonoBehaviour
         isActivated = true;
         boxCollider.enabled = true;
         timer = 0;
+        AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.WaterSprayOn, audioEvents, gameObject);
     }
 
     private void TurnOff()
@@ -61,6 +67,7 @@ public class WaterSpray : MonoBehaviour
         isActivated = false;
         boxCollider.enabled = false;
         timer = 0;
+        AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.WaterSprayOff, audioEvents, gameObject);
     }
 
     private void OnTriggerEnter(Collider col)

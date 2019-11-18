@@ -51,6 +51,11 @@ public class AudioEvent : IGameLoop
         OffRope,
         ArrowPull,
         Health,
+        WaterSprayOn,
+        WaterSprayOff,
+        Damage,
+        DangerZone,
+        GateUnlocked,
     }
 
     #endregion

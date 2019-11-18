@@ -182,12 +182,14 @@ public class InteractibleObject : DashInteractable
 
     private void DamagePlayer(Vector3 hitpoint)
     {
+        AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.Damage, audioEvents, gameObject);
         movementController.UpdateFireAmount(DamageValue);
         movementController.TargetPosition = hitpoint;
     }
 
     private void DangerZone()
     {
+        AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.DangerZone, audioEvents, gameObject);
         movementController.UpdateFireAmount(DamageValue);
     }
 

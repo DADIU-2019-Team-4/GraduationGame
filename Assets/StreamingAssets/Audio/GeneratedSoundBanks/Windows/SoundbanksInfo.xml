@@ -35,23 +35,24 @@
 				<Event Id="2850533655" Name="DashCancel" ObjectPath="\Events\Character\Dashing\DashCancel" MaxAttenuation="0.000000" DurationType="OneShot" DurationMin="0.000000" DurationMax="0.000000"/>
 				<Event Id="2044049779" Name="Dead" ObjectPath="\Events\Character\PlayerHealth\Dead" DurationType="OneShot" DurationMin="0.781509" DurationMax="5.634581"/>
 				<Event Id="679539432" Name="DeathObject" ObjectPath="\Events\Character\Objects\DeathObject" DurationType="OneShot" DurationMin="1.538095" DurationMax="1.538095"/>
-				<Event Id="3601776787" Name="Fireplace1" ObjectPath="\Events\Environment\Fireplace\Fireplace1" MaxAttenuation="15.000000" DurationType="Infinite"/>
-				<Event Id="3601776784" Name="Fireplace2" ObjectPath="\Events\Environment\Fireplace\Fireplace2" MaxAttenuation="15.000000" DurationType="Infinite"/>
+				<Event Id="1404152342" Name="Fireplace" ObjectPath="\Events\Environment\Fireplace\Fireplace" MaxAttenuation="20.000000" DurationType="Infinite"/>
+				<Event Id="2106235974" Name="InteractiveMusic_01" ObjectPath="\Events\Music\InteractiveMusic_01" DurationType="Infinite"/>
 				<Event Id="1330879727" Name="KillOnRestart" ObjectPath="\Events\GameController\KillOnRestart" MaxAttenuation="0.000000" DurationType="OneShot" DurationMin="0.000000" DurationMax="0.000000"/>
 				<Event Id="1016929228" Name="NormalDash" ObjectPath="\Events\Character\Dashing\NormalDash" DurationType="OneShot" DurationMin="1.601180" DurationMax="1.904135"/>
 				<Event Id="428947066" Name="OffPlane" ObjectPath="\Events\Character\PaperPlane\OffPlane" DurationType="OneShot" DurationMin="0.347326" DurationMax="0.347326"/>
 				<Event Id="1766390728" Name="OffRope" ObjectPath="\Events\Character\RopeMechanic\OffRope" MaxAttenuation="0.000000" DurationType="OneShot" DurationMin="0.000000" DurationMax="0.000000"/>
-				<Event Id="4028171492" Name="OnPlane" ObjectPath="\Events\Character\PaperPlane\OnPlane" DurationType="Unknown"/>
+				<Event Id="4028171492" Name="OnPlane" ObjectPath="\Events\Character\PaperPlane\OnPlane" DurationType="OneShot" DurationMin="86.222656" DurationMax="86.222656"/>
 				<Event Id="2346684474" Name="OnRope" ObjectPath="\Events\Character\RopeMechanic\OnRope" DurationType="Infinite"/>
 				<Event Id="3564400826" Name="OutsideAmbience" ObjectPath="\Events\Environment\OutsideAmbience" DurationType="Infinite"/>
-				<Event Id="610481649" Name="PaperPlane" ObjectPath="\Events\Character\PaperPlane\PaperPlane" MaxAttenuation="15.000000" DurationType="Unknown"/>
+				<Event Id="1933716535" Name="PaperPlaneDead" ObjectPath="\Events\Character\PaperPlane\PaperPlaneDead" MaxAttenuation="0.000000" DurationType="OneShot" DurationMin="0.000000" DurationMax="0.000000"/>
+				<Event Id="948186658" Name="PaperPlaneSpawn" ObjectPath="\Events\Character\PaperPlane\PaperPlaneSpawn" MaxAttenuation="15.000000" DurationType="Infinite"/>
 				<Event Id="151362964" Name="PlayerHealth" ObjectPath="\Events\Character\PlayerHealth\PlayerHealth" MaxAttenuation="100.000000" DurationType="Infinite"/>
 				<Event Id="2092364794" Name="Room02_Music" ObjectPath="\Events\Music\Room02_Music" DurationType="OneShot" DurationMin="337.777771" DurationMax="337.777771"/>
 				<Event Id="1539660446" Name="RoomTone_01" ObjectPath="\Events\Environment\RoomTones\RoomTone_01" DurationType="Infinite"/>
 				<Event Id="1539660445" Name="RoomTone_02" ObjectPath="\Events\Environment\RoomTones\RoomTone_02" DurationType="Infinite"/>
 				<Event Id="1090191588" Name="RoomTone_Hub" ObjectPath="\Events\Environment\RoomTones\RoomTone_Hub" DurationType="Infinite"/>
 				<Event Id="1547275971" Name="TheHub_Music" ObjectPath="\Events\Music\TheHub_Music" DurationType="OneShot" DurationMin="190.174347" DurationMax="190.174347"/>
-				<Event Id="1159579802" Name="Torch1" ObjectPath="\Events\Environment\Torches\Torch1" MaxAttenuation="15.000000" DurationType="Infinite"/>
+				<Event Id="1904864137" Name="Torch" ObjectPath="\Events\Environment\Torches\Torch" MaxAttenuation="20.000000" DurationType="Infinite"/>
 				<Event Id="3044105157" Name="WinPuzzle" ObjectPath="\Events\InGame_UI\WinPuzzle" DurationType="OneShot" DurationMin="7.245805" DurationMax="7.245805"/>
 			</IncludedEvents>
 			<IncludedMemoryFiles>
@@ -62,6 +63,10 @@
 				<File Id="8864511" Language="SFX">
 					<ShortName>Dash1.wav</ShortName>
 					<Path>SFX\Dash1_5748D111.wem</Path>
+				</File>
+				<File Id="13956236" Language="SFX">
+					<ShortName>Room1_var03_Drums_03_85bpm.wav</ShortName>
+					<Path>SFX\Room1_var03_Drums_03_85bpm_9B96ECC7.wem</Path>
 				</File>
 				<File Id="21778772" Language="SFX">
 					<ShortName>CollectFire2.wav</ShortName>
@@ -97,11 +102,23 @@
 				</File>
 				<File Id="86036977" Language="SFX">
 					<ShortName>Books_on_Asphalt_Dropping_onto_Ground_Bouncing_OCP-1223-063-01.wav</ShortName>
-					<Path>SFX\Books_on_Asphalt_Dropping_onto_Ground_Bouncing_OCP-1223-063-01_3E63F051.wem</Path>
+					<Path>SFX\Books_on_Asphalt_Dropping_onto_Ground_Bouncing_OCP-1223-063-01_65F1BFF2.wem</Path>
 				</File>
 				<File Id="88307990" Language="SFX">
 					<ShortName>Books_on_Asphalt_Dropping_onto_Ground_Bouncing_OCP-1223-063-01.wav</ShortName>
 					<Path>SFX\Books_on_Asphalt_Dropping_onto_Ground_Bouncing_OCP-1223-063-01_C0179D16.wem</Path>
+				</File>
+				<File Id="97738665" Language="SFX">
+					<ShortName>RISE_CYM FX_028.wav</ShortName>
+					<Path>SFX\RISE_CYM FX_028_9B96ECC7.wem</Path>
+				</File>
+				<File Id="126693540" Language="SFX">
+					<ShortName>Room1_var03_BassValleyLead_01_85bpm.wav</ShortName>
+					<Path>SFX\Room1_var03_BassValleyLead_01_85bpm_9B96ECC7.wem</Path>
+				</File>
+				<File Id="145345314" Language="SFX">
+					<ShortName>5 (Rejsekort-stander.wav</ShortName>
+					<Path>SFX\5 (Rejsekort-stander_6296B0F9.wem</Path>
 				</File>
 				<File Id="173938990" Language="SFX">
 					<ShortName>Death4.wav</ShortName>
@@ -134,6 +151,10 @@
 				<File Id="250295397" Language="SFX">
 					<ShortName>ChargingDisable.wav</ShortName>
 					<Path>SFX\ChargingDisable_6296B0F9.wem</Path>
+				</File>
+				<File Id="267734159" Language="SFX">
+					<ShortName>Room1_var03_StringsLow_01_85bpm.wav</ShortName>
+					<Path>SFX\Room1_var03_StringsLow_01_85bpm_9B96ECC7.wem</Path>
 				</File>
 				<File Id="272013640" Language="SFX">
 					<ShortName>Room 1 Tone_2.wav</ShortName>
@@ -213,7 +234,7 @@
 				</File>
 				<File Id="531031031" Language="SFX">
 					<ShortName>Books_on_Asphalt_Dropping_onto_Ground_Bouncing_OCP-1223-063-01.wav</ShortName>
-					<Path>SFX\Books_on_Asphalt_Dropping_onto_Ground_Bouncing_OCP-1223-063-01_9DE2D1F5.wem</Path>
+					<Path>SFX\Books_on_Asphalt_Dropping_onto_Ground_Bouncing_OCP-1223-063-01_A5029419.wem</Path>
 				</File>
 				<File Id="537868889" Language="SFX">
 					<ShortName>CollectFire4.wav</ShortName>
@@ -243,9 +264,17 @@
 					<ShortName>Hub03+Room03_var01.wav</ShortName>
 					<Path>SFX\Hub03+Room03_var01_6296B0F9.wem</Path>
 				</File>
+				<File Id="583974311" Language="SFX">
+					<ShortName>Room1_var03_Drums_01_85bpm.wav</ShortName>
+					<Path>SFX\Room1_var03_Drums_01_85bpm_9B96ECC7.wem</Path>
+				</File>
+				<File Id="596086135" Language="SFX">
+					<ShortName>Room1_var03_Drums_02_85bpm.wav</ShortName>
+					<Path>SFX\Room1_var03_Drums_02_85bpm_9B96ECC7.wem</Path>
+				</File>
 				<File Id="621661335" Language="SFX">
 					<ShortName>Books_on_Asphalt_Dropping_onto_Ground_Bouncing_OCP-1223-063-01.wav</ShortName>
-					<Path>SFX\Books_on_Asphalt_Dropping_onto_Ground_Bouncing_OCP-1223-063-01_892C353F.wem</Path>
+					<Path>SFX\Books_on_Asphalt_Dropping_onto_Ground_Bouncing_OCP-1223-063-01_EA02241D.wem</Path>
 				</File>
 				<File Id="655227849" Language="SFX">
 					<ShortName>BreakObject2.wav</ShortName>
@@ -263,9 +292,17 @@
 					<ShortName>Torch_01.wav</ShortName>
 					<Path>SFX\Torch_01_9B96ECC7.wem</Path>
 				</File>
+				<File Id="688674783" Language="SFX">
+					<ShortName>Room1_var03_StringsHigh_01_85bpm.wav</ShortName>
+					<Path>SFX\Room1_var03_StringsHigh_01_85bpm_9B96ECC7.wem</Path>
+				</File>
 				<File Id="689827030" Language="SFX">
 					<ShortName>Breaking_Wood_8.wav</ShortName>
 					<Path>SFX\Breaking_Wood_8_6296B0F9.wem</Path>
+				</File>
+				<File Id="690796950" Language="SFX">
+					<ShortName>Room1_var03_Piano_01_85bpm.wav</ShortName>
+					<Path>SFX\Room1_var03_Piano_01_85bpm_9B96ECC7.wem</Path>
 				</File>
 				<File Id="709568480" Language="SFX">
 					<ShortName>StopDash_05.wav</ShortName>
@@ -298,6 +335,10 @@
 				<File Id="773040630" Language="SFX">
 					<ShortName>MusicBox_var01.wav</ShortName>
 					<Path>SFX\MusicBox_var01_6296B0F9.wem</Path>
+				</File>
+				<File Id="790992197" Language="SFX">
+					<ShortName>PaperPlaneTone.wav</ShortName>
+					<Path>SFX\PaperPlaneTone_9B96ECC7.wem</Path>
 				</File>
 				<File Id="791909349" Language="SFX">
 					<ShortName>Child3.wav</ShortName>

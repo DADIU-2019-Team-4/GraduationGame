@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1540662041973154416}
   - component: {fileID: 1111309807007882327}
   - component: {fileID: 8212191446539927221}
+  - component: {fileID: 80235536490923674}
   m_Layer: 0
   m_Name: WaterSpray
   m_TagString: Untagged
@@ -50,6 +51,7 @@ MonoBehaviour:
   OnTimer: 4
   OffTimer: 5
   StartTurnedOn: 1
+  StartOffsetTimer: 0
   ParticlesOnCollision: {fileID: 815881716433974703, guid: 5d324608bee3bbd40a78c222591a333d,
     type: 3}
 --- !u!114 &3718562589518122887
@@ -4799,3 +4801,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.2, y: 2, z: 1.2}
   m_Center: {x: 0, y: -1, z: 0}
+--- !u!114 &80235536490923674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9232367916435815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3f6a57ea9bb81040839eb22c9ccd632, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TriggerType: 0
+  WwiseType: 0
+  EventName: 
+  RTPCName: 
+  RTPCValue: {fileID: 0}
+  SetStateGroup: 
+  SetStateValue: 
