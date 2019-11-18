@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 
 [RequireComponent(typeof(Spline))]
-public class Fuse : MonoBehaviour
+public class Fuse : IGameLoop
 {
     public bool OnlyUsedOnce;
 
@@ -37,7 +37,7 @@ public class Fuse : MonoBehaviour
             Follower = movementController.gameObject;
     }
 
-    private void Update()
+    public override void GameLoopUpdate()
     {
         if (movementController == null)
         {
