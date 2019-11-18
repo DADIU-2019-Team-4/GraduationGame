@@ -20,7 +20,7 @@ public class MovementController : MonoBehaviour
 
     [Header("Move Settings")]
     [Tooltip("Duration of a move in seconds (how long it takes to get to target position).")]
-    public float MoveDuration = 0.2f;
+    public static float MoveDuration = 0.2f;
     [Tooltip("Curve for setting the distance of the move.")]
     public AnimationCurve MoveDistanceCurve;
     [Tooltip("Cost of a move in percentage.")]
@@ -31,10 +31,10 @@ public class MovementController : MonoBehaviour
     public float MoveDistance { get; set; }   
 
     [Header("Dash Settings")]
-    [Tooltip("Time in seconds for how long you need to tap and hold for it to be recognized as a dash.")]
-    public float DashThreshold = 0.25f;
-    [Tooltip("Duration of a dash in seconds (how long it takes to get to target position).")]
-    public float DashDuration = 0.1f;
+    [Tooltip("Time in seconds for how long you need to tap and hold for it to be recognized as a dash. Affects Animation")]
+    public static float DashThreshold = 0.25f;
+    [Tooltip("Duration of a dash in seconds (how long it takes to get to target position). Affects Animation")]
+    public static float DashDuration = 0.4f;
     [Tooltip("Distance of a dash.")]
     public float DashDistance = 4;
     [Tooltip("Cost of a dash in percentage.")]
@@ -153,6 +153,14 @@ public class MovementController : MonoBehaviour
             AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.ChargingDash, audioEvents, gameObject);
             isCharged = true;
         }
+    }
+
+    public void DashCharged()
+    {
+        IsDashCharged = true;
+
+        // Prepare Animation
+        animationController.DashCharged();
     }
 
     /// <summary>
@@ -310,9 +318,6 @@ public class MovementController : MonoBehaviour
 
         HealthPercentage.Value = currentFireAmount;
         UpdateGoalDistances();
-
-        // Play Animation
-        animationController.Land();
     }
 
     private void UpdateGoalDistances()
