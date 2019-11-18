@@ -9,6 +9,7 @@ public class ScaleSpline : MonoBehaviour
 
     private float startScale = 1;
     public float Scale = 1;
+    public bool ScaleHitBoxes = false;
 
     private void OnEnable()
     {
@@ -28,10 +29,16 @@ public class ScaleSpline : MonoBehaviour
             curve.n1.Scale = Vector2.one * (startScale + (Scale - startScale));
             curve.n2.Scale = Vector2.one * (startScale + (Scale - startScale));
         }
-
+    
         foreach (BoxCollider boxCollider in boxColliders)
         {
-            boxCollider.size = new Vector3(Scale, Scale, Scale);
+            if (ScaleHitBoxes)
+            {
+                boxCollider.size = new Vector3(Scale, Scale, Scale);
+            }else
+            {
+                boxCollider.size = new Vector3(startScale, startScale, startScale);
+            }
         }
     }
 }
