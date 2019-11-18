@@ -401,7 +401,6 @@ public class MovementController : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        Debug.Log("EVH");
         InteractibleObject Interact= other.GetComponent<InteractibleObject>();
         if (Interact.type == InteractibleObject.InteractType.DangerZone)
         {
