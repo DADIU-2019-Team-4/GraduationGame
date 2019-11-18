@@ -368,12 +368,19 @@ public class MovementController : MonoBehaviour
     /// </summary>
     public void CheckGameEnd()
     {
+
+
         if (reachedGoal)
             gameController.Win();
         else if (HasDied)
             gameController.GameOverDied();
         else if (isOutOfFire)
             gameController.GameOverOutOfMoves();
+        else
+            return;
+
+        GetComponent<CapsuleCollider>().enabled = false;
+        GetComponent<Rigidbody>().isKinematic = true;
     }
 
     public void CollideFusePoint()
