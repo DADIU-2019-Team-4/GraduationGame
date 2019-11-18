@@ -398,5 +398,17 @@ public class MovementController : MonoBehaviour
         DashCostInPercentage = 0;
     }
 
+
+    private void OnTriggerStay(Collider other)
+    {
+        Debug.Log("EVH");
+        InteractibleObject Interact= other.GetComponent<InteractibleObject>();
+        if (Interact.type == InteractibleObject.InteractType.DangerZone)
+        {
+            other.GetComponent<InteractibleObject>().Interact(other.transform.position);
+        }
+        
+    }
+
     public Vector3 DashDirection() { return TargetPosition - rigidBody.position; }
 }
