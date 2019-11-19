@@ -22,6 +22,7 @@ public class GameController : MonoBehaviour
     private List<AudioEvent> audioEvents;
 
     private List<InteractibleObject> _breakables = null;
+    // private List<InteractibleObject> _disappearingTiles = null // These need to reset too.
 
     private void Start()
     {
