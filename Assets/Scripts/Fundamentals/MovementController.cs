@@ -168,11 +168,11 @@ public class MovementController : MonoBehaviour
     /// </summary>
     public void Move(Vector3 moveDirection)
     {
-        if (IsMoving)
-        {
-            TriggerCoyoteTime = true;
-            return;
-        }
+        //if (IsMoving)
+        //{
+        //    TriggerCoyoteTime = true;
+        //    return;
+        //}
 
         attachToPlane.Detach(false);
 
@@ -188,11 +188,11 @@ public class MovementController : MonoBehaviour
     /// </summary>
     public void Dash(Vector3 dashDirection)
     {
-        if (IsMoving)
-        {
-            TriggerCoyoteTime = true;
-            return;
-        }
+        //if (IsMoving)
+        //{
+        //    TriggerCoyoteTime = true;
+        //    return;
+        //}
 
         attachToPlane.Detach(false);
 
