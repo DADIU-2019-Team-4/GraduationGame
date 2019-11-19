@@ -33,7 +33,8 @@ public class LevelEnter : IGameLoop
         if (other.gameObject.CompareTag("Player") && isOpened)
         {
             var QAData = FindObjectOfType<PlayerQALogs>();
-            QAData.CloseFile();
+            if (QAData != null)
+                QAData.CloseFile();
             SceneManager.LoadSceneAsync(loadSceneName);
         }
     }
