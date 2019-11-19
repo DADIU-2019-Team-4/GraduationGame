@@ -55,7 +55,6 @@ public class MovementController : MonoBehaviour
 
     private AttachToPlane attachToPlane;
 
-    private string currentFireAmountKey = "currentFireAmount";
     private float currentFireAmount;
     private float maxFireAmount = 100f;
     private bool isOutOfFire;
@@ -117,13 +116,7 @@ public class MovementController : MonoBehaviour
             Debug.LogWarning("Unable to find the Salamander's Character Controller");
         }
 
-        if (!PlayerPrefs.HasKey(currentFireAmountKey))
-        {
-            PlayerPrefs.SetFloat(currentFireAmountKey, FireStartValue);
-        }
-
-        currentFireAmount = PlayerPrefs.GetFloat(currentFireAmountKey);
-        PlayerPrefs.Save();
+        currentFireAmount = FireStartValue;
         UpdateFireAmountText();
         HealthPercentage.Value = currentFireAmount;
 
@@ -340,8 +333,6 @@ public class MovementController : MonoBehaviour
     public void UpdateFireAmount(float cost)
     {
         currentFireAmount -= cost;
-        PlayerPrefs.SetFloat(currentFireAmountKey, currentFireAmount);
-        PlayerPrefs.Save();
         if (currentFireAmount < 0)
             currentFireAmount = 0;
         if (currentFireAmount > maxFireAmount)
@@ -434,8 +425,6 @@ public class MovementController : MonoBehaviour
     private void ResetHealth()
     {
         currentFireAmount = maxFireAmount;
-        PlayerPrefs.SetFloat(currentFireAmountKey, currentFireAmount);
-        PlayerPrefs.Save();
     }
 
 
