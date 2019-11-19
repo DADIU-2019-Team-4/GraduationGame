@@ -37,7 +37,7 @@ public class ScaleSpline : MonoBehaviour
                 boxCollider.size = new Vector3(Scale, Scale, Scale);
             }else
             {
-                boxCollider.size = new Vector3(startScale, startScale, startScale);
+                //boxCollider.size = new Vector3(startScale, startScale, startScale);
             }
         }
     }
