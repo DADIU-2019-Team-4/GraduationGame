@@ -6,7 +6,8 @@ using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
-    public string NextLevelName = null;
+
+    //public string NextLevelName = null;
 
     [Header("Canvas Fields")]
     public GameObject WinText;
@@ -90,10 +91,11 @@ public class GameController : MonoBehaviour
 
     public void GoToNextScene()
     {
-        if (string.IsNullOrEmpty(NextLevelName))
-            RestartScene();
-        else
-            SceneManager.LoadScene(NextLevelName);
+        SceneManager.LoadSceneAsync(FindObjectOfType<LevelEnter>().loadSceneName);
+        //if (string.IsNullOrEmpty(NextLevelName))
+        //    RestartScene();
+        //else
+        //    SceneManager.LoadScene(NextLevelName);
     }
 
     public void GameEnd()
