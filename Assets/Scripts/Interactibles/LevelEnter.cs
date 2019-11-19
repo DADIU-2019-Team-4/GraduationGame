@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 public class LevelEnter : IGameLoop
 {
     [SerializeField]
-    private string loadSceneName;
+    public string loadSceneName;
     [SerializeField]
     private bool isOpened;
 
@@ -63,4 +63,5 @@ public class LevelEnter : IGameLoop
         else
             isOpened = true;
     }
+
 }
