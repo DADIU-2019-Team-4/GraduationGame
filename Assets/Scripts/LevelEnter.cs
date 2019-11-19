@@ -31,7 +31,11 @@ public class LevelEnter : IGameLoop
     {
         Debug.Log("Should Load New Scene");
         if (other.gameObject.CompareTag("Player") && isOpened)
-            SceneManager.LoadScene(loadSceneName);
+        {
+            var QAData = FindObjectOfType<PlayerQALogs>();
+            QAData.CloseFile();
+            SceneManager.LoadSceneAsync(loadSceneName);
+        }
     }
     private void CreateKeys(string name)
     {
