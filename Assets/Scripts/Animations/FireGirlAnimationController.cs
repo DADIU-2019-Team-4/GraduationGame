@@ -78,7 +78,6 @@ public class FireGirlAnimationController : MonoBehaviour
             }
 
             _dashCharged = false;
-            _chargingDash = false;
         }
     }
 
