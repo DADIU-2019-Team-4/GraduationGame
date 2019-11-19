@@ -6,6 +6,7 @@ using Yarn.Unity;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 
 public class MovementController : MonoBehaviour
@@ -116,7 +117,7 @@ public class MovementController : MonoBehaviour
             Debug.LogWarning("Unable to find the Salamander's Character Controller");
         }
 
-        currentFireAmount = FireStartValue;
+        currentFireAmount = SceneManager.GetActiveScene().name == "Hub_1.0" ? FireStartValue : maxFireAmount;
         UpdateFireAmountText();
         HealthPercentage.Value = currentFireAmount;
 
