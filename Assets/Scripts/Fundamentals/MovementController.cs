@@ -289,11 +289,11 @@ public class MovementController : MonoBehaviour
             if ((IsDashing && interactableObj.IsBreakable) ||
                 interactableObj.type == InteractibleObject.InteractType.PickUp)
             {
-                if (currentFireAmount < FireHealValue)
+                /*if (currentFireAmount < FireHealValue)
                 {
                     currentFireAmount = FireHealValue;
                     UpdateFireAmountText();
-                }
+                }*/
 
                 CheckCollision();
             }
@@ -368,8 +368,7 @@ public class MovementController : MonoBehaviour
     /// </summary>
     public void CheckGameEnd()
     {
-
-
+        
         if (reachedGoal)
             gameController.Win();
         else if (HasDied)
@@ -390,13 +389,13 @@ public class MovementController : MonoBehaviour
         startPoint.StartFollowingFuse();
     }
 
-    public void CollidePickUp()
+    /*public void CollidePickUp()
     {
         currentFireAmount += FireHealValue;
         if (currentFireAmount > maxFireAmount)
             currentFireAmount = maxFireAmount;
         FireAmountText.text = currentFireAmount.ToString();
-    }
+    }*/
 
     public void CollideGoal(GameObject goal)
     {

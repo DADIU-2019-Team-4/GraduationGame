@@ -22,6 +22,7 @@ public class InteractibleObject : DashInteractable
     }
     public InteractType type;
     public float DamageValue;
+    public float HealValue;
     private MovementController movementController;
     private List<AudioEvent> audioEvents;
     private DialogueRunner dialogRunner;
@@ -146,6 +147,7 @@ public class InteractibleObject : DashInteractable
             timeSlowdown.doSlowmotion();
             gameObject.GetComponent<BurnObject>().SetObjectOnFire(hitpoint);
             dialogRunner.StartDialogue("Break");
+            movementController.UpdateFireAmount(-HealValue);
         }
         else
         {
@@ -167,7 +169,9 @@ public class InteractibleObject : DashInteractable
         AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.BurningItem, audioEvents, gameObject);
         gameObject.GetComponent<Collider>().enabled = false;
         gameObject.SetActive(false);
-        movementController.CollidePickUp();
+        //movementController.CollidePickUp();
+
+        movementController.UpdateFireAmount(-HealValue);
     }
 
     private void FusePoint(Vector3 hitpoint)
