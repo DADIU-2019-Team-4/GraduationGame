@@ -10,9 +10,9 @@ using UnityEngine.Events;
 
 public class MovementController : MonoBehaviour
 {
-    [Header("General Settings")]
-    [Tooltip("Total Fire amount after dashing into breakable objects.")]
-    public float FireHealValue = 100f;
+    [Header("General Settings")] [
+    Tooltip("Fire value you start the game with.")]
+    public float FireStartValue = 20;
     [HideInInspector]
     public float BounceValue = 0.3f;
     [Tooltip("How much the player should bounce of an object when damaged.")]
@@ -55,6 +55,7 @@ public class MovementController : MonoBehaviour
 
     private AttachToPlane attachToPlane;
 
+    private string currentFireAmountKey = "currentFireAmount";
     private float currentFireAmount;
     private float maxFireAmount = 100f;
     private bool isOutOfFire;
@@ -116,7 +117,13 @@ public class MovementController : MonoBehaviour
             Debug.LogWarning("Unable to find the Salamander's Character Controller");
         }
 
-        currentFireAmount = maxFireAmount;
+        if (!PlayerPrefs.HasKey(currentFireAmountKey))
+        {
+            PlayerPrefs.SetFloat(currentFireAmountKey, FireStartValue);
+        }
+
+        currentFireAmount = PlayerPrefs.GetFloat(currentFireAmountKey);
+        PlayerPrefs.Save();
         UpdateFireAmountText();
         HealthPercentage.Value = currentFireAmount;
 
@@ -199,7 +206,6 @@ public class MovementController : MonoBehaviour
         attachToPlane.Detach(false);
 
         IsDashing = true;
-        //trailRenderer.enabled = true;
         AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.ChargedDash, audioEvents, gameObject);
         Vector3 targetPos = transform.position + dashDirection * DashDistance;
 
@@ -291,12 +297,6 @@ public class MovementController : MonoBehaviour
             if ((IsDashing && interactableObj.IsBreakable) ||
                 interactableObj.type == InteractibleObject.InteractType.PickUp)
             {
-                /*if (currentFireAmount < FireHealValue)
-                {
-                    currentFireAmount = FireHealValue;
-                    UpdateFireAmountText();
-                }*/
-
                 CheckCollision();
             }
         }
@@ -340,6 +340,8 @@ public class MovementController : MonoBehaviour
     public void UpdateFireAmount(float cost)
     {
         currentFireAmount -= cost;
+        PlayerPrefs.SetFloat(currentFireAmountKey, currentFireAmount);
+        PlayerPrefs.Save();
         if (currentFireAmount < 0)
             currentFireAmount = 0;
         if (currentFireAmount > maxFireAmount)
@@ -411,7 +413,7 @@ public class MovementController : MonoBehaviour
 
     /*public void CollidePickUp()
     {
-        currentFireAmount += FireHealValue;
+        currentFireAmount += FireStartValue;
         if (currentFireAmount > maxFireAmount)
             currentFireAmount = maxFireAmount;
         FireAmountText.text = currentFireAmount.ToString();
@@ -429,7 +431,12 @@ public class MovementController : MonoBehaviour
         DashCostInPercentage = 0;
     }
 
-    private void ResetHealth() { currentFireAmount = maxFireAmount; }
+    private void ResetHealth()
+    {
+        currentFireAmount = maxFireAmount;
+        PlayerPrefs.SetFloat(currentFireAmountKey, currentFireAmount);
+        PlayerPrefs.Save();
+    }
 
 
     private void OnTriggerStay(Collider other)
