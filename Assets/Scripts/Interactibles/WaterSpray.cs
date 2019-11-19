@@ -13,6 +13,7 @@ public class WaterSpray : MonoBehaviour
     public bool StartTurnedOn = true;
 
     public float StartOffsetTimer;
+    private bool hasStarted;
 
     private List<AudioEvent> audioEvents;
 
@@ -27,29 +28,43 @@ public class WaterSpray : MonoBehaviour
 
     private void Start()
     {
-        
+        particleSystem.Stop();
+        boxCollider.enabled = false;
 
-        if (StartTurnedOn)
-            isActivated = true;
-        else
-            TurnOff();
-
-        timer -= StartOffsetTimer;
     }
 
     private void Update()
     {
-        timer += Time.deltaTime;
-        if (isActivated)
+        if (StartOffsetTimer >0)
         {
-            if (timer >= OnTimer)
-                TurnOff();
+            StartOffsetTimer -= Time.deltaTime;
+           
         }
+        else if (!hasStarted)
+        {
+            if (StartTurnedOn)
+                TurnOn();
+            else
+                TurnOff();
+
+            hasStarted = true;
+        }
+
         else
         {
-            if (timer >= OffTimer)
-                TurnOn();
+            timer += Time.deltaTime;
+            if (isActivated)
+            {
+                if (timer >= OnTimer)
+                    TurnOff();
+            }
+            else
+            {
+                if (timer >= OffTimer)
+                    TurnOn();
+            }
         }
+
     }
 
     private void TurnOn()
