@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1111309807007882327}
   - component: {fileID: 8212191446539927221}
   - component: {fileID: 80235536490923674}
+  - component: {fileID: 3187325215107663244}
   m_Layer: 0
   m_Name: WaterSpray
   m_TagString: Untagged
@@ -68,6 +69,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 9
   DamageValue: 10
+  HealValue: 0
 --- !u!199 &1540662041973154416
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -4813,9 +4815,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3f6a57ea9bb81040839eb22c9ccd632, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TriggerType: 0
+  TriggerType: 21
   WwiseType: 0
-  EventName: 
+  EventName: WaterSprayOn
+  RTPCName: 
+  RTPCValue: {fileID: 0}
+  SetStateGroup: 
+  SetStateValue: 
+--- !u!114 &3187325215107663244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9232367916435815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3f6a57ea9bb81040839eb22c9ccd632, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TriggerType: 22
+  WwiseType: 0
+  EventName: WaterSprayOff
   RTPCName: 
   RTPCValue: {fileID: 0}
   SetStateGroup: 
