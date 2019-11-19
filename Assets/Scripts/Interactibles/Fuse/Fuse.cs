@@ -82,6 +82,8 @@ public class Fuse : MonoBehaviour
             movementController.IsFuseMoving = false;
             alreadyFinished = true;
             AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.OffRope, audioEvents, gameObject);
+
+            movementController.IsInvulnerable = false;
         }
     }
 

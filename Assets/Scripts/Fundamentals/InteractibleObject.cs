@@ -109,17 +109,28 @@ public class InteractibleObject : DashInteractable
     {
         if (movementController == null)
             AssignDependencies();
-        movementController.TargetPosition = hitpoint + movementController.transform.forward * movementController.BounceValue;
-        movementController.HasDied = true;
-        dialogRunner.StartDialogue("Death");
-        movementController.CheckGameEnd();
+
+        if (!movementController.IsInvulnerable)
+        {
+            movementController.TargetPosition = hitpoint + movementController.transform.forward * movementController.BounceValue;
+            movementController.HasDied = true;
+            dialogRunner.StartDialogue("Death");
+            movementController.CheckGameEnd();
+        }
+        
     }
 
     private void Projectile()
     {
+        if (movementController.IsMoving)
+        {
+            gameObject.GetComponent<BurnObject>().SetObjectOnFire(new Vector3(0, 0, 0));
 
-        gameObject.GetComponent<BurnObject>().SetObjectOnFire(new Vector3(0,0,0));
-        gameObject.GetComponent<DashInteractable>().Interact(GameObject.FindGameObjectWithTag("Player"));
+            gameObject.GetComponent<DashInteractable>().Interact(GameObject.FindGameObjectWithTag("Player"));
+            movementController.StopMoving();
+            movementController.IsInvulnerable = true;
+        }
+        
 
     }
 

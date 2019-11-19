@@ -86,6 +86,8 @@ public class MovementController : MonoBehaviour
     public bool IsDashing { get; set; }
     public bool HasDied { get; set; }
 
+    public bool IsInvulnerable { get; set; }
+
     public GameObject UpcomingFusePoint { get; set; }
 
     public UnityEvent FuseEvent { get; set; }
@@ -387,6 +389,7 @@ public class MovementController : MonoBehaviour
         FuseEvent.RemoveListener(CollideFusePoint);
         StartPoint startPoint = UpcomingFusePoint.GetComponent<StartPoint>();
         startPoint.StartFollowingFuse();
+        IsInvulnerable = true;
     }
 
     /*public void CollidePickUp()
@@ -412,13 +415,23 @@ public class MovementController : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        InteractibleObject Interact= other.GetComponent<InteractibleObject>();
-        if (Interact != null &&
-            Interact.type == InteractibleObject.InteractType.DangerZone)
+        InteractibleObject interact= other.GetComponent<InteractibleObject>();
+        if (interact != null && (
+            interact.type == InteractibleObject.InteractType.DangerZone ||
+            interact.type == InteractibleObject.InteractType.Death))
         {
-            other.GetComponent<InteractibleObject>().Interact(other.transform.position);
+            interact.Interact(other.transform.position);
         }
         
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        InteractibleObject interact = other.GetComponent<InteractibleObject>();
+        if (interact != null)
+        {
+            interact.Interact(other.transform.position);
+        }
     }
 
     public Vector3 DashDirection() { return TargetPosition - rigidBody.position; }

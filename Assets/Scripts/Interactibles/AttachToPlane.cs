@@ -81,7 +81,7 @@ public class AttachToPlane : MonoBehaviour
             gameObject.GetComponent<Rigidbody>().useGravity = true;
             _attached = false;
 
-            
+            GetComponent<MovementController>().IsInvulnerable = false;
 
             if (destroy)
                 Destroy(parent.gameObject);
