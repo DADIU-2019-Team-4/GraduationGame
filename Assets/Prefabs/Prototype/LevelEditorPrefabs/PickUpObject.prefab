@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1104779112160943104}
   - component: {fileID: 1343022488}
   - component: {fileID: 443090397079101219}
+  - component: {fileID: 4829098502261696948}
   m_Layer: 0
   m_Name: PickUpObject
   m_TagString: Untagged
@@ -123,3 +124,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 7
   DamageValue: 0
+  HealValue: 0
+--- !u!114 &4829098502261696948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1104779112160943111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3f6a57ea9bb81040839eb22c9ccd632, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TriggerType: 5
+  WwiseType: 0
+  EventName: GateUnlock
+  RTPCName: 
+  RTPCValue: {fileID: 0}
+  SetStateGroup: 
+  SetStateValue: 
