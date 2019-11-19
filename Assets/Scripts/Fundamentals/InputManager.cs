@@ -308,13 +308,18 @@ public class InputManager : IGameLoop
     /// </summary>
     private void ApplyAction()
     {
-        Vector3 directionVector = CalculateDirectionVector().normalized;
-        ResetDash();
+        Vector3 directionVector = CalculateDirectionVector();
 
         if (movementController.IsDashCharged)
-            movementController.Dash(directionVector);
+        {
+            movementController.Dash(directionVector.normalized);
+            ResetDash();
+        }
         else
-            movementController.Move(directionVector);
+        {
+            ResetDash();
+            movementController.Move(directionVector.normalized);
+        }
     }
 
     /// <summary>
