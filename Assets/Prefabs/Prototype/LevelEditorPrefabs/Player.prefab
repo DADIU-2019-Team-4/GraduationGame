@@ -139,7 +139,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16f92d4e4f9545f42a60c7ba50703151, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FireHealValue: 100
+  FireStartValue: 100
   BounceValue: 0.3
   DamageBounceValue: 1
   MoveDuration: 0.5
@@ -603,7 +603,7 @@ Light:
   serializedVersion: 9
   m_Type: 2
   m_Color: {r: 0.9056604, g: 0.47383833, b: 0.14097545, a: 1}
-  m_Intensity: 2.85
+  m_Intensity: 3.5
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -637,7 +637,7 @@ Light:
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
   m_Flare: {fileID: 0}
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -1335,15 +1335,15 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 8916465630924965909}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &7616077162340575239 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1300445093433794578, guid: 60049d6017dabf040af5c77a725784c6,
-    type: 3}
-  m_PrefabInstance: {fileID: 8916465630924965909}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &8859792131998531327 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 92860625907201770, guid: 60049d6017dabf040af5c77a725784c6,
+    type: 3}
+  m_PrefabInstance: {fileID: 8916465630924965909}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7616077162340575239 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1300445093433794578, guid: 60049d6017dabf040af5c77a725784c6,
     type: 3}
   m_PrefabInstance: {fileID: 8916465630924965909}
   m_PrefabAsset: {fileID: 0}
