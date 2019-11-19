@@ -68,6 +68,7 @@ public class MovementController : MonoBehaviour
     public FloatVariable HealthPercentage;
     public FloatVariable ArrowLength;
     public FloatVariable DashHoldPercentage;
+    private PlayerActionsCollectorQA playerActionsCollectorQA;
 
     private Vector3 startPosition;
     private Vector3 goalPosition;
@@ -103,6 +104,7 @@ public class MovementController : MonoBehaviour
         gameController = FindObjectOfType<GameController>();
         audioEvents = GetComponents<AudioEvent>().ToList<AudioEvent>();
         attachToPlane = GetComponent<AttachToPlane>();
+        playerActionsCollectorQA = FindObjectOfType<PlayerActionsCollectorQA>();
     }
 
     // Start is called before the first frame update
@@ -180,6 +182,7 @@ public class MovementController : MonoBehaviour
         attachToPlane.Detach(false);
 
         AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.Dash, audioEvents, gameObject);
+        playerActionsCollectorQA.DataConteiner.NormalDashCount++;
         Vector3 targetPos = transform.position + moveDirection * MoveDistance;
         targetPos.y = transform.position.y;
 
@@ -201,6 +204,7 @@ public class MovementController : MonoBehaviour
 
         IsDashing = true;
         AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.ChargedDash, audioEvents, gameObject);
+        playerActionsCollectorQA.DataConteiner.ChargedDashCount++;
         Vector3 targetPos = transform.position + dashDirection * DashDistance;
 
         //Play Animation
@@ -370,9 +374,15 @@ public class MovementController : MonoBehaviour
         if (reachedGoal)
             gameController.Win();
         else if (HasDied)
+        {
+            SetDeathData();
             gameController.GameOverDied();
+        }
         else if (isOutOfFire)
+        {
+            SetDeathData();
             gameController.GameOverOutOfMoves();
+        }
         else
             return;
 
@@ -452,4 +462,11 @@ public class MovementController : MonoBehaviour
     }
 
     public Vector3 DashDirection() { return TargetPosition - rigidBody.position; }
+    private void SetDeathData()
+    {
+        playerActionsCollectorQA.DataConteiner.DeathsCount++;
+        playerActionsCollectorQA.DataConteiner.deathPlace.Add(gameObject.transform.position);
+        playerActionsCollectorQA.DataConteiner.levelName.Add(SceneManager.GetActiveScene().name);
+
+    }
 }

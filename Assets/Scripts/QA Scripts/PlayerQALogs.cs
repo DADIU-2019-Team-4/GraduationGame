@@ -42,12 +42,14 @@ public class PlayerQALogs : MonoBehaviour
         currentCount++;
         if (currentCount == maxCount)
         {
-            if (player.transform.position.x == 0)
-                playerX = 0.0.ToString();
+            int xLenght = player.transform.position.x.ToString().Length;
+            int zLenght = player.transform.position.z.ToString().Length;
+            if (xLenght < 4)
+                playerX = player.transform.position.x.ToString().Substring(0, xLenght-1);
             else
                 playerX = player.transform.position.x.ToString().Substring(0, 4);
-            if (player.transform.position.z == 0)
-                playerZ = 0.0.ToString();
+            if (zLenght<4)
+                playerZ = player.transform.position.z.ToString().Substring(0, zLenght - 1);
             else
                 playerZ = player.transform.position.z.ToString().Substring(0, 4);
             currentCount = 0;
