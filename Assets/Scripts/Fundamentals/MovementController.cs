@@ -28,7 +28,7 @@ public class MovementController : MonoBehaviour
     public float MoveCostInPercentage;
     [Tooltip("Easing function of the move.")]
     public Ease MoveEase = Ease.OutCubic;
-    public float MoveDistance { get; set; }   
+    public float MoveDistance { get; set; }
 
     [Header("Dash Settings")]
     [Tooltip("Time in seconds for how long you need to tap and hold for it to be recognized as a dash. Affects Animation")]
@@ -170,11 +170,11 @@ public class MovementController : MonoBehaviour
     /// </summary>
     public void Move(Vector3 moveDirection)
     {
-        if (IsMoving)
-        {
-            TriggerCoyoteTime = true;
-            return;
-        }
+        //if (IsMoving)
+        //{
+        //    TriggerCoyoteTime = true;
+        //    return;
+        //}
 
         attachToPlane.Detach(false);
 
@@ -190,11 +190,11 @@ public class MovementController : MonoBehaviour
     /// </summary>
     public void Dash(Vector3 dashDirection)
     {
-        if (IsMoving)
-        {
-            TriggerCoyoteTime = true;
-            return;
-        }
+        //if (IsMoving)
+        //{
+        //    TriggerCoyoteTime = true;
+        //    return;
+        //}
 
         attachToPlane.Detach(false);
 
@@ -202,7 +202,7 @@ public class MovementController : MonoBehaviour
         //trailRenderer.enabled = true;
         AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.ChargedDash, audioEvents, gameObject);
         Vector3 targetPos = transform.position + dashDirection * DashDistance;
-        
+
         //Play Animation
         animationController.Dash();
 
@@ -370,7 +370,7 @@ public class MovementController : MonoBehaviour
     /// </summary>
     public void CheckGameEnd()
     {
-        
+
         if (reachedGoal)
             gameController.Win();
         else if (HasDied)
@@ -380,8 +380,23 @@ public class MovementController : MonoBehaviour
         else
             return;
 
-        GetComponent<CapsuleCollider>().enabled = false;
-        GetComponent<Rigidbody>().isKinematic = true;
+        DisablePlayerCharacter();
+    }
+
+    public void ResetPlayerCharacterState()
+    {
+        ResetHealth();
+        DisablePlayerCharacter(false);
+        UpdateFireAmount(0);
+        UpdateGoalDistances();
+        HealthPercentage.Value = currentFireAmount;
+        UpdateGoalDistances();
+    }
+
+    private void DisablePlayerCharacter(bool disable = true)
+    {
+        GetComponent<CapsuleCollider>().enabled = !disable;
+        GetComponent<Rigidbody>().isKinematic = disable;
     }
 
     public void CollideFusePoint()
@@ -412,6 +427,8 @@ public class MovementController : MonoBehaviour
         DashCostInPercentage = 0;
     }
 
+    private void ResetHealth() { currentFireAmount = maxFireAmount; }
+
 
     private void OnTriggerStay(Collider other)
     {
@@ -419,10 +436,11 @@ public class MovementController : MonoBehaviour
         if (interact != null && (
             interact.type == InteractibleObject.InteractType.DangerZone ||
             interact.type == InteractibleObject.InteractType.Death))
+
         {
             interact.Interact(other.transform.position);
         }
-        
+
     }
 
     private void OnTriggerEnter(Collider other)

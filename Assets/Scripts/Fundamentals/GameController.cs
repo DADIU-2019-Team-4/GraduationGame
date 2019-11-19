@@ -54,8 +54,16 @@ public class GameController : MonoBehaviour
 
     public void RestartScene()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        AkSoundEngine.PostEvent("KillOnRestart", gameObject);
+        GameObject.FindGameObjectWithTag("Player").transform.position = new Vector3(0, 0, 0); // Reset position
+
+        FindObjectOfType<MovementController>().ResetPlayerCharacterState();
+
+        DiedText.SetActive(false);
+        RestartButton.SetActive(false);
+        IsPlaying = true;
+
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        //AkSoundEngine.PostEvent("KillOnRestart", gameObject);
     }
 
     public void GoToNextScene()
