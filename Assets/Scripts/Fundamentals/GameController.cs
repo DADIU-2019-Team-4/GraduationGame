@@ -21,11 +21,27 @@ public class GameController : MonoBehaviour
 
     private List<AudioEvent> audioEvents;
 
+    private List<InteractibleObject> _breakables = null;
 
     private void Start()
     {
         audioEvents = GetComponents<AudioEvent>().ToList<AudioEvent>();
         LevelNameText.text = SceneManager.GetActiveScene().name;
+    }
+
+    private void Update()
+    {
+        if (_breakables != null) return;
+
+        // This is a spaghetti way to check if the level is completely loaded.
+        var floor = FindObjectOfType<OutOfBoundsColliders>();
+        if (floor == null) return; // Await loading.
+
+        _breakables = new List<InteractibleObject>();
+        var interactibles = FindObjectsOfType<InteractibleObject>();
+        foreach (var interactible in interactibles)
+            if (interactible.type == InteractibleObject.InteractType.Break)
+                _breakables.Add(interactible);
     }
 
     public void Win()
@@ -59,8 +75,13 @@ public class GameController : MonoBehaviour
         FindObjectOfType<MovementController>().ResetPlayerCharacterState();
 
         DiedText.SetActive(false);
+        OutOfMovesText.SetActive(false);
+        WinText.SetActive(false);
         RestartButton.SetActive(false);
         IsPlaying = true;
+
+        foreach (var breakable in _breakables)
+            breakable.gameObject.GetComponent<BurnObject>().ResetBreakable();
 
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         //AkSoundEngine.PostEvent("KillOnRestart", gameObject);
