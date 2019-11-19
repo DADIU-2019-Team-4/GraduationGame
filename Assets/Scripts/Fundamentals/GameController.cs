@@ -59,6 +59,8 @@ public class GameController : MonoBehaviour
         FindObjectOfType<MovementController>().ResetPlayerCharacterState();
 
         DiedText.SetActive(false);
+        OutOfMovesText.SetActive(false);
+        WinText.SetActive(false);
         RestartButton.SetActive(false);
         IsPlaying = true;
 
