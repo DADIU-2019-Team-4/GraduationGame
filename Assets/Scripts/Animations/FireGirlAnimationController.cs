@@ -43,7 +43,7 @@ public class FireGirlAnimationController : MonoBehaviour
 
     public void ChargeDash()
     {
-        if (!_chargingDash)
+        if (!_chargingDash && !_dashCharged)
         {
             foreach (Animator anim in this._animators)
             {
@@ -78,6 +78,7 @@ public class FireGirlAnimationController : MonoBehaviour
             }
 
             _dashCharged = false;
+            _chargingDash = false;
         }
     }
 
