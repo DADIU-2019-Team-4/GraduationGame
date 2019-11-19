@@ -6,11 +6,13 @@ public class InteractableObjectEditor : Editor
 {
     public SerializedProperty TypeProperty;
     public SerializedProperty DamageValueProperty;
+    public SerializedProperty HealValueProperty;
 
     void OnEnable()
     {
         TypeProperty = serializedObject.FindProperty("type");
         DamageValueProperty = serializedObject.FindProperty("DamageValue");
+        HealValueProperty = serializedObject.FindProperty("HealValue");
     }
 
     public override void OnInspectorGUI()
@@ -21,8 +23,21 @@ public class InteractableObjectEditor : Editor
         InteractibleObject.InteractType type = (InteractibleObject.InteractType)TypeProperty.enumValueIndex;
         switch (type)
         {
+
             case InteractibleObject.InteractType.Damage:
-                EditorGUILayout.PropertyField(DamageValueProperty, new GUIContent("DamageValue"));
+                EditorGUILayout.PropertyField(DamageValueProperty, new GUIContent("Damage Value"));
+                break;
+
+            case InteractibleObject.InteractType.DangerZone:
+                EditorGUILayout.PropertyField(DamageValueProperty, new GUIContent("Damage Per Second"));
+                break;
+
+            case InteractibleObject.InteractType.Break:
+                EditorGUILayout.PropertyField(HealValueProperty, new GUIContent("Heal Amount"));
+                break;
+
+            case InteractibleObject.InteractType.PickUp:
+                EditorGUILayout.PropertyField(HealValueProperty, new GUIContent("Heal Amount"));
                 break;
         }
 

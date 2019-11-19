@@ -80,7 +80,7 @@ MonoBehaviour:
     ParentPhysicalPath: 
     guid: 85519e3dd9af71428bf05cf3b19b0630
     GuidInternal: 
-    m_lastTime: -8586277821827557086
+    m_lastTime: -8586275337580349400
     List:
     - name: ArrowPull
       guid: 608bf70bea70904ba9e045c9b78b6c3a
@@ -265,7 +265,7 @@ MonoBehaviour:
       maxDuration: 347326
       minDuration: 347326
     - name: OffRope
-      guid: a00036995aaba745aa30ee3028ec1a97
+      guid: 18a3b678ef957440b6aad640362b000a
       id: 1766390728
       PathAndIcons:
       - ElementName: Character
@@ -293,7 +293,7 @@ MonoBehaviour:
       maxDuration: -1
       minDuration: -1
     - name: OnRope
-      guid: 18a3b678ef957440b6aad640362b000a
+      guid: a00036995aaba745aa30ee3028ec1a97
       id: 2346684474
       PathAndIcons:
       - ElementName: Character
@@ -306,20 +306,34 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: -1
       minDuration: -1
-    - name: PaperPlane
-      guid: 1fcbdc37d26bcb42a782d0a5b2de0ee3
-      id: 610481649
+    - name: PaperPlaneDead
+      guid: fca873726bddc046b39691c2b9460277
+      id: 1933716535
       PathAndIcons:
       - ElementName: Character
         ObjectType: 12
       - ElementName: PaperPlane
         ObjectType: 4
-      - ElementName: PaperPlane
+      - ElementName: PaperPlaneDead
         ObjectType: 3
-      Path: Character\PaperPlane\PaperPlane
-      maxAttenuation: 15000000
-      maxDuration: 15923084
-      minDuration: 15923084
+      Path: Character\PaperPlane\PaperPlaneDead
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: PaperPlaneSpawn
+      guid: 1fcbdc37d26bcb42a782d0a5b2de0ee3
+      id: 948186658
+      PathAndIcons:
+      - ElementName: Character
+        ObjectType: 12
+      - ElementName: PaperPlane
+        ObjectType: 4
+      - ElementName: PaperPlaneSpawn
+        ObjectType: 3
+      Path: Character\PaperPlane\PaperPlaneSpawn
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
     - name: PlayerHealth
       guid: 653c463d1cd8eb4d858f140998f5a864
       id: 151362964
@@ -344,7 +358,7 @@ MonoBehaviour:
     ParentPhysicalPath: 
     guid: 798a08f7a060c94bb31dbf2936cc7894
     GuidInternal: 
-    m_lastTime: -8586277864911150377
+    m_lastTime: -8586275189843732986
     List:
     - name: BumpIntoBooks
       guid: a5e678f91e46db45a6085d8dd485fb67
@@ -472,20 +486,6 @@ MonoBehaviour:
       maxAttenuation: 15000000
       maxDuration: -1
       minDuration: -1
-    - name: Fireplace2
-      guid: b1fb1775be0e6a4dbd0e82f429a3f667
-      id: 3601776784
-      PathAndIcons:
-      - ElementName: Environment
-        ObjectType: 12
-      - ElementName: Fireplace
-        ObjectType: 4
-      - ElementName: Fireplace2
-        ObjectType: 3
-      Path: Environment\Fireplace\Fireplace2
-      maxAttenuation: 15000000
-      maxDuration: -1
-      minDuration: -1
     - name: OutsideAmbience
       guid: 7319791b9ce4a548b2bc67993e80c530
       id: 3564400826
@@ -540,18 +540,18 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: -1
       minDuration: -1
-    - name: Torch1
+    - name: Torch
       guid: 5438787736f0364d9458c9914cc09adc
-      id: 1159579802
+      id: 1904864137
       PathAndIcons:
       - ElementName: Environment
         ObjectType: 12
       - ElementName: Torches
         ObjectType: 4
-      - ElementName: Torch1
+      - ElementName: Torch
         ObjectType: 3
-      Path: Environment\Torches\Torch1
-      maxAttenuation: 15000000
+      Path: Environment\Torches\Torch
+      maxAttenuation: 0
       maxDuration: -1
       minDuration: -1
   - PhysicalPath: Events\GameController.wwu
@@ -594,8 +594,20 @@ MonoBehaviour:
     ParentPhysicalPath: 
     guid: b354ec827c03c44399470a4771e70173
     GuidInternal: 
-    m_lastTime: -8586277799104062849
+    m_lastTime: -8586275361830756882
     List:
+    - name: InteractiveMusic_01
+      guid: 467138a50bfc0b4d80da309eab709870
+      id: 2106235974
+      PathAndIcons:
+      - ElementName: Music
+        ObjectType: 12
+      - ElementName: InteractiveMusic_01
+        ObjectType: 3
+      Path: Music\InteractiveMusic_01
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
     - name: Room02_Music
       guid: fc252a655fe938429caae48b125b8a80
       id: 2092364794
@@ -740,6 +752,11 @@ MonoBehaviour:
   - /GraduationGame_WwiseProject
   - /GraduationGame_WwiseProject/Events
   - /GraduationGame_WwiseProject/Events/Character
+  - /GraduationGame_WwiseProject/Events/Character/Dashing
+  - /GraduationGame_WwiseProject/Events/Character/PaperPlane
+  - /GraduationGame_WwiseProject/Events/Environment
+  - /GraduationGame_WwiseProject/Events/Environment/Fireplace
+  - /GraduationGame_WwiseProject/Events/Environment/Torches
   - /GraduationGame_WwiseProject/Events/Music
   autoPopulateEnabled: 1
   CurrentPluginConfig: 

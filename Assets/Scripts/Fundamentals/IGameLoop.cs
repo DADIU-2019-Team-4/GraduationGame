@@ -12,11 +12,11 @@ public abstract class IGameLoop : MonoBehaviour
 
     private Game game;
 
-    private void OnEnable()
+    public void OnEnable()
     {
         game = FindObjectOfType<Game>();
         if (game == null)
-            Debug.Log(this.gameObject.name);
+            gameObject.AddComponent<AwaitGameRef>();
         else
             game.Instance.AddGameLoop(this);
     }
