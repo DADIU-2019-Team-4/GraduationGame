@@ -10,6 +10,7 @@ public class Fuse : MonoBehaviour
 
     private bool isUsed;
     private MovementController movementController;
+    private Rigidbody playerRigidbody;
 
     private GameObject generated;
     private Spline spline;
@@ -44,12 +45,13 @@ public class Fuse : MonoBehaviour
             movementController = FindObjectOfType<MovementController>();
             if (movementController == null)
                 return;
-            else
-            {
-                if(Follower == null)
-                    Follower = movementController.gameObject;
-            }
+
+            if (Follower == null)
+                Follower = movementController.gameObject;
+
+            playerRigidbody = movementController.GetComponent<Rigidbody>();
         }
+
         if (!movementController.IsFuseMoving || !isMoving)
             return;
 
@@ -64,6 +66,7 @@ public class Fuse : MonoBehaviour
         generated = Follower;
         generated.transform.parent = gameObject.transform;
         movementController.IsFuseMoving = true;
+        movementController.IsInvulnerable = true;
         isMoving = true;
         alreadyFinished = false;
         AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.OnRope, audioEvents, gameObject);
@@ -84,6 +87,7 @@ public class Fuse : MonoBehaviour
             AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.OffRope, audioEvents, gameObject);
 
             movementController.IsInvulnerable = false;
+            playerRigidbody.velocity = Vector3.zero;
         }
     }
 
