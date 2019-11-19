@@ -88,6 +88,7 @@ public class Fuse : MonoBehaviour
 
             movementController.IsInvulnerable = false;
             playerRigidbody.velocity = Vector3.zero;
+            movementController.StopMoving();
         }
     }
 
