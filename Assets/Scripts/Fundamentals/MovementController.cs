@@ -342,6 +342,8 @@ public class MovementController : MonoBehaviour
         currentFireAmount -= cost;
         if (currentFireAmount < 0)
             currentFireAmount = 0;
+        if (currentFireAmount > maxFireAmount)
+            currentFireAmount = maxFireAmount;
         UpdateFireAmountText();
     }
 
