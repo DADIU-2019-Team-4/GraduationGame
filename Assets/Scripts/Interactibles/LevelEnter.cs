@@ -35,7 +35,7 @@ public class LevelEnter : IGameLoop
             var QAData = FindObjectOfType<PlayerQALogs>();
             if (QAData != null)
                 QAData.CloseFile();
-            SceneManager.LoadSceneAsync(loadSceneName);
+            SceneManager.LoadScene(loadSceneName);
         }
     }
     private void CreateKeys(string name)
