@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 4212059926539033595}
   - component: {fileID: 9009508442419236812}
   m_Layer: 0
-  m_Name: WaterSpray 1
+  m_Name: WaterSpray_Ver.2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 9132245662996378538}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.299, y: 1.4, z: -0.433}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children:
   - {fileID: 9132245663744727009}
   m_Father: {fileID: 0}
@@ -4828,6 +4828,7 @@ MonoBehaviour:
   type: 9
   DamageValue: 10
   HealValue: 0
+  BumpHeight: 0.3
 --- !u!1 &9132245663744727010
 GameObject:
   m_ObjectHideFlags: 0
@@ -4855,7 +4856,7 @@ Transform:
   m_GameObject: {fileID: 9132245663744727010}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 7.42}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 9132245662996378535}
   m_RootOrder: 0
@@ -6904,7 +6905,7 @@ ParticleSystem:
     speedModifier:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0.33
       minScalar: 1
       maxCurve:
         serializedVersion: 2
