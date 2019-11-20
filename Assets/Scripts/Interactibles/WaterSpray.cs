@@ -22,23 +22,23 @@ public class WaterSpray : MonoBehaviour
     private void Awake()
     {
         particleSystem = GetComponent<ParticleSystem>();
-        boxCollider = GetComponent<BoxCollider>();
+        //boxCollider = GetComponent<BoxCollider>();
         audioEvents = GetComponents<AudioEvent>().ToList<AudioEvent>();
     }
 
     private void Start()
     {
         particleSystem.Stop();
-        boxCollider.enabled = false;
+        //boxCollider.enabled = false;
 
     }
 
     private void Update()
     {
-        if (StartOffsetTimer >0)
+        if (StartOffsetTimer > 0)
         {
             StartOffsetTimer -= Time.deltaTime;
-           
+
         }
         else if (!hasStarted)
         {
@@ -71,7 +71,7 @@ public class WaterSpray : MonoBehaviour
     {
         particleSystem.Play();
         isActivated = true;
-        boxCollider.enabled = true;
+        //boxCollider.enabled = true;
         timer = 0;
         AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.WaterSprayOn, audioEvents, gameObject);
     }
@@ -80,11 +80,12 @@ public class WaterSpray : MonoBehaviour
     {
         particleSystem.Stop();
         isActivated = false;
-        boxCollider.enabled = false;
+        // boxCollider.enabled = false;
         timer = 0;
         AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.WaterSprayOff, audioEvents, gameObject);
     }
 
+    /*
     private void OnTriggerEnter(Collider col)
     {
         if (col.CompareTag("Player"))
@@ -101,6 +102,24 @@ public class WaterSpray : MonoBehaviour
                 movementController.MoveBackRoutine(movementController.transform.position - movementController.transform.forward *
                                                    movementController.DamageBounceValue, movementController.MoveDuration));
 
+        }
+    }*/
+
+    void OnParticleCollision(GameObject col)
+    {
+        if (col.CompareTag("Player"))
+        {
+            MovementController movementController = col.GetComponent<MovementController>();
+            if (ParticlesOnCollision != null)
+            {
+                Vector3 position = movementController.transform.position;
+                position.y = 0.5f;
+                Instantiate(ParticlesOnCollision, position, Quaternion.identity);
+            }
+
+            StartCoroutine(
+                movementController.MoveBackRoutine(movementController.transform.position - movementController.transform.forward *
+                                                   movementController.DamageBounceValue, movementController.MoveDuration));
         }
     }
 }
