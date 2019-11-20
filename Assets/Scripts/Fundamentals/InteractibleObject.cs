@@ -23,6 +23,7 @@ public class InteractibleObject : DashInteractable
     public InteractType type;
     public float DamageValue;
     public float HealValue;
+    public float BumpHeight = 0.3f;
     private MovementController movementController;
     private List<AudioEvent> audioEvents;
     private DialogueRunner dialogRunner;
@@ -56,6 +57,7 @@ public class InteractibleObject : DashInteractable
 
     public override void Interact(Vector3 hitPoint)
     {
+        Vector3 hitpoint = new Vector3(hitPoint.x, BumpHeight, hitPoint.z);
         if(movementController== null)
         {
             AssignDependencies();
@@ -69,10 +71,10 @@ public class InteractibleObject : DashInteractable
                 Goal();
                 break;
             case InteractType.Block:
-                Block(hitPoint);
+                Block(hitpoint);
                 break;
             case InteractType.Break:
-                Break(hitPoint);
+                Break(hitpoint);
                 break;
             case InteractType.Candle:
                 Candle();
@@ -81,17 +83,17 @@ public class InteractibleObject : DashInteractable
                 PickUp();
                 break;
             case InteractType.FusePoint:
-                FusePoint(hitPoint);
+                FusePoint(hitpoint);
                 break;
             case InteractType.Death:
-                Death(hitPoint);
+                Death(hitpoint);
                 break;
             case InteractType.Fuse:
                 if(!movementController.IsFuseMoving)
-                    Block(hitPoint);
+                    Block(hitpoint);
                 break;
             case InteractType.Damage:
-                DamagePlayer(hitPoint);
+                DamagePlayer(hitpoint);
                 break;
             case InteractType.DangerZone:
                 DangerZone();

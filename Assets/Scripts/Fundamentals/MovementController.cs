@@ -287,7 +287,7 @@ public class MovementController : MonoBehaviour
     private void CheckCollision()
     {
         RaycastHit hit;
-        if (Physics.Raycast(new Vector3(transform.position.x, 0.5f, transform.position.z), transform.forward, out hit,
+        if (Physics.Raycast(new Vector3(transform.position.x, 0.75f, transform.position.z), transform.forward, out hit,
             Vector3.Distance(transform.position, TargetPosition)))
         {
             InteractibleObject interactableObj = hit.transform.gameObject.GetComponent<InteractibleObject>();
@@ -458,7 +458,7 @@ public class MovementController : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         InteractibleObject interact = other.GetComponent<InteractibleObject>();
-        if (interact != null)
+        if (interact != null && interact.type != InteractibleObject.InteractType.FusePoint)
         {
             interact.Interact(other.transform.position);
         }
