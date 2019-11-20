@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 5561349426305759274, guid: 3e4571f6e5409ec45ad828f7de172fd1, type: 3}
+  - {fileID: 2100000, guid: 2e6611199efa9164aa3b4fb5ab8b7886, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -135,7 +135,8 @@ MonoBehaviour:
   m_callbackDataInternal: {fileID: 0}
   MultiPositionType: 1
   multiPositionTypeLabel: 0
-  LargeModePositions: []
+  LargeModePositions:
+  - {fileID: 0}
   multiPositionArray: []
 --- !u!65 &4158681852570730002
 BoxCollider:
@@ -164,3 +165,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 4
   DamageValue: 0
+  HealValue: 0
