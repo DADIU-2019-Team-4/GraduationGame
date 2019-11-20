@@ -353,7 +353,7 @@ public class MovementController : MonoBehaviour
     /// </summary>
     private void UpdateFireAmountText()
     {
-        FireAmountText.text = currentFireAmount + "%";
+        FireAmountText.text = string.Format("{0:.#}", currentFireAmount) + "%";
     }
 
     /// <summary>
