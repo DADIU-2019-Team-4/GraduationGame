@@ -7,7 +7,7 @@ public class DELETE_LATERtutorialTxt : MonoBehaviour
 {
     public TextMeshProUGUI text;
 
-    public string[] texts;
+    //public string[] texts;
     public int textForThis;
 
     public bool canChangeText = true;
@@ -32,7 +32,7 @@ public class DELETE_LATERtutorialTxt : MonoBehaviour
         {
             if (canChangeText)
             {
-                text.text = texts[textForThis];
+                text.text = "Drag back and hold to charge your dash \n\n When the arrow gets red, release to dash through objects to burn them"; //texts[textForThis];
             }
             else
                 text.text = "";
