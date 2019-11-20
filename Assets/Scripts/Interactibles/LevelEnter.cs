@@ -32,9 +32,6 @@ public class LevelEnter : IGameLoop
         Debug.Log("Should Load New Scene");
         if (other.gameObject.CompareTag("Player") && isOpened)
         {
-            var QAData = FindObjectOfType<PlayerQALogs>();
-            if (QAData != null)
-                QAData.CloseFile();
             SceneManager.LoadScene(loadSceneName);
         }
     }

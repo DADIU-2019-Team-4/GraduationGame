@@ -3,7 +3,12 @@ guid: 3cb682f2b8f2ccf418d3b50c319f56dc
 ModelImporter:
   serializedVersion: 25
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert1
+    second: {fileID: 2100000, guid: b1da0fea906b41a47bb925bef22cf2ab, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -43,7 +48,7 @@ ModelImporter:
     importCameras: 1
     importLights: 1
     swapUVChannels: 0
-    generateSecondaryUV: 0
+    generateSecondaryUV: 1
     useFileUnits: 1
     keepQuads: 0
     weldVertices: 1
