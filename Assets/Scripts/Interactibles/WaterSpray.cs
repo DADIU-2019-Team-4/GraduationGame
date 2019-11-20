@@ -22,15 +22,12 @@ public class WaterSpray : MonoBehaviour
     private void Awake()
     {
         particleSystem = GetComponent<ParticleSystem>();
-        //boxCollider = GetComponent<BoxCollider>();
         audioEvents = GetComponents<AudioEvent>().ToList<AudioEvent>();
     }
 
     private void Start()
     {
         particleSystem.Stop();
-        //boxCollider.enabled = false;
-
     }
 
     private void Update()
@@ -71,7 +68,6 @@ public class WaterSpray : MonoBehaviour
     {
         particleSystem.Play();
         isActivated = true;
-        //boxCollider.enabled = true;
         timer = 0;
         AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.WaterSprayOn, audioEvents, gameObject);
     }
@@ -80,17 +76,26 @@ public class WaterSpray : MonoBehaviour
     {
         particleSystem.Stop();
         isActivated = false;
-        // boxCollider.enabled = false;
         timer = 0;
         AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.WaterSprayOff, audioEvents, gameObject);
     }
 
-    /*
-    private void OnTriggerEnter(Collider col)
+    private void OnParticleCollision(GameObject col)
     {
         if (col.CompareTag("Player"))
         {
             MovementController movementController = col.GetComponent<MovementController>();
+            if (!movementController.DamageCoolDownActivated)
+            {
+                movementController.DamageCoolDownActivated = true;
+
+                // damage player
+                InteractibleObject interactibleObject = GetComponent<InteractibleObject>();
+                if (interactibleObject != null && interactibleObject.type == InteractibleObject.InteractType.Damage)
+                    interactibleObject.Interact(transform.position);
+            }
+
+            // bump player back
             if (ParticlesOnCollision != null)
             {
                 Vector3 position = movementController.transform.position;
@@ -98,28 +103,10 @@ public class WaterSpray : MonoBehaviour
                 Instantiate(ParticlesOnCollision, position, Quaternion.identity);
             }
 
-            StartCoroutine(
-                movementController.MoveBackRoutine(movementController.transform.position - movementController.transform.forward *
-                                                   movementController.DamageBounceValue, movementController.MoveDuration));
-
-        }
-    }*/
-
-    void OnParticleCollision(GameObject col)
-    {
-        if (col.CompareTag("Player"))
-        {
-            MovementController movementController = col.GetComponent<MovementController>();
-            if (ParticlesOnCollision != null)
-            {
-                Vector3 position = movementController.transform.position;
-                position.y = 0.5f;
-                Instantiate(ParticlesOnCollision, position, Quaternion.identity);
-            }
-
-            StartCoroutine(
-                movementController.MoveBackRoutine(movementController.transform.position - movementController.transform.forward *
-                                                   movementController.DamageBounceValue, movementController.MoveDuration));
+            Vector3 targetPos = movementController.transform.position -
+                                (movementController.transform.forward * movementController.DamageBounceValue);
+            targetPos.y = 0;
+            StartCoroutine(movementController.MoveBackRoutine(targetPos, movementController.MoveDuration));
         }
     }
 }

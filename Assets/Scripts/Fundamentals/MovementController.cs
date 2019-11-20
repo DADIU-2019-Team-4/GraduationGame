@@ -18,6 +18,8 @@ public class MovementController : MonoBehaviour
     public float BounceValue = 0.3f;
     [Tooltip("How much the player should bounce of an object when damaged.")]
     public float DamageBounceValue = 1f;
+    [Tooltip("How long the player is invulnerable after taking damage.")]
+    public float DamageCoolDownValue = 0.5f;
 
     [Header("Move Settings")]
     [Tooltip("Duration of a move in seconds (how long it takes to get to target position).")]
@@ -61,6 +63,7 @@ public class MovementController : MonoBehaviour
     private bool isOutOfFire;
     private bool isCharged;
     private bool reachedGoal;
+    private float damageTimer;
 
     [Header("Scriptable Objects")]
     public FloatVariable GoalDistance;
@@ -89,6 +92,8 @@ public class MovementController : MonoBehaviour
     public bool HasDied { get; set; }
 
     public bool IsInvulnerable { get; set; }
+
+    public bool DamageCoolDownActivated { get; set; }
 
     public GameObject UpcomingFusePoint { get; set; }
 
@@ -129,6 +134,26 @@ public class MovementController : MonoBehaviour
 
         if (FuseEvent == null)
             FuseEvent = new UnityEvent();
+    }
+
+    private void Update()
+    {
+        DamageCoolDown();
+    }
+
+    /// <summary>
+    /// Activate Damage cool down when the player is damaged to prevent more damage to the player.
+    /// </summary>
+    private void DamageCoolDown()
+    {
+        if (!DamageCoolDownActivated) return;
+
+        damageTimer += Time.deltaTime;
+        if (damageTimer > DamageCoolDownValue)
+        {
+            DamageCoolDownActivated = false;
+            damageTimer = 0;
+        }
     }
 
     public void SetStartAndEndPositions()
