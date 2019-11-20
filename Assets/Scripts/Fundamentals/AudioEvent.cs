@@ -172,6 +172,8 @@ public class AudioEvent : IGameLoop
             AkSoundEngine.SetRTPCValue(RTPCName, RTPCValue.Value);
         else if (WwiseType == WwiseFunction.State)
             AkSoundEngine.SetState(SetStateGroup, SetStateValue);
+        else if (WwiseType == WwiseFunction.PostEventName)
+            AkSoundEngine.PostEvent(TriggerType.ToString(), gameObject);
     }
 
     public static void SendAudioEvent(AudioEventType type,List <AudioEvent> audioEvents, GameObject gameObject)
