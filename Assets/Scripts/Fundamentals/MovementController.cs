@@ -239,6 +239,7 @@ public class MovementController : MonoBehaviour
         yield return new WaitForSeconds(duration);
 
         DashEnded();
+        rigidBody.velocity = Vector3.zero;
     }
 
     /// <summary>
@@ -276,6 +277,7 @@ public class MovementController : MonoBehaviour
             Debug.Log(target.GetXZVector3());
         }
 
+        rigidBody.velocity = Vector3.zero;
         FuseEvent.Invoke();
     }
 
@@ -305,6 +307,7 @@ public class MovementController : MonoBehaviour
         moveTweener?.Kill();
         StopCoroutine(nameof(MoveRoutine));
         StopCoroutine(nameof(MoveBackRoutine));
+        rigidBody.velocity = Vector3.zero;
     }
 
     private void DashEnded()
@@ -350,7 +353,7 @@ public class MovementController : MonoBehaviour
     /// </summary>
     private void UpdateFireAmountText()
     {
-        FireAmountText.text = currentFireAmount + "%";
+        FireAmountText.text = string.Format("{0:.#}", currentFireAmount) + "%";
     }
 
     /// <summary>

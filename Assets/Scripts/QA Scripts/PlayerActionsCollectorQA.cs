@@ -27,6 +27,15 @@ public class PlayerActionsCollectorQA : MonoBehaviour
         MobileSaveData();
 #endif
     }
+    private void OnApplicationPause(bool pause)
+    {
+        if(pause)
+        {
+#if UNITY_ANDROID || UNITY_IOS
+            MobileSaveData();
+#endif
+        }
+    }
     void PcSaveData()
     {
         if (!Directory.Exists(fileName))
@@ -48,7 +57,7 @@ public class PlayerActionsCollectorQA : MonoBehaviour
         writer.WriteLine("Destroyed Object Count:" + DataConteiner.DestroyedObjectsCount);
         writer.WriteLine("Ropes Use Count:" + DataConteiner.RopeUseCount);
         writer.WriteLine("Deaths Count:" + DataConteiner.DeathsCount);
-        for(int i = 0; i<= DataConteiner.levelName.Capacity-1;i++)
+        for(int i = 0; i<= DataConteiner.DeathsCount-1;i++)
             writer.WriteLine("Died in level: " + DataConteiner.levelName[i] +"    Player's death position:" + DataConteiner.deathPlace[i]);
         writer.Close();
         ClearData();
