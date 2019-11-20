@@ -69,13 +69,6 @@ public class PlayerQALogs : MonoBehaviour
         using (StreamWriter sw = File.AppendText(currentSceneName + ".txt"))
             sw.Close();
     }
-    public void CloseFile()
-    {
-        using (StreamWriter sw = File.AppendText(currentSceneName + ".txt"))
-        {
-            sw.Close();
-        }
-    }
     private void PcCreateFile()
     {
         if (!Directory.Exists(currentSceneName + ".txt"))
