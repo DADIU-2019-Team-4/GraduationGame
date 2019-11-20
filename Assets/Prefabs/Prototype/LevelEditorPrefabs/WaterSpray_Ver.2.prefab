@@ -605,7 +605,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 1000
+    maxNumParticles: 80
     size3D: 0
     rotation3D: 0
     gravityModifier:
@@ -4788,8 +4788,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TriggerType: 21
-  WwiseType: 0
-  EventName: 
+  WwiseType: 3
+  EventName: WaterSprayOn
   RTPCName: 
   RTPCValue: {fileID: 0}
   SetStateGroup: 
@@ -4807,8 +4807,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TriggerType: 22
-  WwiseType: 0
-  EventName: 
+  WwiseType: 3
+  EventName: WaterSprayOff
   RTPCName: 
   RTPCValue: {fileID: 0}
   SetStateGroup: 
@@ -4846,7 +4846,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &9132245663744727009
 Transform:
   m_ObjectHideFlags: 0
