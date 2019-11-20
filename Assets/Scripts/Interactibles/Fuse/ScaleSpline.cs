@@ -1,4 +1,5 @@
 ﻿using SplineMesh;
+using UnityEditor;
 using UnityEngine;
 
 [ExecuteInEditMode]
