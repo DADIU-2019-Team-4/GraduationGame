@@ -91,7 +91,16 @@ public class InputManager : IGameLoop
             ShowArrow();
             ChargeUpDash();
 
-            if (!movementController.IsDashCharged) return;
+            if (!movementController.IsDashCharged)
+            {
+                // keep arrow/move length at max move length
+                movementController.MoveDistance = movementController.MoveDistanceCurve.Evaluate(DashThreshold);
+                movementController.ArrowLength.Value = movementController.MoveDistance;
+                StretchArrow(movementController.MoveDistance);
+                return;
+            }
+
+            // if dash is charged, change arrow to dash length
             StretchArrow(movementController.DashDistance);
             arrow.GetComponent<SpriteRenderer>().color = Color.red;
             movementController.ArrowLength.Value = 0;

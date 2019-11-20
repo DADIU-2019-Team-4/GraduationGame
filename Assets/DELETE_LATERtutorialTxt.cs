@@ -6,8 +6,9 @@ using TMPro;
 public class DELETE_LATERtutorialTxt : MonoBehaviour
 {
     public TextMeshProUGUI text;
+    public TextMeshProUGUI text2;
 
-    public string[] texts;
+    //public string[] texts;
     public int textForThis;
 
     public bool canChangeText = true;
@@ -30,12 +31,22 @@ public class DELETE_LATERtutorialTxt : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            if (canChangeText)
+            if (canChangeText && textForThis == 0)
             {
-                text.text = texts[textForThis];
+                text2.text = "Drag back and hold to charge your dash \n\n When the arrow gets red, release to dash through objects to burn them"; //texts[textForThis];
+                text.enabled = false;
+                text2.enabled = true;
             }
-            else
+            else if (canChangeText && textForThis == 1)
+            {
+                //text2.enabled = true;
+                text2.text = "Burning objects restores your fire.";
+            }
+            else if (!canChangeText)
+            {
                 text.text = "";
+                text2.text = "";
+            }
         }
     }
 }

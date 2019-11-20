@@ -25,7 +25,7 @@ public class AudioEvent : IGameLoop
     // Made static as a shared AudioListener space.
     public List<(AudioEventType, GameObject)> ListenerSpace = new List<(AudioEventType, GameObject)>();
 
-    public enum WwiseFunction { PostEvent, RTPCValue, State }
+    public enum WwiseFunction { PostEvent, RTPCValue, State, PostEventName }
 
     // Whatever can trigger an event, add it here.
     public enum AudioEventType
@@ -172,6 +172,8 @@ public class AudioEvent : IGameLoop
             AkSoundEngine.SetRTPCValue(RTPCName, RTPCValue.Value);
         else if (WwiseType == WwiseFunction.State)
             AkSoundEngine.SetState(SetStateGroup, SetStateValue);
+        else if (WwiseType == WwiseFunction.PostEventName)
+            AkSoundEngine.PostEvent(TriggerType.ToString(), gameObject);
     }
 
     public static void SendAudioEvent(AudioEventType type,List <AudioEvent> audioEvents, GameObject gameObject)

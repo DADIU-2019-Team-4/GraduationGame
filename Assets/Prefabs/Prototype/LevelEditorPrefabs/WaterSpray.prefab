@@ -9,13 +9,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9232367916435814}
-  - component: {fileID: 1087453113}
   - component: {fileID: 3718562589518122887}
   - component: {fileID: 1540662041973154416}
   - component: {fileID: 1111309807007882327}
   - component: {fileID: 8212191446539927221}
   - component: {fileID: 80235536490923674}
   - component: {fileID: 3187325215107663244}
+  - component: {fileID: 124739324904333406}
   m_Layer: 0
   m_Name: WaterSpray
   m_TagString: Untagged
@@ -37,24 +37,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1087453113
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9232367916435815}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab7e862dbef9bba47a1d08f6d33951ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnTimer: 4
-  OffTimer: 5
-  StartTurnedOn: 1
-  StartOffsetTimer: 0
-  ParticlesOnCollision: {fileID: 815881716433974703, guid: 5d324608bee3bbd40a78c222591a333d,
-    type: 3}
 --- !u!114 &3718562589518122887
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -70,6 +52,7 @@ MonoBehaviour:
   type: 9
   DamageValue: 10
   HealValue: 0
+  BumpHeight: 0.3
 --- !u!199 &1540662041973154416
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -3840,7 +3823,7 @@ ParticleSystem:
     collidesWithDynamic: 1
     interiorCollisions: 0
   TriggerModule:
-    enabled: 0
+    enabled: 1
     collisionShape0: {fileID: 0}
     collisionShape1: {fileID: 0}
     collisionShape2: {fileID: 0}
@@ -4841,3 +4824,20 @@ MonoBehaviour:
   RTPCValue: {fileID: 0}
   SetStateGroup: 
   SetStateValue: 
+--- !u!114 &124739324904333406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9232367916435815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7384a6038693d643b2f6aa08045db59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnTimer: 4
+  OffTimer: 5
+  StartTurnedOn: 1
+  StartOffsetTimer: 0
+  ParticlesOnCollision: {fileID: 0}

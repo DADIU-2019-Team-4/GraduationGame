@@ -27,6 +27,10 @@ public class AudioEventEditor : Editor
                 audioListener.SetStateGroup = EditorGUILayout.TextField("State Group: ", audioListener.SetStateGroup);
                 audioListener.SetStateValue = EditorGUILayout.TextField("State Value: ", audioListener.SetStateValue);
                 break;
+
+            case AudioEvent.WwiseFunction.PostEventName:
+                audioListener.EventName = audioListener.TriggerType.ToString();
+                break;
         }
 
     }

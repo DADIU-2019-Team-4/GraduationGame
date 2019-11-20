@@ -7,12 +7,14 @@ public class InteractableObjectEditor : Editor
     public SerializedProperty TypeProperty;
     public SerializedProperty DamageValueProperty;
     public SerializedProperty HealValueProperty;
+    public SerializedProperty BumpHeightProperty;
 
     void OnEnable()
     {
         TypeProperty = serializedObject.FindProperty("type");
         DamageValueProperty = serializedObject.FindProperty("DamageValue");
         HealValueProperty = serializedObject.FindProperty("HealValue");
+        BumpHeightProperty = serializedObject.FindProperty("BumpHeight");
     }
 
     public override void OnInspectorGUI()
@@ -41,6 +43,7 @@ public class InteractableObjectEditor : Editor
                 break;
         }
 
+        EditorGUILayout.PropertyField(BumpHeightProperty, new GUIContent("Bump Height"));
         serializedObject.ApplyModifiedProperties();
     }
 }
