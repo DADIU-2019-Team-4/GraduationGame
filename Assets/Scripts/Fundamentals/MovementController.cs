@@ -4,7 +4,6 @@ using TMPro;
 using UnityEngine;
 using Yarn.Unity;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
@@ -79,7 +78,7 @@ public class MovementController : MonoBehaviour
     private Vector3 startPosition;
     private Vector3 goalPosition;
 
-    CameraShake cameraShake;
+    //CameraShake cameraShake;
     private MoMa.CharacterController _salamander;
     private float chargedDashShakeDur = 0.2f;
 
@@ -110,7 +109,7 @@ public class MovementController : MonoBehaviour
         animationController = GetComponentInChildren<FireGirlAnimationController>();
         material = GetComponent<Renderer>().material;
         gameController = FindObjectOfType<GameController>();
-        audioEvents = GetComponents<AudioEvent>().ToList<AudioEvent>();
+        audioEvents = new List<AudioEvent>(GetComponents<AudioEvent>());
         attachToPlane = GetComponent<AttachToPlane>();
         playerActionsCollectorQA = FindObjectOfType<PlayerActionsCollectorQA>();
     }
@@ -119,7 +118,7 @@ public class MovementController : MonoBehaviour
     private void Start()
     {
         FireAmountText = GameObject.Find("FireAmountText").GetComponent<TextMeshProUGUI>();
-        cameraShake = GameObject.FindGameObjectWithTag("VirtualCamera").GetComponent<CameraShake>();
+        //cameraShake = GameObject.FindGameObjectWithTag("VirtualCamera").GetComponent<CameraShake>();
         _salamander = FindObjectOfType<MoMa.CharacterController>();
 
         if (_salamander == null)
@@ -288,7 +287,7 @@ public class MovementController : MonoBehaviour
 
         if (IsDashing)
         {
-            cameraShake.setShakeElapsedTime(chargedDashShakeDur);
+            //cameraShake.setShakeElapsedTime(chargedDashShakeDur);
             UpdateFireAmount(DashCostInPercentage);
         }
         else

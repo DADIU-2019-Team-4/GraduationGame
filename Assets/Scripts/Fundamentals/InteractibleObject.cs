@@ -2,7 +2,6 @@
 using UnityEngine;
 using Yarn.Unity;
 using System.Collections.Generic;
-using System.Linq;
 
 public class InteractibleObject : DashInteractable
 {
@@ -234,7 +233,7 @@ public class InteractibleObject : DashInteractable
     private void AssignDependencies()
     {
         movementController = FindObjectOfType<MovementController>();
-        audioEvents = GetComponents<AudioEvent>().ToList<AudioEvent>();
+        audioEvents = new List<AudioEvent>(GetComponents<AudioEvent>());
         dialogRunner = FindObjectOfType<DialogueRunner>();
         timeSlowdown = GameObject.FindGameObjectWithTag("VirtualCamera").GetComponent<TimeSlowdown>();
         cameraShake = GameObject.FindGameObjectWithTag("VirtualCamera").GetComponent<CameraShake>();

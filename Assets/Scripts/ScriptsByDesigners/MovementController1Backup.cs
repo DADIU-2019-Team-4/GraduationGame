@@ -4,7 +4,6 @@ using TMPro;
 using UnityEngine;
 using Yarn.Unity;
 using System.Collections.Generic;
-using System.Linq;
 
 public class MovementController1Backup : MonoBehaviour
 {
@@ -102,7 +101,7 @@ public class MovementController1Backup : MonoBehaviour
         material = GetComponent<Renderer>().material;
         trailRenderer = GetComponent<TrailRenderer>();
         gameController = FindObjectOfType<GameController>();
-        audioEvents = GetComponents<AudioEvent>().ToList<AudioEvent>();
+        audioEvents = new List<AudioEvent>(GetComponents<AudioEvent>());
         attachToPlane = GetComponent<AttachToPlane>();
         //dialogCollision = GetComponentInChildren<DialogCollision>();
         dialogRunner = FindObjectOfType<DialogueRunner>();

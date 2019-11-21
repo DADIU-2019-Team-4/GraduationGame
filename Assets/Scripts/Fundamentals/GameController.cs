@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
@@ -27,7 +26,7 @@ public class GameController : MonoBehaviour
 
     private void Start()
     {
-        audioEvents = GetComponents<AudioEvent>().ToList<AudioEvent>();
+        audioEvents = new List<AudioEvent>(GetComponents<AudioEvent>());
         LevelNameText.text = SceneManager.GetActiveScene().name;
     }
 
