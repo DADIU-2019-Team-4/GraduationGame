@@ -29,7 +29,6 @@ public class DialogueTrigger : MonoBehaviour
 
 
 
-
         EventOnEnd.Invoke();
 
         if (OnlyTriggeredOnce)

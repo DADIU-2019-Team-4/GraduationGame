@@ -25,7 +25,7 @@ public class InteractibleObject : DashInteractable
     public float BumpHeight = 0.3f;
     private MovementController movementController;
     private List<AudioEvent> audioEvents;
-    private DialogueRunner dialogRunner;
+    //private DialogueRunner dialogRunner;
     private PopUpObject popUpObject;
 
     public bool IsBreakable { get; set; }
@@ -115,7 +115,7 @@ public class InteractibleObject : DashInteractable
         {
             movementController.TargetPosition = hitpoint + movementController.transform.forward * movementController.BounceValue;
             movementController.HasDied = true;
-            dialogRunner.StartDialogue("Death");
+            //dialogRunner.StartDialogue("Death");
             movementController.CheckGameEnd();
         }
         
@@ -138,7 +138,7 @@ public class InteractibleObject : DashInteractable
     private void Goal()
     {
         gameObject.GetComponent<BoxCollider>().enabled = false;
-        dialogRunner.StartDialogue("Goal");
+        //dialogRunner.StartDialogue("Goal");
         movementController.CollideGoal(gameObject);
         movementController.TargetPosition = gameObject.transform.position;
     }
@@ -146,7 +146,7 @@ public class InteractibleObject : DashInteractable
     private void Block(Vector3 hitpoint)
     {
         AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.ObstacleBlock, audioEvents, gameObject);
-        dialogRunner.StartDialogue("Block");
+        //dialogRunner.StartDialogue("Block");
         movementController.TargetPosition = hitpoint - movementController.transform.forward * movementController.BounceValue;
     }
 
@@ -158,7 +158,7 @@ public class InteractibleObject : DashInteractable
             cameraShake.setShakeElapsedTime(breakShake);
             timeSlowdown.doSlowmotion();
             gameObject.GetComponent<BurnObject>().SetObjectOnFire(hitpoint);
-            dialogRunner.StartDialogue("Break");
+            //dialogRunner.StartDialogue("Break");
             movementController.UpdateFireAmount(-HealValue);
             FindObjectOfType<PlayerActionsCollectorQA>().DataConteiner.DestroyedObjectsCount++;
         }
@@ -178,7 +178,7 @@ public class InteractibleObject : DashInteractable
 
     private void PickUp()
     {
-        dialogRunner.StartDialogue("PickUp");
+        //dialogRunner.StartDialogue("PickUp");
         AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.BurningItem, audioEvents, gameObject);
         gameObject.GetComponent<Collider>().enabled = false;
         gameObject.SetActive(false);
@@ -234,7 +234,7 @@ public class InteractibleObject : DashInteractable
     {
         movementController = FindObjectOfType<MovementController>();
         audioEvents = new List<AudioEvent>(GetComponents<AudioEvent>());
-        dialogRunner = FindObjectOfType<DialogueRunner>();
+        //dialogRunner = FindObjectOfType<DialogueRunner>();
         timeSlowdown = GameObject.FindGameObjectWithTag("VirtualCamera").GetComponent<TimeSlowdown>();
         cameraShake = GameObject.FindGameObjectWithTag("VirtualCamera").GetComponent<CameraShake>();
     }
