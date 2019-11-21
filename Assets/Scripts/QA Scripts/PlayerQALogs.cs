@@ -45,11 +45,11 @@ public class PlayerQALogs : MonoBehaviour
             int xLenght = player.transform.position.x.ToString().Length;
             int zLenght = player.transform.position.z.ToString().Length;
             if (xLenght < 4)
-                playerX = player.transform.position.x.ToString().Substring(0, xLenght-1);
+                playerX = player.transform.position.x.ToString().Substring(0, xLenght);
             else
                 playerX = player.transform.position.x.ToString().Substring(0, 4);
             if (zLenght<4)
-                playerZ = player.transform.position.z.ToString().Substring(0, zLenght - 1);
+                playerZ = player.transform.position.z.ToString().Substring(0, zLenght);
             else
                 playerZ = player.transform.position.z.ToString().Substring(0, 4);
             currentCount = 0;
