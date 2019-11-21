@@ -86,8 +86,6 @@ public class MovementController : MonoBehaviour
 
     public bool IsFuseMoving { get; set; }
 
-    public bool IsBlocked { get; set; }
-
     public bool TriggerCoyoteTime { get; set; }
 
     public bool IsDashCharged { get; set; }
@@ -157,7 +155,6 @@ public class MovementController : MonoBehaviour
         if (damageTimer > DamageCoolDownValue)
         {
             DamageCoolDownActivated = false;
-            IsBlocked = false;
             damageTimer = 0;
         }
     }
