@@ -5,16 +5,10 @@ using UnityEngine;
 
 public class AttachToPlane : MonoBehaviour
 {
-    Rigidbody rb;
+    private Rigidbody rb;
     [Header("Movement variables")]
     [SerializeField]
     public bool _attached;
-    [Range(10.0f, 25.0f)]
-    public float speed;
-    [Range(1.0f, 3.0f)]
-    public float dashSpeed;
-
-    private BoxCollider boxCollider;
 
     private List<AudioEvent> audioEvents;
 
@@ -27,17 +21,7 @@ public class AttachToPlane : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         _attached = false;
-        boxCollider = GetComponent<BoxCollider>();
     }
-
-    void Update()
-    {
-        
-
-        
-    }
-    
-
 
     private void OnTriggerEnter(Collider other)
     {
@@ -49,13 +33,9 @@ public class AttachToPlane : MonoBehaviour
     
     public void Detach(bool destroy)
     {
-
-
-
         Transform parent = gameObject.transform.parent;
         if(parent != null)
         {
-
             AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.OffPlane, audioEvents, gameObject);
             //water temp fix
             Collider[] colls = Physics.OverlapSphere(transform.position, 0.3f);
@@ -69,23 +49,20 @@ public class AttachToPlane : MonoBehaviour
                     {
                         Debug.Log(coll.gameObject.name + "was here");
                         coll.gameObject.GetComponent<InteractibleObject>().Interact(coll.transform.position);
-                    }
-
-
+                    }              
                 }
             }
 
             parent.GetComponent<PaperPlane>().playerAttachedToThis = false;
             transform.parent = null;
-            gameObject.GetComponent<Rigidbody>().useGravity = true;
+            rb.velocity = Vector3.zero;
+            rb.useGravity = true;
             _attached = false;
 
             GetComponent<MovementController>().IsInvulnerable = false;
-
+            
             if (destroy)
                 Destroy(parent.gameObject);
-        }
-       
+        }     
     }
-
 }

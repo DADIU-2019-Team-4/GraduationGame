@@ -16,6 +16,8 @@ public class LoadLevel : MonoBehaviour
         Time.timeScale = 0f;
         SceneManager.LoadSceneAsync(LevelName, LoadSceneMode.Additive);
         Destroy(gameObject, 10f);
+        MovementController movementController = FindObjectOfType<MovementController>();
+        movementController.transform.position = Vector3.zero;
         Time.timeScale = 1f;
     }
 }
