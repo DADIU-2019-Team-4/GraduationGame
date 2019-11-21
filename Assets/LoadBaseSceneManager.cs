@@ -6,24 +6,34 @@ using UnityEngine.SceneManagement;
 public class LoadBaseSceneManager : IGameLoop
 {
     [SerializeField]
-    private string _initialSceneName;
+    public enum BaseScenes
+    {
+        Hub_1,
+        MathiasRoom1Level1,
+        MathiasRoom1Level2,
+        MagnusRoom2Level1_NOLIGHT,
+        MagnusRoom2Level2_NOLIGHT
+    }
+    public BaseScenes SelectedScene;
     public float _waitForSeconds;
     public GameObject _player;
     private void Start()
     {
-        LoadBaseScene(_initialSceneName);
+        LoadBaseScene(SelectedScene);
     }
 
-    public void LoadBaseScene(string name)
+    public void LoadBaseScene(BaseScenes scenes)
     {
         ;
         //TO DO:
         //Loading asset bundle from Internet or from cache 
-        StartCoroutine(LoadNewSceneAsync(name));
+        Debug.Log(scenes.ToString());
+        StartCoroutine(LoadNewSceneAsync(scenes.ToString()));
     }
     public void UnloadScene(string name)
     {
-        _player.GetComponent<MovementController>().StopAllCoroutines();
+        _player.GetComponent<MovementController>().StopMoving();
+         ResetPlayerPos();
         SceneManager.UnloadSceneAsync(name);
         //TO.DO
         //Unload assetBundle
