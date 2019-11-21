@@ -10,6 +10,7 @@ public class Fuse : MonoBehaviour
     private bool isUsed;
     private MovementController movementController;
     private Rigidbody playerRigidbody;
+    private GameController gameController;
 
     private GameObject generated;
     private Spline spline;
@@ -27,6 +28,7 @@ public class Fuse : MonoBehaviour
     private void Awake()
     {
         movementController = FindObjectOfType<MovementController>();
+        gameController = FindObjectOfType<GameController>();
         spline = GetComponent<Spline>();
         audioEvents = new List<AudioEvent>(GetComponents<AudioEvent>());
     }
@@ -51,6 +53,12 @@ public class Fuse : MonoBehaviour
 
         if (!movementController.IsFuseMoving || !isMoving)
             return;
+
+        if (gameController == null)
+            gameController = FindObjectOfType<GameController>();
+
+        if (gameController != null && gameController.GameHasEnded)
+            StopFollowing();
 
         playerRigidbody = movementController.GetComponent<Rigidbody>();
 
@@ -86,6 +94,7 @@ public class Fuse : MonoBehaviour
             AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.OffRope, audioEvents, gameObject);
 
             movementController.IsInvulnerable = false;
+
             playerRigidbody.velocity = Vector3.zero;
             movementController.StopMoving();
         }
@@ -112,6 +121,9 @@ public class Fuse : MonoBehaviour
 
     public void FromStartToEnd()
     {
+        if (!isMoving)
+            return;
+
         rate += Time.deltaTime / DurationInSecond;
         if (rate < spline.nodes.Count - 1)
             PlaceFollower();
@@ -121,6 +133,9 @@ public class Fuse : MonoBehaviour
 
     public void FromEndToStart()
     {
+        if (!isMoving)
+            return;
+
         rate -= Time.deltaTime / DurationInSecond;
         if (rate >= 0)
             PlaceFollower();

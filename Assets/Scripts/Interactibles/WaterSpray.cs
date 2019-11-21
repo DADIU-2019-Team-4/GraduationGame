@@ -94,6 +94,9 @@ public class WaterSpray : MonoBehaviour
                     interactibleObject.Interact(transform.position);
             }
 
+            if (movementController.IsFuseMoving)
+                return;
+
             // bump player back
             if (ParticlesOnCollision != null)
             {
