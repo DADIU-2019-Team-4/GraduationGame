@@ -29,7 +29,7 @@ public class LoadBaseSceneManager : IGameLoop
         //Loading asset bundle from Internet or from cache 
         Debug.Log(scenes.ToString());
         if(scenes == BaseScenes.Hub_1)
-            StartCoroutine(LoadNewSceneAsync(scenes.ToString()+".1"));
+            StartCoroutine(LoadNewSceneAsync(scenes.ToString()+".0"));
         else
             StartCoroutine(LoadNewSceneAsync(scenes.ToString()));
     }
