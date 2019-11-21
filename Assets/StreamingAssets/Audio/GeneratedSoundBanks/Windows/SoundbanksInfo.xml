@@ -36,14 +36,14 @@
 				<Event Id="2850533655" Name="DashCancel" ObjectPath="\Events\Character\Dashing\DashCancel" MaxAttenuation="0.000000" DurationType="OneShot" DurationMin="0.000000" DurationMax="0.000000"/>
 				<Event Id="2044049779" Name="Dead" ObjectPath="\Events\Character\PlayerHealth\Dead" DurationType="OneShot" DurationMin="0.781509" DurationMax="5.634581"/>
 				<Event Id="679539432" Name="DeathObject" ObjectPath="\Events\Character\Objects\DeathObject" DurationType="OneShot" DurationMin="1.538095" DurationMax="1.538095"/>
-				<Event Id="1404152342" Name="Fireplace" ObjectPath="\Events\Environment\Fireplace\Fireplace" MaxAttenuation="20.000000" DurationType="Infinite"/>
-				<Event Id="1754859836" Name="GateUnlock" ObjectPath="\Events\Character\Objects\GateUnlock" DurationType="OneShot" DurationMin="8.057756" DurationMax="8.057756"/>
+				<Event Id="1404152342" Name="Fireplace" ObjectPath="\Events\Environment\Fireplace\Fireplace" MaxAttenuation="10.000000" DurationType="Infinite"/>
+				<Event Id="1822606759" Name="GateUnlocked" ObjectPath="\Events\Character\Objects\GateUnlocked" DurationType="OneShot" DurationMin="8.057756" DurationMax="8.057756"/>
 				<Event Id="2106235974" Name="InteractiveMusic_01" ObjectPath="\Events\Music\InteractiveMusic_01" DurationType="Infinite"/>
 				<Event Id="1330879727" Name="KillOnRestart" ObjectPath="\Events\GameController\KillOnRestart" MaxAttenuation="0.000000" DurationType="OneShot" DurationMin="0.000000" DurationMax="0.000000"/>
 				<Event Id="1016929228" Name="NormalDash" ObjectPath="\Events\Character\Dashing\NormalDash" DurationType="OneShot" DurationMin="1.601180" DurationMax="1.904135"/>
-				<Event Id="428947066" Name="OffPlane" ObjectPath="\Events\Character\PaperPlane\OffPlane" DurationType="OneShot" DurationMin="1.044935" DurationMax="1.044935"/>
+				<Event Id="428947066" Name="OffPlane" ObjectPath="\Events\Character\PaperPlane\OffPlane" MaxAttenuation="15.000000" DurationType="OneShot" DurationMin="1.044935" DurationMax="1.044935"/>
 				<Event Id="1766390728" Name="OffRope" ObjectPath="\Events\Character\RopeMechanic\OffRope" MaxAttenuation="0.000000" DurationType="OneShot" DurationMin="0.000000" DurationMax="0.000000"/>
-				<Event Id="4028171492" Name="OnPlane" ObjectPath="\Events\Character\PaperPlane\OnPlane" DurationType="OneShot" DurationMin="0.461542" DurationMax="0.461542"/>
+				<Event Id="4028171492" Name="OnPlane" ObjectPath="\Events\Character\PaperPlane\OnPlane" MaxAttenuation="15.000000" DurationType="OneShot" DurationMin="0.461542" DurationMax="0.461542"/>
 				<Event Id="2346684474" Name="OnRope" ObjectPath="\Events\Character\RopeMechanic\OnRope" DurationType="Infinite"/>
 				<Event Id="3564400826" Name="OutsideAmbience" ObjectPath="\Events\Environment\OutsideAmbience" DurationType="Infinite"/>
 				<Event Id="1933716535" Name="PaperPlaneDead" ObjectPath="\Events\Character\PaperPlane\PaperPlaneDead" MaxAttenuation="0.000000" DurationType="OneShot" DurationMin="0.000000" DurationMax="0.000000"/>
@@ -55,8 +55,8 @@
 				<Event Id="1090191588" Name="RoomTone_Hub" ObjectPath="\Events\Environment\RoomTones\RoomTone_Hub" DurationType="Infinite"/>
 				<Event Id="1547275971" Name="TheHub_Music" ObjectPath="\Events\Music\TheHub_Music" DurationType="OneShot" DurationMin="190.174347" DurationMax="190.174347"/>
 				<Event Id="1904864137" Name="Torch" ObjectPath="\Events\Environment\Fireplace\Torches\Torch" MaxAttenuation="20.000000" DurationType="Infinite"/>
-				<Event Id="2312877492" Name="WaterSprayOff" ObjectPath="\Events\Environment\WaterSpray\WaterSprayOff" MaxAttenuation="20.000000" DurationType="OneShot" DurationMin="3.402018" DurationMax="3.402018"/>
-				<Event Id="441114158" Name="WaterSprayOn" ObjectPath="\Events\Environment\WaterSpray\WaterSprayOn" MaxAttenuation="20.000000" DurationType="OneShot" DurationMin="3.461542" DurationMax="3.461542"/>
+				<Event Id="2312877492" Name="WaterSprayOff" ObjectPath="\Events\Environment\WaterSpray\WaterSprayOff" MaxAttenuation="15.000000" DurationType="OneShot" DurationMin="3.402018" DurationMax="3.402018"/>
+				<Event Id="441114158" Name="WaterSprayOn" ObjectPath="\Events\Environment\WaterSpray\WaterSprayOn" MaxAttenuation="15.000000" DurationType="OneShot" DurationMin="3.461542" DurationMax="3.461542"/>
 				<Event Id="3044105157" Name="WinPuzzle" ObjectPath="\Events\InGame_UI\WinPuzzle" DurationType="OneShot" DurationMin="7.245805" DurationMax="7.245805"/>
 			</IncludedEvents>
 			<IncludedMemoryFiles>
