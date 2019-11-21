@@ -87,6 +87,7 @@ public class WaterSpray : MonoBehaviour
             if (!movementController.DamageCoolDownActivated)
             {
                 movementController.DamageCoolDownActivated = true;
+                movementController.IsBlocked = true;
 
                 // damage player
                 InteractibleObject interactibleObject = GetComponent<InteractibleObject>();

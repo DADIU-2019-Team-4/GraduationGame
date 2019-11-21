@@ -49,7 +49,7 @@ public class Fuse : MonoBehaviour
                 Follower = movementController.gameObject;
         }
 
-        if (!movementController.IsFuseMoving || !isMoving)
+        if (!movementController.IsFuseMoving || !isMoving || movementController.IsBlocked)
             return;
 
         playerRigidbody = movementController.GetComponent<Rigidbody>();
