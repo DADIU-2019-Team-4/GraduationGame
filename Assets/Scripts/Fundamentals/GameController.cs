@@ -30,7 +30,8 @@ public class GameController : MonoBehaviour
     private void Start()
     {
         audioEvents = new List<AudioEvent>(GetComponents<AudioEvent>());
-        LevelNameText.text = SceneManager.GetActiveScene().name;
+        var index = SceneManager.sceneCount;
+        LevelNameText.text = SceneManager.GetSceneAt(index - 1).name;
     }
 
     private void Update()
@@ -95,7 +96,7 @@ public class GameController : MonoBehaviour
 
     public void GoToNextScene()
     {
-        SceneManager.LoadScene(FindObjectOfType<LevelEnter>().loadSceneName);
+        SceneManager.LoadScene(FindObjectOfType<LevelEnter>().SelectedScene.ToString());
         //if (string.IsNullOrEmpty(NextLevelName))
         //    RestartScene();
         //else

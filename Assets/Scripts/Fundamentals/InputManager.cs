@@ -55,6 +55,9 @@ public class InputManager : IGameLoop
     /// </summary>
     public override void GameLoopUpdate()
     {
+        if (DialogueTrigger.DialogueIsRunning)
+            DialogueClick();
+
         if (!gameController.IsPlaying || movementController.IsFuseMoving) return;
 
         HandleInput();
@@ -63,6 +66,20 @@ public class InputManager : IGameLoop
 
         if (isHolding)
             DetermineMove();
+    }
+
+    /// <summary>
+    /// Handles clicks for dialogue
+    /// </summary>
+    private void DialogueClick()
+    {
+#if UNITY_EDITOR || UNITY_STANDALONE
+        if (Input.GetMouseButtonDown(0))
+            DialogueTrigger.ClickDown = true;
+#elif UNITY_ANDROID || UNITY_IOS
+        if (Input.GetTouch(0).phase == TouchPhase.Began)
+            DialogueTrigger.ClickDown = true;
+#endif
     }
 
     /// <summary>
