@@ -94,8 +94,8 @@ public class Fuse : MonoBehaviour
             AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.OffRope, audioEvents, gameObject);
 
             movementController.IsInvulnerable = false;
-            if (playerRigidbody == null)
-            	playerRigidBody.velocity = Vector3.zero;
+            if (playerRigidbody != null)
+                playerRigidbody.velocity = Vector3.zero;
             movementController.StopMoving();
         }
     }
