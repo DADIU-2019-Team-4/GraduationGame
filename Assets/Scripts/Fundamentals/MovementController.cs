@@ -91,6 +91,7 @@ public class MovementController : MonoBehaviour
     public bool IsDashCharged { get; set; }
 
     public bool IsDashing { get; set; }
+
     public bool HasDied { get; set; }
 
     public bool IsInvulnerable { get; set; }
@@ -344,6 +345,7 @@ public class MovementController : MonoBehaviour
         StopCoroutine(nameof(MoveRoutine));
         StopCoroutine(nameof(MoveBackRoutine));
         rigidBody.velocity = Vector3.zero;
+        SceneManager.MoveGameObjectToScene(gameObject, SceneManager.GetActiveScene());
     }
 
     private void DashEnded()
@@ -389,7 +391,7 @@ public class MovementController : MonoBehaviour
     /// </summary>
     private void UpdateFireAmountText()
     {
-        FireAmountText.text = string.Format("{0:.#}", currentFireAmount) + "%";
+        FireAmountText.text = string.Format("{0:0.#}", currentFireAmount) + "%";
     }
 
     /// <summary>
@@ -436,13 +438,14 @@ public class MovementController : MonoBehaviour
         UpdateGoalDistances();
         HealthPercentage.Value = currentFireAmount;
         UpdateGoalDistances();
+        rigidBody.velocity = Vector3.zero;
     }
 
     private void DisablePlayerCharacter(bool disable = true)
     {
         StopMoving();
         GetComponent<CapsuleCollider>().enabled = !disable;
-        GetComponent<Rigidbody>().isKinematic = disable;
+        rigidBody.isKinematic = disable;
     }
 
     public void CollideFusePoint()
