@@ -7,10 +7,12 @@ public class LevelEnter : IGameLoop
     public string loadSceneName;
     [SerializeField]
     private bool isOpened;
+    private LoadBaseSceneManager _sceneManager;
 
     private void Start()
     {
         Renderer material = GetComponent<Renderer>();
+        _sceneManager = FindObjectOfType<LoadBaseSceneManager>();
         if (!PlayerPrefs.HasKey(gameObject.name))
             CreateKeys(gameObject.name);
         else
@@ -35,7 +37,10 @@ public class LevelEnter : IGameLoop
             var closeFile = FindObjectOfType<PlayerQALogs>();
             if(closeFile!=null)
                 closeFile.Close();
-            SceneManager.LoadScene(loadSceneName);
+            var playerRigidbogy = other.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            var index = SceneManager.sceneCount;
+            _sceneManager.UnloadScene(SceneManager.GetSceneAt(index-1).name);
+            _sceneManager.LoadBaseScene(loadSceneName);
         }
     }
     private void CreateKeys(string name)
