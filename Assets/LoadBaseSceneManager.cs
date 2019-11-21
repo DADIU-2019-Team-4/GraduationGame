@@ -23,6 +23,7 @@ public class LoadBaseSceneManager : IGameLoop
     }
     public void UnloadScene(string name)
     {
+        _player.GetComponent<MovementController>().StopAllCoroutines();
         SceneManager.UnloadSceneAsync(name);
         //TO.DO
         //Unload assetBundle
