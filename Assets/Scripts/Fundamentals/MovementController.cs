@@ -4,7 +4,6 @@ using TMPro;
 using UnityEngine;
 using Yarn.Unity;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
@@ -110,7 +109,7 @@ public class MovementController : MonoBehaviour
         animationController = GetComponentInChildren<FireGirlAnimationController>();
         material = GetComponent<Renderer>().material;
         gameController = FindObjectOfType<GameController>();
-        audioEvents = GetComponents<AudioEvent>().ToList<AudioEvent>();
+        audioEvents = new List<AudioEvent>(GetComponents<AudioEvent>());
         attachToPlane = GetComponent<AttachToPlane>();
         playerActionsCollectorQA = FindObjectOfType<PlayerActionsCollectorQA>();
     }

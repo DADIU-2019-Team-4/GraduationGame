@@ -1,6 +1,5 @@
 ﻿using SplineMesh;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 [RequireComponent(typeof(Spline))]
@@ -29,7 +28,7 @@ public class Fuse : MonoBehaviour
     {
         movementController = FindObjectOfType<MovementController>();
         spline = GetComponent<Spline>();
-        audioEvents = GetComponents<AudioEvent>().ToList<AudioEvent>();
+        audioEvents = new List<AudioEvent>(GetComponents<AudioEvent>());
     }
 
     private void Start()

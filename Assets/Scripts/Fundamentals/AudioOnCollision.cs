@@ -1,14 +1,13 @@
 ﻿using System.Collections;
 using UnityEngine;
 using System.Collections.Generic;
-using System.Linq;
 public class AudioOnCollision : MonoBehaviour
 {
     private List<AudioEvent> audioEvents;
 
     private void Awake()
     {
-        audioEvents = GetComponents<AudioEvent>().ToList<AudioEvent>();
+        audioEvents = new List<AudioEvent>(GetComponents<AudioEvent>());
     }
 
     private void OnCollisionEnter(Collision collision)
