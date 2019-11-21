@@ -345,6 +345,7 @@ public class MovementController : MonoBehaviour
         StopCoroutine(nameof(MoveRoutine));
         StopCoroutine(nameof(MoveBackRoutine));
         rigidBody.velocity = Vector3.zero;
+        SceneManager.MoveGameObjectToScene(gameObject, SceneManager.GetActiveScene());
     }
 
     private void DashEnded()

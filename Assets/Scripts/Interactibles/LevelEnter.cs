@@ -3,14 +3,15 @@ using UnityEngine.SceneManagement;
 
 public class LevelEnter : IGameLoop
 {
-    [SerializeField]
-    public string loadSceneName;
+    public LoadBaseSceneManager.BaseScenes SelectedScene;
     [SerializeField]
     private bool isOpened;
+    private LoadBaseSceneManager _sceneManager;
 
     private void Start()
     {
         Renderer material = GetComponent<Renderer>();
+        _sceneManager = FindObjectOfType<LoadBaseSceneManager>();
         if (!PlayerPrefs.HasKey(gameObject.name))
             CreateKeys(gameObject.name);
         else
@@ -29,13 +30,15 @@ public class LevelEnter : IGameLoop
     }
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Should Load New Scene");
         if (other.gameObject.CompareTag("Player") && isOpened)
         {
+            Debug.Log("Should Load New Scene");
             var closeFile = FindObjectOfType<PlayerQALogs>();
             if(closeFile!=null)
                 closeFile.Close();
-            SceneManager.LoadScene(loadSceneName);
+            var index = SceneManager.sceneCount;
+            _sceneManager.UnloadScene(SceneManager.GetSceneAt(index-1).name);
+            _sceneManager.LoadBaseScene(SelectedScene);
         }
     }
     private void CreateKeys(string name)
