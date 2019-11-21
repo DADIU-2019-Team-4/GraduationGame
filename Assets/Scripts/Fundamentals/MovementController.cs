@@ -78,7 +78,7 @@ public class MovementController : MonoBehaviour
     private Vector3 startPosition;
     private Vector3 goalPosition;
 
-    CameraShake cameraShake;
+    //CameraShake cameraShake;
     private MoMa.CharacterController _salamander;
     private float chargedDashShakeDur = 0.2f;
 
@@ -118,7 +118,7 @@ public class MovementController : MonoBehaviour
     private void Start()
     {
         FireAmountText = GameObject.Find("FireAmountText").GetComponent<TextMeshProUGUI>();
-        cameraShake = GameObject.FindGameObjectWithTag("VirtualCamera").GetComponent<CameraShake>();
+        //cameraShake = GameObject.FindGameObjectWithTag("VirtualCamera").GetComponent<CameraShake>();
         _salamander = FindObjectOfType<MoMa.CharacterController>();
 
         if (_salamander == null)
@@ -287,7 +287,7 @@ public class MovementController : MonoBehaviour
 
         if (IsDashing)
         {
-            cameraShake.setShakeElapsedTime(chargedDashShakeDur);
+            //cameraShake.setShakeElapsedTime(chargedDashShakeDur);
             UpdateFireAmount(DashCostInPercentage);
         }
         else
@@ -440,6 +440,7 @@ public class MovementController : MonoBehaviour
 
     private void DisablePlayerCharacter(bool disable = true)
     {
+        StopMoving();
         GetComponent<CapsuleCollider>().enabled = !disable;
         GetComponent<Rigidbody>().isKinematic = disable;
     }
