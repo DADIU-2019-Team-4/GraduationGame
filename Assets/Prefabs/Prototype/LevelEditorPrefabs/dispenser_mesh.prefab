@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5707805728631555445}
   - component: {fileID: 3633619498764418883}
   - component: {fileID: 7012593653315191738}
+  - component: {fileID: 8211333303298204771}
   m_Layer: 0
   m_Name: dispenser_mesh
   m_TagString: Untagged
@@ -57,7 +58,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 5561349426305759274, guid: 856bb9b6fa365574f97390fa5a46d2ae, type: 3}
+  - {fileID: 2100000, guid: db4e03fd3e176734aad20250d703a1ff, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -77,3 +78,16 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &8211333303298204771
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8749767063805949798}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.27300355, y: 0.28647104, z: 0.24930187}
+  m_Center: {x: -0.02514493, y: 0.14582114, z: 0}
