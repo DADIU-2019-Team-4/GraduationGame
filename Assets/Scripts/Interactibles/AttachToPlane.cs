@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class AttachToPlane : MonoBehaviour
@@ -21,7 +20,7 @@ public class AttachToPlane : MonoBehaviour
 
     private void Awake()
     {
-        audioEvents = GetComponents<AudioEvent>().ToList<AudioEvent>();
+        audioEvents = new List<AudioEvent>(GetComponents<AudioEvent>());
     }
 
     void Start()

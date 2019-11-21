@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class PaperPlane : DashInteractable
@@ -22,7 +21,7 @@ public class PaperPlane : DashInteractable
 
     private void Awake()
     {
-        audioEvents = GetComponents<AudioEvent>().ToList<AudioEvent>();
+        audioEvents = new List<AudioEvent>(GetComponents<AudioEvent>());
     }
 
 

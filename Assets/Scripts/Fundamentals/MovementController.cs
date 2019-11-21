@@ -4,7 +4,6 @@ using TMPro;
 using UnityEngine;
 using Yarn.Unity;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
@@ -20,6 +19,8 @@ public class MovementController : MonoBehaviour
     public float DamageBounceValue = 1f;
     [Tooltip("How long the player is invulnerable after taking damage.")]
     public float DamageCoolDownValue = 0.5f;
+    [Tooltip("How long you need to charge before the dash animation and sound gets triggered.")]
+    public float ChargeAnimationDelay = 0.45f;
 
     [Header("Move Settings")]
     [Tooltip("Duration of a move in seconds (how long it takes to get to target position).")]
@@ -57,11 +58,12 @@ public class MovementController : MonoBehaviour
     private List<AudioEvent> audioEvents;
 
     private AttachToPlane attachToPlane;
+    private Coroutine prepareDashRoutine;
 
     private float currentFireAmount;
     private float maxFireAmount = 100f;
     private bool isOutOfFire;
-    private bool isCharged;
+    private bool startCharge;
     private bool reachedGoal;
     private float damageTimer;
 
@@ -107,7 +109,7 @@ public class MovementController : MonoBehaviour
         animationController = GetComponentInChildren<FireGirlAnimationController>();
         material = GetComponent<Renderer>().material;
         gameController = FindObjectOfType<GameController>();
-        audioEvents = GetComponents<AudioEvent>().ToList<AudioEvent>();
+        audioEvents = new List<AudioEvent>(GetComponents<AudioEvent>());
         attachToPlane = GetComponent<AttachToPlane>();
         playerActionsCollectorQA = FindObjectOfType<PlayerActionsCollectorQA>();
     }
@@ -175,14 +177,21 @@ public class MovementController : MonoBehaviour
     /// </summary>
     public void ChargeDash()
     {
-        if (!isCharged)
+        if (!startCharge)
         {
-            // Play Animation
-            animationController.ChargeDash();
-
-            AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.ChargingDash, audioEvents, gameObject);
-            isCharged = true;
+            startCharge = true;
+            prepareDashRoutine = StartCoroutine(PrepareDash());
         }
+    }
+
+    private IEnumerator PrepareDash()
+    {
+        yield return new WaitForSeconds(ChargeAnimationDelay);
+
+        // Play Animation
+        animationController.ChargeDash();
+
+        AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.ChargingDash, audioEvents, gameObject);
     }
 
     public void DashCharged()
@@ -243,11 +252,13 @@ public class MovementController : MonoBehaviour
     /// </summary>
     public void ResetDash()
     {
+        if (prepareDashRoutine != null)
+            StopCoroutine(prepareDashRoutine);
         animationController.Cancel();
         material.SetColor("_Color", Color.yellow);
         IsDashCharged = false;
         AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.DashCancelled, audioEvents, gameObject);
-        isCharged = false;
+        startCharge = false;
     }
 
     /// <summary>

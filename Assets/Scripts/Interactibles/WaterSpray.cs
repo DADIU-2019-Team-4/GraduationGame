@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Linq;
 using System.Collections.Generic;
 
 public class WaterSpray : MonoBehaviour
@@ -22,7 +21,7 @@ public class WaterSpray : MonoBehaviour
     private void Awake()
     {
         particleSystem = GetComponent<ParticleSystem>();
-        audioEvents = GetComponents<AudioEvent>().ToList<AudioEvent>();
+        audioEvents = new List<AudioEvent>(GetComponents<AudioEvent>());
     }
 
     private void Start()
