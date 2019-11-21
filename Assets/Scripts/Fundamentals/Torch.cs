@@ -9,7 +9,7 @@ public class Torch : MonoBehaviour
 
     void Awake()
     {
-        _light = gameObject.GetComponent<Light>();
+        _light = gameObject.GetComponentInChildren<Light>();
         _light.enabled = false;
     }
 
