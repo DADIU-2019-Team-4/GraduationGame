@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class RoomGate : MonoBehaviour
@@ -11,7 +10,7 @@ public class RoomGate : MonoBehaviour
 
     private void Awake()
     {
-        audioEvents = GetComponents<AudioEvent>().ToList<AudioEvent>();
+        audioEvents = new List<AudioEvent>(GetComponents<AudioEvent>());
     }
 
     // Update is called once per frame
