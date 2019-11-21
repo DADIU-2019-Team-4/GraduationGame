@@ -58,6 +58,7 @@ public class PlayerQALogs : MonoBehaviour
     }
     private void WritePosition(string message)
     {
+        Debug.Log("Text to write:" + message);
 #if UNITY_EDITOR || UNITY_STANDALONE
         WriteToPC(message);
 #elif UNITY_ANDROID || UNITY_IOS
@@ -68,6 +69,14 @@ public class PlayerQALogs : MonoBehaviour
     {
         using (StreamWriter sw = File.AppendText(currentSceneName + ".txt"))
             sw.Close();
+    }
+    public void Close()
+    {
+#if UNITY_EDITOR || UNITY_STANDALONE
+        ClosePC();
+#elif UNITY_ANDROID || UNITY_IOS
+        CloseMobile();
+#endif
     }
     private void PcCreateFile()
     {
@@ -81,21 +90,32 @@ public class PlayerQALogs : MonoBehaviour
     }
     private void MobileCreateFile()
     {
-        mobilePath = Application.persistentDataPath;
-        string filewriter = mobilePath + "/" + currentSceneName + ".txt";
-        streamWriter = File.CreateText(filewriter);
+        mobilePath = Application.persistentDataPath + "/" + currentSceneName + ".txt";
+        streamWriter = File.CreateText(mobilePath);
+        File.SetAttributes(mobilePath, FileAttributes.Normal);
         streamWriter.WriteLine("HeatMapData: X   Z");
 
     }
     private void WriteToPC(string message)
     {
-        using (StreamWriter sw = File.AppendText(currentSceneName + ".txt"))
-        {
-            sw.WriteLine(message);
-        }
+            using (StreamWriter sw = File.AppendText(currentSceneName + ".txt"))
+            {
+                sw.WriteLine(message);
+            }
     }
     public void WriteToMobile(string message)
-    {
+        {
         streamWriter.WriteLine(message);
+        }
+    private void ClosePC()
+    {
+        using (StreamWriter sw = File.AppendText(currentSceneName + ".txt"))
+        {
+            sw.Close();
+        }
+    }
+    private void CloseMobile()
+    {
+        streamWriter.Close();
     }
 }

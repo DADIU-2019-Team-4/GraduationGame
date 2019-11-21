@@ -32,6 +32,9 @@ public class LevelEnter : IGameLoop
         Debug.Log("Should Load New Scene");
         if (other.gameObject.CompareTag("Player") && isOpened)
         {
+            var closeFile = FindObjectOfType<PlayerQALogs>();
+            if(closeFile!=null)
+                closeFile.Close();
             SceneManager.LoadScene(loadSceneName);
         }
     }
