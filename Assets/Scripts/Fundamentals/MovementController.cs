@@ -440,6 +440,7 @@ public class MovementController : MonoBehaviour
 
     private void DisablePlayerCharacter(bool disable = true)
     {
+        StopMoving();
         GetComponent<CapsuleCollider>().enabled = !disable;
         GetComponent<Rigidbody>().isKinematic = disable;
     }
