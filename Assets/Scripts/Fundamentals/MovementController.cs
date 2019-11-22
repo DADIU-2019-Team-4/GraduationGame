@@ -190,6 +190,7 @@ public class MovementController : MonoBehaviour
     private IEnumerator PrepareDash()
     {
         yield return new WaitForSeconds(ChargeAnimationDelay);
+    
 
         // Play Animation
         animationController.ChargeDash();
@@ -514,3 +515,7 @@ public class MovementController : MonoBehaviour
 
     }
 }
+
+
+
+

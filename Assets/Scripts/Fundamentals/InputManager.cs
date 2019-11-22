@@ -33,6 +33,7 @@ public class InputManager : IGameLoop
     public float DashThreshold { get; set; }
 
     public bool IsPerfectTopDownCamera;
+    public bool hasVibrated;
 
     private void Awake()
     {
@@ -116,7 +117,12 @@ public class InputManager : IGameLoop
                 return;
             }
 
-            Vibration.Vibrate(5);
+            if (!hasVibrated)
+            {
+                Vibration.Vibrate(80);
+                hasVibrated = true;
+            }     
+
             // if dash is charged, change arrow to dash length
             StretchArrow(movementController.DashDistance);
             arrow.GetComponent<SpriteRenderer>().color = Color.red;
@@ -128,6 +134,7 @@ public class InputManager : IGameLoop
             doMove = false;
             arrowParent.SetActive(false);
             ResetDash();
+            hasVibrated = false;
         }
     }
 
@@ -341,7 +348,7 @@ public class InputManager : IGameLoop
         {
 
             //insert vibration for release dash
-            Vibration.Vibrate(300);
+            Vibration.Vibrate(200);
 
             movementController.Dash(directionVector.normalized);
             ResetDash();
