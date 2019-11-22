@@ -78,10 +78,10 @@ public class GameController : MonoBehaviour
     public void RestartScene()
     {
         Transform playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
-        if (StoryProgression.Value != StoryProgression.EStoryProgression.Tutorial)
+        //if (StoryProgression.Value != StoryProgression.EStoryProgression.Tutorial)
             playerTransform.position = new Vector3(0, 0, 0); // Reset position
-        else
-            playerTransform.position = LoadBaseSceneManager.TutorialStartPosition;
+        //else
+            //playerTransform.position = LoadBaseSceneManager.TutorialStartPosition;
 
 
         FindObjectOfType<MovementController>().ResetPlayerCharacterState();
