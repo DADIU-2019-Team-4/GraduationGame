@@ -39,7 +39,6 @@ public class InputManager : IGameLoop
         audioEvents = GetComponents<AudioEvent>();
         movementController = FindObjectOfType<MovementController>();
         gameController = FindObjectOfType<GameController>();
-        mainCamera = Camera.main;
         arrowParent = GameObject.FindGameObjectWithTag("Arrow");
         canvas = gameController.GetComponentInChildren<Canvas>();
     }
@@ -191,6 +190,7 @@ public class InputManager : IGameLoop
         if (!IsPerfectTopDownCamera)
         {
             float angle = Vector2.SignedAngle(Vector2.up, targetDirection);
+            if (mainCamera == null) mainCamera = Camera.main;
             Vector3 cameraRotation = mainCamera.transform.forward;
             cameraRotation.y = 0;
             return Quaternion.AngleAxis(angle, Vector3.down) * cameraRotation;
