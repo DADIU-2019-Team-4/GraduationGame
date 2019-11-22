@@ -114,7 +114,6 @@ public class GameController : MonoBehaviour
     {
         IsPlaying = false;
         GameHasEnded = true;
-        Time.timeScale = 0;
     }
 
     public void InfiniteMoves()
