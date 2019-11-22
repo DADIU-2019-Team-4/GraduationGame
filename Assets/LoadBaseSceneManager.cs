@@ -6,38 +6,28 @@ using UnityEngine.SceneManagement;
 public class LoadBaseSceneManager : IGameLoop
 {
     [SerializeField]
-    public enum BaseScenes
-    {
-        Hub_1,
-        MathiasRoom1Level1,
-        MathiasRoom1Level2,
-        MagnusRoom2Level1_NOLIGHT,
-        MagnusRoom2Level2_NOLIGHT
-    }
-    public BaseScenes SelectedScene;
-    public float _waitForSeconds;
-    public GameObject _player;
+    public string LoadSceneName;
+    public float WaitForSeconds;
+    public GameObject Player;
+
     private void Start()
     {
-        LoadBaseScene(SelectedScene);
+        LoadBaseScene(LoadSceneName);
     }
 
-    public void LoadBaseScene(BaseScenes scenes)
+    public void LoadBaseScene(string scene)
     {
-        ;
         //TO DO:
         //Loading asset bundle from Internet or from cache 
-        Debug.Log(scenes.ToString());
-        if(scenes == BaseScenes.Hub_1)
-            StartCoroutine(LoadNewSceneAsync(scenes + ".0"));
-        else
-            StartCoroutine(LoadNewSceneAsync(scenes.ToString()));
+        Debug.Log("Load scene " + scene);
+        StartCoroutine(LoadNewSceneAsync(scene));
     }
-    public void UnloadScene(string name)
+
+    public void UnloadScene(string scene)
     {
-        _player.GetComponent<MovementController>().StopMoving();
-         ResetPlayerPos();
-        SceneManager.UnloadSceneAsync(name);
+        Player.GetComponent<MovementController>().StopMoving();
+        ResetPlayerPos();
+        SceneManager.UnloadSceneAsync(scene);
         //TO.DO
         //Unload assetBundle
     }
@@ -59,6 +49,6 @@ public class LoadBaseSceneManager : IGameLoop
     }
     private void ResetPlayerPos()
     {
-        _player.transform.position = new Vector3(0, 0, 0);
+        Player.transform.position = new Vector3(0, 0, 0);
     }
 }

@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class LevelEnter : IGameLoop
 {
-    public LoadBaseSceneManager.BaseScenes SelectedScene;
+    public string SceneName;
     [SerializeField]
     private bool isOpened;
     private LoadBaseSceneManager _sceneManager;
@@ -38,7 +38,7 @@ public class LevelEnter : IGameLoop
                 closeFile.Close();
             var index = SceneManager.sceneCount;
             _sceneManager.UnloadScene(SceneManager.GetSceneAt(index-1).name);
-            _sceneManager.LoadBaseScene(SelectedScene);
+            _sceneManager.LoadBaseScene(SceneName);
         }
     }
     private void CreateKeys(string name)
