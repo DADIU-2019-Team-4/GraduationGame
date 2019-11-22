@@ -16,8 +16,13 @@ public class GameController : MonoBehaviour
     public GameObject NextSceneButton;
     public Text LevelNameText;
 
+    public StoryProgression StoryProgression;
 
+
+    // this is used for pausing the game as well.
     public bool IsPlaying { get; set; }
+
+    public bool GameHasEnded { get; set; }
 
     private List<AudioEvent> audioEvents;
 
@@ -27,7 +32,8 @@ public class GameController : MonoBehaviour
     private void Start()
     {
         audioEvents = new List<AudioEvent>(GetComponents<AudioEvent>());
-        LevelNameText.text = SceneManager.GetActiveScene().name;
+        var index = SceneManager.sceneCount;
+        LevelNameText.text = SceneManager.GetSceneAt(index - 1).name;
     }
 
     private void Update()
@@ -71,7 +77,12 @@ public class GameController : MonoBehaviour
 
     public void RestartScene()
     {
-        GameObject.FindGameObjectWithTag("Player").transform.position = new Vector3(0, 0, 0); // Reset position
+        Transform playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        //if (StoryProgression.Value != StoryProgression.EStoryProgression.Tutorial)
+            playerTransform.position = new Vector3(0, 0, 0); // Reset position
+        //else
+            //playerTransform.position = LoadBaseSceneManager.TutorialStartPosition;
+
 
         FindObjectOfType<MovementController>().ResetPlayerCharacterState();
 
@@ -80,6 +91,8 @@ public class GameController : MonoBehaviour
         WinText.SetActive(false);
         RestartButton.SetActive(false);
         IsPlaying = true;
+        GameHasEnded = false;
+        Time.timeScale = 1;
 
         foreach (var breakable in _breakables)
             breakable.gameObject.GetComponent<BurnObject>().ResetBreakable();
@@ -90,7 +103,7 @@ public class GameController : MonoBehaviour
 
     public void GoToNextScene()
     {
-        SceneManager.LoadScene(FindObjectOfType<LevelEnter>().loadSceneName);
+        SceneManager.LoadScene(FindObjectOfType<LevelEnter>().SelectedScene.ToString());
         //if (string.IsNullOrEmpty(NextLevelName))
         //    RestartScene();
         //else
@@ -100,6 +113,7 @@ public class GameController : MonoBehaviour
     public void GameEnd()
     {
         IsPlaying = false;
+        GameHasEnded = true;
     }
 
     public void InfiniteMoves()

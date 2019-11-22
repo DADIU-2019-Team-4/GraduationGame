@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8247196686663975109}
   - component: {fileID: 2400248021018836028}
   - component: {fileID: 5946920985847659880}
+  - component: {fileID: 2583138438628367632}
   m_Layer: 0
   m_Name: childRoom_wall_window
   m_TagString: Untagged
@@ -92,3 +93,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3, y: 2.5153408, z: 0.8243587}
   m_Center: {x: 0, y: 0.009756386, z: -0.15775985}
+--- !u!114 &2583138438628367632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4139849119444977888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ce2f35c75ca9e84fb3474d32def3e6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 4
+  DamageValue: 0
+  HealValue: 0
+  BumpHeight: 0.3
