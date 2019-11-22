@@ -54,6 +54,9 @@ public class InputManager : IGameLoop
     /// </summary>
     public override void GameLoopUpdate()
     {
+        if (mainCamera == null)
+            mainCamera = Camera.main;
+
         if (DialogueTrigger.DialogueIsRunning)
             DialogueClick();
 
