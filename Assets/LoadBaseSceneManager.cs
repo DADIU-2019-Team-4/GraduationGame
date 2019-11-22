@@ -28,15 +28,15 @@ public class LoadBaseSceneManager : IGameLoop
         //TO DO:
         //Loading asset bundle from Internet or from cache 
         Debug.Log(scenes.ToString());
-        if(scenes == BaseScenes.Hub_1)
-            StartCoroutine(LoadNewSceneAsync(scenes.ToString()+".1"));
+        if (scenes == BaseScenes.Hub_1)
+            StartCoroutine(LoadNewSceneAsync(scenes.ToString() + ".1"));
         else
             StartCoroutine(LoadNewSceneAsync(scenes.ToString()));
     }
     public void UnloadScene(string name)
     {
         _player.GetComponent<MovementController>().StopMoving();
-         ResetPlayerPos();
+        ResetPlayerPos();
         SceneManager.UnloadSceneAsync(name);
         //TO.DO
         //Unload assetBundle
@@ -59,6 +59,9 @@ public class LoadBaseSceneManager : IGameLoop
     }
     private void ResetPlayerPos()
     {
-        _player.transform.position = new Vector3(0, 0, 0);
+        if (SelectedScene != BaseScenes.Hub_1)
+            _player.transform.position = new Vector3(0, 0, 0);
+        else
+            _player.transform.position = new Vector3(-5.5f, 0.5f, -105f);
     }
 }
