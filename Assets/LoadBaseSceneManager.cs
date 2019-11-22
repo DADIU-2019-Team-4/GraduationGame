@@ -17,6 +17,9 @@ public class LoadBaseSceneManager : IGameLoop
     public BaseScenes SelectedScene;
     public float _waitForSeconds;
     public GameObject _player;
+
+    public static Vector3 TutorialStartPosition = new Vector3(-5.5f, 0.5f, -66f);
+
     private void Start()
     {
         LoadBaseScene(SelectedScene);
@@ -29,14 +32,14 @@ public class LoadBaseSceneManager : IGameLoop
         //Loading asset bundle from Internet or from cache 
         Debug.Log(scenes.ToString());
         if(scenes == BaseScenes.Hub_1)
-            StartCoroutine(LoadNewSceneAsync(scenes.ToString()+".1"));
+            StartCoroutine(LoadNewSceneAsync(scenes + ".1"));
         else
             StartCoroutine(LoadNewSceneAsync(scenes.ToString()));
     }
     public void UnloadScene(string name)
     {
         _player.GetComponent<MovementController>().StopMoving();
-         ResetPlayerPos();
+        ResetPlayerPos();
         SceneManager.UnloadSceneAsync(name);
         //TO.DO
         //Unload assetBundle
@@ -59,6 +62,9 @@ public class LoadBaseSceneManager : IGameLoop
     }
     private void ResetPlayerPos()
     {
-        _player.transform.position = new Vector3(0, 0, 0);
+        if (SelectedScene != BaseScenes.Hub_1)
+            _player.transform.position = Vector3.zero;
+        else
+            _player.transform.position = TutorialStartPosition;
     }
 }
