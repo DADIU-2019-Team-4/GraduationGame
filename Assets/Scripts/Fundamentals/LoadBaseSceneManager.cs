@@ -12,8 +12,8 @@ public class LoadBaseSceneManager : IGameLoop
         Hub_1,
         MathiasRoom1Level1,
         MathiasRoom1Level2,
-        MagnusRoom2Level1_NOLIGHT,
-        MagnusRoom2Level2_NOLIGHT
+        MagnusRoom2Level1,
+        MagnusRoom2Level2
     }
     public BaseScenes SelectedScene;
     public GameObject Player;
@@ -38,7 +38,7 @@ public class LoadBaseSceneManager : IGameLoop
             case BaseScenes.Hub_1:
                 for (int i = 0; i <= TutorialAssets.Length - 1;i++)
                     StartCoroutine(LoadAssets(TutorialAssets[i]));
-                StartCoroutine(LoadNewSceneAsync(scenes.ToString() + ".1"));
+                StartCoroutine(LoadNewSceneAsync(scenes.ToString() + ".0"));
                 break;
             case BaseScenes.MathiasRoom1Level1:
                 for (int i = 0; i <= Room1Level1Assets.Length - 1; i++)
@@ -50,12 +50,12 @@ public class LoadBaseSceneManager : IGameLoop
                     StartCoroutine(LoadAssets(Room1Level2Assets[i]));
                 StartCoroutine(LoadNewSceneAsync(scenes.ToString()));
                 break;
-            case BaseScenes.MagnusRoom2Level1_NOLIGHT:
+            case BaseScenes.MagnusRoom2Level1:
                 for (int i = 0; i <= Room2Level1Assets.Length - 1; i++)
                     StartCoroutine(LoadAssets(Room2Level1Assets[i]));
                 StartCoroutine(LoadNewSceneAsync(scenes.ToString()));
                 break;
-            case BaseScenes.MagnusRoom2Level2_NOLIGHT:
+            case BaseScenes.MagnusRoom2Level2:
                 for (int i = 0; i <= Room2Level2Assets.Length - 1; i++)
                     StartCoroutine(LoadAssets(Room2Level2Assets[i]));
                 StartCoroutine(LoadNewSceneAsync(scenes.ToString()));
@@ -65,7 +65,7 @@ public class LoadBaseSceneManager : IGameLoop
     public void UnloadScene(string name)
     {
         Player.GetComponent<MovementController>().StopMoving();
-         ResetPlayerPos();
+        ResetPlayerPos();
         SceneManager.UnloadSceneAsync(name);
         //TO.DO
         //Unload assetBundle
