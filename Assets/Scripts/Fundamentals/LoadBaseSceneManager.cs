@@ -79,6 +79,9 @@ public class LoadBaseSceneManager : IGameLoop
     IEnumerator LoadNewSceneAsync(string name)
     {
 
+        SceneManager.MoveGameObjectToScene(Player,
+            SceneManager.GetSceneByName("MainPlayerScene"));
+
         AsyncOperation syncOperation = SceneManager.LoadSceneAsync(name, LoadSceneMode.Additive);
         while (!syncOperation.isDone)
         {
