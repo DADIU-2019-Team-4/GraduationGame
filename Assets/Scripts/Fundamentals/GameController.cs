@@ -16,6 +16,8 @@ public class GameController : MonoBehaviour
     public GameObject NextSceneButton;
     public Text LevelNameText;
 
+    public StoryProgression StoryProgression;
+
 
     // this is used for pausing the game as well.
     public bool IsPlaying { get; set; }
@@ -75,7 +77,12 @@ public class GameController : MonoBehaviour
 
     public void RestartScene()
     {
-        GameObject.FindGameObjectWithTag("Player").transform.position = new Vector3(0, 0, 0); // Reset position
+        Transform playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        //if (StoryProgression.Value != StoryProgression.EStoryProgression.Tutorial)
+            playerTransform.position = new Vector3(0, 0, 0); // Reset position
+        //else
+            //playerTransform.position = LoadBaseSceneManager.TutorialStartPosition;
+
 
         FindObjectOfType<MovementController>().ResetPlayerCharacterState();
 
