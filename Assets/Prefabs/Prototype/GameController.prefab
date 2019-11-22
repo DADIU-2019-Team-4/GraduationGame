@@ -880,7 +880,7 @@ GameObject:
   - component: {fileID: 6325442974623910676}
   m_Layer: 5
   m_Name: Subtitles
-  m_TagString: Untagged
+  m_TagString: Subtitles
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1094,6 +1094,7 @@ MonoBehaviour:
   RestartButton: {fileID: 4066279060264565924}
   NextSceneButton: {fileID: 4066279059281485006}
   LevelNameText: {fileID: 0}
+  StoryProgression: {fileID: 11400000, guid: c9ca93d4c6428dd4c8b4f1d44c8188d5, type: 2}
 --- !u!114 &1266715236
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1285,16 +1286,6 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 9
       objectReference: {fileID: 0}
-    - target: {fileID: 4066279060708974878, guid: eed522f53dc590b4685bfa3fc0224e2f,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 7687038821585000238}
-    - target: {fileID: 4066279059675562353, guid: eed522f53dc590b4685bfa3fc0224e2f,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 7687038821585000238}
     - target: {fileID: 4066279059435298611, guid: eed522f53dc590b4685bfa3fc0224e2f,
         type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -1320,6 +1311,16 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4066279060708974878, guid: eed522f53dc590b4685bfa3fc0224e2f,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 7687038821585000238}
+    - target: {fileID: 4066279059675562353, guid: eed522f53dc590b4685bfa3fc0224e2f,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 7687038821585000238}
     - target: {fileID: 4066279059435298610, guid: eed522f53dc590b4685bfa3fc0224e2f,
         type: 3}
       propertyPath: m_text

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UINavigation : MonoBehaviour
 {
@@ -18,7 +19,7 @@ public class UINavigation : MonoBehaviour
     {
         InitPlayerPrefs();
 
-        if (PlayerPrefs.GetInt("FirstTimePlaying")==1)
+        if (PlayerPrefs.GetInt("FirstTimePlaying")==1 && _continueButton != null)
         {
             _continueButton.GetComponent<Button>().interactable= false;
         }
@@ -37,7 +38,13 @@ public class UINavigation : MonoBehaviour
         {
             _optionsMenu.SetActive(false);
         }
-        
+
+        if (this.tag == "PauseMenu")
+        {
+            _pauseMenu.SetActive(false);
+            
+        }
+
     }
 
     // Update is called once per frame
@@ -48,7 +55,7 @@ public class UINavigation : MonoBehaviour
 
     public void NewGame()
     {
-
+        SceneManager.LoadScene("Hub_1.0");
     }
 
     public void ContinueGame()
@@ -99,6 +106,11 @@ public class UINavigation : MonoBehaviour
     public void ExitPauseMenu()
     {
         _pauseMenu.SetActive(false);
+    }
+
+    public void GoToMainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 
 
