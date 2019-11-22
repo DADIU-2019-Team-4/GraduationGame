@@ -112,6 +112,9 @@ public class PaperPlane : DashInteractable
         player.GetComponent<Rigidbody>().velocity = new Vector3();
         playerAttached._attached = true;
 
+        //turn flame on
+        player.GetComponent<FlameAttachToggler>().FlameOn();
+
         isBurning = true;
     }
 
