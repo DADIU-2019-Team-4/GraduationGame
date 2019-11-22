@@ -12,7 +12,7 @@ public class VCamChange : MonoBehaviour
         {
             StartCoroutine(switchToCam());
         }
-       // switchToThisVcam();
+ 
     }
 
 
@@ -21,12 +21,6 @@ public class VCamChange : MonoBehaviour
         switchVcamOff();
     } 
     */
-
-    public void switchToThisVcam()
-    {
-        StartCoroutine(switchToCam()); 
-      
-    }
 
    private IEnumerator switchToCam()
     {
