@@ -11,6 +11,7 @@ public class Fuse : MonoBehaviour
     private MovementController movementController;
     private Rigidbody playerRigidbody;
     private GameController gameController;
+    private FlameAttachToggler _flameAttachToggler;
 
     private GameObject generated;
     private Spline spline;
@@ -31,6 +32,7 @@ public class Fuse : MonoBehaviour
         gameController = FindObjectOfType<GameController>();
         spline = GetComponent<Spline>();
         audioEvents = new List<AudioEvent>(GetComponents<AudioEvent>());
+        _flameAttachToggler = FindObjectOfType<FlameAttachToggler>();
     }
 
     private void Start()
@@ -77,6 +79,7 @@ public class Fuse : MonoBehaviour
         isMoving = true;
         alreadyFinished = false;
         AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.OnRope, audioEvents, gameObject);
+        _flameAttachToggler.FlameOn();
     }
 
     private void StopFollowing()
@@ -92,6 +95,7 @@ public class Fuse : MonoBehaviour
             movementController.IsFuseMoving = false;
             alreadyFinished = true;
             AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.OffRope, audioEvents, gameObject);
+            _flameAttachToggler.FlameOff();
 
             movementController.IsInvulnerable = false;
             if (playerRigidbody != null)

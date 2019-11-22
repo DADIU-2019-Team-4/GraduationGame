@@ -103,7 +103,12 @@ public class GameController : MonoBehaviour
 
     public void GoToNextScene()
     {
-        SceneManager.LoadScene(FindObjectOfType<LevelEnter>().SelectedScene.ToString());
+        LoadBaseSceneManager loadBaseSceneManager = FindObjectOfType<LoadBaseSceneManager>();
+        var index = SceneManager.sceneCount;
+        loadBaseSceneManager.UnloadScene(SceneManager.GetSceneAt(index - 1).name);
+        LoadBaseSceneManager.BaseScenes level = FindObjectOfType<LevelEnter>().SelectedScene;
+        loadBaseSceneManager.LoadBaseScene(level);
+
         //if (string.IsNullOrEmpty(NextLevelName))
         //    RestartScene();
         //else

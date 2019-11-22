@@ -113,6 +113,8 @@ public class MovementController : MonoBehaviour
         audioEvents = new List<AudioEvent>(GetComponents<AudioEvent>());
         attachToPlane = GetComponent<AttachToPlane>();
         playerActionsCollectorQA = FindObjectOfType<PlayerActionsCollectorQA>();
+
+
     }
 
     // Start is called before the first frame update
@@ -345,7 +347,7 @@ public class MovementController : MonoBehaviour
         StopCoroutine(nameof(MoveRoutine));
         StopCoroutine(nameof(MoveBackRoutine));
         rigidBody.velocity = Vector3.zero;
-        SceneManager.MoveGameObjectToScene(gameObject, SceneManager.GetActiveScene());
+        //SceneManager.MoveGameObjectToScene(gameObject, SceneManager.GetActiveScene());
     }
 
     private void DashEnded()
