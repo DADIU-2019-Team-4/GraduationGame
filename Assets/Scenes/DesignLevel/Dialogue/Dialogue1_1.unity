@@ -120,7 +120,65 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &255555785
+--- !u!1 &798837723
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 798837725}
+  - component: {fileID: 798837724}
+  m_Layer: 0
+  m_Name: WwiseGlobal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &798837724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 798837723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ac000d1e99bff64aa60c0bb00316b24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InitializationSettings: {fileID: 11400000, guid: 915f080ec8346ef4c99a7c5eba2255a8,
+    type: 2}
+  basePath: 
+  language: 
+  defaultPoolSize: 0
+  lowerPoolSize: 0
+  streamingPoolSize: 0
+  memoryCutoffThreshold: 0
+  monitorPoolSize: 0
+  monitorQueuePoolSize: 0
+  callbackManagerBufferSize: 0
+  spatialAudioPoolSize: 0
+  maxSoundPropagationDepth: 0
+  diffractionFlags: 11
+  engineLogging: 0
+--- !u!4 &798837725
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 798837723}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &802858292
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -135,17 +193,17 @@ PrefabInstance:
     - target: {fileID: 4914369192727202833, guid: a0ab6c3faa8f29343aad1665bedcd565,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.86
+      value: 0.011612892
       objectReference: {fileID: 0}
     - target: {fileID: 4914369192727202833, guid: a0ab6c3faa8f29343aad1665bedcd565,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.19
+      value: 1.72
       objectReference: {fileID: 0}
     - target: {fileID: 4914369192727202833, guid: a0ab6c3faa8f29343aad1665bedcd565,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.05
+      value: 3.36
       objectReference: {fileID: 0}
     - target: {fileID: 4914369192727202833, guid: a0ab6c3faa8f29343aad1665bedcd565,
         type: 3}
@@ -170,7 +228,7 @@ PrefabInstance:
     - target: {fileID: 4914369192727202833, guid: a0ab6c3faa8f29343aad1665bedcd565,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4914369192727202833, guid: a0ab6c3faa8f29343aad1665bedcd565,
         type: 3}
@@ -190,77 +248,54 @@ PrefabInstance:
     - target: {fileID: 4914369192727202833, guid: a0ab6c3faa8f29343aad1665bedcd565,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.76861
+      value: 0.80883
       objectReference: {fileID: 0}
     - target: {fileID: 4914369192727202833, guid: a0ab6c3faa8f29343aad1665bedcd565,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.76861
+      value: 0.80883
       objectReference: {fileID: 0}
     - target: {fileID: 4914369192727202833, guid: a0ab6c3faa8f29343aad1665bedcd565,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.76861
+      value: 0.80883
       objectReference: {fileID: 0}
     - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
         type: 3}
-      propertyPath: EnglishDialogue.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
-        type: 3}
-      propertyPath: DanishDialogue.Array.size
-      value: 5
+      propertyPath: OnlyTriggeredOnce
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
         type: 3}
       propertyPath: EnglishDialogue.Array.data[0]
-      value: 'LUCY: Hm.'
+      value: 'LUCY: All these secrets. First, they lie about the world, and now they
+        also kept a full wing of the house hidden?'
       objectReference: {fileID: 0}
     - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
         type: 3}
       propertyPath: EnglishDialogue.Array.data[1]
-      value: "SALLY: What? AHA! You\u2019re thinking! What? Tell me, tell me!"
-      objectReference: {fileID: 0}
-    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
-        type: 3}
-      propertyPath: EnglishDialogue.Array.data[3]
-      value: 'SALLY: Yes! It is ALSO a room!'
-      objectReference: {fileID: 0}
-    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
-        type: 3}
-      propertyPath: EnglishDialogue.Array.data[4]
-      value: 'LUCY: True, Sally. It freaks me out though.'
-      objectReference: {fileID: 0}
-    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
-        type: 3}
-      propertyPath: DanishDialogue.Array.data[3]
-      value: "SALLY: Ja! Det er OGS\xC5 et rum!"
-      objectReference: {fileID: 0}
-    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
-        type: 3}
-      propertyPath: DanishDialogue.Array.data[4]
-      value: "LUCY: Sandt, Sally. Det skr\xE6mmer mig lidt, dog."
+      value: 'SALLY: Maybe your parents didn''t know about these rooms?'
       objectReference: {fileID: 0}
     - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
         type: 3}
       propertyPath: EnglishDialogue.Array.data[2]
-      value: 'LUCY: Nothing. This room just seems vaguely familiar.'
+      value: 'LUCY: Dad knows everything, Sally.'
       objectReference: {fileID: 0}
     - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
         type: 3}
       propertyPath: DanishDialogue.Array.data[0]
-      value: 'LUCY: Hm.'
+      value: "LUCY: All de hemmeligheder. F\xF8rst lyver de om verdenen, og nu har
+        de ogs\xE5 holdt en hel fl\xF8j af huset hemmelig?"
       objectReference: {fileID: 0}
     - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
         type: 3}
       propertyPath: DanishDialogue.Array.data[1]
-      value: "SALLY: Hvad? AHA! Du t\xE6nker! P\xE5 hvad? Sig det, sig det!"
+      value: "SALLY: M\xE5ske vidste dine for\xE6ldre ikke at de her rum fandtes?"
       objectReference: {fileID: 0}
     - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
         type: 3}
       propertyPath: DanishDialogue.Array.data[2]
-      value: 'LUCY: Ingenting. Det her rum virker bare lidt bekendt.'
+      value: 'LUCY: Far ved alt, Sally.'
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a0ab6c3faa8f29343aad1665bedcd565, type: 3}
