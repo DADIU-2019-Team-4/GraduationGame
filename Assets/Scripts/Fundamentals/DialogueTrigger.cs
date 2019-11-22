@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class DialogueTrigger : MonoBehaviour
 {
-    public enum DialogueTriggerType { Collision, Function }
+    public enum DialogueTriggerType { Collision, Function, OnStart }
     public DialogueTriggerType TriggerType;
     public bool OnlyTriggeredOnce = true;
 
@@ -54,6 +54,12 @@ public class DialogueTrigger : MonoBehaviour
             Advance();
     }
 
+    private void Start()
+    {
+        if (TriggerType == DialogueTriggerType.OnStart)
+            TriggerDialogue();
+    }
+
     private void Advance()
     {
         ClickDown = false;
@@ -66,12 +72,12 @@ public class DialogueTrigger : MonoBehaviour
 
     private void EndDialogue()
     {
-        EventOnEnd.Invoke();
         DialogueIsRunning = false;
         FindObjectOfType<GameController>().IsPlaying = true;
         _subtitles.text = string.Empty;
         _subtitles.enabled = false;
         if (OnlyTriggeredOnce) Destroy(this);
+        EventOnEnd.Invoke();
     }
 
 
