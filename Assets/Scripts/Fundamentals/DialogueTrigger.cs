@@ -22,6 +22,7 @@ public class DialogueTrigger : MonoBehaviour
 
     private bool _isDanish;
     public static bool DialogueIsRunning;
+    private bool _thisDialogueIsRunning;
     public static bool ClickDown;
 
     private int _index;
@@ -39,7 +40,7 @@ public class DialogueTrigger : MonoBehaviour
         _isDanish = PlayerPrefs.GetString("Language").Equals("Danish");
         _index = -1;
         EventOnStart.Invoke();
-        DialogueIsRunning = true;
+        _thisDialogueIsRunning = DialogueIsRunning = true;
         FindObjectOfType<GameController>().IsPlaying = false;
         _subtitles = GameObject.FindGameObjectWithTag("Subtitles").GetComponent<Text>();
         _subtitles.enabled = true;
@@ -48,7 +49,7 @@ public class DialogueTrigger : MonoBehaviour
 
     private void Update()
     {
-        if (!DialogueIsRunning) return;
+        if (!_thisDialogueIsRunning) return;
 
         if (ClickDown)
             Advance();
@@ -72,7 +73,7 @@ public class DialogueTrigger : MonoBehaviour
 
     private void EndDialogue()
     {
-        DialogueIsRunning = false;
+        _thisDialogueIsRunning = DialogueIsRunning = false;
         FindObjectOfType<GameController>().IsPlaying = true;
         _subtitles.text = string.Empty;
         _subtitles.enabled = false;
