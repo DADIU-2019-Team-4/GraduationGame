@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-public class WallCulling : IGameLoop
+public class WallCulling : MonoBehaviour
 {
     private GameObject[] walls;
     // Start is called before the first frame update
@@ -15,7 +15,7 @@ public class WallCulling : IGameLoop
     private bool cameraMoved = false;
 
     // Update is called once per frame
-    public override void GameLoopUpdate()
+    private void Update()
     {
         if (cameraMoved)
             checkObjects();
