@@ -843,52 +843,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &770057697
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 770057699}
-  - component: {fileID: 770057698}
-  m_Layer: 0
-  m_Name: LoadScene
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &770057698
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 770057697}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2cf223f5e40455148a412312ef8df1b8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LoadSceneName: Hub_1.0
-  WaitForSeconds: 2
-  Player: {fileID: 1014902397}
---- !u!4 &770057699
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 770057697}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 11
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &857811765 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8870803261068966018, guid: c3488568424b8814bad4703ac36407fb,
@@ -1271,6 +1225,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1181306405}
   - component: {fileID: 1181306404}
+  - component: {fileID: 1181306406}
   m_Layer: 0
   m_Name: WwiseGlobal
   m_TagString: Untagged
@@ -1319,6 +1274,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1181306406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1181306403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cf223f5e40455148a412312ef8df1b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SelectedScene: 0
+  _waitForSeconds: 2
+  _player: {fileID: 1014902397}
 --- !u!1001 &1245098658
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2059,11 +2029,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: WwiseGlobal
       objectReference: {fileID: 0}
-    - target: {fileID: 7591071969537189113, guid: 1e5b01a946c19c64f8e45c804f243e93,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7591071969537189119, guid: 1e5b01a946c19c64f8e45c804f243e93,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2119,5 +2084,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7591071969537189112, guid: 1e5b01a946c19c64f8e45c804f243e93, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 1e5b01a946c19c64f8e45c804f243e93, type: 3}

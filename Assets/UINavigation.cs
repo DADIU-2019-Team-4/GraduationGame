@@ -55,7 +55,7 @@ public class UINavigation : MonoBehaviour
 
     public void NewGame()
     {
-        SceneManager.LoadScene("MainPlayerScene");
+        SceneManager.LoadScene("Hub_1.0");
     }
 
     public void ContinueGame()
