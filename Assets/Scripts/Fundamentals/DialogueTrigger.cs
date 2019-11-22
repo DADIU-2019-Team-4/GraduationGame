@@ -25,7 +25,7 @@ public class DialogueTrigger : MonoBehaviour
     public static bool ClickDown;
 
     private int _index;
-    private Text _subtitles;
+    private static Text _subtitles;
 
     private void OnTriggerEnter(Collider collider)
     {
