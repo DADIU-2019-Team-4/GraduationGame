@@ -93,6 +93,8 @@ public class InputManager : IGameLoop
         if (dragDistance > MoveThreshold && dragDistance < DashThreshold)
         {
             doMove = true;
+            movementController.ChargeMove();
+            Debug.Log("I am supposed to charge now");
             movementController.MoveDistance = movementController.MoveDistanceCurve.Evaluate(dragDistance);
             // value between 0.6 and 3.2
             movementController.ArrowLength.Value = movementController.MoveDistance;

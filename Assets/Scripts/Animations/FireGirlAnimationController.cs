@@ -4,94 +4,182 @@ using UnityEngine;
 
 public class FireGirlAnimationController : MonoBehaviour
 {
-    // TODO: This might not be fine-tuned. It also needs to change, if we change the Animations
-    public const int ChargeAnimationFrames = 54;
-    public const int DashAnimationFrames = 17 + 57;
-    public const string ChargeDashTrigger = "Charge Dash";
-    public const string DashChargedTrigger = "Dash Charged";
-    public const string DashTrigger = "Dash";
-    public const string LandTrigger = "Land";
-    public const string CancelTrigger = "Cancel";
+    private enum State { Idle, Charging, Moving, Dying };
 
+    // TODO When the Animator works, count the Frames and set them here
+    public const int ShortDashFrames = 60;
+    public const int LongDashFrames = 60;
+    public const int LongDashChargingFrames = 60;
+
+    public const string ChargeTrigger = "Charge";
+    public const string ReleaseTrigger = "Release";
+    public const string CancelTrigger = "Cancel";
+    public const string DieTrigger = "Die";
+
+    public const string ShortDashSpeedLabel = "Short Dash Speed";
+    public const string LongDashSpeedLabel = "Long Dash Speed";
+    public const string ChargingLongDashSpeedLabel = "Charging Long Dash Speed";
+
+    public const string IsLongDashBool = "isLongDash";
+    public const string IsLongDashChargedBool = "isLongDashCharged";
+    public const string IsInFuseBool = "isInFuse";
+    public const string HasCollidedBool = "hasCollided";
+    
     private Animator[] _animators;
-    private bool _chargingDash = false;
-    private bool _dashCharged = false;
+    private IdleAnimationController[] _idleAnimatorControllers;
+
+    // Set the duration of the animations to fit the duration of the movement
+    private float _shortDashSpeed = 1;
+    private float _longDashSpeed = 1;
+    private float _chargingLongDashSpeed = 1;
+
+    // Current state description
+    private State _currentState = State.Idle;
+    private bool _isLongDash = false;
+    private bool _isLongDashCharged = false;
+    private bool _hasCollided = false;
+    private bool _inFuse = false;
+
+    // Local triggers
+    private bool _chargeTrigger = false;
+    private bool _releaseTrigger = false;
+    private bool _cancelTrigger = false;
+    private bool _dieTrigger = false;
 
     public void Start()
     {
-        this._animators = GetComponentsInChildren<Animator>();
-        
-        if (_animators == null)
+        _animators = GetComponentsInChildren<Animator>();
+        _idleAnimatorControllers = GetComponentsInChildren<IdleAnimationController>();
+
+        if (_animators == null || _idleAnimatorControllers == null)
         {
-            throw new System.Exception("Unable to find Animators for FireGirl");
+            throw new System.Exception("Unable to find Animators or IdleAnimatorControllers for FireGirl");
         }
 
-        // Set the Charge speed according to the time it is supposed to take
-        float chargeAnimationDuration = (float) ChargeAnimationFrames / Application.targetFrameRate;
-        float chargeSpeed = chargeAnimationDuration / MovementController.DashThreshold;
+        // Retrieve the desired frame rate
+        float frameRate = Application.targetFrameRate;
 
-        // Set the speed for the dash, according to the movement time
-        float dashAnimationDuration = (float) DashAnimationFrames / Application.targetFrameRate;
-        float dashSpeed = dashAnimationDuration / MovementController.DashDuration;
+        // Determine the speed of each animation based on its desired duration
+        float shortDashDuration = ShortDashFrames / frameRate;
+        float longDashDuration = LongDashFrames / frameRate;
+        float longDashChargingDuration = LongDashChargingFrames / frameRate;
+        _shortDashSpeed = shortDashDuration / MovementController.MoveDuration;
+        _longDashSpeed = longDashDuration / MovementController.DashDuration;
+        _chargingLongDashSpeed = longDashDuration / MovementController.DashThreshold;
 
         foreach (Animator anim in this._animators)
         {
-            anim.SetFloat("Dash Speed", dashSpeed);
-            anim.SetFloat("Charge Speed", chargeSpeed);
+            anim.SetFloat(ShortDashSpeedLabel, _shortDashSpeed);
+            anim.SetFloat(LongDashSpeedLabel, _longDashSpeed);
+            anim.SetFloat(ChargingLongDashSpeedLabel, _chargingLongDashSpeed);
         }
     }
 
-    public void ChargeDash()
+    public void Charge()
     {
-        if (!_chargingDash && !_dashCharged)
-        {
-            foreach (Animator anim in this._animators)
-            {
-                anim.SetTrigger(ChargeDashTrigger);
-            }
+        // Reset idle jumping
+        foreach (IdleAnimationController iac in _idleAnimatorControllers) iac.Reset();
 
-            _chargingDash = true;
+        if (_currentState != State.Charging)
+        {
+            _currentState = State.Charging;
+            _isLongDash = false;
+            _chargeTrigger = true;
+            UpdateAnimators();
         }
     }
 
-    public void DashCharged()
+    public void ChargeLongDash()
     {
-        if (_chargingDash)
+        if (_currentState == State.Idle)
         {
-            foreach (Animator anim in this._animators)
-            {
-                anim.SetTrigger(DashChargedTrigger);
-            }
-
-            _dashCharged = true;
-            _chargingDash = false;
+            _currentState = State.Charging;
+            _isLongDash = true;
+            _isLongDashCharged = false;
+            _chargeTrigger = true;
+            UpdateAnimators();
+        }
+        else if (_currentState == State.Charging)
+        {
+            _isLongDash = true;
+            _isLongDashCharged = false;
+            UpdateAnimators();
         }
     }
 
-    public void Dash()
+    public void LongDashCharged()
     {
-        if (_dashCharged)
+        if (_currentState == State.Charging && _isLongDash)
         {
-            foreach (Animator anim in this._animators)
-            {
-                anim.SetTrigger(DashTrigger);
-            }
+            _isLongDashCharged = true;
+            UpdateAnimators();
+        }
+    }
 
-            _dashCharged = false;
+    public void Release()
+    {
+        if (_currentState == State.Charging)
+        {
+            _currentState = State.Moving;
+            _releaseTrigger = true;
+            UpdateAnimators();
         }
     }
 
     public void Cancel()
     {
-        if(_chargingDash || _dashCharged)
+        if (_currentState == State.Charging)
         {
-            foreach (Animator anim in this._animators)
-            {
-                anim.SetTrigger(CancelTrigger);
-            }
-
-            _chargingDash = false;
-            _dashCharged = false;
+            _currentState = State.Idle;
+            UpdateAnimators();
         }
+    }
+
+    public void Collide()
+    {
+        if (_currentState == State.Moving)
+        {
+            _currentState = State.Idle;
+            _hasCollided = true;
+            UpdateAnimators();
+        }
+    }
+
+    public void EnterFuse()
+    {
+        _currentState = State.Idle;
+        _inFuse = true;
+        UpdateAnimators();
+    }
+
+    public void Die()
+    {
+        _currentState = State.Dying;
+        _dieTrigger = true;
+        UpdateAnimators();
+    }
+
+    private void UpdateAnimators()
+    {
+        foreach (Animator anim in this._animators)
+        {
+            // Fire Triggers
+            if (_chargeTrigger) anim.SetTrigger(ChargeTrigger);
+            if (_releaseTrigger) anim.SetTrigger(ReleaseTrigger);
+            if (_cancelTrigger) anim.SetTrigger(CancelTrigger);
+            if (_dieTrigger) anim.SetTrigger(DieTrigger);
+
+            // Set booleans
+            anim.SetBool(IsLongDashBool, _isLongDash);
+            anim.SetBool(IsLongDashChargedBool, _isLongDashCharged);
+            anim.SetBool(HasCollidedBool, _hasCollided);
+            anim.SetBool(IsInFuseBool, _inFuse);
+        }
+
+        // Reset Triggers
+        _chargeTrigger = false;
+        _releaseTrigger = false;
+        _cancelTrigger = false;
+        _dieTrigger = false;
     }
 }

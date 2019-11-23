@@ -24,7 +24,7 @@ public class MovementController : MonoBehaviour
 
     [Header("Move Settings")]
     [Tooltip("Duration of a move in seconds (how long it takes to get to target position).")]
-    public float MoveDuration = 0.5f;
+    public static float MoveDuration = 0.5f;
     [Tooltip("Curve for setting the distance of the move.")]
     public AnimationCurve MoveDistanceCurve;
     [Tooltip("Cost of a move in percentage.")]
@@ -55,6 +55,7 @@ public class MovementController : MonoBehaviour
     private Rigidbody rigidBody;
     private Material material;
     private Tweener moveTweener;
+    private PathKeeper _pathKeeper;
     private List<AudioEvent> audioEvents;
 
     private AttachToPlane attachToPlane;
@@ -78,8 +79,7 @@ public class MovementController : MonoBehaviour
     private Vector3 startPosition;
     private Vector3 goalPosition;
 
-    //CameraShake cameraShake;
-    private MoMa.CharacterController _salamander;
+    CameraShake cameraShake;
     private float chargedDashShakeDur = 0.2f;
 
     public bool IsMoving { get; set; }
@@ -111,6 +111,7 @@ public class MovementController : MonoBehaviour
         material = GetComponent<Renderer>().material;
         gameController = FindObjectOfType<GameController>();
         audioEvents = new List<AudioEvent>(GetComponents<AudioEvent>());
+        _pathKeeper = FindObjectOfType<PathKeeper>();
         attachToPlane = GetComponent<AttachToPlane>();
         playerActionsCollectorQA = FindObjectOfType<PlayerActionsCollectorQA>();
 
@@ -122,13 +123,6 @@ public class MovementController : MonoBehaviour
     {
         FireAmountText = GameObject.Find("FireAmountText").GetComponent<TextMeshProUGUI>();
         //cameraShake = GameObject.FindGameObjectWithTag("VirtualCamera").GetComponent<CameraShake>();
-        _salamander = FindObjectOfType<MoMa.CharacterController>();
-
-        if (_salamander == null)
-        {
-            Debug.LogWarning("Unable to find the Salamander's Character Controller");
-        }
-
         currentFireAmount = SceneManager.GetActiveScene().name == "Hub_1.0" ? FireStartValue : maxFireAmount;
         UpdateFireAmountText();
         HealthPercentage.Value = currentFireAmount;
@@ -176,6 +170,19 @@ public class MovementController : MonoBehaviour
     }
 
     /// <summary>
+    /// Visualizes charging the simple movement.
+    /// </summary>
+    public void ChargeMove()
+    {
+        if (!isMoveCharged)
+        {
+            // Play Animation
+            animationController.Charge();
+            isMoveCharged = true;
+        }
+    }
+
+    /// <summary>
     /// Visualizes charging the dash.
     /// </summary>
     public void ChargeDash()
@@ -203,7 +210,7 @@ public class MovementController : MonoBehaviour
         IsDashCharged = true;
 
         // Prepare Animation
-        animationController.DashCharged();
+        animationController.LongDashCharged();
     }
 
     /// <summary>
@@ -218,6 +225,9 @@ public class MovementController : MonoBehaviour
         //}
 
         attachToPlane.Detach(false);
+
+        // Play Animation
+        animationController.Release();
 
         AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.Dash, audioEvents, gameObject);
         playerActionsCollectorQA.DataConteiner.NormalDashCount++;
@@ -245,8 +255,8 @@ public class MovementController : MonoBehaviour
         playerActionsCollectorQA.DataConteiner.ChargedDashCount++;
         Vector3 targetPos = transform.position + dashDirection * DashDistance;
 
-        //Play Animation
-        animationController.Dash();
+        // Play Animation
+        animationController.Release();
 
         StartCoroutine(MoveRoutine(targetPos, DashDuration));
     }
@@ -259,8 +269,10 @@ public class MovementController : MonoBehaviour
         if (prepareDashRoutine != null)
             StopCoroutine(prepareDashRoutine);
         animationController.Cancel();
+
         material.SetColor("_Color", Color.yellow);
         IsDashCharged = false;
+        isMoveCharged = false;
         AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.DashCancelled, audioEvents, gameObject);
         startCharge = false;
     }
@@ -275,6 +287,9 @@ public class MovementController : MonoBehaviour
         IsMoving = true;
 
         moveTweener = rigidBody.DOMove(target, duration);
+
+        // Play Animation
+        animationController.Collide();
 
         yield return new WaitForSeconds(duration);
 
@@ -308,14 +323,7 @@ public class MovementController : MonoBehaviour
         yield return new WaitForSeconds(duration);
 
         CheckFireLeft();
-        DashEnded();
-
-        // TODO: Remove the check, once the Salamander is in the game
-        if (_salamander != null)
-        {
-            _salamander.UpdateTarget(target.GetXZVector3());
-            Debug.Log(target.GetXZVector3());
-        }
+        MoveEnded();
 
         rigidBody.velocity = Vector3.zero;
         FuseEvent.Invoke();
@@ -350,7 +358,7 @@ public class MovementController : MonoBehaviour
         rigidBody.velocity = Vector3.zero;
     }
 
-    private void DashEnded()
+    private void MoveEnded()
     {
         AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.DashEnded, audioEvents, gameObject);
 
@@ -361,6 +369,9 @@ public class MovementController : MonoBehaviour
 
         HealthPercentage.Value = currentFireAmount;
         UpdateGoalDistances();
+
+        // Log current position, so that the Salamander can follow
+        _pathKeeper.LogPosition(this.transform.position.GetXZVector2());
     }
 
     private void UpdateGoalDistances()
@@ -482,7 +493,6 @@ public class MovementController : MonoBehaviour
     {
         currentFireAmount = maxFireAmount;
     }
-
 
     private void OnTriggerStay(Collider other)
     {
