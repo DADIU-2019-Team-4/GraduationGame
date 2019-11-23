@@ -268,7 +268,8 @@ public class MovementController : MonoBehaviour
     {
         if (prepareDashRoutine != null)
             StopCoroutine(prepareDashRoutine);
-        animationController.Cancel();
+        // Play Animation
+        //animationController.Cancel();
 
         material.SetColor("_Color", Color.yellow);
         IsDashCharged = false;

@@ -77,9 +77,7 @@ public class FireGirlAnimationController : MonoBehaviour
 
     public void Charge()
     {
-        // Reset idle jumping
-        foreach (IdleAnimationController iac in _idleAnimatorControllers) iac.Reset();
-
+        Debug.Log("_currentState: " + _currentState);
         if (_currentState != State.Charging)
         {
             _currentState = State.Charging;
@@ -126,6 +124,7 @@ public class FireGirlAnimationController : MonoBehaviour
         }
     }
 
+    // TODO: THis is currently not used because I cannot InputManager.ResetDash() is called on every frame
     public void Cancel()
     {
         if (_currentState == State.Charging)
@@ -147,7 +146,6 @@ public class FireGirlAnimationController : MonoBehaviour
 
     public void EnterFuse()
     {
-        _currentState = State.Idle;
         _inFuse = true;
         UpdateAnimators();
     }

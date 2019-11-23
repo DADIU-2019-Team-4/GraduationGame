@@ -19,17 +19,13 @@ public class IdleAnimationController : MonoBehaviour
     /// Called when the Idle Animation is over.
     /// It transitions to Jump every MaxRepeatCount repetitions
     /// </summary>
-    public void Play()
+    public void Repeated()
     {
         RepeatCount++;
+        RepeatCount %= MaxRepeatCount;
 
-        if (RepeatCount % MaxRepeatCount == 0)
-        {
-            _animator.SetTrigger(JumpIdleTrigger);
-            RepeatCount = 0;
-        }
+        if (RepeatCount == 0) _animator.SetTrigger(JumpIdleTrigger);
     }
-
 
     /// <summary>
     /// Called when any action is performed.
