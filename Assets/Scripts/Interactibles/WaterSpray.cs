@@ -110,7 +110,7 @@ public class WaterSpray : MonoBehaviour
             Vector3 targetPos = movementController.transform.position -
                                 (movementController.transform.forward * movementController.DamageBounceValue);
             targetPos.y = 0;
-            StartCoroutine(movementController.MoveBackRoutine(targetPos, movementController.MoveDuration));
+            StartCoroutine(movementController.MoveBackRoutine(targetPos, MovementController.MoveDuration));
         }
     }
 }

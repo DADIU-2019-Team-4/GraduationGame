@@ -65,6 +65,7 @@ public class MovementController : MonoBehaviour
     private float maxFireAmount = 100f;
     private bool isOutOfFire;
     private bool startCharge;
+    private bool isMoveCharged;
     private bool reachedGoal;
     private float damageTimer;
 
@@ -189,6 +190,9 @@ public class MovementController : MonoBehaviour
     {
         if (!startCharge)
         {
+            // Play Animation
+            animationController.SetLongDash(true);
+
             startCharge = true;
             prepareDashRoutine = StartCoroutine(PrepareDash());
         }
@@ -197,10 +201,9 @@ public class MovementController : MonoBehaviour
     private IEnumerator PrepareDash()
     {
         yield return new WaitForSeconds(ChargeAnimationDelay);
-    
 
         // Play Animation
-        animationController.ChargeDash();
+        animationController.Charge();
 
         AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.ChargingDash, audioEvents, gameObject);
     }
@@ -210,7 +213,7 @@ public class MovementController : MonoBehaviour
         IsDashCharged = true;
 
         // Prepare Animation
-        animationController.LongDashCharged();
+        animationController.SetLongDashCharged();
     }
 
     /// <summary>
@@ -267,9 +270,11 @@ public class MovementController : MonoBehaviour
     public void ResetDash()
     {
         if (prepareDashRoutine != null)
+        {
+            // Play Animation
+            //animationController.Cancel();
             StopCoroutine(prepareDashRoutine);
-        // Play Animation
-        //animationController.Cancel();
+        }
 
         material.SetColor("_Color", Color.yellow);
         IsDashCharged = false;
@@ -294,7 +299,6 @@ public class MovementController : MonoBehaviour
 
         yield return new WaitForSeconds(duration);
 
-        DashEnded();
         rigidBody.velocity = Vector3.zero;
     }
 
@@ -357,6 +361,14 @@ public class MovementController : MonoBehaviour
         StopCoroutine(nameof(MoveRoutine));
         StopCoroutine(nameof(MoveBackRoutine));
         rigidBody.velocity = Vector3.zero;
+
+        // Set animator state
+        // Code's entropy is quite high
+        // Spaghetti is high on carbs -> diabetes risk
+        // Why should I be placed here? It is so unreasonable! 
+        // Please, delete my comments
+        // Architecture unfollowed -> Koalas go extinct :(
+        animationController.ExitFuse();
     }
 
     private void MoveEnded()
@@ -372,7 +384,7 @@ public class MovementController : MonoBehaviour
         UpdateGoalDistances();
 
         // Log current position, so that the Salamander can follow
-        _pathKeeper.LogPosition(this.transform.position.GetXZVector2());
+        //_pathKeeper.LogPosition(this.transform.position.GetXZVector2());
     }
 
     private void UpdateGoalDistances()
@@ -432,11 +444,17 @@ public class MovementController : MonoBehaviour
         {
             SetDeathData();
             gameController.GameOverDied();
+
+            // Play animation
+            animationController.Die();
         }
         else if (isOutOfFire)
         {
             SetDeathData();
             gameController.GameOverOutOfMoves();
+
+            // Play animation
+            animationController.Die();
         }
         else
             return;
@@ -453,6 +471,9 @@ public class MovementController : MonoBehaviour
         HealthPercentage.Value = currentFireAmount;
         UpdateGoalDistances();
         rigidBody.velocity = Vector3.zero;
+
+        // Set animator state 
+        animationController.Respawn();
     }
 
     private void DisablePlayerCharacter(bool disable = true)
@@ -468,6 +489,9 @@ public class MovementController : MonoBehaviour
         StartPoint startPoint = UpcomingFusePoint.GetComponent<StartPoint>();
         startPoint.StartFollowingFuse();
         IsInvulnerable = true;
+
+        // Set animator state 
+        animationController.EnterFuse();
     }
 
     /*public void CollidePickUp()
@@ -518,6 +542,7 @@ public class MovementController : MonoBehaviour
     }
 
     public Vector3 DashDirection() { return TargetPosition - rigidBody.position; }
+
     private void SetDeathData()
     {
         playerActionsCollectorQA.DataConteiner.DeathsCount++;
