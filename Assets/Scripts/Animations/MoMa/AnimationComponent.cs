@@ -36,12 +36,11 @@ namespace MoMa
                 // This changes the rig to the one used by Rokoko
                 //this._bones[bone].SetPositionAndRotation(frame.boneDataDict[bone].position, frame.boneDataDict[bone].rotation);
                 //this._bones[bone].SetPositionAndRotation(frame.boneDataDict[bone].localPosition, frame.boneDataDict[bone].rotation);
-
-                // This keeps the rig's proportions
                 this._bones[bone].rotation = frame.boneDataDict[bone].rotation;
             }
 
-            this._model.localRotation = Quaternion.Inverse(frame.boneDataDict[Bone.Type.hips].rotation);
+            //this._model.Rotate(new Vector3(0f, -frame.boneDataDict[Bone.Type.root].rotation.eulerAngles.y, 0f));
+            this._model.rotation = Quaternion.Inverse(frame.boneDataDict[Bone.Type.root].rotation);
         }
 
         public void LoadClip(Animation.Clip clip)
@@ -57,7 +56,7 @@ namespace MoMa
 
             #region Load all _bones
             // Load core
-            this._bones.Add(Bone.Type.root, model);
+            this._bones.Add(Bone.Type.root, model.GetChild(0));
             this._bones.Add(Bone.Type.hips, this._bones[Bone.Type.root].GetChild(0));
 
             // Load left foot

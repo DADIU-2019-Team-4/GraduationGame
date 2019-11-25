@@ -66,7 +66,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: Continue
+  m_text: "Forts\xE6t"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -135,7 +135,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 2651783718360742406}
-    characterCount: 8
+    characterCount: 7
     spriteCount: 0
     spaceCount: 0
     wordCount: 1
@@ -398,7 +398,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: Options
+  m_text: Indstillinger
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -467,7 +467,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 5829733202794066897}
-    characterCount: 7
+    characterCount: 13
     spriteCount: 0
     spaceCount: 0
     wordCount: 1
@@ -844,6 +844,7 @@ MonoBehaviour:
   _mainMenu: {fileID: 6439199661456597827}
   _pauseMenu: {fileID: 0}
   _continueButton: {fileID: 1117115661919648895}
+  storyProgression: {fileID: 11400000, guid: c9ca93d4c6428dd4c8b4f1d44c8188d5, type: 2}
 --- !u!1 &7647457056305273112
 GameObject:
   m_ObjectHideFlags: 0
@@ -910,7 +911,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: New Game
+  m_text: Nyt Spil
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1270,75 +1271,35 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 1891646369718116660, guid: 2d805449bfea17c4885339a2940b7b0e,
+    - target: {fileID: 326005931680015091, guid: 2d805449bfea17c4885339a2940b7b0e,
         type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 5246228075145937832, guid: 2d805449bfea17c4885339a2940b7b0e,
+    - target: {fileID: 326005931680015091, guid: 2d805449bfea17c4885339a2940b7b0e,
         type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetCurrentLanguage
       objectReference: {fileID: 0}
-    - target: {fileID: 5613567365324083912, guid: 2d805449bfea17c4885339a2940b7b0e,
+    - target: {fileID: 326005931680015091, guid: 2d805449bfea17c4885339a2940b7b0e,
         type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 1691131929381129119, guid: 2d805449bfea17c4885339a2940b7b0e,
+    - target: {fileID: 326005931680015091, guid: 2d805449bfea17c4885339a2940b7b0e,
         type: 3}
-      propertyPath: m_text
-      value: Lydeffekter
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
-    - target: {fileID: 1691131929381129119, guid: 2d805449bfea17c4885339a2940b7b0e,
+    - target: {fileID: 326005931680015091, guid: 2d805449bfea17c4885339a2940b7b0e,
         type: 3}
-      propertyPath: m_textInfo.characterCount
-      value: 11
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: Danish
       objectReference: {fileID: 0}
-    - target: {fileID: 4619356231866880092, guid: 2d805449bfea17c4885339a2940b7b0e,
+    - target: {fileID: 326005931680015091, guid: 2d805449bfea17c4885339a2940b7b0e,
         type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8781563061622913553, guid: 2d805449bfea17c4885339a2940b7b0e,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6786954523813999683, guid: 2d805449bfea17c4885339a2940b7b0e,
-        type: 3}
-      propertyPath: m_text
-      value: Baggrundslyd
-      objectReference: {fileID: 0}
-    - target: {fileID: 6786954523813999683, guid: 2d805449bfea17c4885339a2940b7b0e,
-        type: 3}
-      propertyPath: m_fontSize
-      value: 65.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6786954523813999683, guid: 2d805449bfea17c4885339a2940b7b0e,
-        type: 3}
-      propertyPath: m_textInfo.characterCount
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 6331586081805184161, guid: 2d805449bfea17c4885339a2940b7b0e,
-        type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5131114462428950072, guid: 2d805449bfea17c4885339a2940b7b0e,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3500179444922224330, guid: 2d805449bfea17c4885339a2940b7b0e,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 360443669606509049, guid: 2d805449bfea17c4885339a2940b7b0e,
-        type: 3}
-      propertyPath: m_text
-      value: Musik
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 203485710665803359, guid: 2d805449bfea17c4885339a2940b7b0e,
         type: 3}
@@ -1370,35 +1331,75 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 326005931680015091, guid: 2d805449bfea17c4885339a2940b7b0e,
+    - target: {fileID: 3500179444922224330, guid: 2d805449bfea17c4885339a2940b7b0e,
         type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 326005931680015091, guid: 2d805449bfea17c4885339a2940b7b0e,
+    - target: {fileID: 1891646369718116660, guid: 2d805449bfea17c4885339a2940b7b0e,
         type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetCurrentLanguage
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 326005931680015091, guid: 2d805449bfea17c4885339a2940b7b0e,
+    - target: {fileID: 1691131929381129119, guid: 2d805449bfea17c4885339a2940b7b0e,
         type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 5
+      propertyPath: m_text
+      value: Lydeffekter
       objectReference: {fileID: 0}
-    - target: {fileID: 326005931680015091, guid: 2d805449bfea17c4885339a2940b7b0e,
+    - target: {fileID: 1691131929381129119, guid: 2d805449bfea17c4885339a2940b7b0e,
         type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
+      propertyPath: m_textInfo.characterCount
+      value: 11
       objectReference: {fileID: 0}
-    - target: {fileID: 326005931680015091, guid: 2d805449bfea17c4885339a2940b7b0e,
+    - target: {fileID: 360443669606509049, guid: 2d805449bfea17c4885339a2940b7b0e,
         type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: Danish
+      propertyPath: m_text
+      value: Musik
       objectReference: {fileID: 0}
-    - target: {fileID: 326005931680015091, guid: 2d805449bfea17c4885339a2940b7b0e,
+    - target: {fileID: 8781563061622913553, guid: 2d805449bfea17c4885339a2940b7b0e,
         type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6786954523813999683, guid: 2d805449bfea17c4885339a2940b7b0e,
+        type: 3}
+      propertyPath: m_text
+      value: Baggrundslyd
+      objectReference: {fileID: 0}
+    - target: {fileID: 6786954523813999683, guid: 2d805449bfea17c4885339a2940b7b0e,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 65.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6786954523813999683, guid: 2d805449bfea17c4885339a2940b7b0e,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 6331586081805184161, guid: 2d805449bfea17c4885339a2940b7b0e,
+        type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5613567365324083912, guid: 2d805449bfea17c4885339a2940b7b0e,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5246228075145937832, guid: 2d805449bfea17c4885339a2940b7b0e,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5131114462428950072, guid: 2d805449bfea17c4885339a2940b7b0e,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4619356231866880092, guid: 2d805449bfea17c4885339a2940b7b0e,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d805449bfea17c4885339a2940b7b0e, type: 3}

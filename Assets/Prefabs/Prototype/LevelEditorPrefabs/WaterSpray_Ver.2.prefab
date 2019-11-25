@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 2200371533581198410}
   - component: {fileID: 4212059926539033595}
   - component: {fileID: 9009508442419236812}
+  - component: {fileID: 7479681095066705428}
   m_Layer: 0
   m_Name: WaterSpray_Ver.2
   m_TagString: Untagged
@@ -4829,6 +4830,19 @@ MonoBehaviour:
   DamageValue: 10
   HealValue: 0
   BumpHeight: 0.3
+--- !u!65 &7479681095066705428
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9132245662996378538}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.36, y: 4.72, z: 3.56}
+  m_Center: {x: 0.009912133, y: -1, z: 1.45}
 --- !u!1 &9132245663744727010
 GameObject:
   m_ObjectHideFlags: 0
@@ -4846,7 +4860,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &9132245663744727009
 Transform:
   m_ObjectHideFlags: 0
@@ -5429,7 +5443,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 500
+    maxNumParticles: 50
     size3D: 0
     rotation3D: 0
     gravityModifier:

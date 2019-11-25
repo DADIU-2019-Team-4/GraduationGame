@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AudioEvent : IGameLoop
+public class AudioEvent : MonoBehaviour
 {
 
     #region Listening Space
@@ -151,7 +151,7 @@ public class AudioEvent : IGameLoop
             ListenerSpace.Add((audioEventType, trigger));
     }
 
-    public override void GameLoopUpdate()
+    private void Update()
     {
         // Iterate backwards to allow removing elements while iterating.
         for (int i = ListenerSpace.Count - 1; i >= 0; --i)

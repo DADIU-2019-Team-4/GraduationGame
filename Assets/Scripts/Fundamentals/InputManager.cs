@@ -33,13 +33,15 @@ public class InputManager : IGameLoop
     public float DashThreshold { get; set; }
 
     public bool IsPerfectTopDownCamera;
+    public bool hasVibrated;
+
+    public static bool DisableInput = false;
 
     private void Awake()
     {
         audioEvents = GetComponents<AudioEvent>();
         movementController = FindObjectOfType<MovementController>();
         gameController = FindObjectOfType<GameController>();
-        mainCamera = Camera.main;
         arrowParent = GameObject.FindGameObjectWithTag("Arrow");
         canvas = gameController.GetComponentInChildren<Canvas>();
     }
@@ -55,6 +57,8 @@ public class InputManager : IGameLoop
     /// </summary>
     public override void GameLoopUpdate()
     {
+        if (DisableInput) return;
+
         if (DialogueTrigger.DialogueIsRunning)
             DialogueClick();
 
@@ -93,6 +97,7 @@ public class InputManager : IGameLoop
         if (dragDistance > MoveThreshold && dragDistance < DashThreshold)
         {
             doMove = true;
+            movementController.ChargeMove();
             movementController.MoveDistance = movementController.MoveDistanceCurve.Evaluate(dragDistance);
             // value between 0.6 and 3.2
             movementController.ArrowLength.Value = movementController.MoveDistance;
@@ -117,6 +122,12 @@ public class InputManager : IGameLoop
                 return;
             }
 
+            if (!hasVibrated)
+            {
+                Vibration.Vibrate(80);
+                hasVibrated = true;
+            }
+
             // if dash is charged, change arrow to dash length
             StretchArrow(movementController.DashDistance);
             arrow.GetComponent<SpriteRenderer>().color = Color.red;
@@ -128,6 +139,7 @@ public class InputManager : IGameLoop
             doMove = false;
             arrowParent.SetActive(false);
             ResetDash();
+            hasVibrated = false;
         }
     }
 
@@ -191,6 +203,7 @@ public class InputManager : IGameLoop
         if (!IsPerfectTopDownCamera)
         {
             float angle = Vector2.SignedAngle(Vector2.up, targetDirection);
+            if (mainCamera == null) mainCamera = Camera.main;
             Vector3 cameraRotation = mainCamera.transform.forward;
             cameraRotation.y = 0;
             return Quaternion.AngleAxis(angle, Vector3.down) * cameraRotation;
@@ -338,6 +351,10 @@ public class InputManager : IGameLoop
 
         if (movementController.IsDashCharged)
         {
+
+            //insert vibration for release dash
+            Vibration.Vibrate(200);
+
             movementController.Dash(directionVector.normalized);
             ResetDash();
         }
@@ -356,5 +373,66 @@ public class InputManager : IGameLoop
         movementController.ResetDash();
         dashTimer = 0;
         movementController.DashHoldPercentage.Value = dashTimer;
+    }
+
+    public static void ToggleInput(bool disableInput) { DisableInput = disableInput; }
+}
+
+public static class Vibration
+{
+
+#if UNITY_ANDROID && !UNITY_EDITOR
+    public static AndroidJavaClass unityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
+    public static AndroidJavaObject currentActivity = unityPlayer.GetStatic<AndroidJavaObject>("currentActivity");
+    public static AndroidJavaObject vibrator = currentActivity.Call<AndroidJavaObject>("getSystemService", "vibrator");
+#else
+    public static AndroidJavaClass unityPlayer;
+    public static AndroidJavaObject currentActivity;
+    public static AndroidJavaObject vibrator;
+#endif
+
+    public static void Vibrate()
+    {
+        if (isAndroid())
+            vibrator.Call("vibrate");
+        else
+            Handheld.Vibrate();
+    }
+
+
+    public static void Vibrate(long milliseconds)
+    {
+        if (isAndroid())
+            vibrator.Call("vibrate", milliseconds);
+        else
+            Handheld.Vibrate();
+    }
+
+    public static void Vibrate(long[] pattern, int repeat)
+    {
+        if (isAndroid())
+            vibrator.Call("vibrate", pattern, repeat);
+        else
+            Handheld.Vibrate();
+    }
+
+    public static bool HasVibrator()
+    {
+        return isAndroid();
+    }
+
+    public static void Cancel()
+    {
+        if (isAndroid())
+            vibrator.Call("cancel");
+    }
+
+    private static bool isAndroid()
+    {
+#if UNITY_ANDROID && !UNITY_EDITOR
+	return true;
+#else
+        return false;
+#endif
     }
 }

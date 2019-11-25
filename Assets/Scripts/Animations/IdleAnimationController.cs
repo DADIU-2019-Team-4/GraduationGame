@@ -10,7 +10,7 @@ public class IdleAnimationController : MonoBehaviour
 
     private Animator _animator;
 
-    void Start()
+    public void Start()
     {
         _animator = GetComponent<Animator>();
     }
@@ -19,14 +19,20 @@ public class IdleAnimationController : MonoBehaviour
     /// Called when the Idle Animation is over.
     /// It transitions to Jump every MaxRepeatCount repetitions
     /// </summary>
-    void Play()
+    public void Repeated()
     {
         RepeatCount++;
+        RepeatCount %= MaxRepeatCount;
 
-        if (RepeatCount % MaxRepeatCount == 0)
-        {
-            _animator.SetTrigger(JumpIdleTrigger);
-            RepeatCount = 0;
-        }
+        if (RepeatCount == 0) _animator.SetTrigger(JumpIdleTrigger);
+    }
+
+    /// <summary>
+    /// Called when any action is performed.
+    /// It resets the timer of the jumping.
+    /// </summary>
+    public void Reset()
+    {
+        RepeatCount = 0;
     }
 }

@@ -8,15 +8,25 @@ namespace MoMa
 {
     public class CharacterController : MonoBehaviour
     {
-        public const int TargetFrameRate = 60;
+        // TODO: This should happen offline. Instead we only need to open its result
+        //this._anim.Add(Packer.Pack("walk", "MoCapData", "walk_DEFAULT_FIX"));
+        //this._anim.Add(Packer.Pack("jog", "MoCapData", "jog3_DEFAULT_FIX"));
+        //this._anim.Add(Packer.Pack("acceleration", "MoCapData", "acceleration_DEFAULT_FIX"));
+        //this._anim.Add(Packer.Pack("run", "MoCapData", "Copy of run1_DEFAULT_FIX"));
+        //this._anim.Add(Packer.Pack("walk_continuous", "MoCapData", "walk_continuous2_DEFAULT_FIX"));
+        //this._anim.Add(Packer.Pack("circle_left", "MoCapData", "circle_left_DEFAULT_FIX"));
+        //this._anim.Add(Packer.Pack("circle_right", "MoCapData", "circle_right_DEFAULT_FIX"));
+        //this._anim.Add(Packer.Pack("salamander", "MoCapData", "salamander_walk_test"));
+        //this._anim.Add(Packer.Pack("run1right_DEFAULT_C26", "MoCapData", "run1right_DEFAULT_C26"));
+        //this._anim.Add(Packer.Pack("run2right_DEFAULT_C26", "MoCapData", "run2right_DEFAULT_C26"));
+        //this._anim.Add(Packer.Pack("runLeft_DEFAULT_C26", "MoCapData", "runLeft_DEFAULT_C26"));
 
         // Fine-tuning
-        public const float RecalculationThreshold = 0.3f; // The maximum diff of two Trajectories before recalculating the Animation
-        //public const float RecalculationThreshold = Mathf.Infinity; // The maximum diff of two Trajectories before recalculating the Animation
-        public const int CooldownTime = 0; // Number of frames that a Frame is on cooldown after being played
+        //public const float RecalculationThreshold = 0.3f; // The maximum diff of two Trajectories before recalculating the Animation
+        public const float RecalculationThreshold = Mathf.Infinity; // The maximum diff of two Trajectories before recalculating the Animation
+        public const int CooldownTime = 500; // Number of frames that a Frame is on cooldown after being played
         public const int CandidateFramesSize = 30; // Number of candidate frames for a transition (tradeoff: fidelity/speed)
-        public const int ClipBlendPoints = 1; // Each Animation Clip is blended with the next one for smoother transition. The are both played for this num of Frames
-        //public const float MaxTrajectoryDiff = 70f;
+        public const int ClipBlendPoints = 0; // Each Animation Clip is blended with the next one for smoother transition. The are both played for this num of Frames
 
         // Frame/Point/Feature ratios
         // FeaturePoints % FeatureEveryPoints should be 0
@@ -34,7 +44,7 @@ namespace MoMa
         // Movement
         public const float DefaultDampTime = 1f;
         public const float StopDampTime = 3f;
-        public const float WalkingSpeed = 0.70f;
+        public const float WalkingSpeed = 2.70f;
         public const float RunningSpeed = 1.4f;
 
         private MovementComponent _mc;
@@ -47,16 +57,24 @@ namespace MoMa
 
         void Start()
         {
-            // TODO: If used, put it in a more central point
-            Application.targetFrameRate = TargetFrameRate;
+            // TODO: The Animations should not be packed on runtime
+            List<(string, string)> animationFiles = new List<(string, string)>();
+            animationFiles.Add(("take-1_DEFAULT_C26", "TempMoCapData"));
+            //animationFiles.Add(("take-2_DEFAULT_C26", "cleanUps"));
+            //animationFiles.Add(("take-3_DEFAULT_C26", "cleanUps"));
+            //animationFiles.Add(("take-4_DEFAULT_C26", "cleanUps"));
+            //animationFiles.Add(("take-5_DEFAULT_C26", "cleanUps"));
+            //animationFiles.Add(("take-6_DEFAULT_C26", "cleanUps"));
+            //animationFiles.Add(("take-7_DEFAULT_C26", "TempMoCapData"));
+            //animationFiles.Add(("take-8_DEFAULT_C26", "TempMoCapData"));
+            //animationFiles.Add(("take-9_DEFAULT_C26", "TempMoCapData"));
 
             // We assume that the Character has the correct structure
-            Transform character = this.gameObject.transform;
-            this._model = character.GetChild(0);
-            this._mc = new MovementComponent(character);
+            this._model = this.gameObject.transform;
+            this._mc = new MovementComponent(this._model);
             this._fc = new FollowerComponent(this._model);
-            this._rc = new RuntimeComponent(this._fc);
-            this._ac = new AnimationComponent(this._model.GetChild(0));
+            this._ac = new AnimationComponent(this._model);
+            this._rc = new RuntimeComponent(this._fc, animationFiles);
 
             if (this._model == null)
             {
@@ -68,6 +86,9 @@ namespace MoMa
             {
                 this._trajectory.points.Add(new Trajectory.Point(new Vector2(0f, 0f), Quaternion.identity));
             }
+
+            // TODDO: Remove
+            UpdateTarget(new Vector3(80, 0, 8));
         }
 
         void FixedUpdate()

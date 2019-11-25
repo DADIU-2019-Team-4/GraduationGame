@@ -11,10 +11,12 @@ public class AttachToPlane : MonoBehaviour
     public bool _attached;
 
     private List<AudioEvent> audioEvents;
+    private FlameAttachToggler _flameAttachToggler;
 
     private void Awake()
     {
         audioEvents = new List<AudioEvent>(GetComponents<AudioEvent>());
+        _flameAttachToggler = GetComponent<FlameAttachToggler>();
     }
 
     void Start()
@@ -60,6 +62,8 @@ public class AttachToPlane : MonoBehaviour
             _attached = false;
 
             GetComponent<MovementController>().IsInvulnerable = false;
+
+            _flameAttachToggler.FlameOff();
             
             if (destroy)
                 Destroy(parent.gameObject);

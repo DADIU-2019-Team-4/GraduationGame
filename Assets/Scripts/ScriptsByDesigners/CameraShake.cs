@@ -42,6 +42,7 @@ public class CameraShake : MonoBehaviour
             else
             {
                 virtualCameraNoise.m_AmplitudeGain = 0f;
+                virtualCameraNoise.m_FrequencyGain = 0f;
                 shakeElapsedTime = 0f;
             }
         }

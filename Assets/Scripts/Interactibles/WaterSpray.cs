@@ -22,11 +22,13 @@ public class WaterSpray : MonoBehaviour
     {
         particleSystem = GetComponent<ParticleSystem>();
         audioEvents = new List<AudioEvent>(GetComponents<AudioEvent>());
+        boxCollider = GetComponent<BoxCollider>();
     }
 
     private void Start()
     {
         particleSystem.Stop();
+        boxCollider.enabled = false;
     }
 
     private void Update()
@@ -34,7 +36,6 @@ public class WaterSpray : MonoBehaviour
         if (StartOffsetTimer > 0)
         {
             StartOffsetTimer -= Time.deltaTime;
-
         }
         else if (!hasStarted)
         {
@@ -45,7 +46,6 @@ public class WaterSpray : MonoBehaviour
 
             hasStarted = true;
         }
-
         else
         {
             timer += Time.deltaTime;
@@ -66,6 +66,7 @@ public class WaterSpray : MonoBehaviour
     private void TurnOn()
     {
         particleSystem.Play();
+        boxCollider.enabled = true;
         isActivated = true;
         timer = 0;
         AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.WaterSprayOn, audioEvents, gameObject);
@@ -74,6 +75,7 @@ public class WaterSpray : MonoBehaviour
     private void TurnOff()
     {
         particleSystem.Stop();
+        boxCollider.enabled = false;
         isActivated = false;
         timer = 0;
         AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.WaterSprayOff, audioEvents, gameObject);
@@ -108,7 +110,7 @@ public class WaterSpray : MonoBehaviour
             Vector3 targetPos = movementController.transform.position -
                                 (movementController.transform.forward * movementController.DamageBounceValue);
             targetPos.y = 0;
-            StartCoroutine(movementController.MoveBackRoutine(targetPos, movementController.MoveDuration));
+            StartCoroutine(movementController.MoveBackRoutine(targetPos, MovementController.MoveDuration));
         }
     }
 }

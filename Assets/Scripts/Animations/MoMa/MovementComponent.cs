@@ -7,7 +7,6 @@ namespace MoMa
 {
     public class MovementComponent
     {
-
         public int playerId = 0;
 
         private Transform _transform;
