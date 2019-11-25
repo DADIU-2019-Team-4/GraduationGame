@@ -75,12 +75,12 @@ public class UINavigation : MonoBehaviour
 
     public void ChangeLanguageToDanish()
     {
-
+        PlayerPrefs.SetString("Language", "Danish");
     }
 
     public void ChangeLanguageToEnglish()
     {
-
+        PlayerPrefs.SetString("Language", "English");
     }
 
     public void UpdateSFXVolume(float value)

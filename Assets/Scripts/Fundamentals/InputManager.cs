@@ -35,6 +35,8 @@ public class InputManager : IGameLoop
     public bool IsPerfectTopDownCamera;
     public bool hasVibrated;
 
+    public static bool DisableInput = false;
+
     private void Awake()
     {
         audioEvents = GetComponents<AudioEvent>();
@@ -55,6 +57,8 @@ public class InputManager : IGameLoop
     /// </summary>
     public override void GameLoopUpdate()
     {
+        if (DisableInput) return;
+
         if (DialogueTrigger.DialogueIsRunning)
             DialogueClick();
 
@@ -122,7 +126,7 @@ public class InputManager : IGameLoop
             {
                 Vibration.Vibrate(80);
                 hasVibrated = true;
-            }     
+            }
 
             // if dash is charged, change arrow to dash length
             StretchArrow(movementController.DashDistance);
@@ -370,6 +374,8 @@ public class InputManager : IGameLoop
         dashTimer = 0;
         movementController.DashHoldPercentage.Value = dashTimer;
     }
+
+    public static void ToggleInput(bool disableInput) { DisableInput = disableInput; }
 }
 
 public static class Vibration
