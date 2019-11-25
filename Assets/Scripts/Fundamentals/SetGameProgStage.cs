@@ -9,7 +9,8 @@ public class SetGameProgStage : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if ((int)GameProgressionTracker.Value < (int)SetTo)
-            GameProgressionTracker.Value = SetTo;
+        if (other.gameObject.tag == "Player")
+            if ((int)GameProgressionTracker.Value < (int)SetTo)
+                GameProgressionTracker.Value = SetTo;
     }
 }

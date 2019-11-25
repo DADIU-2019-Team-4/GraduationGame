@@ -17,6 +17,9 @@ public class LoadBaseSceneManager : IGameLoop
     }
     public BaseScenes SelectedScene;
     public GameObject Player;
+    public StoryProgression StoryProgression;
+
+
     [Header("AssetsBundles:")]
     public AssetsInformation[] CommonAssets;
     public AssetsInformation[] TutorialAssets;
@@ -25,18 +28,49 @@ public class LoadBaseSceneManager : IGameLoop
     public AssetsInformation[] Room2Level1Assets;
     public AssetsInformation[] Room2Level2Assets;
     private AssetBundle _bundle;
+
+
+
     private void Start()
     {
         DownloadAssets();
+
+#if UNITY_EDITOR
         LoadBaseScene(SelectedScene);
+#elif UNITY_ANDROID || UNITY_IOS || UNITY_STANDALONE
+        LoadSceneFromPlayerProgression();
+#endif
+    }
+
+    private void LoadSceneFromPlayerProgression()
+    {
+        switch (StoryProgression.Value)
+        {
+            case StoryProgression.EStoryProgression.At_Tutorial:
+                // TODO: Play intro scene and set player pos at tutorial start.
+                LoadBaseScene(BaseScenes.Hub_1);
+                break;
+
+            case StoryProgression.EStoryProgression.Room_1_1_Complete:
+                LoadBaseScene(BaseScenes.MathiasRoom1Level2);
+                break;
+
+            case StoryProgression.EStoryProgression.Room_2_1_Complete:
+                LoadBaseScene(BaseScenes.MagnusRoom2Level2);
+                break;
+
+            default:
+                LoadBaseScene(BaseScenes.Hub_1);
+                break;
+        }
     }
 
     public void LoadBaseScene(BaseScenes scenes)
     {
-        switch(scenes)
+        switch (scenes)
         {
             case BaseScenes.Hub_1:
-                for (int i = 0; i <= TutorialAssets.Length - 1;i++)
+                for (int i = 0; i <= TutorialAssets.Length - 1; i++)
                     StartCoroutine(LoadAssets(TutorialAssets[i]));
                 StartCoroutine(LoadNewSceneAsync(scenes.ToString() + ".0"));
                 break;
@@ -65,7 +99,7 @@ public class LoadBaseSceneManager : IGameLoop
     public void UnloadScene(string name)
     {
         Player.GetComponent<MovementController>().StopMoving();
-        ResetPlayerPos();
+        ResetPlayerPos(string.Empty); // Bad hack but does the job
         SceneManager.UnloadSceneAsync(name);
         //TO.DO
         //Unload assetBundle
@@ -86,23 +120,26 @@ public class LoadBaseSceneManager : IGameLoop
         while (!syncOperation.isDone)
         {
             yield return null;
-            ResetPlayerPos();
+            ResetPlayerPos(name);
         }
     }
-    private void ResetPlayerPos()
+    private void ResetPlayerPos(string sceneName)
     {
-        Player.transform.position = new Vector3(0, 0, 0);
+        if (sceneName == "Hub_1.0" && StoryProgression.Value != StoryProgression.EStoryProgression.At_Tutorial)
+            Player.transform.position = new Vector3(0, 0, 60);
+        else
+            Player.transform.position = new Vector3(0, 0, 0);
     }
     private void DownloadAssets()
     {
         Time.timeScale = 0;
         //Loads Common assets, used in all scenes (MainPlayerScene)
-        for(int i =0; i<=CommonAssets.Length-1;i++)
+        for (int i = 0; i <= CommonAssets.Length - 1; i++)
         {
             StartCoroutine(DownloadAssets(CommonAssets[i]));
             _bundle.LoadAllAssets();
         }
-        for (int i = 0; i<= TutorialAssets.Length - 1; i++)
+        for (int i = 0; i <= TutorialAssets.Length - 1; i++)
             StartCoroutine(DownloadAssets(TutorialAssets[i]));
         for (int i = 0; i <= Room1Level1Assets.Length - 1; i++)
             StartCoroutine(DownloadAssets(Room1Level1Assets[i]));
@@ -117,8 +154,8 @@ public class LoadBaseSceneManager : IGameLoop
     {
         var request = UnityWebRequestAssetBundle.GetAssetBundle(assets.AssetLink, 1, 0);
         yield return request.SendWebRequest();
-       _bundle = DownloadHandlerAssetBundle.GetContent(request);
- 
+        _bundle = DownloadHandlerAssetBundle.GetContent(request);
+
     }
     IEnumerator LoadAssets(AssetsInformation asset)
     {
