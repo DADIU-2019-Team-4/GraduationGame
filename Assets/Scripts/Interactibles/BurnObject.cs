@@ -9,7 +9,7 @@ public class BurnObject : MonoBehaviour
     private bool _isDissasembling = true;
     //[SerializeField]
     //private List <BurnObject> burnNeighbors;
-    private float _burnedAmount =0.7f;
+    private float _burnedAmount =0.9f;
 
     private GameObject _fireObject;
     private float fireFloat = -1f;

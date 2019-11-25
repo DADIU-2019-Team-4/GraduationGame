@@ -40,7 +40,7 @@ public class DELETE_LATERtutorialTxt : MonoBehaviour
             else if (canChangeText && textForThis == 1)
             {
                 //text2.enabled = true;
-                text2.text = "Burning objects restores your fire.";
+                text2.text = "Burning through objects restores your fire.";
             }
             else if (!canChangeText)
             {
