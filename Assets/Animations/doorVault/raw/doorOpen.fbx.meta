@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e3450b4b964559443a760cb2f8a8275b
+guid: 43880c45dcf95d2409cbec029de8c05e
 ModelImporter:
   serializedVersion: 25
   internalIDToNameTable:
@@ -18,8 +18,7 @@ ModelImporter:
     resampleCurves: 1
     optimizeGameObjects: 0
     motionNodeName: 
-    rigImportErrors: "Invalid Avatar Rig Configuration. Missing or invalid transform:\n\tRequired
-      human bone 'Hips' not found\n"
+    rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
@@ -27,7 +26,7 @@ ModelImporter:
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
     importConstraints: 0
-    animationCompression: 3
+    animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -40,7 +39,7 @@ ModelImporter:
       takeName: Take 001
       internalID: 1827226128182048838
       firstFrame: 1
-      lastFrame: 120
+      lastFrame: 48
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -105,47 +104,7 @@ ModelImporter:
   humanDescription:
     serializedVersion: 3
     human: []
-    skeleton:
-    - name: door01_open(Clone)
-      parentName: 
-      position: {x: 0, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: doorVaultRef:vaultWalls_01
-      parentName: door01_open(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: doorVaultRef:cluster7Handle
-      parentName: door01_open(Clone)
-      position: {x: -2.3274686, y: -0.009999923, z: 1.0374554}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: doorVaultRef:cluster6Handle
-      parentName: door01_open(Clone)
-      position: {x: -1.5714514, y: 0, z: 0.3391913}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: doorVaultRef:cluster5Handle
-      parentName: door01_open(Clone)
-      position: {x: 1.6303191, y: -0.37334213, z: 0.62263376}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: doorVaultRef:cluster4Handle
-      parentName: door01_open(Clone)
-      position: {x: -0, y: 0.37334213, z: 0.62263376}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: doorVaultRef:cluster3Handle
-      parentName: door01_open(Clone)
-      position: {x: 1.5714514, y: 0, z: 0.3391913}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: doorVaultRef:cluster2Handle
-      parentName: door01_open(Clone)
-      position: {x: 2.2127035, y: -0.007013364, z: 1.0374554}
-      rotation: {x: 0, y: -0, z: -0.34466597, w: 0.9387254}
-      scale: {x: 1, y: 1, z: 1}
+    skeleton: []
     armTwist: 0.5
     foreArmTwist: 0.5
     upperLegTwist: 0.5
@@ -156,7 +115,7 @@ ModelImporter:
     globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
-    hasExtraRoot: 1
+    hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   animationType: 2
