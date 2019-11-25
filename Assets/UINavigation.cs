@@ -14,12 +14,14 @@ public class UINavigation : MonoBehaviour
     public GameObject _pauseMenu;
 
     public GameObject _continueButton;
+
+    public StoryProgression storyProgression;
     // Start is called before the first frame update
     void Awake()
     {
         InitPlayerPrefs();
 
-        if (PlayerPrefs.GetInt("FirstTimePlaying")==1 && _continueButton != null)
+        if (storyProgression.Value == StoryProgression.EStoryProgression.At_Tutorial && _continueButton != null)
         {
             _continueButton.GetComponent<Button>().interactable= false;
         }
@@ -55,12 +57,13 @@ public class UINavigation : MonoBehaviour
 
     public void NewGame()
     {
+        storyProgression.Value = StoryProgression.EStoryProgression.At_Tutorial;
         SceneManager.LoadScene("MainPlayerScene");
     }
 
     public void ContinueGame()
     {
-
+        SceneManager.LoadScene("MainPlayerScene");
     }
 
     public void OpenOptions()
