@@ -13,11 +13,19 @@ public class Torch : MonoBehaviour
         _light.enabled = false;
     }
 
-    private void OnCollisionEnter(Collision collision)
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag != "Player") return;
+
+        _light.enabled = true;
+        Destroy(this);
+    }
+   /* private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag != "Player") return;
 
         _light.enabled = true;
         Destroy(this);
-    }
+    }*/
 }
