@@ -7,9 +7,10 @@ using System.Collections.Generic;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
-
 public class MovementController : MonoBehaviour
 {
+    #region Inspector Adjustable Fields
+
     [Header("General Settings")] [
     Tooltip("Fire value you start the game with.")]
     public float FireStartValue = 20;
@@ -47,50 +48,28 @@ public class MovementController : MonoBehaviour
     [Tooltip("Easing function of the dash.")]
     public Ease DashEase = Ease.OutCubic;
 
-    [Header("Canvas Fields")]
-    private TMP_Text FireAmountText;
-
-    private GameController gameController;
-    private FireGirlAnimationController animationController;
-    private Rigidbody rigidBody;
-    private Material material;
-    private Tweener moveTweener;
-    private PathKeeper _pathKeeper;
-    private List<AudioEvent> audioEvents;
-
-    private AttachToPlane attachToPlane;
-
-    private float currentFireAmount;
-    private float maxFireAmount = 100f;
-    private bool isOutOfFire;
-    private bool startCharge;
-    private bool isMoveCharged;
-    private bool reachedGoal;
-    private float damageTimer;
-
     [Header("Scriptable Objects")]
     public FloatVariable GoalDistance;
     public FloatVariable GoalDistanceRelative;
     public FloatVariable HealthPercentage;
     public FloatVariable ArrowLength;
     public FloatVariable DashHoldPercentage;
-    private PlayerActionsCollectorQA playerActionsCollectorQA;
 
-    private Vector3 startPosition;
-    private Vector3 goalPosition;
+    #endregion
 
-    CameraShake cameraShake;
-    private float chargedDashShakeDur = 0.2f;
+    #region Public Editor Fields
+
+    private readonly float MaxFireAmount = 100f;
+
+    public bool IsCharging { get; set; }
 
     public bool IsMoving { get; set; }
 
     public bool IsFuseMoving { get; set; }
 
-    public bool TriggerCoyoteTime { get; set; }
+    public bool IsDashing { get; set; }
 
     public bool IsDashCharged { get; set; }
-
-    public bool IsDashing { get; set; }
 
     public bool HasDied { get; set; }
 
@@ -104,187 +83,238 @@ public class MovementController : MonoBehaviour
 
     public Vector3 TargetPosition { get; set; }
 
-    private void Awake()
+    #endregion
+
+    #region Private Editor Fields
+
+    private GameController _gameController;
+    private FireGirlAnimationController _anim;
+    private Rigidbody _rigidBody;
+    private Tweener _moveTweener;
+    private List<AudioEvent> _audioEvents;
+    private AttachToPlane _attachToPlane;
+    private PlayerActionsCollectorQA _playerActionsCollectorQA;
+    private TMP_Text _fireAmountText;
+    private PathKeeper _pathKeeper;
+    private float _currentFireAmount;
+    private float _dashTimer;
+    private float _damageTimer;
+    private Vector3 _startPosition;
+    private Vector3 _goalPosition;
+
+    #endregion
+
+    #region Public Methods
+
+    void Awake()
     {
-        rigidBody = GetComponent<Rigidbody>();
-        animationController = GetComponentInChildren<FireGirlAnimationController>();
-        material = GetComponent<Renderer>().material;
-        gameController = FindObjectOfType<GameController>();
-        audioEvents = new List<AudioEvent>(GetComponents<AudioEvent>());
+        _rigidBody = GetComponent<Rigidbody>();
+        _anim = GetComponentInChildren<FireGirlAnimationController>();
+        _gameController = FindObjectOfType<GameController>();
+        _audioEvents = new List<AudioEvent>(GetComponents<AudioEvent>());
         _pathKeeper = FindObjectOfType<PathKeeper>();
-        attachToPlane = GetComponent<AttachToPlane>();
-        playerActionsCollectorQA = FindObjectOfType<PlayerActionsCollectorQA>();
-
-
+        _attachToPlane = GetComponent<AttachToPlane>();
+        _playerActionsCollectorQA = FindObjectOfType<PlayerActionsCollectorQA>();
     }
 
-    // Start is called before the first frame update
-    private void Start()
+    void Start()
     {
-        FireAmountText = GameObject.Find("FireAmountText").GetComponent<TextMeshProUGUI>();
-        //cameraShake = GameObject.FindGameObjectWithTag("VirtualCamera").GetComponent<CameraShake>();
-        currentFireAmount = SceneManager.GetActiveScene().name == "Hub_1.0" ? FireStartValue : maxFireAmount;
+        _fireAmountText = GameObject.Find("FireAmountText").GetComponent<TextMeshProUGUI>();
+        _currentFireAmount = SceneManager.GetActiveScene().name == "Hub_1.0" ? FireStartValue : MaxFireAmount;
         UpdateFireAmountText();
-        HealthPercentage.Value = currentFireAmount;
+        HealthPercentage.Value = _currentFireAmount;
 
-        gameController.IsPlaying = true;
+        _gameController.IsPlaying = true;
 
-        SetStartAndEndPositions();
+        // Set Start and End Positions
+        _startPosition = _rigidBody.position;
+        var goal = GameObject.FindGameObjectWithTag("Goal");
+        _goalPosition = goal != null ?
+            goal.transform.position :
+            Vector3.zero;
+
+        GoalDistanceRelative.Value = 0f;
+        UpdateGoalDistances();
 
         if (FuseEvent == null)
             FuseEvent = new UnityEvent();
     }
 
-    private void Update()
+    void Update()
     {
-        DamageCoolDown();
-    }
-
-    /// <summary>
-    /// Activate Damage cool down when the player is damaged to prevent more damage to the player.
-    /// </summary>
-    private void DamageCoolDown()
-    {
+        // Use Damage cool down when the player is damaged to prevent more damage to the player.
         if (!DamageCoolDownActivated) return;
 
-        damageTimer += Time.deltaTime;
-        if (damageTimer > DamageCoolDownValue)
+        _damageTimer += Time.deltaTime;
+        if (_damageTimer > DamageCoolDownValue)
         {
             DamageCoolDownActivated = false;
-            damageTimer = 0;
+            _damageTimer = 0;
         }
     }
 
-    public void SetStartAndEndPositions()
+    /// <summary>
+    /// Places the Player to the start of the level and replenishes health.
+    /// </summary>
+    public void Respawn()
     {
-        startPosition = rigidBody.position;
-
-        var goal = GameObject.FindGameObjectWithTag("Goal");
-        if (goal != null)
-            goalPosition = goal.transform.position;
-        else
-            goalPosition = Vector3.zero;
-
-        GoalDistanceRelative.Value = 0f;
+        // Reset Health
+        _currentFireAmount = MaxFireAmount;
+        UpdateFireAmount(0);
         UpdateGoalDistances();
+        DisablePlayerCharacter(false);
+        _rigidBody.velocity = Vector3.zero;
+        transform.position = Vector3.zero;
+
+        // Set animator state 
+        _anim.Respawn();
     }
 
     /// <summary>
-    /// Visualizes charging the simple movement.
+    /// Call on every frame of charging. Handles charging and Animator
     /// </summary>
-    public void ChargeMove()
+    public void Charge(bool isDashing)
     {
-        // Play Animator
-        animationController.SetLongDash(false);
-        animationController.SetLongDashCharged(false);
-        animationController.Charge();
-    }
+        // First time called: Fire Animator's Trigger
+        if (!IsCharging) _anim.Charge();
+        IsCharging = true;
 
-    /// <summary>
-    /// Visualizes charging the dash.
-    /// </summary>
-    public void ChargeDash()
-    {
-        // Update Animator
-        animationController.SetLongDash(true);
-        animationController.SetLongDashCharged(false);
-        animationController.Charge();
-    }
+        // Intent Move
+        if (!isDashing)
+        {
+            // Play Sound
+            if (IsDashing)
+            {
+                AudioEvent.SendAudioEvent(
+                    AudioEvent.AudioEventType.DashCancelled,
+                    _audioEvents,
+                    gameObject);
+            }
 
-    public void DashCharged()
-    {
-        IsDashCharged = true;
+            // Update Intent and State
+            IsDashing = false;
+            IsDashCharged = false;
+            _dashTimer = 0;
+        }
 
-        // Update Animator
-        animationController.SetLongDash(true);
-        animationController.SetLongDashCharged(true);
+        // Intent Charge (unfinished)
+        else if (!IsDashCharged)
+        {
+            // Update Intent and State
+            IsDashing = true;
+            _dashTimer += Time.deltaTime;
+            if (_dashTimer >= MovementController.DashThreshold)
+            {
+                _dashTimer = MovementController.DashThreshold;
+                DashCharged();
+            }
+        }
 
-        AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.ChargingDash, audioEvents, gameObject);
-    }
+        // Intent Charge (finished) -> Do nothing
 
-    /// <summary>
-    /// Performs Move Action.
-    /// </summary>
-    public void Move(Vector3 moveDirection)
-    {
-        //if (IsMoving)
-        //{
-        //    TriggerCoyoteTime = true;
-        //    return;
-        //}
-
-        attachToPlane.Detach(false);
-
-        // Play Animation
-        animationController.Release();
-
-        AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.Dash, audioEvents, gameObject);
-        playerActionsCollectorQA.DataConteiner.NormalDashCount++;
-        Vector3 targetPos = transform.position + moveDirection * MoveDistance;
-        targetPos.y = transform.position.y;
-
-        StartCoroutine(MoveRoutine(targetPos, MoveDuration));
-    }
-
-    /// <summary>
-    /// Performs Dash Action.
-    /// </summary>
-    public void Dash(Vector3 dashDirection)
-    {
-        //if (IsMoving)
-        //{
-        //    TriggerCoyoteTime = true;
-        //    return;
-        //}
-
-        attachToPlane.Detach(false);
-
-        IsDashing = true;
-        AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.ChargedDash, audioEvents, gameObject);
-        playerActionsCollectorQA.DataConteiner.ChargedDashCount++;
-        Vector3 targetPos = transform.position + dashDirection * DashDistance;
-
-        // Play Animation
-        animationController.Release();
-
-        StartCoroutine(MoveRoutine(targetPos, DashDuration));
-    }
-
-    /// <summary>
-    /// Resets the charging dash state.
-    /// </summary>
-    public void ResetDash()
-    {
-        material.SetColor("_Color", Color.yellow);
-        IsDashCharged = false;
-        isMoveCharged = false;
+        // Update the charging progress ScriptableObject
+        DashHoldPercentage.Value = _dashTimer / DashThreshold;
 
         // Update Animator
-        animationController.SetLongDash(false);
-        animationController.SetLongDashCharged(false);
-
-        AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.DashCancelled, audioEvents, gameObject);
-        startCharge = false;
+        _anim.SetLongDash(IsDashing);
+        _anim.SetLongDashCharged(IsDashCharged);
     }
 
     /// <summary>
-    /// Notifies the Animator that the action is cancelled.
+    /// Cancels the action currently loading.
     /// </summary>
     public void Cancel()
     {
         // Update Animator
-        animationController.Cancel();
+        _anim.Cancel();
+
+        // Reset State
+        IsCharging = false;
+        IsDashing = false;
+        IsDashCharged = false;
+        _dashTimer = 0;
     }
 
     /// <summary>
-    /// Notifies the Animator that the a collision has occured.
+    /// Performs Dash Action if charged or Move otherwise.
+    /// </summary>
+    public void Release(Vector3 direction)
+    {
+        // Play Animation
+        _anim.Release();
+
+        // Play Sound
+        AudioEvent.SendAudioEvent(
+            IsDashing ? AudioEvent.AudioEventType.ChargedDash : AudioEvent.AudioEventType.Dash,
+            _audioEvents,
+            gameObject
+            );
+
+        // Initiate Vibration
+        if (IsDashing) Vibration.Vibrate(200);
+
+        // Perform Action
+        _attachToPlane.Detach();
+        StartCoroutine(MoveRoutine(
+            transform.position + direction * (IsDashing ? DashDistance: MoveDistance),
+            IsDashing ? DashDuration : MoveDuration
+            ));
+
+        // Save stats
+        if (IsDashing) _playerActionsCollectorQA.DataConteiner.ChargedDashCount++;
+        else _playerActionsCollectorQA.DataConteiner.NormalDashCount++;
+
+        // Reset State
+        IsCharging = false;
+        IsDashing = false;
+        IsDashCharged = false;
+        _dashTimer = 0;
+    }
+
+    /// <summary>
+    /// Triggers the Animator and updates TargetPosition.
     /// </summary>
     public void Collide(Vector3 hitpoint)
     {
         TargetPosition = hitpoint - transform.forward * BounceValue;
 
+        // TODO: Enable, if seems nice
         // Update Animator
-        animationController.Collide();
+        //_anim.Collide();
+    }
+
+    /// <summary>
+    /// Notifies the Animator that the a collision has occured.
+    /// </summary>
+    public void CollideFusePoint()
+    {
+        FuseEvent.RemoveListener(CollideFusePoint);
+        UpcomingFusePoint.GetComponent<StartPoint>().StartFollowingFuse();
+        IsInvulnerable = true;
+
+        // Update Animator
+        _anim.EnterInteractable(InteractibleObject.InteractType.Fuse);
+    }
+
+    public void Win(Vector3 targetPosition)
+    {
+        TargetPosition = targetPosition;
+        _gameController.Win();
+        DisablePlayerCharacter();
+    }
+
+    public void Die(bool isOutOfFire, Vector3 targetPosition)
+    {
+        // Play animation
+        _anim.Die();
+
+        TargetPosition = targetPosition;
+
+        if (isOutOfFire) _gameController.GameOverOutOfMoves();
+        else _gameController.GameOverDied();
+
+        SetDeathData();
+        DisablePlayerCharacter();
     }
 
     /// <summary>
@@ -292,18 +322,18 @@ public class MovementController : MonoBehaviour
     /// </summary>
     public IEnumerator MoveBackRoutine(Vector3 target, float duration)
     {
-        moveTweener?.Kill();
+        _moveTweener?.Kill();
 
         IsMoving = true;
 
-        moveTweener = rigidBody.DOMove(target, duration);
+        _moveTweener = _rigidBody.DOMove(target, duration);
 
-        // Update Animator
-        animationController.Collide();
+        // Play Animation
+        _anim.Collide();
 
         yield return new WaitForSeconds(duration);
 
-        rigidBody.velocity = Vector3.zero;
+        _rigidBody.velocity = Vector3.zero;
     }
 
     /// <summary>
@@ -311,31 +341,110 @@ public class MovementController : MonoBehaviour
     /// </summary>
     private IEnumerator MoveRoutine(Vector3 target, float duration)
     {
-        moveTweener?.Kill();
+        // Before Movement
+        _moveTweener?.Kill();
 
-        if (IsDashing)
-        {
-            //cameraShake.setShakeElapsedTime(chargedDashShakeDur);
-            UpdateFireAmount(DashCostInPercentage);
-        }
-        else
-            UpdateFireAmount(MoveCostInPercentage);
+        UpdateFireAmount(IsDashing ? DashCostInPercentage : MoveCostInPercentage);
 
         TargetPosition = target;
-
         IsMoving = true;
 
         CheckCollision();
 
-        moveTweener = rigidBody.DOMove(TargetPosition, duration);
-        moveTweener.SetEase(IsDashing ? DashEase : MoveEase);
+        _moveTweener = _rigidBody.DOMove(TargetPosition, duration);
+        _moveTweener.SetEase(IsDashing ? DashEase : MoveEase);
+
         yield return new WaitForSeconds(duration);
 
+        // After Movement
         CheckFireLeft();
-        MoveEnded();
+        AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.DashEnded, _audioEvents, gameObject);
 
-        rigidBody.velocity = Vector3.zero;
+        IsMoving = false;
+        IsDashing = false;
+
+        HealthPercentage.Value = _currentFireAmount;
+        UpdateGoalDistances();
+
+        // Log current position, so that the Salamander can follow
+        //_pathKeeper.LogPosition(this.transform.position.GetXZVector2());
+
+        _rigidBody.velocity = Vector3.zero;
         FuseEvent.Invoke();
+    }
+
+    public void StopMoving()
+    {
+        _moveTweener?.Kill();
+        StopCoroutine(nameof(MoveRoutine));
+        StopCoroutine(nameof(MoveBackRoutine));
+        _rigidBody.velocity = Vector3.zero;
+
+        // Update Animator
+        _anim.Land();
+    }
+
+    /// <summary>
+    /// Updates the fire amount.
+    /// </summary>
+    public void UpdateFireAmount(float cost)
+    {
+        _currentFireAmount -= cost;
+        if (_currentFireAmount < 0)
+            _currentFireAmount = 0;
+        if (_currentFireAmount > MaxFireAmount)
+            _currentFireAmount = MaxFireAmount;
+        UpdateFireAmountText();
+    }
+
+    /// <summary>
+    /// Checks if the player has moves left.
+    /// </summary>
+    public void CheckFireLeft()
+    {
+        if (_currentFireAmount <= 0) Die(true, TargetPosition);
+    }
+
+    public Vector3 DashDirection() { return TargetPosition - _rigidBody.position; }
+
+    public void InfiniteMoves()
+    {
+        MoveCostInPercentage = 0;
+        DashCostInPercentage = 0;
+    }
+
+    #endregion
+
+    #region Private Methods
+
+    /// <summary>
+    /// Sets the Dash charged.
+    /// </summary>
+    private void DashCharged()
+    {
+        IsDashCharged = true;
+
+        // Update Animator
+        _anim.SetLongDash(true);
+        _anim.SetLongDashCharged(true);
+
+        // Play Sound
+        AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.ChargingDash, _audioEvents, gameObject);
+
+        // Vibrate
+        Vibration.Vibrate(80);
+    }
+
+    private void UpdateGoalDistances()
+    {
+        if (_goalPosition == Vector3.zero)
+            return;
+
+        GoalDistance.Value = (_goalPosition - _rigidBody.position).magnitude;
+        var baseDistance = (_goalPosition - _startPosition).magnitude;
+        GoalDistanceRelative.Value = (1f - GoalDistance.Value / baseDistance) * 100f;
+        if (GoalDistanceRelative.Value < 0f)
+            GoalDistanceRelative.Value = 0f;
     }
 
     /// <summary>
@@ -365,56 +474,11 @@ public class MovementController : MonoBehaviour
         }
     }
 
-    public void StopMoving()
+    private void DisablePlayerCharacter(bool disable = true)
     {
-        moveTweener?.Kill();
-        StopCoroutine(nameof(MoveRoutine));
-        StopCoroutine(nameof(MoveBackRoutine));
-        rigidBody.velocity = Vector3.zero;
-
-        // Update Animator
-        animationController.Idle();
-    }
-
-    private void MoveEnded()
-    {
-        AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.DashEnded, audioEvents, gameObject);
-
-        IsMoving = false;
-
-        if (IsDashing)
-            IsDashing = false;
-
-        HealthPercentage.Value = currentFireAmount;
-        UpdateGoalDistances();
-
-        // Log current position, so that the Salamander can follow
-        //_pathKeeper.LogPosition(this.transform.position.GetXZVector2());
-    }
-
-    private void UpdateGoalDistances()
-    {
-        if (goalPosition == Vector3.zero)
-            return;
-
-        GoalDistance.Value = (goalPosition - rigidBody.position).magnitude;
-        var baseDistance = (goalPosition - startPosition).magnitude;
-        GoalDistanceRelative.Value = (1f - GoalDistance.Value / baseDistance) * 100f;
-        if (GoalDistanceRelative.Value < 0f)
-            GoalDistanceRelative.Value = 0f;
-    }
-
-    /// <summary>
-    /// Updates the fire amount.
-    /// </summary>
-    public void UpdateFireAmount(float cost)
-    {
-        currentFireAmount -= cost;
-        if (currentFireAmount < 0)
-            currentFireAmount = 0;
-        if (currentFireAmount > maxFireAmount)
-            currentFireAmount = maxFireAmount;
-        UpdateFireAmountText();
+        StopMoving();
+        GetComponent<CapsuleCollider>().enabled = !disable;
+        _rigidBody.isKinematic = disable;
     }
 
     /// <summary>
@@ -422,105 +486,7 @@ public class MovementController : MonoBehaviour
     /// </summary>
     private void UpdateFireAmountText()
     {
-        FireAmountText.text = string.Format("{0:0.#}", currentFireAmount) + "%";
-    }
-
-    /// <summary>
-    /// Checks if the player has moves left.
-    /// </summary>
-    public void CheckFireLeft()
-    {
-        if (currentFireAmount <= 0)
-        {
-            isOutOfFire = true;
-            CheckGameEnd();
-        }
-    }
-
-    /// <summary>
-    /// Checks how the game ended.
-    /// </summary>
-    public void CheckGameEnd()
-    {
-        if (reachedGoal)
-            gameController.Win();
-        else if (HasDied)
-        {
-            SetDeathData();
-            gameController.GameOverDied();
-
-            // Play animation
-            animationController.Die();
-        }
-        else if (isOutOfFire)
-        {
-            SetDeathData();
-            gameController.GameOverOutOfMoves();
-
-            // Play animation
-            animationController.Die();
-        }
-        else
-            return;
-
-        DisablePlayerCharacter();
-    }
-
-    public void ResetPlayerCharacterState()
-    {
-        ResetHealth();
-        DisablePlayerCharacter(false);
-        UpdateFireAmount(0);
-        UpdateGoalDistances();
-        HealthPercentage.Value = currentFireAmount;
-        UpdateGoalDistances();
-        rigidBody.velocity = Vector3.zero;
-
-        // Set animator state 
-        animationController.Respawn();
-    }
-
-    private void DisablePlayerCharacter(bool disable = true)
-    {
-        StopMoving();
-        GetComponent<CapsuleCollider>().enabled = !disable;
-        rigidBody.isKinematic = disable;
-    }
-
-    public void CollideFusePoint()
-    {
-        FuseEvent.RemoveListener(CollideFusePoint);
-        StartPoint startPoint = UpcomingFusePoint.GetComponent<StartPoint>();
-        startPoint.StartFollowingFuse();
-        IsInvulnerable = true;
-
-        // Update Animator
-        animationController.EnterInteractable();
-    }
-
-    /*public void CollidePickUp()
-    {
-        currentFireAmount += FireStartValue;
-        if (currentFireAmount > maxFireAmount)
-            currentFireAmount = maxFireAmount;
-        FireAmountText.text = currentFireAmount.ToString();
-    }*/
-
-    public void CollideGoal(GameObject goal)
-    {
-        reachedGoal = true;
-        CheckGameEnd();
-    }
-
-    public void InfiniteMoves()
-    {
-        MoveCostInPercentage = 0;
-        DashCostInPercentage = 0;
-    }
-
-    private void ResetHealth()
-    {
-        currentFireAmount = maxFireAmount;
+        _fireAmountText.text = string.Format("{0:0.#}", _currentFireAmount) + "%";
     }
 
     private void OnTriggerStay(Collider other)
@@ -545,13 +511,12 @@ public class MovementController : MonoBehaviour
         }
     }
 
-    public Vector3 DashDirection() { return TargetPosition - rigidBody.position; }
-
     private void SetDeathData()
     {
-        playerActionsCollectorQA.DataConteiner.DeathsCount++;
-        playerActionsCollectorQA.DataConteiner.deathPlace.Add(gameObject.transform.position);
-        playerActionsCollectorQA.DataConteiner.levelName.Add(SceneManager.GetActiveScene().name);
-
+        _playerActionsCollectorQA.DataConteiner.DeathsCount++;
+        _playerActionsCollectorQA.DataConteiner.deathPlace.Add(gameObject.transform.position);
+        _playerActionsCollectorQA.DataConteiner.levelName.Add(SceneManager.GetActiveScene().name);
     }
+
+    #endregion
 }

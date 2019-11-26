@@ -29,7 +29,8 @@ public class FireGirlAnimationController : MonoBehaviour
     public const string IsLongDashBool = "isLongDash";
     public const string IsLongDashChargedBool = "isLongDashCharged";
     public const string InInteractableBool = "inInteractable";
-    
+    public const string IsInteractableFuseBool = "isInteractableFuse";
+
     private Animator[] _animators;
     private IdleAnimationController[] _idleAnimatorControllers;
 
@@ -43,6 +44,7 @@ public class FireGirlAnimationController : MonoBehaviour
     private bool _isLongDash;
     private bool _isLongDashCharged;
     private bool _inInteractable;
+    private bool _isInteractableFuse;
 
     // Local triggers
     private bool _chargeTrigger;
@@ -64,23 +66,6 @@ public class FireGirlAnimationController : MonoBehaviour
         }
 
         Idle();
-    }
-
-    public void Idle()
-    {
-        _currentState = State.Idle;
-        _isLongDash = false;
-        _isLongDashCharged = false;
-        _collideTrigger = false;
-        _inInteractable = false;
-        _chargeTrigger = false;
-        _releaseTrigger = false;
-        _cancelTrigger = false;
-        _dieTrigger = false;
-        _respawnTrigger = false;
-
-        ResetSpeed();
-        UpdateAnimators();
     }
 
     public void Charge()
@@ -123,9 +108,17 @@ public class FireGirlAnimationController : MonoBehaviour
         UpdateAnimators();
     }
 
-    public void EnterInteractable()
+    public void EnterInteractable(InteractibleObject.InteractType objectType)
     {
         _inInteractable = true;
+        _isInteractableFuse = objectType == InteractibleObject.InteractType.Fuse;
+        UpdateAnimators();
+    }
+
+    public void Land()
+    {
+        ResetTriggers();
+        Idle();
         UpdateAnimators();
     }
 
@@ -163,6 +156,24 @@ public class FireGirlAnimationController : MonoBehaviour
     }
 
     #region Utilities
+    private void Idle()
+    {
+        _currentState = State.Idle;
+        _isLongDash = false;
+        _isLongDashCharged = false;
+        _collideTrigger = false;
+        _inInteractable = false;
+        _isInteractableFuse = false;
+        _chargeTrigger = false;
+        _releaseTrigger = false;
+        _cancelTrigger = false;
+        _dieTrigger = false;
+        _respawnTrigger = false;
+
+        ResetSpeed();
+        UpdateAnimators();
+    }
+
     private void ResetSpeed()
     {
         // Retrieve the desired frame rate
@@ -212,6 +223,7 @@ public class FireGirlAnimationController : MonoBehaviour
             anim.SetBool(IsLongDashBool, _isLongDash);
             anim.SetBool(IsLongDashChargedBool, _isLongDashCharged);
             anim.SetBool(InInteractableBool, _inInteractable);
+            anim.SetBool(IsInteractableFuseBool, _isInteractableFuse);
         }
 
         // Reset Triggers

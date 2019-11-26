@@ -33,9 +33,10 @@ public class AttachToPlane : MonoBehaviour
         }
     }
     
-    public void Detach(bool destroy)
+    public void Detach()
     {
         Transform parent = gameObject.transform.parent;
+
         if(parent != null)
         {
             AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.OffPlane, audioEvents, gameObject);
@@ -44,14 +45,13 @@ public class AttachToPlane : MonoBehaviour
 
             foreach (Collider coll in colls)
             {
-                if (coll.gameObject.GetComponent<InteractibleObject>() != null)
+                if (
+                    coll.gameObject != transform.parent && 
+                    coll.gameObject.GetComponent<InteractibleObject>() != null
+                    )
                 {
-
-                    if (coll.gameObject != transform.parent)
-                    {
-                        Debug.Log(coll.gameObject.name + "was here");
-                        coll.gameObject.GetComponent<InteractibleObject>().Interact(coll.transform.position);
-                    }              
+                    Debug.Log(coll.gameObject.name + "was here");
+                    coll.gameObject.GetComponent<InteractibleObject>().Interact(coll.transform.position);
                 }
             }
 
@@ -64,9 +64,6 @@ public class AttachToPlane : MonoBehaviour
             GetComponent<MovementController>().IsInvulnerable = false;
 
             _flameAttachToggler.FlameOff();
-            
-            if (destroy)
-                Destroy(parent.gameObject);
         }     
     }
 }

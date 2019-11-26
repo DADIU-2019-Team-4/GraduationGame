@@ -7,8 +7,8 @@ public class FireGirlShaderUpdate : MonoBehaviour
     // Start is called before the first frame update
 
     public FireGirlShaderUpdateType ComponentType;
-    private MovementController MovementController;
-    private Material[] materials;
+    private MovementController _movementController;
+    private Material[] _materials;
 
     public enum FireGirlShaderUpdateType
     {
@@ -27,8 +27,8 @@ public class FireGirlShaderUpdate : MonoBehaviour
 
     void Start()
     {
-        MovementController = FindObjectOfType<MovementController>();
-        materials = GetComponent<Renderer>().materials;
+        _movementController = FindObjectOfType<MovementController>();
+        _materials = GetComponent<Renderer>().materials;
     }
 
     // Update is called once per frame
@@ -37,22 +37,22 @@ public class FireGirlShaderUpdate : MonoBehaviour
         switch (ComponentType)
         {
             case FireGirlShaderUpdateType.Body:
-                foreach (Material material in materials)
+                foreach (Material material in _materials)
                     material.SetFloat("_DissolveAmount", 1f - Health.Value / 100f);
                 break;
 
             case FireGirlShaderUpdateType.Hair:
                 float glow = (Health.Value > 50f) ? 1f : Health.Value / 50f;
-                foreach (Material material in materials)
+                foreach (Material material in _materials)
                     material.SetFloat("_GlowAmount", glow);
                 break;
 
             case FireGirlShaderUpdateType.TransparentBody:
             case FireGirlShaderUpdateType.TransparentHair:
                 Vector3 flameDirection = Vector3.up;
-                if (MovementController.IsMoving)
-                    flameDirection -= MovementController.DashDirection() * TransparentVelocityMultiplier;
-                foreach (Material material in materials)
+                if (_movementController.IsMoving)
+                    flameDirection -= _movementController.DashDirection() * TransparentVelocityMultiplier;
+                foreach (Material material in _materials)
                     material.SetVector("_FlameDirection", flameDirection);
                 break;
 

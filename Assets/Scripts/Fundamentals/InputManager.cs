@@ -2,54 +2,40 @@
 
 public class InputManager : IGameLoop
 {
-    private Vector3 firstPosition;
-    private Vector3 lastPosition;
-    private Vector3 targetPos;
-    private bool isHolding;
-    private bool trackMouse;
-    private bool doMove;
-    private bool isOnPlayer;
-
-    public float CoyoteTime = 0.5f;
-    private float coyoteTimer;
-
-    private MovementController movementController;
-    private GameController gameController;
-    private Camera mainCamera;
-
-    private GameObject arrowParent;
-    public float ArrowScaleFactor = 0.3f;
-    private GameObject arrow;
-
-    private Canvas canvas;
-    public GameObject DashCirclePrefab;
-    private GameObject dashCircle;
-    private float dashTimer;
-
-    private AudioEvent[] audioEvents;
-
-    private float dragDistance;
-    public float MoveThreshold { get; set; }
-    public float DashThreshold { get; set; }
-
-    public bool IsPerfectTopDownCamera;
-    public bool hasVibrated;
-
     public static bool DisableInput = false;
+    public GameObject DashCirclePrefab;
+    public float ArrowScaleFactor = 0.3f;
+    public bool IsPerfectTopDownCamera;
+    public float MoveThreshold;
+    public float DashThreshold;
+
+    private MovementController _movementController;
+    private GameController _gameController;
+    private GameObject _arrowParent;
+    private GameObject _arrow;
+    private Camera _mainCamera;
+    private Canvas _canvas;
+    private GameObject _dashCircle;
+    private Vector3 _firstPosition;
+    private Vector3 _lastPosition;
+    private Vector3 _targetPos;
+    private bool _isHolding;
+    private bool _trackMouse;
+    private bool _doMove;
+    private float _dragDistance;
 
     private void Awake()
     {
-        audioEvents = GetComponents<AudioEvent>();
-        movementController = FindObjectOfType<MovementController>();
-        gameController = FindObjectOfType<GameController>();
-        arrowParent = GameObject.FindGameObjectWithTag("Arrow");
-        canvas = gameController.GetComponentInChildren<Canvas>();
+        _movementController = FindObjectOfType<MovementController>();
+        _gameController = FindObjectOfType<GameController>();
+        _arrowParent = GameObject.FindGameObjectWithTag("Arrow");
+        _canvas = _gameController.GetComponentInChildren<Canvas>();
     }
 
     private void Start()
     {
-        arrowParent.SetActive(false);
-        arrow = arrowParent.transform.GetChild(0).gameObject;
+        _arrowParent.SetActive(false);
+        _arrow = _arrowParent.transform.GetChild(0).gameObject;
     }
 
     /// <summary>
@@ -59,17 +45,13 @@ public class InputManager : IGameLoop
     {
         if (DisableInput) return;
 
-        if (DialogueTrigger.DialogueIsRunning)
-            DialogueClick();
+        if (DialogueTrigger.DialogueIsRunning) DialogueClick();
 
-        if (!gameController.IsPlaying || movementController.IsFuseMoving) return;
+        if (!_gameController.IsPlaying || _movementController.IsFuseMoving) return;
 
         HandleInput();
 
-        HandleCoyoteSwipe();
-
-        if (isHolding)
-            DetermineMove();
+        if (_isHolding) DetermineAction();
     }
 
     /// <summary>
@@ -87,111 +69,88 @@ public class InputManager : IGameLoop
     }
 
     /// <summary>
-    /// Determines which move it is (move, dash or cancel).
+    /// Determines which action it is (move, dash or cancel).
     /// </summary>
-    private void DetermineMove()
+    private void DetermineAction()
     {
-        dragDistance = CalculateDragDistance();
+        // The distance between first touch and last touch on screen.
+        _dragDistance = Vector3.Distance(_firstPosition, _lastPosition);
 
-        // move
-        if (dragDistance > MoveThreshold && dragDistance < DashThreshold)
+        // Move intent
+        if (_dragDistance > MoveThreshold && _dragDistance < DashThreshold)
         {
-            doMove = true;
-            movementController.ChargeMove();
-            movementController.MoveDistance = movementController.MoveDistanceCurve.Evaluate(dragDistance);
+            _movementController.Charge(false);
             // value between 0.6 and 3.2
-            movementController.ArrowLength.Value = movementController.MoveDistance;
-            StretchArrow(movementController.MoveDistance);
-            arrow.GetComponent<SpriteRenderer>().color = Color.white;
+            _movementController.MoveDistance = _movementController.MoveDistanceCurve.Evaluate(_dragDistance);
+            _doMove = true;
+
+            // Update Arrow
+            _arrow.GetComponent<SpriteRenderer>().color = Color.white;
+            _movementController.ArrowLength.Value = _movementController.MoveDistance;
+            StretchArrow(_movementController.MoveDistance);
             ShowArrow();
-            ResetDash();
         }
-        // dash
-        else if (dragDistance > DashThreshold)
+        // Dash intent
+        else if (_dragDistance > DashThreshold)
         {
-            doMove = true;
-            ShowArrow();
-            ChargeDash();
+            _movementController.Charge(true);
+            _doMove = true;
 
-            if (!movementController.IsDashCharged)
+            // Update Arrow
+            // Dash is charged: change arrow's length to dash length
+            if (_movementController.IsDashCharged)
             {
-                // keep arrow/move length at max move length
-                movementController.MoveDistance = movementController.MoveDistanceCurve.Evaluate(DashThreshold);
-                movementController.ArrowLength.Value = movementController.MoveDistance;
-                StretchArrow(movementController.MoveDistance);
-                return;
+                _arrow.GetComponent<SpriteRenderer>().color = Color.red;
+                StretchArrow(_movementController.DashDistance);
+                _movementController.ArrowLength.Value = 0;
+                ShowArrow();
             }
-
-            if (!hasVibrated)
+            // Dash is not charged: keep arrow's length at max move length
+            else
             {
-                Vibration.Vibrate(80);
-                hasVibrated = true;
+                _movementController.MoveDistance = _movementController.MoveDistanceCurve.Evaluate(DashThreshold);
+                _movementController.ArrowLength.Value = _movementController.MoveDistance;
+                StretchArrow(_movementController.MoveDistance);
+                ShowArrow();
             }
-
-            // if dash is charged, change arrow to dash length
-            StretchArrow(movementController.DashDistance);
-            arrow.GetComponent<SpriteRenderer>().color = Color.red;
-            movementController.ArrowLength.Value = 0;
         }
-        // cancel
+        // Cancel intent
         else
         {
-            doMove = false;
-            arrowParent.SetActive(false);
-            ResetDash();
-            hasVibrated = false;
+            _doMove = false;
+            _arrowParent.SetActive(false);
         }
     }
 
     /// <summary>
-    /// Calculates the distance between first touch and last touch on screen.
+    /// Performs the currently selected action (move, dash or cancel).
     /// </summary>
-    private float CalculateDragDistance()
+    private void PerformAction()
     {
-        return Vector3.Distance(firstPosition, lastPosition);
+        if (_doMove)
+            _movementController.Release(CalculateDirectionVector().normalized);
+        else
+            _movementController.Cancel();
+
     }
 
     /// <summary>
-    /// Shows the arrow.
+    /// Shows the _arrow.
     /// </summary>
     private void ShowArrow()
     {
-        arrowParent.SetActive(true);
-        SetAimingDirection();
-    }
+        _arrowParent.SetActive(true);
 
-    /// <summary>
-    /// Charges the dash.
-    /// </summary>
-    private void ChargeDash()
-    {
-        movementController.ChargeDash();
-
-        if (dashTimer >= MovementController.DashThreshold && !movementController.IsDashCharged)
-        {
-            dashTimer = MovementController.DashThreshold;
-            movementController.DashCharged();
-        }
-        else if (!movementController.IsDashCharged)
-            dashTimer += Time.deltaTime;
-
-        movementController.DashHoldPercentage.Value = dashTimer / MovementController.DashThreshold;
-    }
-
-    /// <summary>
-    /// Sets the aiming direction of the arrow.
-    /// </summary>
-    private void SetAimingDirection()
-    {
+        // Set the aiming direction of the _arrow.
         Vector3 directionVector = CalculateDirectionVector();
 
         if (!IsPerfectTopDownCamera)
         {
-            Vector3 target = movementController.transform.position + directionVector.normalized;
-            movementController.transform.LookAt(target);
+            Vector3 target = _movementController.transform.position + directionVector.normalized;
+            _movementController.transform.LookAt(target);
         }
         else
-            movementController.transform.rotation = Quaternion.LookRotation(directionVector.normalized);
+            _movementController.transform.rotation = Quaternion.LookRotation(directionVector.normalized);
     }
 
     /// <summary>
@@ -199,12 +158,12 @@ public class InputManager : IGameLoop
     /// </summary>
     private Vector3 CalculateDirectionVector()
     {
-        Vector2 targetDirection = firstPosition - lastPosition;
+        Vector2 targetDirection = _firstPosition - _lastPosition;
         if (!IsPerfectTopDownCamera)
         {
             float angle = Vector2.SignedAngle(Vector2.up, targetDirection);
-            if (mainCamera == null) mainCamera = Camera.main;
-            Vector3 cameraRotation = mainCamera.transform.forward;
+            if (_mainCamera == null) _mainCamera = Camera.main;
+            Vector3 cameraRotation = _mainCamera.transform.forward;
             cameraRotation.y = 0;
             return Quaternion.AngleAxis(angle, Vector3.down) * cameraRotation;
         }
@@ -225,25 +184,6 @@ public class InputManager : IGameLoop
     }
 
     /// <summary>
-    /// Handles the coyote swipe (game still registers a swipe during a move for some amount of time: coyote time)
-    /// </summary>
-    private void HandleCoyoteSwipe()
-    {
-        if (!movementController.TriggerCoyoteTime) return;
-
-        if (!(coyoteTimer < CoyoteTime) && !movementController.IsMoving) return;
-
-        ApplyAction();
-        if (movementController.IsMoving)
-        {
-            CoyoteTime = 0;
-            movementController.TriggerCoyoteTime = false;
-        }
-        else
-            CoyoteTime += Time.deltaTime;
-    }
-
-    /// <summary>
     /// Handles mobile input.
     /// </summary>
     private void MobileInput()
@@ -259,7 +199,7 @@ public class InputManager : IGameLoop
             // Player's finger touches the screen and moves on the screen
             else if (touch.phase == TouchPhase.Moved)
             {
-                lastPosition = touch.position;
+                _lastPosition = touch.position;
             }
             // Player's finger stops touching the screen
             else if (touch.phase == TouchPhase.Ended)
@@ -278,19 +218,19 @@ public class InputManager : IGameLoop
         if (Input.GetMouseButtonDown(0))
         {
             InitialTouch(Input.mousePosition);
-            trackMouse = true;
+            _trackMouse = true;
         }
 
         // track the mouse position if the mouse button is pressed down.
-        if (trackMouse)
+        if (_trackMouse)
         {
-            lastPosition = Input.mousePosition;
+            _lastPosition = Input.mousePosition;
         }
 
         // mouse button is released
         if (Input.GetMouseButtonUp(0))
         {
-            trackMouse = false;
+            _trackMouse = false;
             TouchEnd();
         }
     }
@@ -300,15 +240,14 @@ public class InputManager : IGameLoop
     /// </summary>
     private void InitialTouch(Vector3 position)
     {
-        if (dashCircle != null)
-            Destroy(dashCircle);
-        dashCircle = Instantiate(DashCirclePrefab, position, Quaternion.identity, canvas.transform);
-        dashCircle.transform.SetAsFirstSibling();
+        if (_dashCircle != null) Destroy(_dashCircle);
+        _dashCircle = Instantiate(DashCirclePrefab, position, Quaternion.identity, _canvas.transform);
+        _dashCircle.transform.SetAsFirstSibling();
 
-        firstPosition = position;
-        lastPosition = position;
-        isHolding = true;
-        dragDistance = 0;
+        _firstPosition = position;
+        _lastPosition = position;
+        _isHolding = true;
+        _dragDistance = 0;
     }
 
     /// <summary>
@@ -316,64 +255,24 @@ public class InputManager : IGameLoop
     /// </summary>
     private void TouchEnd()
     {
-        Destroy(dashCircle);
-
-        isHolding = false;
-        isOnPlayer = false;
-        arrowParent.SetActive(false);
-
-        if (doMove)
-            ApplyAction();
-        else
-            movementController.Cancel();
-
-        doMove = false;
+        Destroy(_dashCircle);
+        _isHolding = false;
+        _arrowParent.SetActive(false);
+        PerformAction();
+        _doMove = false;
     }
 
     /// <summary>
-    /// Stretches the arrow according to the type of movement.
+    /// Stretches the _arrow according to the type of movement.
     /// </summary>
     private void StretchArrow(float distance)
     {
         Vector3 directionVector = CalculateDirectionVector();
-        Vector3 targetPosition = movementController.transform.position + directionVector.normalized * distance;
+        Vector3 targetPosition = _movementController.transform.position + directionVector.normalized * distance;
 
-        var scale = arrowParent.transform.localScale;
-        scale.z = Vector3.Distance(movementController.transform.position, targetPosition) * ArrowScaleFactor;
-        arrowParent.transform.localScale = scale;
-    }
-
-    /// <summary>
-    /// Checks how to player has swiped and applies the swipe to an action.
-    /// </summary>
-    private void ApplyAction()
-    {
-        Vector3 directionVector = CalculateDirectionVector();
-
-        if (movementController.IsDashCharged)
-        {
-
-            //insert vibration for release dash
-            Vibration.Vibrate(200);
-
-            movementController.Dash(directionVector.normalized);
-            ResetDash();
-        }
-        else
-        {
-            ResetDash();
-            movementController.Move(directionVector.normalized);
-        }
-    }
-
-    /// <summary>
-    /// Resets the dash.
-    /// </summary>
-    private void ResetDash()
-    {
-        movementController.ResetDash();
-        dashTimer = 0;
-        movementController.DashHoldPercentage.Value = dashTimer;
+        var scale = _arrowParent.transform.localScale;
+        scale.z = Vector3.Distance(_movementController.transform.position, targetPosition) * ArrowScaleFactor;
+        _arrowParent.transform.localScale = scale;
     }
 
     public static void ToggleInput(bool disableInput) { DisableInput = disableInput; }
@@ -381,7 +280,6 @@ public class InputManager : IGameLoop
 
 public static class Vibration
 {
-
 #if UNITY_ANDROID && !UNITY_EDITOR
     public static AndroidJavaClass unityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
     public static AndroidJavaObject currentActivity = unityPlayer.GetStatic<AndroidJavaObject>("currentActivity");
@@ -399,7 +297,6 @@ public static class Vibration
         else
             Handheld.Vibrate();
     }
-
 
     public static void Vibrate(long milliseconds)
     {

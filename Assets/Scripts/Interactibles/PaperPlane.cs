@@ -8,22 +8,19 @@ public class PaperPlane : DashInteractable
     public float speed = 5;
     public float burnDuration;
     public float distanceToTravel;
-    public float distanceTraveled=0;
-
+    public float distanceTraveled = 0;
     public bool playerAttachedToThis = false;
+
     private bool isBurning;
     private bool _destroyThis;
     private Collider lastCollision;
     private AttachToPlane playerAttached;
-
     private List<AudioEvent> audioEvents;
     
-
     private void Awake()
     {
         audioEvents = new List<AudioEvent>(GetComponents<AudioEvent>());
     }
-
 
     public override void GameLoopUpdate()
     {
@@ -62,7 +59,7 @@ public class PaperPlane : DashInteractable
     {
         if (playerAttachedToThis)
         {
-            playerAttached.Detach(false);
+            playerAttached.Detach();
             Destroy(gameObject);
             //gameObject.SetActive(false);
         }
@@ -73,6 +70,7 @@ public class PaperPlane : DashInteractable
         RemoveFromGameLoop();
         
     }
+
     public void Consume()
     {
         _destroyThis = true;
@@ -80,7 +78,6 @@ public class PaperPlane : DashInteractable
 
     private void OnTriggerEnter(Collider other)
     {
-        
         lastCollision = other;
         if (lastCollision.gameObject.tag != "Player")
         {
@@ -88,17 +85,12 @@ public class PaperPlane : DashInteractable
             {
                 if (transform.childCount > 1)
                 {
-                    transform.Find("Player").GetComponent<AttachToPlane>().Detach(false);
+                    transform.Find("Player").GetComponent<AttachToPlane>().Detach();
                 }
                 
                 _destroyThis = true;
             }
-            
-
-            
         }
-            
-
     }
 
     /*private void OnCollisionEnter(Collision collision)
@@ -118,7 +110,6 @@ public class PaperPlane : DashInteractable
 
     public override void Interact(GameObject player)
     {
-
         AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.OnPlane, audioEvents, gameObject);
 
         playerAttached = player.GetComponent<AttachToPlane>();

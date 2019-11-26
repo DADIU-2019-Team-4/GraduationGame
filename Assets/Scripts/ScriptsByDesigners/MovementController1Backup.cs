@@ -195,7 +195,7 @@ public class MovementController1Backup : MonoBehaviour
             return;
         }
 
-        attachToPlane.Detach(false);
+        attachToPlane.Detach();
 
         isDashing = true;
         trailRenderer.enabled = true;

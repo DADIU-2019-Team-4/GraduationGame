@@ -111,14 +111,12 @@ public class InteractibleObject : DashInteractable
         if (movementController == null)
             AssignDependencies();
 
-        if (!movementController.IsInvulnerable)
+        if (!movementController.IsInvulnerable) 
         {
-            movementController.TargetPosition = hitpoint + movementController.transform.forward * movementController.BounceValue;
-            movementController.HasDied = true;
+            Vector3 targetPosition = hitpoint + movementController.transform.forward * movementController.BounceValue;
+            movementController.Die(false, targetPosition);
             //dialogRunner.StartDialogue("Death");
-            movementController.CheckGameEnd();
         }
-        
     }
 
     private void Projectile()
@@ -126,21 +124,16 @@ public class InteractibleObject : DashInteractable
         if (movementController.IsMoving)
         {
             gameObject.GetComponent<BurnObject>().SetObjectOnFire(new Vector3(0, 0, 0));
-
             gameObject.GetComponent<DashInteractable>().Interact(GameObject.FindGameObjectWithTag("Player"));
-            movementController.StopMoving();
-            movementController.IsInvulnerable = true;
+            //movementController.CollideProjectile();
         }
-        
-
     }
 
     private void Goal()
     {
         gameObject.GetComponent<BoxCollider>().enabled = false;
         //dialogRunner.StartDialogue("Goal");
-        movementController.CollideGoal(gameObject);
-        movementController.TargetPosition = gameObject.transform.position;
+        movementController.Win(gameObject.transform.position);
     }
 
     private void Block(Vector3 hitpoint)

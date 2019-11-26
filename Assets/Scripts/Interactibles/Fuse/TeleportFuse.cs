@@ -50,6 +50,7 @@ public class TeleportFuse : MonoBehaviour
 
         yield return new WaitForSeconds(0.5f);
         movementController.IsFuseMoving = false;
+        //movementController.ExitInteractable();
         isUsed = true;
     }
 }

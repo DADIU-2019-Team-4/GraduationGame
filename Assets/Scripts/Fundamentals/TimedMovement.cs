@@ -25,12 +25,8 @@ public class TimedMovement : IGameLoop
         {
             moveTime -= Time.deltaTime;
             timeText.text = Mathf.Round(moveTime) + "";
-            if(moveTime <= 0){
-    //            this.GetComponent<MovementController>().hasDied = true;
-                this.GetComponent<MovementController>().CheckGameEnd();
-            }
+            if(moveTime <= 0) this.GetComponent<MovementController>().CheckFireLeft();
         }
-
     }
 
     private void OnTriggerEnter(Collider other)
