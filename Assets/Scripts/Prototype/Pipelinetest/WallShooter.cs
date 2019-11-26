@@ -14,6 +14,7 @@ public class WallShooter : MonoBehaviour
     public float planeBurnDuration;
     public float distancePlaneCanTravel;
     public float startSpawnOffset;
+    public float spawnYPosition = 0.75f;
 
 
     // Start is called before the first frame update
@@ -37,7 +38,8 @@ public class WallShooter : MonoBehaviour
 
     public void SpawnPlane()
     {
-        GameObject planeRef = GameObject.Instantiate(plane, transform.position, this.transform.rotation);
+        GameObject planeRef = GameObject.Instantiate(plane,
+            new Vector3(transform.position.x, spawnYPosition, transform.position.z), this.transform.rotation);
         planeRef.GetComponent<PaperPlane>().speed = planeSpeed;
         planeRef.GetComponent<PaperPlane>().burnDuration = planeBurnDuration;
         planeRef.GetComponent<PaperPlane>().distanceToTravel = distancePlaneCanTravel;

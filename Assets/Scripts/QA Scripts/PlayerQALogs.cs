@@ -21,14 +21,14 @@ public class PlayerQALogs : MonoBehaviour
     void Start()
     {
         var index = SceneManager.sceneCount;
-        _currentSceneName = SceneManager.GetSceneAt(index - 1).name;
         player = GameObject.FindGameObjectWithTag("Player");
         _currentCount = 0;
         _maxCount = 60 / LogsPerSecond;
+        _currentSceneName = SceneManager.GetSceneAt(index - 1).name;
         CreateFile();
     }
     private void CreateFile()
-    { 
+    {
 #if UNITY_EDITOR || UNITY_STANDALONE
         PcCreateFile();
 #elif UNITY_ANDROID || UNITY_IOS
@@ -39,6 +39,8 @@ public class PlayerQALogs : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (_currentSceneName != SceneManager.GetSceneAt(SceneManager.sceneCount - 1).name)
+            ChangeScene(SceneManager.GetSceneAt(SceneManager.sceneCount - 1).name);
         _currentCount++;
         if (_currentCount == _maxCount)
         {
@@ -48,7 +50,7 @@ public class PlayerQALogs : MonoBehaviour
                 _playerX = player.transform.position.x.ToString().Substring(0, xLenght);
             else
                 _playerX = player.transform.position.x.ToString().Substring(0, 4);
-            if (zLenght<4)
+            if (zLenght < 4)
                 _playerZ = player.transform.position.z.ToString().Substring(0, zLenght);
             else
                 _playerZ = player.transform.position.z.ToString().Substring(0, 4);
@@ -97,15 +99,15 @@ public class PlayerQALogs : MonoBehaviour
     }
     private void WriteToPC(string message)
     {
-            using (StreamWriter sw = File.AppendText(_currentSceneName + ".txt"))
-            {
-                sw.WriteLine(message);
-            }
+        using (StreamWriter sw = File.AppendText(_currentSceneName + ".txt"))
+        {
+            sw.WriteLine(message);
+        }
     }
     public void WriteToMobile(string message)
-        {
+    {
         _streamWriter.WriteLine(message);
-        }
+    }
     private void ClosePC()
     {
         using (StreamWriter sw = File.AppendText(_currentSceneName + ".txt"))
@@ -116,5 +118,10 @@ public class PlayerQALogs : MonoBehaviour
     private void CloseMobile()
     {
         _streamWriter.Close();
+    }
+    void ChangeScene(string name)
+    {
+        _currentSceneName = name;
+        CreateFile();
     }
 }
