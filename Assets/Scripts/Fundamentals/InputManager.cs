@@ -92,7 +92,7 @@ public class InputManager : IGameLoop
     private void DetermineMove()
     {
         dragDistance = CalculateDragDistance();
-        //Debug.Log("Drag Distance: " + dragDistance);
+
         // move
         if (dragDistance > MoveThreshold && dragDistance < DashThreshold)
         {
@@ -111,7 +111,7 @@ public class InputManager : IGameLoop
         {
             doMove = true;
             ShowArrow();
-            ChargeUpDash();
+            ChargeDash();
 
             if (!movementController.IsDashCharged)
             {
@@ -161,9 +161,9 @@ public class InputManager : IGameLoop
     }
 
     /// <summary>
-    /// Charges up the dash.
+    /// Charges the dash.
     /// </summary>
-    private void ChargeUpDash()
+    private void ChargeDash()
     {
         movementController.ChargeDash();
 
@@ -242,7 +242,6 @@ public class InputManager : IGameLoop
         else
             CoyoteTime += Time.deltaTime;
     }
-
 
     /// <summary>
     /// Handles mobile input.
@@ -325,6 +324,8 @@ public class InputManager : IGameLoop
 
         if (doMove)
             ApplyAction();
+        else
+            movementController.Cancel();
 
         doMove = false;
     }

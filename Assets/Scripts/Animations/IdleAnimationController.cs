@@ -5,8 +5,8 @@ using UnityEngine;
 public class IdleAnimationController : MonoBehaviour
 {
     public const string JumpIdleTrigger = "Jump Idle";
-    public const int MaxRepeatCount = 3;
-    public int RepeatCount = 0;
+    public const int MaxRepeatCount = 4;
+    public int RepeatCount = 1;
 
     private Animator _animator;
 
