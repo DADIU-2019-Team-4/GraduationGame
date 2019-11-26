@@ -7,6 +7,7 @@ public class PopUpObject : MonoBehaviour
 {
     public const string PopUpCanvasTag = "PopUpCanvas";
     public Sprite Sprite;
+    public DialogueTrigger dialogueTrigger;
 
     private bool _isShown = false;
 
@@ -22,8 +23,32 @@ public class PopUpObject : MonoBehaviour
                 PopUpCanvas popUpCanvasComponent = canvas.GetComponent<PopUpCanvas>();
                 popUpCanvasComponent.SetImage(Sprite);
                 popUpCanvasComponent.ShowPopUp();
+                dialogueTrigger.TriggerDialogue();
                 _isShown = true;
             }
+        }
+    }
+
+    public void DisablePopUpButton()
+    {
+        GameObject canvas = GameObject.FindGameObjectWithTag(PopUpCanvasTag);
+
+        if (!canvas) Debug.LogWarning("Unable to find Pop-up canvas to display image on");
+        else
+        {
+            PopUpCanvas popUpCanvasComponent = canvas.GetComponent<PopUpCanvas>();
+            popUpCanvasComponent.DisableButton();
+        }
+    }
+    public void EnablePopUpButton()
+    {
+        GameObject canvas = GameObject.FindGameObjectWithTag(PopUpCanvasTag);
+
+        if (!canvas) Debug.LogWarning("Unable to find Pop-up canvas to display image on");
+        else
+        {
+            PopUpCanvas popUpCanvasComponent = canvas.GetComponent<PopUpCanvas>();
+            popUpCanvasComponent.EnableButton();
         }
     }
 }

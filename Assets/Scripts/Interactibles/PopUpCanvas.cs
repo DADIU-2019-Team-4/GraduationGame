@@ -12,6 +12,18 @@ public class PopUpCanvas : MonoBehaviour
         imageComponent.preserveAspect = true;
     }
 
+    public void DisableButton()
+    {
+        Button buttonComponent = this.transform.GetChild(0).GetComponent<Button>();
+        buttonComponent.interactable = false;
+    }
+
+    public void EnableButton()
+    {
+        Button buttonComponent = this.transform.GetChild(0).GetComponent<Button>();
+        buttonComponent.interactable = true;
+    }
+
     public void ShowPopUp()
     {
         this.transform.GetChild(0).gameObject.SetActive(true);

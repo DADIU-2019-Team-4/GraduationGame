@@ -4066,14 +4066,14 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1579275761}
-    - target: {fileID: 1455506443442577460, guid: 6de9a0a5460543a48b99b17ae88d645c,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1455506444343618412, guid: 6de9a0a5460543a48b99b17ae88d645c,
         type: 3}
       propertyPath: generateCollider
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1455506443442577460, guid: 6de9a0a5460543a48b99b17ae88d645c,
+        type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -4744,6 +4744,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 227705104}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &229403630 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+    type: 3}
+  m_PrefabInstance: {fileID: 2045114006}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad7e5df089a62d04d8ce797d316ef485, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &233401441
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4989,6 +5001,96 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 245597021}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &245865841 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: 57d7607240dd0f145aea3da030c62efc,
+    type: 3}
+  m_PrefabInstance: {fileID: 1200936654}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &245865842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 245865841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8114b6f48a93b5e46b3be5e34b4ae985, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Sprite: {fileID: 21300000, guid: fd899a4269bb84697ac44eb9dbfb59d3, type: 3}
+  dialogueTrigger: {fileID: 229403630}
+--- !u!4 &245865845 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 57d7607240dd0f145aea3da030c62efc,
+    type: 3}
+  m_PrefabInstance: {fileID: 1200936654}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &245865846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 245865841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ce2f35c75ca9e84fb3474d32def3e6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 5
+  DamageValue: 0
+  HealValue: 20
+  BumpHeight: 0.3
+--- !u!65 &245865847
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 245865841}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.7908611, y: 1.219862, z: 0.18420118}
+  m_Center: {x: 0, y: -0.609931, z: 0.09210059}
+--- !u!54 &245865848
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 245865841}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 3
+--- !u!114 &245865849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 245865841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 420186023faa10d418f08885f52a6d61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FireObject: {fileID: 5590989098238041260, guid: b130e385e49fa8c48ac96ceb16de5cb9,
+    type: 3}
+  _burnedAmount: 0.9
+  dissolveShader: {fileID: 2100000, guid: 46d9632cf3dabcb40a3f0686e45be8eb, type: 2}
+  burnSpeed: 0.1
+  destroyAtTheEndOfFire: 1
+  firetype: 0
 --- !u!4 &254803133 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1455506444343618401, guid: 6de9a0a5460543a48b99b17ae88d645c,
@@ -18271,32 +18373,32 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 57d7607240dd0f145aea3da030c62efc,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.87
+      value: -1.96
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 57d7607240dd0f145aea3da030c62efc,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.13
+      value: 0.61
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 57d7607240dd0f145aea3da030c62efc,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 21.85
+      value: 16.34
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 57d7607240dd0f145aea3da030c62efc,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 57d7607240dd0f145aea3da030c62efc,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 1
+      value: 0.8064962
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 57d7607240dd0f145aea3da030c62efc,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: 0.5912394
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 57d7607240dd0f145aea3da030c62efc,
         type: 3}
@@ -18311,12 +18413,12 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 57d7607240dd0f145aea3da030c62efc,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: -72.490005
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 57d7607240dd0f145aea3da030c62efc,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 180
+      value: 180.00002
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 57d7607240dd0f145aea3da030c62efc,
         type: 3}
@@ -19573,15 +19675,15 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 192608399}
-    - target: {fileID: 1455506444343618413, guid: 6de9a0a5460543a48b99b17ae88d645c,
-        type: 3}
-      propertyPath: DurationInSecond
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 277951736783565329, guid: 6de9a0a5460543a48b99b17ae88d645c,
         type: 3}
       propertyPath: ScaleHitBoxes
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1455506444343618413, guid: 6de9a0a5460543a48b99b17ae88d645c,
+        type: 3}
+      propertyPath: DurationInSecond
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6de9a0a5460543a48b99b17ae88d645c, type: 3}
@@ -31445,26 +31547,6 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0.0007468642
       objectReference: {fileID: 0}
-    - target: {fileID: 1075982263114550749, guid: c3fa61b7a616bd04083e17bd8ae15b61,
-        type: 3}
-      propertyPath: m_Size.z
-      value: 0.8175031
-      objectReference: {fileID: 0}
-    - target: {fileID: 1075982263114550749, guid: c3fa61b7a616bd04083e17bd8ae15b61,
-        type: 3}
-      propertyPath: m_Center.x
-      value: -0.0012903883
-      objectReference: {fileID: 0}
-    - target: {fileID: 1075982263114550749, guid: c3fa61b7a616bd04083e17bd8ae15b61,
-        type: 3}
-      propertyPath: m_Center.z
-      value: 0.091249354
-      objectReference: {fileID: 0}
-    - target: {fileID: 1075982263114550749, guid: c3fa61b7a616bd04083e17bd8ae15b61,
-        type: 3}
-      propertyPath: m_Size.x
-      value: 0.8446739
-      objectReference: {fileID: 0}
     - target: {fileID: 8160467747886589968, guid: c3fa61b7a616bd04083e17bd8ae15b61,
         type: 3}
       propertyPath: Door
@@ -31485,6 +31567,26 @@ PrefabInstance:
       propertyPath: vcam
       value: 
       objectReference: {fileID: 1581046856}
+    - target: {fileID: 1075982263114550749, guid: c3fa61b7a616bd04083e17bd8ae15b61,
+        type: 3}
+      propertyPath: m_Size.z
+      value: 0.8175031
+      objectReference: {fileID: 0}
+    - target: {fileID: 1075982263114550749, guid: c3fa61b7a616bd04083e17bd8ae15b61,
+        type: 3}
+      propertyPath: m_Center.x
+      value: -0.0012903883
+      objectReference: {fileID: 0}
+    - target: {fileID: 1075982263114550749, guid: c3fa61b7a616bd04083e17bd8ae15b61,
+        type: 3}
+      propertyPath: m_Center.z
+      value: 0.091249354
+      objectReference: {fileID: 0}
+    - target: {fileID: 1075982263114550749, guid: c3fa61b7a616bd04083e17bd8ae15b61,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 0.8446739
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c3fa61b7a616bd04083e17bd8ae15b61, type: 3}
 --- !u!4 &2032971575 stripped
@@ -31493,6 +31595,340 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2032971574}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2045114006
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 245865845}
+    m_Modifications:
+    - target: {fileID: 4914369192727202836, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: m_Name
+      value: DialogueZone
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202833, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.35850728
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202833, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.7818057
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202833, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.53013754
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202833, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202833, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.8064962
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202833, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.5912394
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202833, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202833, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202833, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202833, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202833, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202833, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.1952572
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202833, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.19525716
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202833, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.19525719
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: EnglishDialogue.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: DanishDialogue.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: EventOnStart.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: EventOnEnd.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: TriggerType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: OnlyTriggeredOnce
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: EnglishDialogue.Array.data[0]
+      value: "LUCY: \"Ah, The Cage. Mom\u2019s great parenting tool.\""
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: EnglishDialogue.Array.data[3]
+      value: 'Lucy: Dad knows everything, Sally.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: EnglishDialogue.Array.data[4]
+      value: 'Lucy: Dad knows everything, Sally.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: EnglishDialogue.Array.data[5]
+      value: 'Lucy: Dad knows everything, Sally.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: EnglishDialogue.Array.data[6]
+      value: 'Lucy: Dad knows everything, Sally.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: EnglishDialogue.Array.data[7]
+      value: 'Lucy: Dad knows everything, Sally.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: EnglishDialogue.Array.data[8]
+      value: 'Lucy: Dad knows everything, Sally.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: EnglishDialogue.Array.data[9]
+      value: 'Lucy: Dad knows everything, Sally.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: EnglishDialogue.Array.data[10]
+      value: 'Lucy: Dad knows everything, Sally.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: EnglishDialogue.Array.data[11]
+      value: 'Lucy: Dad knows everything, Sally.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: EnglishDialogue.Array.data[12]
+      value: 'Lucy: Dad knows everything, Sally.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: EnglishDialogue.Array.data[13]
+      value: 'Lucy: Dad knows everything, Sally.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: EnglishDialogue.Array.data[14]
+      value: 'Lucy: Dad knows everything, Sally.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: EnglishDialogue.Array.data[15]
+      value: 'Lucy: Dad knows everything, Sally.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: EnglishDialogue.Array.data[16]
+      value: 'Lucy: Dad knows everything, Sally.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: EnglishDialogue.Array.data[17]
+      value: 'Lucy: Dad knows everything, Sally.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: EnglishDialogue.Array.data[18]
+      value: 'Lucy: Dad knows everything, Sally.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: EnglishDialogue.Array.data[19]
+      value: 'Lucy: Dad knows everything, Sally.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: EnglishDialogue.Array.data[20]
+      value: 'Lucy: Dad knows everything, Sally.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: EnglishDialogue.Array.data[21]
+      value: 'Lucy: Dad knows everything, Sally.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: EnglishDialogue.Array.data[22]
+      value: 'Lucy: Dad knows everything, Sally.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: EnglishDialogue.Array.data[23]
+      value: 'Lucy: Dad knows everything, Sally.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: EnglishDialogue.Array.data[24]
+      value: 'Lucy: Dad knows everything, Sally.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: EnglishDialogue.Array.data[25]
+      value: 'Lucy: Dad knows everything, Sally.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: EnglishDialogue.Array.data[26]
+      value: 'Lucy: Dad knows everything, Sally.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: EnglishDialogue.Array.data[27]
+      value: 'Lucy: Dad knows everything, Sally.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: EnglishDialogue.Array.data[28]
+      value: 'Lucy: Dad knows everything, Sally.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: EnglishDialogue.Array.data[29]
+      value: 'Lucy: Dad knows everything, Sally.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: EnglishDialogue.Array.data[30]
+      value: 'Lucy: Dad knows everything, Sally.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: EnglishDialogue.Array.data[1]
+      value: "LUCY: \"What mother would frame a picture of a child in a cage?\u201D"
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: DanishDialogue.Array.data[1]
+      value: 'LUCY: "Hvilken mor indrammer et billede af et barn i et bur?"'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: DanishDialogue.Array.data[0]
+      value: 'LUCY: "Ah, Buret. Mors fantastiske opdragelsesmetode"'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: EventOnStart.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: EventOnStart.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: EventOnStart.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 245865842}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: EventOnStart.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: DisablePopUpButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: EventOnStart.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: EventOnEnd.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: EventOnEnd.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: EventOnEnd.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 245865842}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: EventOnEnd.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: EnablePopUpButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: EventOnEnd.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: EnglishDialogue.Array.data[2]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: DanishDialogue.Array.data[2]
+      value: 
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a0ab6c3faa8f29343aad1665bedcd565, type: 3}
 --- !u!1001 &2045185644
 PrefabInstance:
   m_ObjectHideFlags: 0
