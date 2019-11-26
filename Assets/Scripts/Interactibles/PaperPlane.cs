@@ -84,18 +84,37 @@ public class PaperPlane : DashInteractable
         lastCollision = other;
         if (lastCollision.gameObject.tag != "Player")
         {
-            if (transform.childCount >1 && !other.isTrigger)
+            if (!other.isTrigger)
+            {
+                if (transform.childCount > 1)
+                {
+                    transform.Find("Player").GetComponent<AttachToPlane>().Detach(false);
+                }
+                
+                _destroyThis = true;
+            }
+            
+
+            
+        }
+            
+
+    }
+
+    /*private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag != "Player")
+        {
+            if (transform.childCount > 1)
             {
                 transform.Find("Player").GetComponent<AttachToPlane>().Detach(false);
                 _destroyThis = true;
             }
 
-            
-           
-        }
-            
+            _destroyThis = true;
 
-    }
+        }
+    }*/
 
     public override void Interact(GameObject player)
     {
