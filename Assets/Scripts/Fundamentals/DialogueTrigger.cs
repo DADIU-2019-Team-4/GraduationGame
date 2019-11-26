@@ -81,21 +81,4 @@ public class DialogueTrigger : MonoBehaviour
         EventOnEnd.Invoke();
     }
 
-
-    private void PlayDialogueEvents(string[] dialogue)
-    {
-        var gc = FindObjectOfType<GameController>();
-        gc.IsPlaying = false;
-
-        foreach (string dialoguePiece in dialogue)
-        {
-
-        }
-
-        gc.IsPlaying = true;
-    }
-
-
-
-
 }

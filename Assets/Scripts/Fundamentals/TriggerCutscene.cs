@@ -16,7 +16,7 @@ public class TriggerCutscene : MonoBehaviour
     {
         LucyBodyAnimator,
         LucyFireAnimator,
-        VirtualCamera,
+        MainCamera,
     }
 
     public TimelineTrack[] TrackReferences;
@@ -60,7 +60,10 @@ public class TriggerCutscene : MonoBehaviour
         {
             var track = playableBindings[i].sourceObject as TrackAsset;
             var gameObjectRef = GameObject.FindGameObjectWithTag(TrackReferences[i].ToString());
-            _timeline.SetGenericBinding(track, gameObjectRef);
+            if (TrackReferences[i] == TimelineTrack.LucyBodyAnimator || TrackReferences[i] == TimelineTrack.LucyFireAnimator)
+                _timeline.SetGenericBinding(track, gameObjectRef.GetComponent<Animator>());
+            else
+                _timeline.SetGenericBinding(track, gameObjectRef);
         }
     }
 
