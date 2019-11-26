@@ -16,6 +16,7 @@ public class FireGirlAnimationController : MonoBehaviour
     public const string ChargeTrigger = "Charge";
     public const string ReleaseTrigger = "Release";
     public const string CancelTrigger = "Cancel";
+    public const string CollideTrigger = "Collide";
     public const string DieTrigger = "Die";
     public const string RespawnTrigger = "Respawn";
 
@@ -27,8 +28,7 @@ public class FireGirlAnimationController : MonoBehaviour
     // Animator's boolean variable names
     public const string IsLongDashBool = "isLongDash";
     public const string IsLongDashChargedBool = "isLongDashCharged";
-    public const string _inInteractableBool = "inInteractable";
-    public const string HasCollidedBool = "hasCollided";
+    public const string InInteractableBool = "inInteractable";
     
     private Animator[] _animators;
     private IdleAnimationController[] _idleAnimatorControllers;
@@ -42,13 +42,13 @@ public class FireGirlAnimationController : MonoBehaviour
     private State _currentState;
     private bool _isLongDash;
     private bool _isLongDashCharged;
-    private bool _hasCollided;
     private bool _inInteractable;
 
     // Local triggers
     private bool _chargeTrigger;
     private bool _releaseTrigger;
     private bool _cancelTrigger;
+    private bool _collideTrigger;
     private bool _dieTrigger;
     private bool _respawnTrigger;
     #endregion
@@ -63,24 +63,6 @@ public class FireGirlAnimationController : MonoBehaviour
             throw new System.Exception("Unable to find Animators or IdleAnimatorControllers for FireGirl");
         }
 
-        // Retrieve the desired frame rate
-        float frameRate = Application.targetFrameRate;
-
-        // Determine the speed of each animation based on its desired duration
-        float shortDashDuration = ShortDashFrames / frameRate;
-        float longDashDuration = LongDashFrames / frameRate;
-        float longDashChargingDuration = LongDashChargingFrames / frameRate;
-        _shortDashSpeed = shortDashDuration / MovementController.MoveDuration;
-        _longDashSpeed = longDashDuration / MovementController.DashDuration;
-        _chargingLongDashSpeed = longDashChargingDuration / MovementController.DashThreshold;
-
-        foreach (Animator anim in this._animators)
-        {
-            anim.SetFloat(ShortDashSpeedLabel, _shortDashSpeed);
-            anim.SetFloat(LongDashSpeedLabel, _longDashSpeed);
-            anim.SetFloat(ChargingLongDashSpeedLabel, _chargingLongDashSpeed);
-        }
-
         Idle();
     }
 
@@ -89,7 +71,7 @@ public class FireGirlAnimationController : MonoBehaviour
         _currentState = State.Idle;
         _isLongDash = false;
         _isLongDashCharged = false;
-        _hasCollided = false;
+        _collideTrigger = false;
         _inInteractable = false;
         _chargeTrigger = false;
         _releaseTrigger = false;
@@ -97,6 +79,7 @@ public class FireGirlAnimationController : MonoBehaviour
         _dieTrigger = false;
         _respawnTrigger = false;
 
+        ResetSpeed();
         UpdateAnimators();
     }
 
@@ -134,21 +117,15 @@ public class FireGirlAnimationController : MonoBehaviour
 
     public void Collide()
     {
+        ResetTriggers();
         Idle();
-        _hasCollided = true;
+        _collideTrigger = true;
         UpdateAnimators();
     }
 
     public void EnterInteractable()
     {
         _inInteractable = true;
-        UpdateAnimators();
-    }
-
-    public void ExitInteractable()
-    {
-        Idle();
-        _inInteractable = false;
         UpdateAnimators();
     }
 
@@ -186,6 +163,27 @@ public class FireGirlAnimationController : MonoBehaviour
     }
 
     #region Utilities
+    private void ResetSpeed()
+    {
+        // Retrieve the desired frame rate
+        float frameRate = Application.targetFrameRate;
+
+        // Determine the speed of each animation based on its desired duration
+        float shortDashDuration = ShortDashFrames / frameRate;
+        float longDashDuration = LongDashFrames / frameRate;
+        float longDashChargingDuration = LongDashChargingFrames / frameRate;
+        _shortDashSpeed = shortDashDuration / MovementController.MoveDuration;
+        _longDashSpeed = longDashDuration / MovementController.DashDuration;
+        _chargingLongDashSpeed = longDashChargingDuration / MovementController.DashThreshold;
+
+        foreach (Animator anim in this._animators)
+        {
+            anim.SetFloat(ShortDashSpeedLabel, _shortDashSpeed);
+            anim.SetFloat(LongDashSpeedLabel, _longDashSpeed);
+            anim.SetFloat(ChargingLongDashSpeedLabel, _chargingLongDashSpeed);
+        }
+    }
+
     public void ResetTriggers()
     {
         foreach (Animator anim in this._animators)
@@ -206,20 +204,21 @@ public class FireGirlAnimationController : MonoBehaviour
             if (_chargeTrigger) anim.SetTrigger(ChargeTrigger);
             if (_releaseTrigger) anim.SetTrigger(ReleaseTrigger);
             if (_cancelTrigger) anim.SetTrigger(CancelTrigger);
+            if (_collideTrigger) anim.SetTrigger(CollideTrigger);
             if (_dieTrigger) anim.SetTrigger(DieTrigger);
             if (_respawnTrigger) anim.SetTrigger(RespawnTrigger);
 
             // Set booleans
             anim.SetBool(IsLongDashBool, _isLongDash);
             anim.SetBool(IsLongDashChargedBool, _isLongDashCharged);
-            anim.SetBool(HasCollidedBool, _hasCollided);
-            anim.SetBool(_inInteractableBool, _inInteractable);
+            anim.SetBool(InInteractableBool, _inInteractable);
         }
 
         // Reset Triggers
         _chargeTrigger = false;
         _releaseTrigger = false;
         _cancelTrigger = false;
+        _collideTrigger = false;
         _dieTrigger = false;
         _respawnTrigger = false;
     }
