@@ -69,8 +69,6 @@ public class MovementController : MonoBehaviour
 
     public bool IsDashing { get; set; }
 
-    public bool IsDashCharged { get; set; }
-
     public bool HasDied { get; set; }
 
     public bool IsInvulnerable { get; set; }
@@ -99,6 +97,7 @@ public class MovementController : MonoBehaviour
     private float _currentFireAmount;
     private float _dashTimer;
     private float _damageTimer;
+    private bool _dashIntent;
     private Vector3 _startPosition;
     private Vector3 _goalPosition;
 
@@ -173,14 +172,23 @@ public class MovementController : MonoBehaviour
     /// <summary>
     /// Call on every frame of charging. Handles charging and Animator
     /// </summary>
-    public void Charge(bool isDashing)
+    public void Charge(bool dashIntent)
     {
         // First time called: Fire Animator's Trigger
-        if (!IsCharging) _anim.Charge();
-        IsCharging = true;
+        if (!IsCharging)
+        {
+            // Update Animator
+            _anim.Charge();
+
+            // Update State
+            IsCharging = true;
+            IsDashing = false;
+            _dashIntent = false;
+            _dashTimer = 0;
+        }
 
         // Intent Move
-        if (!isDashing)
+        if (!dashIntent)
         {
             // Play Sound
             if (IsDashing)
@@ -193,15 +201,21 @@ public class MovementController : MonoBehaviour
 
             // Update Intent and State
             IsDashing = false;
-            IsDashCharged = false;
+            _dashIntent = false;
             _dashTimer = 0;
         }
 
         // Intent Charge (unfinished)
-        else if (!IsDashCharged)
+        else if (!IsDashing)
         {
+            // TODO: Play Sound the first time or when it is charged? In the first case, should it be cut?
+            if (!_dashIntent)
+            {
+                AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.ChargingDash, _audioEvents, gameObject);
+            }
+
             // Update Intent and State
-            IsDashing = true;
+            _dashIntent = true;
             _dashTimer += Time.deltaTime;
             if (_dashTimer >= MovementController.DashThreshold)
             {
@@ -216,8 +230,8 @@ public class MovementController : MonoBehaviour
         DashHoldPercentage.Value = _dashTimer / DashThreshold;
 
         // Update Animator
-        _anim.SetLongDash(IsDashing);
-        _anim.SetLongDashCharged(IsDashCharged);
+        _anim.SetIsDashing(_dashIntent);
+        _anim.SetDashCharged(IsDashing);
     }
 
     /// <summary>
@@ -231,7 +245,6 @@ public class MovementController : MonoBehaviour
         // Reset State
         IsCharging = false;
         IsDashing = false;
-        IsDashCharged = false;
         _dashTimer = 0;
     }
 
@@ -267,7 +280,6 @@ public class MovementController : MonoBehaviour
         // Reset State
         IsCharging = false;
         IsDashing = false;
-        IsDashCharged = false;
         _dashTimer = 0;
     }
 
@@ -296,6 +308,9 @@ public class MovementController : MonoBehaviour
         _anim.EnterInteractable(InteractibleObject.InteractType.Fuse);
     }
 
+    /// <summary>
+    /// The winning condition. Completes the level.
+    /// </summary>
     public void Win(Vector3 targetPosition)
     {
         TargetPosition = targetPosition;
@@ -303,6 +318,10 @@ public class MovementController : MonoBehaviour
         DisablePlayerCharacter();
     }
 
+    /// <summary>
+    /// Signals the death of the character.
+    /// Disables the game until Respawn.
+    /// </summary>
     public void Die(bool isOutOfFire, Vector3 targetPosition)
     {
         // Play animation
@@ -373,6 +392,9 @@ public class MovementController : MonoBehaviour
         FuseEvent.Invoke();
     }
 
+    /// <summary>
+    /// This method signals the completion of a movement action.
+    /// </summary>
     public void StopMoving()
     {
         _moveTweener?.Kill();
@@ -422,14 +444,11 @@ public class MovementController : MonoBehaviour
     /// </summary>
     private void DashCharged()
     {
-        IsDashCharged = true;
+        IsDashing = true;
 
         // Update Animator
-        _anim.SetLongDash(true);
-        _anim.SetLongDashCharged(true);
-
-        // Play Sound
-        AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.ChargingDash, _audioEvents, gameObject);
+        _anim.SetIsDashing(true);
+        _anim.SetDashCharged(true);
 
         // Vibrate
         Vibration.Vibrate(80);
@@ -499,7 +518,6 @@ public class MovementController : MonoBehaviour
         {
             interact.Interact(other.transform.position);
         }
-
     }
 
     private void OnTriggerEnter(Collider other)

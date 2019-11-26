@@ -98,7 +98,7 @@ public class InputManager : IGameLoop
 
             // Update Arrow
             // Dash is charged: change arrow's length to dash length
-            if (_movementController.IsDashCharged)
+            if (_movementController.IsDashing)
             {
                 _arrow.GetComponent<SpriteRenderer>().color = Color.red;
                 StretchArrow(_movementController.DashDistance);
