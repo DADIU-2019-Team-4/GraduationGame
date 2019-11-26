@@ -11,7 +11,17 @@ public class GateV2 : MonoBehaviour
     private bool _triggerUnlock = false;
 
     //gate bool
-    private bool triggerGate = false; 
+    private bool triggerGate = false;
+    public bool AmIAKey = true; 
+
+
+    //Camera Control
+    public GameObject vcam;
+    public float delaySwitchCamera = 2f;
+    public float delaySwitchBack = 3f;
+
+    //player control time
+    public float PlayerLoseControlSeconds;
 
     private void Awake()
     {
@@ -19,7 +29,7 @@ public class GateV2 : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    /*void Update()
     {
         if (triggerGate && _triggerUnlock == false)
         {
@@ -27,7 +37,25 @@ public class GateV2 : MonoBehaviour
             _triggerUnlock = true;
             StartCoroutine(Unlock());
         }
+    }*/
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Player" && !_triggerUnlock)
+        {
+            Debug.Log("I'm alive!!!");
+            _triggerUnlock = true;
+            if (AmIAKey)
+            {
+                StartCoroutine(Unlock());
+            }
+            StartCoroutine(switchToCam());
+            StartCoroutine(DisableInput());
+            triggerGate = true;
+        }
     }
+
 
     IEnumerator Unlock()
     {
@@ -36,12 +64,19 @@ public class GateV2 : MonoBehaviour
         Door.SetActive(false);
     }
 
-    private void OnTriggerEnter(Collider other)
+    IEnumerator switchToCam()
     {
-        if (other.tag == "Player")
-        {
-            Debug.Log("I'm alive!!!"); 
-            triggerGate = true;
-        }
+        yield return new WaitForSeconds(delaySwitchCamera);
+        vcam.gameObject.SetActive(true);
+        yield return new WaitForSeconds(delaySwitchBack);
+        vcam.gameObject.SetActive(false);
+    }
+
+    IEnumerator DisableInput()
+    {
+        InputManager.DisableInput = true;
+        yield return new WaitForSeconds(PlayerLoseControlSeconds);
+        InputManager.DisableInput = false;
     }
 }
+
