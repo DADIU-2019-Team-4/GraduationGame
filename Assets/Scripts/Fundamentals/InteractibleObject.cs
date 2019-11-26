@@ -146,6 +146,7 @@ public class InteractibleObject : DashInteractable
     private void Block(Vector3 hitpoint)
     {
         AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.ObstacleBlock, audioEvents, gameObject);
+        cameraShake.setShakeElapsedTime(breakShake/2);
         //dialogRunner.StartDialogue("Block");
         movementController.TargetPosition = hitpoint - movementController.transform.forward * movementController.BounceValue;
     }

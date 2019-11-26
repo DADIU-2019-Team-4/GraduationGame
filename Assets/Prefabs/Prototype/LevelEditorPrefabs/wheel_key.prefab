@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2856875626442918834}
   - component: {fileID: 1075982263114550749}
   - component: {fileID: 8160467747886589968}
-  - component: {fileID: 4234204342874165756}
+  - component: {fileID: 3333130820285574753}
   m_Layer: 2
   m_Name: wheel_key
   m_TagString: Untagged
@@ -43,11 +43,11 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1296738613866592673}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.55928075, y: 0.7029632, z: 0.3756776}
+  m_Center: {x: -0.025961863, y: 0.1485187, z: -0.078340806}
 --- !u!114 &8160467747886589968
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62,7 +62,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Door: {fileID: 0}
   DelaySeconds: 0
---- !u!114 &4234204342874165756
+  AmIAKey: 1
+  vcam: {fileID: 0}
+  delaySwitchCamera: 2
+  delaySwitchBack: 3
+  PlayerLoseControlSeconds: 0
+--- !u!114 &3333130820285574753
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -71,12 +76,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1296738613866592673}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dff191af5e339ef438c89ba941995d9b, type: 3}
+  m_Script: {fileID: 11500000, guid: 9ce2f35c75ca9e84fb3474d32def3e6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vcam: {fileID: 0}
-  delaySwitchCamera: 2
-  delaySwitchBack: 3
+  type: 4
+  DamageValue: 0
+  HealValue: 0
+  BumpHeight: 0.3
 --- !u!1 &1483599668144065825
 GameObject:
   m_ObjectHideFlags: 0
