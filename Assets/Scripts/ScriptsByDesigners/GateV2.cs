@@ -40,9 +40,25 @@ public class GateV2 : MonoBehaviour
     }*/
 
 
-    private void OnTriggerEnter(Collider other)
+   /* private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player" && !_triggerUnlock)
+        {
+            Debug.Log("I'm alive!!!");
+            _triggerUnlock = true;
+            if (AmIAKey)
+            {
+                StartCoroutine(Unlock());
+            }
+            StartCoroutine(switchToCam());
+            StartCoroutine(DisableInput());
+            triggerGate = true;
+        }
+    } */
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Player" && !_triggerUnlock)
         {
             Debug.Log("I'm alive!!!");
             _triggerUnlock = true;
