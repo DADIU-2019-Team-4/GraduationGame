@@ -126,7 +126,7 @@ public class LoadBaseSceneManager : IGameLoop
     private void ResetPlayerPos(string sceneName)
     {
         if (sceneName == "Hub_1.0" && StoryProgression.Value != StoryProgression.EStoryProgression.At_Tutorial)
-            Player.transform.position = new Vector3(0, 0, 60);
+            Player.transform.position = new Vector3(-35, 0, 45);
         else
             Player.transform.position = new Vector3(0, 0, 0);
     }

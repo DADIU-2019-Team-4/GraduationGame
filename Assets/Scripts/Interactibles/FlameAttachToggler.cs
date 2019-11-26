@@ -7,8 +7,10 @@ public class FlameAttachToggler : MonoBehaviour
 
     private MovementController _movementController;
     private AttachToPlane _attachToPlane;
+    [Header("Things to toggle")]
     public GameObject Flame;
     public GameObject Player;
+    public GameObject Trail;
 
     // Start is called before the first frame update
     void Start()
@@ -31,6 +33,7 @@ public class FlameAttachToggler : MonoBehaviour
     {
         Player.SetActive(false);
         Flame.SetActive(true);
+        Trail.SetActive(false);
     }
 
     public void FlameOff()
@@ -38,5 +41,6 @@ public class FlameAttachToggler : MonoBehaviour
         Player.SetActive(true);
 
         Flame.SetActive(false);
+        Trail.SetActive(true);
     }
 }

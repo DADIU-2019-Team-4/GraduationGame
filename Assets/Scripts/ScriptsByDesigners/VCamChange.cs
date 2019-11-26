@@ -5,6 +5,8 @@ using UnityEngine;
 public class VCamChange : MonoBehaviour
 {
     public GameObject vcam;
+    public float delaySwitchCamera = 2f;
+    public float delaySwitchBack = 3f;
 
     void OnTriggerEnter(Collider other)
     {
@@ -24,9 +26,9 @@ public class VCamChange : MonoBehaviour
 
    private IEnumerator switchToCam()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(delaySwitchCamera);
         vcam.gameObject.SetActive(true);
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(delaySwitchBack);
         vcam.gameObject.SetActive(false);
     }
 }

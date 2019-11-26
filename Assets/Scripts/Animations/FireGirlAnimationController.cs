@@ -5,7 +5,7 @@ using UnityEngine;
 public class FireGirlAnimationController : MonoBehaviour
 {
     #region Var declaration
-    private enum State { Idle, Charging, MoveIntent, MoveResult, Dying };
+    private enum State { Idle, Charging, Moving };
 
     // Animations' number of frames (used to determine animation speed)
     public const int ShortDashFrames = 27 + 67;   // The total number of frame of the'release' and 'land' clips
@@ -27,7 +27,7 @@ public class FireGirlAnimationController : MonoBehaviour
     // Animator's boolean variable names
     public const string IsLongDashBool = "isLongDash";
     public const string IsLongDashChargedBool = "isLongDashCharged";
-    public const string IsInFuseBool = "isInFuse";
+    public const string _inInteractableBool = "inInteractable";
     public const string HasCollidedBool = "hasCollided";
     
     private Animator[] _animators;
@@ -39,18 +39,18 @@ public class FireGirlAnimationController : MonoBehaviour
     private float _chargingLongDashSpeed = 1;
 
     // Current state description
-    private State _currentState = State.Idle;
-    private bool _isLongDash = false;
-    private bool _isLongDashCharged = false;
-    private bool _hasCollided = false;
-    private bool _inFuse = false;
+    private State _currentState;
+    private bool _isLongDash;
+    private bool _isLongDashCharged;
+    private bool _hasCollided;
+    private bool _inInteractable;
 
     // Local triggers
-    private bool _chargeTrigger = false;
-    private bool _releaseTrigger = false;
-    private bool _cancelTrigger = false;
-    private bool _dieTrigger = false;
-    private bool _respawnTrigger = false;
+    private bool _chargeTrigger;
+    private bool _releaseTrigger;
+    private bool _cancelTrigger;
+    private bool _dieTrigger;
+    private bool _respawnTrigger;
     #endregion
 
     public void Start()
@@ -72,7 +72,7 @@ public class FireGirlAnimationController : MonoBehaviour
         float longDashChargingDuration = LongDashChargingFrames / frameRate;
         _shortDashSpeed = shortDashDuration / MovementController.MoveDuration;
         _longDashSpeed = longDashDuration / MovementController.DashDuration;
-        _chargingLongDashSpeed = longDashDuration / MovementController.DashThreshold;
+        _chargingLongDashSpeed = longDashChargingDuration / MovementController.DashThreshold;
 
         foreach (Animator anim in this._animators)
         {
@@ -80,91 +80,90 @@ public class FireGirlAnimationController : MonoBehaviour
             anim.SetFloat(LongDashSpeedLabel, _longDashSpeed);
             anim.SetFloat(ChargingLongDashSpeedLabel, _chargingLongDashSpeed);
         }
+
+        Idle();
+    }
+
+    public void Idle()
+    {
+        _currentState = State.Idle;
+        _isLongDash = false;
+        _isLongDashCharged = false;
+        _hasCollided = false;
+        _inInteractable = false;
+        _chargeTrigger = false;
+        _releaseTrigger = false;
+        _cancelTrigger = false;
+        _dieTrigger = false;
+        _respawnTrigger = false;
+
+        UpdateAnimators();
     }
 
     public void Charge()
     {
         if (_currentState != State.Charging)
         {
-            _currentState = State.Charging;
-            _isLongDash = false;
             _chargeTrigger = true;
-            UpdateAnimators();
         }
+
+        _currentState = State.Charging;
+
+        UpdateAnimators();
     }
 
     public void Release()
     {
         if (_currentState == State.Charging)
         {
-            _currentState = State.MoveIntent;
+            _currentState = State.Moving;
             _releaseTrigger = true;
             UpdateAnimators();
         }
     }
 
-    // TODO: This is currently not used because I cannot InputManager.ResetDash() is called on every frame
     public void Cancel()
     {
         if (_currentState == State.Charging)
         {
-            _currentState = State.Idle;
+            Idle();
+            _cancelTrigger = true;
             UpdateAnimators();
         }
     }
 
     public void Collide()
     {
-        if (_currentState == State.MoveIntent)
-        {
-            _currentState = State.MoveResult;
-            _hasCollided = true;
-            UpdateAnimators();
-        }
+        Idle();
+        _hasCollided = true;
+        UpdateAnimators();
     }
 
-    public void EnterFuse()
+    public void EnterInteractable()
     {
-        if (_currentState == State.MoveIntent)
-        {
-            _currentState = State.MoveResult;
-            _inFuse = true;
-            UpdateAnimators();
-        }
-        else
-        {
-            Debug.LogWarning("ExitFuse: Unexpected invocation. " +
-                "State: " + _currentState +
-                "inFuse: " + _inFuse);
-        }
+        _inInteractable = true;
+        UpdateAnimators();
     }
 
-    public void ExitFuse()
+    public void ExitInteractable()
     {
-        if (_currentState == State.MoveResult && _inFuse)
-        {
-            _inFuse = false;
-            UpdateAnimators();
-        }
-        else
-        {
-            Debug.LogWarning("ExitFuse: Unexpected invocation. " +
-                "State: " + _currentState +
-                "inFuse: " + _inFuse);
-        }
-    }
-
-    public void Respawn()
-    {
-        ResetState();
-        _respawnTrigger = true;
+        Idle();
+        _inInteractable = false;
         UpdateAnimators();
     }
 
     public void Die()
     {
-        _currentState = State.Dying;
+        Idle();
         _dieTrigger = true;
+        UpdateAnimators();
+    }
+
+    public void Respawn()
+    {
+        ResetTriggers();
+        Idle();
+        _respawnTrigger = true;
         UpdateAnimators();
     }
 
@@ -173,47 +172,30 @@ public class FireGirlAnimationController : MonoBehaviour
         if (_currentState == State.Charging)
         {
             _isLongDash = isLongDash;
-            _isLongDashCharged = false;
             UpdateAnimators();
-        }
-        else
-        {
-            Debug.LogWarning("SetLongDash: Unexpected invocation. " +
-                "State: " + _currentState +
-                "isLongDash: " + _isLongDash);
         }
     }
 
-    public void SetLongDashCharged()
+    public void SetLongDashCharged(bool isLongDashCharged)
     {
-        if (_currentState == State.Charging && _isLongDash)
+        if (_currentState == State.Charging)
         {
-            _isLongDashCharged = true;
+            _isLongDashCharged = isLongDashCharged;
             UpdateAnimators();
-        }
-        else
-        {
-            Debug.LogWarning("SetLongDashCharged: Unexpected invocation. " +
-                "State: " + _currentState +
-                "isLongDash: " + _isLongDash);
         }
     }
 
-    public void ResetState()
+    #region Utilities
+    public void ResetTriggers()
     {
-        _currentState = State.Idle;
-        _dieTrigger = false;
-        _isLongDash = false;
-        _isLongDashCharged = false;
-        _isLongDash = false;
-        _isLongDashCharged = false;
-        _hasCollided = false;
-        _inFuse = false;
-        _chargeTrigger = false;
-        _releaseTrigger = false;
-        _cancelTrigger = false;
-        _dieTrigger = false;
-        _respawnTrigger = false;
+        foreach (Animator anim in this._animators)
+        {
+            anim.ResetTrigger(ChargeTrigger);
+            anim.ResetTrigger(ReleaseTrigger);
+            anim.ResetTrigger(CancelTrigger);
+            anim.ResetTrigger(DieTrigger);
+            anim.ResetTrigger(RespawnTrigger);
+        }
     }
 
     private void UpdateAnimators()
@@ -231,7 +213,7 @@ public class FireGirlAnimationController : MonoBehaviour
             anim.SetBool(IsLongDashBool, _isLongDash);
             anim.SetBool(IsLongDashChargedBool, _isLongDashCharged);
             anim.SetBool(HasCollidedBool, _hasCollided);
-            anim.SetBool(IsInFuseBool, _inFuse);
+            anim.SetBool(_inInteractableBool, _inInteractable);
         }
 
         // Reset Triggers
@@ -241,4 +223,5 @@ public class FireGirlAnimationController : MonoBehaviour
         _dieTrigger = false;
         _respawnTrigger = false;
     }
+    #endregion
 }

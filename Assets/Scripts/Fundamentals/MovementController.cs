@@ -59,7 +59,6 @@ public class MovementController : MonoBehaviour
     private List<AudioEvent> audioEvents;
 
     private AttachToPlane attachToPlane;
-    private Coroutine prepareDashRoutine;
 
     private float currentFireAmount;
     private float maxFireAmount = 100f;
@@ -175,12 +174,10 @@ public class MovementController : MonoBehaviour
     /// </summary>
     public void ChargeMove()
     {
-        if (!isMoveCharged)
-        {
-            // Play Animation
-            animationController.Charge();
-            isMoveCharged = true;
-        }
+        // Play Animator
+        animationController.SetLongDash(false);
+        animationController.SetLongDashCharged(false);
+        animationController.Charge();
     }
 
     /// <summary>
@@ -188,32 +185,21 @@ public class MovementController : MonoBehaviour
     /// </summary>
     public void ChargeDash()
     {
-        if (!startCharge)
-        {
-            // Play Animation
-            animationController.SetLongDash(true);
-
-            startCharge = true;
-            prepareDashRoutine = StartCoroutine(PrepareDash());
-        }
-    }
-
-    private IEnumerator PrepareDash()
-    {
-        yield return new WaitForSeconds(ChargeAnimationDelay);
-
-        // Play Animation
+        // Update Animator
+        animationController.SetLongDash(true);
+        animationController.SetLongDashCharged(false);
         animationController.Charge();
-
-        AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.ChargingDash, audioEvents, gameObject);
     }
 
     public void DashCharged()
     {
         IsDashCharged = true;
 
-        // Prepare Animation
-        animationController.SetLongDashCharged();
+        // Update Animator
+        animationController.SetLongDash(true);
+        animationController.SetLongDashCharged(true);
+
+        AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.ChargingDash, audioEvents, gameObject);
     }
 
     /// <summary>
@@ -269,18 +255,22 @@ public class MovementController : MonoBehaviour
     /// </summary>
     public void ResetDash()
     {
-        if (prepareDashRoutine != null)
-        {
-            // Play Animation
-            //animationController.Cancel();
-            StopCoroutine(prepareDashRoutine);
-        }
-
         material.SetColor("_Color", Color.yellow);
         IsDashCharged = false;
         isMoveCharged = false;
+
+        // Update Animator
+        animationController.SetLongDash(false);
+        animationController.SetLongDashCharged(false);
+
         AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.DashCancelled, audioEvents, gameObject);
         startCharge = false;
+    }
+
+    public void Cancel()
+    {
+        // Update Animator
+        animationController.Cancel();
     }
 
     /// <summary>
@@ -339,8 +329,14 @@ public class MovementController : MonoBehaviour
     /// </summary>
     private void CheckCollision()
     {
+        CheckRayCollision(0.75f);
+        CheckRayCollision(1.25f);
+    }
+
+    private void CheckRayCollision(float height)
+    {
         RaycastHit hit;
-        if (Physics.Raycast(new Vector3(transform.position.x, 0.75f, transform.position.z), transform.forward, out hit,
+        if (Physics.Raycast(new Vector3(transform.position.x, height, transform.position.z), transform.forward, out hit,
             Vector3.Distance(transform.position, TargetPosition)))
         {
             InteractibleObject interactableObj = hit.transform.gameObject.GetComponent<InteractibleObject>();
@@ -362,13 +358,7 @@ public class MovementController : MonoBehaviour
         StopCoroutine(nameof(MoveBackRoutine));
         rigidBody.velocity = Vector3.zero;
 
-        // Set animator state
-        // Code's entropy is quite high
-        // Spaghetti is high on carbs -> diabetes risk
-        // Why should I be placed here? It is so unreasonable! 
-        // Please, delete my comments
-        // Architecture unfollowed -> Koalas go extinct :(
-        animationController.ExitFuse();
+        animationController.Idle();
     }
 
     private void MoveEnded()
@@ -437,7 +427,6 @@ public class MovementController : MonoBehaviour
     /// </summary>
     public void CheckGameEnd()
     {
-
         if (reachedGoal)
             gameController.Win();
         else if (HasDied)
@@ -489,9 +478,6 @@ public class MovementController : MonoBehaviour
         StartPoint startPoint = UpcomingFusePoint.GetComponent<StartPoint>();
         startPoint.StartFollowingFuse();
         IsInvulnerable = true;
-
-        // Set animator state 
-        animationController.EnterFuse();
     }
 
     /*public void CollidePickUp()
@@ -551,7 +537,3 @@ public class MovementController : MonoBehaviour
 
     }
 }
-
-
-
-
