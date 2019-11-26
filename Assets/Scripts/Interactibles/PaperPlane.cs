@@ -24,6 +24,14 @@ public class PaperPlane : DashInteractable
         audioEvents = new List<AudioEvent>(GetComponents<AudioEvent>());
     }
 
+    private void Start()
+    {
+        //Hardcoded stuff for the plane burning scaling with how long it lasts
+        float burnspeed = 0.55f / burnDuration;
+        GetComponent<BurnObject>().burnSpeed = burnspeed;
+        GetComponent<BurnObject>()._burnedAmount = 0.7f;
+    }
+
 
     public override void GameLoopUpdate()
     {
