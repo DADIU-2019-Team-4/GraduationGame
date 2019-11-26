@@ -10,6 +10,8 @@ public class TriggerCutscene : MonoBehaviour
     private PlayableDirector _timeline;
     public UnityEvent OnTrigger;
 
+    public DialogueTrigger.DialogueTriggerType TriggerType;
+
     public enum TimelineTrack
     {
         LucyBodyAnimator,
@@ -26,19 +28,27 @@ public class TriggerCutscene : MonoBehaviour
         _timeline = GetComponent<PlayableDirector>();
     }
 
+    private void Start()
+    {
+        if (TriggerType == DialogueTrigger.DialogueTriggerType.OnStart)
+            PlayCutScene();
+    }
+
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player")
-        {
-            SetBindings();
-            OnTrigger.Invoke();
-            _timeline.Play();
+        if (TriggerType == DialogueTrigger.DialogueTriggerType.Collision)
+            if (other.gameObject.tag == "Player")
+                PlayCutScene();
+    }
 
-            if (OnlyOnce)
-                Destroy(this);
-        }
+    public void PlayCutScene()
+    {
+        SetBindings();
+        OnTrigger.Invoke();
+        _timeline.Play();
 
-
+        if (OnlyOnce)
+            Destroy(this);
     }
 
     private void SetBindings()
