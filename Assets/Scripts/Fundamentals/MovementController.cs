@@ -267,10 +267,24 @@ public class MovementController : MonoBehaviour
         startCharge = false;
     }
 
+    /// <summary>
+    /// Notifies the Animator that the action is cancelled.
+    /// </summary>
     public void Cancel()
     {
         // Update Animator
         animationController.Cancel();
+    }
+
+    /// <summary>
+    /// Notifies the Animator that the a collision has occured.
+    /// </summary>
+    public void Collide(Vector3 hitpoint)
+    {
+        TargetPosition = hitpoint - transform.forward * BounceValue;
+
+        // Update Animator
+        animationController.Collide();
     }
 
     /// <summary>
@@ -284,7 +298,7 @@ public class MovementController : MonoBehaviour
 
         moveTweener = rigidBody.DOMove(target, duration);
 
-        // Play Animation
+        // Update Animator
         animationController.Collide();
 
         yield return new WaitForSeconds(duration);
@@ -358,6 +372,7 @@ public class MovementController : MonoBehaviour
         StopCoroutine(nameof(MoveBackRoutine));
         rigidBody.velocity = Vector3.zero;
 
+        // Update Animator
         animationController.Idle();
     }
 
@@ -478,6 +493,9 @@ public class MovementController : MonoBehaviour
         StartPoint startPoint = UpcomingFusePoint.GetComponent<StartPoint>();
         startPoint.StartFollowingFuse();
         IsInvulnerable = true;
+
+        // Update Animator
+        animationController.EnterInteractable();
     }
 
     /*public void CollidePickUp()
