@@ -6,8 +6,9 @@ using UnityEngine.Profiling;
 
 namespace MoMa
 {
-    public class CharacterController : MonoBehaviour
+    public class SalamanderController : MonoBehaviour
     {
+        #region Vars
         // TODO: This should happen offline. Instead we only need to open its result
         //this._anim.Add(Packer.Pack("walk", "MoCapData", "walk_DEFAULT_FIX"));
         //this._anim.Add(Packer.Pack("jog", "MoCapData", "jog3_DEFAULT_FIX"));
@@ -53,7 +54,9 @@ namespace MoMa
         private AnimationComponent _ac;
         private Trajectory _trajectory = new Trajectory();
         private Transform _model;
-        private int currentFrame = 0;
+        private int _currentFrame = 0;
+
+        #endregion
 
         void Start()
         {
@@ -78,7 +81,7 @@ namespace MoMa
 
             if (this._model == null)
             {
-                throw new System.Exception("CharacterController was unable to find the model.");
+                throw new System.Exception("SalamanderController was unable to find the model.");
             }
 
             // Initialize Trajectory's past to the initial position
@@ -86,9 +89,6 @@ namespace MoMa
             {
                 this._trajectory.points.Add(new Trajectory.Point(new Vector2(0f, 0f), Quaternion.identity));
             }
-
-            // TODDO: Remove
-            UpdateTarget(new Vector3(80, 0, 8));
         }
 
         void FixedUpdate()
@@ -96,9 +96,9 @@ namespace MoMa
             StartCoroutine(UpdateCoroutine());
         }
 
-        public void UpdateTarget(Vector3 newTarget)
+        public void UpdateTarget(MovementController.EventType type, Vector2 position)
         {
-            _mc.UpdateTarget(newTarget);
+            _mc.UpdateTargets(type, position);
         }
 
         private IEnumerator UpdateCoroutine()
@@ -107,7 +107,7 @@ namespace MoMa
             _mc.Update();
 
             // Add Point to Trajectory, removing the oldest point
-            if (currentFrame % FramesPerPoint == 0)
+            if (_currentFrame % FramesPerPoint == 0)
             {
                 this._trajectory.points.Add(
                     new Trajectory.Point(
@@ -118,10 +118,10 @@ namespace MoMa
                 this._trajectory.points.RemoveAt(0);
 
                 // Reset current Frame
-                currentFrame = 0;
+                _currentFrame = 0;
             }
 
-            currentFrame++;
+            _currentFrame++;
 
             // Load new Animation.Clip
             if (_ac.IsOver())

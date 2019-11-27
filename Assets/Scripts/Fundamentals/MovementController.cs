@@ -2,7 +2,7 @@
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
-using Yarn.Unity;
+using MoMa;
 using System.Collections.Generic;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
@@ -59,7 +59,17 @@ public class MovementController : MonoBehaviour
 
     #region Public Editor Fields
 
-    private readonly float MaxFireAmount = 100f;
+    public enum EventType {
+        Move,
+        Dash,
+        Die,
+        Win,
+        Respawn,
+        EnterFuse,
+        ExitFuse,
+        EnterPaperPlane,
+        ExitPaperPlane
+    };
 
     public bool IsCharging { get; set; }
 
@@ -85,6 +95,8 @@ public class MovementController : MonoBehaviour
 
     #region Private Editor Fields
 
+    private readonly float MaxFireAmount = 100f;
+
     private GameController _gameController;
     private FireGirlAnimationController _anim;
     private Rigidbody _rigidBody;
@@ -93,7 +105,7 @@ public class MovementController : MonoBehaviour
     private AttachToPlane _attachToPlane;
     private PlayerActionsCollectorQA _playerActionsCollectorQA;
     private TMP_Text _fireAmountText;
-    private PathKeeper _pathKeeper;
+    private SalamanderController _salamanderController;
     private float _currentFireAmount;
     private float _dashTimer;
     private float _damageTimer;
@@ -111,7 +123,7 @@ public class MovementController : MonoBehaviour
         _anim = GetComponentInChildren<FireGirlAnimationController>();
         _gameController = FindObjectOfType<GameController>();
         _audioEvents = new List<AudioEvent>(GetComponents<AudioEvent>());
-        _pathKeeper = FindObjectOfType<PathKeeper>();
+        _salamanderController = FindObjectOfType<SalamanderController>();
         _attachToPlane = GetComponent<AttachToPlane>();
         _playerActionsCollectorQA = FindObjectOfType<PlayerActionsCollectorQA>();
     }
@@ -167,6 +179,9 @@ public class MovementController : MonoBehaviour
 
         // Set animator state 
         _anim.Respawn();
+
+        // Notify Sally
+        _salamanderController.UpdateTarget(EventType.Respawn, transform.position.GetXZVector2());
     }
 
     /// <summary>
@@ -398,6 +413,9 @@ public class MovementController : MonoBehaviour
 
         // Update Animator
         _anim.Land();
+
+        // Notify Sally
+        _salamanderController.UpdateTarget(EventType.Move, transform.position.GetXZVector2());
     }
 
     /// <summary>
