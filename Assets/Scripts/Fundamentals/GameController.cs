@@ -34,17 +34,8 @@ public class GameController : MonoBehaviour
 
     private void Update()
     {
-        if (_breakables != null) return;
-
-        // This is a spaghetti way to check if the level is completely loaded.
-        var floor = FindObjectOfType<OutOfBoundsColliders>();
-        if (floor == null) return; // Await loading.
-
-        _breakables = new List<InteractibleObject>();
-        var interactibles = FindObjectsOfType<InteractibleObject>();
-        foreach (var interactible in interactibles)
-            if (interactible.type == InteractibleObject.InteractType.Break)
-                _breakables.Add(interactible);
+        if (_breakables == null)
+            GetAllBoxReferencesInLevel();
     }
 
     public void Win()
@@ -83,6 +74,9 @@ public class GameController : MonoBehaviour
         GameHasEnded = false;
         Time.timeScale = 1;
 
+        if (_breakables == null || _breakables.Count == 0 || _breakables[0] == null)
+            GetAllBoxReferencesInLevel();
+
         foreach (var breakable in _breakables)
             breakable.gameObject.GetComponent<BurnObject>().ResetBreakable();
 
@@ -110,8 +104,21 @@ public class GameController : MonoBehaviour
         GameHasEnded = true;
     }
 
-    public void InfiniteMoves()
+    public void InfiniteMoves() { FindObjectOfType<MovementController>().InfiniteMoves(); }
+
+    /// <summary>
+    /// Nullifies box collection to reset references. Use when a new scene is loaded.
+    /// </summary>
+    public void NullifyBoxCollection() { _breakables = null; }
+
+    private void GetAllBoxReferencesInLevel()
     {
-        FindObjectOfType<MovementController>().InfiniteMoves();
+        var interactibles = FindObjectsOfType<InteractibleObject>();
+        if (interactibles == null || interactibles.Length == 0) return; // Await level is loaded.
+
+        _breakables = new List<InteractibleObject>();
+        foreach (var interactible in interactibles)
+            if (interactible.type == InteractibleObject.InteractType.Break)
+                _breakables.Add(interactible);
     }
 }

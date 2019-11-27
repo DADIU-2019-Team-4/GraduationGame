@@ -2,7 +2,7 @@
 
 public class InputManager : IGameLoop
 {
-    public static bool DisableInput = false;
+    public static bool DisableInput;
     public GameObject DashCirclePrefab;
     public float ArrowScaleFactor = 0.3f;
     public bool IsPerfectTopDownCamera;
