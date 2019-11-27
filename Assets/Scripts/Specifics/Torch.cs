@@ -6,14 +6,14 @@ using UnityEngine;
 public class Torch : MonoBehaviour
 {
     private Light _light;
-    private ParticleSystem _flame; 
+    public GameObject _flame; 
 
     void Awake()
     {
         _light = gameObject.GetComponentInChildren<Light>();
-        _flame = gameObject.GetComponentInChildren<ParticleSystem>();
-        var em = _flame.emission;
-        em.enabled = false; 
+        _flame.SetActive(false);
+        /*var em = _flame.emission;
+        em.enabled = false; */
         _light.enabled = false;
     }
 
@@ -21,8 +21,9 @@ public class Torch : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag != "Player") return;
-        var em = _flame.emission;
-        em.enabled = true; 
+        /*var em = _flame.emission;
+         em.enabled = true; */
+        _flame.SetActive(true); 
         _light.enabled = true;
         Destroy(this);
     }
