@@ -208,12 +208,6 @@ public class MovementController : MonoBehaviour
         // Intent Charge (unfinished)
         else if (!IsDashing)
         {
-            // TODO: Play Sound the first time or when it is charged? In the first case, should it be cut?
-            if (!_dashIntent)
-            {
-                AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.ChargingDash, _audioEvents, gameObject);
-            }
-
             // Update Intent and State
             _dashIntent = true;
             _dashTimer += Time.deltaTime;
@@ -449,6 +443,9 @@ public class MovementController : MonoBehaviour
         // Update Animator
         _anim.SetIsDashing(true);
         _anim.SetDashCharged(true);
+
+        // Play sound
+        AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.ChargingDash, _audioEvents, gameObject);
 
         // Vibrate
         Vibration.Vibrate(80);
