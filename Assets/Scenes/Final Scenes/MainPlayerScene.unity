@@ -620,7 +620,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 584846988}
-  - component: {fileID: 584846987}
   m_Layer: 0
   m_Name: WwiseGlobal
   m_TagString: Untagged
@@ -628,33 +627,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &584846987
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 584846986}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ac000d1e99bff64aa60c0bb00316b24, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  InitializationSettings: {fileID: 11400000, guid: 915f080ec8346ef4c99a7c5eba2255a8,
-    type: 2}
-  basePath: 
-  language: 
-  defaultPoolSize: 0
-  lowerPoolSize: 0
-  streamingPoolSize: 0
-  memoryCutoffThreshold: 0
-  monitorPoolSize: 0
-  monitorQueuePoolSize: 0
-  callbackManagerBufferSize: 0
-  spatialAudioPoolSize: 0
-  maxSoundPropagationDepth: 0
-  diffractionFlags: 11
-  engineLogging: 0
 --- !u!4 &584846988
 Transform:
   m_ObjectHideFlags: 0
@@ -1076,6 +1048,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &826360099 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8842590520540511635, guid: 4cada5d73cbc61741812f155e2a4b83f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1215974695}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45e653bab7fb20e499bda25e1b646fea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &863972571
 GameObject:
   m_ObjectHideFlags: 0
@@ -1392,7 +1376,7 @@ PrefabInstance:
     - target: {fileID: 8842590520202399876, guid: 4cada5d73cbc61741812f155e2a4b83f,
         type: 3}
       propertyPath: m_Instructions.Array.size
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8842590520202399876, guid: 4cada5d73cbc61741812f155e2a4b83f,
         type: 3}
@@ -1432,7 +1416,7 @@ PrefabInstance:
     - target: {fileID: 8842590520202399876, guid: 4cada5d73cbc61741812f155e2a4b83f,
         type: 3}
       propertyPath: m_Instructions.Array.data[4].m_FullHash
-      value: -2047733301
+      value: -343386560
       objectReference: {fileID: 0}
     - target: {fileID: 8842590520202399876, guid: 4cada5d73cbc61741812f155e2a4b83f,
         type: 3}
@@ -1582,13 +1566,13 @@ PrefabInstance:
     - target: {fileID: 8842590520202399876, guid: 4cada5d73cbc61741812f155e2a4b83f,
         type: 3}
       propertyPath: m_Instructions.Array.data[7].m_FullHash
-      value: -1482263730
+      value: 1759010549
       objectReference: {fileID: 0}
     - target: {fileID: 8842590520202399876, guid: 4cada5d73cbc61741812f155e2a4b83f,
         type: 3}
       propertyPath: m_Instructions.Array.data[7].m_VirtualCamera
       value: 
-      objectReference: {fileID: 1348423116}
+      objectReference: {fileID: 826360099}
     - target: {fileID: 8854936887492025765, guid: 4cada5d73cbc61741812f155e2a4b83f,
         type: 3}
       propertyPath: m_LocalRotation.w
@@ -1755,7 +1739,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1599978215
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1768,7 +1752,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cf223f5e40455148a412312ef8df1b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SelectedScene: 1
+  SelectedScene: 3
   Player: {fileID: 1014902397}
   StoryProgression: {fileID: 11400000, guid: c9ca93d4c6428dd4c8b4f1d44c8188d5, type: 2}
   CommonAssets: []
