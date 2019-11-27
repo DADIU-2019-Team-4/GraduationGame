@@ -30,8 +30,15 @@ public class TriggerCutscene : MonoBehaviour
 
     private void Start()
     {
+        _timeline.stopped += OnCutSceneStopped;
         if (TriggerType == DialogueTrigger.DialogueTriggerType.OnStart)
             PlayCutScene();
+    }
+
+    private void OnCutSceneStopped(PlayableDirector director)
+    {
+        if (_timeline == director)
+            InputManager.DisableInput = false;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -43,6 +50,7 @@ public class TriggerCutscene : MonoBehaviour
 
     public void PlayCutScene()
     {
+        InputManager.DisableInput = true;
         SetBindings();
         OnTrigger.Invoke();
         _timeline.Play();

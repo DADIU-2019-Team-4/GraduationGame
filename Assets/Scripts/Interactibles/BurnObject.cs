@@ -73,7 +73,7 @@ public class BurnObject : MonoBehaviour
         _isBurning = true;
 
         Collider coll = gameObject.GetComponent<Collider>();
-        if (!coll.isTrigger)
+        if (coll != null && !coll.isTrigger)
         {
             coll.enabled = false;
         }
