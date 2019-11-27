@@ -10,9 +10,10 @@ public class AudioOnCollision : MonoBehaviour
         audioEvents = new List<AudioEvent>(GetComponents<AudioEvent>());
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Player")
             AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.OnCollision, audioEvents, gameObject);
+        Debug.Log("SoundCollision");
     }
 }
