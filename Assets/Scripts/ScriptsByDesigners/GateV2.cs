@@ -21,7 +21,7 @@ public class GateV2 : MonoBehaviour
     public GameObject vcam;
     public float delaySwitchCamera = 2f;
     public float delaySwitchBack = 3f;
-    BurnObject burnObject; 
+    public BurnObject burnObject; 
 
     //player control time
     public float PlayerLoseControlSeconds;
@@ -30,8 +30,6 @@ public class GateV2 : MonoBehaviour
     {
         audioEvents = new List<AudioEvent>(GetComponents<AudioEvent>());
         AnimatorFromGameobject = doorGameobject.GetComponent<Animator>();
-        burnObject = gameObject.transform.GetChild(0).gameObject.GetComponent<BurnObject>(); 
-
     }
 
   
