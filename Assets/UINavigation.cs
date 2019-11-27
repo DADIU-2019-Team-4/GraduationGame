@@ -23,7 +23,7 @@ public class UINavigation : MonoBehaviour
 
         if (storyProgression.Value == StoryProgression.EStoryProgression.At_Tutorial && _continueButton != null)
         {
-            _continueButton.GetComponent<Button>().interactable= false;
+            _continueButton.GetComponent<Button>().interactable = false;
         }
 
 
@@ -44,7 +44,7 @@ public class UINavigation : MonoBehaviour
         if (this.tag == "PauseMenu")
         {
             _pauseMenu.SetActive(false);
-            
+
         }
 
     }
@@ -52,68 +52,80 @@ public class UINavigation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void NewGame()
     {
         storyProgression.Value = StoryProgression.EStoryProgression.At_Tutorial;
         SceneManager.LoadScene("MainPlayerScene");
+        AudioEvent.PostEvent("NewGame", gameObject);
     }
 
     public void ContinueGame()
     {
         SceneManager.LoadScene("MainPlayerScene");
+        AudioEvent.PostEvent("ContinueGame", gameObject);
     }
 
     public void OpenOptions()
     {
         _optionsMenu.SetActive(true);
+        AudioEvent.PostEvent("OpenOptions", gameObject);
     }
 
     public void ExitOptions()
     {
         _optionsMenu.SetActive(false);
+        AudioEvent.PostEvent("ExitOptions", gameObject);
     }
 
     public void ChangeLanguageToDanish()
     {
         PlayerPrefs.SetString("Language", "Danish");
+        AudioEvent.PostEvent("ChangeLanguageToDanish", gameObject);
     }
 
     public void ChangeLanguageToEnglish()
     {
         PlayerPrefs.SetString("Language", "English");
+        AudioEvent.PostEvent("ChangeLanguageToEnglish", gameObject);
     }
 
     public void UpdateSFXVolume(float value)
     {
         PlayerPrefs.SetFloat("SFXVolume", value);
+        AudioEvent.SetRTPCValue("SFXVolume", value * 100);
     }
 
     public void UpdateAmbienceVolume(float value)
     {
         PlayerPrefs.SetFloat("AmbienceVolume", value);
+        AudioEvent.SetRTPCValue("AmbienceVolume", value * 100);
     }
 
     public void UpdateMusicVolume(float value)
     {
         PlayerPrefs.SetFloat("MusicVolume", value);
+        AudioEvent.SetRTPCValue("MusicVolume", value * 100);
     }
 
     public void EnterPauseMenu()
     {
         _pauseMenu.SetActive(true);
+        AudioEvent.PostEvent("EnterPauseMenu", gameObject);
     }
 
     public void ExitPauseMenu()
     {
         _pauseMenu.SetActive(false);
+        AudioEvent.PostEvent("ExitPauseMenu", gameObject);
     }
 
     public void GoToMainMenu()
     {
         SceneManager.LoadScene("MainMenu");
+        AudioEvent.PostEvent("GoToMainMenu", gameObject);
     }
 
 
@@ -136,7 +148,7 @@ public class UINavigation : MonoBehaviour
 
         if (!PlayerPrefs.HasKey("Language"))
         {
-            PlayerPrefs.SetString("Language","English");
+            PlayerPrefs.SetString("Language", "English");
         }
 
         if (!PlayerPrefs.HasKey("FirstTimePlaying"))
