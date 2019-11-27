@@ -13,6 +13,7 @@ public class InputManager : IGameLoop
     private GameController _gameController;
     private GameObject _arrowParent;
     private GameObject _arrow;
+    private SpriteRenderer _arrowSpriteRenderer;
     private Camera _mainCamera;
     private Canvas _canvas;
     private GameObject _dashCircle;
@@ -36,6 +37,7 @@ public class InputManager : IGameLoop
     {
         _arrowParent.SetActive(false);
         _arrow = _arrowParent.transform.GetChild(0).gameObject;
+        _arrowSpriteRenderer = _arrow.GetComponent<SpriteRenderer>();
     }
 
     /// <summary>
@@ -270,9 +272,9 @@ public class InputManager : IGameLoop
         Vector3 directionVector = CalculateDirectionVector();
         Vector3 targetPosition = _movementController.transform.position + directionVector.normalized * distance;
 
-        var scale = _arrowParent.transform.localScale;
-        scale.z = Vector3.Distance(_movementController.transform.position, targetPosition) * ArrowScaleFactor;
-        _arrowParent.transform.localScale = scale;
+        var scale = _arrowSpriteRenderer.size;
+        scale.y = Vector3.Distance(_movementController.transform.position, targetPosition) * ArrowScaleFactor;
+        _arrowSpriteRenderer.size = scale;
     }
 
     public static void ToggleInput(bool disableInput) { DisableInput = disableInput; }
