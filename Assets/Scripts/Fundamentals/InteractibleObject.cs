@@ -17,7 +17,8 @@ public class InteractibleObject : DashInteractable
         PickUp,
         FusePoint,
         Damage,
-        DangerZone
+        DangerZone,
+        BurnableProp
     }
     public InteractType type;
     public float DamageValue;
@@ -57,7 +58,7 @@ public class InteractibleObject : DashInteractable
     public override void Interact(Vector3 hitPoint)
     {
         Vector3 hitpoint = new Vector3(hitPoint.x, BumpHeight, hitPoint.z);
-        if(movementController== null)
+        if (movementController == null)
         {
             AssignDependencies();
         }
@@ -88,7 +89,7 @@ public class InteractibleObject : DashInteractable
                 Death(hitpoint);
                 break;
             case InteractType.Fuse:
-                if(!movementController.IsFuseMoving)
+                if (!movementController.IsFuseMoving)
                     Block(hitpoint);
                 break;
             case InteractType.Damage:
@@ -97,8 +98,11 @@ public class InteractibleObject : DashInteractable
             case InteractType.DangerZone:
                 DangerZone();
                 break;
+            case InteractType.BurnableProp:
+                BurnProp(hitpoint);
+                break;
         }
-        
+
         // If this is a pop-up Object, trigger the pop-up
         if (popUpObject)
         {
@@ -111,7 +115,7 @@ public class InteractibleObject : DashInteractable
         if (movementController == null)
             AssignDependencies();
 
-        if (!movementController.IsInvulnerable) 
+        if (!movementController.IsInvulnerable)
         {
             Vector3 targetPosition = hitpoint + movementController.transform.forward * movementController.BounceValue;
             movementController.Die(false, targetPosition);
@@ -140,7 +144,7 @@ public class InteractibleObject : DashInteractable
     private void Block(Vector3 hitpoint)
     {
         AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.ObstacleBlock, audioEvents, gameObject);
-        cameraShake.setShakeElapsedTime(breakShake/2);
+        cameraShake.setShakeElapsedTime(breakShake / 2);
         //dialogRunner.StartDialogue("Block");
         movementController.Collide(hitpoint);
     }
@@ -159,10 +163,16 @@ public class InteractibleObject : DashInteractable
         }
         else
         {
-            cameraShake.setShakeElapsedTime(breakBounceShakeDur);   
+            cameraShake.setShakeElapsedTime(breakBounceShakeDur);
             AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.ObstacleBreakMute, audioEvents, gameObject);
             movementController.Collide(hitpoint);
         }
+    }
+
+    private void BurnProp(Vector3 hitpoint)
+    {
+        gameObject.GetComponent<BurnObject>().SetObjectOnFire(hitpoint);
+        movementController.UpdateFireAmount(-HealValue);
     }
 
     private void Candle()

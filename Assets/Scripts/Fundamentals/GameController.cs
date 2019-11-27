@@ -118,7 +118,7 @@ public class GameController : MonoBehaviour
 
         _breakables = new List<InteractibleObject>();
         foreach (var interactible in interactibles)
-            if (interactible.type == InteractibleObject.InteractType.Break)
+            if (interactible.type == InteractibleObject.InteractType.Break || interactible.type == InteractibleObject.InteractType.BurnableProp)
                 _breakables.Add(interactible);
     }
 }

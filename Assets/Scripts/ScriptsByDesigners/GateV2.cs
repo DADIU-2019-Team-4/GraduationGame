@@ -38,7 +38,9 @@ public class GateV2 : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player" && !_triggerUnlock)
         {
-   
+
+            //ARES Put animation of wheel here
+
             //camera behavior
             _triggerUnlock = true;
             StartCoroutine(Unlock());
@@ -53,16 +55,14 @@ public class GateV2 : MonoBehaviour
     IEnumerator Unlock()
     {
         yield return new WaitForSeconds(DelaySeconds);
-        if (gameObject.tag == "BigDoorKey1")
-
+        if (gameObject.tag == "BigDoorKey1" && AnimatorFromGameobject.GetBool("Unlock 1") == false)
         {
-            AnimatorFromGameobject.SetTrigger("Unlock 1");
+            AnimatorFromGameobject.SetBool("Unlock 1", true);
         }
-        else if (gameObject.tag == "BigDoorKey2")
+        else if (gameObject.tag == "BigDoorKey1")
         {
-            AnimatorFromGameobject.SetTrigger("Open");
+            AnimatorFromGameobject.SetBool("Unlock 2", true);
         }
-
         AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.GateUnlocked, audioEvents, gameObject);
     }
 
