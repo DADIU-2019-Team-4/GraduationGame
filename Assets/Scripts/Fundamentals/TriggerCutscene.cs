@@ -56,7 +56,7 @@ public class TriggerCutscene : MonoBehaviour
         var timelineAsset = _timeline.playableAsset;
         var playableBindings = new List<PlayableBinding>(timelineAsset.outputs);
 
-        for (int i = 0; i < TrackReferences.Length; ++i)
+        for (int i = 0; i < TrackReferences.Length; i++)
         {
             var track = playableBindings[i].sourceObject as TrackAsset;
             var gameObjectRef = GameObject.FindGameObjectWithTag(TrackReferences[i].ToString());

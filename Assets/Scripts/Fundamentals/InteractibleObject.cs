@@ -115,6 +115,7 @@ public class InteractibleObject : DashInteractable
         {
             Vector3 targetPosition = hitpoint + movementController.transform.forward * movementController.BounceValue;
             movementController.Die(false, targetPosition);
+            Vibration.Vibrate(80);
             //dialogRunner.StartDialogue("Death");
         }
     }

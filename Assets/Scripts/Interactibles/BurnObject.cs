@@ -9,7 +9,8 @@ public class BurnObject : MonoBehaviour
     private bool _isDissasembling = true;
     //[SerializeField]
     //private List <BurnObject> burnNeighbors;
-    private float _burnedAmount =0.9f;
+    [HideInInspector]
+    public float _burnedAmount =0.9f;
 
     private GameObject _fireObject;
     private float fireFloat = -1f;
@@ -20,7 +21,7 @@ public class BurnObject : MonoBehaviour
     private Texture texture;
     private Material _defaultShader;
 
-    [Range(0, 1)]
+    [Range(0, 0.2f)]
     public float burnSpeed = 0.1f;
     public bool destroyAtTheEndOfFire = true;
 
@@ -141,7 +142,7 @@ public class BurnObject : MonoBehaviour
         {
             if (_burnedAmount < 3f)
             {
-                _burnedAmount += burnSpeed;
+                _burnedAmount += burnSpeed*Time.deltaTime;
                 fireFloat -= 0.05f;
                 _renderer.material.SetFloat("_T", _burnedAmount);
                _fireObject.GetComponent<Renderer>().material.SetFloat("_FlameHeight", fireFloat);

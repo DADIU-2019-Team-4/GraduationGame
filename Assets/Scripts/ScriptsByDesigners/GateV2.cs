@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class GateV2 : MonoBehaviour
 {
-    public GameObject Door;
     public float DelaySeconds = 0f;
 
     private List<AudioEvent> audioEvents;
@@ -12,13 +11,17 @@ public class GateV2 : MonoBehaviour
 
     //gate bool
     private bool triggerGate = false;
-    public bool AmIAKey = true; 
+
+    public GameObject doorGameobject;
+    private Animator AnimatorFromGameobject; 
+
 
 
     //Camera Control
     public GameObject vcam;
     public float delaySwitchCamera = 2f;
     public float delaySwitchBack = 3f;
+    BurnObject burnObject; 
 
     //player control time
     public float PlayerLoseControlSeconds;
@@ -26,49 +29,28 @@ public class GateV2 : MonoBehaviour
     private void Awake()
     {
         audioEvents = new List<AudioEvent>(GetComponents<AudioEvent>());
+        AnimatorFromGameobject = doorGameobject.GetComponent<Animator>();
+        burnObject = gameObject.transform.GetChild(0).gameObject.GetComponent<BurnObject>(); 
+
+
     }
 
-    // Update is called once per frame
-    /*void Update()
-    {
-        if (triggerGate && _triggerUnlock == false)
-        {
-            Debug.Log("Happened"); 
-            _triggerUnlock = true;
-            StartCoroutine(Unlock());
-        }
-    }*/
-
-
-   /* private void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "Player" && !_triggerUnlock)
-        {
-            Debug.Log("I'm alive!!!");
-            _triggerUnlock = true;
-            if (AmIAKey)
-            {
-                StartCoroutine(Unlock());
-            }
-            StartCoroutine(switchToCam());
-            StartCoroutine(DisableInput());
-            triggerGate = true;
-        }
-    } */
+  
 
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Player" && !_triggerUnlock)
         {
-            Debug.Log("I'm alive!!!");
+            
+            
+            //camera behavior
             _triggerUnlock = true;
-            if (AmIAKey)
-            {
-                StartCoroutine(Unlock());
-            }
+            StartCoroutine(Unlock());
             StartCoroutine(switchToCam());
             StartCoroutine(DisableInput());
-            triggerGate = true;
+            //ivy burn
+            burnObject.SetObjectOnFire(new Vector3(0, 0, 0));
+
         }
     }
 
@@ -76,8 +58,17 @@ public class GateV2 : MonoBehaviour
     IEnumerator Unlock()
     {
         yield return new WaitForSeconds(DelaySeconds);
+        if (gameObject.tag == "BigDoorKey1")
+
+        {
+            AnimatorFromGameobject.SetTrigger("Unlock 1");
+        }
+        else if (gameObject.tag == "BigDoorKey2")
+        {
+            AnimatorFromGameobject.SetTrigger("Open");
+        }
+
         AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.GateUnlocked, audioEvents, gameObject);
-        Door.SetActive(false);
     }
 
     IEnumerator switchToCam()
