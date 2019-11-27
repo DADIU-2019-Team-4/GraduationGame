@@ -12,7 +12,7 @@ public class AudioOnCollision : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player"))
             AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.OnCollision, audioEvents, gameObject);
         Debug.Log("SoundCollision");
     }
