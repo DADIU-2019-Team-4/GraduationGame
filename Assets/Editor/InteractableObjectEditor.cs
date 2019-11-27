@@ -35,6 +35,7 @@ public class InteractableObjectEditor : Editor
                 break;
 
             case InteractibleObject.InteractType.Break:
+            case InteractibleObject.InteractType.BurnableProp:
                 EditorGUILayout.PropertyField(HealValueProperty, new GUIContent("Heal Amount"));
                 break;
 
