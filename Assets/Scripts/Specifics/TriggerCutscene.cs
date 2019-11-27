@@ -44,7 +44,7 @@ public class TriggerCutscene : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (TriggerType == DialogueTrigger.DialogueTriggerType.Collision)
-            if (other.gameObject.tag == "Player")
+            if (other.gameObject.CompareTag("Player"))
                 PlayCutScene();
     }
 

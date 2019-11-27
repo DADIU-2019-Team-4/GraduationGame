@@ -13,7 +13,7 @@ public class GateV2 : MonoBehaviour
     private bool triggerGate = false;
 
     public GameObject doorGameobject;
-    private Animator AnimatorFromGameobject; 
+    private Animator AnimatorFromGameobject;
 
 
 
@@ -21,7 +21,7 @@ public class GateV2 : MonoBehaviour
     public GameObject vcam;
     public float delaySwitchCamera = 2f;
     public float delaySwitchBack = 3f;
-    public BurnObject burnObject; 
+    public BurnObject burnObject;
 
     //player control time
     public float PlayerLoseControlSeconds;
@@ -32,11 +32,11 @@ public class GateV2 : MonoBehaviour
         AnimatorFromGameobject = doorGameobject.GetComponent<Animator>();
     }
 
-  
+
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Player" && !_triggerUnlock)
+        if (collision.gameObject.CompareTag("Player") && !_triggerUnlock)
         {
 
             //ARES Put animation of wheel here
@@ -55,11 +55,11 @@ public class GateV2 : MonoBehaviour
     IEnumerator Unlock()
     {
         yield return new WaitForSeconds(DelaySeconds);
-        if (gameObject.tag == "BigDoorKey1" && AnimatorFromGameobject.GetBool("Unlock 1") == false)
+        if (gameObject.CompareTag("BigDoorKey1") && AnimatorFromGameobject.GetBool("Unlock 1") == false)
         {
             AnimatorFromGameobject.SetBool("Unlock 1", true);
         }
-        else if (gameObject.tag == "BigDoorKey1")
+        else if (gameObject.CompareTag("BigDoorKey1"))
         {
             AnimatorFromGameobject.SetBool("Unlock 2", true);
         }

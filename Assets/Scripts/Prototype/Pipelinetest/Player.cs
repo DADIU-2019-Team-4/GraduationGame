@@ -53,7 +53,7 @@ public class Player : IGameLoop
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Projectile")
+        if (other.gameObject.CompareTag("Projectile"))
         {
             Debug.Log("Collision with:" + other.gameObject.name);
             gameObject.transform.SetParent(other.gameObject.transform);
@@ -65,14 +65,14 @@ public class Player : IGameLoop
     }
     private void OnCollisionEnter(Collision collision)
     {
-        
-        if (collision.gameObject.tag == "Obsticle")
+
+        if (collision.gameObject.CompareTag("Obsticle"))
         {
             Debug.Log("Collision with:" + collision.gameObject.name);
             Detach(true);
         }
     }
-    
+
     public void Detach(bool destroy)
     {
         Transform parent = gameObject.transform.parent;
@@ -80,7 +80,7 @@ public class Player : IGameLoop
         gameObject.GetComponent<Rigidbody>().useGravity = true;
         _attached = false;
 
-        if(destroy)
+        if (destroy)
             Destroy(parent.gameObject);
     }
 

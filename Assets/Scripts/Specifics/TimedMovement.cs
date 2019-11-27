@@ -25,13 +25,13 @@ public class TimedMovement : IGameLoop
         {
             moveTime -= Time.deltaTime;
             timeText.text = Mathf.Round(moveTime) + "";
-            if(moveTime <= 0) this.GetComponent<MovementController>().CheckFireLeft();
+            if (moveTime <= 0) this.GetComponent<MovementController>().CheckFireLeft();
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "safeZone")
+        if (other.gameObject.CompareTag("safeZone"))
         {
             print("in");
             inSafeZone = true;
@@ -42,13 +42,13 @@ public class TimedMovement : IGameLoop
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.tag == "safeZone")
+        if (other.gameObject.CompareTag("safeZone"))
             inSafeZone = false;
     }
 
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.tag == "PickUp")
+        if (other.gameObject.CompareTag("PickUp"))
         {
             moveTime += addToTimer;
         }
