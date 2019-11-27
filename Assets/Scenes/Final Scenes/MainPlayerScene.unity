@@ -1487,6 +1487,16 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8842590519392524345, guid: 4cada5d73cbc61741812f155e2a4b83f,
+        type: 3}
+      propertyPath: m_AmplitudeGain
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8842590519392524345, guid: 4cada5d73cbc61741812f155e2a4b83f,
+        type: 3}
+      propertyPath: m_FrequencyGain
+      value: 1.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4cada5d73cbc61741812f155e2a4b83f, type: 3}
 --- !u!114 &1215974696 stripped
@@ -1621,7 +1631,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cf223f5e40455148a412312ef8df1b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SelectedScene: 1
+  SelectedScene: 2
   Player: {fileID: 1014902397}
   StoryProgression: {fileID: 11400000, guid: c9ca93d4c6428dd4c8b4f1d44c8188d5, type: 2}
   CommonAssets: []
