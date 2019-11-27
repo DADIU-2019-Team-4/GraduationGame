@@ -60,9 +60,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 903b539c32c12464682751cb4cd42fe8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Door: {fileID: 0}
   DelaySeconds: 0
-  AmIAKey: 1
+  doorGameobject: {fileID: 0}
   vcam: {fileID: 0}
   delaySwitchCamera: 2
   delaySwitchBack: 3
@@ -171,6 +170,7 @@ GameObject:
   - component: {fileID: 760772292924517099}
   - component: {fileID: 3045376379133446134}
   - component: {fileID: 6204336137138427070}
+  - component: {fileID: 3705017596458917766}
   m_Layer: 2
   m_Name: ivy
   m_TagString: Untagged
@@ -237,3 +237,22 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &3705017596458917766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3029890063177602324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 420186023faa10d418f08885f52a6d61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FireObject: {fileID: 5590989098238041260, guid: b130e385e49fa8c48ac96ceb16de5cb9,
+    type: 3}
+  _burnedAmount: 0.9
+  dissolveShader: {fileID: 2100000, guid: 46d9632cf3dabcb40a3f0686e45be8eb, type: 2}
+  burnSpeed: 0.2
+  destroyAtTheEndOfFire: 1
+  firetype: 0
