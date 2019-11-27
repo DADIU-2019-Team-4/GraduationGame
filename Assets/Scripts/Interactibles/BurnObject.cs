@@ -21,7 +21,7 @@ public class BurnObject : MonoBehaviour
     private Texture texture;
     private Material _defaultShader;
 
-    [Range(0, 0.2f)]
+    [Range(0, 3f)]
     public float burnSpeed = 0.1f;
     public bool destroyAtTheEndOfFire = true;
 
