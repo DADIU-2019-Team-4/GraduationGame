@@ -28,7 +28,7 @@ public class Player1 : IGameLoop
         if (Input.anyKey)
             CheckInput();
 
-        
+
     }
     void CheckInput()
     {
@@ -58,21 +58,21 @@ public class Player1 : IGameLoop
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Projectile")
+        if (other.gameObject.CompareTag("Projectile"))
         {
             other.GetComponent<DashInteractable>().Interact(this.gameObject);
         }
     }
     private void OnCollisionEnter(Collision collision)
     {
-        
-        if (collision.gameObject.tag == "Obsticle")
+
+        if (collision.gameObject.CompareTag("Obsticle"))
         {
             Debug.Log("Collision with:" + collision.gameObject.name);
             Detach(true);
         }
     }
-    
+
     public void Detach(bool destroy)
     {
         Transform parent = gameObject.transform.parent;
@@ -80,7 +80,7 @@ public class Player1 : IGameLoop
         gameObject.GetComponent<Rigidbody>().useGravity = true;
         _attached = false;
 
-        if(destroy)
+        if (destroy)
             Destroy(parent.gameObject);
     }
 

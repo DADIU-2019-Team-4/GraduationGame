@@ -12,7 +12,7 @@ namespace MoMa
         private Transform _transform;
         [SerializeField]
         private Vector3 _velocity = new Vector3();
-        private Vector3 _target = new Vector3(0, 0, 0);
+        private List<Target> _targets = new List<Target>();
         private float _speed;
 
         public MovementComponent(Transform transform)
@@ -23,26 +23,60 @@ namespace MoMa
         // Update is called once per frame
         public void Update()
         {
-            this._speed = Input.GetKey(KeyCode.LeftShift) ?
-                CharacterController.RunningSpeed :
-                CharacterController.WalkingSpeed;
+            // Move until you reach FireGirl (in 1 move distance)
+            if (_targets.Count > 1)
+            {
+                this._speed = Input.GetKey(KeyCode.LeftShift) ?
+                    SalamanderController.RunningSpeed :
+                    SalamanderController.WalkingSpeed;
 
-            // Move to target position (modifies the velocity)
-            _transform.position = Step(
-                _transform.position,
-                _target,
-                ref _velocity
-                );
+                // Move to target position (modifies the velocity)
+                _transform.position = Step(
+                    _transform.position,
+                    _targets[0].position,
+                    ref _velocity
+                    );
 
-            // Rotate to face the direction moving
-            Vector2 direction = _velocity.GetXZVector2().normalized;
-            float rotationAngle = Vector2.SignedAngle(Vector2.up, direction);
-            _transform.eulerAngles = new Vector3(0, -rotationAngle, 0);
+                // If the target is reached, remove target
+                if (_transform.position.GetXZVector2() == _targets[0].position)
+                {
+                    _targets.RemoveAt(0);
+                }
+
+                // Rotate to face the direction moving
+                Vector2 direction = _velocity.GetXZVector2().normalized;
+                float rotationAngle = Vector2.SignedAngle(Vector2.up, direction);
+                _transform.eulerAngles = new Vector3(0, -rotationAngle, 0);
+            }
         }
 
-        public void UpdateTarget(Vector3 newTarget)
+        public void UpdateTargets(MovementController.EventType type, Vector2 position)
         {
-            _target = newTarget;
+            switch (type)
+            {
+                case MovementController.EventType.Move:
+                case MovementController.EventType.Dash:
+                    // Consider all movements Move (not Dash)
+                    _targets.Add(new Target(MovementController.EventType.Move, position));
+                    break;
+
+                case MovementController.EventType.Die:
+                    break;
+                case MovementController.EventType.Win:
+                    break;
+                case MovementController.EventType.Respawn:
+                    break;
+                case MovementController.EventType.EnterFuse:
+                    break;
+                case MovementController.EventType.ExitFuse:
+                    break;
+                case MovementController.EventType.EnterPaperPlane:
+                    break;
+                case MovementController.EventType.ExitPaperPlane:
+                    break;
+                default:
+                    break;
+            }
         }
 
         public List<(Vector3, Quaternion)> GetFuture(int afterFrames)
@@ -51,18 +85,31 @@ namespace MoMa
             Vector3 simulatedPosition = _transform.position;
             Vector3 simulatedVelocity = _velocity;
             List<(Vector3, Quaternion)> future = new List<(Vector3, Quaternion)>();
+            int currentTarget = 0;
 
             for (int i = 0; i < afterFrames; i++)
             {
-                // Calculate next position
-                simulatedPosition = Step(
-                    simulatedPosition,
-                    _target,
-                    ref simulatedVelocity
-                    );
+                // Calculate next position (if one exists)
+                if (_targets.Count > 0)
+                {
+                    simulatedPosition = Step(
+                        simulatedPosition,
+                        _targets[currentTarget].position,
+                        ref simulatedVelocity
+                        );
+                }
 
                 // Add it to the list
                 future.Add((simulatedPosition, Quaternion.Euler(simulatedVelocity.normalized)));
+
+                // If the current target is reached, use the next one (if one exists)
+                if (
+                    currentTarget + 1 < _targets.Count &&
+                    simulatedPosition.GetXZVector2() == _targets[currentTarget].position
+                    )
+                {
+                    currentTarget++;
+                }
             }
 
             return future;
@@ -79,6 +126,18 @@ namespace MoMa
                 );
 
             return destination;
+        }
+
+        private class Target
+        {
+            public MovementController.EventType type;
+            public Vector2 position;
+
+            public Target(MovementController.EventType type, Vector2 position)
+            {
+                this.type = type;
+                this.position = position;
+            }
         }
     }
 }

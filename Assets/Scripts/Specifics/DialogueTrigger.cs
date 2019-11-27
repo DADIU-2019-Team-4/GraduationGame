@@ -31,7 +31,7 @@ public class DialogueTrigger : MonoBehaviour
     private void OnTriggerEnter(Collider collider)
     {
         if (TriggerType == DialogueTriggerType.Collision &&
-            collider.gameObject.tag == "Player")
+            collider.gameObject.CompareTag("Player"))
             TriggerDialogue();
     }
 

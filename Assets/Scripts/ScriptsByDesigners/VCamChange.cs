@@ -10,21 +10,21 @@ public class VCamChange : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.CompareTag("Player"))
         {
             StartCoroutine(switchToCam());
         }
- 
+
     }
 
 
-   /* void OnTriggerExit(Collider other)
-    {
-        switchVcamOff();
-    } 
-    */
+    /* void OnTriggerExit(Collider other)
+     {
+         switchVcamOff();
+     } 
+     */
 
-   private IEnumerator switchToCam()
+    private IEnumerator switchToCam()
     {
         yield return new WaitForSeconds(delaySwitchCamera);
         vcam.gameObject.SetActive(true);

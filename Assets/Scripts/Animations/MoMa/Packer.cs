@@ -52,7 +52,7 @@ namespace MoMa
             var bones = bonesLine.Split(',');
 
             // Add all frames to the current Animation (excl. first line (Titles) and last line (empty))
-            for (var currentFrame = 1; currentFrame < data.Length - 1; currentFrame += CharacterController.SkipFrames)
+            for (var currentFrame = 1; currentFrame < data.Length - 1; currentFrame += SalamanderController.SkipFrames)
             {
                 // Pass the current timestamp to the Frame constructor
                 var dataFrame = data[currentFrame].Split(',');

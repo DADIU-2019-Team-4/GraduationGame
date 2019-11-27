@@ -34,11 +34,11 @@ namespace MoMa
 
             // 2. Check if the next Clip is fitting (or the first one, if we reach the end)
             // The next Clip is NOT necesserily the product of the next Feature
-            this._currentFeature = (this._currentFeature + CharacterController.FeatureStep) % this._anim[this._currentAnimation].featureList.Count;
+            this._currentFeature = (this._currentFeature + SalamanderController.FeatureStep) % this._anim[this._currentAnimation].featureList.Count;
 
             this._maxTrajectoryDiff = currentSnippet.CalcDiff(this._anim[this._currentAnimation].featureList[this._currentFeature].snippet);
 
-            if (this._maxTrajectoryDiff > CharacterController.RecalculationThreshold)
+            if (this._maxTrajectoryDiff > SalamanderController.RecalculationThreshold)
             {
                 (this._currentAnimation, this._currentFeature) = QueryFeature(currentSnippet);
 
@@ -53,8 +53,8 @@ namespace MoMa
             // 3. Construct the Clip, blend it with the current one and return it
             Animation.Clip nextClip = new Animation.Clip(
                 this._anim[this._currentAnimation].frameList.GetRange(
-                    this._anim[this._currentAnimation].featureList[this._currentFeature].frameNum + CharacterController.FramesPerPoint,
-                    CharacterController.FramesPerPoint * (CharacterController.FeaturePoints + CharacterController.ClipBlendPoints)
+                    this._anim[this._currentAnimation].featureList[this._currentFeature].frameNum + SalamanderController.FramesPerPoint,
+                    SalamanderController.FramesPerPoint * (SalamanderController.FeaturePoints + SalamanderController.ClipBlendPoints)
                     )
                 );
 
@@ -116,9 +116,9 @@ namespace MoMa
                 Debug.LogError("Unable to find any Animation Frame to transition to");
                 return (0, 0);
             }
-            else if (candidateFeatures.Count > CharacterController.CandidateFramesSize)
+            else if (candidateFeatures.Count > SalamanderController.CandidateFramesSize)
             {
-                candidateFeatures.RemoveRange(CharacterController.CandidateFramesSize, candidateFeatures.Count - CharacterController.CandidateFramesSize);
+                candidateFeatures.RemoveRange(SalamanderController.CandidateFramesSize, candidateFeatures.Count - SalamanderController.CandidateFramesSize);
             }
 
             // 2. Compute the difference in Pose for each Clip (position and velocity)
@@ -166,7 +166,7 @@ namespace MoMa
         private void PutOnCooldown(Feature feature)
         {
             _onCooldown.Add(feature);
-            feature.cooldownTimer = CharacterController.CooldownTime;
+            feature.cooldownTimer = SalamanderController.CooldownTime;
         }
 
         private void ReduceCooldowns()

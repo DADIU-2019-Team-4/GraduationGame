@@ -176,7 +176,7 @@ public class AudioEvent : MonoBehaviour
             AkSoundEngine.PostEvent(TriggerType.ToString(), gameObject);
     }
 
-    public static void SendAudioEvent(AudioEventType type,List <AudioEvent> audioEvents, GameObject gameObject)
+    public static void SendAudioEvent(AudioEventType type, List<AudioEvent> audioEvents, GameObject gameObject)
     {
         for (int i = 0; i <= audioEvents.Count - 1; i++)
         {
@@ -186,4 +186,13 @@ public class AudioEvent : MonoBehaviour
             }
         }
     }
+
+    #region UI Exclusive
+    // If these functions are used outside the UI, I will hunt you down, mark my words.
+
+
+    public static void PostEvent(string eventName, GameObject gameObject) { AkSoundEngine.PostEvent(eventName, gameObject); }
+    public static void SetRTPCValue(string rtpcName, float rtpcValue) { AkSoundEngine.SetRTPCValue(rtpcName, rtpcValue); }
+
+    #endregion
 }
