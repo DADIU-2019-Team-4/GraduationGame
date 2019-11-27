@@ -63,7 +63,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1296738613866592673}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.55928075, y: 0.7029632, z: 0.3756776}
@@ -80,7 +80,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 903b539c32c12464682751cb4cd42fe8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DelaySeconds: 0
+  animationDelay: 0
   doorGameobject: {fileID: 0}
   vcam: {fileID: 0}
   delaySwitchCamera: 2
@@ -211,9 +211,9 @@ MonoBehaviour:
     type: 3}
   _burnedAmount: 0.9
   dissolveShader: {fileID: 2100000, guid: 46d9632cf3dabcb40a3f0686e45be8eb, type: 2}
-  burnSpeed: 0.2
+  burnSpeed: 1.87
   destroyAtTheEndOfFire: 1
-  firetype: 1
+  firetype: 0
 --- !u!1 &5339357536198734275
 GameObject:
   m_ObjectHideFlags: 0
