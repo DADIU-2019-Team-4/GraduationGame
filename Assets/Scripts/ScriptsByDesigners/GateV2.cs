@@ -32,7 +32,6 @@ public class GateV2 : MonoBehaviour
         AnimatorFromGameobject = doorGameobject.GetComponent<Animator>();
         burnObject = gameObject.transform.GetChild(0).gameObject.GetComponent<BurnObject>(); 
 
-
     }
 
   
@@ -41,8 +40,7 @@ public class GateV2 : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player" && !_triggerUnlock)
         {
-            
-            
+   
             //camera behavior
             _triggerUnlock = true;
             StartCoroutine(Unlock());
@@ -50,7 +48,6 @@ public class GateV2 : MonoBehaviour
             StartCoroutine(DisableInput());
             //ivy burn
             burnObject.SetObjectOnFire(new Vector3(0, 0, 0));
-
         }
     }
 
