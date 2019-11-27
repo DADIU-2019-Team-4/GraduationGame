@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GateV2 : MonoBehaviour
 {
-    public const string UnlockLabel = "Unlock";
+    public const string UnlockedLabel = "Unlocked";
     public float DelaySeconds = 0f;
 
     private List<AudioEvent> audioEvents;
@@ -13,7 +13,7 @@ public class GateV2 : MonoBehaviour
     //gate bool
     private bool triggerGate = false;
 
-    public GameObject doorGameobject;
+    private GameObject doorGameobject;
     private Animator AnimatorFromGameobject;
     private Animator AnimatorForKeyWheel;
 
@@ -30,17 +30,18 @@ public class GateV2 : MonoBehaviour
 
     private void Awake()
     {
+        doorGameobject = GameObject.FindGameObjectWithTag("Door");
         audioEvents = new List<AudioEvent>(GetComponents<AudioEvent>());
         AnimatorFromGameobject = doorGameobject.GetComponent<Animator>();
         AnimatorForKeyWheel = GetComponent<Animator>();
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider collider)
     {
-        if (collision.gameObject.CompareTag("Player") && !_triggerUnlock)
+        if (collider.gameObject.CompareTag("Player") && !_triggerUnlock)
         {
             // Trigger the unlock animation of the key
-            AnimatorForKeyWheel.SetBool(UnlockLabel, true);
+            AnimatorForKeyWheel.SetBool(UnlockedLabel, true);
 
             //camera behavior
             _triggerUnlock = true;
