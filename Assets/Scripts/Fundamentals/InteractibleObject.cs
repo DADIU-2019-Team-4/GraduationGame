@@ -172,6 +172,7 @@ public class InteractibleObject : DashInteractable
     private void BurnProp(Vector3 hitpoint)
     {
         gameObject.GetComponent<BurnObject>().SetObjectOnFire(hitpoint);
+        movementController.UpdateFireAmount(-HealValue);
     }
 
     private void Candle()
