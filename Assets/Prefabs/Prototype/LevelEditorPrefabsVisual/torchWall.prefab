@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6892511299020532521}
   - component: {fileID: 1448657060299405045}
   - component: {fileID: 9216728044376107115}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: torchWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -115,7 +115,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3752119494422780645}
   - component: {fileID: 665842435293300437}
-  m_Layer: 0
+  - component: {fileID: 219381903209203156}
+  m_Layer: 2
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -196,3 +197,18 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &219381903209203156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5370002008059580006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e089249fba0ec4cf8abd415b5f10cfe7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waitTime: 0.2
+  minLight: 2
+  maxLight: 3

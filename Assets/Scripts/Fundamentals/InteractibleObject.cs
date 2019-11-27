@@ -28,6 +28,7 @@ public class InteractibleObject : DashInteractable
     private List<AudioEvent> audioEvents;
     //private DialogueRunner dialogRunner;
     private PopUpObject popUpObject;
+    private BreakablesParticleManager _breakablesParticleManager;
 
     public bool IsBreakable { get; set; }
 
@@ -160,6 +161,7 @@ public class InteractibleObject : DashInteractable
             //dialogRunner.StartDialogue("Break");
             movementController.UpdateFireAmount(-HealValue);
             FindObjectOfType<PlayerActionsCollectorQA>().DataConteiner.DestroyedObjectsCount++;
+            _breakablesParticleManager.PollBreakableParticles(hitpoint);
         }
         else
         {
@@ -242,5 +244,6 @@ public class InteractibleObject : DashInteractable
         //dialogRunner = FindObjectOfType<DialogueRunner>();
         timeSlowdown = GameObject.FindGameObjectWithTag("VirtualCamera").GetComponent<TimeSlowdown>();
         cameraShake = GameObject.FindGameObjectWithTag("VirtualCamera").GetComponent<CameraShake>();
+        _breakablesParticleManager = FindObjectOfType<BreakablesParticleManager>();
     }
 }
