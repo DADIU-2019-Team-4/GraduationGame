@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: -8166687872578148006}
   - component: {fileID: -3026612367377715136}
   - component: {fileID: -1539664029618494402}
+  - component: {fileID: -5296117256870998871}
   m_Layer: 0
   m_Name: bookOpen02
   m_TagString: Untagged
@@ -94,6 +95,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FireObject: {fileID: 5590989098238041260, guid: b130e385e49fa8c48ac96ceb16de5cb9,
     type: 3}
+  _burnedAmount: 0.9
   dissolveShader: {fileID: 2100000, guid: 46d9632cf3dabcb40a3f0686e45be8eb, type: 2}
   burnSpeed: 0.1
   destroyAtTheEndOfFire: 1
@@ -127,3 +129,22 @@ MonoBehaviour:
   DamageValue: 0
   HealValue: 5
   BumpHeight: 0.3
+--- !u!114 &-5296117256870998871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7920446581678033346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 420186023faa10d418f08885f52a6d61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FireObject: {fileID: 5590989098238041260, guid: b130e385e49fa8c48ac96ceb16de5cb9,
+    type: 3}
+  _burnedAmount: 0.9
+  dissolveShader: {fileID: 2100000, guid: 46d9632cf3dabcb40a3f0686e45be8eb, type: 2}
+  burnSpeed: 0.1
+  destroyAtTheEndOfFire: 1
+  firetype: 1

@@ -9,7 +9,8 @@ public class FlameAttachToggler : MonoBehaviour
     private AttachToPlane _attachToPlane;
     [Header("Things to toggle")]
     public GameObject Flame;
-    public GameObject Player;
+    public GameObject FireMesh;
+    public GameObject BodyMesh;
     public GameObject Trail;
 
     // Start is called before the first frame update
@@ -31,14 +32,16 @@ public class FlameAttachToggler : MonoBehaviour
 
     public void FlameOn()
     {
-        Player.SetActive(false);
+        FireMesh.SetActive(false);
+        BodyMesh.SetActive(false);
         Flame.SetActive(true);
         Trail.SetActive(false);
     }
 
     public void FlameOff()
     {
-        Player.SetActive(true);
+        FireMesh.SetActive(true);
+        BodyMesh.SetActive(true);
 
         Flame.SetActive(false);
         Trail.SetActive(true);

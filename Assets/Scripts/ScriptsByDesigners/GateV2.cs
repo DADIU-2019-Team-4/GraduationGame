@@ -21,7 +21,7 @@ public class GateV2 : MonoBehaviour
     public GameObject vcam;
     public float delaySwitchCamera = 2f;
     public float delaySwitchBack = 3f;
-    public BurnObject burnObject; 
+    BurnObject burnObject; 
 
     //player control time
     public float PlayerLoseControlSeconds;
@@ -30,6 +30,8 @@ public class GateV2 : MonoBehaviour
     {
         audioEvents = new List<AudioEvent>(GetComponents<AudioEvent>());
         AnimatorFromGameobject = doorGameobject.GetComponent<Animator>();
+        burnObject = gameObject.transform.GetChild(0).gameObject.GetComponent<BurnObject>(); 
+
     }
 
   
@@ -37,7 +39,8 @@ public class GateV2 : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Player" && !_triggerUnlock)
-        {          
+        {
+   
             //camera behavior
             _triggerUnlock = true;
             StartCoroutine(Unlock());
@@ -45,7 +48,6 @@ public class GateV2 : MonoBehaviour
             StartCoroutine(DisableInput());
             //ivy burn
             burnObject.SetObjectOnFire(new Vector3(0, 0, 0));
-
         }
     }
 
