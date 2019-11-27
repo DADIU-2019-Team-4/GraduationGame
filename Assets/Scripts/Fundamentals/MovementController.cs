@@ -181,7 +181,8 @@ public class MovementController : MonoBehaviour
         _anim.Respawn();
 
         // Notify Sally
-        _salamanderController.UpdateTarget(EventType.Respawn, transform.position.GetXZVector2());
+        if (_salamanderController)
+            _salamanderController.UpdateTarget(EventType.Respawn, transform.position.GetXZVector2());
     }
 
     /// <summary>
@@ -415,7 +416,8 @@ public class MovementController : MonoBehaviour
         _anim.Land();
 
         // Notify Sally
-        _salamanderController.UpdateTarget(EventType.Move, transform.position.GetXZVector2());
+        if (_salamanderController)
+            _salamanderController.UpdateTarget(EventType.Move, transform.position.GetXZVector2());
     }
 
     /// <summary>
