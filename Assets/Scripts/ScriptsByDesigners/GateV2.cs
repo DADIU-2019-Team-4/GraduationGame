@@ -38,7 +38,9 @@ public class GateV2 : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player" && !_triggerUnlock)
         {
-   
+
+            //ARES Put animation of wheel here
+
             //camera behavior
             _triggerUnlock = true;
             StartCoroutine(Unlock());
