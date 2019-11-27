@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using UnityEngine.UI;
@@ -11,10 +12,10 @@ public class GameController : MonoBehaviour
     public GameObject WinText;
     public GameObject OutOfMovesText;
     public GameObject DiedText;
-    public GameObject RestartButton;
     public GameObject NextSceneButton;
     public Text LevelNameText;
     public StoryProgression StoryProgression;
+    public float RestartTimer = 3f;
 
     // this is used for pausing the game as well.
     public bool IsPlaying { get; set; }
@@ -51,7 +52,7 @@ public class GameController : MonoBehaviour
         AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.Died, audioEvents, gameObject);
         GameEnd();
         DiedText.SetActive(true);
-        RestartButton.SetActive(true);
+        StartCoroutine(WaitForRestart());
     }
 
     public void GameOverOutOfMoves()
@@ -59,7 +60,13 @@ public class GameController : MonoBehaviour
         AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.OutOfMoves, audioEvents, gameObject);
         GameEnd();
         OutOfMovesText.SetActive(true);
-        RestartButton.SetActive(true);
+        StartCoroutine(WaitForRestart());
+    }
+
+    private IEnumerator WaitForRestart()
+    {
+        yield return new WaitForSeconds(RestartTimer);
+        RestartScene();
     }
 
     public void RestartScene()
@@ -69,7 +76,6 @@ public class GameController : MonoBehaviour
         DiedText.SetActive(false);
         OutOfMovesText.SetActive(false);
         WinText.SetActive(false);
-        RestartButton.SetActive(false);
         IsPlaying = true;
         GameHasEnded = false;
         Time.timeScale = 1;
