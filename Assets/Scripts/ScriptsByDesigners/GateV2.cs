@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GateV2 : MonoBehaviour
 {
+    public const string UnlockedLabel = "Unlocked";
     public float DelaySeconds = 0f;
 
     private List<AudioEvent> audioEvents;
@@ -14,6 +15,7 @@ public class GateV2 : MonoBehaviour
 
     public GameObject doorGameobject;
     private Animator AnimatorFromGameobject;
+    private Animator AnimatorForKeyWheel;
 
 
 
@@ -30,16 +32,16 @@ public class GateV2 : MonoBehaviour
     {
         audioEvents = new List<AudioEvent>(GetComponents<AudioEvent>());
         AnimatorFromGameobject = doorGameobject.GetComponent<Animator>();
+        AnimatorForKeyWheel = GetComponent<Animator>();
     }
 
-
-
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider collider)
     {
-        if (collision.gameObject.CompareTag("Player") && !_triggerUnlock)
+        if (collider.gameObject.CompareTag("Player") && !_triggerUnlock)
         {
-
-            //ARES Put animation of wheel here
+            // Trigger the unlock animation of the key
+            burnObject.SetObjectOnFire(new Vector3(0, 0, 0));
+            AnimatorForKeyWheel.SetBool(UnlockedLabel, true);
 
             //camera behavior
             _triggerUnlock = true;
@@ -47,7 +49,7 @@ public class GateV2 : MonoBehaviour
             StartCoroutine(switchToCam());
             StartCoroutine(DisableInput());
             //ivy burn
-            burnObject.SetObjectOnFire(new Vector3(0, 0, 0));
+            
         }
     }
 

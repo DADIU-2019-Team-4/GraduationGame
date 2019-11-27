@@ -13,7 +13,7 @@ namespace MoMa
             int presentFrame)
         {
             // Validate input
-            if (presentFrame < CharacterController.FeaturePastPoints - 1 || presentFrame > points.Count - CharacterController.FeaturePoints)
+            if (presentFrame < SalamanderController.FeaturePastPoints - 1 || presentFrame > points.Count - SalamanderController.FeaturePoints)
             {
                 Debug.LogError("Attempt to create a Snippet the exceedes the past or the future limit");
                 throw new Exception("Attempt to create a Snippet the exceedes the past or the future limit");
@@ -26,11 +26,11 @@ namespace MoMa
             // Build the new Snippet
             Snippet snippet = new Snippet();
 
-            for (int i = 0; i < CharacterController.SnippetSize; i++)
+            for (int i = 0; i < SalamanderController.SnippetSize; i++)
             {
                 // Compute the position of the points relative to the present position and rotation
                 // Create a Point at the current position
-                int addingFrame = presentFrame - CharacterController.FeaturePastPoints + 1 + i;
+                int addingFrame = presentFrame - SalamanderController.FeaturePastPoints + 1 + i;
                 Vector3 localPosition3D = new Vector3(this.points[addingFrame].position.x, 0, this.points[addingFrame].position.y);
 
                 // Move it to the root
@@ -117,7 +117,7 @@ namespace MoMa
 
         public class Snippet
         {
-            public Point[] points = new Point[CharacterController.SnippetSize];
+            public Point[] points = new Point[SalamanderController.SnippetSize];
 
             // Alternative, currently not in use
             public float CalcDiffExp(Snippet candidate)
@@ -127,7 +127,7 @@ namespace MoMa
                 int totalWeight = 0;
 
                 // Diff of past Points
-                for (int i = 0; i < CharacterController.FeaturePastPoints; i++)
+                for (int i = 0; i < SalamanderController.FeaturePastPoints; i++)
                 {
                     int weight = 2^i;
                     totalWeight += weight;
@@ -139,14 +139,14 @@ namespace MoMa
                 }
 
                 // Diff of future Points
-                for (int i = 0; i < CharacterController.FeaturePoints; i++)
+                for (int i = 0; i < SalamanderController.FeaturePoints; i++)
                 {
                     int weight = 2^i;
                     totalWeight += weight;
 
                     diff +=
-                        (this.points[CharacterController.SnippetSize - 1 - i] == null) ||
-                        (candidate.points[CharacterController.SnippetSize - 1 - i] == null) ?
+                        (this.points[SalamanderController.SnippetSize - 1 - i] == null) ||
+                        (candidate.points[SalamanderController.SnippetSize - 1 - i] == null) ?
                             Mathf.Infinity :
                             (this.points[i] - candidate.points[i]) * weight;
                 }
@@ -160,7 +160,7 @@ namespace MoMa
                 float diff = 0f;
 
                 // Diff of past Points
-                for (int i = 0; i < CharacterController.SnippetSize; i++)
+                for (int i = 0; i < SalamanderController.SnippetSize; i++)
                 {
                     diff += (this.points[i] == null) ||
                         (candidate.points[i] == null) ?
@@ -177,22 +177,22 @@ namespace MoMa
                 string s = "Snippet: {";
 
                 // Print past Points
-                for (int i=0; i < CharacterController.FeaturePastPoints - 1; i++)
+                for (int i=0; i < SalamanderController.FeaturePastPoints - 1; i++)
                 {
                     s += this.points[i] + ", ";
                 }
 
                 // Print seperator
-                s += this.points[CharacterController.FeaturePastPoints - 1] + " || ";
+                s += this.points[SalamanderController.FeaturePastPoints - 1] + " || ";
 
                 // Print future Points
-                for (int i = CharacterController.FeaturePastPoints; i < CharacterController.SnippetSize - 1; i++)
+                for (int i = SalamanderController.FeaturePastPoints; i < SalamanderController.SnippetSize - 1; i++)
                 {
                     s += this.points[i] + ", ";
                 }
 
                 // Print end
-                s += this.points[CharacterController.SnippetSize - 1] + "}";
+                s += this.points[SalamanderController.SnippetSize - 1] + "}";
 
                 return s;
             }
