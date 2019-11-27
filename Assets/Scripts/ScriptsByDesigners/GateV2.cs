@@ -5,7 +5,7 @@ using UnityEngine;
 public class GateV2 : MonoBehaviour
 {
     public const string UnlockedLabel = "Unlocked";
-    public float DelaySeconds = 0f;
+    public float animationDelay = 0f;
 
     private List<AudioEvent> audioEvents;
     private bool _triggerUnlock = false;
@@ -56,7 +56,7 @@ public class GateV2 : MonoBehaviour
 
     IEnumerator Unlock()
     {
-        yield return new WaitForSeconds(DelaySeconds);
+        yield return new WaitForSeconds(animationDelay);
         if (gameObject.CompareTag("BigDoorKey1") && AnimatorFromGameobject.GetBool("Unlock 1") == false)
         {
             AnimatorFromGameobject.SetBool("Unlock 1", true);
