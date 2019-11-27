@@ -13,7 +13,7 @@ public class GateV2 : MonoBehaviour
     //gate bool
     private bool triggerGate = false;
 
-    private GameObject doorGameobject;
+    public GameObject doorGameobject;
     private Animator AnimatorFromGameobject;
     private Animator AnimatorForKeyWheel;
 
@@ -30,7 +30,6 @@ public class GateV2 : MonoBehaviour
 
     private void Awake()
     {
-        doorGameobject = GameObject.FindGameObjectWithTag("Door");
         audioEvents = new List<AudioEvent>(GetComponents<AudioEvent>());
         AnimatorFromGameobject = doorGameobject.GetComponent<Animator>();
         AnimatorForKeyWheel = GetComponent<Animator>();
@@ -41,6 +40,7 @@ public class GateV2 : MonoBehaviour
         if (collider.gameObject.CompareTag("Player") && !_triggerUnlock)
         {
             // Trigger the unlock animation of the key
+            burnObject.SetObjectOnFire(new Vector3(0, 0, 0));
             AnimatorForKeyWheel.SetBool(UnlockedLabel, true);
 
             //camera behavior
@@ -49,7 +49,7 @@ public class GateV2 : MonoBehaviour
             StartCoroutine(switchToCam());
             StartCoroutine(DisableInput());
             //ivy burn
-            burnObject.SetObjectOnFire(new Vector3(0, 0, 0));
+            
         }
     }
 
