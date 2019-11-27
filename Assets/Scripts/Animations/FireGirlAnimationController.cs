@@ -91,11 +91,13 @@ public class FireGirlAnimationController : MonoBehaviour
     {
         Idle();
         _collideTrigger = true;
+        _inInteractable = false;
         UpdateAnimators();
     }
 
     public void EnterInteractable(InteractibleObject.InteractType objectType)
     {
+        _collideTrigger = true;
         _inInteractable = true;
         _isInteractableFuse = objectType == InteractibleObject.InteractType.Fuse;
         UpdateAnimators();

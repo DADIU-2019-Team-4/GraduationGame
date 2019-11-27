@@ -62,6 +62,10 @@ public class AttachToPlane : MonoBehaviour
             _attached = false;
 
             GetComponent<MovementController>().IsInvulnerable = false;
+            GetComponent<MovementController>().IsInvulnerable = false;
+
+            // Update Animator
+            GetComponent<MovementController>().StopMoving();
 
             _flameAttachToggler.FlameOff();
         }     
