@@ -87,7 +87,11 @@ public class GameController : MonoBehaviour
             breakable.gameObject.GetComponent<BurnObject>().ResetBreakable();
 
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        //AkSoundEngine.PostEvent("KillOnRestart", gameObject);
+
+        // Restart music from spawn
+        var music = GameObject.FindGameObjectWithTag("Music");
+        var ambient = music.GetComponent<AkAmbient>();
+        AkSoundEngine.PostEvent(ambient.data.Name, music);
     }
 
     public void GoToNextScene()

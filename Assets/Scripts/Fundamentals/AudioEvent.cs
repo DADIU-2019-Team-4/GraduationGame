@@ -56,6 +56,15 @@ public class AudioEvent : MonoBehaviour
         Damage,
         DangerZone,
         GateUnlocked,
+        HurtPlayer,
+        PictureOn_01,
+        PictureOn_02,
+        PictureOn_03,
+        PictureOn_04,
+        PictureOff_01,
+        PictureOff_02,
+        PictureOff_03,
+        PictureOff_04,
     }
 
     #endregion
