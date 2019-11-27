@@ -16,7 +16,7 @@ public class GateV2 : MonoBehaviour
     public GameObject doorGameobject;
     private Animator AnimatorFromGameobject;
     private Animator AnimatorForKeyWheel;
-
+    private BoxCollider coliiderFromDoor; 
 
 
     //Camera Control
@@ -31,6 +31,7 @@ public class GateV2 : MonoBehaviour
     private void Awake()
     {
         audioEvents = new List<AudioEvent>(GetComponents<AudioEvent>());
+        coliiderFromDoor = doorGameobject.GetComponent<BoxCollider>();
         AnimatorFromGameobject = doorGameobject.GetComponent<Animator>();
         AnimatorForKeyWheel = GetComponent<Animator>();
     }
@@ -63,7 +64,13 @@ public class GateV2 : MonoBehaviour
         }
         else if (gameObject.CompareTag("BigDoorKey1"))
         {
+            coliiderFromDoor.enabled = false;
             AnimatorFromGameobject.SetBool("Unlock 2", true);
+        }
+        else if (gameObject.CompareTag("SmallKey"))
+        {
+            coliiderFromDoor.enabled = false; 
+            AnimatorFromGameobject.SetBool("Unlocked", true);
         }
         AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.GateUnlocked, audioEvents, gameObject);
     }
