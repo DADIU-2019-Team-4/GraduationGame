@@ -104,7 +104,7 @@ public class UINavigation : MonoBehaviour
 
     public void ExitOptions()
     {
-        _optionsMenu.SetActive(false);
+        StartCoroutine(BurnOptionsMenu(23));
         AudioEvent.PostEvent("ExitOptions", gameObject);
     }
 
@@ -223,17 +223,21 @@ public class UINavigation : MonoBehaviour
 
     public IEnumerator BurnOptionsMenu(float duration)
     {
-        gameObject.transform.Find("Burn").GetComponent<Renderer>().material.GetFloat("_Float0");
 
-        /*float delay = 0.2f;
-        while (currentStamina != stamina)
+       // Mathf.Lerp(0,1,duration);
+
+        float burnValue = gameObject.transform.Find("Burn").GetComponent<Image>().material.GetFloat("_Float0");
+
+        while (burnValue<1)
         {
-            yield return new WaitForSeconds(delay);
-            currentStamina += 1;
+            burnValue += Time.deltaTime;
+            gameObject.transform.Find("Burn").GetComponent<Image>().material.SetFloat("_Float0", burnValue + Time.deltaTime) ;
+            yield return null;
         }
-        staminaRegenerating = false;*/
-    
 
-    yield return new WaitForSeconds(duration);
+        gameObject.transform.Find("Burn").GetComponent<Image>().material.SetFloat("_Float0", 0);
+        _optionsMenu.SetActive(false);
+
+        //yield return new WaitForSeconds(duration);
     }
 }
