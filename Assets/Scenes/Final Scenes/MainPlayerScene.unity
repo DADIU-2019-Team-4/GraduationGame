@@ -441,6 +441,12 @@ MonoBehaviour:
     positionOffset: {x: 0, y: 0, z: 0}
   m_posOffsetData: {fileID: 0}
   listenerMask: 1
+--- !u!1 &495554263 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 896984888517067921, guid: 0068fbb099a6bed4cb713073491750aa,
+    type: 3}
+  m_PrefabInstance: {fileID: 513732612}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &513732612
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -587,7 +593,7 @@ PrefabInstance:
     - target: {fileID: 8403467642963839147, guid: 0068fbb099a6bed4cb713073491750aa,
         type: 3}
       propertyPath: m_text
-      value: <Missing>
+      value: Indstillinger
       objectReference: {fileID: 0}
     - target: {fileID: 8403467642963839147, guid: 0068fbb099a6bed4cb713073491750aa,
         type: 3}
@@ -612,7 +618,7 @@ PrefabInstance:
     - target: {fileID: 51022854963069308, guid: 0068fbb099a6bed4cb713073491750aa,
         type: 3}
       propertyPath: m_text
-      value: <Missing>
+      value: Hovedmenu
       objectReference: {fileID: 0}
     - target: {fileID: 51022854963069308, guid: 0068fbb099a6bed4cb713073491750aa,
         type: 3}
@@ -714,11 +720,22 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1006048275}
+    - target: {fileID: 2784944321501961734, guid: 0068fbb099a6bed4cb713073491750aa,
+        type: 3}
+      propertyPath: _pauseMenu
+      value: 
+      objectReference: {fileID: 495554263}
     - target: {fileID: 1749905967611181327, guid: 0068fbb099a6bed4cb713073491750aa,
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -332.99994
       objectReference: {fileID: 0}
+    - target: {fileID: 1396061228631781593, guid: 0068fbb099a6bed4cb713073491750aa,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 38da61131e89bc9428955119858b6578,
+        type: 3}
     - target: {fileID: 6249538272357529766, guid: 0068fbb099a6bed4cb713073491750aa,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -2059,11 +2076,6 @@ PrefabInstance:
       propertyPath: m_SizeDelta.x
       value: 200
       objectReference: {fileID: 0}
-    - target: {fileID: 4066279058806922065, guid: 7f579a59447f4be4cb6336d55ef7ac20,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4066279059281485006, guid: 7f579a59447f4be4cb6336d55ef7ac20,
         type: 3}
       propertyPath: m_IsActive
@@ -2250,6 +2262,11 @@ PrefabInstance:
     - target: {fileID: 4066279060486650431, guid: 7f579a59447f4be4cb6336d55ef7ac20,
         type: 3}
       propertyPath: m_fontStyle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4066279058806922065, guid: 7f579a59447f4be4cb6336d55ef7ac20,
+        type: 3}
+      propertyPath: m_SortingOrder
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4066279058806922065, guid: 7f579a59447f4be4cb6336d55ef7ac20,

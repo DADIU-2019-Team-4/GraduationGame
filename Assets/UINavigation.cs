@@ -15,6 +15,14 @@ public class UINavigation : MonoBehaviour
 
     public GameObject _continueButton;
 
+    private GameObject _knob;
+    private GameObject _flagGlowUK;
+    private GameObject _flagGlowDK;
+
+    [Header("burnmats")]
+    public Material PauseBurnDanish;
+    public Material PauseBurnEnglish;
+
     public StoryProgression storyProgression;
     // Start is called before the first frame update
     void Awake()
@@ -34,7 +42,26 @@ public class UINavigation : MonoBehaviour
         //_mainMenu = GameObject.FindGameObjectWithTag("MainMenu");
         //_pauseMenu = GameObject.FindGameObjectWithTag("PauseMenu");
 
+        if (this.tag == "OptionsMenu")
+        {
+            _knob = GameObject.Find("Knob");
+            _flagGlowUK = GameObject.Find("Flag glow UK");
+            _flagGlowDK = GameObject.Find("Flag glow DK");
 
+            if (PlayerPrefs.GetString("Language") == "English")
+            {
+                _flagGlowDK.SetActive(false);
+                _flagGlowUK.SetActive(true);
+                _knob.transform.localEulerAngles = new Vector3(0, 0, 40);
+            }
+            else
+            {
+                _flagGlowDK.SetActive(true);
+                _flagGlowUK.SetActive(false);
+
+                _knob.transform.localEulerAngles = new Vector3(0, 0, -40);
+            }
+        }
 
         if (this.tag != "OptionsMenu")
         {
@@ -47,6 +74,7 @@ public class UINavigation : MonoBehaviour
 
         }
 
+        
     }
 
     // Update is called once per frame
@@ -84,12 +112,26 @@ public class UINavigation : MonoBehaviour
     {
         PlayerPrefs.SetString("Language", "Danish");
         AudioEvent.PostEvent("ChangeLanguageToDanish", gameObject);
+
+        _flagGlowDK.SetActive(true);
+        _flagGlowUK.SetActive(false);
+
+        _knob.transform.localEulerAngles = new Vector3(0, 0, -40);
+
+
+        _pauseMenu.transform.Find("Burn").GetComponent<Image>().material = PauseBurnDanish;
     }
 
     public void ChangeLanguageToEnglish()
     {
         PlayerPrefs.SetString("Language", "English");
         AudioEvent.PostEvent("ChangeLanguageToEnglish", gameObject);
+
+        _flagGlowDK.SetActive(false);
+        _flagGlowUK.SetActive(true);
+        _knob.transform.localEulerAngles = new Vector3(0, 0, 40);
+
+        _pauseMenu.transform.Find("Burn").GetComponent<Image>().material = PauseBurnEnglish;
     }
 
     public void UpdateSFXVolume(float value)
@@ -113,7 +155,18 @@ public class UINavigation : MonoBehaviour
     public void EnterPauseMenu()
     {
         _pauseMenu.SetActive(true);
+
+        
         AudioEvent.PostEvent("EnterPauseMenu", gameObject);
+
+        if(PlayerPrefs.GetString("Language") == "English")
+        {
+            _pauseMenu.transform.Find("Burn").GetComponent<Image>().material = PauseBurnEnglish;
+        }
+        else
+        {
+            _pauseMenu.transform.Find("Burn").GetComponent<Image>().material = PauseBurnDanish;
+        }
     }
 
     public void ExitPauseMenu()
