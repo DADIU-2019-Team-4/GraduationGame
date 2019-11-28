@@ -83,23 +83,26 @@ namespace MoMa
                 // TODO include rotation?
                 => (a.position - b.position).magnitude;
 
-            public static Point getMedianPoint(List<(Vector2, Vector3)> transform)
+            public static Point getMedianPoint(List<Vector2> positions)
             {
                 Vector2 position = new Vector2(0f, 0f);
-                Vector3 rotation = new Vector3(0f, 0f, 0f);
+                Quaternion rotation;
 
-                // Accumulate
-                foreach ( (Vector2 currentPosition, Vector3 currentRotation) in transform)
+                // Position
+                foreach (Vector2 currentPosition in positions)
                 {
                     position += currentPosition;
-                    rotation += currentRotation;
                 }
 
-                // Divide
-                position /= transform.Count;
-                rotation /= transform.Count;
+                position /= positions.Count;
 
-                return new Point(position, Quaternion.Euler(rotation));
+                // Rotation
+                Vector2 displacement2D = (positions[positions.Count-1] - positions[0]);
+                rotation = Quaternion.LookRotation(
+                    new Vector3(displacement2D.x, 0, displacement2D.y),
+                    Vector3.up);
+
+                return new Point(position, rotation);
             }
 
             public Point(Vector2 v, Quaternion rotation)
