@@ -122,7 +122,7 @@ public class BurnObject : MonoBehaviour
     }*/
     private void ShortFire()
     {
-        _renderer.material.SetVector("_StartPoint", gameObject.transform.position);
+        //_renderer.material.SetVector("_StartPoint", gameObject.transform.position);
 
         if (!_isDissasembling)
         {
