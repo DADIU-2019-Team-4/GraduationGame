@@ -18,7 +18,8 @@ public class InteractibleObject : DashInteractable
         FusePoint,
         Damage,
         DangerZone,
-        BurnableProp
+        BurnableProp,
+        PopUp
     }
     public InteractType type;
     public float DamageValue;
@@ -102,12 +103,9 @@ public class InteractibleObject : DashInteractable
             case InteractType.BurnableProp:
                 BurnProp(hitpoint);
                 break;
-        }
-
-        // If this is a pop-up Object, trigger the pop-up
-        if (popUpObject)
-        {
-            popUpObject.PopUp();
+            case InteractType.PopUp:
+                PopUp();
+                break;
         }
     }
 
@@ -175,6 +173,15 @@ public class InteractibleObject : DashInteractable
     {
         gameObject.GetComponent<BurnObject>().SetObjectOnFire(hitpoint);
         movementController.UpdateFireAmount(-HealValue);
+    }
+
+    private void PopUp()
+    {
+        // If this is a pop-up Object, trigger the pop-up
+        if (popUpObject)
+        {
+            popUpObject.PopUp();
+        }
     }
 
     private void Candle()
