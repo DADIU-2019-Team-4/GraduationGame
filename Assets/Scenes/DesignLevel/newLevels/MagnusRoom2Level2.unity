@@ -6245,7 +6245,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh81986
+  m_Name: pb_Mesh256188
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -14681,7 +14681,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 857268237}
-  - component: {fileID: 857268236}
   m_Layer: 0
   m_Name: WwiseGlobal
   m_TagString: Untagged
@@ -14689,33 +14688,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &857268236
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 857268235}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ac000d1e99bff64aa60c0bb00316b24, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  InitializationSettings: {fileID: 11400000, guid: 915f080ec8346ef4c99a7c5eba2255a8,
-    type: 2}
-  basePath: 
-  language: 
-  defaultPoolSize: 0
-  lowerPoolSize: 0
-  streamingPoolSize: 0
-  memoryCutoffThreshold: 0
-  monitorPoolSize: 0
-  monitorQueuePoolSize: 0
-  callbackManagerBufferSize: 0
-  spatialAudioPoolSize: 0
-  maxSoundPropagationDepth: 0
-  diffractionFlags: 11
-  engineLogging: 0
 --- !u!4 &857268237
 Transform:
   m_ObjectHideFlags: 0
@@ -24178,6 +24150,208 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1340963714}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1353825336
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1713723018}
+    m_Modifications:
+    - target: {fileID: 4914369192727202836, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: m_Name
+      value: DialogueZone1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: EnglishDialogue.Array.size
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: DanishDialogue.Array.size
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: EventOnEnd.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: OnlyTriggeredOnce
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: EnglishDialogue.Array.data[3]
+      value: "SALLY: IT UHM\u2026 HAS YOUR NAME ON IT"
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: EnglishDialogue.Array.data[4]
+      value: "LUCY: That would mean I haven\u2019t always been fire. There\u2019s
+        no way that\u2019s possible."
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: EnglishDialogue.Array.data[5]
+      value: 'SALLY: It even looks like you.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: EnglishDialogue.Array.data[6]
+      value: 'LUCY: no. no, no, no. no.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: EnglishDialogue.Array.data[7]
+      value: 'SALLY: Yes. yes yes yes! yes.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: EnglishDialogue.Array.data[8]
+      value: 'LUCY: I have to get rid of this.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: DanishDialogue.Array.data[3]
+      value: "SALLY: DER \xD8HM... ST\xC5R DIT NAVN P\xC5 DET."
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: DanishDialogue.Array.data[4]
+      value: "LUCY: S\xE5 skulle jeg ikke altid have v\xE6ret ild. Det kan ikke v\xE6re
+        rigtigt."
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: DanishDialogue.Array.data[5]
+      value: "SALLY: Det ligner dig ogs\xE5!"
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: DanishDialogue.Array.data[6]
+      value: 'LUCY: Nej. nej, nej, nej. nej.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: DanishDialogue.Array.data[7]
+      value: 'SALLY: Jo. jo, jo, jo! jo.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: DanishDialogue.Array.data[8]
+      value: "LUCY: Jeg bliver n\xF8dt til at fjerne det."
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: EnglishDialogue.Array.data[0]
+      value: 'LUCY: A baby?'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: EnglishDialogue.Array.data[1]
+      value: 'SALLY: It uhm.. has your name on it.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: EnglishDialogue.Array.data[2]
+      value: 'LUCY: What?'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: DanishDialogue.Array.data[0]
+      value: 'LUCY: En baby?'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: DanishDialogue.Array.data[1]
+      value: "SALLY: Der \xF8hm... st\xE5r dit navn p\xE5 det."
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: DanishDialogue.Array.data[2]
+      value: 'LUCY: Hvad?'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: EventOnEnd.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: EventOnEnd.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: EventOnEnd.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2121111012}
+    - target: {fileID: 4914369192727202833, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -7.46
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202833, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.24
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202833, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 29.95
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202833, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202833, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.23970544
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202833, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202833, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9708457
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202833, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 19
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202833, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202833, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -27.738
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202833, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a0ab6c3faa8f29343aad1665bedcd565, type: 3}
+--- !u!4 &1353825337 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4914369192727202833, guid: a0ab6c3faa8f29343aad1665bedcd565,
+    type: 3}
+  m_PrefabInstance: {fileID: 1353825336}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1357129468
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26630,6 +26804,18 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
     type: 3}
   m_PrefabInstance: {fileID: 1475910626}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad7e5df089a62d04d8ce797d316ef485, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1476867830 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+    type: 3}
+  m_PrefabInstance: {fileID: 1874900005}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
@@ -29901,6 +30087,10 @@ Transform:
   - {fileID: 1366997068}
   - {fileID: 406824591}
   - {fileID: 1863358449}
+  - {fileID: 1353825337}
+  - {fileID: 2121111013}
+  - {fileID: 1929912103}
+  - {fileID: 1874900006}
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -31860,6 +32050,206 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1872721030}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1874900005
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1713723018}
+    m_Modifications:
+    - target: {fileID: 4914369192727202836, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: m_Name
+      value: DialogueZone4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: EnglishDialogue.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: DanishDialogue.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: EventOnEnd.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: OnlyTriggeredOnce
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: EnglishDialogue.Array.data[3]
+      value: "LUCY: She\u2019s not REAL!"
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: EnglishDialogue.Array.data[4]
+      value: 'SALLY: Scary Lucy.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: EnglishDialogue.Array.data[5]
+      value: 'LUCY: '
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: EnglishDialogue.Array.data[6]
+      value: 'LUCY: no. no, no, no. no.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: EnglishDialogue.Array.data[7]
+      value: 'SALLY: Yes. yes yes yes! yes.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: EnglishDialogue.Array.data[8]
+      value: 'LUCY: I have to get rid of this.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: DanishDialogue.Array.data[3]
+      value: 'LUCY: Hun findes IKKE!'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: DanishDialogue.Array.data[4]
+      value: 'SALLY: Scary Lucy.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: DanishDialogue.Array.data[5]
+      value: "SALLY: Det ligner dig ogs\xE5!"
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: DanishDialogue.Array.data[6]
+      value: 'LUCY: Nej. nej, nej, nej. nej.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: DanishDialogue.Array.data[7]
+      value: 'SALLY: Jo. jo, jo, jo! jo.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: DanishDialogue.Array.data[8]
+      value: "LUCY: Jeg bliver n\xF8dt til at fjerne det."
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: EnglishDialogue.Array.data[0]
+      value: 'LUCY: Sally? SALLY?'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: EnglishDialogue.Array.data[1]
+      value: 'LUCY: Stay away, Sally!'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: EnglishDialogue.Array.data[2]
+      value: 'SALLY: Please stop! You are hurting baby-Lucy!'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: DanishDialogue.Array.data[0]
+      value: 'LUCY: Sally? SALLY?'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: DanishDialogue.Array.data[1]
+      value: "LUCY: Hold dig v\xE6k, Sally!"
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: DanishDialogue.Array.data[2]
+      value: "SALLY: Stop! Du s\xE5rer baby-Lucy!"
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: TriggerType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: EventOnEnd.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: EventOnEnd.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202833, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -9.275198
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202833, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.24
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202833, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 33.40183
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202833, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202833, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.23970544
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202833, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202833, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9708457
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202833, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202833, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202833, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -27.738
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202833, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a0ab6c3faa8f29343aad1665bedcd565, type: 3}
+--- !u!4 &1874900006 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4914369192727202833, guid: a0ab6c3faa8f29343aad1665bedcd565,
+    type: 3}
+  m_PrefabInstance: {fileID: 1874900005}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1876111860
 GameObject:
   m_ObjectHideFlags: 3
@@ -32608,6 +32998,233 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1543667426803352781, guid: 9ae6023e53996ad4288e0f2b999fe5dd,
     type: 3}
   m_PrefabInstance: {fileID: 1923722638}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1929912101
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1713723018}
+    m_Modifications:
+    - target: {fileID: 4914369192727202836, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: m_Name
+      value: DialogueZone3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: EnglishDialogue.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: DanishDialogue.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: EventOnEnd.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: OnlyTriggeredOnce
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: EnglishDialogue.Array.data[3]
+      value: "LUCY: She\u2019s not REAL!"
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: EnglishDialogue.Array.data[4]
+      value: 'SALLY: Scary Lucy.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: EnglishDialogue.Array.data[5]
+      value: 'LUCY: '
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: EnglishDialogue.Array.data[6]
+      value: 'LUCY: no. no, no, no. no.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: EnglishDialogue.Array.data[7]
+      value: 'SALLY: Yes. yes yes yes! yes.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: EnglishDialogue.Array.data[8]
+      value: 'LUCY: I have to get rid of this.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: DanishDialogue.Array.data[3]
+      value: 'LUCY: Hun findes IKKE!'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: DanishDialogue.Array.data[4]
+      value: 'SALLY: Scary Lucy.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: DanishDialogue.Array.data[5]
+      value: "SALLY: Det ligner dig ogs\xE5!"
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: DanishDialogue.Array.data[6]
+      value: 'LUCY: Nej. nej, nej, nej. nej.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: DanishDialogue.Array.data[7]
+      value: 'SALLY: Jo. jo, jo, jo! jo.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: DanishDialogue.Array.data[8]
+      value: "LUCY: Jeg bliver n\xF8dt til at fjerne det."
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: EnglishDialogue.Array.data[0]
+      value: 'SALLY: AHHHHHHHH!!!! LET GO OF ME!'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: EnglishDialogue.Array.data[1]
+      value: 'LUCY: Stay away, Sally!'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: EnglishDialogue.Array.data[2]
+      value: 'SALLY: Please stop! You are hurting baby-Lucy!'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: DanishDialogue.Array.data[0]
+      value: AHHHHHHHH!!!! LET GO OF ME!
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: DanishDialogue.Array.data[1]
+      value: "LUCY: Hold dig v\xE6k, Sally!"
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: DanishDialogue.Array.data[2]
+      value: "SALLY: Stop! Du s\xE5rer baby-Lucy!"
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: TriggerType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: EventOnEnd.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: EventOnEnd.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: EventOnEnd.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1476867830}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: EventOnEnd.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: TriggerDialogue
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: EventOnEnd.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202833, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -9.275198
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202833, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.24
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202833, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 33.40183
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202833, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202833, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.23970544
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202833, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202833, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9708457
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202833, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 21
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202833, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202833, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -27.738
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202833, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a0ab6c3faa8f29343aad1665bedcd565, type: 3}
+--- !u!114 &1929912102 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+    type: 3}
+  m_PrefabInstance: {fileID: 1929912101}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad7e5df089a62d04d8ce797d316ef485, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1929912103 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4914369192727202833, guid: a0ab6c3faa8f29343aad1665bedcd565,
+    type: 3}
+  m_PrefabInstance: {fileID: 1929912101}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1930193517
 PrefabInstance:
@@ -38139,6 +38756,227 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4330906948907973633, guid: bd8e156d5cf14594eb967ecd2fe58169,
     type: 3}
   m_PrefabInstance: {fileID: 2118065964}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2121111011
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1713723018}
+    m_Modifications:
+    - target: {fileID: 4914369192727202836, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: m_Name
+      value: DialogueZone2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: EnglishDialogue.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: DanishDialogue.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: EventOnEnd.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: OnlyTriggeredOnce
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: EnglishDialogue.Array.data[3]
+      value: "LUCY: She\u2019s not REAL!"
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: EnglishDialogue.Array.data[4]
+      value: 'SALLY: Scary Lucy.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: EnglishDialogue.Array.data[5]
+      value: "SALLY: I don\u2019t like Scary Lucy."
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: EnglishDialogue.Array.data[6]
+      value: 'LUCY: no. no, no, no. no.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: EnglishDialogue.Array.data[7]
+      value: 'SALLY: Yes. yes yes yes! yes.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: EnglishDialogue.Array.data[8]
+      value: 'LUCY: I have to get rid of this.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: DanishDialogue.Array.data[3]
+      value: 'LUCY: Hun findes IKKE!'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: DanishDialogue.Array.data[4]
+      value: "SALLY: Skr\xE6mmende Lucy."
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: DanishDialogue.Array.data[5]
+      value: "SALLY: Jeg kan ikke lide Skr\xE6mmende Lucy."
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: DanishDialogue.Array.data[6]
+      value: 'LUCY: Nej. nej, nej, nej. nej.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: DanishDialogue.Array.data[7]
+      value: 'SALLY: Jo. jo, jo, jo! jo.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: DanishDialogue.Array.data[8]
+      value: "LUCY: Jeg bliver n\xF8dt til at fjerne det."
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: EnglishDialogue.Array.data[0]
+      value: "SALLY: NO! Stop it Lucy! Don\u2019t burn yourself!"
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: EnglishDialogue.Array.data[1]
+      value: 'LUCY: Stay away, Sally!'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: EnglishDialogue.Array.data[2]
+      value: 'SALLY: Please stop! You are hurting baby-Lucy!'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: DanishDialogue.Array.data[0]
+      value: "SALLY: NEJ! Stop det, Lucy! Du m\xE5 ikke br\xE6nde dig selv!"
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: DanishDialogue.Array.data[1]
+      value: "LUCY: Hold dig v\xE6k, Sally!"
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: DanishDialogue.Array.data[2]
+      value: "SALLY: Stop! Du s\xE5rer baby-Lucy!"
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: TriggerType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: EventOnEnd.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: EventOnEnd.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: EventOnEnd.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1929912102}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: EventOnEnd.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: TriggerDialogue
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202839, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: EventOnEnd.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202833, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -9.275198
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202833, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.24
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202833, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 33.40183
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202833, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202833, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.23970544
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202833, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202833, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9708457
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202833, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202833, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202833, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -27.738
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914369192727202833, guid: a0ab6c3faa8f29343aad1665bedcd565,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a0ab6c3faa8f29343aad1665bedcd565, type: 3}
+--- !u!1 &2121111012 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4914369192727202836, guid: a0ab6c3faa8f29343aad1665bedcd565,
+    type: 3}
+  m_PrefabInstance: {fileID: 2121111011}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2121111013 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4914369192727202833, guid: a0ab6c3faa8f29343aad1665bedcd565,
+    type: 3}
+  m_PrefabInstance: {fileID: 2121111011}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2125647112
 PrefabInstance:
