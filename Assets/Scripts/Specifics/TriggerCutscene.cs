@@ -38,7 +38,13 @@ public class TriggerCutscene : MonoBehaviour
     private void OnCutSceneStopped(PlayableDirector director)
     {
         if (_timeline == director)
+        {
             InputManager.DisableInput = false;
+            _timeline.stopped -= OnCutSceneStopped;
+            if (OnlyOnce)
+                gameObject.SetActive(false);
+        }
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -54,9 +60,6 @@ public class TriggerCutscene : MonoBehaviour
         SetBindings();
         OnTrigger.Invoke();
         _timeline.Play();
-
-        if (OnlyOnce)
-            Destroy(this);
     }
 
     private void SetBindings()

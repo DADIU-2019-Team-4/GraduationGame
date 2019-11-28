@@ -246,4 +246,9 @@ public class InteractibleObject : DashInteractable
         cameraShake = GameObject.FindGameObjectWithTag("VirtualCamera").GetComponent<CameraShake>();
         _breakablesParticleManager = FindObjectOfType<BreakablesParticleManager>();
     }
+
+    public override string ToString()
+    {
+        return type.ToString() + " " + gameObject.name;
+    }
 }
