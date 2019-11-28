@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8232869831202823349}
   - component: {fileID: 1246484914050668912}
   - component: {fileID: 882449955197090456}
+  - component: {fileID: 3912409211286105833}
   m_Layer: 0
   m_Name: workBench_mesh
   m_TagString: Untagged
@@ -105,8 +106,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TriggerType: 12
   WwiseType: 0
-  EventName: BumpIntoBottles
+  EventName: BumpIntoWood
   RTPCName: 
   RTPCValue: {fileID: 0}
   SetStateGroup: 
   SetStateValue: 
+--- !u!65 &3912409211286105833
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7673519624969644137}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.23033184, y: 0.12620221, z: 0.15093544}
+  m_Center: {x: -0.035252858, y: 0.06436173, z: 0}

@@ -14,7 +14,8 @@ GameObject:
   - component: {fileID: -543666631633949026}
   - component: {fileID: 8032967839963117990}
   - component: {fileID: 6707878052007271536}
-  m_Layer: 0
+  - component: {fileID: 2524751328658275567}
+  m_Layer: 2
   m_Name: gaspipe_middle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -133,6 +134,19 @@ MonoBehaviour:
   RTPCValue: {fileID: 0}
   SetStateGroup: 
   SetStateValue: 
+--- !u!65 &2524751328658275567
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 461443025812258722}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &9079643092977253893
 GameObject:
   m_ObjectHideFlags: 0
@@ -144,7 +158,7 @@ GameObject:
   - component: {fileID: 2086829800721656419}
   - component: {fileID: 9171886630364315869}
   - component: {fileID: 5712336457280852093}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: gaspipe_middle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -190,7 +204,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 5561349426305759274, guid: d8611ba2b73957c4dbfeed4030af4f69, type: 3}
+  - {fileID: 2100000, guid: 39362144382ae5a41b2982078897983a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 9017225906376156268}
   - component: {fileID: 2917169921018546384}
   - component: {fileID: 4659719273758772551}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: gaspipe_corner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -57,7 +57,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 5561349426305759274, guid: e8192b6f56832d54f9d619775c67319c, type: 3}
+  - {fileID: 2100000, guid: 39362144382ae5a41b2982078897983a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -91,7 +91,8 @@ GameObject:
   - component: {fileID: 8008861767898966848}
   - component: {fileID: 1153058567588659711}
   - component: {fileID: 6556276887484691806}
-  m_Layer: 0
+  - component: {fileID: 6018305800737386815}
+  m_Layer: 2
   m_Name: gaspipe_corner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -210,3 +211,16 @@ MonoBehaviour:
   RTPCValue: {fileID: 0}
   SetStateGroup: 
   SetStateValue: 
+--- !u!65 &6018305800737386815
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7600100716555194368}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.7204093, y: 0.7315407, z: 0.24383953}
+  m_Center: {x: 0.013274565, y: -0.043509915, z: 0}

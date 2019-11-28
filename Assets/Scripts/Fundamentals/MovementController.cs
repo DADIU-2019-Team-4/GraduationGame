@@ -104,12 +104,15 @@ public class MovementController : MonoBehaviour
     private List<AudioEvent> _audioEvents;
     private AttachToPlane _attachToPlane;
     private PlayerActionsCollectorQA _playerActionsCollectorQA;
-    private TMP_Text _fireAmountText;
+    private SpriteRenderer _lifeBar;
     private SalamanderController _salamanderController;
     private float _currentFireAmount;
     private float _dashTimer;
     private float _damageTimer;
     private bool _dashIntent;
+    private float _lifeChargeValue;
+    private float _minLifeChargeValue = 0.02f;
+    private float _maxLifeChargeValue = 1.02f;
     private Vector3 _startPosition;
     private Vector3 _goalPosition;
 
@@ -130,9 +133,9 @@ public class MovementController : MonoBehaviour
 
     void Start()
     {
-        _fireAmountText = GameObject.Find("FireAmountText").GetComponent<TextMeshProUGUI>();
+        _lifeBar = GameObject.Find("LifeBar").GetComponent<SpriteRenderer>();
         _currentFireAmount = SceneManager.GetActiveScene().name == "Hub_1.0" ? FireStartValue : MaxFireAmount;
-        UpdateFireAmountText();
+        UpdateLifeBar();
         HealthPercentage.Value = _currentFireAmount;
 
         _gameController.IsPlaying = true;
@@ -440,7 +443,7 @@ public class MovementController : MonoBehaviour
             _currentFireAmount = 0;
         if (_currentFireAmount > MaxFireAmount)
             _currentFireAmount = MaxFireAmount;
-        UpdateFireAmountText();
+        UpdateLifeBar();
     }
 
     /// <summary>
@@ -528,11 +531,17 @@ public class MovementController : MonoBehaviour
     }
 
     /// <summary>
-    /// Updates the fire amount text.
+    /// Updates the life bar.
     /// </summary>
-    private void UpdateFireAmountText()
+    private void UpdateLifeBar()
     {
-        _fireAmountText.text = string.Format("{0:0.#}", _currentFireAmount) + "%";
+        _lifeChargeValue = (1 - _currentFireAmount / MaxFireAmount) + _minLifeChargeValue;
+        _lifeBar.material.SetFloat("_Charge", _lifeChargeValue);
+
+        if (_currentFireAmount >= MaxFireAmount)
+            _lifeBar.material.EnableKeyword("_FULLHP_ON");
+        else
+            _lifeBar.material.DisableKeyword("_FULLHP_ON");
     }
 
     private void OnTriggerStay(Collider other)

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6770577819594690057}
   - component: {fileID: 5964178449887303015}
   - component: {fileID: 1923607007483261138}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: gaspipe_withclosedend
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -57,7 +57,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 5561349426305759274, guid: 069f64fa38473e34fb54acc9624b1c76, type: 3}
+  - {fileID: 2100000, guid: 39362144382ae5a41b2982078897983a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -91,7 +91,8 @@ GameObject:
   - component: {fileID: 265312795601127470}
   - component: {fileID: 4499423285073382379}
   - component: {fileID: 4052524880274825036}
-  m_Layer: 0
+  - component: {fileID: 7672583677945056125}
+  m_Layer: 2
   m_Name: gaspipe_withClosedEnd
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -210,3 +211,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcccecc33ec644c4ca493ce9034643eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &7672583677945056125
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3085779145473940685}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
