@@ -19,6 +19,11 @@ public class TimelineDialogueTrigger : MonoBehaviour
 
     private void OnEnable()
     {
-        
+        dialogue.TriggerDialogue();
+    }
+
+    private void OnDisable()
+    {
+        DialogueTrigger.ClickDown = true;
     }
 }
