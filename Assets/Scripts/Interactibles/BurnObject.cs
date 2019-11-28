@@ -140,7 +140,7 @@ public class BurnObject : MonoBehaviour
         }
         else if (_isDissasembling)
         {
-            if (_burnedAmount < 3f)
+            if (_burnedAmount < 30f)
             {
                 _burnedAmount += burnSpeed * Time.deltaTime;
                 fireFloat -= 0.05f;
