@@ -13,7 +13,9 @@ public class InputManager : IGameLoop
     private GameController _gameController;
     private GameObject _arrowParent;
     private GameObject _arrow;
+    private GameObject _arrowOnTop;
     private SpriteRenderer _arrowSpriteRenderer;
+    private SpriteRenderer _arrowOnTopSpriteRenderer;
     private Renderer _arrowRenderer;
     private Camera _mainCamera;
     private Canvas _canvas;
@@ -21,6 +23,8 @@ public class InputManager : IGameLoop
     private Vector3 _firstPosition;
     private Vector3 _lastPosition;
     private Vector3 _targetPos;
+    private Color _arrowMoveColor;
+    private Color _arrowDashColor;
     private bool _isHolding;
     private bool _trackMouse;
     private bool _doMove;
@@ -43,8 +47,12 @@ public class InputManager : IGameLoop
     {
         _arrowParent.SetActive(false);
         _arrow = _arrowParent.transform.GetChild(0).gameObject;
+        _arrowOnTop = _arrowParent.transform.GetChild(1).gameObject;
         _arrowSpriteRenderer = _arrow.GetComponent<SpriteRenderer>();
+        _arrowOnTopSpriteRenderer = _arrowOnTop.GetComponent<SpriteRenderer>();
         _arrowRenderer = _arrow.GetComponent<Renderer>();
+        _arrowMoveColor = _arrowOnTopSpriteRenderer.color;
+        _arrowDashColor = Color.red;
     }
 
     /// <summary>
@@ -94,6 +102,7 @@ public class InputManager : IGameLoop
             _doMove = true;
 
             // Update Arrow
+            _arrowOnTopSpriteRenderer.color = _arrowMoveColor;
             _arrowRenderer.material.SetFloat("_Charge", _maxArrowChargeValue);
             _movementController.ArrowLength.Value = _movementController.MoveDistance;
             StretchArrow(_movementController.MoveDistance);
@@ -110,6 +119,7 @@ public class InputManager : IGameLoop
             // Dash is charged: change arrow's length to dash length
             if (_movementController.IsDashing)
             {
+                _arrowOnTopSpriteRenderer.color = _arrowDashColor;
                 StretchArrow(_movementController.DashDistance);
                 _movementController.ArrowLength.Value = 0;
                 ShowArrow();
@@ -282,6 +292,7 @@ public class InputManager : IGameLoop
         var scale = _arrowSpriteRenderer.size;
         scale.y = Vector3.Distance(_movementController.transform.position, targetPosition) * ArrowScaleFactor;
         _arrowSpriteRenderer.size = scale;
+        _arrowOnTopSpriteRenderer.size = scale;
     }
 
     public static void ToggleInput(bool disableInput) { DisableInput = disableInput; }

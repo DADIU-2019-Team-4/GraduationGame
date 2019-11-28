@@ -7,10 +7,10 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ArrowMat
-  m_Shader: {fileID: 4800000, guid: bfd97448d1443d64f84839966db4524e, type: 3}
+  m_Name: AlwaysOnTop
+  m_Shader: {fileID: 4800000, guid: 7993b8ffbd597e94f8cb2f5d3aab2ed6, type: 3}
   m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
-  m_LightmapFlags: 0
+  m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -40,7 +40,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: c6c429d665c278246a8229ed97ea2b02, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -55,48 +55,18 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _Redglownoise:
-        m_Texture: {fileID: 2800000, guid: cd460ee4ac5c1e746b7a734cc7cc64dd, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _Redglownoiseb:
-        m_Texture: {fileID: 2800000, guid: 61c0b9c0523734e0e91bc6043c72a490, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _TextureSample0:
-        m_Texture: {fileID: 2800000, guid: f2dd6188bd22bd943abc7378fd2cb8bf, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _TextureSample1:
-        m_Texture: {fileID: 2800000, guid: e28dc97a9541e3642a48c0e3886688c5, type: 3}
-        m_Scale: {x: 0, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _TextureSample2:
-        m_Texture: {fileID: 2800000, guid: ec2f296ae6cdc774cbfee494d76ab906, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _texcoord:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     m_Floats:
     - _BumpScale: 1
-    - _Charge: 0.57
     - _ColorMask: 15
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _FlameHeight: -0.61291754
-    - _Float0: 0.35
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _GlowSpeed: 3.57
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
-    - _Opaci: 0
-    - _Opacity: 0.78
     - _Parallax: 0.02
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
@@ -108,12 +78,7 @@ Material:
     - _StencilWriteMask: 255
     - _UVSec: 0
     - _ZWrite: 1
-    - __dirty: 0
     m_Colors:
-    - _Charged2: {r: 3.9999995, g: 0.08376963, b: 0, a: 0}
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Color0: {r: 1.490566, g: 0.8407455, b: 0, a: 1}
-    - _Color1: {r: 1.292203, g: 0.7221973, b: 0, a: 0}
-    - _Color2: {r: 0.40000004, g: 0.40000004, b: 0.40000004, a: 0.39215687}
+    - _Color: {r: 1, g: 1, b: 1, a: 0}
+    - _Color2: {r: 1, g: 1, b: 1, a: 0.5019608}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _Normalcolor: {r: 1.1346792, g: 1.1809926, b: 0, a: 0}
