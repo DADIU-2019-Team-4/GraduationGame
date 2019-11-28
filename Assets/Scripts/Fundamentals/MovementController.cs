@@ -227,9 +227,9 @@ public class MovementController : MonoBehaviour
             // Update Intent and State
             _dashIntent = true;
             _dashTimer += Time.deltaTime;
-            if (_dashTimer >= MovementController.DashThreshold)
+            if (_dashTimer >= DashThreshold)
             {
-                _dashTimer = MovementController.DashThreshold;
+                _dashTimer = DashThreshold;
                 DashCharged();
             }
         }

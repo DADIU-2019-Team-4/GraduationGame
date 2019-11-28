@@ -14,6 +14,7 @@ public class InputManager : IGameLoop
     private GameObject _arrowParent;
     private GameObject _arrow;
     private SpriteRenderer _arrowSpriteRenderer;
+    private Renderer _arrowRenderer;
     private Camera _mainCamera;
     private Canvas _canvas;
     private GameObject _dashCircle;
@@ -24,6 +25,11 @@ public class InputManager : IGameLoop
     private bool _trackMouse;
     private bool _doMove;
     private float _dragDistance;
+
+    private float _arrowChargeValue;
+    private float _minArrowChargeValue = -0.2f;
+    private float _maxArrowChargeValue = 2f;
+    private float _totalArrowChargeValue = 2.2f;
 
     private void Awake()
     {
@@ -38,6 +44,7 @@ public class InputManager : IGameLoop
         _arrowParent.SetActive(false);
         _arrow = _arrowParent.transform.GetChild(0).gameObject;
         _arrowSpriteRenderer = _arrow.GetComponent<SpriteRenderer>();
+        _arrowRenderer = _arrow.GetComponent<Renderer>();
     }
 
     /// <summary>
@@ -87,7 +94,7 @@ public class InputManager : IGameLoop
             _doMove = true;
 
             // Update Arrow
-            _arrow.GetComponent<SpriteRenderer>().color = Color.white;
+            _arrowRenderer.material.SetFloat("_Charge", _maxArrowChargeValue);
             _movementController.ArrowLength.Value = _movementController.MoveDistance;
             StretchArrow(_movementController.MoveDistance);
             ShowArrow();
@@ -97,12 +104,12 @@ public class InputManager : IGameLoop
         {
             _movementController.Charge(true);
             _doMove = true;
-
+            _arrowChargeValue = (1 - _movementController.DashHoldPercentage.Value) * _totalArrowChargeValue + _minArrowChargeValue;
+            _arrowRenderer.material.SetFloat("_Charge", _arrowChargeValue);
             // Update Arrow
             // Dash is charged: change arrow's length to dash length
             if (_movementController.IsDashing)
             {
-                _arrow.GetComponent<SpriteRenderer>().color = Color.red;
                 StretchArrow(_movementController.DashDistance);
                 _movementController.ArrowLength.Value = 0;
                 ShowArrow();
