@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 using System.Collections.Generic;
-public class AudioOnCollision : MonoBehaviour
+public class AudioOnCollision_02 : MonoBehaviour
 {
     private List<AudioEvent> audioEvents;
 
@@ -10,9 +10,9 @@ public class AudioOnCollision : MonoBehaviour
         audioEvents = new List<AudioEvent>(GetComponents<AudioEvent>());
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.CompareTag("Player"))
-            AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.OnTrigger, audioEvents, gameObject);
+            AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.OnCollision, audioEvents, gameObject);
     }
 }

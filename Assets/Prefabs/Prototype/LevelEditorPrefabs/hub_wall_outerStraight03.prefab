@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &5923303004598709911
+--- !u!1 &1720873043450902925
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,49 +8,48 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7235197092217150596}
-  - component: {fileID: 1815957617382909618}
-  - component: {fileID: 5336513493976619595}
-  - component: {fileID: -3902392251372223974}
-  - component: {fileID: -5252235521438198400}
-  - component: {fileID: -8745931109926415920}
-  - component: {fileID: 2174811411033695966}
+  - component: {fileID: 2430427790046743454}
+  - component: {fileID: 6692801553880215976}
+  - component: {fileID: 1143090663500123473}
+  - component: {fileID: 590956051}
+  - component: {fileID: 590956053}
+  - component: {fileID: -2010530181543661039}
   m_Layer: 0
-  m_Name: plant02
+  m_Name: hub_wall_outerStraight03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7235197092217150596
+--- !u!4 &2430427790046743454
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5923303004598709911}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.19088292, y: 1.5298724, z: -1.1944075}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_GameObject: {fileID: 1720873043450902925}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.826491, z: 0}
+  m_LocalScale: {x: 1.0000005, y: 1, z: 1.0000005}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &1815957617382909618
+--- !u!33 &6692801553880215976
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5923303004598709911}
-  m_Mesh: {fileID: -4304277354813071078, guid: 567609a608267bf4881c4851dd417959, type: 3}
---- !u!23 &5336513493976619595
+  m_GameObject: {fileID: 1720873043450902925}
+  m_Mesh: {fileID: 1837422410919788876, guid: 3e7aa0791f8527b41bbf42d6e2adee63, type: 3}
+--- !u!23 &1143090663500123473
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5923303004598709911}
+  m_GameObject: {fileID: 1720873043450902925}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -61,7 +60,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6ca8ede5a2e17634c886ce9ef7f211e6, type: 2}
+  - {fileID: 2100000, guid: 53a11d2ffac6abd48b4978835d53afe8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -81,69 +80,50 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &-3902392251372223974
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5923303004598709911}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 420186023faa10d418f08885f52a6d61, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  FireObject: {fileID: 5590989098238041260, guid: b130e385e49fa8c48ac96ceb16de5cb9,
-    type: 3}
-  _burnedAmount: 0.9
-  dissolveShader: {fileID: 2100000, guid: 46d9632cf3dabcb40a3f0686e45be8eb, type: 2}
-  burnSpeed: 0.46
-  destroyAtTheEndOfFire: 1
-  firetype: 0
---- !u!114 &-5252235521438198400
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5923303004598709911}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ce2f35c75ca9e84fb3474d32def3e6d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: 11
-  DamageValue: 0
-  HealValue: 0
-  BumpHeight: 0.3
---- !u!65 &-8745931109926415920
+--- !u!65 &590956051
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5923303004598709911}
+  m_GameObject: {fileID: 1720873043450902925}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.9594356, y: 3.05, z: 0.9370552}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2174811411033695966
+  m_Size: {x: 3.000001, y: 3.652982, z: 0.5000002}
+  m_Center: {x: 0.0000015497208, y: 0, z: 0.059493847}
+--- !u!114 &590956053
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5923303004598709911}
+  m_GameObject: {fileID: 1720873043450902925}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ce2f35c75ca9e84fb3474d32def3e6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 4
+  DamageValue: 0
+  HealValue: 0
+  BumpHeight: 0.3
+--- !u!114 &-2010530181543661039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1720873043450902925}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f3f6a57ea9bb81040839eb22c9ccd632, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TriggerType: 5
+  TriggerType: 3
   WwiseType: 0
-  EventName: BumpIntoPlants
+  EventName: BumpIntoWalls
   RTPCName: 
   RTPCValue: {fileID: 0}
   SetStateGroup: 

@@ -42,6 +42,7 @@ public class AudioEvent : MonoBehaviour
         OutOfMoves,
         Died,
         BurningItem,
+        OnTrigger,
         OnCollision,
         DashEnded,
         DashCancelled,
