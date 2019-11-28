@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 4212059926539033595}
   - component: {fileID: 9009508442419236812}
   - component: {fileID: 7479681095066705428}
+  - component: {fileID: 5494657294801073714}
   m_Layer: 0
   m_Name: WaterSpray_Ver.2
   m_TagString: Untagged
@@ -4843,6 +4844,25 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.36, y: 4.72, z: 3.56}
   m_Center: {x: 0.009912133, y: -1, z: 1.45}
+--- !u!114 &5494657294801073714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9132245662996378538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3f6a57ea9bb81040839eb22c9ccd632, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TriggerType: 26
+  WwiseType: 3
+  EventName: HurtPlayer
+  RTPCName: 
+  RTPCValue: {fileID: 0}
+  SetStateGroup: 
+  SetStateValue: 
 --- !u!1 &9132245663744727010
 GameObject:
   m_ObjectHideFlags: 0

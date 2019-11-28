@@ -24,7 +24,7 @@ MonoBehaviour:
     ParentPhysicalPath: 
     guid: 61773147c3e61341905ca4a6c975c8be
     GuidInternal: 
-    m_lastTime: -8586267520535448053
+    m_lastTime: -8586267117615418246
     List:
     - name: LargeVerb
       guid: 4df29f5a7ef6c64484385fb4eb29a27f
@@ -70,7 +70,7 @@ MonoBehaviour:
     ParentPhysicalPath: 
     guid: 72425237053ab44b82427a05c1308321
     GuidInternal: 
-    m_lastTime: -8586277829408177959
+    m_lastTime: -8586267114380978915
     List:
     - name: Room_2_Bank
       guid: e0606da1b37faa4b9eea4fea19ea8b94
@@ -86,7 +86,7 @@ MonoBehaviour:
     ParentPhysicalPath: 
     guid: 85519e3dd9af71428bf05cf3b19b0630
     GuidInternal: 
-    m_lastTime: -8586267817387327040
+    m_lastTime: -8586267006979282643
     List:
     - name: ArrowPull
       guid: 608bf70bea70904ba9e045c9b78b6c3a
@@ -240,8 +240,22 @@ MonoBehaviour:
         ObjectType: 3
       Path: Character\Objects\GateUnlocked
       maxAttenuation: 0
-      maxDuration: 8057756
-      minDuration: 8057756
+      maxDuration: 10328459
+      minDuration: 10328459
+    - name: HurtPlayer
+      guid: 4cb14f7890800c4cb72e9bdb0605a9b3
+      id: 90462293
+      PathAndIcons:
+      - ElementName: Character
+        ObjectType: 12
+      - ElementName: PlayerHealth
+        ObjectType: 4
+      - ElementName: HurtPlayer
+        ObjectType: 3
+      Path: Character\PlayerHealth\HurtPlayer
+      maxAttenuation: 0
+      maxDuration: 3466058
+      minDuration: 533244
     - name: NormalDash
       guid: e43973cbb69fc641bf82e9f6fdb05e52
       id: 1016929228
@@ -254,7 +268,7 @@ MonoBehaviour:
         ObjectType: 3
       Path: Character\Dashing\NormalDash
       maxAttenuation: 0
-      maxDuration: 1904135
+      maxDuration: 3271523
       minDuration: 1601180
     - name: OffPlane
       guid: d7ef19d696462d498aca1ead91e9966b
@@ -348,9 +362,11 @@ MonoBehaviour:
         ObjectType: 12
       - ElementName: Objects
         ObjectType: 4
+      - ElementName: Pictures
+        ObjectType: 4
       - ElementName: PictureOff_01
         ObjectType: 3
-      Path: Character\Objects\PictureOff_01
+      Path: Character\Objects\Pictures\PictureOff_01
       maxAttenuation: 0
       maxDuration: 0
       minDuration: 0
@@ -362,9 +378,11 @@ MonoBehaviour:
         ObjectType: 12
       - ElementName: Objects
         ObjectType: 4
+      - ElementName: Pictures
+        ObjectType: 4
       - ElementName: PictureOff_02
         ObjectType: 3
-      Path: Character\Objects\PictureOff_02
+      Path: Character\Objects\Pictures\PictureOff_02
       maxAttenuation: 0
       maxDuration: 0
       minDuration: 0
@@ -376,9 +394,11 @@ MonoBehaviour:
         ObjectType: 12
       - ElementName: Objects
         ObjectType: 4
+      - ElementName: Pictures
+        ObjectType: 4
       - ElementName: PictureOff_03
         ObjectType: 3
-      Path: Character\Objects\PictureOff_03
+      Path: Character\Objects\Pictures\PictureOff_03
       maxAttenuation: 0
       maxDuration: 0
       minDuration: 0
@@ -390,9 +410,11 @@ MonoBehaviour:
         ObjectType: 12
       - ElementName: Objects
         ObjectType: 4
+      - ElementName: Pictures
+        ObjectType: 4
       - ElementName: PictureOff_04
         ObjectType: 3
-      Path: Character\Objects\PictureOff_04
+      Path: Character\Objects\Pictures\PictureOff_04
       maxAttenuation: 0
       maxDuration: 0
       minDuration: 0
@@ -404,9 +426,11 @@ MonoBehaviour:
         ObjectType: 12
       - ElementName: Objects
         ObjectType: 4
+      - ElementName: Pictures
+        ObjectType: 4
       - ElementName: PictureOn_01
         ObjectType: 3
-      Path: Character\Objects\PictureOn_01
+      Path: Character\Objects\Pictures\PictureOn_01
       maxAttenuation: 0
       maxDuration: -1
       minDuration: -1
@@ -418,9 +442,11 @@ MonoBehaviour:
         ObjectType: 12
       - ElementName: Objects
         ObjectType: 4
+      - ElementName: Pictures
+        ObjectType: 4
       - ElementName: PictureOn_02
         ObjectType: 3
-      Path: Character\Objects\PictureOn_02
+      Path: Character\Objects\Pictures\PictureOn_02
       maxAttenuation: 0
       maxDuration: -1
       minDuration: -1
@@ -432,9 +458,11 @@ MonoBehaviour:
         ObjectType: 12
       - ElementName: Objects
         ObjectType: 4
+      - ElementName: Pictures
+        ObjectType: 4
       - ElementName: PictureOn_03
         ObjectType: 3
-      Path: Character\Objects\PictureOn_03
+      Path: Character\Objects\Pictures\PictureOn_03
       maxAttenuation: 0
       maxDuration: -1
       minDuration: -1
@@ -446,9 +474,11 @@ MonoBehaviour:
         ObjectType: 12
       - ElementName: Objects
         ObjectType: 4
+      - ElementName: Pictures
+        ObjectType: 4
       - ElementName: PictureOn_04
         ObjectType: 3
-      Path: Character\Objects\PictureOn_04
+      Path: Character\Objects\Pictures\PictureOn_04
       maxAttenuation: 0
       maxDuration: -1
       minDuration: -1
@@ -463,7 +493,7 @@ MonoBehaviour:
       - ElementName: PlayerHealth
         ObjectType: 3
       Path: Character\PlayerHealth\PlayerHealth
-      maxAttenuation: 100000000
+      maxAttenuation: 0
       maxDuration: -1
       minDuration: -1
   - PhysicalPath: Events\Default Work Unit.wwu
@@ -476,7 +506,7 @@ MonoBehaviour:
     ParentPhysicalPath: 
     guid: 798a08f7a060c94bb31dbf2936cc7894
     GuidInternal: 
-    m_lastTime: -8586273435396724261
+    m_lastTime: -8586267013555275350
     List:
     - name: BumpIntoBooks
       guid: a5e678f91e46db45a6085d8dd485fb67
@@ -632,16 +662,16 @@ MonoBehaviour:
       maxAttenuation: 10000000
       maxDuration: -1
       minDuration: -1
-    - name: OutsideAmbience
-      guid: 7319791b9ce4a548b2bc67993e80c530
-      id: 3564400826
+    - name: RainParticle
+      guid: f50cbeef69d9124d9dc1fd7c9209ce21
+      id: 2030397405
       PathAndIcons:
       - ElementName: Environment
         ObjectType: 12
-      - ElementName: OutsideAmbience
+      - ElementName: RainParticle
         ObjectType: 3
-      Path: Environment\OutsideAmbience
-      maxAttenuation: 0
+      Path: Environment\RainParticle
+      maxAttenuation: 20000000
       maxDuration: -1
       minDuration: -1
     - name: RoomTone_01
@@ -730,24 +760,6 @@ MonoBehaviour:
       maxAttenuation: 15000000
       maxDuration: 3461542
       minDuration: 3461542
-  - PhysicalPath: Events\GameController.wwu
-    ParentPhysicalPath: 
-    guid: 08b89f9c90ef23468f370115d452e20c
-    GuidInternal: 
-    m_lastTime: -8586267520535328311
-    List:
-    - name: KillOnRestart
-      guid: 8a2c7db59cad7346a8013a106d5e1e0e
-      id: 1330879727
-      PathAndIcons:
-      - ElementName: GameController
-        ObjectType: 12
-      - ElementName: KillOnRestart
-        ObjectType: 3
-      Path: GameController\KillOnRestart
-      maxAttenuation: 0
-      maxDuration: 0
-      minDuration: 0
   - PhysicalPath: Events\InGame_UI.wwu
     ParentPhysicalPath: 
     guid: 9a9189c843fed44184f89467d8975824
@@ -770,7 +782,7 @@ MonoBehaviour:
     ParentPhysicalPath: 
     guid: b354ec827c03c44399470a4771e70173
     GuidInternal: 
-    m_lastTime: -8586267811801450550
+    m_lastTime: -8586267117614999269
     List:
     - name: Credits_Music
       guid: 88a23df6b372b24e81836663de8ece36
@@ -844,13 +856,138 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: -1
       minDuration: -1
+  - PhysicalPath: Events\PauseMenu.wwu
+    ParentPhysicalPath: 
+    guid: 3b41aaec90f3894c8c5231d3cbc5dbe2
+    GuidInternal: 
+    m_lastTime: -8586267117614739950
+    List:
+    - name: ChangeLanguageToDanish
+      guid: 536d983849b83f4d8c8bea168dbac1fa
+      id: 2758237675
+      PathAndIcons:
+      - ElementName: PauseMenu
+        ObjectType: 12
+      - ElementName: ChangeLanguageToDanish
+        ObjectType: 3
+      Path: PauseMenu\ChangeLanguageToDanish
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
+    - name: ChangeLanguageToEnglish
+      guid: b49baef1d6f2f74bacc1acaf29bed1ad
+      id: 3205496764
+      PathAndIcons:
+      - ElementName: PauseMenu
+        ObjectType: 12
+      - ElementName: ChangeLanguageToEnglish
+        ObjectType: 3
+      Path: PauseMenu\ChangeLanguageToEnglish
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
+    - name: ContinueGame
+      guid: 1faa0454ca0c4441aa0c6d7c6ed334ae
+      id: 889138964
+      PathAndIcons:
+      - ElementName: PauseMenu
+        ObjectType: 12
+      - ElementName: ContinueGame
+        ObjectType: 3
+      Path: PauseMenu\ContinueGame
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
+    - name: EnterPauseMenu
+      guid: 0c1abe1be28913488477a27646d417a2
+      id: 3602428572
+      PathAndIcons:
+      - ElementName: PauseMenu
+        ObjectType: 12
+      - ElementName: EnterPauseMenu
+        ObjectType: 3
+      Path: PauseMenu\EnterPauseMenu
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
+    - name: ExitOptions
+      guid: 2fa1707a18bfaa4dbce37a7dc7a22560
+      id: 91804985
+      PathAndIcons:
+      - ElementName: PauseMenu
+        ObjectType: 12
+      - ElementName: ExitOptions
+        ObjectType: 3
+      Path: PauseMenu\ExitOptions
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
+    - name: ExitPauseMenu
+      guid: 1f045133b24d8941b13ed146e3747138
+      id: 1908168848
+      PathAndIcons:
+      - ElementName: PauseMenu
+        ObjectType: 12
+      - ElementName: ExitPauseMenu
+        ObjectType: 3
+      Path: PauseMenu\ExitPauseMenu
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
+    - name: GoToMainMenu
+      guid: fd47b37a45a25b4bacae4ea6ab5e572d
+      id: 2499528146
+      PathAndIcons:
+      - ElementName: PauseMenu
+        ObjectType: 12
+      - ElementName: GoToMainMenu
+        ObjectType: 3
+      Path: PauseMenu\GoToMainMenu
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
+    - name: NewGame
+      guid: ecc66bed914e4a448eb3a87ac4f31e73
+      id: 943969687
+      PathAndIcons:
+      - ElementName: PauseMenu
+        ObjectType: 12
+      - ElementName: NewGame
+        ObjectType: 3
+      Path: PauseMenu\NewGame
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
+    - name: OpenOptions
+      guid: 7b38848d6c4bdd4692ccd7b6b3809036
+      id: 3806663565
+      PathAndIcons:
+      - ElementName: PauseMenu
+        ObjectType: 12
+      - ElementName: OpenOptions
+        ObjectType: 3
+      Path: PauseMenu\OpenOptions
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
   RtpcWwu:
   - PhysicalPath: Game Parameters\Default Work Unit.wwu
     ParentPhysicalPath: 
     guid: 4e98cb7cf821544ba39897d46f0d9511
     GuidInternal: 
-    m_lastTime: -8586267589289212678
+    m_lastTime: -8586267117615129272
     List:
+    - name: AmbienceVolume
+      guid: 73ab94c49f75ca47b9363f5a089e594c
+      id: 1204480359
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: MenuRTPC's
+        ObjectType: 4
+      - ElementName: AmbienceVolume
+        ObjectType: 13
+      Path: Default Work Unit\MenuRTPC's\AmbienceVolume
     - name: ArrowLenght
       guid: 9a705b640a989b4f9bda55dce1b2a4de
       id: 2495094760
@@ -878,6 +1015,17 @@ MonoBehaviour:
       - ElementName: GoalDistance
         ObjectType: 13
       Path: Default Work Unit\GoalDistance
+    - name: MusicVolume
+      guid: 853f2cdc73a13c4abca6195cc750002d
+      id: 2346531308
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: MenuRTPC's
+        ObjectType: 4
+      - ElementName: MusicVolume
+        ObjectType: 13
+      Path: Default Work Unit\MenuRTPC's\MusicVolume
     - name: PlayerHealth
       guid: 192ce6e176fcde4e951ebb262d1de75a
       id: 151362964
@@ -887,39 +1035,17 @@ MonoBehaviour:
       - ElementName: PlayerHealth
         ObjectType: 13
       Path: Default Work Unit\PlayerHealth
-    - name: VolumeMaster
-      guid: 73ab94c49f75ca47b9363f5a089e594c
-      id: 332993525
-      PathAndIcons:
-      - ElementName: Default Work Unit
-        ObjectType: 12
-      - ElementName: MenuRTPC's
-        ObjectType: 4
-      - ElementName: VolumeMaster
-        ObjectType: 13
-      Path: Default Work Unit\MenuRTPC's\VolumeMaster
-    - name: VolumeMusic
-      guid: 853f2cdc73a13c4abca6195cc750002d
-      id: 3923584592
-      PathAndIcons:
-      - ElementName: Default Work Unit
-        ObjectType: 12
-      - ElementName: MenuRTPC's
-        ObjectType: 4
-      - ElementName: VolumeMusic
-        ObjectType: 13
-      Path: Default Work Unit\MenuRTPC's\VolumeMusic
-    - name: VolumeSFX
+    - name: SFXVolume
       guid: 1af9ab6925c1bf4d9e5c7c8296e82c55
-      id: 399092848
+      id: 988953028
       PathAndIcons:
       - ElementName: Default Work Unit
         ObjectType: 12
       - ElementName: MenuRTPC's
         ObjectType: 4
-      - ElementName: VolumeSFX
+      - ElementName: SFXVolume
         ObjectType: 13
-      Path: Default Work Unit\MenuRTPC's\VolumeSFX
+      Path: Default Work Unit\MenuRTPC's\SFXVolume
   StateWwu:
   - PhysicalPath: States\Default Work Unit.wwu
     ParentPhysicalPath: 
@@ -1178,12 +1304,8 @@ MonoBehaviour:
   ExpandedItems:
   - /GraduationGame_WwiseProject
   - /GraduationGame_WwiseProject/Events
-  - /GraduationGame_WwiseProject/Events/Character
-  - /GraduationGame_WwiseProject/Events/Character/Dashing
-  - /GraduationGame_WwiseProject/Events/Music
-  - /GraduationGame_WwiseProject/States
-  - /GraduationGame_WwiseProject/States/Default Work Unit
-  - /GraduationGame_WwiseProject/States/Default Work Unit/MusicStates
-  - /GraduationGame_WwiseProject/States/Default Work Unit/MusicStates/Tutorial
+  - /GraduationGame_WwiseProject/Events/Environment
+  - /GraduationGame_WwiseProject/Events/Environment/Fireplace
+  - /GraduationGame_WwiseProject/Events/Environment/Fireplace/Torches
   autoPopulateEnabled: 1
   CurrentPluginConfig: 

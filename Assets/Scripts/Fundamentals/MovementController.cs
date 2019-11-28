@@ -306,7 +306,8 @@ public class MovementController : MonoBehaviour
     }
 
     /// <summary>
-    /// Notifies the Animator that the a collision has occured.
+    /// Handles the Fuse movement
+    /// Sets the Animator to enter the InInteractable state
     /// </summary>
     public void CollideFusePoint()
     {
@@ -316,6 +317,15 @@ public class MovementController : MonoBehaviour
 
         // Update Animator
         _anim.EnterInteractable(InteractibleObject.InteractType.Fuse);
+    }
+
+    /// <summary>
+    /// Sets the Animator to enter the InInteractable state
+    /// </summary>
+    public void CollidePaperPlane()
+    {
+        // Update Animator
+        _anim.EnterInteractable(InteractibleObject.InteractType.Projectile);
     }
 
     /// <summary>

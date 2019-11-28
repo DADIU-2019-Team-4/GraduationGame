@@ -105,6 +105,7 @@ public class WaterSpray : MonoBehaviour
                 Vector3 position = movementController.transform.position;
                 position.y = 0.5f;
                 Instantiate(ParticlesOnCollision, position, Quaternion.identity);
+                AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.HurtPlayer, audioEvents, gameObject);
             }
 
             Vector3 targetPos = movementController.transform.position -
