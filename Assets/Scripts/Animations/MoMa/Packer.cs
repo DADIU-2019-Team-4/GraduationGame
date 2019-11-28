@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Collections;
 
 namespace MoMa
 {
@@ -10,7 +8,10 @@ namespace MoMa
     {
         // The number of frames for each root transform sample
         // ++ Lower jiggling, -- root moves like hips
-        public const int SampleWindow = 10;
+        public const int SampleWindow = 20;
+
+        // Threshold of hips distance to determine idle or moving
+        public const float DisplacementThreshold = SampleWindow * 0.01f;
 
         public static Animation Pack(string animationName, string directory, string filename)
         {
@@ -96,6 +97,7 @@ namespace MoMa
         private static void ComputeRootTransform(Animation anim)
         {
             List<Bone.Data> rootSamples = new List<Bone.Data>();
+            Quaternion lastRotation = Quaternion.LookRotation(Vector3.forward, Vector3.up);
 
             // 1. Sample the root transform every SampleWindow frames
             for (
@@ -103,7 +105,9 @@ namespace MoMa
                 currentFrame + SampleWindow < anim.frameList.Count;
                 currentFrame += SampleWindow)
             {
-                rootSamples.Add(SampleFromFrame(anim, currentFrame));
+                Bone.Data sample = SampleFromFrame(anim, currentFrame, lastRotation);
+                lastRotation = sample.rotation;
+                rootSamples.Add(sample);
             }
 
             // 2. Use sample to determine intermediate values
@@ -113,14 +117,18 @@ namespace MoMa
                 currentFrame < SampleWindow / 2;
                 currentFrame++)
             {
-                (Vector3 position, Vector3 eulerRotation) = LerpFrame(
+                // Load current Frame's root data
+                Bone.Data currentRootData = anim.frameList[currentFrame].boneDataDict[Bone.Type.root];
+
+                // Lerp to find a smooth transform
+                (Vector3 position, Quaternion rotation) = LerpFrame(
                     anim.frameList[0].boneDataDict[Bone.Type.hips],
                     rootSamples[0],
-                    (float) currentFrame / (SampleWindow / 2));
+                    (float)currentFrame / (SampleWindow / 2));
 
-                anim.frameList[currentFrame].boneDataDict[Bone.Type.root].position = position;
-                anim.frameList[currentFrame].boneDataDict[Bone.Type.root].rotation =
-                    Quaternion.Euler(eulerRotation);
+                /// Store found value
+                currentRootData.position = position;
+                currentRootData.rotation = rotation;
             }
 
             // Intermediate frames
@@ -134,45 +142,58 @@ namespace MoMa
                     currentFrame < SampleWindow;
                     currentFrame++)
                 {
-                    (Vector3 position, Vector3 eulerRotation) = LerpFrame(
+                    // Load current Frame's root data
+                    Bone.Data currentRootData = anim.frameList[
+                        currentSample * SampleWindow + currentFrame + SampleWindow / 2
+                        ].boneDataDict[Bone.Type.root];
+
+                    // Lerp to find a smooth transform
+                    (Vector3 position, Quaternion rotation) = LerpFrame(
                         rootSamples[currentSample],
                         rootSamples[currentSample + 1],
                         currentFrame / SampleWindow);
 
-                    anim.frameList[currentSample * SampleWindow + currentFrame].boneDataDict[Bone.Type.root].position =
-                        position;
-                    anim.frameList[currentSample * SampleWindow + currentFrame].boneDataDict[Bone.Type.root].rotation =
-                        Quaternion.Euler(eulerRotation);
+                    /// Store found value
+                    currentRootData.position = position;
+                    currentRootData.rotation = rotation;
                 }
             }
 
             // Right padding
             int rightPaddingFrames = SampleWindow / 2 + anim.frameList.Count % SampleWindow;
+            int firstPaddingFrame = anim.frameList.Count - rightPaddingFrames;
             for (
-                int currentFrame = anim.frameList.Count - rightPaddingFrames;
-                currentFrame < rightPaddingFrames;
-                currentFrame++)
+                int currentFrameOffset = 0;
+                currentFrameOffset < rightPaddingFrames;
+                currentFrameOffset++)
             {
-                (Vector3 position, Vector3 eulerRotation) = LerpFrame(
+                // Load current Frame's root data
+                Bone.Data currentRootData = anim.frameList[
+                    firstPaddingFrame + currentFrameOffset
+                    ].boneDataDict[Bone.Type.root];
+
+                // Lerp to find a smooth transform
+                (Vector3 position, Quaternion rotation) = LerpFrame(
                     rootSamples[rootSamples.Count - 1],
                     anim.frameList[anim.frameList.Count - 1].boneDataDict[Bone.Type.hips],
-                    (currentFrame - anim.frameList.Count - rightPaddingFrames) / rightPaddingFrames);
+                    currentFrameOffset / rightPaddingFrames);
 
-                anim.frameList[currentFrame].boneDataDict[Bone.Type.root].position = position;
-                anim.frameList[currentFrame].boneDataDict[Bone.Type.root].rotation =
-                    Quaternion.Euler(eulerRotation);
+                /// Store found value
+                currentRootData.position = position;
+                currentRootData.rotation = rotation;
             }
 
             // 3. Recalibrate hips to comply with root's rotation
-            //for (
-            //    int currentFrame = 0;
-            //    currentFrame < anim.frameList.Count;
-            //    currentFrame++)
-            //{
-            //    anim.frameList[currentFrame].boneDataDict[Bone.Type.hips].rotation =
-            //        anim.frameList[currentFrame].boneDataDict[Bone.Type.hips].rotation *
-            //        Quaternion.Inverse(anim.frameList[currentFrame].boneDataDict[Bone.Type.root].rotation);
-            //}
+            for (
+                int currentFrame = 0;
+                currentFrame < anim.frameList.Count;
+                currentFrame++)
+            {
+                anim.frameList[currentFrame].boneDataDict[Bone.Type.hips].position -=
+                    anim.frameList[currentFrame].boneDataDict[Bone.Type.root].position;
+                anim.frameList[currentFrame].boneDataDict[Bone.Type.hips].rotation *=
+                    Quaternion.Inverse(anim.frameList[currentFrame].boneDataDict[Bone.Type.root].rotation);
+            }
         }
 
         private static void ComputeLocalTranform(Animation anim)
@@ -206,7 +227,7 @@ namespace MoMa
                 Vector3 lastLocalPosition = anim.frameList[0].boneDataDict[bt].localPosition;
 
                 // Compute the velocities of all the Frames but the first
-                for (int i=1; i < anim.frameList.Count; i++)
+                for (int i = 1; i < anim.frameList.Count; i++)
                 {
                     anim.frameList[i].boneDataDict[bt].SetLocalVelocity(lastLocalPosition);
                     lastLocalPosition = anim.frameList[i].boneDataDict[bt].localPosition;
@@ -218,42 +239,44 @@ namespace MoMa
             }
         }
 
-        private static Bone.Data SampleFromFrame(Animation anim, int startingSampleFrame)
+        private static Bone.Data SampleFromFrame(Animation anim, int startingSampleFrame, Quaternion lastRotation)
         {
+            Quaternion rotation;
             Vector3 position = new Vector3(0, 0, 0);
-            Vector3 eulerRotation = new Vector3(0, 0, 0);
+            Vector3 displacement;
+            Vector3 firstPosition;
+            Vector3 lastPosition;
 
-            // In each window average position and 2D rotation
+            // Average position: Average of eacch position in the window
             for (int i = 0; i < SampleWindow; i++)
             {
-                Bone.Data currentTransform = anim.frameList[startingSampleFrame + i].boneDataDict[Bone.Type.hips];
-                position += currentTransform.position;
-                eulerRotation += currentTransform.rotation.eulerAngles;
+                position += anim.frameList[startingSampleFrame + i].boneDataDict[Bone.Type.hips].position;
+            }
+            position /= SampleWindow;
+
+            // Average rotation: difference of the last position to the first
+            firstPosition = anim.frameList[startingSampleFrame].boneDataDict[Bone.Type.hips].position;
+            lastPosition = anim.frameList[startingSampleFrame + SampleWindow - 1].boneDataDict[Bone.Type.hips].position;
+            displacement = (lastPosition - firstPosition);
+
+            //Debug.Log("Displacement: " + displacement.magnitude);
+
+            if (displacement.magnitude > DisplacementThreshold)
+            {
+                rotation = lastRotation;
+            }
+            else
+            {
+                displacement.y = 0;
+                rotation = Quaternion.LookRotation(displacement, Vector3.up);
             }
 
-            // Create the new root sample
-            position /= SampleWindow;
-            position.y = 0;
-            eulerRotation.y /= SampleWindow;
-            eulerRotation.x = 0;
-            eulerRotation.z = 0;
-            return new Bone.Data(position, Quaternion.Euler(eulerRotation));
+            return new Bone.Data(position, rotation);
         }
 
-        private static (Vector3, Vector3) LerpFrame(Bone.Data a, Bone.Data b, float t)
+        private static (Vector3, Quaternion) LerpFrame(Bone.Data a, Bone.Data b, float t)
         {
-            Vector3 position;
-            Vector3 eulerRotation;
-
-            // Set position
-            position = Vector3.Lerp(a.position, b.position, t);
-
-            // Set rotation
-            eulerRotation = Vector3.Lerp(a.rotation.eulerAngles, b.rotation.eulerAngles, t);
-            eulerRotation.x = 0;
-            eulerRotation.z = 0;
-
-            return (position, eulerRotation);
+            return (Vector3.Lerp(a.position, b.position, t), Quaternion.Lerp(a.rotation, b.rotation, t));
         }
     }
 }

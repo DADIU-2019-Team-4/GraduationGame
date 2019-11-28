@@ -96,9 +96,10 @@ namespace MoMa
             StartCoroutine(UpdateCoroutine());
         }
 
-        public void UpdateTarget(MovementController.EventType type, Vector2 position)
+        public void AddTarget(MovementController.EventType type, Vector3 position)
         {
-            _mc.UpdateTargets(type, position);
+            Debug.Log("Adding target: " + position + " Type: " + type);
+            _mc.AddTarget(type, position);
         }
 
         private IEnumerator UpdateCoroutine()
