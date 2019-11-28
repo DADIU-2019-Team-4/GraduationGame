@@ -14,7 +14,8 @@ GameObject:
   - component: {fileID: 3012237803003796374}
   - component: {fileID: 3066192074664821447}
   - component: {fileID: 5272617463083538187}
-  m_Layer: 0
+  - component: {fileID: 1293762566366443095}
+  m_Layer: 2
   m_Name: gaspipe_withClosedEnds
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -133,6 +134,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcccecc33ec644c4ca493ce9034643eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &1293762566366443095
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3886192530766096647}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8209477619701010259
 GameObject:
   m_ObjectHideFlags: 0
@@ -144,7 +158,7 @@ GameObject:
   - component: {fileID: 6919631306026185865}
   - component: {fileID: 1710096852519431757}
   - component: {fileID: 3841344154469988872}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: gaspipe_withclosedends
   m_TagString: Untagged
   m_Icon: {fileID: 0}
