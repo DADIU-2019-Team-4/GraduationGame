@@ -157,25 +157,33 @@ public class UINavigation : MonoBehaviour
 
     public void EnterPauseMenu()
     {
-        _pauseMenu.SetActive(true);
-
-        
-        AudioEvent.PostEvent("EnterPauseMenu", gameObject);
-
-        if(PlayerPrefs.GetString("Language") == "English")
+        if (_pauseMenu.activeSelf)
         {
-            _pauseMenu.transform.Find("Burn").GetComponent<Image>().material = PauseBurnEnglish;
+            _pauseMenu.SetActive(false);
+            AudioEvent.PostEvent("ExitPauseMenu", gameObject);
         }
         else
         {
-            _pauseMenu.transform.Find("Burn").GetComponent<Image>().material = PauseBurnDanish;
+            _pauseMenu.SetActive(true);
+
+
+            AudioEvent.PostEvent("EnterPauseMenu", gameObject);
+
+            if (PlayerPrefs.GetString("Language") == "English")
+            {
+                _pauseMenu.transform.Find("Burn").GetComponent<Image>().material = PauseBurnEnglish;
+            }
+            else
+            {
+                _pauseMenu.transform.Find("Burn").GetComponent<Image>().material = PauseBurnDanish;
+            }
         }
+       
     }
 
     public void ExitPauseMenu()
     {
-        _pauseMenu.SetActive(false);
-        AudioEvent.PostEvent("ExitPauseMenu", gameObject);
+        
     }
 
     public void GoToMainMenu()
