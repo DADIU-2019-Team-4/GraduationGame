@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 274699833360004698}
   - component: {fileID: 263284679389484334}
   - component: {fileID: 255974955429736594}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: EA_Characters_Statue_Moss_1f_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 274512641620980114}
   - component: {fileID: 263533427813688124}
   - component: {fileID: 255863326024745968}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: EA_Characters_Statue_Moss_1f_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -166,7 +166,7 @@ GameObject:
   - component: {fileID: 263253046518127546}
   - component: {fileID: 255860765885789492}
   - component: {fileID: 231366176243642394}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Coll_Statue (12)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -256,7 +256,7 @@ GameObject:
   - component: {fileID: 274405559579317930}
   - component: {fileID: 263541759741584312}
   - component: {fileID: 255554468960773930}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: EA_Characters_Statue_Moss_1f_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -335,7 +335,8 @@ GameObject:
   - component: {fileID: 8819199211769817766}
   - component: {fileID: 1329300727588995402}
   - component: {fileID: 2072663051421325294}
-  m_Layer: 0
+  - component: {fileID: 3860092730165591916}
+  m_Layer: 2
   m_Name: EA_Characters_Statue_Moss_1f_PRE
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -431,3 +432,16 @@ MonoBehaviour:
   RTPCValue: {fileID: 0}
   SetStateGroup: 
   SetStateValue: 
+--- !u!65 &3860092730165591916
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 278219916560597354}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
