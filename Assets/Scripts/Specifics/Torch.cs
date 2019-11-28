@@ -6,14 +6,15 @@ using UnityEngine;
 public class Torch : MonoBehaviour
 {
     private Light _light;
-    public GameObject _flame;
+    public GameObject flame;
+    public GameObject startflame; 
 
     private List<AudioEvent> audioEvents;
 
     void Awake()
     {
         _light = gameObject.GetComponentInChildren<Light>();
-        _flame.SetActive(false);
+        flame.SetActive(false);
         /*var em = _flame.emission;
         em.enabled = false; */
         _light.enabled = false;
@@ -26,7 +27,8 @@ public class Torch : MonoBehaviour
         if (other.gameObject.tag != "Player") return;
         /*var em = _flame.emission;
          em.enabled = true; */
-        _flame.SetActive(true);
+        flame.SetActive(true);
+        startflame.SetActive(true); 
         AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.Fireplace, audioEvents, gameObject);
         AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.Torch, audioEvents, gameObject);
         _light.enabled = true;
