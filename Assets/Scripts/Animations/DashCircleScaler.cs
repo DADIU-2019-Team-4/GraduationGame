@@ -3,37 +3,38 @@
 [ExecuteInEditMode]
 public class DashCircleScaler : MonoBehaviour
 {
-    private InputManager inputManager;
-    public RectTransform InnerCircle;
+    private InputManager _inputManager;
     public RectTransform OuterCircle;
-    public float ScaleFactor = 2.019f;
+    public SpriteRenderer InnerCircle;
+    public float OuterScaleFactor = 2.019f;
+    public float InnerScaleFactor = 2.5f;
 
     [Header("Use this to set the size of the input circles")]
-    public float MoveThreshold = 72f;
-    public float DashThreshold = 322f;
+    public float MoveThreshold = 50f;
+    public float DashThreshold = 200f;
 
     private void Awake()
     {
-        inputManager = FindObjectOfType<InputManager>();
+        _inputManager = FindObjectOfType<InputManager>();
     }
 
     private void Start()
     {
-        inputManager.MoveThreshold = MoveThreshold;
-        inputManager.DashThreshold = DashThreshold;
+        _inputManager.MoveThreshold = MoveThreshold;
+        _inputManager.DashThreshold = DashThreshold;
     }
 
     // Update is called once per frame
     void Update()
     {
 #if UNITY_EDITOR
-        float newMoveScale = inputManager.MoveThreshold * ScaleFactor;
-        float newDashScale = inputManager.DashThreshold * ScaleFactor;
-        InnerCircle.sizeDelta = new Vector2(newMoveScale, newMoveScale);
+        float newMoveScale = _inputManager.MoveThreshold * InnerScaleFactor;
+        float newDashScale = _inputManager.DashThreshold * OuterScaleFactor;
         OuterCircle.sizeDelta = new Vector2(newDashScale, newDashScale);
+        InnerCircle.size = new Vector2(newMoveScale, newMoveScale);
 
-        inputManager.MoveThreshold = MoveThreshold;
-        inputManager.DashThreshold = DashThreshold;
+        _inputManager.MoveThreshold = MoveThreshold;
+        _inputManager.DashThreshold = DashThreshold;
 #endif
     }
 }
