@@ -15,6 +15,8 @@ GameObject:
   - component: {fileID: 2212827570063980771}
   - component: {fileID: 5622776376236387132}
   - component: {fileID: -8849360528287104555}
+  - component: {fileID: 2626801186112380496}
+  - component: {fileID: 2805273202539590043}
   m_Layer: 0
   m_Name: bookClosed01
   m_TagString: Untagged
@@ -148,3 +150,34 @@ MonoBehaviour:
   burnSpeed: 0.5
   destroyAtTheEndOfFire: 1
   firetype: 1
+--- !u!114 &2626801186112380496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2537616214178559710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3f6a57ea9bb81040839eb22c9ccd632, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TriggerType: 12
+  WwiseType: 0
+  EventName: BumpIntoBooks
+  RTPCName: 
+  RTPCValue: {fileID: 0}
+  SetStateGroup: 
+  SetStateValue: 
+--- !u!114 &2805273202539590043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2537616214178559710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcccecc33ec644c4ca493ce9034643eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

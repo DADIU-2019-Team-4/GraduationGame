@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 5697852577404822590}
   - component: {fileID: -7629421653910753886}
   - component: {fileID: 6977103939948198017}
+  - component: {fileID: 684180509932141798}
+  - component: {fileID: 6477115167496355968}
   m_Layer: 0
   m_Name: gaspipe_withoutEnds
   m_TagString: Untagged
@@ -100,6 +102,37 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &684180509932141798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 693469320078759177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3f6a57ea9bb81040839eb22c9ccd632, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TriggerType: 12
+  WwiseType: 0
+  EventName: BumpIntoSteel
+  RTPCName: 
+  RTPCValue: {fileID: 0}
+  SetStateGroup: 
+  SetStateValue: 
+--- !u!114 &6477115167496355968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 693469320078759177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcccecc33ec644c4ca493ce9034643eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6027052762628352888
 GameObject:
   m_ObjectHideFlags: 0

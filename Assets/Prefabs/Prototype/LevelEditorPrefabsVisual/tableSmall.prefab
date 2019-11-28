@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 3196553535278361624}
   - component: {fileID: 482485049464303725}
   - component: {fileID: 8183847737288017683}
+  - component: {fileID: 5251892946637109369}
+  - component: {fileID: 3199943145678520557}
   m_Layer: 0
   m_Name: tableSmall
   m_TagString: Untagged
@@ -128,3 +130,34 @@ MonoBehaviour:
   DamageValue: 0
   HealValue: 10
   BumpHeight: 0.3
+--- !u!114 &5251892946637109369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8936043964704479821}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcccecc33ec644c4ca493ce9034643eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3199943145678520557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8936043964704479821}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3f6a57ea9bb81040839eb22c9ccd632, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TriggerType: 12
+  WwiseType: 0
+  EventName: BumpIntoWall
+  RTPCName: 
+  RTPCValue: {fileID: 0}
+  SetStateGroup: 
+  SetStateValue: 

@@ -119,12 +119,13 @@ public class PaperPlane : DashInteractable
 
     public override void Interact(GameObject player)
     {
+        // Play sound
         AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.OnPlane, audioEvents, gameObject);
 
+        // Attach Player to PaperPlane
         playerAttached = player.GetComponent<AttachToPlane>();
         playerAttachedToThis = true;
 
-        Debug.Log("Collision with: " + gameObject.name);
         player.transform.SetParent(gameObject.transform);
         player.transform.position = player.transform.parent.position;
         player.GetComponent<Rigidbody>().useGravity = false;
@@ -134,7 +135,12 @@ public class PaperPlane : DashInteractable
         //turn flame on
         player.GetComponent<FlameAttachToggler>().FlameOn();
 
+        // Update Animator
+        player.GetComponent<MovementController>().CollidePaperPlane();
+
         isBurning = true;
+
+        //Debug.Log("Collision with: " + gameObject.name);
     }
 
     public override void Interact(Vector3 hitpoint)
