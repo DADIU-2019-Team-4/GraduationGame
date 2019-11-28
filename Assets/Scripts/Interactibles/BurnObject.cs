@@ -10,7 +10,7 @@ public class BurnObject : MonoBehaviour
     //[SerializeField]
     //private List <BurnObject> burnNeighbors;
     [HideInInspector]
-    public float _burnedAmount =0.9f;
+    public float _burnedAmount = 0.9f;
 
     private GameObject _fireObject;
     private float fireFloat = -1f;
@@ -122,7 +122,7 @@ public class BurnObject : MonoBehaviour
     }*/
     private void ShortFire()
     {
-        _renderer.material.SetVector("_StartPoint", gameObject.transform.position); 
+        _renderer.material.SetVector("_StartPoint", gameObject.transform.position);
 
         if (!_isDissasembling)
         {
@@ -135,17 +135,17 @@ public class BurnObject : MonoBehaviour
             else
             {
                 fireFloat += 0.025f;
-               _fireObject.GetComponent<Renderer>().material.SetFloat("_FlameHeight", fireFloat);
+                _fireObject.GetComponent<Renderer>().material.SetFloat("_FlameHeight", fireFloat);
             }
         }
         else if (_isDissasembling)
         {
             if (_burnedAmount < 3f)
             {
-                _burnedAmount += burnSpeed*Time.deltaTime;
+                _burnedAmount += burnSpeed * Time.deltaTime;
                 fireFloat -= 0.05f;
                 _renderer.material.SetFloat("_T", _burnedAmount);
-               _fireObject.GetComponent<Renderer>().material.SetFloat("_FlameHeight", fireFloat);
+                _fireObject.GetComponent<Renderer>().material.SetFloat("_FlameHeight", fireFloat);
             }
             else if (destroyAtTheEndOfFire)
             {
@@ -160,13 +160,15 @@ public class BurnObject : MonoBehaviour
         if (fireFloat >= -0.42f)
             return;
         fireFloat += 0.05f;
-       _fireObject.GetComponent<Renderer>().material.SetFloat("_FlameHeight", fireFloat);
+        _fireObject.GetComponent<Renderer>().material.SetFloat("_FlameHeight", fireFloat);
     }
 
     public void ResetBreakable()
     {
         gameObject.GetComponent<Collider>().enabled = true;
         _renderer.material = _defaultShader;
+        fireFloat = -1f;
+        _burnedAmount = 0.9f;
         _isBurning = false;
         _isDissasembling = true;
         _fire.SetActive(false);
@@ -174,12 +176,12 @@ public class BurnObject : MonoBehaviour
         gameObject.SetActive(true);
     }
 }
-    //if (_burnedAmount >= 0.6f) If need to burn a neighbours
-    //{
-    // for (int i = 0; i <= burnNeighbors.Count - 1; i++)
-    //  if (burnNeighbors[i]._isburnable && !burnNeighbors[i]._isBurning)
-    ////  {
-    //    burnNeighbors[i].SetObjectOnFire();
-    //    burnNeighbors.Remove(burnNeighbors[i]);
-    // }
-    // }
+//if (_burnedAmount >= 0.6f) If need to burn a neighbours
+//{
+// for (int i = 0; i <= burnNeighbors.Count - 1; i++)
+//  if (burnNeighbors[i]._isburnable && !burnNeighbors[i]._isBurning)
+////  {
+//    burnNeighbors[i].SetObjectOnFire();
+//    burnNeighbors.Remove(burnNeighbors[i]);
+// }
+// }
