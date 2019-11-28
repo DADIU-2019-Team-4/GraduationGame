@@ -422,42 +422,6 @@ MonoBehaviour:
   blendDistance: 0
   weight: 1
   priority: 0
---- !u!114 &490988732
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 490988730}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 497c119636a93444fb57b7d10ef825b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isDefaultListener: 1
-  listenerId: 0
---- !u!114 &490988733
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 490988730}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0cd4ce0dac235c4c8a6c3bd942544ae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_listeners:
-    initialListenerList: []
-    useDefaultListeners: 1
-  isEnvironmentAware: 0
-  isStaticObject: 0
-  m_positionOffsetData:
-    KeepMe: 0
-    positionOffset: {x: 0, y: 0, z: 0}
-  m_posOffsetData: {fileID: 0}
-  listenerMask: 1
 --- !u!114 &490988734
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -786,7 +750,7 @@ PrefabInstance:
     - target: {fileID: 8205765953078375096, guid: 0068fbb099a6bed4cb713073491750aa,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -195.69965
+      value: -195.69968
       objectReference: {fileID: 0}
     - target: {fileID: 6115284781201687772, guid: 0068fbb099a6bed4cb713073491750aa,
         type: 3}
@@ -819,11 +783,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 6a731acb342002a4ca891cf2c2c52009,
         type: 3}
-    - target: {fileID: 8803775263551450752, guid: 0068fbb099a6bed4cb713073491750aa,
-        type: 3}
-      propertyPath: m_Text
-      value: SFX
-      objectReference: {fileID: 0}
     - target: {fileID: 6249538272357529766, guid: 0068fbb099a6bed4cb713073491750aa,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -848,6 +807,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8803775263551450752, guid: 0068fbb099a6bed4cb713073491750aa,
+        type: 3}
+      propertyPath: m_Text
+      value: SFX
       objectReference: {fileID: 0}
     - target: {fileID: 6352345629468665713, guid: 0068fbb099a6bed4cb713073491750aa,
         type: 3}

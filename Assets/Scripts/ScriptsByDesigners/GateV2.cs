@@ -41,7 +41,7 @@ public class GateV2 : MonoBehaviour
         if (collider.gameObject.CompareTag("Player") && !_triggerUnlock)
         {
             // Trigger the unlock animation of the key
-            burnObject.SetObjectOnFire(new Vector3(0, 0, 0));
+            burnObject.SetObjectOnFire(gameObject.transform.position);
             AnimatorForKeyWheel.SetBool(UnlockedLabel, true);
 
             //camera behavior
