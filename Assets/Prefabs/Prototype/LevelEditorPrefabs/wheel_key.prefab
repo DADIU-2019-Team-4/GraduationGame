@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1075982263114550749}
   - component: {fileID: 8160467747886589968}
   - component: {fileID: 3333130820285574753}
+  - component: {fileID: 5208911345160952187}
   m_Layer: 0
   m_Name: wheel_key
   m_TagString: Untagged
@@ -103,6 +104,25 @@ MonoBehaviour:
   DamageValue: 0
   HealValue: 0
   BumpHeight: 0.3
+--- !u!114 &5208911345160952187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1296738613866592673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3f6a57ea9bb81040839eb22c9ccd632, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TriggerType: 25
+  WwiseType: 3
+  EventName: GateUnlocked
+  RTPCName: 
+  RTPCValue: {fileID: 0}
+  SetStateGroup: 
+  SetStateValue: 
 --- !u!1 &3430491890945145726
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,7 +6,9 @@ using UnityEngine;
 public class Torch : MonoBehaviour
 {
     private Light _light;
-    public GameObject _flame; 
+    public GameObject _flame;
+
+    private List<AudioEvent> audioEvents;
 
     void Awake()
     {
@@ -15,6 +17,7 @@ public class Torch : MonoBehaviour
         /*var em = _flame.emission;
         em.enabled = false; */
         _light.enabled = false;
+        audioEvents = new List<AudioEvent>(GetComponents<AudioEvent>());
     }
 
 
@@ -23,7 +26,9 @@ public class Torch : MonoBehaviour
         if (other.gameObject.tag != "Player") return;
         /*var em = _flame.emission;
          em.enabled = true; */
-        _flame.SetActive(true); 
+        _flame.SetActive(true);
+        AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.Fireplace, audioEvents, gameObject);
+        AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.Torch, audioEvents, gameObject);
         _light.enabled = true;
         Destroy(this);
     }

@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 6646874461364952922}
   - component: {fileID: 4447038193393265969}
   - component: {fileID: 6935638895133364208}
+  - component: {fileID: 947206286358819728}
+  - component: {fileID: 2960841862405335826}
   m_Layer: 0
   m_Name: WallShooter
   m_TagString: Untagged
@@ -66,6 +68,7 @@ MonoBehaviour:
   planeBurnDuration: 2
   distancePlaneCanTravel: 10
   startSpawnOffset: 0
+  spawnYPosition: 0.75
 --- !u!114 &4447038193393265969
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -119,6 +122,37 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &947206286358819728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6646874461364952923}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcccecc33ec644c4ca493ce9034643eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2960841862405335826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6646874461364952923}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3f6a57ea9bb81040839eb22c9ccd632, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TriggerType: 12
+  WwiseType: 0
+  EventName: BumpIntoConcrete
+  RTPCName: 
+  RTPCValue: {fileID: 0}
+  SetStateGroup: 
+  SetStateValue: 
 --- !u!1001 &7476548946429426685
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -131,11 +165,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: dispenserMachine Model
       objectReference: {fileID: 0}
-    - target: {fileID: -6057140222963153312, guid: 1debc2532f6a55f42858f72537ee0602,
-        type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: a6471b3406e0927479534dd9aca4fe12, type: 2}
     - target: {fileID: -4216859302048453862, guid: 1debc2532f6a55f42858f72537ee0602,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -191,6 +220,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -6057140222963153312, guid: 1debc2532f6a55f42858f72537ee0602,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: a6471b3406e0927479534dd9aca4fe12, type: 2}
     - target: {fileID: 2566825130194033434, guid: 1debc2532f6a55f42858f72537ee0602,
         type: 3}
       propertyPath: m_Materials.Array.data[0]

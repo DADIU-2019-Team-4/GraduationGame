@@ -57,6 +57,8 @@ public class GateV2 : MonoBehaviour
 
     IEnumerator Unlock()
     {
+        AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.GateUnlocked, audioEvents, gameObject);
+
         yield return new WaitForSeconds(animationDelay);
         if (gameObject.CompareTag("BigDoorKey1") && AnimatorFromGameobject.GetBool("Unlock 1") == false)
         {
@@ -72,7 +74,7 @@ public class GateV2 : MonoBehaviour
             coliiderFromDoor.enabled = false; 
             AnimatorFromGameobject.SetBool("Unlocked", true);
         }
-        AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.GateUnlocked, audioEvents, gameObject);
+
     }
 
     IEnumerator switchToCam()

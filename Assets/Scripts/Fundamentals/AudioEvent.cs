@@ -65,6 +65,8 @@ public class AudioEvent : MonoBehaviour
         PictureOff_02,
         PictureOff_03,
         PictureOff_04,
+        Torch,
+        Fireplace,
     }
 
     #endregion
