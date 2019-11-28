@@ -11,6 +11,14 @@ public class PopUpObject : MonoBehaviour
 
     private bool _isShown = false;
 
+
+    private List<AudioEvent> audioEvents;
+
+    private void Awake()
+    {
+        audioEvents = new List<AudioEvent>(GetComponents<AudioEvent>());
+    }
+
     public void PopUp()
     {
         if (!_isShown)
@@ -36,6 +44,24 @@ public class PopUpObject : MonoBehaviour
         if (!canvas) Debug.LogWarning("Unable to find Pop-up canvas to display image on");
         else
         {
+
+            if (gameObject.CompareTag("pic1"))
+            {
+                AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.PictureOn_01, audioEvents, gameObject);
+            }
+            else if (gameObject.CompareTag("pic2"))
+            {
+                AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.PictureOn_02, audioEvents, gameObject);
+            }
+            else if (gameObject.CompareTag("pic3"))
+            {
+                AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.PictureOn_03, audioEvents, gameObject);
+            }
+            else if (gameObject.CompareTag("pic4"))
+            {
+                AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.PictureOn_04, audioEvents, gameObject);
+            }
+
             PopUpCanvas popUpCanvasComponent = canvas.GetComponent<PopUpCanvas>();
             popUpCanvasComponent.DisableButton();
         }
@@ -47,6 +73,23 @@ public class PopUpObject : MonoBehaviour
         if (!canvas) Debug.LogWarning("Unable to find Pop-up canvas to display image on");
         else
         {
+            if (gameObject.CompareTag("pic1"))
+            {
+                AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.PictureOff_01, audioEvents, gameObject);
+            }
+            else if (gameObject.CompareTag("pic2"))
+            {
+                AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.PictureOff_02, audioEvents, gameObject);
+            }
+            else if (gameObject.CompareTag("pic3"))
+            {
+                AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.PictureOff_03, audioEvents, gameObject);
+            }
+            else if (gameObject.CompareTag("pic4"))
+            {
+                AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.PictureOff_04, audioEvents, gameObject);
+            }
+
             PopUpCanvas popUpCanvasComponent = canvas.GetComponent<PopUpCanvas>();
             popUpCanvasComponent.EnableButton();
         }

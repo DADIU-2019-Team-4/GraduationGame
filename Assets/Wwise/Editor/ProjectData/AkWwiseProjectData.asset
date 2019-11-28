@@ -24,7 +24,7 @@ MonoBehaviour:
     ParentPhysicalPath: 
     guid: 61773147c3e61341905ca4a6c975c8be
     GuidInternal: 
-    m_lastTime: -8586277877103968279
+    m_lastTime: -8586267117615418246
     List:
     - name: LargeVerb
       guid: 4df29f5a7ef6c64484385fb4eb29a27f
@@ -34,9 +34,11 @@ MonoBehaviour:
         ObjectType: 12
       - ElementName: Master Audio Bus
         ObjectType: 2
+      - ElementName: SubMaster
+        ObjectType: 2
       - ElementName: LargeVerb
         ObjectType: 1
-      Path: Default Work Unit\Master Audio Bus\LargeVerb
+      Path: Default Work Unit\Master Audio Bus\SubMaster\LargeVerb
     - name: MidVerb
       guid: 211d45291e0f9541a734c6f0a835bc85
       id: 3210245118
@@ -45,9 +47,11 @@ MonoBehaviour:
         ObjectType: 12
       - ElementName: Master Audio Bus
         ObjectType: 2
+      - ElementName: SubMaster
+        ObjectType: 2
       - ElementName: MidVerb
         ObjectType: 1
-      Path: Default Work Unit\Master Audio Bus\MidVerb
+      Path: Default Work Unit\Master Audio Bus\SubMaster\MidVerb
     - name: SmallVerb
       guid: 42fcaad7c24ef548aaf4674aecafd5e9
       id: 117523933
@@ -56,15 +60,17 @@ MonoBehaviour:
         ObjectType: 12
       - ElementName: Master Audio Bus
         ObjectType: 2
+      - ElementName: SubMaster
+        ObjectType: 2
       - ElementName: SmallVerb
         ObjectType: 1
-      Path: Default Work Unit\Master Audio Bus\SmallVerb
+      Path: Default Work Unit\Master Audio Bus\SubMaster\SmallVerb
   BankWwu:
   - PhysicalPath: SoundBanks\Default Work Unit.wwu
     ParentPhysicalPath: 
     guid: 72425237053ab44b82427a05c1308321
     GuidInternal: 
-    m_lastTime: -8586277829408177959
+    m_lastTime: -8586267114380978915
     List:
     - name: Room_2_Bank
       guid: e0606da1b37faa4b9eea4fea19ea8b94
@@ -80,7 +86,7 @@ MonoBehaviour:
     ParentPhysicalPath: 
     guid: 85519e3dd9af71428bf05cf3b19b0630
     GuidInternal: 
-    m_lastTime: -8586275337580349400
+    m_lastTime: -8586267006979282643
     List:
     - name: ArrowPull
       guid: 608bf70bea70904ba9e045c9b78b6c3a
@@ -121,9 +127,9 @@ MonoBehaviour:
       - ElementName: BreakObject
         ObjectType: 3
       Path: Character\Objects\BreakObject
-      maxAttenuation: 0
-      maxDuration: 2901814
-      minDuration: 2440125
+      maxAttenuation: 100000000
+      maxDuration: 3811497
+      minDuration: 3597574
     - name: BreakObjectMute
       guid: af8f23a58d62994e84e3b5bf9ec42b13
       id: 384768216
@@ -150,7 +156,7 @@ MonoBehaviour:
         ObjectType: 3
       Path: Character\Dashing\ChargedDash
       maxAttenuation: 0
-      maxDuration: 2554358
+      maxDuration: 2750478
       minDuration: 2410993
     - name: ChargingDash
       guid: 7064d9f3179e2b419c800744ead4036a
@@ -180,20 +186,6 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: 1326893
       minDuration: 1326893
-    - name: CollectFire
-      guid: b98d5a6c02f1e344a4aad4a11919b71f
-      id: 2370884349
-      PathAndIcons:
-      - ElementName: Character
-        ObjectType: 12
-      - ElementName: Objects
-        ObjectType: 4
-      - ElementName: CollectFire
-        ObjectType: 3
-      Path: Character\Objects\CollectFire
-      maxAttenuation: 0
-      maxDuration: 5076939
-      minDuration: 5076939
     - name: DashCancel
       guid: b09df4b9feaf8444a1f53e6c9bc6c0f0
       id: 2850533655
@@ -220,8 +212,8 @@ MonoBehaviour:
         ObjectType: 3
       Path: Character\PlayerHealth\Dead
       maxAttenuation: 0
-      maxDuration: 5634581
-      minDuration: 781509
+      maxDuration: 8857146
+      minDuration: 8857146
     - name: DeathObject
       guid: 32dcf5edd786504cbdacad9f513d6171
       id: 679539432
@@ -236,6 +228,34 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: 1538095
       minDuration: 1538095
+    - name: GateUnlocked
+      guid: b98d5a6c02f1e344a4aad4a11919b71f
+      id: 1822606759
+      PathAndIcons:
+      - ElementName: Character
+        ObjectType: 12
+      - ElementName: Objects
+        ObjectType: 4
+      - ElementName: GateUnlocked
+        ObjectType: 3
+      Path: Character\Objects\GateUnlocked
+      maxAttenuation: 0
+      maxDuration: 10328459
+      minDuration: 10328459
+    - name: HurtPlayer
+      guid: 4cb14f7890800c4cb72e9bdb0605a9b3
+      id: 90462293
+      PathAndIcons:
+      - ElementName: Character
+        ObjectType: 12
+      - ElementName: PlayerHealth
+        ObjectType: 4
+      - ElementName: HurtPlayer
+        ObjectType: 3
+      Path: Character\PlayerHealth\HurtPlayer
+      maxAttenuation: 0
+      maxDuration: 3466058
+      minDuration: 533244
     - name: NormalDash
       guid: e43973cbb69fc641bf82e9f6fdb05e52
       id: 1016929228
@@ -248,7 +268,7 @@ MonoBehaviour:
         ObjectType: 3
       Path: Character\Dashing\NormalDash
       maxAttenuation: 0
-      maxDuration: 1904135
+      maxDuration: 3271523
       minDuration: 1601180
     - name: OffPlane
       guid: d7ef19d696462d498aca1ead91e9966b
@@ -261,9 +281,9 @@ MonoBehaviour:
       - ElementName: OffPlane
         ObjectType: 3
       Path: Character\PaperPlane\OffPlane
-      maxAttenuation: 0
-      maxDuration: 347326
-      minDuration: 347326
+      maxAttenuation: 15000000
+      maxDuration: 1044935
+      minDuration: 1044935
     - name: OffRope
       guid: 18a3b678ef957440b6aad640362b000a
       id: 1766390728
@@ -289,9 +309,9 @@ MonoBehaviour:
       - ElementName: OnPlane
         ObjectType: 3
       Path: Character\PaperPlane\OnPlane
-      maxAttenuation: 0
-      maxDuration: -1
-      minDuration: -1
+      maxAttenuation: 15000000
+      maxDuration: 461542
+      minDuration: 461542
     - name: OnRope
       guid: a00036995aaba745aa30ee3028ec1a97
       id: 2346684474
@@ -318,8 +338,8 @@ MonoBehaviour:
         ObjectType: 3
       Path: Character\PaperPlane\PaperPlaneDead
       maxAttenuation: 0
-      maxDuration: -1
-      minDuration: -1
+      maxDuration: 0
+      minDuration: 0
     - name: PaperPlaneSpawn
       guid: 1fcbdc37d26bcb42a782d0a5b2de0ee3
       id: 948186658
@@ -331,6 +351,134 @@ MonoBehaviour:
       - ElementName: PaperPlaneSpawn
         ObjectType: 3
       Path: Character\PaperPlane\PaperPlaneSpawn
+      maxAttenuation: 15000000
+      maxDuration: -1
+      minDuration: -1
+    - name: PictureOff_01
+      guid: 36ef842a16c8124fa3662853552e7a83
+      id: 1091851954
+      PathAndIcons:
+      - ElementName: Character
+        ObjectType: 12
+      - ElementName: Objects
+        ObjectType: 4
+      - ElementName: Pictures
+        ObjectType: 4
+      - ElementName: PictureOff_01
+        ObjectType: 3
+      Path: Character\Objects\Pictures\PictureOff_01
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
+    - name: PictureOff_02
+      guid: 1f2419736c3b5e4ea4fa622ffa8dae74
+      id: 1091851953
+      PathAndIcons:
+      - ElementName: Character
+        ObjectType: 12
+      - ElementName: Objects
+        ObjectType: 4
+      - ElementName: Pictures
+        ObjectType: 4
+      - ElementName: PictureOff_02
+        ObjectType: 3
+      Path: Character\Objects\Pictures\PictureOff_02
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
+    - name: PictureOff_03
+      guid: 6bd691de14fbc24997460f2eec61158d
+      id: 1091851952
+      PathAndIcons:
+      - ElementName: Character
+        ObjectType: 12
+      - ElementName: Objects
+        ObjectType: 4
+      - ElementName: Pictures
+        ObjectType: 4
+      - ElementName: PictureOff_03
+        ObjectType: 3
+      Path: Character\Objects\Pictures\PictureOff_03
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
+    - name: PictureOff_04
+      guid: c947403bc1166f4fa133ed9f2124ff2f
+      id: 1091851959
+      PathAndIcons:
+      - ElementName: Character
+        ObjectType: 12
+      - ElementName: Objects
+        ObjectType: 4
+      - ElementName: Pictures
+        ObjectType: 4
+      - ElementName: PictureOff_04
+        ObjectType: 3
+      Path: Character\Objects\Pictures\PictureOff_04
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
+    - name: PictureOn_01
+      guid: 49a0c23b64bd994c9d8605273d462ecf
+      id: 1562868852
+      PathAndIcons:
+      - ElementName: Character
+        ObjectType: 12
+      - ElementName: Objects
+        ObjectType: 4
+      - ElementName: Pictures
+        ObjectType: 4
+      - ElementName: PictureOn_01
+        ObjectType: 3
+      Path: Character\Objects\Pictures\PictureOn_01
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: PictureOn_02
+      guid: 1ee03259b476a34d95a1e0c58a3da27c
+      id: 1562868855
+      PathAndIcons:
+      - ElementName: Character
+        ObjectType: 12
+      - ElementName: Objects
+        ObjectType: 4
+      - ElementName: Pictures
+        ObjectType: 4
+      - ElementName: PictureOn_02
+        ObjectType: 3
+      Path: Character\Objects\Pictures\PictureOn_02
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: PictureOn_03
+      guid: 49090fcaa1662a4ea7ab4c5ee002124d
+      id: 1562868854
+      PathAndIcons:
+      - ElementName: Character
+        ObjectType: 12
+      - ElementName: Objects
+        ObjectType: 4
+      - ElementName: Pictures
+        ObjectType: 4
+      - ElementName: PictureOn_03
+        ObjectType: 3
+      Path: Character\Objects\Pictures\PictureOn_03
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: PictureOn_04
+      guid: 3c9a6a10c4821d4b8077a343276a388d
+      id: 1562868849
+      PathAndIcons:
+      - ElementName: Character
+        ObjectType: 12
+      - ElementName: Objects
+        ObjectType: 4
+      - ElementName: Pictures
+        ObjectType: 4
+      - ElementName: PictureOn_04
+        ObjectType: 3
+      Path: Character\Objects\Pictures\PictureOn_04
       maxAttenuation: 0
       maxDuration: -1
       minDuration: -1
@@ -345,7 +493,7 @@ MonoBehaviour:
       - ElementName: PlayerHealth
         ObjectType: 3
       Path: Character\PlayerHealth\PlayerHealth
-      maxAttenuation: 100000000
+      maxAttenuation: 0
       maxDuration: -1
       minDuration: -1
   - PhysicalPath: Events\Default Work Unit.wwu
@@ -358,7 +506,7 @@ MonoBehaviour:
     ParentPhysicalPath: 
     guid: 798a08f7a060c94bb31dbf2936cc7894
     GuidInternal: 
-    m_lastTime: -8586275189843732986
+    m_lastTime: -8586267013555275350
     List:
     - name: BumpIntoBooks
       guid: a5e678f91e46db45a6085d8dd485fb67
@@ -470,32 +618,60 @@ MonoBehaviour:
         ObjectType: 3
       Path: Environment\Fireplace\DadsMouth
       maxAttenuation: 50000000
-      maxDuration: -1
-      minDuration: -1
-    - name: Fireplace1
+      maxDuration: 0
+      minDuration: 0
+    - name: DangerZoneIn
+      guid: e4e03c690d6b734696258543973dff18
+      id: 991018855
+      PathAndIcons:
+      - ElementName: Environment
+        ObjectType: 12
+      - ElementName: DangerZone
+        ObjectType: 4
+      - ElementName: DangerZoneIn
+        ObjectType: 3
+      Path: Environment\DangerZone\DangerZoneIn
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
+    - name: DangerZoneOut
+      guid: 92777d5ca63ec74ca0d31c51527f2cb6
+      id: 2096427994
+      PathAndIcons:
+      - ElementName: Environment
+        ObjectType: 12
+      - ElementName: DangerZone
+        ObjectType: 4
+      - ElementName: DangerZoneOut
+        ObjectType: 3
+      Path: Environment\DangerZone\DangerZoneOut
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
+    - name: Fireplace
       guid: 5e4055c1bc3ab144aa3ed112c9a6c633
-      id: 3601776787
+      id: 1404152342
       PathAndIcons:
       - ElementName: Environment
         ObjectType: 12
       - ElementName: Fireplace
         ObjectType: 4
-      - ElementName: Fireplace1
+      - ElementName: Fireplace
         ObjectType: 3
-      Path: Environment\Fireplace\Fireplace1
-      maxAttenuation: 15000000
+      Path: Environment\Fireplace\Fireplace
+      maxAttenuation: 10000000
       maxDuration: -1
       minDuration: -1
-    - name: OutsideAmbience
-      guid: 7319791b9ce4a548b2bc67993e80c530
-      id: 3564400826
+    - name: RainParticle
+      guid: f50cbeef69d9124d9dc1fd7c9209ce21
+      id: 2030397405
       PathAndIcons:
       - ElementName: Environment
         ObjectType: 12
-      - ElementName: OutsideAmbience
+      - ElementName: RainParticle
         ObjectType: 3
-      Path: Environment\OutsideAmbience
-      maxAttenuation: 0
+      Path: Environment\RainParticle
+      maxAttenuation: 20000000
       maxDuration: -1
       minDuration: -1
     - name: RoomTone_01
@@ -546,32 +722,44 @@ MonoBehaviour:
       PathAndIcons:
       - ElementName: Environment
         ObjectType: 12
+      - ElementName: Fireplace
+        ObjectType: 4
       - ElementName: Torches
         ObjectType: 4
       - ElementName: Torch
         ObjectType: 3
-      Path: Environment\Torches\Torch
-      maxAttenuation: 0
+      Path: Environment\Fireplace\Torches\Torch
+      maxAttenuation: 20000000
       maxDuration: -1
       minDuration: -1
-  - PhysicalPath: Events\GameController.wwu
-    ParentPhysicalPath: 
-    guid: 08b89f9c90ef23468f370115d452e20c
-    GuidInternal: 
-    m_lastTime: -8586278795008356224
-    List:
-    - name: KillOnRestart
-      guid: 8a2c7db59cad7346a8013a106d5e1e0e
-      id: 1330879727
+    - name: WaterSprayOff
+      guid: 7a6dffad545a484db5528b32fe90c023
+      id: 2312877492
       PathAndIcons:
-      - ElementName: GameController
+      - ElementName: Environment
         ObjectType: 12
-      - ElementName: KillOnRestart
+      - ElementName: WaterSpray
+        ObjectType: 4
+      - ElementName: WaterSprayOff
         ObjectType: 3
-      Path: GameController\KillOnRestart
-      maxAttenuation: 0
-      maxDuration: 0
-      minDuration: 0
+      Path: Environment\WaterSpray\WaterSprayOff
+      maxAttenuation: 15000000
+      maxDuration: 3402018
+      minDuration: 3402018
+    - name: WaterSprayOn
+      guid: 5ab7b9f04a986e48a1cbf9802661e8dc
+      id: 441114158
+      PathAndIcons:
+      - ElementName: Environment
+        ObjectType: 12
+      - ElementName: WaterSpray
+        ObjectType: 4
+      - ElementName: WaterSprayOn
+        ObjectType: 3
+      Path: Environment\WaterSpray\WaterSprayOn
+      maxAttenuation: 15000000
+      maxDuration: 3461542
+      minDuration: 3461542
   - PhysicalPath: Events\InGame_UI.wwu
     ParentPhysicalPath: 
     guid: 9a9189c843fed44184f89467d8975824
@@ -594,51 +782,212 @@ MonoBehaviour:
     ParentPhysicalPath: 
     guid: b354ec827c03c44399470a4771e70173
     GuidInternal: 
-    m_lastTime: -8586275361830756882
+    m_lastTime: -8586267117614999269
     List:
-    - name: InteractiveMusic_01
-      guid: 467138a50bfc0b4d80da309eab709870
-      id: 2106235974
+    - name: Credits_Music
+      guid: 88a23df6b372b24e81836663de8ece36
+      id: 1522595433
       PathAndIcons:
       - ElementName: Music
         ObjectType: 12
-      - ElementName: InteractiveMusic_01
+      - ElementName: Credits_Music
         ObjectType: 3
-      Path: Music\InteractiveMusic_01
+      Path: Music\Credits_Music
       maxAttenuation: 0
       maxDuration: -1
       minDuration: -1
-    - name: Room02_Music
-      guid: fc252a655fe938429caae48b125b8a80
-      id: 2092364794
+    - name: Room0101_Music
+      guid: 467138a50bfc0b4d80da309eab709870
+      id: 3936711540
       PathAndIcons:
       - ElementName: Music
         ObjectType: 12
-      - ElementName: Room02_Music
+      - ElementName: Room0101_Music
         ObjectType: 3
-      Path: Music\Room02_Music
+      Path: Music\Room0101_Music
       maxAttenuation: 0
-      maxDuration: 337777760
-      minDuration: 337777760
-    - name: TheHub_Music
-      guid: 4bfc7c21455187488ea781be7bf2dca2
-      id: 1547275971
+      maxDuration: -1
+      minDuration: -1
+    - name: Room0102_Music
+      guid: 9a04de2507fa9c4395c1228d46c34f9d
+      id: 2041600939
       PathAndIcons:
       - ElementName: Music
         ObjectType: 12
-      - ElementName: TheHub_Music
+      - ElementName: Room0102_Music
         ObjectType: 3
-      Path: Music\TheHub_Music
+      Path: Music\Room0102_Music
       maxAttenuation: 0
-      maxDuration: 190174350
-      minDuration: 190174350
+      maxDuration: -1
+      minDuration: -1
+    - name: Room0201_Music
+      guid: d6d01c8059d6df489544d96bac833aa9
+      id: 3749508035
+      PathAndIcons:
+      - ElementName: Music
+        ObjectType: 12
+      - ElementName: Room0201_Music
+        ObjectType: 3
+      Path: Music\Room0201_Music
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: Room0202_Music
+      guid: ba600de00f799d4e9cec79ff7c4c7294
+      id: 1431983180
+      PathAndIcons:
+      - ElementName: Music
+        ObjectType: 12
+      - ElementName: Room0202_Music
+        ObjectType: 3
+      Path: Music\Room0202_Music
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: Tutorial_Music
+      guid: 14ac0f967385934ea6e797fef72dafaa
+      id: 359881691
+      PathAndIcons:
+      - ElementName: Music
+        ObjectType: 12
+      - ElementName: Tutorial_Music
+        ObjectType: 3
+      Path: Music\Tutorial_Music
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+  - PhysicalPath: Events\PauseMenu.wwu
+    ParentPhysicalPath: 
+    guid: 3b41aaec90f3894c8c5231d3cbc5dbe2
+    GuidInternal: 
+    m_lastTime: -8586267117614739950
+    List:
+    - name: ChangeLanguageToDanish
+      guid: 536d983849b83f4d8c8bea168dbac1fa
+      id: 2758237675
+      PathAndIcons:
+      - ElementName: PauseMenu
+        ObjectType: 12
+      - ElementName: ChangeLanguageToDanish
+        ObjectType: 3
+      Path: PauseMenu\ChangeLanguageToDanish
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
+    - name: ChangeLanguageToEnglish
+      guid: b49baef1d6f2f74bacc1acaf29bed1ad
+      id: 3205496764
+      PathAndIcons:
+      - ElementName: PauseMenu
+        ObjectType: 12
+      - ElementName: ChangeLanguageToEnglish
+        ObjectType: 3
+      Path: PauseMenu\ChangeLanguageToEnglish
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
+    - name: ContinueGame
+      guid: 1faa0454ca0c4441aa0c6d7c6ed334ae
+      id: 889138964
+      PathAndIcons:
+      - ElementName: PauseMenu
+        ObjectType: 12
+      - ElementName: ContinueGame
+        ObjectType: 3
+      Path: PauseMenu\ContinueGame
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
+    - name: EnterPauseMenu
+      guid: 0c1abe1be28913488477a27646d417a2
+      id: 3602428572
+      PathAndIcons:
+      - ElementName: PauseMenu
+        ObjectType: 12
+      - ElementName: EnterPauseMenu
+        ObjectType: 3
+      Path: PauseMenu\EnterPauseMenu
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
+    - name: ExitOptions
+      guid: 2fa1707a18bfaa4dbce37a7dc7a22560
+      id: 91804985
+      PathAndIcons:
+      - ElementName: PauseMenu
+        ObjectType: 12
+      - ElementName: ExitOptions
+        ObjectType: 3
+      Path: PauseMenu\ExitOptions
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
+    - name: ExitPauseMenu
+      guid: 1f045133b24d8941b13ed146e3747138
+      id: 1908168848
+      PathAndIcons:
+      - ElementName: PauseMenu
+        ObjectType: 12
+      - ElementName: ExitPauseMenu
+        ObjectType: 3
+      Path: PauseMenu\ExitPauseMenu
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
+    - name: GoToMainMenu
+      guid: fd47b37a45a25b4bacae4ea6ab5e572d
+      id: 2499528146
+      PathAndIcons:
+      - ElementName: PauseMenu
+        ObjectType: 12
+      - ElementName: GoToMainMenu
+        ObjectType: 3
+      Path: PauseMenu\GoToMainMenu
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
+    - name: NewGame
+      guid: ecc66bed914e4a448eb3a87ac4f31e73
+      id: 943969687
+      PathAndIcons:
+      - ElementName: PauseMenu
+        ObjectType: 12
+      - ElementName: NewGame
+        ObjectType: 3
+      Path: PauseMenu\NewGame
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
+    - name: OpenOptions
+      guid: 7b38848d6c4bdd4692ccd7b6b3809036
+      id: 3806663565
+      PathAndIcons:
+      - ElementName: PauseMenu
+        ObjectType: 12
+      - ElementName: OpenOptions
+        ObjectType: 3
+      Path: PauseMenu\OpenOptions
+      maxAttenuation: 0
+      maxDuration: 0
+      minDuration: 0
   RtpcWwu:
   - PhysicalPath: Game Parameters\Default Work Unit.wwu
     ParentPhysicalPath: 
     guid: 4e98cb7cf821544ba39897d46f0d9511
     GuidInternal: 
-    m_lastTime: -8586278453621159887
+    m_lastTime: -8586267117615129272
     List:
+    - name: AmbienceVolume
+      guid: 73ab94c49f75ca47b9363f5a089e594c
+      id: 1204480359
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: MenuRTPC's
+        ObjectType: 4
+      - ElementName: AmbienceVolume
+        ObjectType: 13
+      Path: Default Work Unit\MenuRTPC's\AmbienceVolume
     - name: ArrowLenght
       guid: 9a705b640a989b4f9bda55dce1b2a4de
       id: 2495094760
@@ -666,6 +1015,17 @@ MonoBehaviour:
       - ElementName: GoalDistance
         ObjectType: 13
       Path: Default Work Unit\GoalDistance
+    - name: MusicVolume
+      guid: 853f2cdc73a13c4abca6195cc750002d
+      id: 2346531308
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: MenuRTPC's
+        ObjectType: 4
+      - ElementName: MusicVolume
+        ObjectType: 13
+      Path: Default Work Unit\MenuRTPC's\MusicVolume
     - name: PlayerHealth
       guid: 192ce6e176fcde4e951ebb262d1de75a
       id: 151362964
@@ -675,46 +1035,239 @@ MonoBehaviour:
       - ElementName: PlayerHealth
         ObjectType: 13
       Path: Default Work Unit\PlayerHealth
+    - name: SFXVolume
+      guid: 1af9ab6925c1bf4d9e5c7c8296e82c55
+      id: 988953028
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: MenuRTPC's
+        ObjectType: 4
+      - ElementName: SFXVolume
+        ObjectType: 13
+      Path: Default Work Unit\MenuRTPC's\SFXVolume
   StateWwu:
   - PhysicalPath: States\Default Work Unit.wwu
     ParentPhysicalPath: 
     guid: 766c0dfff68df343a7b439ad43be7727
     GuidInternal: 
-    m_lastTime: -8586278795008525754
+    m_lastTime: -8586267589289112953
     List:
-    - name: Room01
-      guid: b5854ef4fda925428bec2d41db9ae29f
-      id: 348022313
+    - name: roomOneOne
+      guid: f7085784a822dd4e9d3ed636d4a8a20a
+      id: 3223910544
       PathAndIcons:
       - ElementName: Default Work Unit
         ObjectType: 12
-      - ElementName: Room01
+      - ElementName: MusicStates
+        ObjectType: 4
+      - ElementName: roomOneOne
         ObjectType: 9
-      Path: Default Work Unit\Room01
+      Path: Default Work Unit\MusicStates\roomOneOne
       values:
       - name: None
-        guid: 3c20b47e644e96428659e7d38ed8a4ce
+        guid: e9907ab0a9993e4da3d9e1c6c5560062
         id: 748895195
         PathAndIcons:
         - ElementName: None
           ObjectType: 8
-      - name: var01
-        guid: d819207e2695134da724067599a8402e
-        id: 3890185709
+      - name: Room0101_intro
+        guid: 0f8eff3a52957e4ab3b22467bc005d52
+        id: 3567507059
         PathAndIcons:
-        - ElementName: var01
+        - ElementName: Room0101_intro
           ObjectType: 8
-      - name: var02
-        guid: 86e450845b884c47b83386c75c0a19d8
-        id: 3890185710
+      - name: Room0101_loop02
+        guid: a5346516091904429b4a98dfaf48118d
+        id: 3250108651
         PathAndIcons:
-        - ElementName: var02
+        - ElementName: Room0101_loop02
           ObjectType: 8
-      - name: var03
-        guid: fcd04322a23c094ab1fe1c1bf8ba5e0c
-        id: 3890185711
+      - name: Room0101_loop03
+        guid: ceb6c99f295d74418f7d883f78360955
+        id: 3250108650
         PathAndIcons:
-        - ElementName: var03
+        - ElementName: Room0101_loop03
+          ObjectType: 8
+      - name: Room0101_outro
+        guid: fb48dd1cfca9cd46bd5db548ed207a8a
+        id: 3375149584
+        PathAndIcons:
+        - ElementName: Room0101_outro
+          ObjectType: 8
+      ValueGuids: []
+      ValueIcons: []
+      valuesInternal: []
+    - name: roomOneTwo
+      guid: 87e1bdc5a942194ea353af8a6506af5c
+      id: 3076310594
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: MusicStates
+        ObjectType: 4
+      - ElementName: roomOneTwo
+        ObjectType: 9
+      Path: Default Work Unit\MusicStates\roomOneTwo
+      values:
+      - name: None
+        guid: 1c38a1c78250ff4590da27464b628979
+        id: 748895195
+        PathAndIcons:
+        - ElementName: None
+          ObjectType: 8
+      - name: Room0102_intro
+        guid: 2d3914a7d158e0408f587f4f76ec61c5
+        id: 3810612548
+        PathAndIcons:
+        - ElementName: Room0102_intro
+          ObjectType: 8
+      - name: Room0102_loop02
+        guid: a310bd5be19f7c429ee3d1abd0bdda9e
+        id: 725143298
+        PathAndIcons:
+        - ElementName: Room0102_loop02
+          ObjectType: 8
+      - name: Room0102_loop03
+        guid: e3ff33a06fbdec4280b9c14cf6def28f
+        id: 725143299
+        PathAndIcons:
+        - ElementName: Room0102_loop03
+          ObjectType: 8
+      - name: Room0102_outro
+        guid: 2e64e1209aa26e42bb76a3225ab2f07d
+        id: 809663779
+        PathAndIcons:
+        - ElementName: Room0102_outro
+          ObjectType: 8
+      ValueGuids: []
+      ValueIcons: []
+      valuesInternal: []
+    - name: roomTwoOne
+      guid: f844aa45ffdc3643a8cb345f363404c8
+      id: 3909066446
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: MusicStates
+        ObjectType: 4
+      - ElementName: roomTwoOne
+        ObjectType: 9
+      Path: Default Work Unit\MusicStates\roomTwoOne
+      values:
+      - name: None
+        guid: f27d0ca4e6c6964988c4f14e4165ab49
+        id: 748895195
+        PathAndIcons:
+        - ElementName: None
+          ObjectType: 8
+      - name: Room0201_loop01
+        guid: 24ffac433d77574f9e799a38d56bf18b
+        id: 1012249209
+        PathAndIcons:
+        - ElementName: Room0201_loop01
+          ObjectType: 8
+      - name: Room0201_loop01_Intense
+        guid: 37debda09caddd41b91cadd46968f48c
+        id: 1568576654
+        PathAndIcons:
+        - ElementName: Room0201_loop01_Intense
+          ObjectType: 8
+      - name: Room0201_loop02
+        guid: 120693c0cc5ceb43a4947be41460fab2
+        id: 1012249210
+        PathAndIcons:
+        - ElementName: Room0201_loop02
+          ObjectType: 8
+      - name: Room0201_loop03
+        guid: 2c73f4d5f868b74790be17d72b169f14
+        id: 1012249211
+        PathAndIcons:
+        - ElementName: Room0201_loop03
+          ObjectType: 8
+      ValueGuids: []
+      ValueIcons: []
+      valuesInternal: []
+    - name: roomTwoTwo
+      guid: d8dad20f3a5a7b4898364d53b9ebf7be
+      id: 4022817136
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: MusicStates
+        ObjectType: 4
+      - ElementName: roomTwoTwo
+        ObjectType: 9
+      Path: Default Work Unit\MusicStates\roomTwoTwo
+      values:
+      - name: None
+        guid: 72d1d17346a9f84eab56d96a1e569d63
+        id: 748895195
+        PathAndIcons:
+        - ElementName: None
+          ObjectType: 8
+      - name: Room0202_credits
+        guid: 9fedee23c09c684cad11d0c1235804f9
+        id: 1247947399
+        PathAndIcons:
+        - ElementName: Room0202_credits
+          ObjectType: 8
+      - name: Room0202_emotion
+        guid: a2ce12d49911e94d978b4d21c4b9e21d
+        id: 481422214
+        PathAndIcons:
+        - ElementName: Room0202_emotion
+          ObjectType: 8
+      - name: Room0202_emotionLoop
+        guid: 2ee4af13c4c40845bd6284d7de5b3a4c
+        id: 996042768
+        PathAndIcons:
+        - ElementName: Room0202_emotionLoop
+          ObjectType: 8
+      - name: Room0202_intro
+        guid: 4c85a3b378acc3449aa4bc0ab40affa6
+        id: 1222515547
+        PathAndIcons:
+        - ElementName: Room0202_intro
+          ObjectType: 8
+      - name: Room0202_introIntense
+        guid: 40ec96c69a2d444e85537e957e31f61d
+        id: 3344499011
+        PathAndIcons:
+        - ElementName: Room0202_introIntense
+          ObjectType: 8
+      ValueGuids: []
+      ValueIcons: []
+      valuesInternal: []
+    - name: Tutorial
+      guid: 133503077bf88446b3eb07f9205d119b
+      id: 3762955427
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: MusicStates
+        ObjectType: 4
+      - ElementName: Tutorial
+        ObjectType: 9
+      Path: Default Work Unit\MusicStates\Tutorial
+      values:
+      - name: None
+        guid: cc58e8117d79024d8649aa35e53bf104
+        id: 748895195
+        PathAndIcons:
+        - ElementName: None
+          ObjectType: 8
+      - name: Tutorial_hub
+        guid: 86ebfc3964474346a65e1fba3b7441e5
+        id: 2347071267
+        PathAndIcons:
+        - ElementName: Tutorial_hub
+          ObjectType: 8
+      - name: Tutorial_start
+        guid: 04f4eea978872f4f8c7109c4a3d8b00f
+        id: 687730286
+        PathAndIcons:
+        - ElementName: Tutorial_start
           ObjectType: 8
       ValueGuids: []
       ValueIcons: []
@@ -737,7 +1290,7 @@ MonoBehaviour:
     ParentPhysicalPath: 
     guid: 16216b6a7ab33d4c810a55f2aa54346d
     GuidInternal: 
-    m_lastTime: -8586288926688124325
+    m_lastTime: -8586267841172152556
     List:
     - name: Stinger01
       guid: 67474faba70b614cb9a1163395c21408
@@ -751,12 +1304,8 @@ MonoBehaviour:
   ExpandedItems:
   - /GraduationGame_WwiseProject
   - /GraduationGame_WwiseProject/Events
-  - /GraduationGame_WwiseProject/Events/Character
-  - /GraduationGame_WwiseProject/Events/Character/Dashing
-  - /GraduationGame_WwiseProject/Events/Character/PaperPlane
   - /GraduationGame_WwiseProject/Events/Environment
   - /GraduationGame_WwiseProject/Events/Environment/Fireplace
-  - /GraduationGame_WwiseProject/Events/Environment/Torches
-  - /GraduationGame_WwiseProject/Events/Music
+  - /GraduationGame_WwiseProject/Events/Environment/Fireplace/Torches
   autoPopulateEnabled: 1
   CurrentPluginConfig: 

@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class lightFlicker : MonoBehaviour
 {
-    public float waitTime = 0.2f;
+    public float waitTime = 0.1f;
     public float minLight = 2f;
-    public float maxLight = 3f;
+    public float maxLight = 2.1f;
 
     // Start is called before the first frame update
     void Start()

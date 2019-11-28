@@ -27,7 +27,7 @@ public class AttachToPlane : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Projectile" && !_attached)
+        if (other.gameObject.CompareTag("Projectile") && !_attached)
         {
             other.GetComponent<PaperPlane>().Consume();
         }
@@ -62,6 +62,10 @@ public class AttachToPlane : MonoBehaviour
             _attached = false;
 
             GetComponent<MovementController>().IsInvulnerable = false;
+            GetComponent<MovementController>().IsInvulnerable = false;
+
+            // Update Animator
+            GetComponent<MovementController>().StopMoving();
 
             _flameAttachToggler.FlameOff();
         }     

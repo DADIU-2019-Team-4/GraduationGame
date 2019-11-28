@@ -17,6 +17,7 @@ public class FireGirlAnimationController : MonoBehaviour
     public const string CollideTrigger = "Collide";
     public const string DieTrigger = "Die";
     public const string RespawnTrigger = "Respawn";
+    public const string JumpIdleTrigger = "Jump Idle";
 
     // Animator's speed variable names
     public const string MoveSpeedLabel = "Short Dash Speed";
@@ -88,14 +89,15 @@ public class FireGirlAnimationController : MonoBehaviour
 
     public void Collide()
     {
-        ResetTriggers();
         Idle();
         _collideTrigger = true;
+        _inInteractable = false;
         UpdateAnimators();
     }
 
     public void EnterInteractable(InteractibleObject.InteractType objectType)
     {
+        _collideTrigger = true;
         _inInteractable = true;
         _isInteractableFuse = objectType == InteractibleObject.InteractType.Fuse;
         UpdateAnimators();
@@ -103,7 +105,6 @@ public class FireGirlAnimationController : MonoBehaviour
 
     public void Land()
     {
-        ResetTriggers();
         Idle();
         UpdateAnimators();
     }
@@ -117,7 +118,6 @@ public class FireGirlAnimationController : MonoBehaviour
 
     public void Respawn()
     {
-        ResetTriggers();
         Idle();
         _respawnTrigger = true;
         UpdateAnimators();
@@ -150,6 +150,7 @@ public class FireGirlAnimationController : MonoBehaviour
         _respawnTrigger = false;
 
         ResetSpeed();
+        ResetTriggers();
         UpdateAnimators();
     }
 
@@ -183,6 +184,7 @@ public class FireGirlAnimationController : MonoBehaviour
             anim.ResetTrigger(CollideTrigger);
             anim.ResetTrigger(DieTrigger);
             anim.ResetTrigger(RespawnTrigger);
+            anim.ResetTrigger(JumpIdleTrigger);
         }
     }
 

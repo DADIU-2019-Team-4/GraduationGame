@@ -5,6 +5,14 @@ using UnityEngine.UI;
 
 public class PopUpCanvas : MonoBehaviour
 {
+
+    private List<AudioEvent> audioEvents;
+
+    private void Awake()
+    {
+        audioEvents = new List<AudioEvent>(GetComponents<AudioEvent>());
+    }
+ 
     public void SetImage(Sprite sprite)
     {
         Image imageComponent = this.transform.GetChild(0).GetComponent<Image>();
@@ -32,5 +40,6 @@ public class PopUpCanvas : MonoBehaviour
     public void DestroyPopUp()
     {
         this.transform.GetChild(0).gameObject.SetActive(false);
+
     }
 }

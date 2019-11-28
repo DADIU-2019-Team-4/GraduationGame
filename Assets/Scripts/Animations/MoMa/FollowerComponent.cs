@@ -16,7 +16,7 @@ namespace MoMa
         private Transform _model;
         private GameObject _path;
         private GameObject _altPaths;
-        private GameObject[] _altPathArray = new GameObject[CharacterController.CandidateFramesSize];
+        private GameObject[] _altPathArray = new GameObject[SalamanderController.CandidateFramesSize];
 
         public FollowerComponent(Transform model)
         {
@@ -25,7 +25,7 @@ namespace MoMa
             this._altPaths = new GameObject();
             this._altPaths.name = "Alternative Paths";
 
-            for (int i=0; i < CharacterController.CandidateFramesSize; i++)
+            for (int i=0; i < SalamanderController.CandidateFramesSize; i++)
             {
                 _altPathArray[i] = new GameObject();
                 _altPathArray[i].transform.parent = this._altPaths.transform;

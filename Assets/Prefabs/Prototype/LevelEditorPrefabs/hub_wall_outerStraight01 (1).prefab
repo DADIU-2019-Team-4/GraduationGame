@@ -13,8 +13,9 @@ GameObject:
   - component: {fileID: 3936548780130255214}
   - component: {fileID: 8064751473753929842}
   - component: {fileID: 2177106386469809378}
-  - component: {fileID: 8258381285290030735}
   - component: {fileID: 6205491091594330271}
+  - component: {fileID: 2319035793838275874}
+  - component: {fileID: 2399638878517681585}
   m_Layer: 0
   m_Name: hub_wall_outerStraight01 (1)
   m_TagString: Untagged
@@ -110,25 +111,6 @@ MonoBehaviour:
   DamageValue: 0
   HealValue: 0
   BumpHeight: 0.3
---- !u!114 &8258381285290030735
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3359043546349532594}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3f6a57ea9bb81040839eb22c9ccd632, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TriggerType: 3
-  WwiseType: 0
-  EventName: BlockObject
-  RTPCName: 
-  RTPCValue: {fileID: 0}
-  SetStateGroup: 
-  SetStateValue: 
 --- !u!114 &6205491091594330271
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,3 +125,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fixedAngle: 90
   cameraMoved: 0
+--- !u!114 &2319035793838275874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3359043546349532594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3f6a57ea9bb81040839eb22c9ccd632, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TriggerType: 12
+  WwiseType: 0
+  EventName: BumpIntoWall
+  RTPCName: 
+  RTPCValue: {fileID: 0}
+  SetStateGroup: 
+  SetStateValue: 
+--- !u!114 &2399638878517681585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3359043546349532594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcccecc33ec644c4ca493ce9034643eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

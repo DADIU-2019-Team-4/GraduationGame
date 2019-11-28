@@ -715,47 +715,7 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
   m_CustomBlends: {fileID: 11400000, guid: de5f436952b1a724e98d9d72ebc65629, type: 2}
-  m_ParentHash:
-  - m_Hash: -1467598915
-    m_ParentHash: 756556552
-  - m_Hash: -1482263730
-    m_ParentHash: 756556552
-  - m_Hash: 1432961145
-    m_ParentHash: 756556552
-  - m_Hash: -1717003916
-    m_ParentHash: 1432961145
-  - m_Hash: -590625689
-    m_ParentHash: 1432961145
-  - m_Hash: 1374949185
-    m_ParentHash: 756556552
-  - m_Hash: -1383296879
-    m_ParentHash: 1374949185
-  - m_Hash: -580743318
-    m_ParentHash: 1374949185
-  - m_Hash: 932547788
-    m_ParentHash: 1374949185
-  - m_Hash: 273866939
-    m_ParentHash: 1374949185
-  - m_Hash: 1718862356
-    m_ParentHash: 756556552
-  - m_Hash: 1228813136
-    m_ParentHash: 1718862356
-  - m_Hash: 1628325350
-    m_ParentHash: 1718862356
-  - m_Hash: 558702772
-    m_ParentHash: 756556552
-  - m_Hash: 1009196019
-    m_ParentHash: 558702772
-  - m_Hash: -170301948
-    m_ParentHash: 558702772
-  - m_Hash: -2047733301
-    m_ParentHash: 756556552
-  - m_Hash: -540439920
-    m_ParentHash: -2047733301
-  - m_Hash: 729329876
-    m_ParentHash: -2047733301
-  - m_Hash: 646206193
-    m_ParentHash: -2047733301
+  m_ParentHash: []
 --- !u!1 &8842590520285724696
 GameObject:
   m_ObjectHideFlags: 0
@@ -1360,8 +1320,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8854936887492025765}
   - component: {fileID: 8854936887492025762}
-  - component: {fileID: 8854936887492025764}
-  - component: {fileID: 8854936887492025763}
   - component: {fileID: 8854936887492025767}
   - component: {fileID: 6666093883413212517}
   m_Layer: 0
@@ -1378,8 +1336,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8854936887492025760}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0.43057135, y: 0.29789042, z: -0.15303627, w: 0.8381226}
+  m_LocalPosition: {x: -17.950321, y: 14.804961, z: 23.889711}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1580942442862096672}
@@ -1428,42 +1386,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!114 &8854936887492025764
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8854936887492025760}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0cd4ce0dac235c4c8a6c3bd942544ae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_listeners:
-    initialListenerList: []
-    useDefaultListeners: 1
-  isEnvironmentAware: 0
-  isStaticObject: 0
-  m_positionOffsetData:
-    KeepMe: 0
-    positionOffset: {x: 0, y: 0, z: 0}
-  m_posOffsetData: {fileID: 0}
-  listenerMask: 1
---- !u!114 &8854936887492025763
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8854936887492025760}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 497c119636a93444fb57b7d10ef825b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isDefaultListener: 1
-  listenerId: 0
 --- !u!114 &8854936887492025767
 MonoBehaviour:
   m_ObjectHideFlags: 0
