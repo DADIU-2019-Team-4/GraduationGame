@@ -23,10 +23,10 @@ namespace MoMa
         //this._anim.Add(Packer.Pack("runLeft_DEFAULT_C26", "MoCapData", "runLeft_DEFAULT_C26"));
 
         // Fine-tuning
-        //public const float RecalculationThreshold = 0.3f; // The maximum diff of two Trajectories before recalculating the Animation
-        public const float RecalculationThreshold = Mathf.Infinity; // The maximum diff of two Trajectories before recalculating the Animation
+        public const float RecalculationThreshold = 0.7f; // The maximum diff of two Trajectories before recalculating the Animation
+        //public const float RecalculationThreshold = Mathf.Infinity; // The maximum diff of two Trajectories before recalculating the Animation
         public const int CooldownTime = 500; // Number of frames that a Frame is on cooldown after being played
-        public const int CandidateFramesSize = 30; // Number of candidate frames for a transition (tradeoff: fidelity/speed)
+        public const int CandidateFramesSize = 20; // Number of candidate frames for a transition (tradeoff: fidelity/speed)
         public const int ClipBlendPoints = 0; // Each Animation Clip is blended with the next one for smoother transition. The are both played for this num of Frames
 
         // Frame/Point/Feature ratios
@@ -45,8 +45,8 @@ namespace MoMa
         // Movement
         public const float DefaultDampTime = 1f;
         public const float StopDampTime = 3f;
-        public const float WalkingSpeed = 2.70f;
-        public const float RunningSpeed = 1.4f;
+        public const float WalkingSpeed = 1.70f;
+        public const float RunningSpeed = 2.4f;
 
         private MovementComponent _mc;
         private FollowerComponent _fc;
@@ -63,14 +63,15 @@ namespace MoMa
             // TODO: The Animations should not be packed on runtime
             List<(string, string)> animationFiles = new List<(string, string)>();
             animationFiles.Add(("take-1_DEFAULT_C26", "TempMoCapData"));
-            //animationFiles.Add(("take-2_DEFAULT_C26", "cleanUps"));
-            //animationFiles.Add(("take-3_DEFAULT_C26", "cleanUps"));
-            //animationFiles.Add(("take-4_DEFAULT_C26", "cleanUps"));
-            //animationFiles.Add(("take-5_DEFAULT_C26", "cleanUps"));
-            //animationFiles.Add(("take-6_DEFAULT_C26", "cleanUps"));
+            animationFiles.Add(("take-2_DEFAULT_C26", "cleanUps"));
+            animationFiles.Add(("take-3_DEFAULT_C26", "cleanUps"));
+            animationFiles.Add(("take-4_DEFAULT_C26", "cleanUps"));
+            animationFiles.Add(("take-5_DEFAULT_C26", "cleanUps"));
+            animationFiles.Add(("take-6_DEFAULT_C26", "cleanUps"));
             //animationFiles.Add(("take-7_DEFAULT_C26", "TempMoCapData"));
             //animationFiles.Add(("take-8_DEFAULT_C26", "TempMoCapData"));
             //animationFiles.Add(("take-9_DEFAULT_C26", "TempMoCapData"));
+            //animationFiles.Add(("mini", "TempMoCapData"));
 
             // We assume that the Character has the correct structure
             this._model = this.gameObject.transform;

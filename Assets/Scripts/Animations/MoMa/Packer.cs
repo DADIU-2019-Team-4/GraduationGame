@@ -8,10 +8,10 @@ namespace MoMa
     {
         // The number of frames for each root transform sample
         // ++ Lower jiggling, -- root moves like hips
-        public const int SampleWindow = 20;
+        public const int SampleWindow = 200;  // Should be greater than 2; otherwise rotation cannot be calculated
 
         // Threshold of hips distance to determine idle or moving
-        public const float DisplacementThreshold = SampleWindow * 0.01f;
+        public const float DisplacementThreshold = SampleWindow * 0.008f;
 
         public static Animation Pack(string animationName, string directory, string filename)
         {
@@ -86,7 +86,7 @@ namespace MoMa
             }
 
             // Root motion is not included in the file, so we approximate it
-            ComputeRootTransform(anim);
+            //ComputeRootTransform(anim);
 
             Debug.Log("Motion contains " + anim.frameList.Count + " frames");
 
@@ -97,7 +97,6 @@ namespace MoMa
         private static void ComputeRootTransform(Animation anim)
         {
             List<Bone.Data> rootSamples = new List<Bone.Data>();
-            Quaternion lastRotation = Quaternion.LookRotation(Vector3.forward, Vector3.up);
 
             // 1. Sample the root transform every SampleWindow frames
             for (
@@ -105,8 +104,7 @@ namespace MoMa
                 currentFrame + SampleWindow < anim.frameList.Count;
                 currentFrame += SampleWindow)
             {
-                Bone.Data sample = SampleFromFrame(anim, currentFrame, lastRotation);
-                lastRotation = sample.rotation;
+                Bone.Data sample = SampleFromFrame(anim, currentFrame);
                 rootSamples.Add(sample);
             }
 
@@ -117,9 +115,6 @@ namespace MoMa
                 currentFrame < SampleWindow / 2;
                 currentFrame++)
             {
-                // Load current Frame's root data
-                Bone.Data currentRootData = anim.frameList[currentFrame].boneDataDict[Bone.Type.root];
-
                 // Lerp to find a smooth transform
                 (Vector3 position, Quaternion rotation) = LerpFrame(
                     anim.frameList[0].boneDataDict[Bone.Type.hips],
@@ -127,8 +122,8 @@ namespace MoMa
                     (float)currentFrame / (SampleWindow / 2));
 
                 /// Store found value
-                currentRootData.position = position;
-                currentRootData.rotation = rotation;
+                anim.frameList[currentFrame].boneDataDict[Bone.Type.root].position = position;
+                anim.frameList[currentFrame].boneDataDict[Bone.Type.root].rotation = rotation;
             }
 
             // Intermediate frames
@@ -142,10 +137,8 @@ namespace MoMa
                     currentFrame < SampleWindow;
                     currentFrame++)
                 {
-                    // Load current Frame's root data
-                    Bone.Data currentRootData = anim.frameList[
-                        currentSample * SampleWindow + currentFrame + SampleWindow / 2
-                        ].boneDataDict[Bone.Type.root];
+                    // Compute current offset
+                    int currentOffset = currentSample * SampleWindow + currentFrame + SampleWindow / 2;
 
                     // Lerp to find a smooth transform
                     (Vector3 position, Quaternion rotation) = LerpFrame(
@@ -154,8 +147,10 @@ namespace MoMa
                         currentFrame / SampleWindow);
 
                     /// Store found value
-                    currentRootData.position = position;
-                    currentRootData.rotation = rotation;
+                    anim.frameList[currentOffset].boneDataDict[Bone.Type.root].position = position;
+                    anim.frameList[currentOffset].boneDataDict[Bone.Type.root].rotation = rotation;
+
+                    Debug.Log("root rotation: " + anim.frameList[currentOffset].boneDataDict[Bone.Type.root].rotation.eulerAngles);
                 }
             }
 
@@ -167,10 +162,8 @@ namespace MoMa
                 currentFrameOffset < rightPaddingFrames;
                 currentFrameOffset++)
             {
-                // Load current Frame's root data
-                Bone.Data currentRootData = anim.frameList[
-                    firstPaddingFrame + currentFrameOffset
-                    ].boneDataDict[Bone.Type.root];
+                // Compute current offset
+                int currentOffset = firstPaddingFrame + currentFrameOffset;
 
                 // Lerp to find a smooth transform
                 (Vector3 position, Quaternion rotation) = LerpFrame(
@@ -179,21 +172,22 @@ namespace MoMa
                     currentFrameOffset / rightPaddingFrames);
 
                 /// Store found value
-                currentRootData.position = position;
-                currentRootData.rotation = rotation;
+                anim.frameList[currentOffset].boneDataDict[Bone.Type.root].position = position;
+                anim.frameList[currentOffset].boneDataDict[Bone.Type.root].rotation = rotation;
             }
 
             // 3. Recalibrate hips to comply with root's rotation
-            for (
-                int currentFrame = 0;
-                currentFrame < anim.frameList.Count;
-                currentFrame++)
-            {
-                anim.frameList[currentFrame].boneDataDict[Bone.Type.hips].position -=
-                    anim.frameList[currentFrame].boneDataDict[Bone.Type.root].position;
-                anim.frameList[currentFrame].boneDataDict[Bone.Type.hips].rotation *=
-                    Quaternion.Inverse(anim.frameList[currentFrame].boneDataDict[Bone.Type.root].rotation);
-            }
+            //for (
+            //    int currentFrame = 0;
+            //    currentFrame < anim.frameList.Count;
+            //    currentFrame++)
+            //{
+            //    anim.frameList[currentFrame].boneDataDict[Bone.Type.hips].position -=
+            //        anim.frameList[currentFrame].boneDataDict[Bone.Type.root].position;
+            //    anim.frameList[currentFrame].boneDataDict[Bone.Type.hips].rotation =
+            //        anim.frameList[currentFrame].boneDataDict[Bone.Type.hips].rotation *
+            //        Quaternion.Inverse(anim.frameList[currentFrame].boneDataDict[Bone.Type.root].rotation);
+            //}
         }
 
         private static void ComputeLocalTranform(Animation anim)
@@ -208,9 +202,10 @@ namespace MoMa
             // Find local Positions
             foreach (Frame frame in anim.frameList)
             {
-                // Root's (hips) Position and Rotation
-                Vector3 rootP = frame.boneDataDict[Bone.Type.root].position;
-                Quaternion rootQ = frame.boneDataDict[Bone.Type.root].rotation;
+                // (TODO FINAL): set it to root and not hips
+                // Root's Position and Rotation
+                Vector3 rootP = frame.boneDataDict[Bone.Type.hips].position;
+                Quaternion rootQ = frame.boneDataDict[Bone.Type.hips].rotation;
 
                 // For every bone of the Animation
                 foreach (Bone.Type bt in Enum.GetValues(typeof(Bone.Type)))
@@ -239,7 +234,7 @@ namespace MoMa
             }
         }
 
-        private static Bone.Data SampleFromFrame(Animation anim, int startingSampleFrame, Quaternion lastRotation)
+        private static Bone.Data SampleFromFrame(Animation anim, int startingSampleFrame)
         {
             Quaternion rotation;
             Vector3 position = new Vector3(0, 0, 0);
@@ -259,11 +254,12 @@ namespace MoMa
             lastPosition = anim.frameList[startingSampleFrame + SampleWindow - 1].boneDataDict[Bone.Type.hips].position;
             displacement = (lastPosition - firstPosition);
 
-            //Debug.Log("Displacement: " + displacement.magnitude);
+            Debug.Log("Displacement: " + displacement.magnitude);
 
-            if (displacement.magnitude > DisplacementThreshold)
+            if (displacement.magnitude < DisplacementThreshold)
             {
-                rotation = lastRotation;
+                rotation = anim.frameList[startingSampleFrame + SampleWindow/2 - 1]
+                    .boneDataDict[Bone.Type.hips].rotation;
             }
             else
             {
