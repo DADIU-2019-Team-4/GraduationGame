@@ -262,6 +262,10 @@ public class InputManager : IGameLoop
         if (_dashCircle != null) Destroy(_dashCircle);
         _dashCircle = Instantiate(DashCirclePrefab, position, Quaternion.identity, _canvas.transform);
         _dashCircle.transform.SetAsFirstSibling();
+        float newXPos = position.x - Screen.width / 2;
+        float newYpos = position.y - Screen.height / 2;
+        _dashCircle.transform.localPosition = new Vector3(newXPos, newYpos, 0);
+        _dashCircle.transform.localRotation = Quaternion.identity;
 
         _firstPosition = position;
         _lastPosition = position;
