@@ -213,7 +213,7 @@ PrefabInstance:
     - target: {fileID: 6730771481215799286, guid: bbf7e8b6c0670c14688e9704378844d3,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7724756211008306661, guid: bbf7e8b6c0670c14688e9704378844d3,
         type: 3}
@@ -270,6 +270,41 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7724756211008306661, guid: bbf7e8b6c0670c14688e9704378844d3,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7724756211008306661, guid: bbf7e8b6c0670c14688e9704378844d3,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7724756211008306661, guid: bbf7e8b6c0670c14688e9704378844d3,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 750465755519562329, guid: bbf7e8b6c0670c14688e9704378844d3,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d885849846d346348831de20d745ce3c, type: 2}
+    - target: {fileID: 2459880070412758406, guid: bbf7e8b6c0670c14688e9704378844d3,
+        type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2459880070412758406, guid: bbf7e8b6c0670c14688e9704378844d3,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4fce4b6bd17f52c45a8c5bb65c76fd67, type: 2}
+    - target: {fileID: 2459880070412758406, guid: bbf7e8b6c0670c14688e9704378844d3,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: d885849846d346348831de20d745ce3c, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bbf7e8b6c0670c14688e9704378844d3, type: 3}
 --- !u!1001 &136306807
@@ -350,7 +385,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 216189977}
-  - component: {fileID: 216189976}
   m_Layer: 0
   m_Name: WwiseGlobal
   m_TagString: Untagged
@@ -358,33 +392,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &216189976
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 216189975}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ac000d1e99bff64aa60c0bb00316b24, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  InitializationSettings: {fileID: 11400000, guid: 915f080ec8346ef4c99a7c5eba2255a8,
-    type: 2}
-  basePath: 
-  language: 
-  defaultPoolSize: 0
-  lowerPoolSize: 0
-  streamingPoolSize: 0
-  memoryCutoffThreshold: 0
-  monitorPoolSize: 0
-  monitorQueuePoolSize: 0
-  callbackManagerBufferSize: 0
-  spatialAudioPoolSize: 0
-  maxSoundPropagationDepth: 0
-  diffractionFlags: 11
-  engineLogging: 0
 --- !u!4 &216189977
 Transform:
   m_ObjectHideFlags: 0
@@ -1601,7 +1608,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1599978215
 MonoBehaviour:
   m_ObjectHideFlags: 0
