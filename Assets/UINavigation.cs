@@ -220,4 +220,20 @@ public class UINavigation : MonoBehaviour
             PlayerPrefs.SetInt("FirstTimePlaying", 1);
         }
     }
+
+    public IEnumerator BurnOptionsMenu(float duration)
+    {
+        gameObject.transform.Find("Burn").GetComponent<Renderer>().material.GetFloat("_Float0");
+
+        /*float delay = 0.2f;
+        while (currentStamina != stamina)
+        {
+            yield return new WaitForSeconds(delay);
+            currentStamina += 1;
+        }
+        staminaRegenerating = false;*/
+    
+
+    yield return new WaitForSeconds(duration);
+    }
 }
