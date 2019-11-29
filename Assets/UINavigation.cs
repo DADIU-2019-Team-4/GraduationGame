@@ -157,15 +157,19 @@ public class UINavigation : MonoBehaviour
 
     public void EnterPauseMenu()
     {
-        if (_pauseMenu.activeSelf)
+        if (_pauseMenu.activeSelf) // exit pause menu
         {
-            _pauseMenu.SetActive(false);
             AudioEvent.PostEvent("ExitPauseMenu", gameObject);
+            Time.timeScale = 1;
+            StartCoroutine(BurnPauseMenu(1));
+            gameObject.transform.Find("PauseButton").GetComponent<Image>().material.DisableKeyword("_PAUSED_ON");
         }
-        else
+        else //Enter Pause Menu
         {
-            _pauseMenu.SetActive(true);
 
+            gameObject.transform.Find("PauseButton").GetComponent<Image>().material.EnableKeyword("_PAUSED_ON");
+            _pauseMenu.SetActive(true);
+            Time.timeScale = 0;
 
             AudioEvent.PostEvent("EnterPauseMenu", gameObject);
 
@@ -223,8 +227,7 @@ public class UINavigation : MonoBehaviour
 
     public IEnumerator BurnOptionsMenu(float duration)
     {
-
-       // Mathf.Lerp(0,1,duration);
+        
 
         float burnValue = gameObject.transform.Find("Burn").GetComponent<Image>().material.GetFloat("_Float0");
 
@@ -237,6 +240,26 @@ public class UINavigation : MonoBehaviour
 
         gameObject.transform.Find("Burn").GetComponent<Image>().material.SetFloat("_Float0", 0);
         _optionsMenu.SetActive(false);
+
+        //yield return new WaitForSeconds(duration);
+    }
+
+    public IEnumerator BurnPauseMenu(float duration)
+    {
+
+
+        float burnValue = _pauseMenu.transform.Find("Burn").GetComponent<Image>().material.GetFloat("_DissolveAmount");
+
+        while (burnValue < 1)
+        {
+            burnValue += Time.deltaTime;
+            _pauseMenu.transform.Find("Burn").GetComponent<Image>().material.SetFloat("_DissolveAmount", burnValue + Time.deltaTime);
+            yield return null;
+        }
+
+        _pauseMenu.transform.Find("Burn").GetComponent<Image>().material.SetFloat("_DissolveAmount", 0);
+
+        _pauseMenu.SetActive(false);
 
         //yield return new WaitForSeconds(duration);
     }
