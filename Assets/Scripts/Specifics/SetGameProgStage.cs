@@ -11,6 +11,12 @@ public class SetGameProgStage : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
             if ((int)GameProgressionTracker.Value < (int)SetTo)
+            {
                 GameProgressionTracker.Value = SetTo;
+
+                //save to playerpref
+                PlayerPrefs.SetInt("Progression", (int)SetTo);
+            }
+                
     }
 }
