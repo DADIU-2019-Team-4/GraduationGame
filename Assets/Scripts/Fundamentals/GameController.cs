@@ -74,7 +74,7 @@ public class GameController : MonoBehaviour
 
     public void RestartScene()
     {
-        _fadeout.RemoveFade();
+        //_fadeout.RemoveFade();
         FindObjectOfType<MovementController>().Respawn();
 
         DiedText.SetActive(false);
