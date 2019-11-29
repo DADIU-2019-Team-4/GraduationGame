@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311992, g: 0.38074034, b: 0.35872713, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -96,7 +96,8 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ShowResolutionOverlay: 1
     m_ExportTrainingData: 0
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: c8e5193d6e718854c822934cfbe25333,
+    type: 2}
   m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
@@ -238,7 +239,7 @@ Light:
   m_Type: 0
   m_Color: {r: 0.4292453, g: 0.79682523, b: 1, a: 1}
   m_Intensity: 9
-  m_Range: 15
+  m_Range: 7.5208044
   m_SpotAngle: 35
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -279,7 +280,7 @@ Light:
   m_Lightmapping: 2
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
+  m_BounceIntensity: 0.2
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
@@ -451,6 +452,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: picture02
+      objectReference: {fileID: 0}
+    - target: {fileID: 3219185129337011920, guid: 899b766a31510a748836b6473b37ad9f,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 1943177935079656643, guid: 899b766a31510a748836b6473b37ad9f,
         type: 3}
@@ -4934,6 +4940,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: picture01
       objectReference: {fileID: 0}
+    - target: {fileID: 2225163808793368399, guid: b5021a08f9fca2f4b99fcd484bec1843,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 2934666255706744156, guid: b5021a08f9fca2f4b99fcd484bec1843,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5352,6 +5363,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: picture01
+      objectReference: {fileID: 0}
+    - target: {fileID: 2225163808793368399, guid: b5021a08f9fca2f4b99fcd484bec1843,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 2934666255706744156, guid: b5021a08f9fca2f4b99fcd484bec1843,
         type: 3}
@@ -5797,6 +5813,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: picture02
+      objectReference: {fileID: 0}
+    - target: {fileID: 3219185129337011920, guid: 899b766a31510a748836b6473b37ad9f,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 1943177935079656643, guid: 899b766a31510a748836b6473b37ad9f,
         type: 3}
@@ -7106,6 +7127,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: picture01
       objectReference: {fileID: 0}
+    - target: {fileID: 2225163808793368399, guid: b5021a08f9fca2f4b99fcd484bec1843,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 2934666255706744156, guid: b5021a08f9fca2f4b99fcd484bec1843,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -8213,7 +8239,7 @@ Light:
   m_Lightmapping: 2
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
+  m_BounceIntensity: 0.2
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
@@ -8507,10 +8533,10 @@ Light:
   serializedVersion: 9
   m_Type: 0
   m_Color: {r: 0.4292453, g: 0.79682523, b: 1, a: 1}
-  m_Intensity: 9
-  m_Range: 15
-  m_SpotAngle: 35
-  m_InnerSpotAngle: 21.80208
+  m_Intensity: 10.6
+  m_Range: 5.2390604
+  m_SpotAngle: 18.97
+  m_InnerSpotAngle: 18.97
   m_CookieSize: 10
   m_Shadows:
     m_Type: 0
@@ -8549,7 +8575,7 @@ Light:
   m_Lightmapping: 2
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
+  m_BounceIntensity: 0.2
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
@@ -9821,6 +9847,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: picture01
       objectReference: {fileID: 0}
+    - target: {fileID: 2225163808793368399, guid: b5021a08f9fca2f4b99fcd484bec1843,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 2934666255706744156, guid: b5021a08f9fca2f4b99fcd484bec1843,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -10350,6 +10381,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: picture01
+      objectReference: {fileID: 0}
+    - target: {fileID: 2225163808793368399, guid: b5021a08f9fca2f4b99fcd484bec1843,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 2934666255706744156, guid: b5021a08f9fca2f4b99fcd484bec1843,
         type: 3}
@@ -12813,6 +12849,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: picture02
       objectReference: {fileID: 0}
+    - target: {fileID: 3219185129337011920, guid: 899b766a31510a748836b6473b37ad9f,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 1943177935079656643, guid: 899b766a31510a748836b6473b37ad9f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -13541,6 +13582,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: picture01
       objectReference: {fileID: 0}
+    - target: {fileID: 2225163808793368399, guid: b5021a08f9fca2f4b99fcd484bec1843,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 2934666255706744156, guid: b5021a08f9fca2f4b99fcd484bec1843,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -13778,7 +13824,7 @@ Light:
   m_Lightmapping: 2
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
+  m_BounceIntensity: 0.2
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
@@ -13796,6 +13842,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: pictureEnding
+      objectReference: {fileID: 0}
+    - target: {fileID: 7833246809088047234, guid: 193658cec9ca19146a946d4e47fb44d0,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 6552193889350011537, guid: 193658cec9ca19146a946d4e47fb44d0,
         type: 3}
@@ -18406,6 +18457,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: picture01
       objectReference: {fileID: 0}
+    - target: {fileID: 2225163808793368399, guid: b5021a08f9fca2f4b99fcd484bec1843,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 2934666255706744156, guid: b5021a08f9fca2f4b99fcd484bec1843,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -19707,7 +19763,7 @@ Light:
   m_Lightmapping: 2
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
+  m_BounceIntensity: 0.2
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
@@ -20519,7 +20575,7 @@ Light:
   m_Lightmapping: 2
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
+  m_BounceIntensity: 0.2
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
@@ -21183,6 +21239,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: pic4
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: ab3cae55b78407e4b88f05bece912607,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: ab3cae55b78407e4b88f05bece912607,
         type: 3}
@@ -23653,7 +23714,7 @@ Light:
   m_Lightmapping: 2
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
+  m_BounceIntensity: 0.2
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
@@ -24293,6 +24354,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: picture01
       objectReference: {fileID: 0}
+    - target: {fileID: 2225163808793368399, guid: b5021a08f9fca2f4b99fcd484bec1843,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 2934666255706744156, guid: b5021a08f9fca2f4b99fcd484bec1843,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -24457,6 +24523,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: picture02
+      objectReference: {fileID: 0}
+    - target: {fileID: 3219185129337011920, guid: 899b766a31510a748836b6473b37ad9f,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 1943177935079656643, guid: 899b766a31510a748836b6473b37ad9f,
         type: 3}
@@ -26029,6 +26100,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: picture01
       objectReference: {fileID: 0}
+    - target: {fileID: 2225163808793368399, guid: b5021a08f9fca2f4b99fcd484bec1843,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 2934666255706744156, guid: b5021a08f9fca2f4b99fcd484bec1843,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -26994,6 +27070,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: picture01
       objectReference: {fileID: 0}
+    - target: {fileID: 2225163808793368399, guid: b5021a08f9fca2f4b99fcd484bec1843,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 2934666255706744156, guid: b5021a08f9fca2f4b99fcd484bec1843,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -27827,7 +27908,7 @@ Light:
   m_Lightmapping: 2
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
+  m_BounceIntensity: 0.2
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
@@ -28105,6 +28186,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: picture02
+      objectReference: {fileID: 0}
+    - target: {fileID: 3219185129337011920, guid: 899b766a31510a748836b6473b37ad9f,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 1943177935079656643, guid: 899b766a31510a748836b6473b37ad9f,
         type: 3}
@@ -29729,6 +29815,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: picture02
+      objectReference: {fileID: 0}
+    - target: {fileID: 3219185129337011920, guid: 899b766a31510a748836b6473b37ad9f,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 1943177935079656643, guid: 899b766a31510a748836b6473b37ad9f,
         type: 3}
@@ -33980,7 +34071,7 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
+    m_Type: 1
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -34016,7 +34107,7 @@ Light:
   m_Lightmapping: 2
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
+  m_BounceIntensity: 0.2
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
@@ -34482,6 +34573,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: picture01
+      objectReference: {fileID: 0}
+    - target: {fileID: 2225163808793368399, guid: b5021a08f9fca2f4b99fcd484bec1843,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 2934666255706744156, guid: b5021a08f9fca2f4b99fcd484bec1843,
         type: 3}
@@ -38898,7 +38994,7 @@ Light:
   m_Type: 0
   m_Color: {r: 0.3915094, g: 0.6750968, b: 1, a: 1}
   m_Intensity: 14.04
-  m_Range: 9.3
+  m_Range: 5.8092666
   m_SpotAngle: 37
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -38939,7 +39035,7 @@ Light:
   m_Lightmapping: 2
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
+  m_BounceIntensity: 0.2
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
