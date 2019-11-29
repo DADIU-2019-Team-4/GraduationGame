@@ -26,24 +26,24 @@ public class SplashScreenController : MonoBehaviour
 
     IEnumerator StartIntro()
     {
-        AkSoundEngine.PostEvent("CompanyName_event", gameObject);
+        //AkSoundEngine.PostEvent("CompanyName_event", gameObject);
         _companyName.DOFade(1f, _fadeDuration);
         yield return new WaitForSeconds(_fadeDuration);
         _companyName.DOFade(0f, _fadeDuration);
         yield return new WaitForSeconds(_fadeDuration);
 
-        AkSoundEngine.PostEvent("GameTitle_event", gameObject);
+        //AkSoundEngine.PostEvent("GameTitle_event", gameObject);
         _gameTitle.DOFade(1f, _fadeDuration);
         yield return new WaitForSeconds(_fadeDuration);
         _gameTitle.DOFade(0f, _fadeDuration);
         yield return new WaitForSeconds(_fadeDuration);
 
-        AkSoundEngine.PostEvent("GameTitle_event", gameObject);
+        //AkSoundEngine.PostEvent("GameTitle_event", gameObject);
         _headphones.DOFade(1f, _fadeDuration);
         yield return new WaitForSeconds(_fadeDuration);
         _headphones.DOFade(0f, _fadeDuration);
         yield return new WaitForSeconds(_fadeDuration);
 
-        SceneManager.LoadScene("Intro Scene");
+        SceneManager.LoadScene("MainMenu");
     }
 }

@@ -21,7 +21,7 @@ public class DELETE_LATERtutorialTxt : MonoBehaviour
         if (loadBaseSceneManager.StoryProgression.Value != StoryProgression.EStoryProgression.At_Tutorial)
         {
             GameObject tutorial = GameObject.Find("QuickUITutorialCanvas");
-            tutorial.SetActive(false);
+            tutorial?.SetActive(false);
         }
     }
 

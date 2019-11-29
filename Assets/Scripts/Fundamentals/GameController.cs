@@ -24,11 +24,12 @@ public class GameController : MonoBehaviour
 
     private List<AudioEvent> audioEvents;
     private List<InteractibleObject> _breakables = null;
-    // private List<InteractibleObject> _disappearingTiles = null // These need to reset too.
+    private FadeOut _fadeout;
 
     private void Start()
     {
         audioEvents = new List<AudioEvent>(GetComponents<AudioEvent>());
+        _fadeout = GetComponent<FadeOut>();
         var index = SceneManager.sceneCount;
         LevelNameText.text = SceneManager.GetSceneAt(index - 1).name;
     }
@@ -52,6 +53,7 @@ public class GameController : MonoBehaviour
         AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.Died, audioEvents, gameObject);
         GameEnd();
         DiedText.SetActive(true);
+        _fadeout.StartFade();
         StartCoroutine(WaitForRestart());
     }
 
@@ -60,6 +62,7 @@ public class GameController : MonoBehaviour
         AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.OutOfMoves, audioEvents, gameObject);
         GameEnd();
         OutOfMovesText.SetActive(true);
+        _fadeout.StartFade();
         StartCoroutine(WaitForRestart());
     }
 
@@ -71,6 +74,7 @@ public class GameController : MonoBehaviour
 
     public void RestartScene()
     {
+        //_fadeout.RemoveFade();
         FindObjectOfType<MovementController>().Respawn();
 
         DiedText.SetActive(false);
