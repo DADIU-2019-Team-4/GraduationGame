@@ -23,7 +23,7 @@ RenderSettings:
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
-  m_AmbientIntensity: 1
+  m_AmbientIntensity: 0
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
@@ -35,10 +35,10 @@ RenderSettings:
   m_DefaultReflectionMode: 0
   m_DefaultReflectionResolution: 128
   m_ReflectionBounces: 1
-  m_ReflectionIntensity: 1
+  m_ReflectionIntensity: 0.403
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.23816302, g: 0.24338123, b: 0.22830728, a: 0.403}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -96,7 +96,8 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ShowResolutionOverlay: 1
     m_ExportTrainingData: 0
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 474abfa9dacfdc741a138cc7bcb69cd9,
+    type: 2}
   m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
@@ -216,6 +217,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: motherRoom_walls_outer04
+      objectReference: {fileID: 0}
+    - target: {fileID: 595582879668686228, guid: 5beec5fa2b1b917448f5d909af8c2636,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 4474527036012117895, guid: 5beec5fa2b1b917448f5d909af8c2636,
         type: 3}
@@ -457,6 +463,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: motherRoom_wall_outer01
+      objectReference: {fileID: 0}
+    - target: {fileID: 636406377980122266, guid: a06fcdd883fa3c94785d5c2cb384e5b7,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 4507999745999545993, guid: a06fcdd883fa3c94785d5c2cb384e5b7,
         type: 3}
@@ -716,6 +727,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: motherRoom_walls_outer04
       objectReference: {fileID: 0}
+    - target: {fileID: 595582879668686228, guid: 5beec5fa2b1b917448f5d909af8c2636,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 4474527036012117895, guid: 5beec5fa2b1b917448f5d909af8c2636,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -790,6 +806,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: motherRoom_wall_outer01
+      objectReference: {fileID: 0}
+    - target: {fileID: 636406377980122266, guid: a06fcdd883fa3c94785d5c2cb384e5b7,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 4507999745999545993, guid: a06fcdd883fa3c94785d5c2cb384e5b7,
         type: 3}
@@ -1339,6 +1360,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: motherRoom_wall_inner
       objectReference: {fileID: 0}
+    - target: {fileID: 2666788158526675486, guid: 329281eb39098a847919642c835d8cdd,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 1394159216027346957, guid: 329281eb39098a847919642c835d8cdd,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1430,7 +1456,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!64 &75575973
 MeshCollider:
@@ -1798,6 +1824,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: motherRoom_wall_window
       objectReference: {fileID: 0}
+    - target: {fileID: 3598807751731092169, guid: f0ea2035522951c46a6429e20bb87bbc,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 552484036561103066, guid: f0ea2035522951c46a6429e20bb87bbc,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1883,6 +1914,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: motherRoom_wall_window
       objectReference: {fileID: 0}
+    - target: {fileID: 3598807751731092169, guid: f0ea2035522951c46a6429e20bb87bbc,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 552484036561103066, guid: f0ea2035522951c46a6429e20bb87bbc,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1967,6 +2003,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: pillar01
+      objectReference: {fileID: 0}
+    - target: {fileID: 6284776034545330425, guid: 6846a1e171f9fac43a3559321ca085e8,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 7017553085276920554, guid: 6846a1e171f9fac43a3559321ca085e8,
         type: 3}
@@ -2370,6 +2411,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: motherRoom_wall_inner
+      objectReference: {fileID: 0}
+    - target: {fileID: 2666788158526675486, guid: 329281eb39098a847919642c835d8cdd,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 1394159216027346957, guid: 329281eb39098a847919642c835d8cdd,
         type: 3}
@@ -3162,6 +3208,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: motherRoom_wall_outer02 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7070461185043843038, guid: 2f6f18e0b06e862408f4b0f3ae46217e,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 6071990448110384589, guid: 2f6f18e0b06e862408f4b0f3ae46217e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3700,6 +3751,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: motherRoom_wall_outer02 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7070461185043843038, guid: 2f6f18e0b06e862408f4b0f3ae46217e,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 6071990448110384589, guid: 2f6f18e0b06e862408f4b0f3ae46217e,
         type: 3}
@@ -4703,6 +4759,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: motherRoom_wall_outer03
       objectReference: {fileID: 0}
+    - target: {fileID: 4625229988953655226, guid: f53d97b0918a2e644834fa05b9ce5002,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 8532993030394213801, guid: f53d97b0918a2e644834fa05b9ce5002,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4787,6 +4848,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: pillar01
+      objectReference: {fileID: 0}
+    - target: {fileID: 6284776034545330425, guid: 6846a1e171f9fac43a3559321ca085e8,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 7017553085276920554, guid: 6846a1e171f9fac43a3559321ca085e8,
         type: 3}
@@ -4976,6 +5042,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: pillar01
       objectReference: {fileID: 0}
+    - target: {fileID: 6284776034545330425, guid: 6846a1e171f9fac43a3559321ca085e8,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7017553085276920554, guid: 6846a1e171f9fac43a3559321ca085e8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5135,6 +5206,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: motherRoom_wall_inner
+      objectReference: {fileID: 0}
+    - target: {fileID: 2666788158526675486, guid: 329281eb39098a847919642c835d8cdd,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 1394159216027346957, guid: 329281eb39098a847919642c835d8cdd,
         type: 3}
@@ -5391,6 +5467,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: motherRoom_wall_inner
       objectReference: {fileID: 0}
+    - target: {fileID: 2666788158526675486, guid: 329281eb39098a847919642c835d8cdd,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 1394159216027346957, guid: 329281eb39098a847919642c835d8cdd,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5475,6 +5556,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: motherRoom_wall_inner
+      objectReference: {fileID: 0}
+    - target: {fileID: 2666788158526675486, guid: 329281eb39098a847919642c835d8cdd,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 1394159216027346957, guid: 329281eb39098a847919642c835d8cdd,
         type: 3}
@@ -5680,6 +5766,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: motherRoom_wall_outer02 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7070461185043843038, guid: 2f6f18e0b06e862408f4b0f3ae46217e,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 6071990448110384589, guid: 2f6f18e0b06e862408f4b0f3ae46217e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5855,6 +5946,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: motherRoom_wall_inner
+      objectReference: {fileID: 0}
+    - target: {fileID: 2666788158526675486, guid: 329281eb39098a847919642c835d8cdd,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 1394159216027346957, guid: 329281eb39098a847919642c835d8cdd,
         type: 3}
@@ -6106,6 +6202,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: motherRoom_wall_inner
       objectReference: {fileID: 0}
+    - target: {fileID: 2666788158526675486, guid: 329281eb39098a847919642c835d8cdd,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 1394159216027346957, guid: 329281eb39098a847919642c835d8cdd,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6190,6 +6291,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: motherRoom_wall_outer03
+      objectReference: {fileID: 0}
+    - target: {fileID: 4625229988953655226, guid: f53d97b0918a2e644834fa05b9ce5002,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 8532993030394213801, guid: f53d97b0918a2e644834fa05b9ce5002,
         type: 3}
@@ -6876,6 +6982,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: pillar01
       objectReference: {fileID: 0}
+    - target: {fileID: 6284776034545330425, guid: 6846a1e171f9fac43a3559321ca085e8,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7017553085276920554, guid: 6846a1e171f9fac43a3559321ca085e8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6950,6 +7061,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: motherRoom_wall_inner
+      objectReference: {fileID: 0}
+    - target: {fileID: 2666788158526675486, guid: 329281eb39098a847919642c835d8cdd,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 1394159216027346957, guid: 329281eb39098a847919642c835d8cdd,
         type: 3}
@@ -7035,6 +7151,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: motherRoom_walls_outer04
+      objectReference: {fileID: 0}
+    - target: {fileID: 595582879668686228, guid: 5beec5fa2b1b917448f5d909af8c2636,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 4474527036012117895, guid: 5beec5fa2b1b917448f5d909af8c2636,
         type: 3}
@@ -7298,6 +7419,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: motherRoom_wall_window
+      objectReference: {fileID: 0}
+    - target: {fileID: 3598807751731092169, guid: f0ea2035522951c46a6429e20bb87bbc,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 552484036561103066, guid: f0ea2035522951c46a6429e20bb87bbc,
         type: 3}
@@ -7624,7 +7750,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh353094
+  m_Name: pb_Mesh75740
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -7679,9 +7805,9 @@ Mesh:
       format: 0
       dimension: 2
     - stream: 0
-      offset: 0
+      offset: 48
       format: 0
-      dimension: 0
+      dimension: 2
     - stream: 0
       offset: 0
       format: 0
@@ -7714,8 +7840,8 @@ Mesh:
       offset: 0
       format: 0
       dimension: 0
-    m_DataSize: 768
-    _typelessdata: 2ba008420000000013ea0bc2000000000000803f000000000000803f0000000000000000000080bf2ba0084213ea0bc2ac76114100000000f45ae0c1000000000000803f000000000000803f0000000000000000000080bfac761141f45ae0c12ba0084200000000f45ae0c1000000000000803f000000000000803f0000000000000000000080bf2ba00842f45ae0c1ac7611410000000013ea0bc2000000000000803f000000000000803f0000000000000000000080bfac76114113ea0bc20000000000000000f45ae0c1000000000000803f000000000000803f0000000000000000000080bf00000000f45ae0c100000000000000001eecd0c1000000000000803f000000000000803f0000000000000000000080bf000000001eecd0c1ac761141000000001eecd0c1000000000000803f000000000000803f0000000000000000000080bfac7611411eecd0c12ba00842000000001eecd0c1000000000000803f000000000000803f0000000000000000000080bf2ba008421eecd0c100000000000000006fd987c1000000000000803f000000000000803f0000000000000000000080bf000000006fd987c1ac761141000000006fd987c1000000000000803f000000000000803f0000000000000000000080bfac7611416fd987c100000000000000000000803f000000000000803f000000000000803f0000000000000000000080bf000000000000803fac761141000000000000803f000000000000803f000000000000803f0000000000000000000080bfac7611410000803f2ba00842000000006fd987c1000000000000803f000000000000803f0000000000000000000080bf2ba008426fd987c12ba00842000000000000803f000000000000803f000000000000803f0000000000000000000080bf2ba008420000803f16762442000000006fd987c1000000000000803f000000000000803f0000000000000000000080bf167624426fd987c116762442000000001eecd0c1000000000000803f000000000000803f0000000000000000000080bf167624421eecd0c1
+    m_DataSize: 896
+    _typelessdata: 2ba008420000000013ea0bc2000000000000803f000000000000803f0000000000000000000080bf2ba0084213ea0bc22a213b3e51d7a33cac76114100000000f45ae0c1000000000000803f000000000000803f0000000000000000000080bfac761141f45ae0c111d8443f81893a3e2ba0084200000000f45ae0c1000000000000803f000000000000803f0000000000000000000080bf2ba00842f45ae0c12f213b3e89893a3eac7611410000000013ea0bc2000000000000803f000000000000803f0000000000000000000080bfac76114113ea0bc210d8443f0bd7a33c0000000000000000f45ae0c1000000000000803f000000000000803f0000000000000000000080bf00000000f45ae0c119467b3f85893a3e00000000000000001eecd0c1000000000000803f000000000000803f0000000000000000000080bf000000001eecd0c118467b3f28bc683eac761141000000001eecd0c1000000000000803f000000000000803f0000000000000000000080bfac7611411eecd0c10dd8443f2abc683e2ba00842000000001eecd0c1000000000000803f000000000000803f0000000000000000000080bf2ba008421eecd0c119213b3e33bc683e00000000000000006fd987c1000000000000803f000000000000803f0000000000000000000080bf000000006fd987c119467b3ff1bce13eac761141000000006fd987c1000000000000803f000000000000803f0000000000000000000080bfac7611416fd987c10ed8443fe8bce13e00000000000000000000803f000000000000803f000000000000803f0000000000000000000080bf000000000000803f1a467b3f4b855c3fac761141000000000000803f000000000000803f000000000000803f0000000000000000000080bfac7611410000803f0ed8443f4b855c3f2ba00842000000006fd987c1000000000000803f000000000000803f0000000000000000000080bf2ba008426fd987c11c213b3ee6bce13e2ba00842000000000000803f000000000000803f000000000000803f0000000000000000000080bf2ba008420000803f1d213b3e4a855c3f16762442000000006fd987c1000000000000803f000000000000803f0000000000000000000080bf167624426fd987c124d7a33ce8bce13e16762442000000001eecd0c1000000000000803f000000000000803f0000000000000000000080bf167624421eecd0c10bd7a33c37bc683e
   m_CompressedMesh:
     m_Vertices:
       m_NumItems: 0
@@ -8846,6 +8972,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: pillar01
       objectReference: {fileID: 0}
+    - target: {fileID: 6284776034545330425, guid: 6846a1e171f9fac43a3559321ca085e8,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7017553085276920554, guid: 6846a1e171f9fac43a3559321ca085e8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -8930,6 +9061,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: motherRoom_wall_outer02
+      objectReference: {fileID: 0}
+    - target: {fileID: 1479332459436120542, guid: fcfafd92a31f3da48b9ebb0e7e9e23c6,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 2512160663975226317, guid: fcfafd92a31f3da48b9ebb0e7e9e23c6,
         type: 3}
@@ -9524,6 +9660,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: motherRoom_wall_outer02
       objectReference: {fileID: 0}
+    - target: {fileID: 1479332459436120542, guid: fcfafd92a31f3da48b9ebb0e7e9e23c6,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 2512160663975226317, guid: fcfafd92a31f3da48b9ebb0e7e9e23c6,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -9604,6 +9745,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: motherRoom_wall_outer02 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7070461185043843038, guid: 2f6f18e0b06e862408f4b0f3ae46217e,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 6071990448110384589, guid: 2f6f18e0b06e862408f4b0f3ae46217e,
         type: 3}
@@ -9691,6 +9837,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: pillar01
       objectReference: {fileID: 0}
+    - target: {fileID: 6284776034545330425, guid: 6846a1e171f9fac43a3559321ca085e8,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7017553085276920554, guid: 6846a1e171f9fac43a3559321ca085e8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -9765,6 +9916,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: motherRoom_wall_inner
+      objectReference: {fileID: 0}
+    - target: {fileID: 2666788158526675486, guid: 329281eb39098a847919642c835d8cdd,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 1394159216027346957, guid: 329281eb39098a847919642c835d8cdd,
         type: 3}
@@ -9845,6 +10001,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: motherRoom_wall_outer01
+      objectReference: {fileID: 0}
+    - target: {fileID: 636406377980122266, guid: a06fcdd883fa3c94785d5c2cb384e5b7,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 4507999745999545993, guid: a06fcdd883fa3c94785d5c2cb384e5b7,
         type: 3}
@@ -10116,6 +10277,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: motherRoom_wall_inner
       objectReference: {fileID: 0}
+    - target: {fileID: 2666788158526675486, guid: 329281eb39098a847919642c835d8cdd,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 1394159216027346957, guid: 329281eb39098a847919642c835d8cdd,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -10200,6 +10366,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: pillar01
+      objectReference: {fileID: 0}
+    - target: {fileID: 6284776034545330425, guid: 6846a1e171f9fac43a3559321ca085e8,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 7017553085276920554, guid: 6846a1e171f9fac43a3559321ca085e8,
         type: 3}
@@ -10868,6 +11039,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: pillar01
       objectReference: {fileID: 0}
+    - target: {fileID: 6284776034545330425, guid: 6846a1e171f9fac43a3559321ca085e8,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7017553085276920554, guid: 6846a1e171f9fac43a3559321ca085e8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -11198,6 +11374,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: motherRoom_wall_outer02
       objectReference: {fileID: 0}
+    - target: {fileID: 1479332459436120542, guid: fcfafd92a31f3da48b9ebb0e7e9e23c6,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 2512160663975226317, guid: fcfafd92a31f3da48b9ebb0e7e9e23c6,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -11433,6 +11614,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: motherRoom_wall_inner
       objectReference: {fileID: 0}
+    - target: {fileID: 2666788158526675486, guid: 329281eb39098a847919642c835d8cdd,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 1394159216027346957, guid: 329281eb39098a847919642c835d8cdd,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -11517,6 +11703,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: motherRoom_wall_outer02 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7070461185043843038, guid: 2f6f18e0b06e862408f4b0f3ae46217e,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 6071990448110384589, guid: 2f6f18e0b06e862408f4b0f3ae46217e,
         type: 3}
@@ -11782,6 +11973,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: motherRoom_wall_inner
       objectReference: {fileID: 0}
+    - target: {fileID: 2666788158526675486, guid: 329281eb39098a847919642c835d8cdd,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 1394159216027346957, guid: 329281eb39098a847919642c835d8cdd,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -11866,6 +12062,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: motherRoom_wall_outer02 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7070461185043843038, guid: 2f6f18e0b06e862408f4b0f3ae46217e,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 6071990448110384589, guid: 2f6f18e0b06e862408f4b0f3ae46217e,
         type: 3}
@@ -12585,6 +12786,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: motherRoom_wall_inner
       objectReference: {fileID: 0}
+    - target: {fileID: 2666788158526675486, guid: 329281eb39098a847919642c835d8cdd,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 1394159216027346957, guid: 329281eb39098a847919642c835d8cdd,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -13043,6 +13249,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: motherRoom_wall_outer01
       objectReference: {fileID: 0}
+    - target: {fileID: 636406377980122266, guid: a06fcdd883fa3c94785d5c2cb384e5b7,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 4507999745999545993, guid: a06fcdd883fa3c94785d5c2cb384e5b7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -13117,6 +13328,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: motherRoom_wall_inner
+      objectReference: {fileID: 0}
+    - target: {fileID: 2666788158526675486, guid: 329281eb39098a847919642c835d8cdd,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 1394159216027346957, guid: 329281eb39098a847919642c835d8cdd,
         type: 3}
@@ -13202,6 +13418,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: motherRoom_wall_inner
+      objectReference: {fileID: 0}
+    - target: {fileID: 2666788158526675486, guid: 329281eb39098a847919642c835d8cdd,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 1394159216027346957, guid: 329281eb39098a847919642c835d8cdd,
         type: 3}
@@ -14287,6 +14508,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: motherRoom_wall_window
       objectReference: {fileID: 0}
+    - target: {fileID: 3598807751731092169, guid: f0ea2035522951c46a6429e20bb87bbc,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 552484036561103066, guid: f0ea2035522951c46a6429e20bb87bbc,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -14467,15 +14693,15 @@ PrefabInstance:
       propertyPath: m_Center.y
       value: -0.96625996
       objectReference: {fileID: 0}
-    - target: {fileID: 5370002008059580006, guid: 2e692c6e6e1e0364a8f033d6323256b2,
-        type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 665842435293300437, guid: 2e692c6e6e1e0364a8f033d6323256b2,
         type: 3}
       propertyPath: m_Range
       value: 2.127661
+      objectReference: {fileID: 0}
+    - target: {fileID: 5370002008059580006, guid: 2e692c6e6e1e0364a8f033d6323256b2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9190777552712538593, guid: 2e692c6e6e1e0364a8f033d6323256b2,
         type: 3}
@@ -14982,6 +15208,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: motherRoom_wall_outer02
       objectReference: {fileID: 0}
+    - target: {fileID: 1479332459436120542, guid: fcfafd92a31f3da48b9ebb0e7e9e23c6,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 2512160663975226317, guid: fcfafd92a31f3da48b9ebb0e7e9e23c6,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -15137,6 +15368,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: motherRoom_wall_inner
       objectReference: {fileID: 0}
+    - target: {fileID: 2666788158526675486, guid: 329281eb39098a847919642c835d8cdd,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 1394159216027346957, guid: 329281eb39098a847919642c835d8cdd,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -15221,6 +15457,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: motherRoom_wall_window
+      objectReference: {fileID: 0}
+    - target: {fileID: 3598807751731092169, guid: f0ea2035522951c46a6429e20bb87bbc,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 552484036561103066, guid: f0ea2035522951c46a6429e20bb87bbc,
         type: 3}
@@ -15703,6 +15944,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: motherRoom_wall_outer01
       objectReference: {fileID: 0}
+    - target: {fileID: 636406377980122266, guid: a06fcdd883fa3c94785d5c2cb384e5b7,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 4507999745999545993, guid: a06fcdd883fa3c94785d5c2cb384e5b7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -15952,6 +16198,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: motherRoom_wall_outer03
       objectReference: {fileID: 0}
+    - target: {fileID: 4625229988953655226, guid: f53d97b0918a2e644834fa05b9ce5002,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 8532993030394213801, guid: f53d97b0918a2e644834fa05b9ce5002,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -16036,6 +16287,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: motherRoom_wall_inner
+      objectReference: {fileID: 0}
+    - target: {fileID: 2666788158526675486, guid: 329281eb39098a847919642c835d8cdd,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 1394159216027346957, guid: 329281eb39098a847919642c835d8cdd,
         type: 3}
@@ -16701,6 +16957,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: motherRoom_wall_outer02
       objectReference: {fileID: 0}
+    - target: {fileID: 1479332459436120542, guid: fcfafd92a31f3da48b9ebb0e7e9e23c6,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 2512160663975226317, guid: fcfafd92a31f3da48b9ebb0e7e9e23c6,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -16781,6 +17042,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: pillar01
       objectReference: {fileID: 0}
+    - target: {fileID: 6284776034545330425, guid: 6846a1e171f9fac43a3559321ca085e8,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7017553085276920554, guid: 6846a1e171f9fac43a3559321ca085e8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -16855,6 +17121,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: motherRoom_wall_window
+      objectReference: {fileID: 0}
+    - target: {fileID: 3598807751731092169, guid: f0ea2035522951c46a6429e20bb87bbc,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 552484036561103066, guid: f0ea2035522951c46a6429e20bb87bbc,
         type: 3}
@@ -17341,6 +17612,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: motherRoom_wall_inner
       objectReference: {fileID: 0}
+    - target: {fileID: 2666788158526675486, guid: 329281eb39098a847919642c835d8cdd,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 1394159216027346957, guid: 329281eb39098a847919642c835d8cdd,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -17660,6 +17936,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: motherRoom_wall_inner
       objectReference: {fileID: 0}
+    - target: {fileID: 2666788158526675486, guid: 329281eb39098a847919642c835d8cdd,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 1394159216027346957, guid: 329281eb39098a847919642c835d8cdd,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -17734,6 +18015,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: motherRoom_wall_Normal
+      objectReference: {fileID: 0}
+    - target: {fileID: 887033842078754310, guid: 0479a0e8b5513704eb35faa3d6ab0727,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 4185032954651366421, guid: 0479a0e8b5513704eb35faa3d6ab0727,
         type: 3}
@@ -17814,6 +18100,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: motherRoom_wall_inner
+      objectReference: {fileID: 0}
+    - target: {fileID: 2666788158526675486, guid: 329281eb39098a847919642c835d8cdd,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 1394159216027346957, guid: 329281eb39098a847919642c835d8cdd,
         type: 3}
@@ -18234,6 +18525,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: motherRoom_wall_inner
       objectReference: {fileID: 0}
+    - target: {fileID: 2666788158526675486, guid: 329281eb39098a847919642c835d8cdd,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 1394159216027346957, guid: 329281eb39098a847919642c835d8cdd,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -18318,6 +18614,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: pillar01
+      objectReference: {fileID: 0}
+    - target: {fileID: 6284776034545330425, guid: 6846a1e171f9fac43a3559321ca085e8,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 7017553085276920554, guid: 6846a1e171f9fac43a3559321ca085e8,
         type: 3}
@@ -18404,6 +18705,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: motherRoom_wall_inner
       objectReference: {fileID: 0}
+    - target: {fileID: 2666788158526675486, guid: 329281eb39098a847919642c835d8cdd,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 1394159216027346957, guid: 329281eb39098a847919642c835d8cdd,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -18478,6 +18784,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: motherRoom_wall_outer02 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7070461185043843038, guid: 2f6f18e0b06e862408f4b0f3ae46217e,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 6071990448110384589, guid: 2f6f18e0b06e862408f4b0f3ae46217e,
         type: 3}
@@ -18936,6 +19247,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: pillar01
       objectReference: {fileID: 0}
+    - target: {fileID: 6284776034545330425, guid: 6846a1e171f9fac43a3559321ca085e8,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7017553085276920554, guid: 6846a1e171f9fac43a3559321ca085e8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -19096,6 +19412,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: pillar01
       objectReference: {fileID: 0}
+    - target: {fileID: 6284776034545330425, guid: 6846a1e171f9fac43a3559321ca085e8,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7017553085276920554, guid: 6846a1e171f9fac43a3559321ca085e8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -19251,6 +19572,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: pillar01
       objectReference: {fileID: 0}
+    - target: {fileID: 6284776034545330425, guid: 6846a1e171f9fac43a3559321ca085e8,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7017553085276920554, guid: 6846a1e171f9fac43a3559321ca085e8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -19325,6 +19651,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: motherRoom_wall_inner
+      objectReference: {fileID: 0}
+    - target: {fileID: 2666788158526675486, guid: 329281eb39098a847919642c835d8cdd,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 1394159216027346957, guid: 329281eb39098a847919642c835d8cdd,
         type: 3}
@@ -19615,6 +19946,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: motherRoom_wall_outer03
       objectReference: {fileID: 0}
+    - target: {fileID: 4625229988953655226, guid: f53d97b0918a2e644834fa05b9ce5002,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 8532993030394213801, guid: f53d97b0918a2e644834fa05b9ce5002,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -19699,6 +20035,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: motherRoom_wall_inner
+      objectReference: {fileID: 0}
+    - target: {fileID: 2666788158526675486, guid: 329281eb39098a847919642c835d8cdd,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 1394159216027346957, guid: 329281eb39098a847919642c835d8cdd,
         type: 3}
@@ -20835,6 +21176,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: pillar01
       objectReference: {fileID: 0}
+    - target: {fileID: 6284776034545330425, guid: 6846a1e171f9fac43a3559321ca085e8,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7017553085276920554, guid: 6846a1e171f9fac43a3559321ca085e8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -21788,6 +22134,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: motherRoom_wall_inner
       objectReference: {fileID: 0}
+    - target: {fileID: 2666788158526675486, guid: 329281eb39098a847919642c835d8cdd,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 1394159216027346957, guid: 329281eb39098a847919642c835d8cdd,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -21967,6 +22318,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: pillar01
       objectReference: {fileID: 0}
+    - target: {fileID: 6284776034545330425, guid: 6846a1e171f9fac43a3559321ca085e8,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7017553085276920554, guid: 6846a1e171f9fac43a3559321ca085e8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -22041,6 +22397,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: motherRoom_wall_outer02
+      objectReference: {fileID: 0}
+    - target: {fileID: 1479332459436120542, guid: fcfafd92a31f3da48b9ebb0e7e9e23c6,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 2512160663975226317, guid: fcfafd92a31f3da48b9ebb0e7e9e23c6,
         type: 3}
@@ -22281,6 +22642,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: motherRoom_wall_inner
       objectReference: {fileID: 0}
+    - target: {fileID: 2666788158526675486, guid: 329281eb39098a847919642c835d8cdd,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 1394159216027346957, guid: 329281eb39098a847919642c835d8cdd,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -22365,6 +22731,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: motherRoom_wall_outer02 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7070461185043843038, guid: 2f6f18e0b06e862408f4b0f3ae46217e,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 6071990448110384589, guid: 2f6f18e0b06e862408f4b0f3ae46217e,
         type: 3}
@@ -22529,6 +22900,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: motherRoom_wall_outer01
+      objectReference: {fileID: 0}
+    - target: {fileID: 636406377980122266, guid: a06fcdd883fa3c94785d5c2cb384e5b7,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 4507999745999545993, guid: a06fcdd883fa3c94785d5c2cb384e5b7,
         type: 3}
@@ -23140,6 +23516,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: pillar01
       objectReference: {fileID: 0}
+    - target: {fileID: 6284776034545330425, guid: 6846a1e171f9fac43a3559321ca085e8,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7017553085276920554, guid: 6846a1e171f9fac43a3559321ca085e8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -23214,6 +23595,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: motherRoom_wall_outer02 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7070461185043843038, guid: 2f6f18e0b06e862408f4b0f3ae46217e,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 6071990448110384589, guid: 2f6f18e0b06e862408f4b0f3ae46217e,
         type: 3}
@@ -23300,6 +23686,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: pillar01
       objectReference: {fileID: 0}
+    - target: {fileID: 6284776034545330425, guid: 6846a1e171f9fac43a3559321ca085e8,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7017553085276920554, guid: 6846a1e171f9fac43a3559321ca085e8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -23384,6 +23775,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: motherRoom_wall_outer02
+      objectReference: {fileID: 0}
+    - target: {fileID: 1479332459436120542, guid: fcfafd92a31f3da48b9ebb0e7e9e23c6,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 2512160663975226317, guid: fcfafd92a31f3da48b9ebb0e7e9e23c6,
         type: 3}
@@ -23534,6 +23930,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: motherRoom_walls_outer04
+      objectReference: {fileID: 0}
+    - target: {fileID: 595582879668686228, guid: 5beec5fa2b1b917448f5d909af8c2636,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 4474527036012117895, guid: 5beec5fa2b1b917448f5d909af8c2636,
         type: 3}
@@ -24055,6 +24456,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: motherRoom_wall_outer02
       objectReference: {fileID: 0}
+    - target: {fileID: 1479332459436120542, guid: fcfafd92a31f3da48b9ebb0e7e9e23c6,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 2512160663975226317, guid: fcfafd92a31f3da48b9ebb0e7e9e23c6,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -24229,6 +24635,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: motherRoom_wall_inner
       objectReference: {fileID: 0}
+    - target: {fileID: 2666788158526675486, guid: 329281eb39098a847919642c835d8cdd,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 1394159216027346957, guid: 329281eb39098a847919642c835d8cdd,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -24400,6 +24811,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: motherRoom_wall_inner
       objectReference: {fileID: 0}
+    - target: {fileID: 2666788158526675486, guid: 329281eb39098a847919642c835d8cdd,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 1394159216027346957, guid: 329281eb39098a847919642c835d8cdd,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -24481,6 +24897,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: motherRoom_wall_inner
       objectReference: {fileID: 0}
+    - target: {fileID: 2666788158526675486, guid: 329281eb39098a847919642c835d8cdd,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 1394159216027346957, guid: 329281eb39098a847919642c835d8cdd,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -24560,6 +24981,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: pillar01
+      objectReference: {fileID: 0}
+    - target: {fileID: 6284776034545330425, guid: 6846a1e171f9fac43a3559321ca085e8,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 7017553085276920554, guid: 6846a1e171f9fac43a3559321ca085e8,
         type: 3}
@@ -24726,6 +25152,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: motherRoom_wall_inner
       objectReference: {fileID: 0}
+    - target: {fileID: 2666788158526675486, guid: 329281eb39098a847919642c835d8cdd,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 1394159216027346957, guid: 329281eb39098a847919642c835d8cdd,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -24880,6 +25311,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: motherRoom_wall_inner
+      objectReference: {fileID: 0}
+    - target: {fileID: 2666788158526675486, guid: 329281eb39098a847919642c835d8cdd,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 1394159216027346957, guid: 329281eb39098a847919642c835d8cdd,
         type: 3}
@@ -25134,6 +25570,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: motherRoom_wall_outer02 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7070461185043843038, guid: 2f6f18e0b06e862408f4b0f3ae46217e,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 6071990448110384589, guid: 2f6f18e0b06e862408f4b0f3ae46217e,
         type: 3}
@@ -25391,6 +25832,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: motherRoom_wall_inner
+      objectReference: {fileID: 0}
+    - target: {fileID: 2666788158526675486, guid: 329281eb39098a847919642c835d8cdd,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 1394159216027346957, guid: 329281eb39098a847919642c835d8cdd,
         type: 3}
@@ -25655,6 +26101,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: motherRoom_wall_inner
+      objectReference: {fileID: 0}
+    - target: {fileID: 2666788158526675486, guid: 329281eb39098a847919642c835d8cdd,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 1394159216027346957, guid: 329281eb39098a847919642c835d8cdd,
         type: 3}
@@ -26158,6 +26609,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: motherRoom_wall_outer02 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7070461185043843038, guid: 2f6f18e0b06e862408f4b0f3ae46217e,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 6071990448110384589, guid: 2f6f18e0b06e862408f4b0f3ae46217e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -26237,6 +26693,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: motherRoom_wall_window
+      objectReference: {fileID: 0}
+    - target: {fileID: 3598807751731092169, guid: f0ea2035522951c46a6429e20bb87bbc,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 552484036561103066, guid: f0ea2035522951c46a6429e20bb87bbc,
         type: 3}
@@ -26932,6 +27393,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: motherRoom_wall_outer02 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7070461185043843038, guid: 2f6f18e0b06e862408f4b0f3ae46217e,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 6071990448110384589, guid: 2f6f18e0b06e862408f4b0f3ae46217e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -27168,7 +27634,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 1.6544117e-24, y: 2048, z: 1.9721532e-31, w: 9.403955e-38}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -27528,6 +27994,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: motherRoom_wall_outer02 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7070461185043843038, guid: 2f6f18e0b06e862408f4b0f3ae46217e,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 6071990448110384589, guid: 2f6f18e0b06e862408f4b0f3ae46217e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -27612,6 +28083,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: pillar01
+      objectReference: {fileID: 0}
+    - target: {fileID: 6284776034545330425, guid: 6846a1e171f9fac43a3559321ca085e8,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 7017553085276920554, guid: 6846a1e171f9fac43a3559321ca085e8,
         type: 3}
@@ -28909,6 +29385,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: pillar01
       objectReference: {fileID: 0}
+    - target: {fileID: 6284776034545330425, guid: 6846a1e171f9fac43a3559321ca085e8,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7017553085276920554, guid: 6846a1e171f9fac43a3559321ca085e8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -28983,6 +29464,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: motherRoom_wall_inner
+      objectReference: {fileID: 0}
+    - target: {fileID: 2666788158526675486, guid: 329281eb39098a847919642c835d8cdd,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 1394159216027346957, guid: 329281eb39098a847919642c835d8cdd,
         type: 3}
@@ -29159,6 +29645,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: pillar01
       objectReference: {fileID: 0}
+    - target: {fileID: 6284776034545330425, guid: 6846a1e171f9fac43a3559321ca085e8,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7017553085276920554, guid: 6846a1e171f9fac43a3559321ca085e8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -29233,6 +29724,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: pillar01
+      objectReference: {fileID: 0}
+    - target: {fileID: 6284776034545330425, guid: 6846a1e171f9fac43a3559321ca085e8,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 7017553085276920554, guid: 6846a1e171f9fac43a3559321ca085e8,
         type: 3}
@@ -29318,6 +29814,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: motherRoom_wall_inner
+      objectReference: {fileID: 0}
+    - target: {fileID: 2666788158526675486, guid: 329281eb39098a847919642c835d8cdd,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 1394159216027346957, guid: 329281eb39098a847919642c835d8cdd,
         type: 3}
@@ -29574,6 +30075,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: motherRoom_wall_outer02 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7070461185043843038, guid: 2f6f18e0b06e862408f4b0f3ae46217e,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 6071990448110384589, guid: 2f6f18e0b06e862408f4b0f3ae46217e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -29658,6 +30164,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: motherRoom_walls_outer04
+      objectReference: {fileID: 0}
+    - target: {fileID: 595582879668686228, guid: 5beec5fa2b1b917448f5d909af8c2636,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 4474527036012117895, guid: 5beec5fa2b1b917448f5d909af8c2636,
         type: 3}
@@ -30064,6 +30575,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: pillar01
       objectReference: {fileID: 0}
+    - target: {fileID: 6284776034545330425, guid: 6846a1e171f9fac43a3559321ca085e8,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7017553085276920554, guid: 6846a1e171f9fac43a3559321ca085e8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -30149,6 +30665,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: motherRoom_wall_inner
       objectReference: {fileID: 0}
+    - target: {fileID: 2666788158526675486, guid: 329281eb39098a847919642c835d8cdd,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 1394159216027346957, guid: 329281eb39098a847919642c835d8cdd,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -30233,6 +30754,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: motherRoom_wall_inner
+      objectReference: {fileID: 0}
+    - target: {fileID: 2666788158526675486, guid: 329281eb39098a847919642c835d8cdd,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 1394159216027346957, guid: 329281eb39098a847919642c835d8cdd,
         type: 3}
@@ -30579,6 +31105,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: motherRoom_wall_inner
       objectReference: {fileID: 0}
+    - target: {fileID: 2666788158526675486, guid: 329281eb39098a847919642c835d8cdd,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 1394159216027346957, guid: 329281eb39098a847919642c835d8cdd,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -30663,6 +31194,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: motherRoom_wall_outer01
+      objectReference: {fileID: 0}
+    - target: {fileID: 636406377980122266, guid: a06fcdd883fa3c94785d5c2cb384e5b7,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 4507999745999545993, guid: a06fcdd883fa3c94785d5c2cb384e5b7,
         type: 3}
@@ -31770,6 +32306,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: motherRoom_wall_outer02 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7070461185043843038, guid: 2f6f18e0b06e862408f4b0f3ae46217e,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 6071990448110384589, guid: 2f6f18e0b06e862408f4b0f3ae46217e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -31940,6 +32481,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: motherRoom_wall_outer02
       objectReference: {fileID: 0}
+    - target: {fileID: 1479332459436120542, guid: fcfafd92a31f3da48b9ebb0e7e9e23c6,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 2512160663975226317, guid: fcfafd92a31f3da48b9ebb0e7e9e23c6,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -32095,6 +32641,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: motherRoom_wall_inner
       objectReference: {fileID: 0}
+    - target: {fileID: 2666788158526675486, guid: 329281eb39098a847919642c835d8cdd,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 1394159216027346957, guid: 329281eb39098a847919642c835d8cdd,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -32179,6 +32730,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: motherRoom_wall_outer03
+      objectReference: {fileID: 0}
+    - target: {fileID: 4625229988953655226, guid: f53d97b0918a2e644834fa05b9ce5002,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 8532993030394213801, guid: f53d97b0918a2e644834fa05b9ce5002,
         type: 3}
@@ -32345,6 +32901,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: motherRoom_wall_outer02 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7070461185043843038, guid: 2f6f18e0b06e862408f4b0f3ae46217e,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 6071990448110384589, guid: 2f6f18e0b06e862408f4b0f3ae46217e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -32503,6 +33064,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: motherRoom_wall_inner
+      objectReference: {fileID: 0}
+    - target: {fileID: 2666788158526675486, guid: 329281eb39098a847919642c835d8cdd,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 1394159216027346957, guid: 329281eb39098a847919642c835d8cdd,
         type: 3}
@@ -32663,6 +33229,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: motherRoom_wall_inner
+      objectReference: {fileID: 0}
+    - target: {fileID: 2666788158526675486, guid: 329281eb39098a847919642c835d8cdd,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 1394159216027346957, guid: 329281eb39098a847919642c835d8cdd,
         type: 3}
@@ -33599,6 +34170,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: pillar01
       objectReference: {fileID: 0}
+    - target: {fileID: 6284776034545330425, guid: 6846a1e171f9fac43a3559321ca085e8,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7017553085276920554, guid: 6846a1e171f9fac43a3559321ca085e8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -33718,6 +34294,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: motherRoom_wall_inner
+      objectReference: {fileID: 0}
+    - target: {fileID: 2666788158526675486, guid: 329281eb39098a847919642c835d8cdd,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 1394159216027346957, guid: 329281eb39098a847919642c835d8cdd,
         type: 3}
@@ -34276,6 +34857,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: pillar01
+      objectReference: {fileID: 0}
+    - target: {fileID: 6284776034545330425, guid: 6846a1e171f9fac43a3559321ca085e8,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 7017553085276920554, guid: 6846a1e171f9fac43a3559321ca085e8,
         type: 3}
@@ -34955,7 +35541,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!1 &278219915958018877
 GameObject:
@@ -35206,7 +35792,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &498246369448999261
 Transform:
