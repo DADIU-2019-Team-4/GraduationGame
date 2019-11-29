@@ -23,8 +23,12 @@ public class TimeSlowdown : MonoBehaviour
             gameController = FindObjectOfType<GameController>();
         if (gameController == null || !gameController.IsPlaying) return;
 
-        Time.timeScale += (1f / slowdownLength) * Time.unscaledDeltaTime;
-        Time.timeScale = Mathf.Clamp(Time.timeScale, 0f, 1f);
+        if (!UINavigation.IsPaused)
+        {
+            Time.timeScale += (1f / slowdownLength) * Time.unscaledDeltaTime;
+            Time.timeScale = Mathf.Clamp(Time.timeScale, 0f, 1f);
+        }
+        
     }
 
     public void doSlowmotion()

@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 3196553535278361624}
   - component: {fileID: 482485049464303725}
   - component: {fileID: 8183847737288017683}
-  - component: {fileID: 5799034360614344124}
   - component: {fileID: -1034646782208953204}
   m_Layer: 0
   m_Name: tableSmall
@@ -112,8 +111,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.8662342, y: 0.7440773, z: 0.6549878}
-  m_Center: {x: 0.000000014901161, y: 0.35755664, z: 0.000000044703484}
+  m_Size: {x: 0.8662342, y: 1.2, z: 0.6549878}
+  m_Center: {x: 0.000000014901161, y: 0.59, z: 0.000000044703484}
 --- !u!114 &8183847737288017683
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -130,19 +129,6 @@ MonoBehaviour:
   DamageValue: 0
   HealValue: 10
   BumpHeight: 0.3
---- !u!65 &5799034360614344124
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8936043964704479821}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.8662342, y: 0.7440773, z: 0.6549878}
-  m_Center: {x: 0.000000014901161, y: 0.35755664, z: 0.000000044703484}
 --- !u!114 &-1034646782208953204
 MonoBehaviour:
   m_ObjectHideFlags: 0
