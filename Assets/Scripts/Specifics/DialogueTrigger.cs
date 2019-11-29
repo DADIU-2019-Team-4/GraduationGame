@@ -27,6 +27,7 @@ public class DialogueTrigger : MonoBehaviour
 
     private int _index;
     private static Text _subtitles;
+    private static RawImage _background;
 
     private void OnTriggerEnter(Collider collider)
     {
@@ -43,6 +44,8 @@ public class DialogueTrigger : MonoBehaviour
         _thisDialogueIsRunning = DialogueIsRunning = true;
         FindObjectOfType<GameController>().IsPlaying = false;
         _subtitles = GameObject.FindGameObjectWithTag("Subtitles").GetComponent<Text>();
+        _background = GameObject.FindGameObjectWithTag("SubtitleFade").GetComponent<RawImage>();
+        _background.enabled = true;
         _subtitles.enabled = true;
         Advance();
     }
@@ -77,6 +80,7 @@ public class DialogueTrigger : MonoBehaviour
         FindObjectOfType<GameController>().IsPlaying = true;
         _subtitles.text = string.Empty;
         _subtitles.enabled = false;
+        _background.enabled = false;
         if (OnlyTriggeredOnce) Destroy(this);
         EventOnEnd.Invoke();
     }

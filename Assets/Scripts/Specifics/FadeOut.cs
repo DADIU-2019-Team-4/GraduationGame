@@ -7,15 +7,21 @@ public class FadeOut : MonoBehaviour
 {
     public int Seconds;
     private Image _image;
+    public bool AutoReset = false;
 
     void Start()
     {
         _image = GameObject.Find("BlackFade").GetComponent<Image>();
     }
 
-    public void StartFade() { StartCoroutine(Fade(Seconds)); }
+    public void StartFade() { StartFade(Seconds); }
 
-    public void StartFade(int seconds) { StartCoroutine(Fade(seconds)); }
+    public void StartFade(int seconds)
+    {
+        StartCoroutine(Fade(seconds));
+        if (AutoReset)
+            StartCoroutine(TimedReset(seconds));
+    }
 
     IEnumerator Fade(float seconds)
     {
@@ -24,6 +30,12 @@ public class FadeOut : MonoBehaviour
             _image.color = new Color(0, 0, 0, i / seconds);
             yield return null;
         }
+    }
+
+    IEnumerator TimedReset(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        RemoveFade();
     }
 
 
