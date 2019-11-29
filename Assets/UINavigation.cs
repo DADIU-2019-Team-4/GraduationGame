@@ -15,7 +15,7 @@ public class UINavigation : MonoBehaviour
 
     public GameObject _continueButton;
 
-    
+    public GameObject MatchStickVisual;
 
     private GameObject _knob;
     private GameObject _flagGlowUK;
@@ -105,12 +105,14 @@ public class UINavigation : MonoBehaviour
 
     public void OpenOptions()
     {
+        MatchStickVisual?.SetActive(false);
         _optionsMenu.SetActive(true);
         AudioEvent.PostEvent("OpenOptions", gameObject);
     }
 
     public void ExitOptions()
     {
+
         StartCoroutine(BurnOptionsMenu(23));
         AudioEvent.PostEvent("ExitOptions", gameObject);
     }
@@ -262,6 +264,8 @@ public class UINavigation : MonoBehaviour
         }
 
         gameObject.transform.Find("Burn").GetComponent<Image>().material.SetFloat("_Float0", 0);
+
+        MatchStickVisual?.SetActive(true);
         _optionsMenu.SetActive(false);
 
         //yield return new WaitForSeconds(duration);
