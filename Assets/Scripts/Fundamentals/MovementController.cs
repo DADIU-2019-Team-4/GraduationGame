@@ -348,7 +348,7 @@ public class MovementController : MonoBehaviour
     {
         // Play animation
         _anim.Die();
-
+        Vibration.Vibrate(150);
         TargetPosition = targetPosition;
 
         if (isOutOfFire) _gameController.GameOverOutOfMoves();
