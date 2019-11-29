@@ -21,6 +21,7 @@ public class BreakablesParticleManager : MonoBehaviour
     {
         var currentParticles = Instantiate(FireParticlePrefab, position, Quaternion.identity);
         currentlyPlayingParticles.Add(currentParticles);
+
         yield return new WaitForSeconds(3);
         currentlyPlayingParticles.Remove(currentParticles);
         Destroy(currentParticles);
