@@ -178,7 +178,7 @@ public class InteractibleObject : DashInteractable
     private void PopUp()
     {
         // If this is a pop-up Object, trigger the pop-up
-        if (popUpObject)
+        if (popUpObject != null)
         {
             popUpObject.PopUp();
         }

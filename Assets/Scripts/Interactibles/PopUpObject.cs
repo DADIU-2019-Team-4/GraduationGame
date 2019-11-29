@@ -25,7 +25,7 @@ public class PopUpObject : MonoBehaviour
         {
             GameObject canvas = GameObject.FindGameObjectWithTag(PopUpCanvasTag);
 
-            if(!canvas) Debug.LogWarning("Unable to find Pop-up canvas to display image on");
+            if(canvas == null) Debug.LogWarning("Unable to find Pop-up canvas to display image on");
             else
             {
                 PopUpCanvas popUpCanvasComponent = canvas.GetComponent<PopUpCanvas>();
@@ -41,7 +41,7 @@ public class PopUpObject : MonoBehaviour
     {
         GameObject canvas = GameObject.FindGameObjectWithTag(PopUpCanvasTag);
 
-        if (!canvas) Debug.LogWarning("Unable to find Pop-up canvas to display image on");
+        if (canvas == null) Debug.LogWarning("Unable to find Pop-up canvas to display image on");
         else
         {
 
@@ -70,7 +70,7 @@ public class PopUpObject : MonoBehaviour
     {
         GameObject canvas = GameObject.FindGameObjectWithTag(PopUpCanvasTag);
 
-        if (!canvas) Debug.LogWarning("Unable to find Pop-up canvas to display image on");
+        if (canvas == null) Debug.LogWarning("Unable to find Pop-up canvas to display image on");
         else
         {
             if (gameObject.CompareTag("pic1"))
