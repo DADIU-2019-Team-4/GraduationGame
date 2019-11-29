@@ -256,8 +256,8 @@ public class UINavigation : MonoBehaviour
 
         while (burnValue<1)
         {
-            burnValue += Time.deltaTime;
-            gameObject.transform.Find("Burn").GetComponent<Image>().material.SetFloat("_Float0", burnValue + Time.deltaTime) ;
+            burnValue += Time.unscaledDeltaTime;
+            gameObject.transform.Find("Burn").GetComponent<Image>().material.SetFloat("_Float0", burnValue + Time.unscaledDeltaTime) ;
             yield return null;
         }
 
