@@ -514,7 +514,7 @@ public class MovementController : MonoBehaviour
                 return;
             interactableObj.Interact(hit.point);
             if ((IsDashing && interactableObj.IsBreakable) ||
-                interactableObj.type == InteractibleObject.InteractType.PickUp)
+                interactableObj.type == InteractibleObject.InteractType.BurnableProp)
             {
                 CheckCollision();
             }
