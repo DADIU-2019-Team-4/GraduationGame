@@ -849,7 +849,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 929552435}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.8072557, y: -1.9428838, z: -1.4814416}
+  m_LocalPosition: {x: 4.8072557, y: -1.9428838, z: 8.95}
   m_LocalScale: {x: 7, y: 7, z: 1}
   m_Children:
   - {fileID: 380481036}
@@ -1617,14 +1617,19 @@ PrefabInstance:
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8641192372598018748, guid: 34f88fad42263ff43bab6c404d641eab,
+    - target: {fileID: 6664781931478796973, guid: 34f88fad42263ff43bab6c404d641eab,
         type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
+      propertyPath: m_RenderMode
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 8641192372598018748, guid: 34f88fad42263ff43bab6c404d641eab,
+    - target: {fileID: 6664781931478796973, guid: 34f88fad42263ff43bab6c404d641eab,
         type: 3}
-      propertyPath: m_AnchorMax.x
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1463813659}
+    - target: {fileID: 1665341871164434757, guid: 34f88fad42263ff43bab6c404d641eab,
+        type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8269334368805864412, guid: 34f88fad42263ff43bab6c404d641eab,
@@ -1642,19 +1647,14 @@ PrefabInstance:
       propertyPath: m_AnchorMax.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6664781931478796973, guid: 34f88fad42263ff43bab6c404d641eab,
+    - target: {fileID: 8641192372598018748, guid: 34f88fad42263ff43bab6c404d641eab,
         type: 3}
-      propertyPath: m_RenderMode
-      value: 1
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6664781931478796973, guid: 34f88fad42263ff43bab6c404d641eab,
+    - target: {fileID: 8641192372598018748, guid: 34f88fad42263ff43bab6c404d641eab,
         type: 3}
-      propertyPath: m_Camera
-      value: 
-      objectReference: {fileID: 1463813659}
-    - target: {fileID: 1665341871164434757, guid: 34f88fad42263ff43bab6c404d641eab,
-        type: 3}
-      propertyPath: m_Enabled
+      propertyPath: m_AnchorMax.x
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
