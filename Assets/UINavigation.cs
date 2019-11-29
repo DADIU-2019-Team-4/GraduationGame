@@ -15,6 +15,8 @@ public class UINavigation : MonoBehaviour
 
     public GameObject _continueButton;
 
+    
+
     private GameObject _knob;
     private GameObject _flagGlowUK;
     private GameObject _flagGlowDK;
@@ -86,6 +88,8 @@ public class UINavigation : MonoBehaviour
     public void NewGame()
     {
         storyProgression.Value = StoryProgression.EStoryProgression.At_Tutorial;
+        PlayerPrefs.SetInt("Progression", 0);
+
         SceneManager.LoadScene("MainPlayerScene");
         AudioEvent.PostEvent("NewGame", gameObject);
     }
@@ -223,6 +227,16 @@ public class UINavigation : MonoBehaviour
         {
             PlayerPrefs.SetInt("FirstTimePlaying", 1);
         }
+
+        if (!PlayerPrefs.HasKey("Progression"))
+        {
+            PlayerPrefs.SetInt("Progression", 0);
+        }
+        else
+        {
+            storyProgression.Value = (StoryProgression.EStoryProgression)PlayerPrefs.GetInt("Progression");
+        }
+
     }
 
     public IEnumerator BurnOptionsMenu(float duration)

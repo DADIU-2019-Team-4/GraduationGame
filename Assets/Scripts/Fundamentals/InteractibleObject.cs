@@ -193,10 +193,7 @@ public class InteractibleObject : DashInteractable
         //}
         var mat = thisMaterial[1];
         mat.SetFloat("_Highlighted", 0);
-        popUpObject.PopUp();
-      
-
-
+        popUpObject.PopUp();      
     }
 
     private void Candle()

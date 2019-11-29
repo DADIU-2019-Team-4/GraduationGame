@@ -80,8 +80,13 @@ public class InputManager : IGameLoop
         if (Input.GetMouseButtonDown(0))
             DialogueTrigger.ClickDown = true;
 #elif UNITY_ANDROID || UNITY_IOS
-        if (Input.GetTouch(0).phase == TouchPhase.Began)
-            DialogueTrigger.ClickDown = true;
+        if (Input.touchCount > 0)
+        {
+            Touch touch = Input.GetTouch(0);
+            // Player's finger starts touching the screen
+            if (touch.phase == TouchPhase.Began)
+                DialogueTrigger.ClickDown = true;
+        }
 #endif
     }
 
