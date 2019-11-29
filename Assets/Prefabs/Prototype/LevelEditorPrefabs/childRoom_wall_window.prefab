@@ -13,9 +13,7 @@ GameObject:
   - component: {fileID: 2400248021018836028}
   - component: {fileID: 5946920985847659880}
   - component: {fileID: 2583138438628367632}
-  - component: {fileID: -1443149151513088620}
-  - component: {fileID: -8166920600396077840}
-  - component: {fileID: 5189773262431164704}
+  - component: {fileID: 173262387192186189}
   m_Layer: 0
   m_Name: childRoom_wall_window
   m_TagString: Untagged
@@ -112,7 +110,7 @@ MonoBehaviour:
   DamageValue: 0
   HealValue: 0
   BumpHeight: 0.3
---- !u!114 &-1443149151513088620
+--- !u!114 &173262387192186189
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -124,35 +122,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3f6a57ea9bb81040839eb22c9ccd632, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TriggerType: 12
+  TriggerType: 3
   WwiseType: 0
-  EventName: BumpIntoWall
+  EventName: BumpIntoWalls
   RTPCName: 
   RTPCValue: {fileID: 0}
   SetStateGroup: 
   SetStateValue: 
---- !u!114 &-8166920600396077840
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4139849119444977888}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fcccecc33ec644c4ca493ce9034643eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!65 &5189773262431164704
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4139849119444977888}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 3, y: 2.5153408, z: 0.8243587}
-  m_Center: {x: 0, y: 0.009756386, z: -0.15775985}

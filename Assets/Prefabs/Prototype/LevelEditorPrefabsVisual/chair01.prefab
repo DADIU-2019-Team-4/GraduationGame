@@ -14,9 +14,7 @@ GameObject:
   - component: {fileID: 5027525773567290708}
   - component: {fileID: -289712849869961280}
   - component: {fileID: 819018256461206757}
-  - component: {fileID: 5567794218782945909}
-  - component: {fileID: 3549426915803106640}
-  - component: {fileID: 1629797083492088409}
+  - component: {fileID: -2930861961180779840}
   m_Layer: 0
   m_Name: chair01
   m_TagString: Untagged
@@ -31,7 +29,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5910094531762711758}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.15222661, y: 0.589985, z: 0.000000038146972}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -45,7 +43,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5910094531762711758}
-  m_Mesh: {fileID: 6606501483488557099, guid: 3a2ce7b561df2a741a9de041de7b75a4, type: 3}
+  m_Mesh: {fileID: -1238218227891777710, guid: 3c5e58962003a58409976b141f8dee5d, type: 3}
 --- !u!23 &5348035163238684690
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -131,19 +129,7 @@ MonoBehaviour:
   burnSpeed: 0.8
   destroyAtTheEndOfFire: 1
   firetype: 0
---- !u!114 &5567794218782945909
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5910094531762711758}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fcccecc33ec644c4ca493ce9034643eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &3549426915803106640
+--- !u!114 &-2930861961180779840
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -155,23 +141,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3f6a57ea9bb81040839eb22c9ccd632, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TriggerType: 12
+  TriggerType: 5
   WwiseType: 0
-  EventName: BumpIntoBooks
+  EventName: 
   RTPCName: 
   RTPCValue: {fileID: 0}
   SetStateGroup: 
   SetStateValue: 
---- !u!65 &1629797083492088409
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5910094531762711758}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.6989293, y: 1.2089341, z: 0.6549879}
-  m_Center: {x: 0.000000029802322, y: 0.000000029802322, z: 0}

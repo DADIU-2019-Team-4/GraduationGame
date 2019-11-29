@@ -104,7 +104,7 @@ public class UINavigation : MonoBehaviour
 
     public void ExitOptions()
     {
-        _optionsMenu.SetActive(false);
+        StartCoroutine(BurnOptionsMenu(23));
         AudioEvent.PostEvent("ExitOptions", gameObject);
     }
 
@@ -157,25 +157,37 @@ public class UINavigation : MonoBehaviour
 
     public void EnterPauseMenu()
     {
-        _pauseMenu.SetActive(true);
-
-        
-        AudioEvent.PostEvent("EnterPauseMenu", gameObject);
-
-        if(PlayerPrefs.GetString("Language") == "English")
+        if (_pauseMenu.activeSelf) // exit pause menu
         {
-            _pauseMenu.transform.Find("Burn").GetComponent<Image>().material = PauseBurnEnglish;
+            AudioEvent.PostEvent("ExitPauseMenu", gameObject);
+            Time.timeScale = 1;
+            StartCoroutine(BurnPauseMenu(1));
+            gameObject.transform.Find("PauseButton").GetComponent<Image>().material.DisableKeyword("_PAUSED_ON");
         }
-        else
+        else //Enter Pause Menu
         {
-            _pauseMenu.transform.Find("Burn").GetComponent<Image>().material = PauseBurnDanish;
+
+            gameObject.transform.Find("PauseButton").GetComponent<Image>().material.EnableKeyword("_PAUSED_ON");
+            _pauseMenu.SetActive(true);
+            Time.timeScale = 0;
+
+            AudioEvent.PostEvent("EnterPauseMenu", gameObject);
+
+            if (PlayerPrefs.GetString("Language") == "English")
+            {
+                _pauseMenu.transform.Find("Burn").GetComponent<Image>().material = PauseBurnEnglish;
+            }
+            else
+            {
+                _pauseMenu.transform.Find("Burn").GetComponent<Image>().material = PauseBurnDanish;
+            }
         }
+       
     }
 
     public void ExitPauseMenu()
     {
-        _pauseMenu.SetActive(false);
-        AudioEvent.PostEvent("ExitPauseMenu", gameObject);
+        
     }
 
     public void GoToMainMenu()
@@ -211,5 +223,44 @@ public class UINavigation : MonoBehaviour
         {
             PlayerPrefs.SetInt("FirstTimePlaying", 1);
         }
+    }
+
+    public IEnumerator BurnOptionsMenu(float duration)
+    {
+        
+
+        float burnValue = gameObject.transform.Find("Burn").GetComponent<Image>().material.GetFloat("_Float0");
+
+        while (burnValue<1)
+        {
+            burnValue += Time.deltaTime;
+            gameObject.transform.Find("Burn").GetComponent<Image>().material.SetFloat("_Float0", burnValue + Time.deltaTime) ;
+            yield return null;
+        }
+
+        gameObject.transform.Find("Burn").GetComponent<Image>().material.SetFloat("_Float0", 0);
+        _optionsMenu.SetActive(false);
+
+        //yield return new WaitForSeconds(duration);
+    }
+
+    public IEnumerator BurnPauseMenu(float duration)
+    {
+
+
+        float burnValue = _pauseMenu.transform.Find("Burn").GetComponent<Image>().material.GetFloat("_DissolveAmount");
+
+        while (burnValue < 1)
+        {
+            burnValue += Time.deltaTime;
+            _pauseMenu.transform.Find("Burn").GetComponent<Image>().material.SetFloat("_DissolveAmount", burnValue + Time.deltaTime);
+            yield return null;
+        }
+
+        _pauseMenu.transform.Find("Burn").GetComponent<Image>().material.SetFloat("_DissolveAmount", 0);
+
+        _pauseMenu.SetActive(false);
+
+        //yield return new WaitForSeconds(duration);
     }
 }

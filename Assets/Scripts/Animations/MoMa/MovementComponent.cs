@@ -38,20 +38,23 @@ namespace MoMa
                     );
 
                 // If the target is reached, remove target
-                if (_transform.position.GetXZVector2() == _targets[0].position)
+                if (_transform.position == _targets[0].position)
                 {
                     _targets.RemoveAt(0);
                 }
 
-                // Rotate to face the direction moving
-                Vector2 direction = _velocity.GetXZVector2().normalized;
-                float rotationAngle = Vector2.SignedAngle(Vector2.up, direction);
-                _transform.eulerAngles = new Vector3(0, -rotationAngle, 0);
+                _transform.rotation = Quaternion.LookRotation(_velocity, Vector3.up);
+
+                //Vector2 direction = _velocity.GetXZVector2().normalized;
+                //float rotationAngle = Vector2.SignedAngle(Vector2.up, direction);
+                //_transform.eulerAngles = new Vector3(0, -rotationAngle, 0);
             }
         }
 
-        public void UpdateTargets(MovementController.EventType type, Vector2 position)
+        public void AddTarget(MovementController.EventType type, Vector3 position)
         {
+            Debug.Log(position);
+
             switch (type)
             {
                 case MovementController.EventType.Move:
@@ -105,7 +108,7 @@ namespace MoMa
                 // If the current target is reached, use the next one (if one exists)
                 if (
                     currentTarget + 1 < _targets.Count &&
-                    simulatedPosition.GetXZVector2() == _targets[currentTarget].position
+                    simulatedPosition == _targets[currentTarget].position
                     )
                 {
                     currentTarget++;
@@ -121,7 +124,7 @@ namespace MoMa
                 current,
                 target,
                 ref currentVelocity,
-                (target-current).magnitude / _speed,
+                (target - current).magnitude / _speed,
                 _speed
                 );
 
@@ -131,9 +134,9 @@ namespace MoMa
         private class Target
         {
             public MovementController.EventType type;
-            public Vector2 position;
+            public Vector3 position;
 
-            public Target(MovementController.EventType type, Vector2 position)
+            public Target(MovementController.EventType type, Vector3 position)
             {
                 this.type = type;
                 this.position = position;

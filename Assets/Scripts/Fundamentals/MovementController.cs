@@ -184,8 +184,7 @@ public class MovementController : MonoBehaviour
         _anim.Respawn();
 
         // Notify Sally
-        if (_salamanderController)
-            _salamanderController.UpdateTarget(EventType.Respawn, transform.position.GetXZVector2());
+        _salamanderController?.AddTarget(EventType.Respawn, transform.position);
     }
 
     /// <summary>
@@ -408,8 +407,8 @@ public class MovementController : MonoBehaviour
         HealthPercentage.Value = _currentFireAmount;
         UpdateGoalDistances();
 
-        // Log current position, so that the Salamander can follow
-        //_pathKeeper.LogPosition(this.transform.position.GetXZVector2());
+        // Notify Sally
+        _salamanderController?.AddTarget(EventType.Move, transform.position);
 
         _rigidBody.velocity = Vector3.zero;
         FuseEvent.Invoke();
@@ -429,8 +428,7 @@ public class MovementController : MonoBehaviour
         _anim.Land();
 
         // Notify Sally
-        if (_salamanderController)
-            _salamanderController.UpdateTarget(EventType.Move, transform.position.GetXZVector2());
+        _salamanderController?.AddTarget(EventType.Move, transform.position);
     }
 
     /// <summary>
