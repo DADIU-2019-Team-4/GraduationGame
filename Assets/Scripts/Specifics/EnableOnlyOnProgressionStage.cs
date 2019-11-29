@@ -6,7 +6,6 @@ public class EnableOnlyOnProgressionStage : MonoBehaviour
 {
     public StoryProgression.EStoryProgression Stage;
     public StoryProgression Progression;
-    public bool Enable = false;
 
     [TextArea]
     public string Message = "This GameObject is enabled on start only if the player is at the given stage.";
@@ -14,7 +13,7 @@ public class EnableOnlyOnProgressionStage : MonoBehaviour
     void Start()
     {
         if (Progression.Value != Stage)
-            gameObject.SetActive(Enable);
+            gameObject.SetActive(false);
     }
 
 }
