@@ -21,6 +21,9 @@ public class UINavigation : MonoBehaviour
     private GameObject _flagGlowUK;
     private GameObject _flagGlowDK;
 
+    [HideInInspector]
+    public static bool IsPaused = false;
+
     [Header("burnmats")]
     public Material PauseBurnDanish;
     public Material PauseBurnEnglish;
@@ -167,12 +170,18 @@ public class UINavigation : MonoBehaviour
             Time.timeScale = 1;
             StartCoroutine(BurnPauseMenu(1));
             gameObject.transform.Find("PauseButton").GetComponent<Image>().material.DisableKeyword("_PAUSED_ON");
+
+            InputManager.DisableInput = false;
+            IsPaused = false;
         }
         else //Enter Pause Menu
         {
 
             gameObject.transform.Find("PauseButton").GetComponent<Image>().material.EnableKeyword("_PAUSED_ON");
             _pauseMenu.SetActive(true);
+            IsPaused = true;
+
+            InputManager.DisableInput = true;
             Time.timeScale = 0;
 
             AudioEvent.PostEvent("EnterPauseMenu", gameObject);
