@@ -5,6 +5,8 @@ using System.Collections.Generic;
 
 public class InteractibleObject : DashInteractable
 {
+    public const string BrokenBool = "Broken";
+
     public enum InteractType
     {
         Death,
@@ -161,6 +163,7 @@ public class InteractibleObject : DashInteractable
         if (movementController.IsDashing)
         {
             AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.ObstacleBreak, audioEvents, gameObject);
+            gameObject.GetComponentInChildren<Animator>()?.SetBool(BrokenBool, true);
             cameraShake.setShakeElapsedTime(breakShake);
             //timeSlowdown.doSlowmotion();
             gameObject.GetComponent<BurnObject>().SetObjectOnFire(hitpoint);
