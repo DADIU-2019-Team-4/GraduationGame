@@ -162,7 +162,7 @@ public class InteractibleObject : DashInteractable
         {
             AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.ObstacleBreak, audioEvents, gameObject);
             cameraShake.setShakeElapsedTime(breakShake);
-            timeSlowdown.doSlowmotion();
+            //timeSlowdown.doSlowmotion();
             gameObject.GetComponent<BurnObject>().SetObjectOnFire(hitpoint);
             //dialogRunner.StartDialogue("Break");
             movementController.UpdateFireAmount(-HealValue);
