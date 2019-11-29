@@ -1,18 +1,19 @@
 Event	ID	Name			Wwise Object Path	Notes
 	90462293	HurtPlayer			\Character\PlayerHealth\HurtPlayer	
-	91804985	ExitOptions			\PauseMenu\ExitOptions	
+	91804985	ExitOptions			\Menu\OptionsMenu\ExitOptions	
 	151362964	PlayerHealth			\Character\PlayerHealth\PlayerHealth	
 	359881691	Tutorial_Music			\Music\Tutorial_Music	
 	382525071	BumpIntoBooks			\Environment\BumpInto\BumpIntoBooks	
 	384768216	BreakObjectMute			\Character\Objects\BreakObjectMute	
 	428947066	OffPlane			\Character\PaperPlane\OffPlane	
-	441114158	WaterSprayOn			\Environment\WaterSpray\WaterSprayOn	
+	441114158	WaterSprayOn			\Environment\WaterStuff\WaterSpray\WaterSprayOn	
+	632860588	UpdateAmbienceVolume			\Menu\VolumeForRTPC's\UpdateAmbienceVolume	
 	679539432	DeathObject			\Character\Objects\DeathObject	
 	735079116	ChargingDash			\Character\Dashing\ChargingDash	
 	742914115	ChargedDash			\Character\Dashing\ChargedDash	
 	770564256	BumpIntoSteel			\Environment\BumpInto\BumpIntoSteel	
-	889138964	ContinueGame			\PauseMenu\ContinueGame	
-	943969687	NewGame			\PauseMenu\NewGame	
+	889138964	ContinueGame			\Menu\OptionsMenu\ContinueGame	
+	943969687	NewGame			\Menu\MainMenu\NewGame	
 	948186658	PaperPlaneSpawn			\Character\PaperPlane\PaperPlaneSpawn	
 	991018855	DangerZoneIn			\Environment\DangerZone\DangerZoneIn	
 	1016929228	NormalDash			\Character\Dashing\NormalDash	
@@ -37,28 +38,31 @@ Event	ID	Name			Wwise Object Path	Notes
 	1822606759	GateUnlocked			\Character\Objects\GateUnlocked	
 	1886113446	BumpIntoHorse			\Environment\BumpInto\BumpIntoHorse	
 	1904864137	Torch			\Environment\Fireplace\Torches\Torch	
-	1908168848	ExitPauseMenu			\PauseMenu\ExitPauseMenu	
+	1908168848	ExitPauseMenu			\Menu\OptionsMenu\ExitPauseMenu	
 	1914703205	ChargingRejection			\Character\Dashing\ChargingRejection	
+	1915974646	RainFromAbove			\Environment\WaterStuff\RainFromAbove\RainFromAbove	
 	1933716535	PaperPlaneDead			\Character\PaperPlane\PaperPlaneDead	
 	1998000382	BumpIntoConcrete			\Environment\BumpInto\BumpIntoConcrete	
-	2030397405	RainParticle			\Environment\RainParticle	
+	2030397405	RainParticle			\Environment\WaterStuff\GridPit\RainParticle	
 	2041600939	Room0102_Music			\Music\Room0102_Music	
 	2044049779	Dead			\Character\PlayerHealth\Dead	
 	2096427994	DangerZoneOut			\Environment\DangerZone\DangerZoneOut	
-	2312877492	WaterSprayOff			\Environment\WaterSpray\WaterSprayOff	
+	2312877492	WaterSprayOff			\Environment\WaterStuff\WaterSpray\WaterSprayOff	
 	2346684474	OnRope			\Character\RopeMechanic\OnRope	
 	2362129349	BumpIntoPlants			\Environment\BumpInto\BumpIntoPlants	
-	2499528146	GoToMainMenu			\PauseMenu\GoToMainMenu	
+	2499528146	GoToMainMenu			\Menu\OptionsMenu\GoToMainMenu	
 	2596983219	BreakObject			\Character\Objects\BreakObject	
-	2758237675	ChangeLanguageToDanish			\PauseMenu\ChangeLanguageToDanish	
+	2758237675	ChangeLanguageToDanish			\Menu\OptionsMenu\ChangeLanguageToDanish	
 	2850533655	DashCancel			\Character\Dashing\DashCancel	
 	3044105157	WinPuzzle			\InGame_UI\WinPuzzle	
-	3205496764	ChangeLanguageToEnglish			\PauseMenu\ChangeLanguageToEnglish	
-	3602428572	EnterPauseMenu			\PauseMenu\EnterPauseMenu	
+	3205496764	ChangeLanguageToEnglish			\Menu\OptionsMenu\ChangeLanguageToEnglish	
+	3235780261	UpdateMusicVolume			\Menu\VolumeForRTPC's\UpdateMusicVolume	
+	3245207673	UpdateSFXVolume			\Menu\VolumeForRTPC's\UpdateSFXVolume	
+	3602428572	EnterPauseMenu			\Menu\OptionsMenu\EnterPauseMenu	
 	3724569835	BumpIntoWall			\Environment\BumpInto\BumpIntoWall	
 	3740361716	BumpIntoWood			\Environment\BumpInto\BumpIntoWood	
 	3749508035	Room0201_Music			\Music\Room0201_Music	
-	3806663565	OpenOptions			\PauseMenu\OpenOptions	
+	3806663565	OpenOptions			\Menu\MainMenu\OpenOptions	
 	3914625789	BlockObject			\Character\Objects\BlockObject	
 	3936711540	Room0101_Music			\Music\Room0101_Music	
 	4018333041	ArrowPull			\Character\Dashing\ArrowPull	
@@ -110,6 +114,7 @@ Effect plug-ins	ID	Name	Type				Notes
 	1588715066	Echoes_Linear	Wwise Delay			
 	1693896662	HighPass200Hz	Wwise Parametric EQ			
 	2547645744	Boost_3dB_100Hz	Wwise Parametric EQ			
+	3300240057	BassBoost	Wwise Parametric EQ			
 	3900114836	Metal_Hangar	Wwise RoomVerb			
 	4180247629	New_Wwise_Parametric_EQ	Wwise Parametric EQ			
 
@@ -208,6 +213,7 @@ Source plug-ins	ID	Name	Type		Wwise Object Path	Notes
 	1029579872	Wwise Silence	Wwise Silence		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\Rooms\Room_02\ChildLaugh+MusicBox_Container\Silence_18\Wwise Silence	
 	1037735227	Wwise Silence	Wwise Silence		\Actor-Mixer Hierarchy\Default Work Unit\Player\Movement\NormalDash\DashVoice\Silence_09\Wwise Silence	
 	1047424700	Wwise Silence	Wwise Silence		\Actor-Mixer Hierarchy\Default Work Unit\Player\Movement\ChargedDash\ChargedDash_Container\VoiceOnly-RandomContainer\Silence_07\Wwise Silence	
+	1059304485	SoundSeed Air Wind	SoundSeed Air Wind		\Actor-Mixer Hierarchy\Default Work Unit\Rope\OnRope_Container\OnRope_05\SoundSeed Air Wind	
 
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	2556547	speak_reaction_66_hurt	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Android\SFX\speak_reaction_66_hurt_6296B0F9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\PlayerHealth\HurtPlayer_Blend\HurtPlayerVoice\speak_reaction_66_hurt		16275
@@ -252,7 +258,7 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	189918020	power_dash_voice_09	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Android\SFX\power_dash_voice_09_6296B0F9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Movement\ChargedDash\ChargedDash_Container\VoiceOnly-RandomContainer\power_dash_voice_09		41177
 	198124376	room0201_loop02-112bpm	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Android\SFX\room0201_loop02-112bpm_9B96ECC7.wem		\Interactive Music Hierarchy\Default Work Unit\RoomMusic\Room0201\room0201_loop02\room0201_loop02-112bpm\room0201_loop02-112bpm		306419
 	205033150	room0101_loop03-75bpm	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Android\SFX\room0101_loop03-75bpm_9B96ECC7.wem		\Interactive Music Hierarchy\Default Work Unit\RoomMusic\Room0101\Room0101_loop03\room0101_loop03-75bpm\room0101_loop03-75bpm		759989
-	215832606	TorchTurnOn	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Android\SFX\TorchTurnOn_6296B0F9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\Fireplaces_&_Torches\TorchTurnOn		65079
+	215832606	FireplaceTurnOn	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Android\SFX\TorchTurnOn_6296B0F9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\Fireplaces_&_Torches\FireplaceTurnOn		65079
 	220648103	room0102_intro+loop01-70bpm	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Android\SFX\room0102_intro+loop01-70bpm_9B96ECC7.wem		\Interactive Music Hierarchy\Default Work Unit\RoomMusic\Room0102\Room0102_intro+loop01\room0102_intro+loop01_70bpm\room0102_intro+loop01-70bpm		1146781
 	220851758	Bottle_04	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Android\SFX\105023__robinhood76__02091-brick-hits_6197B66E.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\BumpInto\BumpIntoBottles\Bottle_04		6605
 	221187655	PlantLeaf_08	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Android\SFX\PlantLeaf_08_6296B0F9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\BumpInto\BumpIntoPlants\PlantLeaf_08		51683
@@ -268,6 +274,7 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	265646655	room0201_perc01-112bpm	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Android\SFX\room0201_perc01-112bpm_9B96ECC7.wem		\Interactive Music Hierarchy\Default Work Unit\RoomMusic\Room0201\room0201_loop01_Intense\room0201_loop01-112bpm\room0201_perc01-112bpm		1580713
 	270358178	power_dash_voice_01	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Android\SFX\power_dash_voice_01_6296B0F9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Movement\ChargedDash\ChargedDash_Container\VoiceOnly-RandomContainer\power_dash_voice_01		41699
 	272013640	RoomTone_01	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Android\SFX\Room 1 Tone_2_9B96ECC7.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\Rooms\Room_01\RoomTone_01		729297
+	273398401	WaterSprayOn_04	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Android\SFX\WaterSprayOn_04_6296B0F9.wem		\Actor-Mixer Hierarchy\Default Work Unit\WaterStuff\WaterSpray\WaterSprayOn_04		31606
 	281140526	dyingHeart	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Android\SFX\dyingHeart_9B96ECC7.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\PlayerHealth\dyingHeart		34857
 	284502584	BlockObject	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Android\SFX\BlockObject1_6296B0F9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\BlockObject		10295
 	286153440	speak_reaction_78_hm_power	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Android\SFX\speak_reaction_78_hm_power_6296B0F9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\BumpInto\BumpIntoLaugh_Random\speak_reaction_78_hm_power		11822
@@ -282,7 +289,6 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	359505339	Breaking_Wood_5	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Android\SFX\Breaking_Wood_5_6296B0F9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\BumpInto\BumpIntoWood\Breaking_Wood_5		17830
 	361152160	speak_reaction_91_laugh	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Android\SFX\speak_reaction_91_laugh_6296B0F9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\BumpInto\BumpIntoLaugh_Random\speak_reaction_91_laugh		9828
 	365462194	speak_reaction_35_hurt	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Android\SFX\speak_reaction_35_hurt_6296B0F9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\PlayerHealth\HurtPlayer_Blend\HurtPlayerVoice\speak_reaction_35_hurt		9517
-	370950048	WaterSprayOff	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Android\SFX\WaterSprayOff_6296B0F9.wem		\Actor-Mixer Hierarchy\Default Work Unit\WaterSpray\WaterSprayOff		46967
 	373280851	Breaking_Wood_7	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Android\SFX\Breaking_Wood_7_836C4E7D.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\BumpInto\BumpIntoWood\Breaking_Wood_7		11073
 	375055691	StopDash_03	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Android\SFX\StopDash_03_6296B0F9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Movement\NormalDash\StopDash_Container\StopDash_03		7302
 	381561572	speak_reaction_63_hurt	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Android\SFX\speak_reaction_63_hurt_6296B0F9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\PlayerHealth\HurtPlayer_Blend\HurtPlayerVoice\speak_reaction_63_hurt		7096
@@ -292,6 +298,7 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	409051657	Breaking_Wood_3	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Android\SFX\Breaking_Wood_3_7510DB23.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\BumpInto\BumpIntoWood\Breaking_Wood_3		16128
 	409849702	BurnObjectSweetner_03	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Android\SFX\BurnObjectSweetner_03_6296B0F9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\BurnObject_Blend\BreakObject_Random\BurnObjectSweetner_03		51548
 	416268568	AcidBurn_02	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Android\SFX\Fire, Acid Burn Flesh SND22212_42042CAC.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\PlayerHealth\HurtPlayer_Blend\HurtPlayerBurn\AcidBurn_02		15356
+	426260354	TorchTurnOn_02	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Android\SFX\TorchTurnOn_02_E4C554F6.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\Fireplaces_&_Torches\TorchTurnOn\TorchTurnOn_02		16907
 	444839901	power_dash_voice_04	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Android\SFX\power_dash_voice_04_6296B0F9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Movement\ChargedDash\ChargedDash_Container\VoiceOnly-RandomContainer\power_dash_voice_04		41113
 	445154093	Breaking_Wood_10	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Android\SFX\Breaking_Wood_10_A034DAE5.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\BumpInto\BumpIntoWood\Breaking_Wood_10		16783
 	446683949	book_drop_03	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Android\SFX\book_drop_02_490634F6.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\BumpInto\BumpIntoBooks\Books_Cover\book_drop_03		4819
@@ -302,7 +309,7 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	467658196	BurnObjectSweetner_07	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Android\SFX\BurnObjectSweetner_07_6296B0F9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\BurnObject_Blend\BreakObject_Random\BurnObjectSweetner_07		59936
 	469503402	TeddyBear07	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Android\SFX\TeddyBear07_6296B0F9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\BumpInto\BumpIntoTeddyBear\TeddyBear07		5819
 	473784644	speak_reaction_61_hurt	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Android\SFX\speak_reaction_61_hurt_6296B0F9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\PlayerHealth\HurtPlayer_Blend\HurtPlayerVoice\speak_reaction_61_hurt		8355
-	479028233	WaterSprayOn	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Android\SFX\WaterSprayOn_6296B0F9.wem		\Actor-Mixer Hierarchy\Default Work Unit\WaterSpray\WaterSprayOn		82229
+	479028233	RainFromAbove	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Android\SFX\WaterSprayOn_6296B0F9.wem		\Actor-Mixer Hierarchy\Default Work Unit\WaterStuff\RainFromAbove\RainFromAbove		82229
 	488138508	OnRope_01	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Android\SFX\45650__elonen__fuse-burning-48khz_83D0CE7B.wem		\Actor-Mixer Hierarchy\Default Work Unit\Rope\OnRope_Container\OnRope_01		47300
 	494270366	ChargingDash20	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Android\SFX\ChargingDash20_6296B0F9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Movement\ChargingDash_Blend\ChargingDash20		25718
 	498432214	room0201_bassdrum01-112bpm	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Android\SFX\room0201_bassdrum01-112bpm_9B96ECC7.wem		\Interactive Music Hierarchy\Default Work Unit\RoomMusic\Room0201\room0201_loop01_Intense\room0201_loop01-112bpm\room0201_bassdrum01-112bpm		920335
@@ -332,7 +339,7 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	688228341	room0201_loop03-112bpm	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Android\SFX\room0201_loop03-112bpm_9B96ECC7.wem		\Interactive Music Hierarchy\Default Work Unit\RoomMusic\Room0201\room0201_loop03\room0201_loop03-112bpm\room0201_loop03-112bpm		1625998
 	689827030	Breaking_Wood_8	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Android\SFX\Breaking_Wood_8_6296B0F9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\BumpInto\BumpIntoWood\Breaking_Wood_8		31131
 	705491775	room0102_loop02-70bpm	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Android\SFX\room0102_loop02-70bpm_9B96ECC7.wem		\Interactive Music Hierarchy\Default Work Unit\RoomMusic\Room0102\Room0102_loop02\room0102_loop02_70bpm\room0102_loop02-70bpm		962730
-	708869388	RainParticle	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Android\SFX\RainParticle_9B96ECC7.wem		\Actor-Mixer Hierarchy\Default Work Unit\RainParticle\RainParticle		118629
+	708869388	GridPitDrip	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Android\SFX\RainParticle_9B96ECC7.wem		\Actor-Mixer Hierarchy\Default Work Unit\WaterStuff\GridPit\GridPitDrip		118629
 	709568480	StopDash_05	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Android\SFX\StopDash_05_6296B0F9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Movement\NormalDash\StopDash_Container\StopDash_05		6403
 	718434056	TeddyBear04	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Android\SFX\TeddyBear04_6296B0F9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\BumpInto\BumpIntoTeddyBear\TeddyBear04		5922
 	736318896	room0101_loop02-75bpm	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Android\SFX\room0101_loop02-75bpm_9B96ECC7.wem		\Interactive Music Hierarchy\Default Work Unit\RoomMusic\Room0101\Room0101_loop02\room0101_loop02-75bpm\room0101_loop02-75bpm		832505
@@ -347,9 +354,8 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	768064554	Breaking_Wood_9	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Android\SFX\Breaking_Wood_9_6296B0F9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\BumpInto\BumpIntoWood\Breaking_Wood_9		11109
 	778803018	AcidBurn_04	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Android\SFX\Fire, Acid Burn 4 SND22202_594D5CBD.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\PlayerHealth\HurtPlayer_Blend\HurtPlayerBurn\AcidBurn_04		6432
 	784464097	room0202_perc01-112bpm_3bars	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Android\SFX\room0202_perc01-112bpm_3bars_9B96ECC7.wem		\Interactive Music Hierarchy\Default Work Unit\RoomMusic\Room0202\Room0202_introIntense01\room0202_intro+loop01-112bpm\room0202_perc01-112bpm_3bars		108690
+	790900494	PicturePickUp01	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Android\SFX\PicturePickUp01_6296B0F9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Pictures\PicturePickUp01		147799
 	791909349	Child3	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Android\SFX\Child3_6296B0F9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\Rooms\Room_02\ChildLaugh+MusicBox_Container\Child3		116142
-	794764855	picture01-100bpm	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Android\SFX\picture01-100bpm_9B96ECC7.wem		\Actor-Mixer Hierarchy\Default Work Unit\Pictures\picture01-100bpm		291639
-	796496521	picture04-100bpm	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Android\SFX\picture04-100bpm_9B96ECC7.wem		\Actor-Mixer Hierarchy\Default Work Unit\Pictures\picture04-100bpm		319170
 	798472844	Child1-1	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Android\SFX\Child1-1_6296B0F9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\Rooms\Room_02\ChildLaugh+MusicBox_Container\Child1-1		89580
 	803888170	power_dash_voice_02	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Android\SFX\power_dash_voice_02_6296B0F9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Movement\ChargedDash\ChargedDash_Container\VoiceOnly-RandomContainer\power_dash_voice_02		41177
 	812455129	85487__davidjwoll__cymbal-roll-quiet	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Android\SFX\85487__davidjwoll__cymbal-roll-quiet_9B96ECC7.wem		\Interactive Music Hierarchy\Default Work Unit\RoomMusic\transCymbal\85487__davidjwoll__cymbal-roll-quiet		167871
@@ -359,7 +365,6 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	835620909	BumpIntoConcrete_01	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Android\SFX\BumpIntoConcrete_01_6296B0F9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\BumpInto\BumpIntoConcrete\BumpIntoConcrete_01		11331
 	844444248	PlantLeaf_02	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Android\SFX\PlantLeaf_02_6296B0F9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\BumpInto\BumpIntoPlants\PlantLeaf_02		51485
 	855747821	OnRope_02	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Android\SFX\316682__theneedle-tv__sparkler-fuse-nm_6F3242C8.wem		\Actor-Mixer Hierarchy\Default Work Unit\Rope\OnRope_Container\OnRope_02		176027
-	863574271	picture02-100bpm	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Android\SFX\picture02-100bpm_9B96ECC7.wem		\Actor-Mixer Hierarchy\Default Work Unit\Pictures\picture02-100bpm		323967
 	863796581	tutorial_loop01-105bpm	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Android\SFX\tutorial_loop01-105bpm_9B96ECC7.wem		\Interactive Music Hierarchy\Default Work Unit\TutorialMusic\Tutorial_startLoop\tutorial_loop01-105bpm\tutorial_loop01-105bpm		1633041
 	865999956	power_dash_voice_06	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Android\SFX\power_dash_voice_06_6296B0F9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Movement\ChargedDash\ChargedDash_Container\VoiceOnly-RandomContainer\power_dash_voice_06		40868
 	871210915	BurnObjectSweetner_08	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Android\SFX\BurnObjectSweetner_08_6296B0F9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\BurnObject_Blend\BreakObject_Random\BurnObjectSweetner_08		55432
@@ -370,7 +375,6 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	896499827	normal_dash_02	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Android\SFX\normal_dash_02_6296B0F9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Movement\NormalDash\DashVoice\normal_dash_02		7001
 	913902456	Child2	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Android\SFX\Child2_6296B0F9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\Rooms\Room_02\ChildLaugh+MusicBox_Container\Child2		113631
 	914337157	RockingHorse	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Android\SFX\RockingHorse_6296B0F9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\BumpInto\BumpIntoHorse\RockingHorse		15963
-	930651664	picture03-100bpm	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Android\SFX\picture03-100bpm_9B96ECC7.wem		\Actor-Mixer Hierarchy\Default Work Unit\Pictures\picture03-100bpm		278950
 	946218584	BumpWall_05	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Android\SFX\BumpWall_05_6296B0F9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\BumpInto\BumpIntoWall\BumpWall_05		11795
 	980705570	AcidBurn_01	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Android\SFX\Fire, Acid Burn 4 SND22202_347D65E5.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\PlayerHealth\HurtPlayer_Blend\HurtPlayerBurn\AcidBurn_01		7627
 	990582361	AcidBurn_05	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Android\SFX\Fire, Acid Burn 4 SND22202_F0B9E744.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\PlayerHealth\HurtPlayer_Blend\HurtPlayerBurn\AcidBurn_05		6618
@@ -382,4 +386,5 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	1032642195	ChargedDash13	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Android\SFX\ChargingDash19 (no voice)_6296B0F9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Movement\ChargedDash\ChargedDash_Container\ChargedDash13		41266
 	1033380656	BumpIntoConcrete_03	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Android\SFX\BumpIntoConcrete_03_6296B0F9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\BumpInto\BumpIntoConcrete\BumpIntoConcrete_03		7341
 	1036702409	ChargeHold	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Android\SFX\ChargeHold2_9B96ECC7.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Movement\ChargeHold		27638
+	1047209183	WaterSprayOff_02	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Android\SFX\WaterSprayOff_02_2EA5EA6A.wem		\Actor-Mixer Hierarchy\Default Work Unit\WaterStuff\WaterSpray\WaterSprayOff_02		26306
 

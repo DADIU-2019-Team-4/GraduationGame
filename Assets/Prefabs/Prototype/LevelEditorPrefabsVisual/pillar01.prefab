@@ -13,10 +13,8 @@ GameObject:
   - component: {fileID: 5693909534756854821}
   - component: {fileID: 4012588350444714937}
   - component: {fileID: 4733434127662848885}
-  - component: {fileID: -3982766545399452102}
-  - component: {fileID: -460486679003945344}
-  - component: {fileID: 6849799603032816978}
-  m_Layer: 2
+  - component: {fileID: 4678246159002048402}
+  m_Layer: 0
   m_Name: pillar01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -111,7 +109,7 @@ MonoBehaviour:
   DamageValue: 0
   HealValue: 0
   BumpHeight: 0.3
---- !u!114 &-3982766545399452102
+--- !u!114 &4678246159002048402
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -123,35 +121,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3f6a57ea9bb81040839eb22c9ccd632, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TriggerType: 12
+  TriggerType: 3
   WwiseType: 0
-  EventName: BumpIntoConcrete
+  EventName: 
   RTPCName: 
   RTPCValue: {fileID: 0}
   SetStateGroup: 
   SetStateValue: 
---- !u!114 &-460486679003945344
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6284776034545330425}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fcccecc33ec644c4ca493ce9034643eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!65 &6849799603032816978
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6284776034545330425}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.2861848, y: 4.283595, z: 1.2861848}
-  m_Center: {x: 0, y: 0, z: 0}

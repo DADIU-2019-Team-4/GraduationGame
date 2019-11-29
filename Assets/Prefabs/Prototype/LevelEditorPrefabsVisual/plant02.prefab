@@ -14,10 +14,8 @@ GameObject:
   - component: {fileID: -3902392251372223974}
   - component: {fileID: -5252235521438198400}
   - component: {fileID: -8745931109926415920}
-  - component: {fileID: 8381233871214132062}
-  - component: {fileID: -3004264620519091985}
-  - component: {fileID: -6934137684142456046}
-  m_Layer: 2
+  - component: {fileID: 2174811411033695966}
+  m_Layer: 0
   m_Name: plant02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -131,20 +129,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.9594356, y: 3.05, z: 0.9370552}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!65 &8381233871214132062
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5923303004598709911}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.9594356, y: 3.05, z: 0.9370552}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &-3004264620519091985
+--- !u!114 &2174811411033695966
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -156,22 +141,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3f6a57ea9bb81040839eb22c9ccd632, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TriggerType: 12
+  TriggerType: 5
   WwiseType: 0
   EventName: BumpIntoPlants
   RTPCName: 
   RTPCValue: {fileID: 0}
   SetStateGroup: 
   SetStateValue: 
---- !u!114 &-6934137684142456046
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5923303004598709911}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fcccecc33ec644c4ca493ce9034643eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

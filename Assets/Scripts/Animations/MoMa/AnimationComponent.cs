@@ -36,11 +36,25 @@ namespace MoMa
                 // This changes the rig to the one used by Rokoko
                 //this._bones[bone].SetPositionAndRotation(frame.boneDataDict[bone].position, frame.boneDataDict[bone].rotation);
                 //this._bones[bone].SetPositionAndRotation(frame.boneDataDict[bone].localPosition, frame.boneDataDict[bone].rotation);
-                this._bones[bone].rotation = frame.boneDataDict[bone].rotation;
+
+                if (bone != Bone.Type.root)
+                    this._bones[bone].rotation = frame.boneDataDict[bone].rotation;
+                else
+                    this._bones[bone].rotation = Quaternion.identity;
             }
 
+            // (TODO FINAL): This should use root rotation but it is not calculated correcltly in the Packer.
+            this._bones[Bone.Type.root].localRotation = Quaternion.Inverse(frame.boneDataDict[Bone.Type.hips].rotation);
+
+            //this._bones[Bone.Type.root].rotation = Quaternion.Inverse(frame.boneDataDict[Bone.Type.root].rotation);
+
             //this._model.Rotate(new Vector3(0f, -frame.boneDataDict[Bone.Type.root].rotation.eulerAngles.y, 0f));
-            this._model.rotation = Quaternion.Inverse(frame.boneDataDict[Bone.Type.root].rotation);
+            //this._model.rotation *= Quaternion.Inverse(frame.boneDataDict[Bone.Type.root].rotation);
+            //Debug.Log("Last timestamp: " + frame.timestamp);
+            //Debug.Log("Model: Last root rotation: " + this._bones[Bone.Type.root].rotation);
+            //Debug.Log("Frame: Last root rotation: " + frame.boneDataDict[Bone.Type.root].rotation);
+            //Debug.Log("Model: Last hips rotation: " + this._bones[Bone.Type.hips].rotation);
+            //Debug.Log("Frame: Last hips rotation: " + frame.boneDataDict[Bone.Type.hips].rotation);
         }
 
         public void LoadClip(Animation.Clip clip)

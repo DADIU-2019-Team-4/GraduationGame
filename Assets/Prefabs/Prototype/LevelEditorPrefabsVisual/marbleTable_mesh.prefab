@@ -13,10 +13,8 @@ GameObject:
   - component: {fileID: 4474847984923899763}
   - component: {fileID: 3147316365083630266}
   - component: {fileID: 152617893504103431}
-  - component: {fileID: 7850059563457445461}
-  - component: {fileID: 2961735329419840479}
-  - component: {fileID: 5699814491497126707}
-  m_Layer: 2
+  - component: {fileID: -2300531660147789273}
+  m_Layer: 0
   m_Name: marbleTable_mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -111,7 +109,7 @@ MonoBehaviour:
   DamageValue: 0
   HealValue: 0
   BumpHeight: 0.3
---- !u!114 &7850059563457445461
+--- !u!114 &-2300531660147789273
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -123,35 +121,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3f6a57ea9bb81040839eb22c9ccd632, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TriggerType: 12
+  TriggerType: 3
   WwiseType: 0
   EventName: BumpIntoSteel
   RTPCName: 
   RTPCValue: {fileID: 0}
   SetStateGroup: 
   SetStateValue: 
---- !u!114 &2961735329419840479
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2748616909205324719}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fcccecc33ec644c4ca493ce9034643eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!65 &5699814491497126707
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2748616909205324719}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.40255636, y: 0.34897366, z: 0.40255636}
-  m_Center: {x: 0, y: 0, z: 0}

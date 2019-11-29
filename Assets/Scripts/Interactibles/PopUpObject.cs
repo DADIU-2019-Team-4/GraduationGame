@@ -11,6 +11,9 @@ public class PopUpObject : MonoBehaviour
 
     private bool _isShown = false;
 
+    //camera movement
+    public GameObject closeCam;
+    public float TimeZoomedIn = 3;
 
     private List<AudioEvent> audioEvents;
 
@@ -25,14 +28,17 @@ public class PopUpObject : MonoBehaviour
         {
             GameObject canvas = GameObject.FindGameObjectWithTag(PopUpCanvasTag);
 
-            if(!canvas) Debug.LogWarning("Unable to find Pop-up canvas to display image on");
+            if(canvas == null) Debug.LogWarning("Unable to find Pop-up canvas to display image on");
             else
             {
-                PopUpCanvas popUpCanvasComponent = canvas.GetComponent<PopUpCanvas>();
+                StartCoroutine(ZoomCamerain()); 
+
+                /*PopUpCanvas popUpCanvasComponent = canvas.GetComponent<PopUpCanvas>();
                 popUpCanvasComponent.SetImage(Sprite);
                 popUpCanvasComponent.ShowPopUp();
                 dialogueTrigger.TriggerDialogue();
-                _isShown = true;
+                _isShown = true;*/
+
             }
         }
     }
@@ -41,7 +47,7 @@ public class PopUpObject : MonoBehaviour
     {
         GameObject canvas = GameObject.FindGameObjectWithTag(PopUpCanvasTag);
 
-        if (!canvas) Debug.LogWarning("Unable to find Pop-up canvas to display image on");
+        if (canvas == null) Debug.LogWarning("Unable to find Pop-up canvas to display image on");
         else
         {
 
@@ -70,7 +76,7 @@ public class PopUpObject : MonoBehaviour
     {
         GameObject canvas = GameObject.FindGameObjectWithTag(PopUpCanvasTag);
 
-        if (!canvas) Debug.LogWarning("Unable to find Pop-up canvas to display image on");
+        if (canvas == null) Debug.LogWarning("Unable to find Pop-up canvas to display image on");
         else
         {
             if (gameObject.CompareTag("pic1"))
@@ -93,5 +99,18 @@ public class PopUpObject : MonoBehaviour
             PopUpCanvas popUpCanvasComponent = canvas.GetComponent<PopUpCanvas>();
             popUpCanvasComponent.EnableButton();
         }
+    }
+
+    IEnumerator ZoomCamerain()
+    {
+        closeCam.SetActive(true);
+        yield return new WaitForSeconds(TimeZoomedIn);
+        GameObject canvas = GameObject.FindGameObjectWithTag(PopUpCanvasTag);
+        PopUpCanvas popUpCanvasComponent = canvas.GetComponent<PopUpCanvas>();
+        popUpCanvasComponent.SetImage(Sprite);
+        popUpCanvasComponent.ShowPopUp();
+        dialogueTrigger.TriggerDialogue();
+        _isShown = true;
+        closeCam.SetActive(false);
     }
 }

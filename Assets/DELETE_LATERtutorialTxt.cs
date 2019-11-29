@@ -17,7 +17,12 @@ public class DELETE_LATERtutorialTxt : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        LoadBaseSceneManager loadBaseSceneManager = FindObjectOfType<LoadBaseSceneManager>();
+        if (loadBaseSceneManager.StoryProgression.Value != StoryProgression.EStoryProgression.At_Tutorial)
+        {
+            GameObject tutorial = GameObject.Find("QuickUITutorialCanvas");
+            tutorial?.SetActive(false);
+        }
     }
 
     // Update is called once per frame

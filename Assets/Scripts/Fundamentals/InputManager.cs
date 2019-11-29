@@ -80,8 +80,13 @@ public class InputManager : IGameLoop
         if (Input.GetMouseButtonDown(0))
             DialogueTrigger.ClickDown = true;
 #elif UNITY_ANDROID || UNITY_IOS
-        if (Input.GetTouch(0).phase == TouchPhase.Began)
-            DialogueTrigger.ClickDown = true;
+        if (Input.touchCount > 0)
+        {
+            Touch touch = Input.GetTouch(0);
+            // Player's finger starts touching the screen
+            if (touch.phase == TouchPhase.Began)
+                DialogueTrigger.ClickDown = true;
+        }
 #endif
     }
 
@@ -262,6 +267,10 @@ public class InputManager : IGameLoop
         if (_dashCircle != null) Destroy(_dashCircle);
         _dashCircle = Instantiate(DashCirclePrefab, position, Quaternion.identity, _canvas.transform);
         _dashCircle.transform.SetAsFirstSibling();
+        float newXPos = position.x - Screen.width / 2;
+        float newYpos = position.y - Screen.height / 2;
+        _dashCircle.transform.localPosition = new Vector3(newXPos, newYpos, 0);
+        _dashCircle.transform.localRotation = Quaternion.identity;
 
         _firstPosition = position;
         _lastPosition = position;

@@ -5,6 +5,8 @@ using System.Collections.Generic;
 
 public class InteractibleObject : DashInteractable
 {
+    public const string BrokenBool = "Broken";
+
     public enum InteractType
     {
         Death,
@@ -18,7 +20,8 @@ public class InteractibleObject : DashInteractable
         FusePoint,
         Damage,
         DangerZone,
-        BurnableProp
+        BurnableProp,
+        PopUp
     }
     public InteractType type;
     public float DamageValue;
@@ -29,6 +32,9 @@ public class InteractibleObject : DashInteractable
     //private DialogueRunner dialogRunner;
     private PopUpObject popUpObject;
     private BreakablesParticleManager _breakablesParticleManager;
+
+    //disabling highlightShader
+    private Material[] thisMaterial; 
 
     public bool IsBreakable { get; set; }
 
@@ -49,6 +55,11 @@ public class InteractibleObject : DashInteractable
             IsBreakable = true;
         else
             IsBreakable = false;
+
+        if ((gameObject.tag =="pic1") || (gameObject.tag == "pic2") || (gameObject.tag == "pic3") || (gameObject.tag == "pic4"))
+        {
+            thisMaterial = GetComponent<Renderer>().materials;
+        }
 
 
 
@@ -102,12 +113,9 @@ public class InteractibleObject : DashInteractable
             case InteractType.BurnableProp:
                 BurnProp(hitpoint);
                 break;
-        }
-
-        // If this is a pop-up Object, trigger the pop-up
-        if (popUpObject)
-        {
-            popUpObject.PopUp();
+            case InteractType.PopUp:
+                PopUp();
+                break;
         }
     }
 
@@ -155,8 +163,9 @@ public class InteractibleObject : DashInteractable
         if (movementController.IsDashing)
         {
             AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.ObstacleBreak, audioEvents, gameObject);
+            gameObject.GetComponentInChildren<Animator>()?.SetBool(BrokenBool, true);
             cameraShake.setShakeElapsedTime(breakShake);
-            timeSlowdown.doSlowmotion();
+            //timeSlowdown.doSlowmotion();
             gameObject.GetComponent<BurnObject>().SetObjectOnFire(hitpoint);
             //dialogRunner.StartDialogue("Break");
             movementController.UpdateFireAmount(-HealValue);
@@ -175,6 +184,19 @@ public class InteractibleObject : DashInteractable
     {
         gameObject.GetComponent<BurnObject>().SetObjectOnFire(hitpoint);
         movementController.UpdateFireAmount(-HealValue);
+    }
+
+    private void PopUp()
+    {
+        // If this is a pop-up Object, trigger the pop-up
+        //if (popUpObject)
+        //{
+        //    thisMaterial[1].
+        //    popUpObject.PopUp();
+        //}
+        var mat = thisMaterial[1];
+        mat.SetFloat("_Highlighted", 0);
+        popUpObject.PopUp();      
     }
 
     private void Candle()

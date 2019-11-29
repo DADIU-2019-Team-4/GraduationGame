@@ -14,6 +14,5 @@ public class AudioOnCollision : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
             AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.OnCollision, audioEvents, gameObject);
-        Debug.Log("SoundCollision");
     }
 }
