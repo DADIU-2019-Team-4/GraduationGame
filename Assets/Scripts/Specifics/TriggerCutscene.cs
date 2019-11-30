@@ -17,6 +17,7 @@ public class TriggerCutscene : MonoBehaviour
         LucyBodyAnimator,
         LucyFireAnimator,
         MainCamera,
+		Player
     }
 
     public TimelineTrack[] TrackReferences;
