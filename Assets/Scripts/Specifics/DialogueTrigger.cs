@@ -64,7 +64,7 @@ public class DialogueTrigger : MonoBehaviour
             TriggerDialogue();
     }
 
-    private void Advance()
+    public void Advance()
     {
         ClickDown = false;
 
