@@ -1329,16 +1329,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4066279058806922065, guid: 7f579a59447f4be4cb6336d55ef7ac20,
-        type: 3}
-      propertyPath: m_Camera
-      value: 
-      objectReference: {fileID: 8854936888693051525}
-    - target: {fileID: 4066279058806922068, guid: 7f579a59447f4be4cb6336d55ef7ac20,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8059934490227246415, guid: 7f579a59447f4be4cb6336d55ef7ac20,
         type: 3}
       propertyPath: m_SizeDelta.x
@@ -1354,16 +1344,16 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 200
       objectReference: {fileID: 0}
-    - target: {fileID: 180731458880761497, guid: 7f579a59447f4be4cb6336d55ef7ac20,
+    - target: {fileID: 4066279058806922068, guid: 7f579a59447f4be4cb6336d55ef7ac20,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4066279058806922065, guid: 7f579a59447f4be4cb6336d55ef7ac20,
         type: 3}
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 8854936888693051525}
-    - target: {fileID: 180731458880761497, guid: 7f579a59447f4be4cb6336d55ef7ac20,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2000049657355167961, guid: 7f579a59447f4be4cb6336d55ef7ac20,
         type: 3}
       propertyPath: m_IsActive
@@ -1397,6 +1387,16 @@ PrefabInstance:
     - target: {fileID: 8229038022965033121, guid: 7f579a59447f4be4cb6336d55ef7ac20,
         type: 3}
       propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 180731458880761497, guid: 7f579a59447f4be4cb6336d55ef7ac20,
+        type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 8854936888693051525}
+    - target: {fileID: 180731458880761497, guid: 7f579a59447f4be4cb6336d55ef7ac20,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1897,6 +1897,10 @@ MonoBehaviour:
     m_MinDuration: 0
   - m_FullHash: 1759010549
     m_VirtualCamera: {fileID: 465985618}
+    m_ActivateAfter: 0
+    m_MinDuration: 0
+  - m_FullHash: 1228813136
+    m_VirtualCamera: {fileID: 8842590520268401207}
     m_ActivateAfter: 0
     m_MinDuration: 0
   m_DefaultBlend:
