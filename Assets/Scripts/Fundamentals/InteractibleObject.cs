@@ -147,7 +147,7 @@ public class InteractibleObject : DashInteractable
 
     IEnumerator deathParticleSys()
     {
-        yield return new WaitForSeconds(0.3f);
+        //yield return new WaitForSeconds(0.3f);
         var particleSystemEN = gameObject.GetComponentInChildren<ParticleSystem>();
         var em = particleSystemEN.emission;
         em.enabled = true;
