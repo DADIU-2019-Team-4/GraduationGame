@@ -128,9 +128,33 @@ public class InteractibleObject : DashInteractable
         {
             Vector3 targetPosition = hitpoint + movementController.transform.forward * movementController.BounceValue;
             movementController.Die(false, targetPosition);
+            //spawn particle for death
+
+         
+           /* var particleSystemEN = gameObject.GetComponentInChildren<ParticleSystem>();
+            var em = particleSystemEN.emission;
+            em.enabled = true;
+            particleSystemEN.Play();
+            */
+
+
             Vibration.Vibrate(80);
+            StartCoroutine(deathParticleSys()); 
+
             //dialogRunner.StartDialogue("Death");
         }
+    }
+
+    IEnumerator deathParticleSys()
+    {
+        var particleSystemEN = gameObject.GetComponentInChildren<ParticleSystem>();
+        var em = particleSystemEN.emission;
+        em.enabled = true;
+        particleSystemEN.Play();
+        yield return new WaitForSeconds(2f);
+        em.enabled = false;
+        particleSystemEN.Stop();
+
     }
 
     private void Projectile()
