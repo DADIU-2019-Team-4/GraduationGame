@@ -259,7 +259,6 @@ public class InteractibleObject : DashInteractable
         AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.Damage, audioEvents, gameObject);
         movementController.UpdateFireAmount(DamageValue);
         movementController.CheckFireLeft();
-        movementController.TargetPosition = hitpoint;
     }
 
     private void DangerZone()
