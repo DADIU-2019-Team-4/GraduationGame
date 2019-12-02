@@ -37,7 +37,7 @@ public class GateV2 : MonoBehaviour
         coliiderFromDoor = doorGameobject.GetComponent<BoxCollider>();
         AnimatorFromGameobject = doorGameobject.GetComponent<Animator>();
         AnimatorForKeyWheel = GetComponent<Animator>();
-        thisMaterial = GameObject.FindGameObjectWithTag("wheelModel").GetComponent<Material>();
+        thisMaterial = GameObject.FindGameObjectWithTag("wheelModel").GetComponent<Renderer>().material;
 
     }
 
@@ -50,7 +50,7 @@ public class GateV2 : MonoBehaviour
             AnimatorForKeyWheel.SetBool(UnlockedLabel, true);
 
 
-            //thisMaterial.DisableKeyword("_HIGHLIGHTED_ON"); 
+            thisMaterial.DisableKeyword("_HIGHLIGHTED_ON"); 
             //camera behavior
             _triggerUnlock = true;
             StartCoroutine(Unlock());
