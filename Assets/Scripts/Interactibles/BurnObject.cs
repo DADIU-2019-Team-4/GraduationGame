@@ -24,6 +24,7 @@ public class BurnObject : MonoBehaviour
     [Range(0, 3f)]
     public float burnSpeed = 0.1f;
     public bool destroyAtTheEndOfFire = true;
+    public float BurnLimit = 30f;
 
     public enum FireType
     {
@@ -140,7 +141,7 @@ public class BurnObject : MonoBehaviour
         }
         else if (_isDissasembling)
         {
-            if (_burnedAmount < 30f)
+            if (_burnedAmount < BurnLimit)
             {
                 _burnedAmount += burnSpeed * Time.deltaTime;
                 fireFloat -= 0.05f;
