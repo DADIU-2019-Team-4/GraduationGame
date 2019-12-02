@@ -176,22 +176,16 @@ public class UINavigation : MonoBehaviour
         if (_pauseMenu.activeSelf) // exit pause menu
         {
             AudioEvent.PostEvent("ExitPauseMenu", gameObject);
-            Time.timeScale = 1;
+            UnPause();
             StartCoroutine(BurnPauseMenu(1));
-            gameObject.transform.Find("PauseButton").GetComponent<Image>().material.DisableKeyword("_PAUSED_ON");
-
-            InputManager.DisableInput = false;
-            IsPaused = false;
+            
         }
         else //Enter Pause Menu
         {
 
-            gameObject.transform.Find("PauseButton").GetComponent<Image>().material.EnableKeyword("_PAUSED_ON");
             _pauseMenu.SetActive(true);
-            IsPaused = true;
-
-            InputManager.DisableInput = true;
-            Time.timeScale = 0;
+            Pause();
+            
 
             AudioEvent.PostEvent("EnterPauseMenu", gameObject);
 
@@ -214,10 +208,28 @@ public class UINavigation : MonoBehaviour
 
     public void GoToMainMenu()
     {
+        UnPause();
         SceneManager.LoadScene("MainMenu");
         AudioEvent.PostEvent("GoToMainMenu", gameObject);
     }
 
+    public void Pause()
+    {
+        gameObject.transform.Find("PauseButton").GetComponent<Image>().material.EnableKeyword("_PAUSED_ON");
+        IsPaused = true;
+
+        InputManager.DisableInput = true;
+        Time.timeScale = 0;
+    }
+
+    public void UnPause()
+    {
+        Time.timeScale = 1;
+        gameObject.transform.Find("PauseButton").GetComponent<Image>().material.DisableKeyword("_PAUSED_ON");
+
+        InputManager.DisableInput = false;
+        IsPaused = false;
+    }
 
     private void InitPlayerPrefs()
     {
