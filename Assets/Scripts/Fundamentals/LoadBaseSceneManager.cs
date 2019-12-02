@@ -35,11 +35,13 @@ public class LoadBaseSceneManager : IGameLoop
     {
         DownloadAssets();
 
-#if UNITY_EDITOR
-        LoadBaseScene(SelectedScene);
-#elif UNITY_ANDROID || UNITY_IOS || UNITY_STANDALONE
         LoadSceneFromPlayerProgression();
-#endif
+        /*
+#if UNITY_EDITOR
+        //LoadBaseScene(SelectedScene);
+#elif UNITY_ANDROID || UNITY_IOS || UNITY_STANDALONE
+        
+#endif*/
     }
 
     private void LoadSceneFromPlayerProgression()
