@@ -9,6 +9,7 @@ public class TriggerCutscene : MonoBehaviour
 {
     private PlayableDirector _timeline;
     public UnityEvent OnTrigger;
+    public UnityEvent OnCutSceneEnd;
 
     public DialogueTrigger.DialogueTriggerType TriggerType;
 
@@ -44,6 +45,7 @@ public class TriggerCutscene : MonoBehaviour
         {
             InputManager.DisableInput = false;
             _timeline.stopped -= OnCutSceneStopped;
+            OnCutSceneEnd.Invoke();
             if (OnlyOnce)
                 gameObject.SetActive(false);
         }

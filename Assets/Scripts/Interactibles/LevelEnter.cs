@@ -16,11 +16,12 @@ public class LevelEnter : IGameLoop
             CreateKeys(gameObject.name);
         else
             ReadValues(gameObject.name);
-        if (isOpened) ///Can be changed to open door animation when animation and door probs will be finished
-            material.material.color = Color.green;
+
+        //if (isOpened) ///Can be changed to open door animation when animation and door probs will be finished
+        //    material.material.color = Color.green;
         
-        else
-            material.material.color = Color.red;
+        //else
+        //    material.material.color = Color.red;
 
     }
 
@@ -31,16 +32,20 @@ public class LevelEnter : IGameLoop
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player") && isOpened)
-        {
-            Debug.Log("Should Load New Scene");
-            var closeFile = FindObjectOfType<PlayerQALogs>();
-            if(closeFile!=null)
-                closeFile.Close();
-            var index = SceneManager.sceneCount;
-            _sceneManager.UnloadScene(SceneManager.GetSceneAt(index-1).name);
-            _sceneManager.LoadBaseScene(SelectedScene);
-        }
+            LoadNextLevel();
     }
+
+    public void LoadNextLevel()
+    {
+        Debug.Log("Should Load New Scene");
+        var closeFile = FindObjectOfType<PlayerQALogs>();
+        if (closeFile != null)
+            closeFile.Close();
+        var index = SceneManager.sceneCount;
+        _sceneManager.UnloadScene(SceneManager.GetSceneAt(index - 1).name);
+        _sceneManager.LoadBaseScene(SelectedScene);
+    }
+
     private void CreateKeys(string name)
     {
         /// 0 - false, 1 - true as PlayerPrefs are not saving bool values;

@@ -28,12 +28,17 @@ public class GateV2 : MonoBehaviour
     //player control time
     public float PlayerLoseControlSeconds;
 
+    //
+    private Material thisMaterial;
+
     private void Awake()
     {
         audioEvents = new List<AudioEvent>(GetComponents<AudioEvent>());
         coliiderFromDoor = doorGameobject.GetComponent<BoxCollider>();
         AnimatorFromGameobject = doorGameobject.GetComponent<Animator>();
         AnimatorForKeyWheel = GetComponent<Animator>();
+        thisMaterial = GameObject.FindGameObjectWithTag("wheelModel").GetComponent<Renderer>().material;
+
     }
 
     private void OnTriggerEnter(Collider collider)
@@ -44,6 +49,8 @@ public class GateV2 : MonoBehaviour
             burnObject.SetObjectOnFire(gameObject.transform.position);
             AnimatorForKeyWheel.SetBool(UnlockedLabel, true);
 
+
+            thisMaterial.DisableKeyword("_HIGHLIGHTED_ON"); 
             //camera behavior
             _triggerUnlock = true;
             StartCoroutine(Unlock());

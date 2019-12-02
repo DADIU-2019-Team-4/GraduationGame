@@ -373,7 +373,7 @@ public class MovementController : MonoBehaviour
         _anim.Collide();
 
         yield return new WaitForSeconds(duration);
-
+        IsMoving = false;
         _rigidBody.velocity = Vector3.zero;
     }
 
