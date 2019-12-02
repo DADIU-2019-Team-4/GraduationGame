@@ -27,8 +27,8 @@ namespace MoMa
 
             foreach (Bone.Type bone in limbDataDict.Keys)
             {
-                Vector3 expectedLocalPosition = this.limbDataDict[bone].localPosition + this.limbDataDict[bone].localVelocity;
-                Vector3 candidateLocalPosition = candidate.limbDataDict[bone].localPosition;
+                Vector3S expectedLocalPosition = limbDataDict[bone].localPosition + limbDataDict[bone].localVelocity;
+                Vector3S candidateLocalPosition = candidate.limbDataDict[bone].localPosition;
                 diff1 += (expectedLocalPosition - candidateLocalPosition).magnitude;
                 diff2 += (this.limbDataDict[bone].localVelocity - candidate.limbDataDict[bone].localVelocity).magnitude;
             }
@@ -38,10 +38,10 @@ namespace MoMa
 
         public class Limb
         {
-            public Vector3 localPosition;
-            public Vector3 localVelocity;
+            public Vector3S localPosition;
+            public Vector3S localVelocity;
 
-            public Limb(Vector3 localPosition, Vector3 localVelocity)
+            public Limb(Vector3S localPosition, Vector3S localVelocity)
             {
                 this.localPosition = localPosition;
                 this.localVelocity = localVelocity;

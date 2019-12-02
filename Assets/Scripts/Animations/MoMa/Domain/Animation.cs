@@ -72,7 +72,7 @@ namespace MoMa
                 // (TODO FINAL): set it to use root and not hips
                 Trajectory.Point point = Trajectory.Point.getMedianPoint(
                     this.frameList.GetRange(frameNum - SalamanderController.FramesPerPoint / 2, SalamanderController.FramesPerPoint).ConvertAll(
-                        f => (f.boneDataDict[Bone.Type.hips].position.GetXZVector2())
+                        f => (f.boneDataDict[Bone.Type.hips].position.GetXZVector2S())
                         )
                     );
 

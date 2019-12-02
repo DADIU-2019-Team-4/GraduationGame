@@ -37,20 +37,11 @@ namespace MoMa
         {
             Debug.Log(Application.persistentDataPath);
 
-            //Save your SpaceObjectData object to a file, as a json string.
-            string data = JsonUtility.ToJson(animation, true); //pretty print!
-            Debug.Log(data);
-
-            StreamWriter sw = File.CreateText(Application.persistentDataPath + "/" + animation.animationName + ".animp");
-            sw.Write(data);
-            sw.Close();
-
-            //BinaryFormatter bf = new BinaryFormatter();
-            //FileStream file = File.Open(Application.persistentDataPath + "/" + animation.animationName + ".animp", FileMode.OpenOrCreate);
-            ////SaveData saveData = new SaveData (); not needed as the object is being passed
-            //file.Write(data, 0, data.Length);
-            //bf.Serialize(file, data);
-            //file.Close();
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream file = File.Open(Application.persistentDataPath + "/" + animation.animationName + ".animp", FileMode.OpenOrCreate);
+            //SaveData saveData = new SaveData (); not needed as the object is being passed
+            bf.Serialize(file, animation);
+            file.Close();
         }
 
         private static void LoadRawAnimationFromFile(Animation anim, string directory, string filename)
@@ -139,7 +130,7 @@ namespace MoMa
                 currentFrame++)
             {
                 // Lerp to find a smooth transform
-                (Vector3 position, Quaternion rotation) = LerpFrame(
+                (Vector3S position, Quaternion rotation) = LerpFrame(
                     anim.frameList[0].boneDataDict[Bone.Type.hips],
                     rootSamples[0],
                     (float)currentFrame / (SampleWindow / 2));
@@ -164,7 +155,7 @@ namespace MoMa
                     int currentOffset = currentSample * SampleWindow + currentFrame + SampleWindow / 2;
 
                     // Lerp to find a smooth transform
-                    (Vector3 position, Quaternion rotation) = LerpFrame(
+                    (Vector3S position, Quaternion rotation) = LerpFrame(
                         rootSamples[currentSample],
                         rootSamples[currentSample + 1],
                         currentFrame / SampleWindow);
@@ -189,7 +180,7 @@ namespace MoMa
                 int currentOffset = firstPaddingFrame + currentFrameOffset;
 
                 // Lerp to find a smooth transform
-                (Vector3 position, Quaternion rotation) = LerpFrame(
+                (Vector3S position, Quaternion rotation) = LerpFrame(
                     rootSamples[rootSamples.Count - 1],
                     anim.frameList[anim.frameList.Count - 1].boneDataDict[Bone.Type.hips],
                     currentFrameOffset / rightPaddingFrames);
@@ -227,7 +218,7 @@ namespace MoMa
             {
                 // (TODO FINAL): set it to root and not hips
                 // Root's Position and Rotation
-                Vector3 rootP = frame.boneDataDict[Bone.Type.hips].position;
+                Vector3S rootP = frame.boneDataDict[Bone.Type.hips].position;
                 Quaternion rootQ = frame.boneDataDict[Bone.Type.hips].rotation;
 
                 // For every bone of the Animation
@@ -242,7 +233,7 @@ namespace MoMa
             foreach (Bone.Type bt in Enum.GetValues(typeof(Bone.Type)))
             {
                 // Find the position of the first frame
-                Vector3 lastLocalPosition = anim.frameList[0].boneDataDict[bt].localPosition;
+                Vector3S lastLocalPosition = anim.frameList[0].boneDataDict[bt].localPosition;
 
                 // Compute the velocities of all the Frames but the first
                 for (int i = 1; i < anim.frameList.Count; i++)
@@ -260,10 +251,10 @@ namespace MoMa
         private static Bone.Data SampleFromFrame(Animation anim, int startingSampleFrame)
         {
             Quaternion rotation;
-            Vector3 position = new Vector3(0, 0, 0);
-            Vector3 displacement;
-            Vector3 firstPosition;
-            Vector3 lastPosition;
+            Vector3S position = new Vector3(0, 0, 0);
+            Vector3S displacement;
+            Vector3S firstPosition;
+            Vector3S lastPosition;
 
             // Average position: Average of eacch position in the window
             for (int i = 0; i < SampleWindow; i++)
@@ -287,15 +278,15 @@ namespace MoMa
             else
             {
                 displacement.y = 0;
-                rotation = Quaternion.LookRotation(displacement, Vector3.up);
+                rotation = Quaternion.LookRotation((Vector3)displacement, Vector3.up);
             }
 
             return new Bone.Data(position, rotation);
         }
 
-        private static (Vector3, Quaternion) LerpFrame(Bone.Data a, Bone.Data b, float t)
+        private static (Vector3S, Quaternion) LerpFrame(Bone.Data a, Bone.Data b, float t)
         {
-            return (Vector3.Lerp(a.position, b.position, t), Quaternion.Lerp(a.rotation, b.rotation, t));
+            return (Vector3.Lerp((Vector3)a.position, (Vector3)b.position, t), Quaternion.Lerp(a.rotation, b.rotation, t));
         }
     }
 }
