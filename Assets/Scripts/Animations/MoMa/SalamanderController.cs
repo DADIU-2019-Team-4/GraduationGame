@@ -55,6 +55,7 @@ namespace MoMa
         private Trajectory _trajectory = new Trajectory();
         private Transform _model;
         private int _currentFrame = 0;
+        private bool _inCutscene = false;
 
         #endregion
 
@@ -68,9 +69,9 @@ namespace MoMa
             animationFiles.Add(("take-4_DEFAULT_C26", "cleanUps"));
             animationFiles.Add(("take-5_DEFAULT_C26", "cleanUps"));
             animationFiles.Add(("take-6_DEFAULT_C26", "cleanUps"));
-            //animationFiles.Add(("take-7_DEFAULT_C26", "TempMoCapData"));
-            //animationFiles.Add(("take-8_DEFAULT_C26", "TempMoCapData"));
-            //animationFiles.Add(("take-9_DEFAULT_C26", "TempMoCapData"));
+            animationFiles.Add(("take-7_DEFAULT_C26", "TempMoCapData"));
+            animationFiles.Add(("take-8_DEFAULT_C26", "TempMoCapData"));
+            animationFiles.Add(("take-9_DEFAULT_C26", "TempMoCapData"));
             //animationFiles.Add(("mini", "TempMoCapData"));
 
             // We assume that the Character has the correct structure
@@ -94,7 +95,16 @@ namespace MoMa
 
         void FixedUpdate()
         {
-            StartCoroutine(UpdateCoroutine());
+            if (_inCutscene)
+                StartCoroutine(UpdateCoroutine());
+        }
+
+        /// <summary>
+        /// When true, the Salamander uses the Animator, instead of MoMa
+        /// </summary>
+        public void InCutscene(bool inCutscene)
+        {
+            _inCutscene = inCutscene;
         }
 
         public void AddTarget(MovementController.EventType type, Vector3 position)

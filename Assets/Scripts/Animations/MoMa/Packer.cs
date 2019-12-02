@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 
 namespace MoMa
@@ -20,14 +22,35 @@ namespace MoMa
 
             // Load the raw Animation data from the specified file
             Packer.LoadRawAnimationFromFile(anim, directory, filename);
-
+            
             // Compute the local position, rotation and velocity of every Bone in every Frame
             ComputeLocalTranform(anim);
 
             // Compute the feature Frames
             anim.ComputeFeatures();
 
+            Save(anim);
+
             return anim;
+        }
+        public static void Save(Animation animation)
+        {
+            Debug.Log(Application.persistentDataPath);
+
+            //Save your SpaceObjectData object to a file, as a json string.
+            string data = JsonUtility.ToJson(animation, true); //pretty print!
+            Debug.Log(data);
+
+            StreamWriter sw = File.CreateText(Application.persistentDataPath + "/" + animation.animationName + ".animp");
+            sw.Write(data);
+            sw.Close();
+
+            //BinaryFormatter bf = new BinaryFormatter();
+            //FileStream file = File.Open(Application.persistentDataPath + "/" + animation.animationName + ".animp", FileMode.OpenOrCreate);
+            ////SaveData saveData = new SaveData (); not needed as the object is being passed
+            //file.Write(data, 0, data.Length);
+            //bf.Serialize(file, data);
+            //file.Close();
         }
 
         private static void LoadRawAnimationFromFile(Animation anim, string directory, string filename)

@@ -319,6 +319,9 @@ public class MovementController : MonoBehaviour
 
         // Update Animator
         _anim.EnterInteractable(InteractibleObject.InteractType.Fuse);
+
+        // Notify Sally
+        _salamanderController?.AddTarget(EventType.EnterFuse, transform.position);
     }
 
     /// <summary>
@@ -328,6 +331,9 @@ public class MovementController : MonoBehaviour
     {
         // Update Animator
         _anim.EnterInteractable(InteractibleObject.InteractType.Projectile);
+
+        // Notify Sally
+        _salamanderController?.AddTarget(EventType.EnterPaperPlane, transform.position);
     }
 
     /// <summary>
@@ -335,6 +341,9 @@ public class MovementController : MonoBehaviour
     /// </summary>
     public void Win(Vector3 targetPosition)
     {
+        // Notify Sally
+        _salamanderController?.AddTarget(EventType.Win, targetPosition);
+
         TargetPosition = targetPosition;
         _gameController.Win();
         DisablePlayerCharacter();
@@ -348,6 +357,10 @@ public class MovementController : MonoBehaviour
     {
         // Play animation
         _anim.Die();
+
+        // Notify Sally
+        _salamanderController?.AddTarget(EventType.Die, targetPosition);
+
         Vibration.Vibrate(150);
         TargetPosition = targetPosition;
 
@@ -417,7 +430,7 @@ public class MovementController : MonoBehaviour
     /// <summary>
     /// This method signals the completion of a movement action.
     /// </summary>
-    public void StopMoving()
+    public void StopMoving(InteractibleObject.InteractType? medium = null)
     {
         _moveTweener?.Kill();
         StopCoroutine(nameof(MoveRoutine));
@@ -428,7 +441,15 @@ public class MovementController : MonoBehaviour
         _anim.Land();
 
         // Notify Sally
-        _salamanderController?.AddTarget(EventType.Move, transform.position);
+        _salamanderController?.AddTarget(
+            // Fuse
+            (medium == InteractibleObject.InteractType.Fuse) ? EventType.ExitFuse :
+            // PaperPlane
+            (medium == InteractibleObject.InteractType.Projectile) ? EventType.ExitPaperPlane:
+            // Normal move/dash
+            EventType.Move,
+            transform.position
+            );
     }
 
     /// <summary>

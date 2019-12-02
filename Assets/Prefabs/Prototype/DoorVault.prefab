@@ -313,8 +313,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5326669415908267672}
   - component: {fileID: 2838994398152424418}
-  - component: {fileID: -8610283026834919450}
   - component: {fileID: 2627822236267414161}
+  - component: {fileID: 8136693151431808193}
   m_Layer: 0
   m_Name: DoorVault
   m_TagString: Untagged
@@ -357,19 +357,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!65 &-8610283026834919450
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9202956598294652043}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &2627822236267414161
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -386,3 +373,16 @@ MonoBehaviour:
   DamageValue: 0
   HealValue: 0
   BumpHeight: 0.3
+--- !u!65 &8136693151431808193
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9202956598294652043}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 6.410937, y: 2.5863175, z: 1}
+  m_Center: {x: 0.031217813, y: -0.06552744, z: 0}

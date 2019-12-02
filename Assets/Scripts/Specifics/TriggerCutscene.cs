@@ -4,32 +4,33 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Playables;
 using UnityEngine.Timeline;
+using MoMa;
 
 public class TriggerCutscene : MonoBehaviour
 {
-    private PlayableDirector _timeline;
-    public UnityEvent OnTrigger;
     public UnityEvent OnCutSceneEnd;
-
-    public DialogueTrigger.DialogueTriggerType TriggerType;
-
     public enum TimelineTrack
     {
         LucyBodyAnimator,
         LucyFireAnimator,
         MainCamera,
-		Player,
-		SalamanderAnimator,
-		SalamanderModel
+        Player,
+        SalamanderAnimator,
+        SalamanderModel
     }
-
+    public UnityEvent OnTrigger;
+    public DialogueTrigger.DialogueTriggerType TriggerType;
     public TimelineTrack[] TrackReferences;
-
     public bool OnlyOnce = true;
+
+    private PlayableDirector _timeline;
+    private SalamanderController _salamanderController;
 
     private void Awake()
     {
         _timeline = GetComponent<PlayableDirector>();
+        _salamanderController = FindObjectOfType<SalamanderController>();
+        if (!_salamanderController) Debug.LogWarning("TriggerCutscene: Unable to find Sally :(");
     }
 
     private void Start()
@@ -50,6 +51,8 @@ public class TriggerCutscene : MonoBehaviour
                 gameObject.SetActive(false);
         }
 
+        // Enable MoMa in Sally
+        _salamanderController?.InCutscene(false);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -62,6 +65,10 @@ public class TriggerCutscene : MonoBehaviour
     public void PlayCutScene()
     {
         InputManager.DisableInput = true;
+
+        // Disable MoMa in Sally
+        _salamanderController?.InCutscene(true);
+
         SetBindings();
         OnTrigger.Invoke();
         _timeline.Play();

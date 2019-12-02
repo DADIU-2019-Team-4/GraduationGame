@@ -5,6 +5,7 @@ using System;
 
 namespace MoMa
 {
+    [System.Serializable]
     public class Trajectory
     {
         public List<Point> points = new List<Point>();
@@ -20,7 +21,7 @@ namespace MoMa
             }
 
             // Find present position and rotation
-            Vector2 presentPosition = this.points[presentFrame].position;
+            Vector2S presentPosition = points[presentFrame].position;
             Quaternion presentRotation = this.points[presentFrame].rotation;
 
             // Build the new Snippet
@@ -67,11 +68,12 @@ namespace MoMa
             return s + "}";
         }
 
+        [System.Serializable]
         public class Point
         {
             public const int Decimals = 4;
 
-            public Vector2 position;
+            public Vector2S position;
             public Quaternion rotation;
 
             public float magnitude
@@ -83,13 +85,13 @@ namespace MoMa
                 // TODO include rotation?
                 => (a.position - b.position).magnitude;
 
-            public static Point getMedianPoint(List<Vector2> positions)
+            public static Point getMedianPoint(List<Vector2S> positions)
             {
-                Vector2 position = new Vector2(0f, 0f);
+                Vector2S position = new Vector2S(0f, 0f);
                 Quaternion rotation;
 
                 // Position
-                foreach (Vector2 currentPosition in positions)
+                foreach (Vector2S currentPosition in positions)
                 {
                     position += currentPosition;
                 }
@@ -97,7 +99,7 @@ namespace MoMa
                 position /= positions.Count;
 
                 // Rotation
-                Vector2 displacement2D = (positions[positions.Count-1] - positions[0]);
+                Vector2S displacement2D = (positions[positions.Count-1] - positions[0]);
                 rotation = Quaternion.LookRotation(
                     new Vector3(displacement2D.x, 0, displacement2D.y),
                     Vector3.up);
@@ -105,10 +107,10 @@ namespace MoMa
                 return new Point(position, rotation);
             }
 
-            public Point(Vector2 v, Quaternion rotation)
+            public Point(Vector2S v, Quaternion rotation)
             {
-                this.position.x = (float)Math.Round(v.x, Decimals);
-                this.position.y = (float)Math.Round(v.y, Decimals);
+                this.position.x = (float) Math.Round(v.x, Decimals);
+                this.position.y = (float) Math.Round(v.y, Decimals);
                 this.rotation = rotation;
             }
 
@@ -118,6 +120,7 @@ namespace MoMa
             }
         }
 
+        [System.Serializable]
         public class Snippet
         {
             public Point[] points = new Point[SalamanderController.SnippetSize];

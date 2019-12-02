@@ -11,6 +11,5 @@ public class GridPitRandomizer : MonoBehaviour
     {
         _animator = GetComponent<Animator>();
         _animator.SetFloat(RandomParameterFloat, Random.Range(0f, 1f));
-        Debug.Log(Random.Range(0, 1));
     }
 }
