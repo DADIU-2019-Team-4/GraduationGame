@@ -24,7 +24,7 @@ MonoBehaviour:
     ParentPhysicalPath: 
     guid: 61773147c3e61341905ca4a6c975c8be
     GuidInternal: 
-    m_lastTime: -8586263272230809543
+    m_lastTime: -8586263183844057508
     List:
     - name: LargeVerb
       guid: 4df29f5a7ef6c64484385fb4eb29a27f
@@ -92,7 +92,7 @@ MonoBehaviour:
     ParentPhysicalPath: 
     guid: 85519e3dd9af71428bf05cf3b19b0630
     GuidInternal: 
-    m_lastTime: -8586263296724076667
+    m_lastTime: -8586263122899017772
     List:
     - name: ArrowPull
       guid: 608bf70bea70904ba9e045c9b78b6c3a
@@ -150,6 +150,20 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: 1823550
       minDuration: 328096
+    - name: BurnSmallObjects
+      guid: 413409d4511d8e49a8201231d8e7dbb7
+      id: 1065411945
+      PathAndIcons:
+      - ElementName: Character
+        ObjectType: 12
+      - ElementName: Objects
+        ObjectType: 4
+      - ElementName: BurnSmallObjects
+        ObjectType: 3
+      Path: Character\Objects\BurnSmallObjects
+      maxAttenuation: 0
+      maxDuration: 1466959
+      minDuration: 1222435
     - name: ChargedDash
       guid: d4eae6662ad0d248ab64c2517d4f8562
       id: 742914115
@@ -232,8 +246,8 @@ MonoBehaviour:
         ObjectType: 3
       Path: Character\Objects\DeathObject
       maxAttenuation: 0
-      maxDuration: 1538095
-      minDuration: 1538095
+      maxDuration: -1
+      minDuration: -1
     - name: GateUnlocked
       guid: b98d5a6c02f1e344a4aad4a11919b71f
       id: 1822606759
@@ -302,8 +316,8 @@ MonoBehaviour:
         ObjectType: 3
       Path: Character\RopeMechanic\OffRope
       maxAttenuation: 0
-      maxDuration: 0
-      minDuration: 0
+      maxDuration: 1904135
+      minDuration: 1601180
     - name: OnPlane
       guid: da006d9282fd2b4b9ff0790e460f377a
       id: 4028171492
@@ -516,17 +530,47 @@ MonoBehaviour:
       maxAttenuation: 15000000
       maxDuration: -1
       minDuration: -1
+  - PhysicalPath: Events\CutsceneSound.wwu
+    ParentPhysicalPath: 
+    guid: f2456615d44b8a45bd8b4d59c02bfa4b
+    GuidInternal: 
+    m_lastTime: -8586263129913216068
+    List:
+    - name: Cutscene01_gate
+      guid: 96d160d7b023fa4eb4483550b63a15a1
+      id: 1651746534
+      PathAndIcons:
+      - ElementName: CutsceneSound
+        ObjectType: 12
+      - ElementName: Cutscene01_gate
+        ObjectType: 3
+      Path: CutsceneSound\Cutscene01_gate
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: IntroductionTimeline
+      guid: fff100e2ba58094da96be2cc430e84f7
+      id: 867800880
+      PathAndIcons:
+      - ElementName: CutsceneSound
+        ObjectType: 12
+      - ElementName: IntroductionTimeline
+        ObjectType: 3
+      Path: CutsceneSound\IntroductionTimeline
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
   - PhysicalPath: Events\Default Work Unit.wwu
     ParentPhysicalPath: 
     guid: 176f44b72cc15d4ba2418afac5f43146
     GuidInternal: 
-    m_lastTime: -8586287013898476013
+    m_lastTime: -8586263132415849217
     List: []
   - PhysicalPath: Events\Environment.wwu
     ParentPhysicalPath: 
     guid: 798a08f7a060c94bb31dbf2936cc7894
     GuidInternal: 
-    m_lastTime: -8586263307518956540
+    m_lastTime: -8586263119290939491
     List:
     - name: BumpIntoBooks
       guid: a5e678f91e46db45a6085d8dd485fb67
@@ -626,17 +670,17 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: 4740915
       minDuration: 1222435
-    - name: BumpIntoWall
+    - name: BumpIntoWalls
       guid: 6aebb66d941bf0428d5d70e8243427f8
-      id: 3724569835
+      id: 1705735554
       PathAndIcons:
       - ElementName: Environment
         ObjectType: 12
       - ElementName: BumpInto
         ObjectType: 4
-      - ElementName: BumpIntoWall
+      - ElementName: BumpIntoWalls
         ObjectType: 3
-      Path: Environment\BumpInto\BumpIntoWall
+      Path: Environment\BumpInto\BumpIntoWalls
       maxAttenuation: 0
       maxDuration: 1119577
       minDuration: 941449
@@ -724,24 +768,8 @@ MonoBehaviour:
         ObjectType: 3
       Path: Environment\WaterStuff\RainFromAbove\RainFromAbove
       maxAttenuation: 15000000
-      maxDuration: -1
-      minDuration: -1
-    - name: RainParticle
-      guid: f50cbeef69d9124d9dc1fd7c9209ce21
-      id: 2030397405
-      PathAndIcons:
-      - ElementName: Environment
-        ObjectType: 12
-      - ElementName: WaterStuff
-        ObjectType: 4
-      - ElementName: GridPit
-        ObjectType: 4
-      - ElementName: RainParticle
-        ObjectType: 3
-      Path: Environment\WaterStuff\GridPit\RainParticle
-      maxAttenuation: 15000000
-      maxDuration: -1
-      minDuration: -1
+      maxDuration: 6857146
+      minDuration: 6857146
     - name: RoomTone_01
       guid: e61e714d984f0c459c13e4e5aca7eb6a
       id: 1539660446
@@ -848,13 +876,13 @@ MonoBehaviour:
         ObjectType: 3
       Path: InGame_UI\WinPuzzle
       maxAttenuation: 0
-      maxDuration: 7245805
-      minDuration: 7245805
+      maxDuration: 6634625
+      minDuration: 6634625
   - PhysicalPath: Events\Menu.wwu
     ParentPhysicalPath: 
     guid: 3b41aaec90f3894c8c5231d3cbc5dbe2
     GuidInternal: 
-    m_lastTime: -8586263270400192369
+    m_lastTime: -8586263250560306876
     List:
     - name: ChangeLanguageToDanish
       guid: 536d983849b83f4d8c8bea168dbac1fa
@@ -994,13 +1022,13 @@ MonoBehaviour:
         ObjectType: 3
       Path: Menu\OptionsMenu\OptionsTones
       maxAttenuation: 0
-      maxDuration: -1
-      minDuration: -1
+      maxDuration: 0
+      minDuration: 0
   - PhysicalPath: Events\Music.wwu
     ParentPhysicalPath: 
     guid: b354ec827c03c44399470a4771e70173
     GuidInternal: 
-    m_lastTime: -8586267117614999269
+    m_lastTime: -8586263132415749481
     List:
     - name: Credits_Music
       guid: 88a23df6b372b24e81836663de8ece36
@@ -1079,7 +1107,7 @@ MonoBehaviour:
     ParentPhysicalPath: 
     guid: 4e98cb7cf821544ba39897d46f0d9511
     GuidInternal: 
-    m_lastTime: -8586266572660170560
+    m_lastTime: -8586263247087166900
     List:
     - name: AmbienceVolume
       guid: 73ab94c49f75ca47b9363f5a089e594c
@@ -1407,10 +1435,43 @@ MonoBehaviour:
       Path: Music\Stinger01
   ExpandedItems:
   - /GraduationGame_WwiseProject
+  - /GraduationGame_WwiseProject/Auxiliary Busses
+  - /GraduationGame_WwiseProject/Auxiliary Busses/Default Work Unit
+  - /GraduationGame_WwiseProject/Auxiliary Busses/Default Work Unit/Master Audio Bus
+  - /GraduationGame_WwiseProject/Auxiliary Busses/Default Work Unit/Master Audio Bus/SubMaster
+  - /GraduationGame_WwiseProject/Auxiliary Busses/Default Work Unit/Master Audio Bus/SubMaster/Reverbs
   - /GraduationGame_WwiseProject/Events
+  - /GraduationGame_WwiseProject/Events/Character
+  - /GraduationGame_WwiseProject/Events/Character/Dashing
+  - /GraduationGame_WwiseProject/Events/Character/Objects
+  - /GraduationGame_WwiseProject/Events/Character/Objects/Pictures
+  - /GraduationGame_WwiseProject/Events/Character/PaperPlane
+  - /GraduationGame_WwiseProject/Events/Character/PlayerHealth
+  - /GraduationGame_WwiseProject/Events/Character/RopeMechanic
+  - /GraduationGame_WwiseProject/Events/CutsceneSound
   - /GraduationGame_WwiseProject/Events/Environment
+  - /GraduationGame_WwiseProject/Events/Environment/BumpInto
+  - /GraduationGame_WwiseProject/Events/Environment/DangerZone
   - /GraduationGame_WwiseProject/Events/Environment/Fireplace
   - /GraduationGame_WwiseProject/Events/Environment/Fireplace/Torches
   - /GraduationGame_WwiseProject/Events/Environment/RoomTones
+  - /GraduationGame_WwiseProject/Events/Environment/WaterStuff
+  - /GraduationGame_WwiseProject/Events/Environment/WaterStuff/RainFromAbove
+  - /GraduationGame_WwiseProject/Events/Environment/WaterStuff/WaterSpray
+  - /GraduationGame_WwiseProject/Events/InGame_UI
+  - /GraduationGame_WwiseProject/Events/Menu
+  - /GraduationGame_WwiseProject/Events/Menu/MainMenu
+  - /GraduationGame_WwiseProject/Events/Menu/OptionsMenu
+  - /GraduationGame_WwiseProject/Events/Music
+  - /GraduationGame_WwiseProject/SoundBanks
+  - /GraduationGame_WwiseProject/SoundBanks/Default Work Unit
+  - /GraduationGame_WwiseProject/States
+  - /GraduationGame_WwiseProject/States/Default Work Unit
+  - /GraduationGame_WwiseProject/States/Default Work Unit/MusicStates
+  - /GraduationGame_WwiseProject/States/Default Work Unit/MusicStates/roomOneOne
+  - /GraduationGame_WwiseProject/States/Default Work Unit/MusicStates/roomOneTwo
+  - /GraduationGame_WwiseProject/States/Default Work Unit/MusicStates/roomTwoOne
+  - /GraduationGame_WwiseProject/States/Default Work Unit/MusicStates/roomTwoTwo
+  - /GraduationGame_WwiseProject/States/Default Work Unit/MusicStates/Tutorial
   autoPopulateEnabled: 1
   CurrentPluginConfig: 

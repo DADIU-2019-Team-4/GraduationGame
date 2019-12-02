@@ -34,6 +34,9 @@ public class MovementController : MonoBehaviour
     [Tooltip("Easing function of the move.")]
     public Ease MoveEase = Ease.OutCubic;
     public float MoveDistance { get; set; }
+    [Tooltip("Time window where you can attach to plane, in percentage")]
+    [Range(0f, 1f)]
+    public float planeAttachTime; 
 
     [Header("Dash Settings")]
     [Tooltip("Time in seconds for how long you need to tap and hold for it to be recognized as a dash. Affects Animation")]
@@ -84,6 +87,8 @@ public class MovementController : MonoBehaviour
     public bool IsInvulnerable { get; set; }
 
     public bool DamageCoolDownActivated { get; set; }
+
+    public bool CanAttachToPlane { get; set; }
 
     public GameObject UpcomingFusePoint { get; set; }
 
@@ -397,6 +402,8 @@ public class MovementController : MonoBehaviour
     private IEnumerator MoveRoutine(Vector3 target, float duration)
     {
         // Before Movement
+        CanAttachToPlane = true;
+
         _moveTweener?.Kill();
 
         UpdateFireAmount(IsDashing ? DashCostInPercentage : MoveCostInPercentage);
@@ -409,7 +416,12 @@ public class MovementController : MonoBehaviour
         _moveTweener = _rigidBody.DOMove(TargetPosition, duration);
         _moveTweener.SetEase(IsDashing ? DashEase : MoveEase);
 
-        yield return new WaitForSeconds(duration);
+
+        yield return new WaitForSeconds(duration*planeAttachTime);
+
+        CanAttachToPlane = false;
+
+        yield return new WaitForSeconds(duration*(1-planeAttachTime));
 
         // After Movement
         CheckFireLeft();

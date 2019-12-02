@@ -62,7 +62,7 @@ public class AttachToPlane : MonoBehaviour
             _attached = false;
 
             GetComponent<MovementController>().IsInvulnerable = false;
-            GetComponent<MovementController>().IsInvulnerable = false;
+            GetComponent<MovementController>().CanAttachToPlane = true;
 
             // Update Animator
             GetComponent<MovementController>().StopMoving(InteractibleObject.InteractType.Projectile);
