@@ -355,13 +355,6 @@ public class MovementController : MonoBehaviour
     /// </summary>
     public void Die(bool isOutOfFire, Vector3 targetPosition)
     {
-        // Play animation
-        _anim.Die();
-
-        // Notify Sally
-        _salamanderController?.AddTarget(EventType.Die, targetPosition);
-
-        Vibration.Vibrate(150);
         TargetPosition = targetPosition;
 
         if (isOutOfFire) _gameController.GameOverOutOfMoves();
@@ -369,6 +362,14 @@ public class MovementController : MonoBehaviour
 
         SetDeathData();
         DisablePlayerCharacter();
+
+        // Play animation
+        _anim.Die();
+
+        // Notify Sally
+        _salamanderController?.AddTarget(EventType.Die, targetPosition);
+
+        Vibration.Vibrate(150);
     }
 
     /// <summary>

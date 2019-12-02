@@ -16,7 +16,6 @@ public class FireGirlAnimationController : MonoBehaviour
     public const string ReleaseTrigger = "Release";
     public const string CollideTrigger = "Collide";
     public const string DieTrigger = "Die";
-    public const string RespawnTrigger = "Respawn";
     public const string JumpIdleTrigger = "Jump Idle";
 
     // Animator's speed variable names
@@ -30,6 +29,7 @@ public class FireGirlAnimationController : MonoBehaviour
     public const string IsDashChargedBool = "isLongDashCharged";
     public const string InInteractableBool = "inInteractable";
     public const string IsInteractableFuseBool = "isInteractableFuse";
+    public const string IsDeadBool = "isDead";
 
     private Animator[] _animators;
     private IdleAnimationController[] _idleAnimatorControllers;
@@ -45,13 +45,13 @@ public class FireGirlAnimationController : MonoBehaviour
     private bool _isDashCharged;
     private bool _inInteractable;
     private bool _isInteractableFuse;
+    private bool _isDead;
 
     // Local triggers
     private bool _chargeTrigger;
     private bool _releaseTrigger;
     private bool _collideTrigger;
     private bool _dieTrigger;
-    private bool _respawnTrigger;
     #endregion
 
     public void Start()
@@ -113,13 +113,14 @@ public class FireGirlAnimationController : MonoBehaviour
     {
         Idle();
         _dieTrigger = true;
+        _isDead = true;
         UpdateAnimators();
     }
 
     public void Respawn()
     {
         Idle();
-        _respawnTrigger = true;
+        _isDead = false;
         UpdateAnimators();
     }
 
@@ -147,7 +148,6 @@ public class FireGirlAnimationController : MonoBehaviour
         _chargeTrigger = false;
         _releaseTrigger = false;
         _dieTrigger = false;
-        _respawnTrigger = false;
 
         ResetSpeed();
         ResetTriggers();
@@ -183,7 +183,6 @@ public class FireGirlAnimationController : MonoBehaviour
             anim.ResetTrigger(ReleaseTrigger);
             anim.ResetTrigger(CollideTrigger);
             anim.ResetTrigger(DieTrigger);
-            anim.ResetTrigger(RespawnTrigger);
             anim.ResetTrigger(JumpIdleTrigger);
         }
     }
@@ -197,7 +196,6 @@ public class FireGirlAnimationController : MonoBehaviour
             if (_releaseTrigger) anim.SetTrigger(ReleaseTrigger);
             if (_collideTrigger) anim.SetTrigger(CollideTrigger);
             if (_dieTrigger) anim.SetTrigger(DieTrigger);
-            if (_respawnTrigger) anim.SetTrigger(RespawnTrigger);
 
             // Set booleans
             anim.SetBool(IsDashBool, _isDashing);
@@ -205,6 +203,7 @@ public class FireGirlAnimationController : MonoBehaviour
             anim.SetBool(IsDashChargedBool, _isDashCharged);
             anim.SetBool(InInteractableBool, _inInteractable);
             anim.SetBool(IsInteractableFuseBool, _isInteractableFuse);
+            anim.SetBool(IsDeadBool, _isDead);
         }
 
         // Reset Triggers
@@ -212,7 +211,6 @@ public class FireGirlAnimationController : MonoBehaviour
         _releaseTrigger = false;
         _collideTrigger = false;
         _dieTrigger = false;
-        _respawnTrigger = false;
     }
     #endregion
 }
