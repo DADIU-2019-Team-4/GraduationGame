@@ -37,11 +37,11 @@ namespace MoMa
         {
             Debug.Log(Application.persistentDataPath);
 
-            BinaryFormatter bf = new BinaryFormatter();
-            FileStream file = File.Open(Application.persistentDataPath + "/" + animation.animationName + ".animp", FileMode.OpenOrCreate);
-            //SaveData saveData = new SaveData (); not needed as the object is being passed
-            bf.Serialize(file, animation);
-            file.Close();
+            //BinaryFormatter bf = new BinaryFormatter();
+            //FileStream file = File.Open(Application.persistentDataPath + "/" + animation.animationName + ".animp", FileMode.OpenOrCreate);
+            ////SaveData saveData = new SaveData (); not needed as the object is being passed
+            //bf.Serialize(file, animation);
+            //file.Close();
         }
 
         private static void LoadRawAnimationFromFile(Animation anim, string directory, string filename)

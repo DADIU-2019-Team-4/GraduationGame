@@ -3,12 +3,19 @@ using System.Collections;
 
 public class Vector2S
 {
-    public float x;
-    public float y;
+    public float x = 0f;
+    public float y = 0f;
+
     public float magnitude {
         get {
             return new Vector2(x, y).magnitude;
         }
+    }
+
+    public Vector2S()
+    {
+        this.x = 0f;
+        this.y = 0f;
     }
 
     public Vector2S(float x, float y)

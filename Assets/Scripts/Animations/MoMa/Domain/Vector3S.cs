@@ -3,15 +3,23 @@
 [System.Serializable]
 public class Vector3S
 {
-    public float x;
-    public float y;
-    public float z;
+    public float x = 0f;
+    public float y = 0f;
+    public float z = 0f;
+
     public float magnitude
     {
         get
         {
             return new Vector3(x, y, z).magnitude;
         }
+    }
+
+    public Vector3S()
+    {
+        this.x = 0f;
+        this.y = 0f;
+        this.z = 0f;
     }
 
     public Vector3S(float x, float y, float z)
