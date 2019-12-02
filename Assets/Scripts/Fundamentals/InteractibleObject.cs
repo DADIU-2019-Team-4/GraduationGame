@@ -223,7 +223,7 @@ public class InteractibleObject : DashInteractable
         //    popUpObject.PopUp();
         //}
         var mat = thisMaterial[1];
-        mat.SetFloat("_Highlighted", 0);
+        mat.DisableKeyword("_HIGHLIGHTED_ON");
         popUpObject.PopUp();      
     }
 
