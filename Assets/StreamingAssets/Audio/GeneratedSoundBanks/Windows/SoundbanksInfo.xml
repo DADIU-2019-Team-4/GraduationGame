@@ -27,35 +27,36 @@
 				<Event Id="2362129349" Name="BumpIntoPlants" ObjectPath="\Events\Environment\BumpInto\BumpIntoPlants" DurationType="OneShot" DurationMin="3.249612" DurationMax="4.740915"/>
 				<Event Id="770564256" Name="BumpIntoSteel" ObjectPath="\Events\Environment\BumpInto\BumpIntoSteel" DurationType="OneShot" DurationMin="0.585202" DurationMax="0.638167"/>
 				<Event Id="1429775881" Name="BumpIntoTeddyBear" ObjectPath="\Events\Environment\BumpInto\BumpIntoTeddyBear" DurationType="OneShot" DurationMin="1.222435" DurationMax="4.740915"/>
-				<Event Id="3724569835" Name="BumpIntoWall" ObjectPath="\Events\Environment\BumpInto\BumpIntoWall" DurationType="OneShot" DurationMin="0.941449" DurationMax="1.119577"/>
+				<Event Id="1705735554" Name="BumpIntoWalls" ObjectPath="\Events\Environment\BumpInto\BumpIntoWalls" DurationType="OneShot" DurationMin="0.941449" DurationMax="1.119577"/>
 				<Event Id="3740361716" Name="BumpIntoWood" ObjectPath="\Events\Environment\BumpInto\BumpIntoWood" DurationType="OneShot" DurationMin="1.222435" DurationMax="4.740915"/>
-				<Event Id="2758237675" Name="ChangeLanguageToDanish" ObjectPath="\Events\Menu\OptionsMenu\ChangeLanguageToDanish" MaxAttenuation="0.000000" DurationType="OneShot" DurationMin="0.000000" DurationMax="0.000000"/>
-				<Event Id="3205496764" Name="ChangeLanguageToEnglish" ObjectPath="\Events\Menu\OptionsMenu\ChangeLanguageToEnglish" MaxAttenuation="0.000000" DurationType="OneShot" DurationMin="0.000000" DurationMax="0.000000"/>
+				<Event Id="2758237675" Name="ChangeLanguageToDanish" ObjectPath="\Events\Menu\OptionsMenu\ChangeLanguageToDanish" DurationType="OneShot" DurationMin="1.249675" DurationMax="2.884625"/>
+				<Event Id="3205496764" Name="ChangeLanguageToEnglish" ObjectPath="\Events\Menu\OptionsMenu\ChangeLanguageToEnglish" DurationType="OneShot" DurationMin="1.249675" DurationMax="2.884625"/>
 				<Event Id="742914115" Name="ChargedDash" ObjectPath="\Events\Character\Dashing\ChargedDash" DurationType="OneShot" DurationMin="2.410993" DurationMax="2.750478"/>
 				<Event Id="735079116" Name="ChargingDash" ObjectPath="\Events\Character\Dashing\ChargingDash" DurationType="Infinite"/>
 				<Event Id="1914703205" Name="ChargingRejection" ObjectPath="\Events\Character\Dashing\ChargingRejection" DurationType="OneShot" DurationMin="1.326893" DurationMax="1.326893"/>
-				<Event Id="889138964" Name="ContinueGame" ObjectPath="\Events\Menu\OptionsMenu\ContinueGame" MaxAttenuation="0.000000" DurationType="OneShot" DurationMin="0.000000" DurationMax="0.000000"/>
+				<Event Id="889138964" Name="ContinueGame" ObjectPath="\Events\Menu\OptionsMenu\ContinueGame" DurationType="OneShot" DurationMin="1.525674" DurationMax="1.712512"/>
 				<Event Id="1522595433" Name="Credits_Music" ObjectPath="\Events\Music\Credits_Music" DurationType="Infinite"/>
 				<Event Id="1750432780" Name="DadsMouth" ObjectPath="\Events\Environment\Fireplace\DadsMouth" MaxAttenuation="10.000000" DurationType="Infinite"/>
 				<Event Id="991018855" Name="DangerZoneIn" ObjectPath="\Events\Environment\DangerZone\DangerZoneIn" MaxAttenuation="0.000000" DurationType="OneShot" DurationMin="0.000000" DurationMax="0.000000"/>
 				<Event Id="2096427994" Name="DangerZoneOut" ObjectPath="\Events\Environment\DangerZone\DangerZoneOut" MaxAttenuation="0.000000" DurationType="OneShot" DurationMin="0.000000" DurationMax="0.000000"/>
 				<Event Id="2850533655" Name="DashCancel" ObjectPath="\Events\Character\Dashing\DashCancel" MaxAttenuation="0.000000" DurationType="OneShot" DurationMin="0.000000" DurationMax="0.000000"/>
 				<Event Id="2044049779" Name="Dead" ObjectPath="\Events\Character\PlayerHealth\Dead" DurationType="OneShot" DurationMin="8.857146" DurationMax="8.857146"/>
-				<Event Id="679539432" Name="DeathObject" ObjectPath="\Events\Character\Objects\DeathObject" DurationType="OneShot" DurationMin="1.538095" DurationMax="1.538095"/>
-				<Event Id="3602428572" Name="EnterPauseMenu" ObjectPath="\Events\Menu\OptionsMenu\EnterPauseMenu" MaxAttenuation="0.000000" DurationType="OneShot" DurationMin="0.000000" DurationMax="0.000000"/>
-				<Event Id="91804985" Name="ExitOptions" ObjectPath="\Events\Menu\OptionsMenu\ExitOptions" MaxAttenuation="0.000000" DurationType="OneShot" DurationMin="0.000000" DurationMax="0.000000"/>
-				<Event Id="1908168848" Name="ExitPauseMenu" ObjectPath="\Events\Menu\OptionsMenu\ExitPauseMenu" MaxAttenuation="0.000000" DurationType="OneShot" DurationMin="0.000000" DurationMax="0.000000"/>
+				<Event Id="679539432" Name="DeathObject" ObjectPath="\Events\Character\Objects\DeathObject" DurationType="Infinite"/>
+				<Event Id="3602428572" Name="EnterPauseMenu" ObjectPath="\Events\Menu\OptionsMenu\EnterPauseMenu" DurationType="OneShot" DurationMin="1.249675" DurationMax="2.884625"/>
+				<Event Id="91804985" Name="ExitOptions" ObjectPath="\Events\Menu\OptionsMenu\ExitOptions" DurationType="OneShot" DurationMin="1.249675" DurationMax="2.884625"/>
+				<Event Id="1908168848" Name="ExitPauseMenu" ObjectPath="\Events\Menu\OptionsMenu\ExitPauseMenu" DurationType="OneShot" DurationMin="1.525674" DurationMax="1.712512"/>
 				<Event Id="1404152342" Name="Fireplace" ObjectPath="\Events\Environment\Fireplace\Fireplace" MaxAttenuation="100.000000" DurationType="Infinite"/>
 				<Event Id="1822606759" Name="GateUnlocked" ObjectPath="\Events\Character\Objects\GateUnlocked" DurationType="OneShot" DurationMin="10.328459" DurationMax="10.328459"/>
-				<Event Id="2499528146" Name="GoToMainMenu" ObjectPath="\Events\Menu\OptionsMenu\GoToMainMenu" MaxAttenuation="0.000000" DurationType="OneShot" DurationMin="0.000000" DurationMax="0.000000"/>
+				<Event Id="2499528146" Name="GoToMainMenu" ObjectPath="\Events\Menu\OptionsMenu\GoToMainMenu" DurationType="OneShot" DurationMin="1.525674" DurationMax="1.712512"/>
 				<Event Id="90462293" Name="HurtPlayer" ObjectPath="\Events\Character\PlayerHealth\HurtPlayer" DurationType="OneShot" DurationMin="0.533244" DurationMax="3.466058"/>
-				<Event Id="943969687" Name="NewGame" ObjectPath="\Events\Menu\MainMenu\NewGame" MaxAttenuation="0.000000" DurationType="OneShot" DurationMin="0.000000" DurationMax="0.000000"/>
+				<Event Id="943969687" Name="NewGame" ObjectPath="\Events\Menu\MainMenu\NewGame" DurationType="OneShot" DurationMin="1.525674" DurationMax="1.712512"/>
 				<Event Id="1016929228" Name="NormalDash" ObjectPath="\Events\Character\Dashing\NormalDash" DurationType="OneShot" DurationMin="1.601180" DurationMax="3.271523"/>
 				<Event Id="428947066" Name="OffPlane" ObjectPath="\Events\Character\PaperPlane\OffPlane" MaxAttenuation="15.000000" DurationType="OneShot" DurationMin="1.044935" DurationMax="1.044935"/>
-				<Event Id="1766390728" Name="OffRope" ObjectPath="\Events\Character\RopeMechanic\OffRope" MaxAttenuation="0.000000" DurationType="OneShot" DurationMin="0.000000" DurationMax="0.000000"/>
+				<Event Id="1766390728" Name="OffRope" ObjectPath="\Events\Character\RopeMechanic\OffRope" DurationType="OneShot" DurationMin="1.601180" DurationMax="1.904135"/>
 				<Event Id="4028171492" Name="OnPlane" ObjectPath="\Events\Character\PaperPlane\OnPlane" MaxAttenuation="15.000000" DurationType="OneShot" DurationMin="0.461542" DurationMax="0.461542"/>
 				<Event Id="2346684474" Name="OnRope" ObjectPath="\Events\Character\RopeMechanic\OnRope" DurationType="Infinite"/>
-				<Event Id="3806663565" Name="OpenOptions" ObjectPath="\Events\Menu\MainMenu\OpenOptions" MaxAttenuation="0.000000" DurationType="OneShot" DurationMin="0.000000" DurationMax="0.000000"/>
+				<Event Id="3806663565" Name="OpenOptions" ObjectPath="\Events\Menu\MainMenu\OpenOptions" DurationType="OneShot" DurationMin="1.525674" DurationMax="1.712512"/>
+				<Event Id="744585444" Name="OptionsTones" ObjectPath="\Events\Menu\OptionsMenu\OptionsTones" MaxAttenuation="0.000000" DurationType="OneShot" DurationMin="0.000000" DurationMax="0.000000"/>
 				<Event Id="1933716535" Name="PaperPlaneDead" ObjectPath="\Events\Character\PaperPlane\PaperPlaneDead" MaxAttenuation="0.000000" DurationType="OneShot" DurationMin="0.000000" DurationMax="0.000000"/>
 				<Event Id="948186658" Name="PaperPlaneSpawn" ObjectPath="\Events\Character\PaperPlane\PaperPlaneSpawn" MaxAttenuation="15.000000" DurationType="Infinite"/>
 				<Event Id="1091851954" Name="PictureOff_01" ObjectPath="\Events\Character\Objects\Pictures\PictureOff_01" MaxAttenuation="0.000000" DurationType="OneShot" DurationMin="0.000000" DurationMax="0.000000"/>
@@ -67,8 +68,7 @@
 				<Event Id="1562868854" Name="PictureOn_03" ObjectPath="\Events\Character\Objects\Pictures\PictureOn_03" DurationType="OneShot" DurationMin="9.230771" DurationMax="9.230771"/>
 				<Event Id="1562868849" Name="PictureOn_04" ObjectPath="\Events\Character\Objects\Pictures\PictureOn_04" DurationType="OneShot" DurationMin="9.230771" DurationMax="9.230771"/>
 				<Event Id="151362964" Name="PlayerHealth" ObjectPath="\Events\Character\PlayerHealth\PlayerHealth" DurationType="Infinite"/>
-				<Event Id="1915974646" Name="RainFromAbove" ObjectPath="\Events\Environment\WaterStuff\RainFromAbove\RainFromAbove" MaxAttenuation="15.000000" DurationType="OneShot" DurationMin="3.461542" DurationMax="3.461542"/>
-				<Event Id="2030397405" Name="RainParticle" ObjectPath="\Events\Environment\WaterStuff\GridPit\RainParticle" MaxAttenuation="15.000000" DurationType="Infinite"/>
+				<Event Id="1915974646" Name="RainFromAbove" ObjectPath="\Events\Environment\WaterStuff\RainFromAbove\RainFromAbove" MaxAttenuation="15.000000" DurationType="Infinite"/>
 				<Event Id="3936711540" Name="Room0101_Music" ObjectPath="\Events\Music\Room0101_Music" DurationType="Infinite"/>
 				<Event Id="2041600939" Name="Room0102_Music" ObjectPath="\Events\Music\Room0102_Music" DurationType="Infinite"/>
 				<Event Id="3749508035" Name="Room0201_Music" ObjectPath="\Events\Music\Room0201_Music" DurationType="Infinite"/>
@@ -78,12 +78,10 @@
 				<Event Id="1090191588" Name="RoomTone_Hub" ObjectPath="\Events\Environment\RoomTones\RoomTone_Hub" DurationType="Infinite"/>
 				<Event Id="1904864137" Name="Torch" ObjectPath="\Events\Environment\Fireplace\Torches\Torch" MaxAttenuation="10.000000" DurationType="Infinite"/>
 				<Event Id="359881691" Name="Tutorial_Music" ObjectPath="\Events\Music\Tutorial_Music" DurationType="Infinite"/>
-				<Event Id="632860588" Name="UpdateAmbienceVolume" ObjectPath="\Events\Menu\VolumeForRTPC's\UpdateAmbienceVolume" DurationType="OneShot" DurationMin="1.343172" DurationMax="1.507660"/>
-				<Event Id="3235780261" Name="UpdateMusicVolume" ObjectPath="\Events\Menu\VolumeForRTPC's\UpdateMusicVolume" DurationType="OneShot" DurationMin="1.343172" DurationMax="1.507660"/>
-				<Event Id="3245207673" Name="UpdateSFXVolume" ObjectPath="\Events\Menu\VolumeForRTPC's\UpdateSFXVolume" DurationType="OneShot" DurationMin="1.343172" DurationMax="1.507660"/>
+				<Event Id="241064061" Name="WallShooterStatic" ObjectPath="\Events\Character\PaperPlane\WallShooterStatic" MaxAttenuation="15.000000" DurationType="Infinite"/>
 				<Event Id="2312877492" Name="WaterSprayOff" ObjectPath="\Events\Environment\WaterStuff\WaterSpray\WaterSprayOff" MaxAttenuation="15.000000" DurationType="OneShot" DurationMin="1.846167" DurationMax="1.846167"/>
-				<Event Id="441114158" Name="WaterSprayOn" ObjectPath="\Events\Environment\WaterStuff\WaterSpray\WaterSprayOn" MaxAttenuation="15.000000" DurationType="OneShot" DurationMin="1.846167" DurationMax="1.846167"/>
-				<Event Id="3044105157" Name="WinPuzzle" ObjectPath="\Events\InGame_UI\WinPuzzle" DurationType="OneShot" DurationMin="7.245805" DurationMax="7.245805"/>
+				<Event Id="441114158" Name="WaterSprayOn" ObjectPath="\Events\Environment\WaterStuff\WaterSpray\WaterSprayOn" MaxAttenuation="15.000000" DurationType="Infinite"/>
+				<Event Id="3044105157" Name="WinPuzzle" ObjectPath="\Events\InGame_UI\WinPuzzle" DurationType="OneShot" DurationMin="6.634625" DurationMax="6.634625"/>
 			</IncludedEvents>
 			<IncludedMemoryFiles>
 				<File Id="2556547" Language="SFX">
@@ -125,6 +123,10 @@
 				<File Id="39757994" Language="SFX">
 					<ShortName>power_dash_voice_12.wav</ShortName>
 					<Path>SFX\power_dash_voice_12_27020439.wem</Path>
+				</File>
+				<File Id="43645505" Language="SFX">
+					<ShortName>ButtonMatches_02.wav</ShortName>
+					<Path>SFX\ButtonMatches_02_27020439.wem</Path>
 				</File>
 				<File Id="45938659" Language="SFX">
 					<ShortName>BurnObjectBase.wav</ShortName>
@@ -230,6 +232,10 @@
 					<ShortName>charging_dash_voice_06.wav</ShortName>
 					<Path>SFX\charging_dash_voice_06_27020439.wem</Path>
 				</File>
+				<File Id="171077020" Language="SFX">
+					<ShortName>speak_reaction_69_hmm_wonder.wav</ShortName>
+					<Path>SFX\speak_reaction_69_hmm_wonder_239F7E38.wem</Path>
+				</File>
 				<File Id="183707916" Language="SFX">
 					<ShortName>PlantLeaf_01.wav</ShortName>
 					<Path>SFX\PlantLeaf_01_27020439.wem</Path>
@@ -270,6 +276,10 @@
 					<ShortName>PlantLeaf_08.wav</ShortName>
 					<Path>SFX\PlantLeaf_08_27020439.wem</Path>
 				</File>
+				<File Id="226222933" Language="SFX">
+					<ShortName>speak_reaction_23_hm.wav</ShortName>
+					<Path>SFX\speak_reaction_23_hm_27020439.wem</Path>
+				</File>
 				<File Id="228128880" Language="SFX">
 					<ShortName>445840__jchiledred__hitting-glass-bottle-agaist-a-wall.wav</ShortName>
 					<Path>SFX\445840__jchiledred__hitting-glass-bottle-agaist-a-wall_2CE10774.wem</Path>
@@ -298,6 +308,10 @@
 					<ShortName>PaperPlaneOff.wav</ShortName>
 					<Path>SFX\PaperPlaneOff_65DAF4A0.wem</Path>
 				</File>
+				<File Id="255019791" Language="SFX">
+					<ShortName>WinPuzzle_new02.wav</ShortName>
+					<Path>SFX\WinPuzzle_new02_27020439.wem</Path>
+				</File>
 				<File Id="262767575" Language="SFX">
 					<ShortName>Fuse, Stop, Burn Out, Bomb, Dynamite 3 SND5823.wav</ShortName>
 					<Path>SFX\Fuse, Stop, Burn Out, Bomb, Dynamite 3 SND5823_8437056A.wem</Path>
@@ -317,10 +331,6 @@
 				<File Id="272013640" Language="SFX">
 					<ShortName>Room 1 Tone_2.wav</ShortName>
 					<Path>SFX\Room 1 Tone_2_4EA6E607.wem</Path>
-				</File>
-				<File Id="273398401" Language="SFX">
-					<ShortName>WaterSprayOn_04.wav</ShortName>
-					<Path>SFX\WaterSprayOn_04_27020439.wem</Path>
 				</File>
 				<File Id="281140526" Language="SFX">
 					<ShortName>dyingHeart.wav</ShortName>
@@ -394,10 +404,6 @@
 					<ShortName>book_drop_02.wav</ShortName>
 					<Path>SFX\book_drop_02_94C9A6DD.wem</Path>
 				</File>
-				<File Id="402908849" Language="SFX">
-					<ShortName>WinPuzzle3.wav</ShortName>
-					<Path>SFX\WinPuzzle3_27020439.wem</Path>
-				</File>
 				<File Id="407281415" Language="SFX">
 					<ShortName>power_dash_voice_10.wav</ShortName>
 					<Path>SFX\power_dash_voice_10_27020439.wem</Path>
@@ -410,13 +416,17 @@
 					<ShortName>BurnObjectSweetner_03.wav</ShortName>
 					<Path>SFX\BurnObjectSweetner_03_27020439.wem</Path>
 				</File>
+				<File Id="410378989" Language="SFX">
+					<ShortName>AllButtons_Base.wav</ShortName>
+					<Path>SFX\AllButtons_Base_CBEEB47B.wem</Path>
+				</File>
 				<File Id="416268568" Language="SFX">
 					<ShortName>Fire, Acid Burn Flesh SND22212.wav</ShortName>
 					<Path>SFX\Fire, Acid Burn Flesh SND22212_99DBB2EC.wem</Path>
 				</File>
 				<File Id="426260354" Language="SFX">
 					<ShortName>TorchTurnOn_02.wav</ShortName>
-					<Path>SFX\TorchTurnOn_02_79334DB6.wem</Path>
+					<Path>SFX\TorchTurnOn_02_18C53065.wem</Path>
 				</File>
 				<File Id="444839901" Language="SFX">
 					<ShortName>power_dash_voice_04.wav</ShortName>
@@ -438,6 +448,10 @@
 					<ShortName>PlantLeaf_04.wav</ShortName>
 					<Path>SFX\PlantLeaf_04_27020439.wem</Path>
 				</File>
+				<File Id="453867161" Language="SFX">
+					<ShortName>WallShooterShoot.wav</ShortName>
+					<Path>SFX\WallShooterShoot_534EDADC.wem</Path>
+				</File>
 				<File Id="459120670" Language="SFX">
 					<ShortName>power_dash_voice_07.wav</ShortName>
 					<Path>SFX\power_dash_voice_07_27020439.wem</Path>
@@ -454,13 +468,17 @@
 					<ShortName>TeddyBear07.wav</ShortName>
 					<Path>SFX\TeddyBear07_27020439.wem</Path>
 				</File>
+				<File Id="471251588" Language="SFX">
+					<ShortName>speak_reaction_70_hmm_wondering.wav</ShortName>
+					<Path>SFX\speak_reaction_70_hmm_wondering_3305D5A6.wem</Path>
+				</File>
 				<File Id="473784644" Language="SFX">
 					<ShortName>speak_reaction_61_hurt.wav</ShortName>
 					<Path>SFX\speak_reaction_61_hurt_27020439.wem</Path>
 				</File>
 				<File Id="479028233" Language="SFX">
 					<ShortName>WaterSprayOn.wav</ShortName>
-					<Path>SFX\WaterSprayOn_27020439.wem</Path>
+					<Path>SFX\WaterSprayOn_4EA6E607.wem</Path>
 				</File>
 				<File Id="488138508" Language="SFX">
 					<ShortName>45650__elonen__fuse-burning-48khz.wav</ShortName>
@@ -486,6 +504,10 @@
 					<ShortName>Books_on_Asphalt_Dropping_onto_Ground_Bouncing_OCP-1223-063-01.wav</ShortName>
 					<Path>SFX\Books_on_Asphalt_Dropping_onto_Ground_Bouncing_OCP-1223-063-01_84385A59.wem</Path>
 				</File>
+				<File Id="547481029" Language="SFX">
+					<ShortName>ButtonMatches_05.wav</ShortName>
+					<Path>SFX\ButtonMatches_05_27020439.wem</Path>
+				</File>
 				<File Id="551754597" Language="SFX">
 					<ShortName>Room 1 Tone.wav</ShortName>
 					<Path>SFX\Room 1 Tone_4EA6E607.wem</Path>
@@ -501,6 +523,14 @@
 				<File Id="559882661" Language="SFX">
 					<ShortName>DeathTone_001.wav</ShortName>
 					<Path>SFX\DeathTone_001_27020439.wem</Path>
+				</File>
+				<File Id="559937275" Language="SFX">
+					<ShortName>ButtonMatches_04.wav</ShortName>
+					<Path>SFX\ButtonMatches_04_27020439.wem</Path>
+				</File>
+				<File Id="567660159" Language="SFX">
+					<ShortName>ButtonMatches_01.wav</ShortName>
+					<Path>SFX\ButtonMatches_01_27020439.wem</Path>
 				</File>
 				<File Id="572276479" Language="SFX">
 					<ShortName>speak_reaction_40_hurt.wav</ShortName>
@@ -546,6 +576,10 @@
 					<ShortName>speak_reaction_32_hurt.wav</ShortName>
 					<Path>SFX\speak_reaction_32_hurt_27020439.wem</Path>
 				</File>
+				<File Id="653883807" Language="SFX">
+					<ShortName>WaterSprayOn_05.wav</ShortName>
+					<Path>SFX\WaterSprayOn_05_4EA6E607.wem</Path>
+				</File>
 				<File Id="659610720" Language="SFX">
 					<ShortName>BumpIntoConcrete_02.wav</ShortName>
 					<Path>SFX\BumpIntoConcrete_02_27020439.wem</Path>
@@ -578,10 +612,6 @@
 					<ShortName>room0102_loop02-70bpm.wav</ShortName>
 					<Path>SFX\room0102_loop02-70bpm_4EA6E607.wem</Path>
 				</File>
-				<File Id="708869388" Language="SFX">
-					<ShortName>RainParticle.wav</ShortName>
-					<Path>SFX\RainParticle_4EA6E607.wem</Path>
-				</File>
 				<File Id="709568480" Language="SFX">
 					<ShortName>StopDash_05.wav</ShortName>
 					<Path>SFX\StopDash_05_27020439.wem</Path>
@@ -597,6 +627,10 @@
 				<File Id="736643159" Language="SFX">
 					<ShortName>tutorial_loop02-105bpm.wav</ShortName>
 					<Path>SFX\tutorial_loop02-105bpm_4EA6E607.wem</Path>
+				</File>
+				<File Id="736952046" Language="SFX">
+					<ShortName>WallShooterStatic_02.wav</ShortName>
+					<Path>SFX\WallShooterStatic_02_4EA6E607.wem</Path>
 				</File>
 				<File Id="742047314" Language="SFX">
 					<ShortName>SlowPropsBurn_02.wav</ShortName>
@@ -630,6 +664,18 @@
 					<ShortName>Breaking_Wood_9.wav</ShortName>
 					<Path>SFX\Breaking_Wood_9_27020439.wem</Path>
 				</File>
+				<File Id="771878743" Language="SFX">
+					<ShortName>ButtonMatches_06.wav</ShortName>
+					<Path>SFX\ButtonMatches_06_27020439.wem</Path>
+				</File>
+				<File Id="772111077" Language="SFX">
+					<ShortName>ButtonMatches_08.wav</ShortName>
+					<Path>SFX\ButtonMatches_08_27020439.wem</Path>
+				</File>
+				<File Id="773071925" Language="SFX">
+					<ShortName>RopeHat_02.wav</ShortName>
+					<Path>SFX\RopeHat_02_4EA6E607.wem</Path>
+				</File>
 				<File Id="778803018" Language="SFX">
 					<ShortName>Fire, Acid Burn 4 SND22202.wav</ShortName>
 					<Path>SFX\Fire, Acid Burn 4 SND22202_60FDCEFD.wem</Path>
@@ -657,6 +703,10 @@
 				<File Id="812455129" Language="SFX">
 					<ShortName>85487__davidjwoll__cymbal-roll-quiet.wav</ShortName>
 					<Path>SFX\85487__davidjwoll__cymbal-roll-quiet_4EA6E607.wem</Path>
+				</File>
+				<File Id="814767881" Language="SFX">
+					<ShortName>GridPitDeathWater.wav</ShortName>
+					<Path>SFX\GridPitDeathWater_4EA6E607.wem</Path>
 				</File>
 				<File Id="815804527" Language="SFX">
 					<ShortName>charging_dash_voice_05.wav</ShortName>
@@ -702,6 +752,10 @@
 					<ShortName>speak_reaction_62_hurt.wav</ShortName>
 					<Path>SFX\speak_reaction_62_hurt_27020439.wem</Path>
 				</File>
+				<File Id="891173695" Language="SFX">
+					<ShortName>ButtonMatches_09.wav</ShortName>
+					<Path>SFX\ButtonMatches_09_27020439.wem</Path>
+				</File>
 				<File Id="891761296" Language="SFX">
 					<ShortName>105023__robinhood76__02091-brick-hits.wav</ShortName>
 					<Path>SFX\105023__robinhood76__02091-brick-hits_6FE06856.wem</Path>
@@ -718,13 +772,25 @@
 					<ShortName>Child2.wav</ShortName>
 					<Path>SFX\Child2_27020439.wem</Path>
 				</File>
+				<File Id="914296685" Language="SFX">
+					<ShortName>New+Continue_Game.wav</ShortName>
+					<Path>SFX\New+Continue_Game_27020439.wem</Path>
+				</File>
 				<File Id="914337157" Language="SFX">
 					<ShortName>RockingHorse.wav</ShortName>
 					<Path>SFX\RockingHorse_27020439.wem</Path>
 				</File>
+				<File Id="941410168" Language="SFX">
+					<ShortName>ButtonMatches_07.wav</ShortName>
+					<Path>SFX\ButtonMatches_07_27020439.wem</Path>
+				</File>
 				<File Id="946218584" Language="SFX">
 					<ShortName>BumpWall_05.wav</ShortName>
 					<Path>SFX\BumpWall_05_27020439.wem</Path>
+				</File>
+				<File Id="979832393" Language="SFX">
+					<ShortName>speak_reaction_05.wav</ShortName>
+					<Path>SFX\speak_reaction_05_01CCE979.wem</Path>
 				</File>
 				<File Id="980705570" Language="SFX">
 					<ShortName>Fire, Acid Burn 4 SND22202.wav</ShortName>
@@ -768,7 +834,11 @@
 				</File>
 				<File Id="1047209183" Language="SFX">
 					<ShortName>WaterSprayOff_02.wav</ShortName>
-					<Path>SFX\WaterSprayOff_02_B01CC1AA.wem</Path>
+					<Path>SFX\WaterSprayOff_02_6EEB8D64.wem</Path>
+				</File>
+				<File Id="1069954403" Language="SFX">
+					<ShortName>ButtonMatches_03.wav</ShortName>
+					<Path>SFX\ButtonMatches_03_27020439.wem</Path>
 				</File>
 			</IncludedMemoryFiles>
 		</SoundBank>

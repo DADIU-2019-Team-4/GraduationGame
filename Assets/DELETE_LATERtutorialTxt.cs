@@ -38,14 +38,14 @@ public class DELETE_LATERtutorialTxt : MonoBehaviour
         {
             if (canChangeText && textForThis == 0)
             {
-                text2.text = "Drag back and hold to charge your dash \n\n When the arrow gets red, release to dash through objects to burn them"; //texts[textForThis];
+                text2.text = "Drag back and hold to initiate a more powerful dash. \n\n When the arrow becomes red, your dash will destroy certain objects."; //texts[textForThis];
                 text.enabled = false;
                 text2.enabled = true;
             }
             else if (canChangeText && textForThis == 1)
             {
                 //text2.enabled = true;
-                text2.text = "Burning through objects restores your fire.";
+                text2.text = "Burning through objects restores your fire. \n\n Make sure to never let your fire run out!";
             }
             else if (!canChangeText)
             {
