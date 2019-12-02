@@ -100,7 +100,7 @@ public class Fuse : MonoBehaviour
             movementController.IsInvulnerable = false;
             if (playerRigidbody != null)
                 playerRigidbody.velocity = Vector3.zero;
-            movementController.StopMoving();
+            movementController.StopMoving(InteractibleObject.InteractType.Fuse);
         }
     }
 

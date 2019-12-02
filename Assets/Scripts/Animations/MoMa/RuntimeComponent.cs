@@ -20,7 +20,9 @@ namespace MoMa
             // TODO: This should happen offline. Instead we only need to open its result
             foreach ((string filename, string path) in files)
             {
-                this._anim.Add(Packer.Pack(filename, path, filename));
+                //Animation loadedAnimation = LoadPackedAnimationFile(filename, path);
+                Animation loadedAnimation = Packer.Pack(filename, path, filename);
+                this._anim.Add(loadedAnimation);
             }
 
             // TODO: This exists for dubugging. Maybe it needs to be removed.
@@ -187,6 +189,11 @@ namespace MoMa
                     _onCooldown.Remove(feature);
                 }
             }
+        }
+
+        private Animation LoadPackedAnimationFile(string filename, string path)
+        {
+            return null;
         }
 
         private class CandidateFeature

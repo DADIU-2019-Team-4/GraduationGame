@@ -8,7 +8,7 @@ namespace MoMa
     [System.Serializable]
     public class Animation
     {
-        public readonly string animationName;
+        public string animationName;
 
         // Each feature refers to a set of frames
         public List<Frame> frameList = new List<Frame>();
@@ -46,6 +46,11 @@ namespace MoMa
                     )
                 );
             }
+        }
+
+        public void SerializeAndExport()
+        {
+
         }
 
         private Trajectory ComputeFittedTrajectory()

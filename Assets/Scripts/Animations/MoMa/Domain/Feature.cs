@@ -3,6 +3,7 @@ using System.Collections;
 
 namespace MoMa
 {
+    [System.Serializable]
     public class Feature
     {
         public readonly int frameNum;

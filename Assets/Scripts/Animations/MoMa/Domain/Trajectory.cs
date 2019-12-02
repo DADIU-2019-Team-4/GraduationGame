@@ -5,6 +5,7 @@ using System;
 
 namespace MoMa
 {
+    [System.Serializable]
     public class Trajectory
     {
         public List<Point> points = new List<Point>();
@@ -67,6 +68,7 @@ namespace MoMa
             return s + "}";
         }
 
+        [System.Serializable]
         public class Point
         {
             public const int Decimals = 4;
@@ -118,6 +120,7 @@ namespace MoMa
             }
         }
 
+        [System.Serializable]
         public class Snippet
         {
             public Point[] points = new Point[SalamanderController.SnippetSize];

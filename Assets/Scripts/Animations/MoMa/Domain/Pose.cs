@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 namespace MoMa
 {
+    [System.Serializable]
     public class Pose
     {
         // Position of limbs relative to the root
