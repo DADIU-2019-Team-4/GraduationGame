@@ -148,18 +148,21 @@ public class UINavigation : MonoBehaviour
     {
         PlayerPrefs.SetFloat("SFXVolume", value);
         AudioEvent.SetRTPCValue("SFXVolume", value * 100);
+        AudioEvent.PostEvent("UpdateSFXVolume", gameObject);
     }
 
     public void UpdateAmbienceVolume(float value)
     {
         PlayerPrefs.SetFloat("AmbienceVolume", value);
         AudioEvent.SetRTPCValue("AmbienceVolume", value * 100);
+        AudioEvent.PostEvent("UpdateAmbienceVolume", gameObject);
     }
 
     public void UpdateMusicVolume(float value)
     {
         PlayerPrefs.SetFloat("MusicVolume", value);
         AudioEvent.SetRTPCValue("MusicVolume", value * 100);
+        AudioEvent.PostEvent("UpdateMusicVolume", gameObject);
     }
 
     public void EnterPauseMenu()
