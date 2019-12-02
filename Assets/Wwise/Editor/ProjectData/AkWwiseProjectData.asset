@@ -24,7 +24,7 @@ MonoBehaviour:
     ParentPhysicalPath: 
     guid: 61773147c3e61341905ca4a6c975c8be
     GuidInternal: 
-    m_lastTime: -8586267117615418246
+    m_lastTime: -8586263272230809543
     List:
     - name: LargeVerb
       guid: 4df29f5a7ef6c64484385fb4eb29a27f
@@ -36,9 +36,11 @@ MonoBehaviour:
         ObjectType: 2
       - ElementName: SubMaster
         ObjectType: 2
+      - ElementName: Reverbs
+        ObjectType: 2
       - ElementName: LargeVerb
         ObjectType: 1
-      Path: Default Work Unit\Master Audio Bus\SubMaster\LargeVerb
+      Path: Default Work Unit\Master Audio Bus\SubMaster\Reverbs\LargeVerb
     - name: MidVerb
       guid: 211d45291e0f9541a734c6f0a835bc85
       id: 3210245118
@@ -49,9 +51,11 @@ MonoBehaviour:
         ObjectType: 2
       - ElementName: SubMaster
         ObjectType: 2
+      - ElementName: Reverbs
+        ObjectType: 2
       - ElementName: MidVerb
         ObjectType: 1
-      Path: Default Work Unit\Master Audio Bus\SubMaster\MidVerb
+      Path: Default Work Unit\Master Audio Bus\SubMaster\Reverbs\MidVerb
     - name: SmallVerb
       guid: 42fcaad7c24ef548aaf4674aecafd5e9
       id: 117523933
@@ -62,15 +66,17 @@ MonoBehaviour:
         ObjectType: 2
       - ElementName: SubMaster
         ObjectType: 2
+      - ElementName: Reverbs
+        ObjectType: 2
       - ElementName: SmallVerb
         ObjectType: 1
-      Path: Default Work Unit\Master Audio Bus\SubMaster\SmallVerb
+      Path: Default Work Unit\Master Audio Bus\SubMaster\Reverbs\SmallVerb
   BankWwu:
   - PhysicalPath: SoundBanks\Default Work Unit.wwu
     ParentPhysicalPath: 
     guid: 72425237053ab44b82427a05c1308321
     GuidInternal: 
-    m_lastTime: -8586267114380978915
+    m_lastTime: -8586265897419705766
     List:
     - name: Room_2_Bank
       guid: e0606da1b37faa4b9eea4fea19ea8b94
@@ -86,7 +92,7 @@ MonoBehaviour:
     ParentPhysicalPath: 
     guid: 85519e3dd9af71428bf05cf3b19b0630
     GuidInternal: 
-    m_lastTime: -8586267006979282643
+    m_lastTime: -8586263296724076667
     List:
     - name: ArrowPull
       guid: 608bf70bea70904ba9e045c9b78b6c3a
@@ -114,8 +120,8 @@ MonoBehaviour:
         ObjectType: 3
       Path: Character\Objects\BlockObject
       maxAttenuation: 0
-      maxDuration: 620000
-      minDuration: 620000
+      maxDuration: 1823550
+      minDuration: 585202
     - name: BreakObject
       guid: e554a8ad7f0d484c8c85ba76626ff80d
       id: 2596983219
@@ -127,8 +133,8 @@ MonoBehaviour:
       - ElementName: BreakObject
         ObjectType: 3
       Path: Character\Objects\BreakObject
-      maxAttenuation: 100000000
-      maxDuration: 3811497
+      maxAttenuation: 0
+      maxDuration: 4278260
       minDuration: 3597574
     - name: BreakObjectMute
       guid: af8f23a58d62994e84e3b5bf9ec42b13
@@ -142,8 +148,8 @@ MonoBehaviour:
         ObjectType: 3
       Path: Character\Objects\BreakObjectMute
       maxAttenuation: 0
-      maxDuration: 620000
-      minDuration: 620000
+      maxDuration: 1823550
+      minDuration: 328096
     - name: ChargedDash
       guid: d4eae6662ad0d248ab64c2517d4f8562
       id: 742914115
@@ -432,8 +438,8 @@ MonoBehaviour:
         ObjectType: 3
       Path: Character\Objects\Pictures\PictureOn_01
       maxAttenuation: 0
-      maxDuration: -1
-      minDuration: -1
+      maxDuration: 9230771
+      minDuration: 9230771
     - name: PictureOn_02
       guid: 1ee03259b476a34d95a1e0c58a3da27c
       id: 1562868855
@@ -448,8 +454,8 @@ MonoBehaviour:
         ObjectType: 3
       Path: Character\Objects\Pictures\PictureOn_02
       maxAttenuation: 0
-      maxDuration: -1
-      minDuration: -1
+      maxDuration: 9230771
+      minDuration: 9230771
     - name: PictureOn_03
       guid: 49090fcaa1662a4ea7ab4c5ee002124d
       id: 1562868854
@@ -464,8 +470,8 @@ MonoBehaviour:
         ObjectType: 3
       Path: Character\Objects\Pictures\PictureOn_03
       maxAttenuation: 0
-      maxDuration: -1
-      minDuration: -1
+      maxDuration: 9230771
+      minDuration: 9230771
     - name: PictureOn_04
       guid: 3c9a6a10c4821d4b8077a343276a388d
       id: 1562868849
@@ -480,8 +486,8 @@ MonoBehaviour:
         ObjectType: 3
       Path: Character\Objects\Pictures\PictureOn_04
       maxAttenuation: 0
-      maxDuration: -1
-      minDuration: -1
+      maxDuration: 9230771
+      minDuration: 9230771
     - name: PlayerHealth
       guid: 653c463d1cd8eb4d858f140998f5a864
       id: 151362964
@@ -496,6 +502,20 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: -1
       minDuration: -1
+    - name: WallShooterStatic
+      guid: 7115d2c71e147e4cb51ea64a6db8b20a
+      id: 241064061
+      PathAndIcons:
+      - ElementName: Character
+        ObjectType: 12
+      - ElementName: PaperPlane
+        ObjectType: 4
+      - ElementName: WallShooterStatic
+        ObjectType: 3
+      Path: Character\PaperPlane\WallShooterStatic
+      maxAttenuation: 15000000
+      maxDuration: -1
+      minDuration: -1
   - PhysicalPath: Events\Default Work Unit.wwu
     ParentPhysicalPath: 
     guid: 176f44b72cc15d4ba2418afac5f43146
@@ -506,7 +526,7 @@ MonoBehaviour:
     ParentPhysicalPath: 
     guid: 798a08f7a060c94bb31dbf2936cc7894
     GuidInternal: 
-    m_lastTime: -8586267013555275350
+    m_lastTime: -8586263307518956540
     List:
     - name: BumpIntoBooks
       guid: a5e678f91e46db45a6085d8dd485fb67
@@ -520,8 +540,8 @@ MonoBehaviour:
         ObjectType: 3
       Path: Environment\BumpInto\BumpIntoBooks
       maxAttenuation: 0
-      maxDuration: 2059830
-      minDuration: 594985
+      maxDuration: 4740915
+      minDuration: 1222435
     - name: BumpIntoBottles
       guid: 39cc6e7eb3ddc44dbc417438811731f2
       id: 1029928262
@@ -534,8 +554,36 @@ MonoBehaviour:
         ObjectType: 3
       Path: Environment\BumpInto\BumpIntoBottles
       maxAttenuation: 0
-      maxDuration: 882098
-      minDuration: 269666
+      maxDuration: 892348
+      minDuration: 266569
+    - name: BumpIntoConcrete
+      guid: 6a6c623ee9b76c4a8679e5887f4071e8
+      id: 1998000382
+      PathAndIcons:
+      - ElementName: Environment
+        ObjectType: 12
+      - ElementName: BumpInto
+        ObjectType: 4
+      - ElementName: BumpIntoConcrete
+        ObjectType: 3
+      Path: Environment\BumpInto\BumpIntoConcrete
+      maxAttenuation: 0
+      maxDuration: 488986
+      minDuration: 435637
+    - name: BumpIntoHorse
+      guid: 89de11f972d1c04095f50c7aa1713418
+      id: 1886113446
+      PathAndIcons:
+      - ElementName: Environment
+        ObjectType: 12
+      - ElementName: BumpInto
+        ObjectType: 4
+      - ElementName: BumpIntoHorse
+        ObjectType: 3
+      Path: Environment\BumpInto\BumpIntoHorse
+      maxAttenuation: 0
+      maxDuration: 4740915
+      minDuration: 1222435
     - name: BumpIntoPlants
       guid: 1012aaa19a1bc2448c4194f2c54696c9
       id: 2362129349
@@ -548,22 +596,22 @@ MonoBehaviour:
         ObjectType: 3
       Path: Environment\BumpInto\BumpIntoPlants
       maxAttenuation: 0
-      maxDuration: 0
-      minDuration: 0
-    - name: BumpIntoStroller
-      guid: b6dec8db7518e54791346e04546d2947
-      id: 1507701038
+      maxDuration: 4740915
+      minDuration: 3249612
+    - name: BumpIntoSteel
+      guid: a3675384c377294793a4efa6c8d49177
+      id: 770564256
       PathAndIcons:
       - ElementName: Environment
         ObjectType: 12
       - ElementName: BumpInto
         ObjectType: 4
-      - ElementName: BumpIntoStroller
+      - ElementName: BumpIntoSteel
         ObjectType: 3
-      Path: Environment\BumpInto\BumpIntoStroller
+      Path: Environment\BumpInto\BumpIntoSteel
       maxAttenuation: 0
-      maxDuration: 0
-      minDuration: 0
+      maxDuration: 638167
+      minDuration: 585202
     - name: BumpIntoTeddyBear
       guid: 5890cc84f350734b87bccce46bcfbf08
       id: 1429775881
@@ -576,22 +624,8 @@ MonoBehaviour:
         ObjectType: 3
       Path: Environment\BumpInto\BumpIntoTeddyBear
       maxAttenuation: 0
-      maxDuration: 0
-      minDuration: 0
-    - name: BumpIntoTree
-      guid: 75ce3cf870fc6249b1fe7ba5ff52394e
-      id: 2089387979
-      PathAndIcons:
-      - ElementName: Environment
-        ObjectType: 12
-      - ElementName: BumpInto
-        ObjectType: 4
-      - ElementName: BumpIntoTree
-        ObjectType: 3
-      Path: Environment\BumpInto\BumpIntoTree
-      maxAttenuation: 0
-      maxDuration: 1802605
-      minDuration: 331908
+      maxDuration: 4740915
+      minDuration: 1222435
     - name: BumpIntoWall
       guid: 6aebb66d941bf0428d5d70e8243427f8
       id: 3724569835
@@ -604,8 +638,22 @@ MonoBehaviour:
         ObjectType: 3
       Path: Environment\BumpInto\BumpIntoWall
       maxAttenuation: 0
-      maxDuration: 1106718
-      minDuration: 952388
+      maxDuration: 1119577
+      minDuration: 941449
+    - name: BumpIntoWood
+      guid: 75ce3cf870fc6249b1fe7ba5ff52394e
+      id: 3740361716
+      PathAndIcons:
+      - ElementName: Environment
+        ObjectType: 12
+      - ElementName: BumpInto
+        ObjectType: 4
+      - ElementName: BumpIntoWood
+        ObjectType: 3
+      Path: Environment\BumpInto\BumpIntoWood
+      maxAttenuation: 0
+      maxDuration: 4740915
+      minDuration: 1222435
     - name: DadsMouth
       guid: 8adbadf5181e934f91d01fabcdb4df31
       id: 1750432780
@@ -617,9 +665,9 @@ MonoBehaviour:
       - ElementName: DadsMouth
         ObjectType: 3
       Path: Environment\Fireplace\DadsMouth
-      maxAttenuation: 50000000
-      maxDuration: 0
-      minDuration: 0
+      maxAttenuation: 10000000
+      maxDuration: -1
+      minDuration: -1
     - name: DangerZoneIn
       guid: e4e03c690d6b734696258543973dff18
       id: 991018855
@@ -659,7 +707,23 @@ MonoBehaviour:
       - ElementName: Fireplace
         ObjectType: 3
       Path: Environment\Fireplace\Fireplace
-      maxAttenuation: 10000000
+      maxAttenuation: 100000000
+      maxDuration: -1
+      minDuration: -1
+    - name: RainFromAbove
+      guid: e907fb1b58f8ec409903e20e83769005
+      id: 1915974646
+      PathAndIcons:
+      - ElementName: Environment
+        ObjectType: 12
+      - ElementName: WaterStuff
+        ObjectType: 4
+      - ElementName: RainFromAbove
+        ObjectType: 4
+      - ElementName: RainFromAbove
+        ObjectType: 3
+      Path: Environment\WaterStuff\RainFromAbove\RainFromAbove
+      maxAttenuation: 15000000
       maxDuration: -1
       minDuration: -1
     - name: RainParticle
@@ -668,10 +732,14 @@ MonoBehaviour:
       PathAndIcons:
       - ElementName: Environment
         ObjectType: 12
+      - ElementName: WaterStuff
+        ObjectType: 4
+      - ElementName: GridPit
+        ObjectType: 4
       - ElementName: RainParticle
         ObjectType: 3
-      Path: Environment\RainParticle
-      maxAttenuation: 20000000
+      Path: Environment\WaterStuff\GridPit\RainParticle
+      maxAttenuation: 15000000
       maxDuration: -1
       minDuration: -1
     - name: RoomTone_01
@@ -729,7 +797,7 @@ MonoBehaviour:
       - ElementName: Torch
         ObjectType: 3
       Path: Environment\Fireplace\Torches\Torch
-      maxAttenuation: 20000000
+      maxAttenuation: 10000000
       maxDuration: -1
       minDuration: -1
     - name: WaterSprayOff
@@ -738,28 +806,32 @@ MonoBehaviour:
       PathAndIcons:
       - ElementName: Environment
         ObjectType: 12
+      - ElementName: WaterStuff
+        ObjectType: 4
       - ElementName: WaterSpray
         ObjectType: 4
       - ElementName: WaterSprayOff
         ObjectType: 3
-      Path: Environment\WaterSpray\WaterSprayOff
+      Path: Environment\WaterStuff\WaterSpray\WaterSprayOff
       maxAttenuation: 15000000
-      maxDuration: 3402018
-      minDuration: 3402018
+      maxDuration: 1846167
+      minDuration: 1846167
     - name: WaterSprayOn
       guid: 5ab7b9f04a986e48a1cbf9802661e8dc
       id: 441114158
       PathAndIcons:
       - ElementName: Environment
         ObjectType: 12
+      - ElementName: WaterStuff
+        ObjectType: 4
       - ElementName: WaterSpray
         ObjectType: 4
       - ElementName: WaterSprayOn
         ObjectType: 3
-      Path: Environment\WaterSpray\WaterSprayOn
+      Path: Environment\WaterStuff\WaterSpray\WaterSprayOn
       maxAttenuation: 15000000
-      maxDuration: 3461542
-      minDuration: 3461542
+      maxDuration: -1
+      minDuration: -1
   - PhysicalPath: Events\InGame_UI.wwu
     ParentPhysicalPath: 
     guid: 9a9189c843fed44184f89467d8975824
@@ -778,6 +850,152 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: 7245805
       minDuration: 7245805
+  - PhysicalPath: Events\Menu.wwu
+    ParentPhysicalPath: 
+    guid: 3b41aaec90f3894c8c5231d3cbc5dbe2
+    GuidInternal: 
+    m_lastTime: -8586263270400192369
+    List:
+    - name: ChangeLanguageToDanish
+      guid: 536d983849b83f4d8c8bea168dbac1fa
+      id: 2758237675
+      PathAndIcons:
+      - ElementName: Menu
+        ObjectType: 12
+      - ElementName: OptionsMenu
+        ObjectType: 4
+      - ElementName: ChangeLanguageToDanish
+        ObjectType: 3
+      Path: Menu\OptionsMenu\ChangeLanguageToDanish
+      maxAttenuation: 0
+      maxDuration: 2884625
+      minDuration: 1249675
+    - name: ChangeLanguageToEnglish
+      guid: b49baef1d6f2f74bacc1acaf29bed1ad
+      id: 3205496764
+      PathAndIcons:
+      - ElementName: Menu
+        ObjectType: 12
+      - ElementName: OptionsMenu
+        ObjectType: 4
+      - ElementName: ChangeLanguageToEnglish
+        ObjectType: 3
+      Path: Menu\OptionsMenu\ChangeLanguageToEnglish
+      maxAttenuation: 0
+      maxDuration: 2884625
+      minDuration: 1249675
+    - name: ContinueGame
+      guid: 1faa0454ca0c4441aa0c6d7c6ed334ae
+      id: 889138964
+      PathAndIcons:
+      - ElementName: Menu
+        ObjectType: 12
+      - ElementName: OptionsMenu
+        ObjectType: 4
+      - ElementName: ContinueGame
+        ObjectType: 3
+      Path: Menu\OptionsMenu\ContinueGame
+      maxAttenuation: 0
+      maxDuration: 1712512
+      minDuration: 1525674
+    - name: EnterPauseMenu
+      guid: 0c1abe1be28913488477a27646d417a2
+      id: 3602428572
+      PathAndIcons:
+      - ElementName: Menu
+        ObjectType: 12
+      - ElementName: OptionsMenu
+        ObjectType: 4
+      - ElementName: EnterPauseMenu
+        ObjectType: 3
+      Path: Menu\OptionsMenu\EnterPauseMenu
+      maxAttenuation: 0
+      maxDuration: 2884625
+      minDuration: 1249675
+    - name: ExitOptions
+      guid: 2fa1707a18bfaa4dbce37a7dc7a22560
+      id: 91804985
+      PathAndIcons:
+      - ElementName: Menu
+        ObjectType: 12
+      - ElementName: OptionsMenu
+        ObjectType: 4
+      - ElementName: ExitOptions
+        ObjectType: 3
+      Path: Menu\OptionsMenu\ExitOptions
+      maxAttenuation: 0
+      maxDuration: 2884625
+      minDuration: 1249675
+    - name: ExitPauseMenu
+      guid: 1f045133b24d8941b13ed146e3747138
+      id: 1908168848
+      PathAndIcons:
+      - ElementName: Menu
+        ObjectType: 12
+      - ElementName: OptionsMenu
+        ObjectType: 4
+      - ElementName: ExitPauseMenu
+        ObjectType: 3
+      Path: Menu\OptionsMenu\ExitPauseMenu
+      maxAttenuation: 0
+      maxDuration: 1712512
+      minDuration: 1525674
+    - name: GoToMainMenu
+      guid: fd47b37a45a25b4bacae4ea6ab5e572d
+      id: 2499528146
+      PathAndIcons:
+      - ElementName: Menu
+        ObjectType: 12
+      - ElementName: OptionsMenu
+        ObjectType: 4
+      - ElementName: GoToMainMenu
+        ObjectType: 3
+      Path: Menu\OptionsMenu\GoToMainMenu
+      maxAttenuation: 0
+      maxDuration: 1712512
+      minDuration: 1525674
+    - name: NewGame
+      guid: ecc66bed914e4a448eb3a87ac4f31e73
+      id: 943969687
+      PathAndIcons:
+      - ElementName: Menu
+        ObjectType: 12
+      - ElementName: MainMenu
+        ObjectType: 4
+      - ElementName: NewGame
+        ObjectType: 3
+      Path: Menu\MainMenu\NewGame
+      maxAttenuation: 0
+      maxDuration: 1712512
+      minDuration: 1525674
+    - name: OpenOptions
+      guid: 7b38848d6c4bdd4692ccd7b6b3809036
+      id: 3806663565
+      PathAndIcons:
+      - ElementName: Menu
+        ObjectType: 12
+      - ElementName: MainMenu
+        ObjectType: 4
+      - ElementName: OpenOptions
+        ObjectType: 3
+      Path: Menu\MainMenu\OpenOptions
+      maxAttenuation: 0
+      maxDuration: 1712512
+      minDuration: 1525674
+    - name: OptionsTones
+      guid: 59060961793ad74dbcea9d251ca8dbda
+      id: 744585444
+      PathAndIcons:
+      - ElementName: Menu
+        ObjectType: 12
+      - ElementName: OptionsMenu
+        ObjectType: 4
+      - ElementName: OptionsTones
+        ObjectType: 3
+      Path: Menu\OptionsMenu\OptionsTones
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
   - PhysicalPath: Events\Music.wwu
     ParentPhysicalPath: 
     guid: b354ec827c03c44399470a4771e70173
@@ -856,126 +1074,12 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: -1
       minDuration: -1
-  - PhysicalPath: Events\PauseMenu.wwu
-    ParentPhysicalPath: 
-    guid: 3b41aaec90f3894c8c5231d3cbc5dbe2
-    GuidInternal: 
-    m_lastTime: -8586267117614739950
-    List:
-    - name: ChangeLanguageToDanish
-      guid: 536d983849b83f4d8c8bea168dbac1fa
-      id: 2758237675
-      PathAndIcons:
-      - ElementName: PauseMenu
-        ObjectType: 12
-      - ElementName: ChangeLanguageToDanish
-        ObjectType: 3
-      Path: PauseMenu\ChangeLanguageToDanish
-      maxAttenuation: 0
-      maxDuration: 0
-      minDuration: 0
-    - name: ChangeLanguageToEnglish
-      guid: b49baef1d6f2f74bacc1acaf29bed1ad
-      id: 3205496764
-      PathAndIcons:
-      - ElementName: PauseMenu
-        ObjectType: 12
-      - ElementName: ChangeLanguageToEnglish
-        ObjectType: 3
-      Path: PauseMenu\ChangeLanguageToEnglish
-      maxAttenuation: 0
-      maxDuration: 0
-      minDuration: 0
-    - name: ContinueGame
-      guid: 1faa0454ca0c4441aa0c6d7c6ed334ae
-      id: 889138964
-      PathAndIcons:
-      - ElementName: PauseMenu
-        ObjectType: 12
-      - ElementName: ContinueGame
-        ObjectType: 3
-      Path: PauseMenu\ContinueGame
-      maxAttenuation: 0
-      maxDuration: 0
-      minDuration: 0
-    - name: EnterPauseMenu
-      guid: 0c1abe1be28913488477a27646d417a2
-      id: 3602428572
-      PathAndIcons:
-      - ElementName: PauseMenu
-        ObjectType: 12
-      - ElementName: EnterPauseMenu
-        ObjectType: 3
-      Path: PauseMenu\EnterPauseMenu
-      maxAttenuation: 0
-      maxDuration: 0
-      minDuration: 0
-    - name: ExitOptions
-      guid: 2fa1707a18bfaa4dbce37a7dc7a22560
-      id: 91804985
-      PathAndIcons:
-      - ElementName: PauseMenu
-        ObjectType: 12
-      - ElementName: ExitOptions
-        ObjectType: 3
-      Path: PauseMenu\ExitOptions
-      maxAttenuation: 0
-      maxDuration: 0
-      minDuration: 0
-    - name: ExitPauseMenu
-      guid: 1f045133b24d8941b13ed146e3747138
-      id: 1908168848
-      PathAndIcons:
-      - ElementName: PauseMenu
-        ObjectType: 12
-      - ElementName: ExitPauseMenu
-        ObjectType: 3
-      Path: PauseMenu\ExitPauseMenu
-      maxAttenuation: 0
-      maxDuration: 0
-      minDuration: 0
-    - name: GoToMainMenu
-      guid: fd47b37a45a25b4bacae4ea6ab5e572d
-      id: 2499528146
-      PathAndIcons:
-      - ElementName: PauseMenu
-        ObjectType: 12
-      - ElementName: GoToMainMenu
-        ObjectType: 3
-      Path: PauseMenu\GoToMainMenu
-      maxAttenuation: 0
-      maxDuration: 0
-      minDuration: 0
-    - name: NewGame
-      guid: ecc66bed914e4a448eb3a87ac4f31e73
-      id: 943969687
-      PathAndIcons:
-      - ElementName: PauseMenu
-        ObjectType: 12
-      - ElementName: NewGame
-        ObjectType: 3
-      Path: PauseMenu\NewGame
-      maxAttenuation: 0
-      maxDuration: 0
-      minDuration: 0
-    - name: OpenOptions
-      guid: 7b38848d6c4bdd4692ccd7b6b3809036
-      id: 3806663565
-      PathAndIcons:
-      - ElementName: PauseMenu
-        ObjectType: 12
-      - ElementName: OpenOptions
-        ObjectType: 3
-      Path: PauseMenu\OpenOptions
-      maxAttenuation: 0
-      maxDuration: 0
-      minDuration: 0
   RtpcWwu:
   - PhysicalPath: Game Parameters\Default Work Unit.wwu
     ParentPhysicalPath: 
     guid: 4e98cb7cf821544ba39897d46f0d9511
     GuidInternal: 
-    m_lastTime: -8586267117615129272
+    m_lastTime: -8586266572660170560
     List:
     - name: AmbienceVolume
       guid: 73ab94c49f75ca47b9363f5a089e594c
@@ -1307,5 +1411,6 @@ MonoBehaviour:
   - /GraduationGame_WwiseProject/Events/Environment
   - /GraduationGame_WwiseProject/Events/Environment/Fireplace
   - /GraduationGame_WwiseProject/Events/Environment/Fireplace/Torches
+  - /GraduationGame_WwiseProject/Events/Environment/RoomTones
   autoPopulateEnabled: 1
   CurrentPluginConfig: 

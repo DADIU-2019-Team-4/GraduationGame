@@ -47,7 +47,7 @@ namespace MoMa
             }
             else
             {
-                Debug.Log("Not Recalculating");
+                //Debug.Log("Not Recalculating");
             }
 
             // 3. Construct the Clip, blend it with the current one and return it

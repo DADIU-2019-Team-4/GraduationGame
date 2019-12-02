@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5784122318768453218}
   - component: {fileID: 5784122318768453219}
   - component: {fileID: 5343020531132773017}
+  - component: {fileID: 3840712303697729854}
   m_Layer: 0
   m_Name: DangerZone
   m_TagString: Untagged
@@ -90,8 +91,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 22.011225, z: 1}
+  m_Center: {x: 0, y: 10.50561, z: 0}
 --- !u!114 &5343020531132773017
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -106,3 +107,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 10
   DamageValue: 0.3
+  HealValue: 0
+  BumpHeight: 0.3
+--- !u!114 &3840712303697729854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5784122318768453220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ade17bf7e2699fc4b9a28248d1ae3045, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
