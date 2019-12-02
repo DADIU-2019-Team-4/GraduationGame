@@ -37,8 +37,8 @@ public class GateV2 : MonoBehaviour
         coliiderFromDoor = doorGameobject.GetComponent<BoxCollider>();
         AnimatorFromGameobject = doorGameobject.GetComponent<Animator>();
         AnimatorForKeyWheel = GetComponent<Animator>();
-        thisMaterial = GameObject.FindGameObjectWithTag("wheelModel").GetComponent<Renderer>().material;
-
+        thisMaterial = gameObject.transform.Find("key_ref:keywheel_grp/wheelS").GetComponent<SkinnedMeshRenderer>().material;
+        //Debug.Log("mat "+ thisMaterial);
     }
 
     private void OnTriggerEnter(Collider collider)
@@ -48,7 +48,6 @@ public class GateV2 : MonoBehaviour
             // Trigger the unlock animation of the key
             burnObject.SetObjectOnFire(gameObject.transform.position);
             AnimatorForKeyWheel.SetBool(UnlockedLabel, true);
-
 
             thisMaterial.DisableKeyword("_HIGHLIGHTED_ON"); 
             //camera behavior
