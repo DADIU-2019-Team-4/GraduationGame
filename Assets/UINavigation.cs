@@ -108,13 +108,18 @@ public class UINavigation : MonoBehaviour
         if(MatchStickVisual != null)
             MatchStickVisual.SetActive(false);
         _optionsMenu.SetActive(true);
+
+        StartCoroutine(BurnOptionsMenu(2));
         AudioEvent.PostEvent("OpenOptions", gameObject);
     }
 
     public void ExitOptions()
     {
-        
-        StartCoroutine(BurnOptionsMenu(2));
+        _optionsMenu.SetActive(false);
+
+        if (MatchStickVisual != null)
+            MatchStickVisual?.SetActive(true);
+
         AudioEvent.PostEvent("ExitOptions", gameObject);
     }
 
@@ -272,21 +277,18 @@ public class UINavigation : MonoBehaviour
 
         while (timer<duration)
         {
-            float burnValue = gameObject.transform.Find("Burn").GetComponent<Image>().material.GetFloat("_Float0");
+            float burnValue = _optionsMenu.transform.Find("Burn").GetComponent<Image>().material.GetFloat("_Float0");
 
-            burnValue = Mathf.Lerp(dissolveStartValue, 1f, timer / duration);
-            gameObject.transform.Find("Burn").GetComponent<Image>().material.SetFloat("_Float0", burnValue) ;
+            burnValue = Mathf.Lerp(1f, dissolveStartValue, timer / duration);
+            _optionsMenu.transform.Find("Burn").GetComponent<Image>().material.SetFloat("_Float0", burnValue) ;
 
             timer += Time.unscaledDeltaTime;
             yield return null;
         }
 
-        gameObject.transform.Find("Burn").GetComponent<Image>().material.SetFloat("_Float0", dissolveStartValue);
+        _optionsMenu.transform.Find("Burn").GetComponent<Image>().material.SetFloat("_Float0", dissolveStartValue);
 
-        if (MatchStickVisual != null)
-            MatchStickVisual?.SetActive(true);
-
-        _optionsMenu.SetActive(false);
+        
 
         //yield return new WaitForSeconds(duration);
     }
