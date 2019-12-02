@@ -27093,6 +27093,7 @@ GameObject:
   - component: {fileID: 1030993409}
   - component: {fileID: 1030993411}
   - component: {fileID: 1030993408}
+  - component: {fileID: 1030993412}
   m_Layer: 0
   m_Name: Carpet (2)
   m_TagString: Untagged
@@ -27188,6 +27189,25 @@ MonoBehaviour:
   DamageValue: 0
   HealValue: 2
   BumpHeight: 0.3
+--- !u!114 &1030993412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1030993406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 420186023faa10d418f08885f52a6d61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FireObject: {fileID: 5590989098238041260, guid: b130e385e49fa8c48ac96ceb16de5cb9,
+    type: 3}
+  _burnedAmount: 0.9
+  dissolveShader: {fileID: 2100000, guid: 46d9632cf3dabcb40a3f0686e45be8eb, type: 2}
+  burnSpeed: 1.14
+  destroyAtTheEndOfFire: 1
+  firetype: 0
 --- !u!1001 &1032544687
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -27430,6 +27450,7 @@ GameObject:
   - component: {fileID: 1036796769}
   - component: {fileID: 1036796771}
   - component: {fileID: 1036796768}
+  - component: {fileID: 1036796772}
   m_Layer: 0
   m_Name: Carpet (1)
   m_TagString: Untagged
@@ -27525,6 +27546,25 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 10.000001, y: 12.83, z: 10}
   m_Center: {x: 0.0000038146973, y: 0, z: 0}
+--- !u!114 &1036796772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1036796766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 420186023faa10d418f08885f52a6d61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FireObject: {fileID: 5590989098238041260, guid: b130e385e49fa8c48ac96ceb16de5cb9,
+    type: 3}
+  _burnedAmount: 0.9
+  dissolveShader: {fileID: 2100000, guid: 46d9632cf3dabcb40a3f0686e45be8eb, type: 2}
+  burnSpeed: 1.14
+  destroyAtTheEndOfFire: 1
+  firetype: 0
 --- !u!1001 &1041812521
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -43010,6 +43050,8 @@ GameObject:
   - component: {fileID: 1595545592}
   - component: {fileID: 1595545591}
   - component: {fileID: 1595545590}
+  - component: {fileID: 1595545593}
+  - component: {fileID: 1595545594}
   m_Layer: 0
   m_Name: Carpet
   m_TagString: Untagged
@@ -43092,6 +43134,38 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1595545588}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!65 &1595545593
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1595545588}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10.000001, y: 21.05, z: 10.000001}
+  m_Center: {x: 0, y: 0, z: -0.0000076293945}
+--- !u!114 &1595545594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1595545588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 420186023faa10d418f08885f52a6d61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FireObject: {fileID: 5590989098238041260, guid: b130e385e49fa8c48ac96ceb16de5cb9,
+    type: 3}
+  _burnedAmount: 0.9
+  dissolveShader: {fileID: 2100000, guid: 46d9632cf3dabcb40a3f0686e45be8eb, type: 2}
+  burnSpeed: 1.14
+  destroyAtTheEndOfFire: 1
+  firetype: 0
 --- !u!1 &1603445754
 GameObject:
   m_ObjectHideFlags: 0
