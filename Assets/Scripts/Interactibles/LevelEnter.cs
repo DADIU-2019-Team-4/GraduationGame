@@ -16,11 +16,12 @@ public class LevelEnter : IGameLoop
             CreateKeys(gameObject.name);
         else
             ReadValues(gameObject.name);
-        if (isOpened) ///Can be changed to open door animation when animation and door probs will be finished
-            material.material.color = Color.green;
+
+        //if (isOpened) ///Can be changed to open door animation when animation and door probs will be finished
+        //    material.material.color = Color.green;
         
-        else
-            material.material.color = Color.red;
+        //else
+        //    material.material.color = Color.red;
 
     }
 
