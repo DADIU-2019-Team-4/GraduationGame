@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class SmokeOnGirl : MonoBehaviour
 {
+   
     public ParticleSystem smoke;
     private void Awake()
     {
@@ -14,8 +16,11 @@ public class SmokeOnGirl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        smoke.Stop(); 
+
+        smoke.Stop();
     }
+
+ 
 
     public void startSmoke()
     {
