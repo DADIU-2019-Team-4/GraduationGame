@@ -32,6 +32,9 @@ public class GameController : MonoBehaviour
         _fadeout = GetComponent<FadeOut>();
         var index = SceneManager.sceneCount;
         LevelNameText.text = SceneManager.GetSceneAt(index - 1).name;
+
+        Time.timeScale = 1f;
+        InputManager.DisableInput = false;
     }
 
     private void Update()

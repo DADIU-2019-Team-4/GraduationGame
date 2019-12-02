@@ -82,6 +82,12 @@ public class UINavigation : MonoBehaviour
         
     }
 
+    private void Start()
+    {
+        gameObject.transform.Find("PauseButton").GetComponent<Image>().material.DisableKeyword("_PAUSED_ON");
+        IsPaused = false;
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -208,7 +214,6 @@ public class UINavigation : MonoBehaviour
 
     public void GoToMainMenu()
     {
-        Time.timeScale = 1f;
         SceneManager.LoadScene("MainMenu");
         AudioEvent.PostEvent("GoToMainMenu", gameObject);
     }
