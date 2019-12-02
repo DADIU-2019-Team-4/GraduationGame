@@ -207,6 +207,7 @@ public class UINavigation : MonoBehaviour
 
     public void GoToMainMenu()
     {
+        Time.timeScale = 1f;
         SceneManager.LoadScene("MainMenu");
         AudioEvent.PostEvent("GoToMainMenu", gameObject);
     }

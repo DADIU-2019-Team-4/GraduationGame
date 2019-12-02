@@ -37,7 +37,7 @@ public class GateV2 : MonoBehaviour
         coliiderFromDoor = doorGameobject.GetComponent<BoxCollider>();
         AnimatorFromGameobject = doorGameobject.GetComponent<Animator>();
         AnimatorForKeyWheel = GetComponent<Animator>();
-        thisMaterial = GameObject.FindGameObjectWithTag("wheelModel").GetComponent<Material>();
+        thisMaterial = GameObject.FindGameObjectWithTag("wheelModel").GetComponent<Renderer>().material;
 
     }
 
