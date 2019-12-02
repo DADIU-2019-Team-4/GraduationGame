@@ -533,14 +533,14 @@ public class MovementController : MonoBehaviour
     /// </summary>
     private void CheckCollision()
     {
-        CheckRayCollision(0.75f);
-        CheckRayCollision(1.25f);
+        CheckRayCollision(0.75f, 0.1f);
+        CheckRayCollision(1.25f, -0.1f);
     }
 
-    private void CheckRayCollision(float height)
+    private void CheckRayCollision(float height, float width)
     {
         RaycastHit hit;
-        if (Physics.Raycast(new Vector3(transform.position.x, height, transform.position.z), transform.forward, out hit,
+        if (Physics.Raycast(new Vector3(transform.position.x + width, height, transform.position.z), transform.forward, out hit,
             Vector3.Distance(transform.position, TargetPosition)))
         {
             InteractibleObject interactableObj = hit.transform.gameObject.GetComponent<InteractibleObject>();

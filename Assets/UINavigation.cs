@@ -82,6 +82,12 @@ public class UINavigation : MonoBehaviour
         
     }
 
+    private void Start()
+    {
+        gameObject.transform.Find("PauseButton").GetComponent<Image>().material.DisableKeyword("_PAUSED_ON");
+        IsPaused = false;
+    }
+
     // Update is called once per frame
     void Update()
     {

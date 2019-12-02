@@ -8,23 +8,22 @@ public class PopUpCanvas : MonoBehaviour
     public float BurnDuration = 1.0f;
 
     private List<AudioEvent> audioEvents;
-    private Image _img;
+    private Image _imageComponent;
 
     private void Awake()
     {
         audioEvents = new List<AudioEvent>(GetComponents<AudioEvent>());
-        _img = GetComponentInChildren<Image>();
     }
  
     public void SetImage(Sprite sprite)
     {
         // Load Image on PopUp Canvas
-        Image imageComponent = this.transform.GetChild(0).GetComponent<Image>();
-        imageComponent.sprite = sprite;
-        imageComponent.preserveAspect = true;
+        _imageComponent = this.transform.GetChild(0).GetComponent<Image>();
+        _imageComponent.sprite = sprite;
+        _imageComponent.preserveAspect = true;
 
         // Update texture
-        _img.material.SetTexture("_maintexture", imageComponent.mainTexture);
+        _imageComponent.material.SetTexture("_maintexture", _imageComponent.mainTexture);
     }
 
     public void DisableButton()
@@ -53,12 +52,12 @@ public class PopUpCanvas : MonoBehaviour
     {
         for (float timer = 0; timer < BurnDuration; timer += Time.unscaledDeltaTime)
         {
-            _img.material.SetFloat("_DissolveAmount", Mathf.Lerp(0, 1f, timer / BurnDuration));
+            _imageComponent.material.SetFloat("_DissolveAmount", Mathf.Lerp(0, 1f, timer / BurnDuration));
             yield return null;
         }
 
         // Reset shader
-        _img.material.SetFloat("_DissolveAmount", 0);
+        _imageComponent.material.SetFloat("_DissolveAmount", 0);
 
         // Disable button
         this.transform.GetChild(0).gameObject.SetActive(false);
