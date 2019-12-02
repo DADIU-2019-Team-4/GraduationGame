@@ -242,7 +242,6 @@ GameObject:
   - component: {fileID: 498581803307443177}
   - component: {fileID: 473782584198644295}
   - component: {fileID: 482225645840508993}
-  - component: {fileID: 436736655255194569}
   m_Layer: 0
   m_Name: Coll_Statue (1)
   m_TagString: Untagged
@@ -309,19 +308,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &436736655255194569
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 496351073017252145}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &496439031482929779
 GameObject:
   m_ObjectHideFlags: 0
@@ -334,6 +320,7 @@ GameObject:
   - component: {fileID: 473540200819200413}
   - component: {fileID: 482207023684282497}
   - component: {fileID: 436776409222604347}
+  - component: {fileID: 603725468840250215}
   m_Layer: 0
   m_Name: Coll_Statue (2)
   m_TagString: Untagged
@@ -413,6 +400,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &603725468840250215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 496439031482929779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ce2f35c75ca9e84fb3474d32def3e6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 4
+  DamageValue: 0
+  HealValue: 0
+  BumpHeight: 0.3
 --- !u!1 &496455084569621719
 GameObject:
   m_ObjectHideFlags: 0
