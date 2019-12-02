@@ -109,6 +109,7 @@ namespace MoMa
 
             public Point(Vector2S v, Quaternion rotation)
             {
+                this.position = new Vector2S();
                 this.position.x = (float) Math.Round(v.x, Decimals);
                 this.position.y = (float) Math.Round(v.y, Decimals);
                 this.rotation = rotation;
