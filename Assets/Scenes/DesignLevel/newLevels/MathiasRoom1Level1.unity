@@ -3475,6 +3475,7 @@ GameObject:
   - component: {fileID: 119035643}
   - component: {fileID: 119035642}
   - component: {fileID: 119035641}
+  - component: {fileID: 119035646}
   m_Layer: 0
   m_Name: Plane (6)
   m_TagString: Untagged
@@ -3589,6 +3590,25 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 119035639}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &119035646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 119035639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3f6a57ea9bb81040839eb22c9ccd632, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TriggerType: 5
+  WwiseType: 0
+  EventName: BurnSmallObjects
+  RTPCName: 
+  RTPCValue: {fileID: 0}
+  SetStateGroup: 
+  SetStateValue: 
 --- !u!1001 &129736193
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10910,6 +10930,7 @@ GameObject:
   - component: {fileID: 591042843}
   - component: {fileID: 591042842}
   - component: {fileID: 591042841}
+  - component: {fileID: 591042846}
   m_Layer: 0
   m_Name: Plane (5)
   m_TagString: Untagged
@@ -11024,6 +11045,25 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 591042839}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &591042846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 591042839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3f6a57ea9bb81040839eb22c9ccd632, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TriggerType: 5
+  WwiseType: 0
+  EventName: BurnSmallObjects
+  RTPCName: 
+  RTPCValue: {fileID: 0}
+  SetStateGroup: 
+  SetStateValue: 
 --- !u!1001 &591423013
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15113,6 +15153,7 @@ GameObject:
   - component: {fileID: 850263087}
   - component: {fileID: 850263086}
   - component: {fileID: 850263085}
+  - component: {fileID: 850263091}
   m_Layer: 0
   m_Name: Plane (4)
   m_TagString: Untagged
@@ -15227,6 +15268,25 @@ Transform:
   m_Father: {fileID: 322155883}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 269.972, z: 0}
+--- !u!114 &850263091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 850263084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3f6a57ea9bb81040839eb22c9ccd632, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TriggerType: 5
+  WwiseType: 0
+  EventName: BurnSmallObjects
+  RTPCName: 
+  RTPCValue: {fileID: 0}
+  SetStateGroup: 
+  SetStateValue: 
 --- !u!1 &861613951
 GameObject:
   m_ObjectHideFlags: 0
@@ -20029,6 +20089,7 @@ GameObject:
   - component: {fileID: 1139095963}
   - component: {fileID: 1139095962}
   - component: {fileID: 1139095961}
+  - component: {fileID: 1139095967}
   m_Layer: 0
   m_Name: Plane (1)
   m_TagString: Untagged
@@ -20143,6 +20204,25 @@ Transform:
   m_Father: {fileID: 322155883}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 179.998, z: 0}
+--- !u!114 &1139095967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1139095960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3f6a57ea9bb81040839eb22c9ccd632, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TriggerType: 5
+  WwiseType: 0
+  EventName: BurnSmallObjects
+  RTPCName: 
+  RTPCValue: {fileID: 0}
+  SetStateGroup: 
+  SetStateValue: 
 --- !u!1001 &1155231996
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -31914,6 +31994,7 @@ GameObject:
   - component: {fileID: 1837296731}
   - component: {fileID: 1837296730}
   - component: {fileID: 1837296729}
+  - component: {fileID: 1837296735}
   m_Layer: 0
   m_Name: Plane (2)
   m_TagString: Untagged
@@ -32028,6 +32109,25 @@ Transform:
   m_Father: {fileID: 322155883}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 89.982, z: 0}
+--- !u!114 &1837296735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1837296728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3f6a57ea9bb81040839eb22c9ccd632, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TriggerType: 5
+  WwiseType: 0
+  EventName: BurnSmallObjects
+  RTPCName: 
+  RTPCValue: {fileID: 0}
+  SetStateGroup: 
+  SetStateValue: 
 --- !u!1001 &1837570724
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -38312,6 +38412,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6cc7261df88b9e4438735e513a34c7ea, type: 3}
+--- !u!1 &5179405745577857504 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5179405745364994562, guid: 6cc7261df88b9e4438735e513a34c7ea,
+    type: 3}
+  m_PrefabInstance: {fileID: 5179405745577857503}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5179405745577857505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5179405745577857504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3f6a57ea9bb81040839eb22c9ccd632, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TriggerType: 5
+  WwiseType: 0
+  EventName: BurnSmallObjects
+  RTPCName: 
+  RTPCValue: {fileID: 0}
+  SetStateGroup: 
+  SetStateValue: 
 --- !u!1001 &6123595353142004791
 PrefabInstance:
   m_ObjectHideFlags: 0
