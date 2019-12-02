@@ -50,7 +50,7 @@ public class GateV2 : MonoBehaviour
             AnimatorForKeyWheel.SetBool(UnlockedLabel, true);
 
 
-            thisMaterial.DisableKeyword("_HIGHLIGHTED_ON"); 
+            //thisMaterial.DisableKeyword("_HIGHLIGHTED_ON"); 
             //camera behavior
             _triggerUnlock = true;
             StartCoroutine(Unlock());
