@@ -107,11 +107,11 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6127243412814389939}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3.1175456, y: 1.6896517, z: 0.7330607}
-  m_Center: {x: -0.030115843, y: 0.34482586, z: -0.06027122}
+  m_Size: {x: 3.1175456, y: 1.340072, z: 0.7330607}
+  m_Center: {x: -0.030115843, y: 0.17003602, z: -0.060271204}
 --- !u!114 &8383163427613678340
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -354,6 +354,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7157080396104044704}
     m_Modifications:
+    - target: {fileID: 9132245662996378536, guid: 81a3c7db78596f345b1d759bae9cf728,
+        type: 3}
+      propertyPath: lengthInSec
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9132245662996378536, guid: 81a3c7db78596f345b1d759bae9cf728,
+        type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9132245662996378538, guid: 81a3c7db78596f345b1d759bae9cf728,
         type: 3}
       propertyPath: m_Name
@@ -428,16 +438,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: -0.09
-      objectReference: {fileID: 0}
-    - target: {fileID: 9132245662996378536, guid: 81a3c7db78596f345b1d759bae9cf728,
-        type: 3}
-      propertyPath: lengthInSec
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 9132245662996378536, guid: 81a3c7db78596f345b1d759bae9cf728,
-        type: 3}
-      propertyPath: looping
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 81a3c7db78596f345b1d759bae9cf728, type: 3}

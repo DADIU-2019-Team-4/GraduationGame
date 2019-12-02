@@ -136,11 +136,11 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2476330004365507070}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.58909273, y: 1.3799999, z: 0.58294094}
-  m_Center: {x: -0.032507688, y: 0.63, z: 0.008990496}
+  m_Size: {x: 0.58909273, y: 0.8264121, z: 0.58294094}
+  m_Center: {x: -0.032507688, y: 0.3532061, z: 0.008990496}
 --- !u!1 &2752956803606041814
 GameObject:
   m_ObjectHideFlags: 0
@@ -354,6 +354,31 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1443096763271351277}
     m_Modifications:
+    - target: {fileID: 9132245662996378536, guid: 81a3c7db78596f345b1d759bae9cf728,
+        type: 3}
+      propertyPath: InitialModule.startSpeed.minScalar
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 9132245662996378536, guid: 81a3c7db78596f345b1d759bae9cf728,
+        type: 3}
+      propertyPath: InitialModule.gravityModifier.scalar
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 9132245662996378536, guid: 81a3c7db78596f345b1d759bae9cf728,
+        type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 36
+      objectReference: {fileID: 0}
+    - target: {fileID: 9132245662996378536, guid: 81a3c7db78596f345b1d759bae9cf728,
+        type: 3}
+      propertyPath: EmissionModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9132245662996378536, guid: 81a3c7db78596f345b1d759bae9cf728,
+        type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9132245662996378538, guid: 81a3c7db78596f345b1d759bae9cf728,
         type: 3}
       propertyPath: m_Name
@@ -412,31 +437,6 @@ PrefabInstance:
     - target: {fileID: 9132245662996378535, guid: 81a3c7db78596f345b1d759bae9cf728,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9132245662996378536, guid: 81a3c7db78596f345b1d759bae9cf728,
-        type: 3}
-      propertyPath: InitialModule.startSpeed.minScalar
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 9132245662996378536, guid: 81a3c7db78596f345b1d759bae9cf728,
-        type: 3}
-      propertyPath: InitialModule.gravityModifier.scalar
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 9132245662996378536, guid: 81a3c7db78596f345b1d759bae9cf728,
-        type: 3}
-      propertyPath: InitialModule.startSpeed.scalar
-      value: 36
-      objectReference: {fileID: 0}
-    - target: {fileID: 9132245662996378536, guid: 81a3c7db78596f345b1d759bae9cf728,
-        type: 3}
-      propertyPath: EmissionModule.enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9132245662996378536, guid: 81a3c7db78596f345b1d759bae9cf728,
-        type: 3}
-      propertyPath: looping
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
