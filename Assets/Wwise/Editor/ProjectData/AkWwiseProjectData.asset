@@ -92,7 +92,7 @@ MonoBehaviour:
     ParentPhysicalPath: 
     guid: 85519e3dd9af71428bf05cf3b19b0630
     GuidInternal: 
-    m_lastTime: -8586263167633662994
+    m_lastTime: -8586263122899017772
     List:
     - name: ArrowPull
       guid: 608bf70bea70904ba9e045c9b78b6c3a
@@ -150,6 +150,20 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: 1823550
       minDuration: 328096
+    - name: BurnSmallObjects
+      guid: 413409d4511d8e49a8201231d8e7dbb7
+      id: 1065411945
+      PathAndIcons:
+      - ElementName: Character
+        ObjectType: 12
+      - ElementName: Objects
+        ObjectType: 4
+      - ElementName: BurnSmallObjects
+        ObjectType: 3
+      Path: Character\Objects\BurnSmallObjects
+      maxAttenuation: 0
+      maxDuration: 1466959
+      minDuration: 1222435
     - name: ChargedDash
       guid: d4eae6662ad0d248ab64c2517d4f8562
       id: 742914115
@@ -556,7 +570,7 @@ MonoBehaviour:
     ParentPhysicalPath: 
     guid: 798a08f7a060c94bb31dbf2936cc7894
     GuidInternal: 
-    m_lastTime: -8586263173979920813
+    m_lastTime: -8586263119290939491
     List:
     - name: BumpIntoBooks
       guid: a5e678f91e46db45a6085d8dd485fb67
@@ -754,8 +768,8 @@ MonoBehaviour:
         ObjectType: 3
       Path: Environment\WaterStuff\RainFromAbove\RainFromAbove
       maxAttenuation: 15000000
-      maxDuration: -1
-      minDuration: -1
+      maxDuration: 6857146
+      minDuration: 6857146
     - name: RoomTone_01
       guid: e61e714d984f0c459c13e4e5aca7eb6a
       id: 1539660446
@@ -1421,7 +1435,43 @@ MonoBehaviour:
       Path: Music\Stinger01
   ExpandedItems:
   - /GraduationGame_WwiseProject
+  - /GraduationGame_WwiseProject/Auxiliary Busses
+  - /GraduationGame_WwiseProject/Auxiliary Busses/Default Work Unit
+  - /GraduationGame_WwiseProject/Auxiliary Busses/Default Work Unit/Master Audio Bus
+  - /GraduationGame_WwiseProject/Auxiliary Busses/Default Work Unit/Master Audio Bus/SubMaster
+  - /GraduationGame_WwiseProject/Auxiliary Busses/Default Work Unit/Master Audio Bus/SubMaster/Reverbs
   - /GraduationGame_WwiseProject/Events
+  - /GraduationGame_WwiseProject/Events/Character
+  - /GraduationGame_WwiseProject/Events/Character/Dashing
+  - /GraduationGame_WwiseProject/Events/Character/Objects
+  - /GraduationGame_WwiseProject/Events/Character/Objects/Pictures
+  - /GraduationGame_WwiseProject/Events/Character/PaperPlane
+  - /GraduationGame_WwiseProject/Events/Character/PlayerHealth
+  - /GraduationGame_WwiseProject/Events/Character/RopeMechanic
   - /GraduationGame_WwiseProject/Events/CutsceneSound
+  - /GraduationGame_WwiseProject/Events/Environment
+  - /GraduationGame_WwiseProject/Events/Environment/BumpInto
+  - /GraduationGame_WwiseProject/Events/Environment/DangerZone
+  - /GraduationGame_WwiseProject/Events/Environment/Fireplace
+  - /GraduationGame_WwiseProject/Events/Environment/Fireplace/Torches
+  - /GraduationGame_WwiseProject/Events/Environment/RoomTones
+  - /GraduationGame_WwiseProject/Events/Environment/WaterStuff
+  - /GraduationGame_WwiseProject/Events/Environment/WaterStuff/RainFromAbove
+  - /GraduationGame_WwiseProject/Events/Environment/WaterStuff/WaterSpray
+  - /GraduationGame_WwiseProject/Events/InGame_UI
+  - /GraduationGame_WwiseProject/Events/Menu
+  - /GraduationGame_WwiseProject/Events/Menu/MainMenu
+  - /GraduationGame_WwiseProject/Events/Menu/OptionsMenu
+  - /GraduationGame_WwiseProject/Events/Music
+  - /GraduationGame_WwiseProject/SoundBanks
+  - /GraduationGame_WwiseProject/SoundBanks/Default Work Unit
+  - /GraduationGame_WwiseProject/States
+  - /GraduationGame_WwiseProject/States/Default Work Unit
+  - /GraduationGame_WwiseProject/States/Default Work Unit/MusicStates
+  - /GraduationGame_WwiseProject/States/Default Work Unit/MusicStates/roomOneOne
+  - /GraduationGame_WwiseProject/States/Default Work Unit/MusicStates/roomOneTwo
+  - /GraduationGame_WwiseProject/States/Default Work Unit/MusicStates/roomTwoOne
+  - /GraduationGame_WwiseProject/States/Default Work Unit/MusicStates/roomTwoTwo
+  - /GraduationGame_WwiseProject/States/Default Work Unit/MusicStates/Tutorial
   autoPopulateEnabled: 1
   CurrentPluginConfig: 
