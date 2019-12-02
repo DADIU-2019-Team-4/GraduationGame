@@ -40,9 +40,11 @@ public class InteractibleObject : DashInteractable
 
     //CameraShake
     CameraShake cameraShake;
+    CameraShake cameraShake2; 
     private float chargedDashShakeDur = 0.2f;
     private float breakBounceShakeDur = 0.1f;
     private float breakShake = 0.4f;
+    private float deathShake = 2f; 
 
     //timeSlowdown
     TimeSlowdown timeSlowdown;
@@ -139,6 +141,7 @@ public class InteractibleObject : DashInteractable
 
 
             Vibration.Vibrate(80);
+            cameraShake2.setShakeElapsedTime(deathShake); 
             StartCoroutine(deathParticleSys()); 
 
             //dialogRunner.StartDialogue("Death");
@@ -291,6 +294,7 @@ public class InteractibleObject : DashInteractable
         //dialogRunner = FindObjectOfType<DialogueRunner>();
         timeSlowdown = GameObject.FindGameObjectWithTag("VirtualCamera").GetComponent<TimeSlowdown>();
         cameraShake = GameObject.FindGameObjectWithTag("VirtualCamera").GetComponent<CameraShake>();
+        cameraShake2 = GameObject.FindGameObjectWithTag("VirtualCamera2").GetComponent<CameraShake>(); 
         _breakablesParticleManager = FindObjectOfType<BreakablesParticleManager>();
     }
 
