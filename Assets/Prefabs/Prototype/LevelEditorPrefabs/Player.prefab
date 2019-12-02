@@ -1695,6 +1695,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 608866380857852938, guid: 327d614ad95586045ad6fa3a01ea7b02,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 327d614ad95586045ad6fa3a01ea7b02, type: 3}
 --- !u!198 &6811208198261029700 stripped
@@ -1796,16 +1801,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: FireGirlPacked
       objectReference: {fileID: 0}
-    - target: {fileID: 5768934668166820047, guid: 60049d6017dabf040af5c77a725784c6,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1401257245905965458, guid: 60049d6017dabf040af5c77a725784c6,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4137381471443338103, guid: 60049d6017dabf040af5c77a725784c6,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1861,6 +1856,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5768934668166820047, guid: 60049d6017dabf040af5c77a725784c6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1401257245905965458, guid: 60049d6017dabf040af5c77a725784c6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8089843288040572814, guid: 60049d6017dabf040af5c77a725784c6,
         type: 3}
       propertyPath: m_TagString
@@ -1871,71 +1876,71 @@ PrefabInstance:
       propertyPath: m_TagString
       value: LucyBodyAnimator
       objectReference: {fileID: 0}
-    - target: {fileID: 8751277287821189956, guid: 60049d6017dabf040af5c77a725784c6,
-        type: 3}
-      propertyPath: m_CastShadows
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8751277287821189956, guid: 60049d6017dabf040af5c77a725784c6,
-        type: 3}
-      propertyPath: m_ReceiveShadows
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8289874114355789443, guid: 60049d6017dabf040af5c77a725784c6,
         type: 3}
       propertyPath: m_IsActive
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8630925067134578992, guid: 60049d6017dabf040af5c77a725784c6,
-        type: 3}
-      propertyPath: m_CastShadows
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8630925067134578992, guid: 60049d6017dabf040af5c77a725784c6,
-        type: 3}
-      propertyPath: m_ReceiveShadows
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7775645123844836007, guid: 60049d6017dabf040af5c77a725784c6,
         type: 3}
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: d7324dbb558936045b82012a4baa40b7, type: 2}
-    - target: {fileID: 6404361727209538923, guid: 60049d6017dabf040af5c77a725784c6,
-        type: 3}
-      propertyPath: m_CastShadows
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6404361727209538923, guid: 60049d6017dabf040af5c77a725784c6,
-        type: 3}
-      propertyPath: m_ReceiveShadows
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4183795513015435801, guid: 60049d6017dabf040af5c77a725784c6,
-        type: 3}
-      propertyPath: m_CastShadows
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4183795513015435801, guid: 60049d6017dabf040af5c77a725784c6,
-        type: 3}
-      propertyPath: m_ReceiveShadows
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3799401012347539565, guid: 60049d6017dabf040af5c77a725784c6,
-        type: 3}
-      propertyPath: m_CastShadows
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3799401012347539565, guid: 60049d6017dabf040af5c77a725784c6,
-        type: 3}
-      propertyPath: m_ReceiveShadows
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2924454100558862567, guid: 60049d6017dabf040af5c77a725784c6,
         type: 3}
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: d7324dbb558936045b82012a4baa40b7, type: 2}
+    - target: {fileID: 8751277287821189956, guid: 60049d6017dabf040af5c77a725784c6,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8751277287821189956, guid: 60049d6017dabf040af5c77a725784c6,
+        type: 3}
+      propertyPath: m_ReceiveShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8630925067134578992, guid: 60049d6017dabf040af5c77a725784c6,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8630925067134578992, guid: 60049d6017dabf040af5c77a725784c6,
+        type: 3}
+      propertyPath: m_ReceiveShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6404361727209538923, guid: 60049d6017dabf040af5c77a725784c6,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6404361727209538923, guid: 60049d6017dabf040af5c77a725784c6,
+        type: 3}
+      propertyPath: m_ReceiveShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4183795513015435801, guid: 60049d6017dabf040af5c77a725784c6,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4183795513015435801, guid: 60049d6017dabf040af5c77a725784c6,
+        type: 3}
+      propertyPath: m_ReceiveShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3799401012347539565, guid: 60049d6017dabf040af5c77a725784c6,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3799401012347539565, guid: 60049d6017dabf040af5c77a725784c6,
+        type: 3}
+      propertyPath: m_ReceiveShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8686333421082344186, guid: 60049d6017dabf040af5c77a725784c6,
         type: 3}
       propertyPath: m_LocalRotation.x

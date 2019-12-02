@@ -18,7 +18,7 @@ public class InputManager : IGameLoop
     private SpriteRenderer _arrowOnTopSpriteRenderer;
     private Renderer _arrowRenderer;
     private Camera _mainCamera;
-    private Canvas _canvas;
+    private GameObject _canvas;
     private GameObject _dashCircle;
     private Vector3 _firstPosition;
     private Vector3 _lastPosition;
@@ -40,7 +40,7 @@ public class InputManager : IGameLoop
         _movementController = FindObjectOfType<MovementController>();
         _gameController = FindObjectOfType<GameController>();
         _arrowParent = GameObject.FindGameObjectWithTag("Arrow");
-        _canvas = _gameController.GetComponentInChildren<Canvas>();
+        _canvas = GameObject.FindGameObjectWithTag("MainCanvas");
     }
 
     private void Start()
