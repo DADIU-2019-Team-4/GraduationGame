@@ -165,6 +165,7 @@ public class InteractibleObject : DashInteractable
     {
         if (movementController.IsMoving)
         {
+            movementController.IsMoving = false;
             gameObject.GetComponent<BurnObject>().SetObjectOnFire(new Vector3(0, 0, 0));
             gameObject.GetComponent<DashInteractable>().Interact(GameObject.FindGameObjectWithTag("Player"));
             //movementController.CollideProjectile();
