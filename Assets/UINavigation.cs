@@ -105,15 +105,16 @@ public class UINavigation : MonoBehaviour
 
     public void OpenOptions()
     {
-        MatchStickVisual?.SetActive(false);
+        if(MatchStickVisual != null)
+            MatchStickVisual.SetActive(false);
         _optionsMenu.SetActive(true);
         AudioEvent.PostEvent("OpenOptions", gameObject);
     }
 
     public void ExitOptions()
     {
-
-        StartCoroutine(BurnOptionsMenu(23));
+        
+        StartCoroutine(BurnOptionsMenu(2));
         AudioEvent.PostEvent("ExitOptions", gameObject);
     }
 
@@ -254,18 +255,25 @@ public class UINavigation : MonoBehaviour
     {
         
 
-        float burnValue = gameObject.transform.Find("Burn").GetComponent<Image>().material.GetFloat("_Float0");
+        float dissolveStartValue = 0.16f;
+        float timer = 0;
 
-        while (burnValue<1)
+        while (timer<duration)
         {
-            burnValue += Time.unscaledDeltaTime;
-            gameObject.transform.Find("Burn").GetComponent<Image>().material.SetFloat("_Float0", burnValue + Time.unscaledDeltaTime) ;
+            float burnValue = gameObject.transform.Find("Burn").GetComponent<Image>().material.GetFloat("_Float0");
+
+            burnValue = Mathf.Lerp(dissolveStartValue, 1f, timer / duration);
+            gameObject.transform.Find("Burn").GetComponent<Image>().material.SetFloat("_Float0", burnValue) ;
+
+            timer += Time.unscaledDeltaTime;
             yield return null;
         }
 
-        gameObject.transform.Find("Burn").GetComponent<Image>().material.SetFloat("_Float0", 0);
+        gameObject.transform.Find("Burn").GetComponent<Image>().material.SetFloat("_Float0", dissolveStartValue);
 
-        MatchStickVisual?.SetActive(true);
+        if (MatchStickVisual != null)
+            MatchStickVisual?.SetActive(true);
+
         _optionsMenu.SetActive(false);
 
         //yield return new WaitForSeconds(duration);
@@ -274,17 +282,33 @@ public class UINavigation : MonoBehaviour
     public IEnumerator BurnPauseMenu(float duration)
     {
 
+        float dissolveStartValue = 0.28f;
+        float burnGlowStartValue = 0.56f;
+        float timer = 0;
 
-        float burnValue = _pauseMenu.transform.Find("Burn").GetComponent<Image>().material.GetFloat("_DissolveAmount");
+        
 
-        while (burnValue < 1)
+        while (timer< duration)
         {
-            burnValue += Time.deltaTime;
-            _pauseMenu.transform.Find("Burn").GetComponent<Image>().material.SetFloat("_DissolveAmount", burnValue + Time.deltaTime);
+
+            float burnValue = _pauseMenu.transform.Find("Burn").GetComponent<Image>().material.GetFloat("_DissolveAmount");
+            float burnGlow = _pauseMenu.transform.Find("Burn").GetComponent<Image>().material.GetFloat("_BurnGlow");
+
+            burnValue = Mathf.Lerp(dissolveStartValue, 1f, timer/duration);
+            burnGlow = Mathf.Lerp(burnGlowStartValue, 1f, timer / duration);
+
+            Debug.Log("burnValue: " + burnValue);
+            Debug.Log("burnGlow: " + burnGlow);
+
+            _pauseMenu.transform.Find("Burn").GetComponent<Image>().material.SetFloat("_DissolveAmount", burnValue);
+            _pauseMenu.transform.Find("Burn").GetComponent<Image>().material.SetFloat("_BurnGlow", burnGlow );
+
+            timer += Time.unscaledDeltaTime;
             yield return null;
         }
 
-        _pauseMenu.transform.Find("Burn").GetComponent<Image>().material.SetFloat("_DissolveAmount", 0);
+        _pauseMenu.transform.Find("Burn").GetComponent<Image>().material.SetFloat("_DissolveAmount", dissolveStartValue);
+        _pauseMenu.transform.Find("Burn").GetComponent<Image>().material.SetFloat("_BurnGlow", burnGlowStartValue);
 
         _pauseMenu.SetActive(false);
 
