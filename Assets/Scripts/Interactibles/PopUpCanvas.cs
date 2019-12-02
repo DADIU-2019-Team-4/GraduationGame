@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class PopUpCanvas : MonoBehaviour
 {
+    public float BurnDuration = 1.0f;
 
     private List<AudioEvent> audioEvents;
 
@@ -39,7 +40,37 @@ public class PopUpCanvas : MonoBehaviour
 
     public void DestroyPopUp()
     {
-        this.transform.GetChild(0).gameObject.SetActive(false);
+        StartCoroutine(BurnPopUp());
+    }
 
+    public IEnumerator BurnPopUp()
+    {
+        float dissolveStartValue = 0.28f;
+        float burnGlowStartValue = 0.56f;
+        float timer = 0;
+
+        while (timer < BurnDuration)
+        {
+
+            float burnValue = _pauseMenu.transform.Find("Burn").GetComponent<Image>().material.GetFloat("_DissolveAmount");
+            float burnGlow = _pauseMenu.transform.Find("Burn").GetComponent<Image>().material.GetFloat("_BurnGlow");
+
+            burnValue = Mathf.Lerp(dissolveStartValue, 1f, timer / duration);
+            burnGlow = Mathf.Lerp(burnGlowStartValue, 1f, timer / duration);
+
+            Debug.Log("burnValue: " + burnValue);
+            Debug.Log("burnGlow: " + burnGlow);
+
+            _pauseMenu.transform.Find("Burn").GetComponent<Image>().material.SetFloat("_DissolveAmount", burnValue);
+            _pauseMenu.transform.Find("Burn").GetComponent<Image>().material.SetFloat("_BurnGlow", burnGlow);
+
+            timer += Time.unscaledDeltaTime;
+            yield return null;
+        }
+
+        _pauseMenu.transform.Find("Burn").GetComponent<Image>().material.SetFloat("_DissolveAmount", dissolveStartValue);
+        _pauseMenu.transform.Find("Burn").GetComponent<Image>().material.SetFloat("_BurnGlow", burnGlowStartValue);
+
+        this.transform.GetChild(0).gameObject.SetActive(false);
     }
 }
