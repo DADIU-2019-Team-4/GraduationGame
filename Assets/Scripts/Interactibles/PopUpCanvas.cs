@@ -8,17 +8,23 @@ public class PopUpCanvas : MonoBehaviour
     public float BurnDuration = 1.0f;
 
     private List<AudioEvent> audioEvents;
+    private Image _img;
 
     private void Awake()
     {
         audioEvents = new List<AudioEvent>(GetComponents<AudioEvent>());
+        _img = GetComponentInChildren<Image>();
     }
  
     public void SetImage(Sprite sprite)
     {
+        // Load Image on PopUp Canvas
         Image imageComponent = this.transform.GetChild(0).GetComponent<Image>();
         imageComponent.sprite = sprite;
         imageComponent.preserveAspect = true;
+
+        // Update texture
+        _img.material.SetTexture("_maintexture", imageComponent.mainTexture);
     }
 
     public void DisableButton()
@@ -45,32 +51,16 @@ public class PopUpCanvas : MonoBehaviour
 
     public IEnumerator BurnPopUp()
     {
-        float dissolveStartValue = 0.28f;
-        float burnGlowStartValue = 0.56f;
-        float timer = 0;
-
-        while (timer < BurnDuration)
+        for (float timer = 0; timer < BurnDuration; timer += Time.unscaledDeltaTime)
         {
-
-            float burnValue = _pauseMenu.transform.Find("Burn").GetComponent<Image>().material.GetFloat("_DissolveAmount");
-            float burnGlow = _pauseMenu.transform.Find("Burn").GetComponent<Image>().material.GetFloat("_BurnGlow");
-
-            burnValue = Mathf.Lerp(dissolveStartValue, 1f, timer / duration);
-            burnGlow = Mathf.Lerp(burnGlowStartValue, 1f, timer / duration);
-
-            Debug.Log("burnValue: " + burnValue);
-            Debug.Log("burnGlow: " + burnGlow);
-
-            _pauseMenu.transform.Find("Burn").GetComponent<Image>().material.SetFloat("_DissolveAmount", burnValue);
-            _pauseMenu.transform.Find("Burn").GetComponent<Image>().material.SetFloat("_BurnGlow", burnGlow);
-
-            timer += Time.unscaledDeltaTime;
+            _img.material.SetFloat("_DissolveAmount", Mathf.Lerp(0, 1f, timer / BurnDuration));
             yield return null;
         }
 
-        _pauseMenu.transform.Find("Burn").GetComponent<Image>().material.SetFloat("_DissolveAmount", dissolveStartValue);
-        _pauseMenu.transform.Find("Burn").GetComponent<Image>().material.SetFloat("_BurnGlow", burnGlowStartValue);
+        // Reset shader
+        _img.material.SetFloat("_DissolveAmount", 0);
 
+        // Disable button
         this.transform.GetChild(0).gameObject.SetActive(false);
     }
 }
