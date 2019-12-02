@@ -72,6 +72,7 @@ public class PopUpObject : MonoBehaviour
             popUpCanvasComponent.DisableButton();
         }
     }
+
     public void EnablePopUpButton()
     {
         GameObject canvas = GameObject.FindGameObjectWithTag(PopUpCanvasTag);
