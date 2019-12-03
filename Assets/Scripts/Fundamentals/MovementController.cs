@@ -108,7 +108,6 @@ public class MovementController : MonoBehaviour
     private Tweener _moveTweener;
     private List<AudioEvent> _audioEvents;
     private AttachToPlane _attachToPlane;
-    private PlayerActionsCollectorQA _playerActionsCollectorQA;
     private SpriteRenderer _lifeBar;
     private SalamanderController _salamanderController;
     private float _currentFireAmount;
@@ -133,7 +132,6 @@ public class MovementController : MonoBehaviour
         _audioEvents = new List<AudioEvent>(GetComponents<AudioEvent>());
         _salamanderController = FindObjectOfType<SalamanderController>();
         _attachToPlane = GetComponent<AttachToPlane>();
-        _playerActionsCollectorQA = FindObjectOfType<PlayerActionsCollectorQA>();
     }
 
     void Start()
@@ -290,10 +288,6 @@ public class MovementController : MonoBehaviour
             IsDashing ? DashDuration : MoveDuration
             ));
 
-        // Save stats
-        if (IsDashing) _playerActionsCollectorQA.DataConteiner.ChargedDashCount++;
-        else _playerActionsCollectorQA.DataConteiner.NormalDashCount++;
-
         // Reset State
         IsCharging = false;
         IsDashing = false;
@@ -365,7 +359,6 @@ public class MovementController : MonoBehaviour
         if (isOutOfFire) _gameController.GameOverOutOfMoves();
         else _gameController.GameOverDied();
 
-        SetDeathData();
         DisablePlayerCharacter();
 
         // Play animation
@@ -596,13 +589,5 @@ public class MovementController : MonoBehaviour
             interact.Interact(other.transform.position);
         }
     }
-
-    private void SetDeathData()
-    {
-        _playerActionsCollectorQA.DataConteiner.DeathsCount++;
-        _playerActionsCollectorQA.DataConteiner.deathPlace.Add(gameObject.transform.position);
-        _playerActionsCollectorQA.DataConteiner.levelName.Add(SceneManager.GetActiveScene().name);
-    }
-
     #endregion
 }

@@ -10,7 +10,7 @@ public class EnableOnlyOnProgressionStage : MonoBehaviour
     [TextArea]
     public string Message = "This GameObject is enabled on start only if the player is at the given stage.";
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         if (Progression.Value != Stage)
             gameObject.SetActive(false);

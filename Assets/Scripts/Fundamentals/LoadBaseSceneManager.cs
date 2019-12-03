@@ -134,7 +134,6 @@ public class LoadBaseSceneManager : IGameLoop
     }
     private void DownloadAssets()
     {
-        Time.timeScale = 0;
         //Loads Common assets, used in all scenes (MainPlayerScene)
         for (int i = 0; i <= CommonAssets.Length - 1; i++)
         {
