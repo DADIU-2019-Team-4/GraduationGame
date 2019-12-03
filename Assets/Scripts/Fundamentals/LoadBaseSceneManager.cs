@@ -15,7 +15,7 @@ public class LoadBaseSceneManager : IGameLoop
         MagnusRoom2Level1,
         MagnusRoom2Level2
     }
-    public BaseScenes SelectedScene;
+    //public BaseScenes SelectedScene;
     public GameObject Player;
     public StoryProgression StoryProgression;
 
@@ -35,24 +35,17 @@ public class LoadBaseSceneManager : IGameLoop
     {
         DownloadAssets();
 
-
-
-#if UNITY_EDITOR
-        LoadBaseScene(SelectedScene);
-#elif UNITY_ANDROID || UNITY_IOS || UNITY_STANDALONE
+        //#if UNITY_EDITOR
+        //        //LoadBaseScene(SelectedScene);
+        //#elif UNITY_ANDROID || UNITY_IOS || UNITY_STANDALONE
         LoadSceneFromPlayerProgression();
-#endif
+        //#endif
     }
 
     private void LoadSceneFromPlayerProgression()
     {
         switch (StoryProgression.Value)
         {
-            case StoryProgression.EStoryProgression.At_Tutorial:
-                // TODO: Play intro scene and set player pos at tutorial start.
-                LoadBaseScene(BaseScenes.Hub_1);
-                break;
-
             case StoryProgression.EStoryProgression.Room_1_1_Complete:
                 LoadBaseScene(BaseScenes.MathiasRoom1Level2);
                 break;

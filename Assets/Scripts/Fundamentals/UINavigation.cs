@@ -53,10 +53,10 @@ public class UINavigation : MonoBehaviour
                 _continueButton.GetComponentInChildren<TextMeshProUGUI>().font = GlowFont;
             }
         }
-            
 
 
-        
+
+
 
 
         //_optionsMenu = GameObject.FindGameObjectWithTag("OptionsMenu");
@@ -95,12 +95,14 @@ public class UINavigation : MonoBehaviour
 
         }
 
-        
+
     }
 
     private void Start()
     {
-        gameObject.transform.Find("PauseButton").GetComponent<Image>().material.DisableKeyword("_PAUSED_ON");
+        var pauseButton = gameObject.transform.Find("PauseButton");
+        if (pauseButton != null)
+            pauseButton.GetComponent<Image>().material.DisableKeyword("_PAUSED_ON");
         IsPaused = false;
     }
 
@@ -127,7 +129,7 @@ public class UINavigation : MonoBehaviour
 
     public void OpenOptions()
     {
-        if(MatchStickVisual != null)
+        if (MatchStickVisual != null)
             MatchStickVisual.SetActive(false);
         _optionsMenu.SetActive(true);
 
@@ -199,14 +201,14 @@ public class UINavigation : MonoBehaviour
             AudioEvent.PostEvent("ExitPauseMenu", gameObject);
             UnPause();
             StartCoroutine(BurnPauseMenu(1));
-            
+
         }
         else //Enter Pause Menu
         {
 
             _pauseMenu.SetActive(true);
             Pause();
-            
+
 
             AudioEvent.PostEvent("EnterPauseMenu", gameObject);
 
@@ -219,12 +221,12 @@ public class UINavigation : MonoBehaviour
                 _pauseMenu.transform.Find("Burn").GetComponent<Image>().material = PauseBurnDanish;
             }
         }
-       
+
     }
 
     public void ExitPauseMenu()
     {
-        
+
     }
 
     public void GoToMainMenu()
@@ -292,17 +294,17 @@ public class UINavigation : MonoBehaviour
 
     public IEnumerator BurnOptionsMenu(float duration)
     {
-        
+
 
         float dissolveStartValue = 0.16f;
         float timer = 0;
 
-        while (timer<duration)
+        while (timer < duration)
         {
             float burnValue = _optionsMenu.transform.Find("Burn").GetComponent<Image>().material.GetFloat("_Float0");
 
             burnValue = Mathf.Lerp(1f, dissolveStartValue, timer / duration);
-            _optionsMenu.transform.Find("Burn").GetComponent<Image>().material.SetFloat("_Float0", burnValue) ;
+            _optionsMenu.transform.Find("Burn").GetComponent<Image>().material.SetFloat("_Float0", burnValue);
 
             timer += Time.unscaledDeltaTime;
             yield return null;
@@ -310,7 +312,7 @@ public class UINavigation : MonoBehaviour
 
         _optionsMenu.transform.Find("Burn").GetComponent<Image>().material.SetFloat("_Float0", dissolveStartValue);
 
-        
+
 
         //yield return new WaitForSeconds(duration);
     }
@@ -322,22 +324,22 @@ public class UINavigation : MonoBehaviour
         float burnGlowStartValue = 0.56f;
         float timer = 0;
 
-        
 
-        while (timer< duration)
+
+        while (timer < duration)
         {
 
             float burnValue = _pauseMenu.transform.Find("Burn").GetComponent<Image>().material.GetFloat("_DissolveAmount");
             float burnGlow = _pauseMenu.transform.Find("Burn").GetComponent<Image>().material.GetFloat("_BurnGlow");
 
-            burnValue = Mathf.Lerp(dissolveStartValue, 1f, timer/duration);
+            burnValue = Mathf.Lerp(dissolveStartValue, 1f, timer / duration);
             burnGlow = Mathf.Lerp(burnGlowStartValue, 1f, timer / duration);
 
             Debug.Log("burnValue: " + burnValue);
             Debug.Log("burnGlow: " + burnGlow);
 
             _pauseMenu.transform.Find("Burn").GetComponent<Image>().material.SetFloat("_DissolveAmount", burnValue);
-            _pauseMenu.transform.Find("Burn").GetComponent<Image>().material.SetFloat("_BurnGlow", burnGlow );
+            _pauseMenu.transform.Find("Burn").GetComponent<Image>().material.SetFloat("_BurnGlow", burnGlow);
 
             timer += Time.unscaledDeltaTime;
             yield return null;
