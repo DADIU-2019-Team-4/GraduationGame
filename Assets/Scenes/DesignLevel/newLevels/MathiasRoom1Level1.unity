@@ -8378,7 +8378,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh359386
+  m_Name: pb_Mesh36908
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -37767,6 +37767,7 @@ GameObject:
   - component: {fileID: 263253045915548141}
   - component: {fileID: 255860764877887331}
   - component: {fileID: 231366176848974413}
+  - component: {fileID: 278149863080019520}
   m_Layer: 0
   m_Name: Coll_Statue (12)
   m_TagString: Untagged
@@ -37774,6 +37775,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
+--- !u!114 &278149863080019520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 278149863080019519}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ce2f35c75ca9e84fb3474d32def3e6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 4
+  DamageValue: 0
+  HealValue: 0
+  BumpHeight: 0.3
 --- !u!1 &278193199701016491
 GameObject:
   m_ObjectHideFlags: 0
@@ -37801,8 +37818,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 275138519617693585}
-  - component: {fileID: 8819199210225436913}
-  - component: {fileID: 278219915958018878}
   m_Layer: 0
   m_Name: EA_Characters_Statue_Moss_1f_PRE
   m_TagString: Untagged
@@ -37810,48 +37825,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &278219915958018878
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 278219915958018877}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ce2f35c75ca9e84fb3474d32def3e6d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: 4
-  DamageValue: 0
-  HealValue: 0
-  BumpHeight: 0.3
---- !u!65 &436736656218967085
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 496351071785045717}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!65 &436776408036532703
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 496439032463480215}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &473540199901566585
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -37996,7 +37969,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 501422183119146595}
-  - component: {fileID: 8192188780119147902}
   - component: {fileID: 495814376193997902}
   m_Layer: 0
   m_Name: EA_Characters_Statue_Dirt_1a_PRE
@@ -38032,7 +38004,6 @@ GameObject:
   - component: {fileID: 498581804273312781}
   - component: {fileID: 473782585363744163}
   - component: {fileID: 482225647072718757}
-  - component: {fileID: 436736656218967085}
   m_Layer: 0
   m_Name: Coll_Statue (1)
   m_TagString: Untagged
@@ -38051,7 +38022,8 @@ GameObject:
   - component: {fileID: 498479657097936083}
   - component: {fileID: 473540199901566585}
   - component: {fileID: 482207024849121125}
-  - component: {fileID: 436776408036532703}
+  - component: {fileID: 496439032463480217}
+  - component: {fileID: 496439032463480216}
   m_Layer: 0
   m_Name: Coll_Statue (2)
   m_TagString: Untagged
@@ -38059,6 +38031,35 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
+--- !u!114 &496439032463480216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 496439032463480215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ce2f35c75ca9e84fb3474d32def3e6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 4
+  DamageValue: 0
+  HealValue: 0
+  BumpHeight: 0.3
+--- !u!65 &496439032463480217
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 496439032463480215}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.0000004, y: 0.99999994, z: 1.0000005}
+  m_Center: {x: 0.33, y: 0.000000059604645, z: 0.0000038146973}
 --- !u!1 &496455083585139507
 GameObject:
   m_ObjectHideFlags: 0
@@ -38136,32 +38137,6 @@ Transform:
   m_Father: {fileID: 725042948}
   m_RootOrder: 126
   m_LocalEulerAnglesHint: {x: 0, y: -174.40201, z: 0}
---- !u!65 &4497156160716695278
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4708540156276390866}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!65 &4497156161539959508
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4708540157181179880}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &4687771870277631938
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -38559,8 +38534,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4705497844064294818}
-  - component: {fileID: 4497156160716695278}
-  - component: {fileID: 4708540156276390867}
   m_Layer: 0
   m_Name: EA_Characters_Statue_Moss_1e_PRE
   m_TagString: Untagged
@@ -38568,22 +38541,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &4708540156276390867
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4708540156276390866}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ce2f35c75ca9e84fb3474d32def3e6d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: 4
-  DamageValue: 0
-  HealValue: 0
-  BumpHeight: 0.3
 --- !u!1 &4708540157181179880
 GameObject:
   m_ObjectHideFlags: 0
@@ -38593,8 +38550,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4705497843147185048}
-  - component: {fileID: 4497156161539959508}
-  - component: {fileID: 4708540157181179881}
   m_Layer: 0
   m_Name: EA_Characters_Statue_Moss_1e_PRE
   m_TagString: Untagged
@@ -38602,22 +38557,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &4708540157181179881
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4708540157181179880}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ce2f35c75ca9e84fb3474d32def3e6d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: 4
-  DamageValue: 0
-  HealValue: 0
-  BumpHeight: 0.3
 --- !u!1 &4708692752465756648
 GameObject:
   m_ObjectHideFlags: 0
@@ -38666,6 +38605,7 @@ GameObject:
   - component: {fileID: 4695981115495941210}
   - component: {fileID: 4688236664057658244}
   - component: {fileID: 4735325606387606460}
+  - component: {fileID: 4709037256864168903}
   m_Layer: 0
   m_Name: Coll_Statue (8)
   m_TagString: Untagged
@@ -38673,6 +38613,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
+--- !u!114 &4709037256864168903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4709037256864168902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ce2f35c75ca9e84fb3474d32def3e6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 4
+  DamageValue: 0
+  HealValue: 0
+  BumpHeight: 0.3
 --- !u!1 &4709037257770792956
 GameObject:
   m_ObjectHideFlags: 0
@@ -38685,6 +38641,7 @@ GameObject:
   - component: {fileID: 4695981114670581856}
   - component: {fileID: 4688236664439994302}
   - component: {fileID: 4735325606755790726}
+  - component: {fileID: 4709037257770792957}
   m_Layer: 0
   m_Name: Coll_Statue (8)
   m_TagString: Untagged
@@ -38692,6 +38649,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
+--- !u!114 &4709037257770792957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4709037257770792956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ce2f35c75ca9e84fb3474d32def3e6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 4
+  DamageValue: 0
+  HealValue: 0
+  BumpHeight: 0.3
 --- !u!1 &4709374838200654582
 GameObject:
   m_ObjectHideFlags: 0
@@ -38703,7 +38676,6 @@ GameObject:
   - component: {fileID: 4705582823493830314}
   - component: {fileID: 4694356273391054346}
   - component: {fileID: 4687771870563496952}
-  - component: {fileID: 4736112781165520502}
   m_Layer: 0
   m_Name: Coll_Statue (7)
   m_TagString: Untagged
@@ -38722,7 +38694,6 @@ GameObject:
   - component: {fileID: 4705582824197032592}
   - component: {fileID: 4694356273086308912}
   - component: {fileID: 4687771870277631938}
-  - component: {fileID: 4736112782070049356}
   m_Layer: 0
   m_Name: Coll_Statue (7)
   m_TagString: Untagged
@@ -38755,33 +38726,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!65 &4736112781165520502
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4709374838200654582}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!65 &4736112782070049356
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4709374839120123596}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: -0.14, y: 0, z: 0}
 --- !u!1001 &5179405745577857503
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -39130,29 +39075,3 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6528153040072320530}
   m_Mesh: {fileID: 4300000, guid: ed963b6d0d79e2a4ea60613e2e0d16ea, type: 3}
---- !u!65 &8192188780119147902
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 495814376193997901}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!65 &8819199210225436913
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 278219915958018877}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
