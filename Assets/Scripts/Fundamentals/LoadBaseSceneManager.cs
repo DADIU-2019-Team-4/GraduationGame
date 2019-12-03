@@ -18,7 +18,7 @@ public class LoadBaseSceneManager : IGameLoop
     //public BaseScenes SelectedScene;
     public GameObject Player;
     public StoryProgression StoryProgression;
-
+    private GameController _gamecontroller;
 
     [Header("AssetsBundles:")]
     public AssetsInformation[] CommonAssets;
@@ -33,6 +33,8 @@ public class LoadBaseSceneManager : IGameLoop
 
     private void Start()
     {
+        _gamecontroller = FindObjectOfType<GameController>();
+
         DownloadAssets();
 
         //#if UNITY_EDITOR
@@ -118,6 +120,8 @@ public class LoadBaseSceneManager : IGameLoop
         }
         Time.timeScale = 1f;
         ResetPlayerPos(name);
+        _gamecontroller.NullifyBoxCollection();
+
     }
     private void ResetPlayerPos(string sceneName)
     {
