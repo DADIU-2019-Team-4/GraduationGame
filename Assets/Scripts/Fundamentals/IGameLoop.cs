@@ -15,10 +15,7 @@ public abstract class IGameLoop : MonoBehaviour
     public void OnEnable()
     {
         game = FindObjectOfType<Game>();
-        if (game == null)
-            gameObject.AddComponent<AwaitGameRef>();
-        else
-            game.Instance.AddGameLoop(this);
+        game.Instance.AddGameLoop(this);
     }
 
     public void CustomStart()
