@@ -4,37 +4,20 @@ using UnityEngine;
 
 public abstract class IGameLoop : MonoBehaviour
 {
-    //[SerializeField]
-    //private GameObject _sceneTwo;
-    //public string objectName;
-
-    // Michael: We may later decide to not automate this.
-
-    private Game game;
+    private static Game Game;
 
     public void OnEnable()
     {
-        game = FindObjectOfType<Game>();
-        game.Instance.AddGameLoop(this);
+        if (Game == null)
+            Game = FindObjectOfType<Game>();
+        Game.Instance.AddGameLoop(this);
     }
-
-    public void CustomStart()
-    {
-    }
-    public void CustomUpdate()
-    {
-    }
-    // Michael: Might not be necessary.
-    //public void CustomStart()
-    //{
-    //    _sceneTwo = GameObject.Find(objectName);
-    //}
 
     // Must be implemented by any inheritance.
     public abstract void GameLoopUpdate();
 
     public void RemoveFromGameLoop()
     {
-        game.Instance.RemoveGameLoop(this);
+        Game.Instance.RemoveGameLoop(this);
     }
 }
