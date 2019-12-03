@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class UINavigation : MonoBehaviour
 {
@@ -28,19 +29,34 @@ public class UINavigation : MonoBehaviour
     public Material PauseBurnDanish;
     public Material PauseBurnEnglish;
 
+    [Header("Fonts")]
+    public TMP_FontAsset GlowFont;
+    public TMP_FontAsset NoGlowFont;
+
     public StoryProgression storyProgression;
     // Start is called before the first frame update
     void Awake()
     {
         InitPlayerPrefs();
 
-        if (storyProgression.Value == StoryProgression.EStoryProgression.At_Tutorial && _continueButton != null)
-        {
-            _continueButton.GetComponent<Button>().interactable = false;
-        }
-
 
         //TODO if first time playing hide the continue button
+        if (gameObject.tag == "MainMenu")
+        {
+            if (storyProgression.Value == StoryProgression.EStoryProgression.At_Tutorial && _continueButton != null)
+            {
+                _continueButton.GetComponent<Button>().interactable = false;
+                _continueButton.GetComponentInChildren<TextMeshProUGUI>().font = NoGlowFont;
+            }
+            else
+            {
+                _continueButton.GetComponentInChildren<TextMeshProUGUI>().font = GlowFont;
+            }
+        }
+            
+
+
+        
 
 
         //_optionsMenu = GameObject.FindGameObjectWithTag("OptionsMenu");
