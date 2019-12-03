@@ -19,7 +19,7 @@ public class BurnObject : MonoBehaviour
     public Material dissolveShader;
     private Renderer _renderer;
     private Texture texture;
-    private Material _defaultShader;
+    private Material[] _defaultShaders;
 
     [Range(0, 3f)]
     public float burnSpeed = 0.1f;
@@ -37,9 +37,9 @@ public class BurnObject : MonoBehaviour
     public void Start()
     {
         _renderer = gameObject.GetComponent<Renderer>();
-        texture = _renderer.material.mainTexture;
         _fire = Instantiate(FireObject, transform);
-        _defaultShader = _renderer.material;
+        _defaultShaders = _renderer.materials;
+        texture = _defaultShaders[0].mainTexture;
     }
     /* public override void GameLoopUpdate()
      {
@@ -167,7 +167,7 @@ public class BurnObject : MonoBehaviour
     public void ResetBreakable()
     {
         gameObject.GetComponent<Collider>().enabled = true;
-        _renderer.material = _defaultShader;
+        _renderer.material = _defaultShaders[0];
         fireFloat = -1f;
         _burnedAmount = 0.9f;
         _isBurning = false;
