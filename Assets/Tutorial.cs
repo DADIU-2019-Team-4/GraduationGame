@@ -44,8 +44,9 @@ public class Tutorial : MonoBehaviour
             }
             else if (canChangeText && textForThis == 1)
             {
-                //text2.enabled = true;
-                text2.text = "Burning through objects restores your fire. \n\n Make sure to never let your fire run out!";
+                text.text = "Burning through objects restores your fire. \n\n Make sure to never let your fire run out!";
+                text2.enabled = false;
+                text.enabled = true;
             }
             else if (!canChangeText)
             {

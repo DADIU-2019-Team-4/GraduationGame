@@ -13,11 +13,16 @@ public class Torch : MonoBehaviour
 
     void Awake()
     {
-        //_light = gameObject.GetComponentInChildren<Light>();
+        if (gameObject.CompareTag("torchWall"))
+        {
+            _light = gameObject.GetComponentInChildren<Light>();
+            _light.enabled = false;
+        }
+        
         flame.SetActive(false);
         /*var em = _flame.emission;
         em.enabled = false; */
-        //_light.enabled = false;
+     
         audioEvents = new List<AudioEvent>(GetComponents<AudioEvent>());
     }
 
@@ -27,11 +32,16 @@ public class Torch : MonoBehaviour
         if (other.gameObject.tag != "Player") return;
         /*var em = _flame.emission;
          em.enabled = true; */
+        if (gameObject.CompareTag("torchWall"))
+        {
+            _light.enabled = true;
+        }
+
         flame.SetActive(true);
         startflame.SetActive(true); 
         AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.Fireplace, audioEvents, gameObject);
         AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.Torch, audioEvents, gameObject);
-        //_light.enabled = true;
+       
         Destroy(this);
     }
    /* private void OnCollisionEnter(Collision collision)
