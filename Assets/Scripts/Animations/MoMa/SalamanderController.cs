@@ -65,9 +65,9 @@ namespace MoMa
             animationFiles.Add("take-1_DEFAULT_C26");
             animationFiles.Add("take-2_DEFAULT_C26");
             animationFiles.Add("take-3_DEFAULT_C26");
-            animationFiles.Add("take-4_DEFAULT_C26");
-            animationFiles.Add("take-5_DEFAULT_C26");
-            animationFiles.Add("take-6_DEFAULT_C26");
+            //animationFiles.Add("take-4_DEFAULT_C26");
+            //animationFiles.Add("take-5_DEFAULT_C26");
+            //animationFiles.Add("take-6_DEFAULT_C26");
 
             // We assume that the Character has the correct structure
             this._model = this.gameObject.transform;
