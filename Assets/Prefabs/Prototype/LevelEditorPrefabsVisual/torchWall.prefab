@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 7283503281327315627}
   m_Layer: 2
   m_Name: torchWall
-  m_TagString: Untagged
+  m_TagString: torchWall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -172,7 +172,7 @@ Light:
   serializedVersion: 9
   m_Type: 2
   m_Color: {r: 0.90588236, g: 0.6627451, b: 0.3882353, a: 1}
-  m_Intensity: 4.79
+  m_Intensity: 1
   m_Range: 2.4922938
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -234,8 +234,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waitTime: 0.2
-  minLight: 2
-  maxLight: 3
+  minLight: 1
+  maxLight: 1.5
 --- !u!1001 &2637443465095624999
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -343,16 +343,6 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: -0.004999999
       objectReference: {fileID: 0}
-    - target: {fileID: 5241852485047472035, guid: fb851432ba8e649419a1ddeebabdeaa2,
-        type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5241852486662589357, guid: fb851432ba8e649419a1ddeebabdeaa2,
-        type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 5241852485047472032, guid: fb851432ba8e649419a1ddeebabdeaa2,
         type: 3}
       propertyPath: looping
@@ -362,6 +352,16 @@ PrefabInstance:
         type: 3}
       propertyPath: looping
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5241852485047472035, guid: fb851432ba8e649419a1ddeebabdeaa2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5241852486662589357, guid: fb851432ba8e649419a1ddeebabdeaa2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fb851432ba8e649419a1ddeebabdeaa2, type: 3}
@@ -469,12 +469,12 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.42263
       objectReference: {fileID: 0}
-    - target: {fileID: 5709095180008466067, guid: 1b66cfffd83a986429db4f8967d387eb,
+    - target: {fileID: 5866530358781713229, guid: 1b66cfffd83a986429db4f8967d387eb,
         type: 3}
       propertyPath: m_Layer
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 5866530358781713229, guid: 1b66cfffd83a986429db4f8967d387eb,
+    - target: {fileID: 5709095180008466067, guid: 1b66cfffd83a986429db4f8967d387eb,
         type: 3}
       propertyPath: m_Layer
       value: 2
