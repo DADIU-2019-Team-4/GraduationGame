@@ -114,7 +114,7 @@ public class LoadBaseSceneManager : IGameLoop
 
     IEnumerator LoadNewSceneAsync(string name)
     {
-
+        Time.timeScale = 0f;
         SceneManager.MoveGameObjectToScene(Player,
             SceneManager.GetSceneByName("MainPlayerScene"));
 
@@ -122,8 +122,9 @@ public class LoadBaseSceneManager : IGameLoop
         while (!syncOperation.isDone)
         {
             yield return null;
-            ResetPlayerPos(name);
         }
+        Time.timeScale = 1f;
+        ResetPlayerPos(name);
     }
     private void ResetPlayerPos(string sceneName)
     {
