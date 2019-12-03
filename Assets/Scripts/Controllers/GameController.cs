@@ -97,6 +97,7 @@ public class GameController : MonoBehaviour
 
         // Restart music from spawn
         var music = GameObject.FindGameObjectWithTag("Music");
+        if (music == null) return;
         var ambient = music.GetComponent<AkAmbient>();
         AkSoundEngine.PostEvent(ambient.data.Name, music);
     }

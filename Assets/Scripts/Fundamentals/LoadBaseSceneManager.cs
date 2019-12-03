@@ -121,10 +121,10 @@ public class LoadBaseSceneManager : IGameLoop
     }
     private void ResetPlayerPos(string sceneName)
     {
-        if (sceneName == "Hub_1.0" && StoryProgression.Value != StoryProgression.EStoryProgression.At_Tutorial)
-            Player.transform.position = new Vector3(-20, 0, 54);
+        if (sceneName == "Hub_1.0" && StoryProgression.Value == StoryProgression.EStoryProgression.At_Tutorial)
+            Player.transform.position = new Vector3(18, 0, -57);
         else
-            Player.transform.position = new Vector3(0, 0, 0);
+            Player.transform.position = Vector3.zero;
     }
     private void DownloadAssets()
     {

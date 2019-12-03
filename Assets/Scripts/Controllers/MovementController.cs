@@ -96,6 +96,8 @@ public class MovementController : MonoBehaviour
 
     public Vector3 TargetPosition { get; set; }
 
+    public StoryProgression StoryProgression;
+
     #endregion
 
     #region Private Editor Fields
@@ -181,7 +183,12 @@ public class MovementController : MonoBehaviour
         UpdateGoalDistances();
         DisablePlayerCharacter(false);
         _rigidBody.velocity = Vector3.zero;
-        transform.position = Vector3.zero;
+
+        if (StoryProgression.Value == StoryProgression.EStoryProgression.At_Tutorial)
+            transform.position = new Vector3(18, 0, -57);
+        else
+            transform.position = Vector3.zero;
+
 
         // Set animator state 
         _anim.Respawn();
