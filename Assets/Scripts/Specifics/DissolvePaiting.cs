@@ -8,16 +8,13 @@ public class DissolvePaiting : MonoBehaviour
     public Material DissolveMaterial;
     public float DelayBeforeDissolving;
     [Range(0, 3f)] public float BurnSpeed = 0.2f;
-    private Renderer[] _renderer;
-    private Texture[] _texture;
+    public Material[] _materials;
     private bool _isBurning;
     private static float _initialDissolveValues = 1.15f;
     private float _dissolveValue;
     void Start()
     {
-        _renderer = gameObject.GetComponents<Renderer>();
-        for(int i=0;i<=_renderer.Length-1;i++)
-            _texture[i] = _renderer[i].material.mainTexture;
+        _materials = gameObject.GetComponent<Renderer>().materials;
         _isBurning = false;
     }
 
@@ -28,8 +25,9 @@ public class DissolvePaiting : MonoBehaviour
             if (_dissolveValue >= -0.42f)
             {
                 _dissolveValue += BurnSpeed * Time.deltaTime;
-                for (int i = 0; i <= _renderer.Length - 1; i++)
-                    _renderer[i].material.SetFloat("_T", _dissolveValue);
+                _materials[0].SetFloat("_T", _dissolveValue);
+                _materials[1].SetFloat("_T", _dissolveValue);
+
             }
         }
     }
@@ -39,15 +37,13 @@ public class DissolvePaiting : MonoBehaviour
     {
         StartCoroutine(Delay(DelayBeforeDissolving));
         _isBurning = true;
-        for (int i = 0; i <= _renderer.Length - 1; i++)
-        {
-            _renderer[i].material = DissolveMaterial;
-            _renderer[i].material.SetTexture("_maintexture", _texture[i]);
-            _renderer[i].material.SetVector("_StartPoint", DissolveStartPoint.position);
-            _renderer[i].material.SetFloat("_T", _initialDissolveValues);
-        }
+        _materials[0].SetVector("_StartPoint", DissolveStartPoint.position);
+        _materials[1].SetVector("_StartPoint", DissolveStartPoint.position);
+        _materials[0].SetFloat("_T", _dissolveValue);
+        _materials[1].SetFloat("_T", _dissolveValue);
         _dissolveValue = _initialDissolveValues;
     }
+
 
     IEnumerator Delay(float time)
     {
