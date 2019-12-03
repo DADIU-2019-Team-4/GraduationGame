@@ -172,10 +172,11 @@ public class MovementController : MonoBehaviour
         }
     }
 
+    // TODO Ares: I need to call this at the start of the level, so that Sally can appear behind Lucy
     /// <summary>
     /// Places the Player to the start of the level and replenishes health.
     /// </summary>
-    public void Respawn()
+    public void Spawn()
     {
         // Reset Health
         _currentFireAmount = MaxFireAmount;
@@ -195,6 +196,13 @@ public class MovementController : MonoBehaviour
 
         // Notify Sally
         _salamanderController?.AddTarget(EventType.Respawn, transform.position);
+    }
+    /// <summary>
+    /// Places the Player to the start of the level and replenishes health.
+    /// </summary>
+    public void Respawn()
+    {
+        Spawn();
     }
 
     /// <summary>

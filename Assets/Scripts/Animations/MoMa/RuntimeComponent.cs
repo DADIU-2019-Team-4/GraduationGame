@@ -161,7 +161,7 @@ namespace MoMa
                     winnerFeature;
             }
 
-            Debug.Log("Playing animation from \"" + this._anim[winnerFeature.Item2.animationNum].animationName + "\"");
+            //Debug.Log("Playing animation from \"" + this._anim[winnerFeature.Item2.animationNum].animationName + "\"");
 
             // TODO remove
             //this._fc.DrawAlternativePath(winnerFeature.Item2.feature.snippet, 1, winnerFeature.Item2.trajectoryDiff);

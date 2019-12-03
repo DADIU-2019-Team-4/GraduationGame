@@ -1,12 +1,16 @@
 ﻿
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace MoMa
 {
-    public class MovementComponent
+    public class MovementComponent : MonoBehaviour
     {
+        public static readonly Vector3 StartingOffset = new Vector3(0, 0, -1);
+        public static readonly Vector3 DefaultScale = new Vector3(2, 2, 2);
+
         public int playerId = 0;
 
         private Transform _transform;
@@ -14,6 +18,7 @@ namespace MoMa
         private Vector3 _velocity = new Vector3();
         private List<Target> _targets = new List<Target>();
         private float _speed;
+        private bool _disappeared = false;
 
         public MovementComponent(Transform transform)
         {
@@ -26,35 +31,55 @@ namespace MoMa
             // Move until you reach FireGirl (in 1 move distance)
             if (_targets.Count > 1)
             {
-                this._speed = Input.GetKey(KeyCode.LeftShift) ?
-                    SalamanderController.RunningSpeed :
-                    SalamanderController.WalkingSpeed;
-
-                // Move to target position (modifies the velocity)
-                _transform.position = Step(
-                    _transform.position,
-                    _targets[0].position,
-                    ref _velocity
-                    );
-
-                // If the target is reached, remove target
-                if (_transform.position == _targets[0].position)
+                switch (_targets[0].type)
                 {
-                    _targets.RemoveAt(0);
+                    case MovementController.EventType.Move:
+                    case MovementController.EventType.Dash:
+                    case MovementController.EventType.Die:
+                    case MovementController.EventType.Win:
+
+                        this._speed = Input.GetKey(KeyCode.LeftShift) ?
+                            SalamanderController.RunningSpeed :
+                            SalamanderController.WalkingSpeed;
+
+                        // Move to target position (modifies the velocity)
+                        _transform.position = Step(
+                            _transform.position,
+                            _targets[0].position,
+                            ref _velocity
+                            );
+
+                        // If the target is reached, remove target
+                        if (_transform.position == _targets[0].position)
+                        {
+                            _targets.RemoveAt(0);
+                        }
+
+                        _transform.rotation = Quaternion.LookRotation(_velocity, Vector3.up);
+
+                        //Vector2 direction = _velocity.GetXZVector2().normalized;
+                        //float rotationAngle = Vector2.SignedAngle(Vector2.up, direction);
+                        //_transform.eulerAngles = new Vector3(0, -rotationAngle, 0);
+                        break;
+                    case MovementController.EventType.EnterPaperPlane:
+                    case MovementController.EventType.EnterFuse:
+                        Disappear();
+                        _targets.RemoveAt(0);
+                        break;
+                    case MovementController.EventType.ExitPaperPlane:
+                    case MovementController.EventType.ExitFuse:
+                        Reappear(_targets[0].position);
+                        _targets.RemoveAt(0);
+                        break;
+                    default:
+                        Debug.LogWarning("Sally's MovementComponent recieved an unexpected target: " + _targets[0].type);
+                        break;
                 }
-
-                _transform.rotation = Quaternion.LookRotation(_velocity, Vector3.up);
-
-                //Vector2 direction = _velocity.GetXZVector2().normalized;
-                //float rotationAngle = Vector2.SignedAngle(Vector2.up, direction);
-                //_transform.eulerAngles = new Vector3(0, -rotationAngle, 0);
             }
         }
 
         public void AddTarget(MovementController.EventType type, Vector3 position)
         {
-            Debug.Log(position);
-
             switch (type)
             {
                 case MovementController.EventType.Move:
@@ -62,20 +87,28 @@ namespace MoMa
                     // Consider all movements Move (not Dash)
                     _targets.Add(new Target(MovementController.EventType.Move, position));
                     break;
-
                 case MovementController.EventType.Die:
+                    // Ideally, there would be some other animation
+                    _targets.Add(new Target(MovementController.EventType.Move, position));
                     break;
                 case MovementController.EventType.Win:
+                    // Ideally, there would be some other animation
+                    _targets.Add(new Target(MovementController.EventType.Move, position));
                     break;
                 case MovementController.EventType.Respawn:
+                    Respawn(position);
                     break;
                 case MovementController.EventType.EnterFuse:
+                    _targets.Add(new Target(MovementController.EventType.EnterFuse, position));
                     break;
                 case MovementController.EventType.ExitFuse:
+                    _targets.Add(new Target(MovementController.EventType.ExitFuse, position));
                     break;
                 case MovementController.EventType.EnterPaperPlane:
+                    _targets.Add(new Target(MovementController.EventType.EnterPaperPlane, position));
                     break;
                 case MovementController.EventType.ExitPaperPlane:
+                    _targets.Add(new Target(MovementController.EventType.ExitPaperPlane, position));
                     break;
                 default:
                     break;
@@ -129,6 +162,45 @@ namespace MoMa
                 );
 
             return destination;
+        }
+
+        /// <summary>
+        /// Respawns Sally behind Lucy
+        /// </summary>
+        private void Respawn(Vector3 position)
+        {
+            _targets.Clear();
+            _transform.position = position + StartingOffset;
+            _transform.rotation = Quaternion.identity;
+            _disappeared = false;
+        }
+
+        /// <summary>
+        /// Hides Sally until Reappear is called. Handles Fuses and PaperPlanes
+        /// </summary>
+        private void Disappear()
+        {
+            // Only run the first time this is called (to handle intro scene)
+            if (!_disappeared)
+            {
+                _disappeared = true;
+                _transform.localScale = new Vector3(0, 0, 0);
+            }
+        }
+
+        /// <summary>
+        /// Shows Sally again after Disappear has hiden her. Handles Fuses and PaperPlanes
+        /// </summary>
+        private void Reappear(Vector3 position)
+        {
+            // Only run the first time this is called (to handle intro scene)
+            if (_disappeared)
+            {
+                _transform.position = position;
+
+                _disappeared = false;
+                _transform.localScale = DefaultScale;
+            }
         }
 
         private class Target

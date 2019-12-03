@@ -104,7 +104,7 @@ namespace MoMa
 
         public void AddTarget(MovementController.EventType type, Vector3 position)
         {
-            Debug.Log("Adding target: " + position + " Type: " + type);
+            //Debug.Log("Adding target: " + position + " Type: " + type);
             _mc.AddTarget(type, position);
         }
 
