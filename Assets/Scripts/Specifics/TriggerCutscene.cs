@@ -22,19 +22,23 @@ public class TriggerCutscene : MonoBehaviour
     public DialogueTrigger.DialogueTriggerType TriggerType;
     public TimelineTrack[] TrackReferences;
     public bool OnlyOnce = true;
+    public GameObject TutorialText;
 
     private PlayableDirector _timeline;
     private SalamanderController _salamanderController;
+    private LoadBaseSceneManager _loadBaseSceneManager;
 
     private void Awake()
     {
         _timeline = GetComponent<PlayableDirector>();
         _salamanderController = FindObjectOfType<SalamanderController>();
+        _loadBaseSceneManager = FindObjectOfType<LoadBaseSceneManager>();
         if (!_salamanderController) Debug.LogWarning("TriggerCutscene: Unable to find Sally :(");
     }
 
     private void Start()
     {
+        TutorialText?.SetActive(false);
         _timeline.stopped += OnCutSceneStopped;
         if (TriggerType == DialogueTrigger.DialogueTriggerType.OnStart)
             PlayCutScene();
@@ -44,6 +48,8 @@ public class TriggerCutscene : MonoBehaviour
     {
         if (_timeline == director)
         {
+            if (_loadBaseSceneManager.StoryProgression.Value == StoryProgression.EStoryProgression.At_Tutorial)
+                TutorialText?.SetActive(true);
             InputManager.DisableInput = false;
             _timeline.stopped -= OnCutSceneStopped;
             OnCutSceneEnd.Invoke();
