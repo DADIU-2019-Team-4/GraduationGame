@@ -287,7 +287,11 @@ public class UINavigation : MonoBehaviour
         }
         else
         {
+#if UNITY_EDITOR
+            PlayerPrefs.GetInt("Progressions", (int)storyProgression.Value);
+#elif UNITY_ANDROID || UNITY_IOS || UNITY_STANDALONE
             storyProgression.Value = (StoryProgression.EStoryProgression)PlayerPrefs.GetInt("Progression");
+#endif
         }
 
     }
