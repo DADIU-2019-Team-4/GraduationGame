@@ -22,7 +22,7 @@ public class TriggerCutscene : MonoBehaviour
     public DialogueTrigger.DialogueTriggerType TriggerType;
     public TimelineTrack[] TrackReferences;
     public bool OnlyOnce = true;
-    public GameObject TutorialText;
+    //public GameObject TutorialText;
 
     private PlayableDirector _timeline;
     private SalamanderController _salamanderController;
@@ -38,7 +38,7 @@ public class TriggerCutscene : MonoBehaviour
 
     private void Start()
     {
-        TutorialText?.SetActive(false);
+        //TutorialText?.SetActive(false);
         _timeline.stopped += OnCutSceneStopped;
         if (TriggerType == DialogueTrigger.DialogueTriggerType.OnStart)
             PlayCutScene();
@@ -48,8 +48,8 @@ public class TriggerCutscene : MonoBehaviour
     {
         if (_timeline == director)
         {
-            if (_loadBaseSceneManager.StoryProgression.Value == StoryProgression.EStoryProgression.At_Tutorial)
-                TutorialText?.SetActive(true);
+            //if (_loadBaseSceneManager.StoryProgression.Value == StoryProgression.EStoryProgression.At_Tutorial)
+            //    TutorialText?.SetActive(true);
             InputManager.DisableInput = false;
             _timeline.stopped -= OnCutSceneStopped;
             OnCutSceneEnd.Invoke();
