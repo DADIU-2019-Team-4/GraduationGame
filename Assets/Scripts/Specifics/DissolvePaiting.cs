@@ -8,15 +8,16 @@ public class DissolvePaiting : MonoBehaviour
     public Material DissolveMaterial;
     public float DelayBeforeDissolving;
     [Range(0, 3f)] public float BurnSpeed = 0.2f;
-    private Renderer _renderer;
-    private Texture _texture;
+    private Renderer[] _renderer;
+    private Texture[] _texture;
     private bool _isBurning;
     private static float _initialDissolveValues = 1.15f;
     private float _dissolveValue;
     void Start()
     {
-        _renderer = gameObject.GetComponent<Renderer>();
-        _texture = _renderer.material.mainTexture;
+        _renderer = gameObject.GetComponents<Renderer>();
+        for(int i=0;i<=_renderer.Length-1;i++)
+            _texture[i] = _renderer[i].material.mainTexture;
         _isBurning = false;
     }
 
@@ -27,7 +28,8 @@ public class DissolvePaiting : MonoBehaviour
             if (_dissolveValue >= -0.42f)
             {
                 _dissolveValue += BurnSpeed * Time.deltaTime;
-                _renderer.material.SetFloat("_T", _dissolveValue);
+                for (int i = 0; i <= _renderer.Length - 1; i++)
+                    _renderer[i].material.SetFloat("_T", _dissolveValue);
             }
         }
     }
@@ -37,10 +39,13 @@ public class DissolvePaiting : MonoBehaviour
     {
         StartCoroutine(Delay(DelayBeforeDissolving));
         _isBurning = true;
-        _renderer.material = DissolveMaterial;
-        _renderer.material.SetTexture("_maintexture", _texture);
-        _renderer.material.SetVector("_StartPoint", DissolveStartPoint.position);
-        _renderer.material.SetFloat("_T", _initialDissolveValues);
+        for (int i = 0; i <= _renderer.Length - 1; i++)
+        {
+            _renderer[i].material = DissolveMaterial;
+            _renderer[i].material.SetTexture("_maintexture", _texture[i]);
+            _renderer[i].material.SetVector("_StartPoint", DissolveStartPoint.position);
+            _renderer[i].material.SetFloat("_T", _initialDissolveValues);
+        }
         _dissolveValue = _initialDissolveValues;
     }
 
