@@ -8,7 +8,7 @@ namespace MoMa
     [System.Serializable]
     public class Frame : ISerializationCallbackReceiver
     {
-        private List<Bone.Type> blendableBones = new List<Bone.Type>()
+        private static List<Bone.Type> blendableBones = new List<Bone.Type>()
         {
             Bone.Type.root,
             Bone.Type.hips,
