@@ -38,13 +38,13 @@ namespace MoMa
                 //this._bones[bone].SetPositionAndRotation(frame.boneDataDict[bone].localPosition, frame.boneDataDict[bone].rotation);
 
                 if (bone != Bone.Type.root)
-                    this._bones[bone].rotation = frame.boneDataDict[bone].rotation;
+                    this._bones[bone].rotation = (Quaternion) frame.boneDataDict[bone].rotation;
                 else
                     this._bones[bone].rotation = Quaternion.identity;
             }
 
             // (TODO FINAL): This should use root rotation but it is not calculated correcltly in the Packer.
-            this._bones[Bone.Type.root].localRotation = Quaternion.Inverse(frame.boneDataDict[Bone.Type.hips].rotation);
+            this._bones[Bone.Type.root].localRotation = Quaternion.Inverse((Quaternion) frame.boneDataDict[Bone.Type.hips].rotation);
 
             //this._bones[Bone.Type.root].rotation = Quaternion.Inverse(frame.boneDataDict[Bone.Type.root].rotation);
 

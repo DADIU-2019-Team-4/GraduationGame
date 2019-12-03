@@ -6,9 +6,9 @@ namespace MoMa
     [System.Serializable]
     public class Feature
     {
-        public readonly int frameNum;
-        public readonly Trajectory.Snippet snippet;
-        public readonly Pose pose;
+        public int frameNum;
+        public Trajectory.Snippet snippet;
+        public Pose pose;
 
         public int cooldownTimer = 0;
 

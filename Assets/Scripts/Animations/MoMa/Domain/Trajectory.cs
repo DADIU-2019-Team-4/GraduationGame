@@ -22,7 +22,7 @@ namespace MoMa
 
             // Find present position and rotation
             Vector2S presentPosition = points[presentFrame].position;
-            Quaternion presentRotation = this.points[presentFrame].rotation;
+            QuaternionS presentRotation = this.points[presentFrame].rotation;
 
             // Build the new Snippet
             Snippet snippet = new Snippet();
@@ -39,10 +39,10 @@ namespace MoMa
                 localPosition3D.z -= presentPosition.y;
 
                 // Rotate it to face upwards
-                localPosition3D = Quaternion.Inverse(presentRotation) * localPosition3D;
+                localPosition3D = Quaternion.Inverse((Quaternion) presentRotation) * localPosition3D;
 
                 // Compute the new rotation
-                Quaternion localRotation = this.points[addingFrame].rotation * presentRotation;
+                QuaternionS localRotation = this.points[addingFrame].rotation * presentRotation;
 
                 // Store the relative point to the snippet
                 snippet.points[i] = new Point(localPosition3D.GetXZVector2(), localRotation);
@@ -74,7 +74,7 @@ namespace MoMa
             public const int Decimals = 4;
 
             public Vector2S position;
-            public Quaternion rotation;
+            public QuaternionS rotation;
 
             public float magnitude
             {
@@ -88,7 +88,7 @@ namespace MoMa
             public static Point getMedianPoint(List<Vector2S> positions)
             {
                 Vector2S position = new Vector2S(0f, 0f);
-                Quaternion rotation;
+                QuaternionS rotation;
 
                 // Position
                 foreach (Vector2S currentPosition in positions)
@@ -107,7 +107,7 @@ namespace MoMa
                 return new Point(position, rotation);
             }
 
-            public Point(Vector2S v, Quaternion rotation)
+            public Point(Vector2S v, QuaternionS rotation)
             {
                 this.position = new Vector2S();
                 this.position.x = (float) Math.Round(v.x, Decimals);

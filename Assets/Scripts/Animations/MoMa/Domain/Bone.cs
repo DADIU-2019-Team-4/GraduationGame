@@ -39,17 +39,17 @@ public class Bone
     public class Data
     {
         public Vector3S position;
-        public Quaternion rotation;
+        public QuaternionS rotation;
         public Vector3S localPosition;
         public Vector3S localVelocity;
 
-        public Data(Vector3S position, Quaternion rotation)
+        public Data(Vector3S position, QuaternionS rotation)
         {
             this.position = position;
             this.rotation = rotation;
         }
 
-        public void SetLocalPosition(Vector3S originPosition, Quaternion originRotation)
+        public void SetLocalPosition(Vector3S originPosition, QuaternionS originRotation)
         {
             this.localPosition =  originRotation * (Vector3) (this.position - originPosition);
         }

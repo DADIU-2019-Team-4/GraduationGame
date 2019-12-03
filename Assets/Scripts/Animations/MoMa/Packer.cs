@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using UnityEditor;
 using UnityEngine;
 
 namespace MoMa
@@ -11,17 +13,22 @@ namespace MoMa
         // The number of frames for each root transform sample
         // ++ Lower jiggling, -- root moves like hips
         public const int SampleWindow = 200;  // Should be greater than 2; otherwise rotation cannot be calculated
+        public const string ResourcePath = "MoCapRaw";
+        public const string AssetPath = "Assets/MoMa";
+        public const string AssetExtention = ".asset";
 
         // Threshold of hips distance to determine idle or moving
         public const float DisplacementThreshold = SampleWindow * 0.008f;
 
-        public static Animation Pack(string animationName, string directory, string filename)
+        public static Animation Pack(string animationName, string filename)
         {
             // Initialize an empty Animation
-            Animation anim = new Animation(animationName);
+            //Animation anim = new Animation(animationName);
+            Animation anim = (Animation) ScriptableObject.CreateInstance("Animation");
+            anim.animationName = filename;
 
             // Load the raw Animation data from the specified file
-            Packer.LoadRawAnimationFromFile(anim, directory, filename);
+            LoadRawAnimationFromFile(anim, ResourcePath, filename);
             
             // Compute the local position, rotation and velocity of every Bone in every Frame
             ComputeLocalTranform(anim);
@@ -29,25 +36,14 @@ namespace MoMa
             // Compute the feature Frames
             anim.ComputeFeatures();
 
-            Save(anim);
+            // Save asset
+            AssetDatabase.CreateAsset(anim, AssetPath + "/" + anim.animationName + AssetExtention);
 
             return anim;
-        }
-        public static void Save(Animation animation)
-        {
-            Debug.Log(Application.persistentDataPath);
-
-            //BinaryFormatter bf = new BinaryFormatter();
-            //FileStream file = File.Open(Application.persistentDataPath + "/" + animation.animationName + ".animp", FileMode.OpenOrCreate);
-            ////SaveData saveData = new SaveData (); not needed as the object is being passed
-            //bf.Serialize(file, animation);
-            //file.Close();
         }
 
         private static void LoadRawAnimationFromFile(Animation anim, string directory, string filename)
         {
-            Debug.Log("Loading Motion from file \"" + filename + "\"");
-
             // Open given file and split the lines
             TextAsset moCapAsset = Resources.Load<TextAsset>(directory + "/" + filename);
 
@@ -101,8 +97,6 @@ namespace MoMa
 
             // Root motion is not included in the file, so we approximate it
             //ComputeRootTransform(anim);
-
-            Debug.Log("Motion contains " + anim.frameList.Count + " frames");
 
             // Unload Asset to free memory
             Resources.UnloadAsset(moCapAsset);
@@ -219,7 +213,7 @@ namespace MoMa
                 // (TODO FINAL): set it to root and not hips
                 // Root's Position and Rotation
                 Vector3S rootP = frame.boneDataDict[Bone.Type.hips].position;
-                Quaternion rootQ = frame.boneDataDict[Bone.Type.hips].rotation;
+                QuaternionS rootQ = frame.boneDataDict[Bone.Type.hips].rotation;
 
                 // For every bone of the Animation
                 foreach (Bone.Type bt in Enum.GetValues(typeof(Bone.Type)))
@@ -250,7 +244,7 @@ namespace MoMa
 
         private static Bone.Data SampleFromFrame(Animation anim, int startingSampleFrame)
         {
-            Quaternion rotation;
+            QuaternionS rotation;
             Vector3S position = new Vector3(0, 0, 0);
             Vector3S displacement;
             Vector3S firstPosition;
@@ -286,7 +280,8 @@ namespace MoMa
 
         private static (Vector3S, Quaternion) LerpFrame(Bone.Data a, Bone.Data b, float t)
         {
-            return (Vector3.Lerp((Vector3)a.position, (Vector3)b.position, t), Quaternion.Lerp(a.rotation, b.rotation, t));
+            return (Vector3.Lerp((Vector3)a.position, (Vector3)b.position, t),
+                Quaternion.Lerp((Quaternion) a.rotation, (Quaternion) b.rotation, t));
         }
     }
 }

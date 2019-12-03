@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 namespace MoMa
 {
     [System.Serializable]
-    public class Frame
+    public class Frame : ISerializationCallbackReceiver
     {
         private List<Bone.Type> blendableBones = new List<Bone.Type>()
         {
@@ -38,6 +39,7 @@ namespace MoMa
         };
 
         public float timestamp;
+
         public IDictionary<Bone.Type, Bone.Data> boneDataDict;
 
         public Frame(float timestamp)
@@ -55,5 +57,35 @@ namespace MoMa
 
             return this;
         }
+
+        #region Serialization methods
+
+        public List<Bone.Type> _keys = new List<Bone.Type>();
+        public List<Bone.Data> _values = new List<Bone.Data>();
+
+        public void OnBeforeSerialize()
+        {
+            _keys.Clear();
+            _values.Clear();
+
+            foreach (var kvp in boneDataDict)
+            {
+                _keys.Add(kvp.Key);
+                _values.Add(kvp.Value);
+            }
+        }
+
+        public void OnAfterDeserialize()
+        {
+            boneDataDict = new Dictionary<Bone.Type, Bone.Data>();
+
+            for (var i = 0; i != Math.Min(_keys.Count, _values.Count); i++)
+                boneDataDict.Add(_keys[i], _values[i]);
+
+            _keys.Clear();
+            _values.Clear();
+        }
+
+        #endregion
     }
 }

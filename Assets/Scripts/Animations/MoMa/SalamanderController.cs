@@ -61,18 +61,13 @@ namespace MoMa
 
         void Start()
         {
-            // TODO: The Animations should not be packed on runtime
-            List<(string, string)> animationFiles = new List<(string, string)>();
-            //animationFiles.Add(("take-1_DEFAULT_C26", "TempMoCapData"));
-            //animationFiles.Add(("take-2_DEFAULT_C26", "cleanUps"));
-            //animationFiles.Add(("take-3_DEFAULT_C26", "cleanUps"));
-            //animationFiles.Add(("take-4_DEFAULT_C26", "cleanUps"));
-            //animationFiles.Add(("take-5_DEFAULT_C26", "cleanUps"));
-            //animationFiles.Add(("take-6_DEFAULT_C26", "cleanUps"));
-            //animationFiles.Add(("take-7_DEFAULT_C26", "TempMoCapData"));
-            //animationFiles.Add(("take-8_DEFAULT_C26", "TempMoCapData"));
-            //animationFiles.Add(("take-9_DEFAULT_C26", "TempMoCapData"));
-            animationFiles.Add(("mini", "TempMoCapData"));
+            List<string> animationFiles = new List<string>();
+            animationFiles.Add("take-1_DEFAULT_C26");
+            animationFiles.Add("take-2_DEFAULT_C26");
+            animationFiles.Add("take-3_DEFAULT_C26");
+            animationFiles.Add("take-4_DEFAULT_C26");
+            animationFiles.Add("take-5_DEFAULT_C26");
+            animationFiles.Add("take-6_DEFAULT_C26");
 
             // We assume that the Character has the correct structure
             this._model = this.gameObject.transform;
@@ -95,7 +90,7 @@ namespace MoMa
 
         void FixedUpdate()
         {
-            if (_inCutscene)
+            if (!_inCutscene)
                 StartCoroutine(UpdateCoroutine());
         }
 

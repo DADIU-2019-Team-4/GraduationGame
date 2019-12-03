@@ -6,18 +6,13 @@ using System.Collections.Generic;
 namespace MoMa
 {
     [System.Serializable]
-    public class Animation
+    public class Animation : ScriptableObject
     {
         public string animationName;
 
         // Each feature refers to a set of frames
         public List<Frame> frameList = new List<Frame>();
         public List<Feature> featureList = new List<Feature>();
-
-        public Animation(string animationName)
-        {
-            this.animationName = animationName;
-        }
 
         public void ComputeFeatures()
         {
@@ -46,11 +41,6 @@ namespace MoMa
                     )
                 );
             }
-        }
-
-        public void SerializeAndExport()
-        {
-
         }
 
         private Trajectory ComputeFittedTrajectory()

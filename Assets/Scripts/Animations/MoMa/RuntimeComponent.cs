@@ -2,6 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using System;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
+using UnityEditor;
 
 namespace MoMa
 {
@@ -15,18 +18,22 @@ namespace MoMa
         private FollowerComponent _fc;
         private float _maxTrajectoryDiff;
 
-        public RuntimeComponent(FollowerComponent fc, List<(string, string)> files)
+        public RuntimeComponent(FollowerComponent fc, List<string> files)
         {
-            // TODO: This should happen offline. Instead we only need to open its result
-            foreach ((string filename, string path) in files)
+            foreach (string filename in files)
             {
-                //Animation loadedAnimation = LoadPackedAnimationFile(filename, path);
-                Animation loadedAnimation = Packer.Pack(filename, path, filename);
+                // This recalculates the animations using the Packer from .csv files in Resource
+                //Animation loadedAnimation = Packer.Pack(filename, filename);
+                Animation loadedAnimation = LoadPackedAnimationFile(filename);
                 this._anim.Add(loadedAnimation);
+
+                Debug.Log("Loaded MoMa file \"" + filename + "\" with " + loadedAnimation.frameList.Count + " frames");
+
+
             }
 
             // TODO: This exists for dubugging. Maybe it needs to be removed.
-            this._fc = fc;
+            //this._fc = fc;
         }
         
         public Animation.Clip QueryClip(Trajectory.Snippet currentSnippet)
@@ -78,7 +85,7 @@ namespace MoMa
             float maxPoseVelocityDiff = 0;
 
             // TODO remove
-            this._fc.DrawPath(currentSnippet);
+            //this._fc.DrawPath(currentSnippet);
 
             // 1. Find the Clips with the most fitting Trajectories
             for (int i=0; i < this._anim.Count; i++)
@@ -146,8 +153,8 @@ namespace MoMa
             // 3. Normalize and add differences
             for (int i=0; i < candidateFeatures.Count; i++)
             {
-                candidateFeatures[i].posePositionDiff /= maxPosePositionDiff;
-                candidateFeatures[i].poseVelocityDiff /= maxPoseVelocityDiff;
+                if (maxPosePositionDiff > 0) candidateFeatures[i].posePositionDiff /= maxPosePositionDiff;
+                if (maxPoseVelocityDiff > 0) candidateFeatures[i].poseVelocityDiff /= maxPoseVelocityDiff;
 
                 float totalPostDiff = candidateFeatures[i].posePositionDiff + candidateFeatures[i].poseVelocityDiff;
 
@@ -156,10 +163,10 @@ namespace MoMa
                     winnerFeature;
             }
 
-            Debug.Log("Starting animation: " + this._anim[winnerFeature.Item2.animationNum].animationName);
+            Debug.Log("Playing animation from \"" + this._anim[winnerFeature.Item2.animationNum].animationName "\"");
 
             // TODO remove
-            this._fc.DrawAlternativePath(winnerFeature.Item2.feature.snippet, 1, winnerFeature.Item2.trajectoryDiff);
+            //this._fc.DrawAlternativePath(winnerFeature.Item2.feature.snippet, 1, winnerFeature.Item2.trajectoryDiff);
 
             // 4. Return the Feature's index
             return (winnerFeature.Item2.animationNum, winnerFeature.Item2.clipNum);
@@ -191,9 +198,18 @@ namespace MoMa
             }
         }
 
-        private Animation LoadPackedAnimationFile(string filename, string path)
+        private Animation LoadPackedAnimationFile(string filename)
         {
-            return null;
+            Animation anim = (Animation)AssetDatabase.LoadAssetAtPath(
+                Packer.AssetPath + "/" + filename + Packer.AssetExtention, typeof(Animation)
+                );
+
+            if (anim == null)
+            {
+                Debug.LogError("Unable to open MoMa Animation asset: " + Packer.AssetPath + "/"+ filename + Packer.AssetExtention);
+            }
+
+            return anim;
         }
 
         private class CandidateFeature
