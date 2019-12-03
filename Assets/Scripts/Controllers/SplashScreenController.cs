@@ -38,12 +38,13 @@ public class SplashScreenController : MonoBehaviour
         _gameTitle.DOFade(0f, _fadeDuration);
         yield return new WaitForSeconds(_fadeDuration);
 
+        /*
         //AkSoundEngine.PostEvent("GameTitle_event", gameObject);
         _headphones.DOFade(1f, _fadeDuration);
         yield return new WaitForSeconds(_fadeDuration);
         _headphones.DOFade(0f, _fadeDuration);
         yield return new WaitForSeconds(_fadeDuration);
-
+        */
         SceneManager.LoadScene("MainMenu");
     }
 }
