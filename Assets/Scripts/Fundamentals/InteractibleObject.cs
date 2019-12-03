@@ -198,7 +198,6 @@ public class InteractibleObject : DashInteractable
             gameObject.GetComponent<BurnObject>().SetObjectOnFire(hitpoint);
             //dialogRunner.StartDialogue("Break");
             movementController.UpdateFireAmount(-HealValue);
-            FindObjectOfType<PlayerActionsCollectorQA>().DataConteiner.DestroyedObjectsCount++;
             _breakablesParticleManager.PollBreakableParticles(hitpoint);
         }
         else

@@ -13,11 +13,11 @@ public class Torch : MonoBehaviour
 
     void Awake()
     {
-        _light = gameObject.GetComponentInChildren<Light>();
+        //_light = gameObject.GetComponentInChildren<Light>();
         flame.SetActive(false);
         /*var em = _flame.emission;
         em.enabled = false; */
-        _light.enabled = false;
+        //_light.enabled = false;
         audioEvents = new List<AudioEvent>(GetComponents<AudioEvent>());
     }
 
@@ -31,7 +31,7 @@ public class Torch : MonoBehaviour
         startflame.SetActive(true); 
         AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.Fireplace, audioEvents, gameObject);
         AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.Torch, audioEvents, gameObject);
-        _light.enabled = true;
+        //_light.enabled = true;
         Destroy(this);
     }
    /* private void OnCollisionEnter(Collision collision)
