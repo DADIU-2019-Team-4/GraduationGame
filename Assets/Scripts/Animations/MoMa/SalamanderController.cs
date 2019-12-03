@@ -9,19 +9,6 @@ namespace MoMa
     public class SalamanderController : MonoBehaviour
     {
         #region Vars
-        // TODO: This should happen offline. Instead we only need to open its result
-        //this._anim.Add(Packer.Pack("walk", "MoCapData", "walk_DEFAULT_FIX"));
-        //this._anim.Add(Packer.Pack("jog", "MoCapData", "jog3_DEFAULT_FIX"));
-        //this._anim.Add(Packer.Pack("acceleration", "MoCapData", "acceleration_DEFAULT_FIX"));
-        //this._anim.Add(Packer.Pack("run", "MoCapData", "Copy of run1_DEFAULT_FIX"));
-        //this._anim.Add(Packer.Pack("walk_continuous", "MoCapData", "walk_continuous2_DEFAULT_FIX"));
-        //this._anim.Add(Packer.Pack("circle_left", "MoCapData", "circle_left_DEFAULT_FIX"));
-        //this._anim.Add(Packer.Pack("circle_right", "MoCapData", "circle_right_DEFAULT_FIX"));
-        //this._anim.Add(Packer.Pack("salamander", "MoCapData", "salamander_walk_test"));
-        //this._anim.Add(Packer.Pack("run1right_DEFAULT_C26", "MoCapData", "run1right_DEFAULT_C26"));
-        //this._anim.Add(Packer.Pack("run2right_DEFAULT_C26", "MoCapData", "run2right_DEFAULT_C26"));
-        //this._anim.Add(Packer.Pack("runLeft_DEFAULT_C26", "MoCapData", "runLeft_DEFAULT_C26"));
-
         // Fine-tuning
         public const float RecalculationThreshold = 0.7f; // The maximum diff of two Trajectories before recalculating the Animation
         //public const float RecalculationThreshold = Mathf.Infinity; // The maximum diff of two Trajectories before recalculating the Animation
