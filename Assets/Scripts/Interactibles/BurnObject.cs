@@ -21,6 +21,8 @@ public class BurnObject : MonoBehaviour
     private Texture texture;
     private Material _defaultShader;
 
+    private Vector3 _burnOffset;
+
     [Range(0, 3f)]
     public float burnSpeed = 0.1f;
     public bool destroyAtTheEndOfFire = true;
@@ -78,6 +80,8 @@ public class BurnObject : MonoBehaviour
         {
             coll.enabled = false;
         }
+
+        _burnOffset = collisionPoint - transform.position;
         _renderer.material.SetVector("_StartPoint", collisionPoint);
         _fireObject = _fire;
         _fireObject.SetActive(true);
@@ -145,6 +149,7 @@ public class BurnObject : MonoBehaviour
             {
                 _burnedAmount += burnSpeed * Time.deltaTime;
                 fireFloat -= 0.05f;
+                _renderer.material.SetVector("_StartPoint", transform.position + _burnOffset);
                 _renderer.material.SetFloat("_T", _burnedAmount);
                 _fireObject.GetComponent<Renderer>().material.SetFloat("_FlameHeight", fireFloat);
             }
