@@ -166,7 +166,7 @@ public class InteractibleObject : DashInteractable
         if (movementController.CanAttachToPlane)
         {
             movementController.CanAttachToPlane = false;
-            gameObject.GetComponent<BurnObject>().SetObjectOnFire(new Vector3(0, 0, 0));
+            gameObject.GetComponent<BurnObject>().SetObjectOnFire(gameObject.transform.position);
             gameObject.GetComponent<DashInteractable>().Interact(GameObject.FindGameObjectWithTag("Player"));
             //movementController.CollideProjectile();
         }
