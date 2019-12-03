@@ -35,7 +35,7 @@ namespace MoMa
             // TODO: This exists for dubugging. Maybe it needs to be removed.
             //this._fc = fc;
         }
-        
+
         public Animation.Clip QueryClip(Trajectory.Snippet currentSnippet)
         {
             // 1. Reduce cooldowns (after the previous Clip has finished)
@@ -88,7 +88,7 @@ namespace MoMa
             //this._fc.DrawPath(currentSnippet);
 
             // 1. Find the Clips with the most fitting Trajectories
-            for (int i=0; i < this._anim.Count; i++)
+            for (int i = 0; i < this._anim.Count; i++)
             {
                 for (int j = 0; j < this._anim[i].featureList.Count; j++)
                 {
@@ -151,7 +151,7 @@ namespace MoMa
             }
 
             // 3. Normalize and add differences
-            for (int i=0; i < candidateFeatures.Count; i++)
+            for (int i = 0; i < candidateFeatures.Count; i++)
             {
                 if (maxPosePositionDiff > 0) candidateFeatures[i].posePositionDiff /= maxPosePositionDiff;
                 if (maxPoseVelocityDiff > 0) candidateFeatures[i].poseVelocityDiff /= maxPoseVelocityDiff;
@@ -163,7 +163,7 @@ namespace MoMa
                     winnerFeature;
             }
 
-            Debug.Log("Playing animation from \"" + this._anim[winnerFeature.Item2.animationNum].animationName "\"");
+            Debug.Log("Playing animation from \"" + this._anim[winnerFeature.Item2.animationNum].animationName + "\"");
 
             // TODO remove
             //this._fc.DrawAlternativePath(winnerFeature.Item2.feature.snippet, 1, winnerFeature.Item2.trajectoryDiff);
@@ -206,7 +206,7 @@ namespace MoMa
 
             if (anim == null)
             {
-                Debug.LogError("Unable to open MoMa Animation asset: " + Packer.AssetPath + "/"+ filename + Packer.AssetExtention);
+                Debug.LogError("Unable to open MoMa Animation asset: " + Packer.AssetPath + "/" + filename + Packer.AssetExtention);
             }
 
             return anim;
@@ -229,7 +229,7 @@ namespace MoMa
                 this.clipNum = clipNum;
                 this.posePositionDiff = Mathf.Infinity;
                 this.poseVelocityDiff = Mathf.Infinity;
-        }
+            }
         }
     }
 }
