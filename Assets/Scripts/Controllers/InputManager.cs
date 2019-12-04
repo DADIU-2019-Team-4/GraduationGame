@@ -269,7 +269,7 @@ public class InputManager : IGameLoop
         _dashCircle.transform.SetAsFirstSibling();
         float newXPos = position.x - Screen.width / 2;
         float newYpos = position.y - Screen.height / 2;
-        _dashCircle.transform.localPosition = new Vector3(newXPos, newYpos, 0);
+        _dashCircle.transform.localPosition = new Vector3(newXPos+1000000, newYpos, 0);
         _dashCircle.transform.localRotation = Quaternion.identity;
 
         _firstPosition = position;
