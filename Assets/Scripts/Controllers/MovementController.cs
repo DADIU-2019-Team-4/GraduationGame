@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
@@ -174,37 +174,43 @@ public class MovementController : MonoBehaviour
         }
     }
 
-    // TODO Ares: I need to call this at the start of the level, so that Sally can appear behind Lucy
     /// <summary>
     /// Places the Player to the start of the level and replenishes health.
     /// </summary>
-    public void Spawn()
+    public void Spawn(Vector3 position)
     {
-        // Reset Health
-        _currentFireAmount = MaxFireAmount;
-        UpdateFireAmount(0);
+        // Store spawning position
+        SpawnPosition = position;
+
+        // Move FireGirl to spawning position
+        transform.position = position;
         UpdateGoalDistances();
-        DisablePlayerCharacter(false);
-        _rigidBody.velocity = Vector3.zero;
-
-        if (StoryProgression.Value == StoryProgression.EStoryProgression.At_Tutorial)
-            transform.position = new Vector3(18, 0, -57);
-        else
-            transform.position = Vector3.zero;
-
-
-        // Set animator state 
-        _anim.Respawn();
 
         // Notify Sally
-        _salamanderController?.AddTarget(EventType.Respawn, transform.position);
+        _salamanderController?.AddTarget(EventType.Respawn, SpawnPosition);
     }
+
     /// <summary>
     /// Places the Player to the start of the level and replenishes health.
     /// </summary>
     public void Respawn()
     {
-        Spawn();
+        // Reset Health
+        _currentFireAmount = MaxFireAmount;
+        UpdateFireAmount(0);
+        UpdateGoalDistances();
+
+        // Reset position
+        DisablePlayerCharacter(false);
+        _rigidBody.velocity = Vector3.zero;
+        transform.position = SpawnPosition;
+
+        // Set animator state 
+        _anim.Respawn();
+
+        // Notify Sally
+        _salamanderController?.AddTarget(EventType.Respawn, SpawnPosition);
+
     }
 
     /// <summary>

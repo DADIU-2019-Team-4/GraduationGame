@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -124,13 +124,16 @@ public class LoadBaseSceneManager : IGameLoop
         _gamecontroller.NullifyBoxCollection();
 
     }
+
     private void ResetPlayerPos(string sceneName)
     {
-        if (sceneName == "Hub_1.0" && StoryProgression.Value == StoryProgression.EStoryProgression.At_Tutorial)
-            Player.transform.position = new Vector3(18, 0, -57);
-        else
-            Player.transform.position = Vector3.zero;
+        Player.GetComponent<MovementController>().Spawn(
+            (sceneName == "Hub_1.0" && StoryProgression.Value == StoryProgression.EStoryProgression.At_Tutorial) ?
+                TutorialSpawnPosition :
+                Vector3.zero
+            );
     }
+
     private void DownloadAssets()
     {
         //Loads Common assets, used in all scenes (MainPlayerScene)
