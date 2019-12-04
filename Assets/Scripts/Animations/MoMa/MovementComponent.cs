@@ -126,7 +126,7 @@ namespace MoMa
             for (int i = 0; i < afterFrames; i++)
             {
                 // Calculate next position (if one exists)
-                if (_targets.Count > 0)
+                if (_targets.Count > 1)
                 {
                     simulatedPosition = Step(
                         simulatedPosition,
