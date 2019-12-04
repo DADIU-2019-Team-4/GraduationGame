@@ -117,12 +117,14 @@ public class UINavigation : MonoBehaviour
         storyProgression.Value = StoryProgression.EStoryProgression.At_Tutorial;
         PlayerPrefs.SetInt("Progression", 0);
 
+        //SceneManager.LoadScene("Loading");
         SceneManager.LoadScene("MainPlayerScene");
         AudioEvent.PostEvent("NewGame", gameObject);
     }
 
     public void ContinueGame()
     {
+        //SceneManager.LoadScene("Loading");
         SceneManager.LoadScene("MainPlayerScene");
         AudioEvent.PostEvent("ContinueGame", gameObject);
     }
@@ -135,6 +137,11 @@ public class UINavigation : MonoBehaviour
 
         StartCoroutine(BurnOptionsMenu(2));
         AudioEvent.PostEvent("OpenOptions", gameObject);
+    }
+
+    public void Credits()
+    {
+        SceneManager.LoadScene("Credits");
     }
 
     public void ExitOptions()
@@ -339,8 +346,8 @@ public class UINavigation : MonoBehaviour
             burnValue = Mathf.Lerp(dissolveStartValue, 1f, timer / duration);
             burnGlow = Mathf.Lerp(burnGlowStartValue, 1f, timer / duration);
 
-            Debug.Log("burnValue: " + burnValue);
-            Debug.Log("burnGlow: " + burnGlow);
+            //Debug.Log("burnValue: " + burnValue);
+            //Debug.Log("burnGlow: " + burnGlow);
 
             _pauseMenu.transform.Find("Burn").GetComponent<Image>().material.SetFloat("_DissolveAmount", burnValue);
             _pauseMenu.transform.Find("Burn").GetComponent<Image>().material.SetFloat("_BurnGlow", burnGlow);
