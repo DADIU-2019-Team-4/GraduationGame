@@ -87,11 +87,17 @@ public class Game : MonoBehaviour
         }
     }
 
-    void HandleGameLoopException(System.Exception e)
+    private void HandleGameLoopException(System.Exception e)
     {
-        Debug.Log("EXCEPTION: " + e.Message + "\n" + e.StackTrace);
-        Time.timeScale = 0; // If certain game objects continue some behaviour, uncomment this line.
         inErrorState = true;
+        string msg = "EXCEPTION: " + e.Message + "\n" + e.StackTrace;
+        Time.timeScale = 0; // If certain game objects continue some behaviour, uncomment this line.
+#if UNITY_EDITOR
+        Debug.LogError(msg);
+#elif UNITY_ANDROID || UNITY_IOS || UNITY_STANDALONE
+        System.IO.File.WriteAllText(Application.persistentDataPath + e.GetType().ToString() + ".txt", msg);
+#endif
+
     }
 
     public void AddGameLoop(IGameLoop gameLoop) { LoopsToAdd.Add(gameLoop); }

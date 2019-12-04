@@ -21,7 +21,7 @@ public class OutOfBoundsColliders : MonoBehaviour
         }
         else
         {
-            Debug.Log("ISn't Parent");
+            //Debug.Log("ISn't Parent");
             rotation = new Quaternion(0, gameObject.transform.rotation.y, 0, 0);
         }
         var localRotation = gameObject.transform.rotation;

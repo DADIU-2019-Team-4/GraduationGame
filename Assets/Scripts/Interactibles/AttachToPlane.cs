@@ -50,7 +50,7 @@ public class AttachToPlane : MonoBehaviour
                     coll.gameObject.GetComponent<InteractibleObject>() != null
                     )
                 {
-                    Debug.Log(coll.gameObject.name + "was here");
+                    //Debug.Log(coll.gameObject.name + "was here");
                     coll.gameObject.GetComponent<InteractibleObject>().Interact(coll.transform.position);
                 }
             }
