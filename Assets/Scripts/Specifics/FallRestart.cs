@@ -17,7 +17,7 @@ public class FallRestart : MonoBehaviour
         if (transform.position.y < -10)
         {
             GetComponent<MovementController>().Respawn();
-            Debug.Log("YOU FELL THROUGH THE LEVEL");
+            //Debug.Log("YOU FELL THROUGH THE LEVEL");
         }
     }
 }

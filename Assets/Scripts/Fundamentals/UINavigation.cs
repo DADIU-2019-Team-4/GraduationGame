@@ -346,8 +346,8 @@ public class UINavigation : MonoBehaviour
             burnValue = Mathf.Lerp(dissolveStartValue, 1f, timer / duration);
             burnGlow = Mathf.Lerp(burnGlowStartValue, 1f, timer / duration);
 
-            Debug.Log("burnValue: " + burnValue);
-            Debug.Log("burnGlow: " + burnGlow);
+            //Debug.Log("burnValue: " + burnValue);
+            //Debug.Log("burnGlow: " + burnGlow);
 
             _pauseMenu.transform.Find("Burn").GetComponent<Image>().material.SetFloat("_DissolveAmount", burnValue);
             _pauseMenu.transform.Find("Burn").GetComponent<Image>().material.SetFloat("_BurnGlow", burnGlow);
