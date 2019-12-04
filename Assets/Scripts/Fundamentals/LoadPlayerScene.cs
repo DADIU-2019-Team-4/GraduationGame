@@ -12,6 +12,5 @@ public class LoadPlayerScene : MonoBehaviour
         SceneManager.LoadSceneAsync("MainPlayerScene", LoadSceneMode.Additive);
         Destroy(gameObject,10f);
         Time.timeScale = 1f;
-
     }
 }

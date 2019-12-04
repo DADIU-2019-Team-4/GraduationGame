@@ -34,6 +34,8 @@ public class UINavigation : MonoBehaviour
     public TMP_FontAsset NoGlowFont;
 
     public StoryProgression storyProgression;
+
+    private GameObject _loadVisuals;
     // Start is called before the first frame update
     void Awake()
     {
@@ -52,6 +54,9 @@ public class UINavigation : MonoBehaviour
             {
                 _continueButton.GetComponentInChildren<TextMeshProUGUI>().font = GlowFont;
             }
+
+            _loadVisuals = GameObject.FindGameObjectWithTag("LoadVisuals");
+            _loadVisuals.SetActive(false);
         }
 
 
@@ -114,19 +119,22 @@ public class UINavigation : MonoBehaviour
 
     public void NewGame()
     {
+        _loadVisuals.SetActive(true);
         storyProgression.Value = StoryProgression.EStoryProgression.At_Tutorial;
         PlayerPrefs.SetInt("Progression", 0);
-
         //SceneManager.LoadScene("Loading");
-        SceneManager.LoadScene("MainPlayerScene");
         AudioEvent.PostEvent("NewGame", gameObject);
+        SceneManager.LoadScene("MainPlayerScene");
+
     }
 
     public void ContinueGame()
     {
+        _loadVisuals.SetActive(true);
         //SceneManager.LoadScene("Loading");
-        SceneManager.LoadScene("MainPlayerScene");
         AudioEvent.PostEvent("ContinueGame", gameObject);
+        SceneManager.LoadScene("MainPlayerScene");
+
     }
 
     public void OpenOptions()
@@ -231,9 +239,10 @@ public class UINavigation : MonoBehaviour
 
     }
 
-    public void ExitPauseMenu()
+    public void EnterCreditsScene()
     {
 
+        SceneManager.LoadScene("Credits");
     }
 
     public void GoToMainMenu()

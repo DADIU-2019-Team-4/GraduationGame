@@ -96,6 +96,8 @@ public class MovementController : MonoBehaviour
 
     public Vector3 TargetPosition { get; set; }
 
+    public Vector3 SpawnPosition { get; set; }
+
     public StoryProgression StoryProgression;
 
     #endregion
@@ -103,6 +105,8 @@ public class MovementController : MonoBehaviour
     #region Private Editor Fields
 
     private readonly float MaxFireAmount = 100f;
+    private readonly float MinLifeChargeValue = 0.02f;
+    private readonly float MaxLifeChargeValue = 1.02f;
 
     private GameController _gameController;
     private FireGirlAnimationController _anim;
@@ -117,8 +121,6 @@ public class MovementController : MonoBehaviour
     private float _damageTimer;
     private bool _dashIntent;
     private float _lifeChargeValue;
-    private float _minLifeChargeValue = 0.02f;
-    private float _maxLifeChargeValue = 1.02f;
     private Vector3 _startPosition;
     private Vector3 _goalPosition;
 
@@ -172,37 +174,43 @@ public class MovementController : MonoBehaviour
         }
     }
 
-    // TODO Ares: I need to call this at the start of the level, so that Sally can appear behind Lucy
     /// <summary>
     /// Places the Player to the start of the level and replenishes health.
     /// </summary>
-    public void Spawn()
+    public void Spawn(Vector3 position)
     {
-        // Reset Health
-        _currentFireAmount = MaxFireAmount;
-        UpdateFireAmount(0);
+        // Store spawning position
+        SpawnPosition = position;
+
+        // Move FireGirl to spawning position
+        transform.position = position;
         UpdateGoalDistances();
-        DisablePlayerCharacter(false);
-        _rigidBody.velocity = Vector3.zero;
-
-        if (StoryProgression.Value == StoryProgression.EStoryProgression.At_Tutorial)
-            transform.position = new Vector3(18, 0, -57);
-        else
-            transform.position = Vector3.zero;
-
-
-        // Set animator state 
-        _anim.Respawn();
 
         // Notify Sally
-        _salamanderController?.AddTarget(EventType.Respawn, transform.position);
+        _salamanderController?.AddTarget(EventType.Respawn, SpawnPosition);
     }
+
     /// <summary>
     /// Places the Player to the start of the level and replenishes health.
     /// </summary>
     public void Respawn()
     {
-        Spawn();
+        // Reset Health
+        _currentFireAmount = MaxFireAmount;
+        UpdateFireAmount(0);
+        UpdateGoalDistances();
+
+        // Reset position
+        DisablePlayerCharacter(false);
+        _rigidBody.velocity = Vector3.zero;
+        transform.position = SpawnPosition;
+
+        // Set animator state 
+        _anim.Respawn();
+
+        // Notify Sally
+        _salamanderController?.AddTarget(EventType.Respawn, SpawnPosition);
+
     }
 
     /// <summary>
@@ -382,7 +390,7 @@ public class MovementController : MonoBehaviour
         // Notify Sally
         _salamanderController?.AddTarget(EventType.Die, targetPosition);
 
-        Vibration.Vibrate(150);
+        Vibration.Vibrate(600);
     }
 
     /// <summary>
@@ -575,7 +583,7 @@ public class MovementController : MonoBehaviour
     /// </summary>
     private void UpdateLifeBar()
     {
-        _lifeChargeValue = (1 - _currentFireAmount / MaxFireAmount) + _minLifeChargeValue;
+        _lifeChargeValue = (1 - _currentFireAmount / MaxFireAmount) + MinLifeChargeValue;
         _lifeBar.material.SetFloat("_Charge", _lifeChargeValue);
 
         if (_currentFireAmount >= MaxFireAmount)

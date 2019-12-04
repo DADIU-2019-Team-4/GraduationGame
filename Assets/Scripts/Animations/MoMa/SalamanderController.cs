@@ -9,6 +9,9 @@ namespace MoMa
     public class SalamanderController : MonoBehaviour
     {
         #region Vars
+        // Flags whether we should recalculate Animations with Packer or load the existing ones (stored as Assets)
+        public const bool RecalculateAnimationsFlag = true;
+
         // Fine-tuning
         public const float RecalculationThreshold = 0.7f; // The maximum diff of two Trajectories before recalculating the Animation
         //public const float RecalculationThreshold = Mathf.Infinity; // The maximum diff of two Trajectories before recalculating the Animation
@@ -18,12 +21,12 @@ namespace MoMa
 
         // Frame/Point/Feature ratios
         // FeaturePoints % FeatureEveryPoints should be 0
-        public const int SkipFrames = 3;  // Take 1 Frame every SkipFrames in the Animation file
-        public const int FeaturePoints = 3;  // Trajectory.Points per Feature. The lower the number, the shorter time the Feature covers
+        public const int SkipFrames = 3;  // 3; Take 1 Frame every SkipFrames in the Animation file
+        public const int FeaturePoints = 6;  // 3; Trajectory.Points per Feature. The lower the number, the shorter time the Feature covers
         public const int FeaturePastPoints = 4;  // The number of Points in the past that is used in a Snippet. The lower the number, the lower the fidelity
         public const int FeatureEveryPoints = 3;  // Trajectory.Points per Feature. The lower the nuber, the shorter time the Feature covers
         // FramesPerPoint % 2 should be 0
-        public const int FramesPerPoint = 4;    // Animation.Frames per Trajectory.Point. The lower the number, the denser the Trajectory points will be.
+        public const int FramesPerPoint = 20;    // 4; Animation.Frames per Trajectory.Point. The lower the number, the denser the Trajectory points will be.
 
         public const int FramesPerFeature = FramesPerPoint * FeaturePoints;  // Animation.Frames per Feature
         public const int FeatureStep = FeaturePoints / FeatureEveryPoints;  // Features overlap generally. This is the distance between two matching Features.
@@ -32,7 +35,7 @@ namespace MoMa
         // Movement
         public const float DefaultDampTime = 1f;
         public const float StopDampTime = 3f;
-        public const float WalkingSpeed = 1.70f;
+        public const float WalkingSpeed = 2.40f;    // 1.70f;
         public const float RunningSpeed = 2.4f;
 
         private MovementComponent _mc;
@@ -50,8 +53,8 @@ namespace MoMa
         {
             List<string> animationFiles = new List<string>();
             animationFiles.Add("take-1_DEFAULT_C26");
-            animationFiles.Add("take-2_DEFAULT_C26");
-            animationFiles.Add("take-3_DEFAULT_C26");
+            //animationFiles.Add("take-2_DEFAULT_C26");
+            //animationFiles.Add("take-3_DEFAULT_C26");
             //animationFiles.Add("take-4_DEFAULT_C26");
             //animationFiles.Add("take-5_DEFAULT_C26");
             //animationFiles.Add("take-6_DEFAULT_C26");
@@ -61,7 +64,7 @@ namespace MoMa
             this._mc = new MovementComponent(this._model);
             this._fc = new FollowerComponent(this._model);
             this._ac = new AnimationComponent(this._model);
-            this._rc = new RuntimeComponent(this._fc, animationFiles);
+            this._rc = new RuntimeComponent(this._fc, animationFiles, RecalculateAnimationsFlag);
 
             if (this._model == null)
             {
