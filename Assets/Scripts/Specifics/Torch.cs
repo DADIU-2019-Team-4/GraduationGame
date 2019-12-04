@@ -16,7 +16,8 @@ public class Torch : MonoBehaviour
         if (gameObject.CompareTag("torchWall"))
         {
             _light = gameObject.GetComponentInChildren<Light>();
-            _light.enabled = false;
+            if (_light != null)
+                _light.enabled = false;
         }
         
         flame.SetActive(false);
@@ -34,7 +35,8 @@ public class Torch : MonoBehaviour
          em.enabled = true; */
         if (gameObject.CompareTag("torchWall"))
         {
-            _light.enabled = true;
+            if (_light != null)
+                _light.enabled = true;
         }
 
         flame.SetActive(true);
