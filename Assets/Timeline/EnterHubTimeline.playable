@@ -1,5 +1,97 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8960674563250752911
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fc19e70981a806419a2c1a400c5f80f, type: 3}
+  m_Name: Ak Event Track (1)
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_AnimClip: {fileID: 0}
+  m_Locked: 0
+  m_Muted: 0
+  m_CustomPlayableFullTypename: 
+  m_Curves: {fileID: 0}
+  m_Parent: {fileID: 11400000}
+  m_Children: []
+  m_Clips:
+  - m_Version: 1
+    m_Start: 10.316666666666666
+    m_ClipIn: 0
+    m_Asset: {fileID: 2603225833356998515}
+    m_Duration: 1000000
+    m_TimeScale: 1
+    m_ParentTrack: {fileID: -8960674563250752911}
+    m_EaseInDuration: 0
+    m_EaseOutDuration: 0
+    m_BlendInDuration: -1
+    m_BlendOutDuration: -1
+    m_MixInCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_MixOutCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_BlendInCurveMode: 0
+    m_BlendOutCurveMode: 0
+    m_ExposedParameterNames: []
+    m_AnimationCurves: {fileID: 0}
+    m_Recordable: 0
+    m_PostExtrapolationMode: 0
+    m_PreExtrapolationMode: 0
+    m_PostExtrapolationTime: 0
+    m_PreExtrapolationTime: 0
+    m_DisplayName: Landing
+  m_Markers:
+    m_Objects: []
 --- !u!114 &-7896464980272507472
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -92,7 +184,7 @@ MonoBehaviour:
     m_Start: 9.316666666666666
     m_ClipIn: 0
     m_Asset: {fileID: 9035493141659604187}
-    m_Duration: 11.25
+    m_Duration: 1000000
     m_TimeScale: 1
     m_ParentTrack: {fileID: -5658264092988357250}
     m_EaseInDuration: 0
@@ -175,6 +267,33 @@ MonoBehaviour:
   VirtualCamera:
     exposedName: 7f1a4325efe1745dd8db9434c051aaac
     defaultValue: {fileID: 0}
+--- !u!114 &-4855854554613491951
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cb4fb0ade2d3bf41bb2615705b52824, type: 3}
+  m_Name: AkEventPlayable
+  m_EditorClassIdentifier: 
+  akEvent:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: df67a4c7e33426543b3b90f898d8d5b4,
+      type: 2}
+  blendInCurve: 4
+  blendOutCurve: 4
+  emitterObjectRef:
+    exposedName: 7efc24f2186502f4eabb3ae941e4d561
+    defaultValue: {fileID: 0}
+  eventDurationMax: 4615396
+  eventDurationMin: 4615396
+  retriggerEvent: 0
+  UseWwiseEventDuration: 1
+  StopEventAtClipEnd: 1
 --- !u!114 &-4610405487622043408
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -554,11 +673,133 @@ MonoBehaviour:
   - {fileID: 6060141580815399082}
   - {fileID: -1033961550110130416}
   - {fileID: 2219565936008660832}
+  - {fileID: 804659130230501148}
+  - {fileID: -8960674563250752911}
+  - {fileID: 2034865573385727342}
   m_FixedDuration: 0
   m_EditorSettings:
     m_Framerate: 60
   m_DurationMode: 0
   m_MarkerTrack: {fileID: -4610405487622043408}
+--- !u!114 &804659130230501148
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fc19e70981a806419a2c1a400c5f80f, type: 3}
+  m_Name: Ak Event Track
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_AnimClip: {fileID: 0}
+  m_Locked: 0
+  m_Muted: 0
+  m_CustomPlayableFullTypename: 
+  m_Curves: {fileID: 0}
+  m_Parent: {fileID: 11400000}
+  m_Children: []
+  m_Clips:
+  - m_Version: 1
+    m_Start: 9.316666666666666
+    m_ClipIn: 0
+    m_Asset: {fileID: -4855854554613491951}
+    m_Duration: 1000000
+    m_TimeScale: 1
+    m_ParentTrack: {fileID: 804659130230501148}
+    m_EaseInDuration: 0
+    m_EaseOutDuration: 0
+    m_BlendInDuration: -1
+    m_BlendOutDuration: -1
+    m_MixInCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_MixOutCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_BlendInCurveMode: 0
+    m_BlendOutCurveMode: 0
+    m_ExposedParameterNames: []
+    m_AnimationCurves: {fileID: 0}
+    m_Recordable: 0
+    m_PostExtrapolationMode: 0
+    m_PreExtrapolationMode: 0
+    m_PostExtrapolationTime: 0
+    m_PreExtrapolationTime: 0
+    m_DisplayName: Light
+  m_Markers:
+    m_Objects: []
+--- !u!114 &988627778746776822
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cb4fb0ade2d3bf41bb2615705b52824, type: 3}
+  m_Name: AkEventPlayable
+  m_EditorClassIdentifier: 
+  akEvent:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: 4edfe79a1e4f1014992648e9b39a5242,
+      type: 2}
+  blendInCurve: 4
+  blendOutCurve: 4
+  emitterObjectRef:
+    exposedName: 1740d7cab34650b419db91e6cd52383d
+    defaultValue: {fileID: 0}
+  eventDurationMax: 15426596
+  eventDurationMin: 13352283
+  retriggerEvent: 0
+  UseWwiseEventDuration: 1
+  StopEventAtClipEnd: 1
 --- !u!114 &1956695003446906408
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -571,6 +812,98 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fde0d25a170598d46a0b9dc16b4527a5, type: 3}
   m_Name: ActivationPlayableAsset
   m_EditorClassIdentifier: 
+--- !u!114 &2034865573385727342
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fc19e70981a806419a2c1a400c5f80f, type: 3}
+  m_Name: Ak Event Track (2)
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_AnimClip: {fileID: 0}
+  m_Locked: 0
+  m_Muted: 0
+  m_CustomPlayableFullTypename: 
+  m_Curves: {fileID: 0}
+  m_Parent: {fileID: 11400000}
+  m_Children: []
+  m_Clips:
+  - m_Version: 1
+    m_Start: 0.8666666666666667
+    m_ClipIn: 0
+    m_Asset: {fileID: 988627778746776822}
+    m_Duration: 1000000
+    m_TimeScale: 1
+    m_ParentTrack: {fileID: 2034865573385727342}
+    m_EaseInDuration: 0
+    m_EaseOutDuration: 0
+    m_BlendInDuration: -1
+    m_BlendOutDuration: -1
+    m_MixInCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_MixOutCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_BlendInCurveMode: 0
+    m_BlendOutCurveMode: 0
+    m_ExposedParameterNames: []
+    m_AnimationCurves: {fileID: 0}
+    m_Recordable: 0
+    m_PostExtrapolationMode: 0
+    m_PreExtrapolationMode: 0
+    m_PostExtrapolationTime: 0
+    m_PreExtrapolationTime: 0
+    m_DisplayName: StopFuse
+  m_Markers:
+    m_Objects: []
 --- !u!114 &2219565936008660832
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -664,6 +997,33 @@ MonoBehaviour:
   m_Markers:
     m_Objects: []
   m_PostPlaybackState: 3
+--- !u!114 &2603225833356998515
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cb4fb0ade2d3bf41bb2615705b52824, type: 3}
+  m_Name: AkEventPlayable
+  m_EditorClassIdentifier: 
+  akEvent:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: a9080f43a269e6b4d9add05a38afa747,
+      type: 2}
+  blendInCurve: 4
+  blendOutCurve: 4
+  emitterObjectRef:
+    exposedName: b090b2c56748e934f8671d1113237438
+    defaultValue: {fileID: 0}
+  eventDurationMax: 1384625
+  eventDurationMin: 1384625
+  retriggerEvent: 0
+  UseWwiseEventDuration: 1
+  StopEventAtClipEnd: 1
 --- !u!114 &2685351106600596053
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -29,6 +29,8 @@
 				<Event Id="1429775881" Name="BumpIntoTeddyBear" ObjectPath="\Events\Environment\BumpInto\BumpIntoTeddyBear" DurationType="OneShot" DurationMin="1.222435" DurationMax="4.740915"/>
 				<Event Id="1705735554" Name="BumpIntoWalls" ObjectPath="\Events\Environment\BumpInto\BumpIntoWalls" DurationType="OneShot" DurationMin="0.941449" DurationMax="1.119577"/>
 				<Event Id="3740361716" Name="BumpIntoWood" ObjectPath="\Events\Environment\BumpInto\BumpIntoWood" DurationType="OneShot" DurationMin="1.222435" DurationMax="4.740915"/>
+				<Event Id="2514321718" Name="BurnBaby" ObjectPath="\Events\CutsceneSound\Cutscene_04\BurnBaby" DurationType="OneShot" DurationMin="29.310865" DurationMax="29.310865"/>
+				<Event Id="3967533870" Name="BurnMomsHair" ObjectPath="\Events\CutsceneSound\Cutscene_03\BurnMomsHair" DurationType="OneShot" DurationMin="16.615396" DurationMax="16.615396"/>
 				<Event Id="1065411945" Name="BurnSmallObjects" ObjectPath="\Events\Character\Objects\BurnSmallObjects" DurationType="OneShot" DurationMin="1.222435" DurationMax="1.466959"/>
 				<Event Id="2758237675" Name="ChangeLanguageToDanish" ObjectPath="\Events\Menu\OptionsMenu\ChangeLanguageToDanish" DurationType="OneShot" DurationMin="1.249675" DurationMax="2.884625"/>
 				<Event Id="3205496764" Name="ChangeLanguageToEnglish" ObjectPath="\Events\Menu\OptionsMenu\ChangeLanguageToEnglish" DurationType="OneShot" DurationMin="1.249675" DurationMax="2.884625"/>
@@ -38,8 +40,6 @@
 				<Event Id="889138964" Name="ContinueGame" ObjectPath="\Events\Menu\OptionsMenu\ContinueGame" DurationType="OneShot" DurationMin="1.525674" DurationMax="1.712512"/>
 				<Event Id="1522595433" Name="Credits_Music" ObjectPath="\Events\Music\Credits_Music" DurationType="Infinite"/>
 				<Event Id="1750432780" Name="DadsMouth" ObjectPath="\Events\Environment\Fireplace\DadsMouth" MaxAttenuation="10.000000" DurationType="Infinite"/>
-				<Event Id="991018855" Name="DangerZoneIn" ObjectPath="\Events\Environment\DangerZone\DangerZoneIn" MaxAttenuation="0.000000" DurationType="OneShot" DurationMin="0.000000" DurationMax="0.000000"/>
-				<Event Id="2096427994" Name="DangerZoneOut" ObjectPath="\Events\Environment\DangerZone\DangerZoneOut" MaxAttenuation="0.000000" DurationType="OneShot" DurationMin="0.000000" DurationMax="0.000000"/>
 				<Event Id="2850533655" Name="DashCancel" ObjectPath="\Events\Character\Dashing\DashCancel" MaxAttenuation="0.000000" DurationType="OneShot" DurationMin="0.000000" DurationMax="0.000000"/>
 				<Event Id="2044049779" Name="Dead" ObjectPath="\Events\Character\PlayerHealth\Dead" DurationType="OneShot" DurationMin="8.857146" DurationMax="8.857146"/>
 				<Event Id="679539432" Name="DeathObject" ObjectPath="\Events\Character\Objects\DeathObject" DurationType="Infinite"/>
@@ -47,19 +47,24 @@
 				<Event Id="91804985" Name="ExitOptions" ObjectPath="\Events\Menu\OptionsMenu\ExitOptions" DurationType="OneShot" DurationMin="1.249675" DurationMax="2.884625"/>
 				<Event Id="1908168848" Name="ExitPauseMenu" ObjectPath="\Events\Menu\OptionsMenu\ExitPauseMenu" DurationType="OneShot" DurationMin="1.525674" DurationMax="1.712512"/>
 				<Event Id="1404152342" Name="Fireplace" ObjectPath="\Events\Environment\Fireplace\Fireplace" MaxAttenuation="100.000000" DurationType="Infinite"/>
+				<Event Id="1121922920" Name="Gate" ObjectPath="\Events\CutsceneSound\Cutscene_01\Gate" DurationType="OneShot" DurationMin="3.073750" DurationMax="3.073750"/>
 				<Event Id="1822606759" Name="GateUnlocked" ObjectPath="\Events\Character\Objects\GateUnlocked" DurationType="OneShot" DurationMin="10.328459" DurationMax="10.328459"/>
 				<Event Id="2499528146" Name="GoToMainMenu" ObjectPath="\Events\Menu\OptionsMenu\GoToMainMenu" DurationType="OneShot" DurationMin="1.525674" DurationMax="1.712512"/>
+				<Event Id="646625288" Name="Huh" ObjectPath="\Events\CutsceneSound\Cutscene_01\Huh" DurationType="OneShot" DurationMin="0.737914" DurationMax="0.737914"/>
 				<Event Id="90462293" Name="HurtPlayer" ObjectPath="\Events\Character\PlayerHealth\HurtPlayer" DurationType="OneShot" DurationMin="0.533244" DurationMax="3.466058"/>
+				<Event Id="2548270042" Name="Landing" ObjectPath="\Events\CutsceneSound\Cutscene_02\Landing" DurationType="OneShot" DurationMin="1.384625" DurationMax="1.384625"/>
+				<Event Id="2053164585" Name="LastTorch" ObjectPath="\Events\CutsceneSound\Cutscene_04\LastTorch" MaxAttenuation="100.000000" DurationType="OneShot" DurationMin="4.250634" DurationMax="4.771175"/>
+				<Event Id="1935470627" Name="Light" ObjectPath="\Events\CutsceneSound\Cutscene_02\Light" DurationType="OneShot" DurationMin="4.615396" DurationMax="4.615396"/>
 				<Event Id="943969687" Name="NewGame" ObjectPath="\Events\Menu\MainMenu\NewGame" DurationType="OneShot" DurationMin="1.525674" DurationMax="1.712512"/>
 				<Event Id="1016929228" Name="NormalDash" ObjectPath="\Events\Character\Dashing\NormalDash" DurationType="OneShot" DurationMin="1.601180" DurationMax="3.271523"/>
-				<Event Id="428947066" Name="OffPlane" ObjectPath="\Events\Character\PaperPlane\OffPlane" MaxAttenuation="15.000000" DurationType="OneShot" DurationMin="1.044935" DurationMax="1.044935"/>
+				<Event Id="428947066" Name="OffPlane" ObjectPath="\Events\Character\PaperPlane\OffPlane" MaxAttenuation="10.000000" DurationType="OneShot" DurationMin="1.044935" DurationMax="1.044935"/>
 				<Event Id="1766390728" Name="OffRope" ObjectPath="\Events\Character\RopeMechanic\OffRope" DurationType="OneShot" DurationMin="1.601180" DurationMax="1.904135"/>
-				<Event Id="4028171492" Name="OnPlane" ObjectPath="\Events\Character\PaperPlane\OnPlane" MaxAttenuation="15.000000" DurationType="OneShot" DurationMin="0.461542" DurationMax="0.461542"/>
+				<Event Id="4028171492" Name="OnPlane" ObjectPath="\Events\Character\PaperPlane\OnPlane" MaxAttenuation="10.000000" DurationType="OneShot" DurationMin="0.461542" DurationMax="0.461542"/>
 				<Event Id="2346684474" Name="OnRope" ObjectPath="\Events\Character\RopeMechanic\OnRope" DurationType="Infinite"/>
 				<Event Id="3806663565" Name="OpenOptions" ObjectPath="\Events\Menu\MainMenu\OpenOptions" DurationType="OneShot" DurationMin="1.525674" DurationMax="1.712512"/>
 				<Event Id="744585444" Name="OptionsTones" ObjectPath="\Events\Menu\OptionsMenu\OptionsTones" MaxAttenuation="0.000000" DurationType="OneShot" DurationMin="0.000000" DurationMax="0.000000"/>
 				<Event Id="1933716535" Name="PaperPlaneDead" ObjectPath="\Events\Character\PaperPlane\PaperPlaneDead" MaxAttenuation="0.000000" DurationType="OneShot" DurationMin="0.000000" DurationMax="0.000000"/>
-				<Event Id="948186658" Name="PaperPlaneSpawn" ObjectPath="\Events\Character\PaperPlane\PaperPlaneSpawn" MaxAttenuation="15.000000" DurationType="Infinite"/>
+				<Event Id="948186658" Name="PaperPlaneSpawn" ObjectPath="\Events\Character\PaperPlane\PaperPlaneSpawn" MaxAttenuation="10.000000" DurationType="Infinite"/>
 				<Event Id="1091851954" Name="PictureOff_01" ObjectPath="\Events\Character\Objects\Pictures\PictureOff_01" MaxAttenuation="0.000000" DurationType="OneShot" DurationMin="0.000000" DurationMax="0.000000"/>
 				<Event Id="1091851953" Name="PictureOff_02" ObjectPath="\Events\Character\Objects\Pictures\PictureOff_02" MaxAttenuation="0.000000" DurationType="OneShot" DurationMin="0.000000" DurationMax="0.000000"/>
 				<Event Id="1091851952" Name="PictureOff_03" ObjectPath="\Events\Character\Objects\Pictures\PictureOff_03" MaxAttenuation="0.000000" DurationType="OneShot" DurationMin="0.000000" DurationMax="0.000000"/>
@@ -77,9 +82,11 @@
 				<Event Id="1539660446" Name="RoomTone_01" ObjectPath="\Events\Environment\RoomTones\RoomTone_01" DurationType="Infinite"/>
 				<Event Id="1539660445" Name="RoomTone_02" ObjectPath="\Events\Environment\RoomTones\RoomTone_02" DurationType="Infinite"/>
 				<Event Id="1090191588" Name="RoomTone_Hub" ObjectPath="\Events\Environment\RoomTones\RoomTone_Hub" DurationType="Infinite"/>
+				<Event Id="3068514774" Name="StopFuse" ObjectPath="\Events\CutsceneSound\Cutscene_02\StopFuse" DurationType="OneShot" DurationMin="13.352283" DurationMax="15.426596"/>
 				<Event Id="1904864137" Name="Torch" ObjectPath="\Events\Environment\Fireplace\Torches\Torch" MaxAttenuation="10.000000" DurationType="Infinite"/>
+				<Event Id="1577233363" Name="TorchTurnOn" ObjectPath="\Events\CutsceneSound\Cutscene_04\TorchTurnOn" MaxAttenuation="100.000000" DurationType="OneShot" DurationMin="4.250634" DurationMax="4.771175"/>
 				<Event Id="359881691" Name="Tutorial_Music" ObjectPath="\Events\Music\Tutorial_Music" DurationType="Infinite"/>
-				<Event Id="241064061" Name="WallShooterStatic" ObjectPath="\Events\Character\PaperPlane\WallShooterStatic" MaxAttenuation="15.000000" DurationType="Infinite"/>
+				<Event Id="241064061" Name="WallShooterStatic" ObjectPath="\Events\Character\PaperPlane\WallShooterStatic" MaxAttenuation="10.000000" DurationType="Infinite"/>
 				<Event Id="2312877492" Name="WaterSprayOff" ObjectPath="\Events\Environment\WaterStuff\WaterSpray\WaterSprayOff" MaxAttenuation="15.000000" DurationType="OneShot" DurationMin="1.846167" DurationMax="1.846167"/>
 				<Event Id="441114158" Name="WaterSprayOn" ObjectPath="\Events\Environment\WaterStuff\WaterSpray\WaterSprayOn" MaxAttenuation="15.000000" DurationType="Infinite"/>
 				<Event Id="3044105157" Name="WinPuzzle" ObjectPath="\Events\InGame_UI\WinPuzzle" DurationType="OneShot" DurationMin="6.634625" DurationMax="6.634625"/>
@@ -197,6 +204,10 @@
 					<ShortName>speak_reaction_16_laugh.wav</ShortName>
 					<Path>SFX\speak_reaction_16_laugh_939F2E4D.wem</Path>
 				</File>
+				<File Id="119404079" Language="SFX">
+					<ShortName>IntroCutscene_gate.wav</ShortName>
+					<Path>SFX\IntroCutscene_gate_27020439.wem</Path>
+				</File>
 				<File Id="121675940" Language="SFX">
 					<ShortName>room0202_emotion01-112bpm.wav</ShortName>
 					<Path>SFX\room0202_emotion01-112bpm_4EA6E607.wem</Path>
@@ -204,6 +215,10 @@
 				<File Id="127877563" Language="SFX">
 					<ShortName>BurnObjectSweetner_02.wav</ShortName>
 					<Path>SFX\BurnObjectSweetner_02_27020439.wem</Path>
+				</File>
+				<File Id="130027379" Language="SFX">
+					<ShortName>Cutscene02_landing.wav</ShortName>
+					<Path>SFX\Cutscene02_landing_27020439.wem</Path>
 				</File>
 				<File Id="132104140" Language="SFX">
 					<ShortName>TeddyBear01.wav</ShortName>
@@ -427,7 +442,7 @@
 				</File>
 				<File Id="426260354" Language="SFX">
 					<ShortName>TorchTurnOn_02.wav</ShortName>
-					<Path>SFX\TorchTurnOn_02_7C86AA96.wem</Path>
+					<Path>SFX\TorchTurnOn_02_7163A124.wem</Path>
 				</File>
 				<File Id="444839901" Language="SFX">
 					<ShortName>power_dash_voice_04.wav</ShortName>
@@ -489,6 +504,10 @@
 					<ShortName>room0201_bassdrum01-112bpm.wav</ShortName>
 					<Path>SFX\room0201_bassdrum01-112bpm_4EA6E607.wem</Path>
 				</File>
+				<File Id="507083887" Language="SFX">
+					<ShortName>speak_reaction_14_huh.wav</ShortName>
+					<Path>SFX\speak_reaction_14_huh_27020439.wem</Path>
+				</File>
 				<File Id="511621923" Language="SFX">
 					<ShortName>StopDash_06.wav</ShortName>
 					<Path>SFX\StopDash_06_27020439.wem</Path>
@@ -496,6 +515,10 @@
 				<File Id="512769563" Language="SFX">
 					<ShortName>SlowPropsBurn_03.wav</ShortName>
 					<Path>SFX\SlowPropsBurn_03_27020439.wem</Path>
+				</File>
+				<File Id="529448812" Language="SFX">
+					<ShortName>Cutscene02_lights.wav</ShortName>
+					<Path>SFX\Cutscene02_lights_27020439.wem</Path>
 				</File>
 				<File Id="531031031" Language="SFX">
 					<ShortName>Books_on_Asphalt_Dropping_onto_Ground_Bouncing_OCP-1223-063-01.wav</ShortName>
@@ -561,9 +584,17 @@
 					<ShortName>TeddyBearHonk.wav</ShortName>
 					<Path>SFX\TeddyBearHonk_27020439.wem</Path>
 				</File>
+				<File Id="611490854" Language="SFX">
+					<ShortName>Cutscene04_BurnBaby.wav</ShortName>
+					<Path>SFX\Cutscene04_BurnBaby_6394F356.wem</Path>
+				</File>
 				<File Id="615102056" Language="SFX">
 					<ShortName>charging_dash_voice_01.wav</ShortName>
 					<Path>SFX\charging_dash_voice_01_27020439.wem</Path>
+				</File>
+				<File Id="618658422" Language="SFX">
+					<ShortName>45650__elonen__fuse-burning-48khz.wav</ShortName>
+					<Path>SFX\45650__elonen__fuse-burning-48khz_72979021.wem</Path>
 				</File>
 				<File Id="621661335" Language="SFX">
 					<ShortName>Books_on_Asphalt_Dropping_onto_Ground_Bouncing_OCP-1223-063-01.wav</ShortName>
@@ -592,6 +623,10 @@
 				<File Id="668718055" Language="SFX">
 					<ShortName>BurnObjectSweetner_01.wav</ShortName>
 					<Path>SFX\BurnObjectSweetner_01_27020439.wem</Path>
+				</File>
+				<File Id="669144702" Language="SFX">
+					<ShortName>316682__theneedle-tv__sparkler-fuse-nm.wav</ShortName>
+					<Path>SFX\316682__theneedle-tv__sparkler-fuse-nm_34B174B4.wem</Path>
 				</File>
 				<File Id="670956965" Language="SFX">
 					<ShortName>Torch_01.wav</ShortName>
@@ -652,6 +687,10 @@
 				<File Id="751548621" Language="SFX">
 					<ShortName>StopDash_07.wav</ShortName>
 					<Path>SFX\StopDash_07_27020439.wem</Path>
+				</File>
+				<File Id="759017616" Language="SFX">
+					<ShortName>184519__soundslikewillem__fuse.wav</ShortName>
+					<Path>SFX\184519__soundslikewillem__fuse_CE124087.wem</Path>
 				</File>
 				<File Id="760175959" Language="SFX">
 					<ShortName>speak_reaction_47_hurt.wav</ShortName>
@@ -724,6 +763,14 @@
 				<File Id="817964240" Language="SFX">
 					<ShortName>credits_loop01-112bpm.wav</ShortName>
 					<Path>SFX\credits_loop01-112bpm_4EA6E607.wem</Path>
+				</File>
+				<File Id="823987737" Language="SFX">
+					<ShortName>Cutscene03_BurnHair.wav</ShortName>
+					<Path>SFX\Cutscene03_BurnHair_27020439.wem</Path>
+				</File>
+				<File Id="829418808" Language="SFX">
+					<ShortName>OnRope_04.wav</ShortName>
+					<Path>SFX\OnRope_04_27020439.wem</Path>
 				</File>
 				<File Id="835620909" Language="SFX">
 					<ShortName>BumpIntoConcrete_01.wav</ShortName>
