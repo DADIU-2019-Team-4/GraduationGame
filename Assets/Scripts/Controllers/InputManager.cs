@@ -40,7 +40,7 @@ public class InputManager : IGameLoop
         _movementController = FindObjectOfType<MovementController>();
         _gameController = FindObjectOfType<GameController>();
         _arrowParent = GameObject.FindGameObjectWithTag("Arrow");
-        _canvas = GameObject.FindGameObjectWithTag("MainCanvas");
+        _canvas = GameObject.FindGameObjectWithTag("PopUpCanvas");
     }
 
     private void Start()

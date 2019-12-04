@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using System;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 
 namespace MoMa
 {
@@ -239,9 +241,12 @@ namespace MoMa
 
         private Animation LoadPackedAnimationFile(string filename)
         {
-            Animation anim = (Animation) AssetDatabase.LoadAssetAtPath(
+            Animation anim = null;
+#if UNITY_EDITOR
+            anim = (Animation) AssetDatabase.LoadAssetAtPath(
                 Packer.AssetPath + "/" + filename + Packer.AssetExtention, typeof(Animation)
-                );
+            );
+#endif
 
             if (anim == null)
             {
