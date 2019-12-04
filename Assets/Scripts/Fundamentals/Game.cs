@@ -91,9 +91,9 @@ public class Game : MonoBehaviour
     {
         inErrorState = true;
         string msg = "EXCEPTION: " + e.Message + "\n" + e.StackTrace;
-#if UNITY_EDITOR
-        Debug.Log(msg);
         Time.timeScale = 0; // If certain game objects continue some behaviour, uncomment this line.
+#if UNITY_EDITOR
+        Debug.LogError(msg);
 #elif UNITY_ANDROID || UNITY_IOS || UNITY_STANDALONE
         System.IO.File.WriteAllText(Application.persistentDataPath + e.GetType().ToString() + ".txt", msg);
 #endif
