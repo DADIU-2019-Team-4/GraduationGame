@@ -23,8 +23,8 @@ namespace MoMa
             foreach (string filename in files)
             {
                 // This recalculates the animations using the Packer from .csv files in Resource
-                //Animation loadedAnimation = Packer.Pack(filename, filename);
-                Animation loadedAnimation = LoadPackedAnimationFile(filename);
+                Animation loadedAnimation = Packer.Pack(filename, filename);
+                //Animation loadedAnimation = LoadPackedAnimationFile(filename);
                 this._anim.Add(loadedAnimation);
 
                 Debug.Log("Loaded MoMa file \"" + filename + "\" with " + loadedAnimation.frameList.Count + " frames");
@@ -198,7 +198,7 @@ namespace MoMa
 
         private Animation LoadPackedAnimationFile(string filename)
         {
-            Animation anim = (Animation)AssetDatabase.LoadAssetAtPath(
+            Animation anim = (Animation) AssetDatabase.LoadAssetAtPath(
                 Packer.AssetPath + "/" + filename + Packer.AssetExtention, typeof(Animation)
                 );
 

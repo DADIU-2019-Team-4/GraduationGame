@@ -140,7 +140,7 @@ public class InteractibleObject : DashInteractable
             */
 
 
-            Vibration.Vibrate(80);
+           
             cameraShake2.setShakeElapsedTime(deathShake); 
             StartCoroutine(deathParticleSys()); 
 
@@ -257,6 +257,7 @@ public class InteractibleObject : DashInteractable
     private void DamagePlayer(Vector3 hitpoint)
     {
         AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.Damage, audioEvents, gameObject);
+        Vibration.Vibrate(100); 
         movementController.UpdateFireAmount(DamageValue);
         movementController.CheckFireLeft();
     }

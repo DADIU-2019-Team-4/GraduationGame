@@ -95,5 +95,4 @@ public class TriggerCutscene : MonoBehaviour
                 _timeline.SetGenericBinding(track, gameObjectRef);
         }
     }
-
 }
