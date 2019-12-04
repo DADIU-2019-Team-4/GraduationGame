@@ -231,9 +231,10 @@ public class UINavigation : MonoBehaviour
 
     }
 
-    public void ExitPauseMenu()
+    public void EnterCreditsScene()
     {
 
+        SceneManager.LoadScene("Credits");
     }
 
     public void GoToMainMenu()
