@@ -31,9 +31,13 @@ public class LoadBaseSceneManager : IGameLoop
     public AssetsInformation[] Room2Level2Assets;
     private AssetBundle _bundle;
 
+    private GameObject _loadingVisuals;
+
     private void Start()
     {
         _gamecontroller = FindObjectOfType<GameController>();
+
+        _loadingVisuals = GameObject.FindGameObjectWithTag("LoadVisuals");
 
         DownloadAssets();
 
@@ -115,10 +119,17 @@ public class LoadBaseSceneManager : IGameLoop
             SceneManager.GetSceneByName("MainPlayerScene"));
 
         AsyncOperation syncOperation = SceneManager.LoadSceneAsync(name, LoadSceneMode.Additive);
+
+        //syncOperation.allowSceneActivation = false;
+
         while (!syncOperation.isDone)
         {
+            _loadingVisuals.SetActive(true);
+
             yield return null;
         }
+
+        _loadingVisuals.SetActive(false);
         Time.timeScale = 1f;
         ResetPlayerPos(name);
         _gamecontroller.NullifyBoxCollection();
