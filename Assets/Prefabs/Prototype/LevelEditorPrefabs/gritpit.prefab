@@ -189,7 +189,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 8515180213474763755, guid: b34134cf801a4324098c0792fe255481, type: 3}
+  - {fileID: 2100000, guid: ff7bb24969aaf12479212a44e6e839e6, type: 2}
   - {fileID: 8515180213474763755, guid: b34134cf801a4324098c0792fe255481, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -354,31 +354,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1443096763271351277}
     m_Modifications:
-    - target: {fileID: 9132245662996378536, guid: 81a3c7db78596f345b1d759bae9cf728,
-        type: 3}
-      propertyPath: InitialModule.startSpeed.minScalar
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 9132245662996378536, guid: 81a3c7db78596f345b1d759bae9cf728,
-        type: 3}
-      propertyPath: InitialModule.gravityModifier.scalar
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 9132245662996378536, guid: 81a3c7db78596f345b1d759bae9cf728,
-        type: 3}
-      propertyPath: InitialModule.startSpeed.scalar
-      value: 36
-      objectReference: {fileID: 0}
-    - target: {fileID: 9132245662996378536, guid: 81a3c7db78596f345b1d759bae9cf728,
-        type: 3}
-      propertyPath: EmissionModule.enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9132245662996378536, guid: 81a3c7db78596f345b1d759bae9cf728,
-        type: 3}
-      propertyPath: looping
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 9132245662996378538, guid: 81a3c7db78596f345b1d759bae9cf728,
         type: 3}
       propertyPath: m_Name
@@ -437,6 +412,31 @@ PrefabInstance:
     - target: {fileID: 9132245662996378535, guid: 81a3c7db78596f345b1d759bae9cf728,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9132245662996378536, guid: 81a3c7db78596f345b1d759bae9cf728,
+        type: 3}
+      propertyPath: InitialModule.startSpeed.minScalar
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 9132245662996378536, guid: 81a3c7db78596f345b1d759bae9cf728,
+        type: 3}
+      propertyPath: InitialModule.gravityModifier.scalar
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 9132245662996378536, guid: 81a3c7db78596f345b1d759bae9cf728,
+        type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 36
+      objectReference: {fileID: 0}
+    - target: {fileID: 9132245662996378536, guid: 81a3c7db78596f345b1d759bae9cf728,
+        type: 3}
+      propertyPath: EmissionModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9132245662996378536, guid: 81a3c7db78596f345b1d759bae9cf728,
+        type: 3}
+      propertyPath: looping
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
