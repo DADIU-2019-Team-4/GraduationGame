@@ -157,8 +157,8 @@ public class UINavigation : MonoBehaviour
 
         _knob.transform.localEulerAngles = new Vector3(0, 0, -40);
 
-
-        _pauseMenu.transform.Find("Burn").GetComponent<Image>().material = PauseBurnDanish;
+        if (_pauseMenu != null)
+            _pauseMenu.transform.Find("Burn").GetComponent<Image>().material = PauseBurnDanish;
     }
 
     public void ChangeLanguageToEnglish()
@@ -170,27 +170,28 @@ public class UINavigation : MonoBehaviour
         _flagGlowUK.SetActive(true);
         _knob.transform.localEulerAngles = new Vector3(0, 0, 40);
 
-        _pauseMenu.transform.Find("Burn").GetComponent<Image>().material = PauseBurnEnglish;
+        if(_pauseMenu != null)
+            _pauseMenu.transform.Find("Burn").GetComponent<Image>().material = PauseBurnEnglish;
     }
 
     public void UpdateSFXVolume(float value)
     {
         PlayerPrefs.SetFloat("SFXVolume", value);
-        AudioEvent.SetRTPCValue("SFXVolume", value * 100);
+        AudioEvent.SetRTPCValue("SFXVolume", value * 100f);
         AudioEvent.PostEvent("UpdateSFXVolume", gameObject);
     }
 
     public void UpdateAmbienceVolume(float value)
     {
         PlayerPrefs.SetFloat("AmbienceVolume", value);
-        AudioEvent.SetRTPCValue("AmbienceVolume", value * 100);
+        AudioEvent.SetRTPCValue("AmbienceVolume", value * 100f);
         AudioEvent.PostEvent("UpdateAmbienceVolume", gameObject);
     }
 
     public void UpdateMusicVolume(float value)
     {
         PlayerPrefs.SetFloat("MusicVolume", value);
-        AudioEvent.SetRTPCValue("MusicVolume", value * 100);
+        AudioEvent.SetRTPCValue("MusicVolume", value * 100f);
         AudioEvent.PostEvent("UpdateMusicVolume", gameObject);
     }
 
