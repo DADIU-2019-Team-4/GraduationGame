@@ -11,6 +11,9 @@ GameObject:
   - component: {fileID: 3230300792126165195}
   - component: {fileID: 5877008173148728061}
   - component: {fileID: 194739593836434948}
+  - component: {fileID: 4433784914682339484}
+  - component: {fileID: 1632644940287618730}
+  - component: {fileID: 7854934300973122394}
   m_Layer: 0
   m_Name: childroom_bundle02
   m_TagString: Untagged
@@ -77,3 +80,52 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &4433784914682339484
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1913762300867715800}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.7058659, y: 3.6656082, z: 1.418827}
+  m_Center: {x: -0.113921165, y: 1.4006692, z: 0.028886795}
+--- !u!114 &1632644940287618730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1913762300867715800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ce2f35c75ca9e84fb3474d32def3e6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 11
+  DamageValue: 0
+  HealValue: 2
+  BumpHeight: 0.3
+--- !u!114 &7854934300973122394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1913762300867715800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 420186023faa10d418f08885f52a6d61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FireObject: {fileID: 5590989098238041260, guid: b130e385e49fa8c48ac96ceb16de5cb9,
+    type: 3}
+  _burnedAmount: 0.9
+  dissolveShader: {fileID: 2100000, guid: 46d9632cf3dabcb40a3f0686e45be8eb, type: 2}
+  burnSpeed: 0.1
+  destroyAtTheEndOfFire: 1
+  BurnLimit: 30
+  firetype: 1
