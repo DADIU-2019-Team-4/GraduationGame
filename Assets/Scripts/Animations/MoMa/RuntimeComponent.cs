@@ -198,7 +198,7 @@ namespace MoMa
 
         private Animation LoadPackedAnimationFile(string filename)
         {
-            Animation anim = (Animation)AssetDatabase.LoadAssetAtPath(
+            Animation anim = (Animation) AssetDatabase.LoadAssetAtPath(
                 Packer.AssetPath + "/" + filename + Packer.AssetExtention, typeof(Animation)
                 );
 
