@@ -382,7 +382,7 @@ public class MovementController : MonoBehaviour
         // Notify Sally
         _salamanderController?.AddTarget(EventType.Die, targetPosition);
 
-        Vibration.Vibrate(150);
+        Vibration.Vibrate(600);
     }
 
     /// <summary>
