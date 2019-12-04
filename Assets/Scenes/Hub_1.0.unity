@@ -26353,7 +26353,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnglishText: Press anywhere on the screen, hold down, and drag around to aim. \n\n  Now,
     release to dash.
-  DanishText: Do danish text
+  DanishText: "Tr\xE6k fingeren p\xE5 sk\xE6rmen for at v\xE6lge retning. \nSlip for
+    at bev\xE6ge dig."
 --- !u!1001 &900104609
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -47221,6 +47222,7 @@ GameObject:
   - component: {fileID: 1608049539}
   - component: {fileID: 1608049541}
   - component: {fileID: 1608049540}
+  - component: {fileID: 1608049542}
   m_Layer: 5
   m_Name: Text (TMP) (1)
   m_TagString: Untagged
@@ -47369,6 +47371,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1608049538}
   m_CullTransparentMesh: 0
+--- !u!114 &1608049542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1608049538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ebca69fcd73a664d9489ac63b802b33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EnglishText: Hold and drag your finger anywhere on the screen to aim. \n\n  Release
+    to dash
+  DanishText: 
 --- !u!1001 &1609092432
 PrefabInstance:
   m_ObjectHideFlags: 0
