@@ -1006,6 +1006,64 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 18921157}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &21704210
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 21704212}
+  - component: {fileID: 21704211}
+  m_Layer: 0
+  m_Name: WwiseGlobal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &21704211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 21704210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ac000d1e99bff64aa60c0bb00316b24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InitializationSettings: {fileID: 11400000, guid: 915f080ec8346ef4c99a7c5eba2255a8,
+    type: 2}
+  basePath: 
+  language: 
+  defaultPoolSize: 0
+  lowerPoolSize: 0
+  streamingPoolSize: 0
+  memoryCutoffThreshold: 0
+  monitorPoolSize: 0
+  monitorQueuePoolSize: 0
+  callbackManagerBufferSize: 0
+  spatialAudioPoolSize: 0
+  maxSoundPropagationDepth: 0
+  diffractionFlags: 11
+  engineLogging: 0
+--- !u!4 &21704212
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 21704210}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 62
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &35632232
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20884,7 +20942,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 732913688}
-  - component: {fileID: 732913687}
   m_Layer: 0
   m_Name: WwiseGlobal
   m_TagString: Untagged
@@ -20892,33 +20949,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &732913687
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 732913686}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ac000d1e99bff64aa60c0bb00316b24, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  InitializationSettings: {fileID: 11400000, guid: 915f080ec8346ef4c99a7c5eba2255a8,
-    type: 2}
-  basePath: 
-  language: 
-  defaultPoolSize: 0
-  lowerPoolSize: 0
-  streamingPoolSize: 0
-  memoryCutoffThreshold: 0
-  monitorPoolSize: 0
-  monitorQueuePoolSize: 0
-  callbackManagerBufferSize: 0
-  spatialAudioPoolSize: 0
-  maxSoundPropagationDepth: 0
-  diffractionFlags: 11
-  engineLogging: 0
 --- !u!4 &732913688
 Transform:
   m_ObjectHideFlags: 0
@@ -21213,14 +21243,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 739125394}
-  m_LocalRotation: {x: 0, y: 0.9557931, z: -0, w: -0.29404023}
-  m_LocalPosition: {x: 25.35, y: 5.39, z: -40.72}
+  m_LocalRotation: {x: -0, y: 0.92264056, z: -0, w: -0.38566092}
+  m_LocalPosition: {x: 25.84, y: 5.39, z: -41.21}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1742001574}
   m_Father: {fileID: 924101059}
   m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 214.2, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 225.37, z: 0}
 --- !u!1001 &740002698
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -52579,7 +52609,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh79038
+  m_Name: pb_Mesh69414
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -54377,14 +54407,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1863021947}
-  m_LocalRotation: {x: 0, y: 0.9557931, z: -0, w: -0.29404023}
-  m_LocalPosition: {x: 25.1, y: 5.39, z: -41.08}
+  m_LocalRotation: {x: -0, y: 0.92264056, z: -0, w: -0.38566092}
+  m_LocalPosition: {x: 25.53, y: 5.39, z: -41.51}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 986947101}
   m_Father: {fileID: 924101059}
   m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 214.2, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 225.37, z: 0}
 --- !u!1001 &1864831919
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -57677,7 +57707,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh80638
+  m_Name: pb_Mesh71022
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
