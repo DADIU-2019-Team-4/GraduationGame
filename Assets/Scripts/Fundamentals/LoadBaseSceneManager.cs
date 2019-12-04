@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -6,6 +6,8 @@ using UnityEngine.Networking;
 
 public class LoadBaseSceneManager : IGameLoop
 {
+    public readonly Vector3 TutorialSpawnPosition = new Vector3(18, 0, -57);
+
     [SerializeField]
     public enum BaseScenes
     {
@@ -28,8 +30,6 @@ public class LoadBaseSceneManager : IGameLoop
     public AssetsInformation[] Room2Level1Assets;
     public AssetsInformation[] Room2Level2Assets;
     private AssetBundle _bundle;
-
-
 
     private void Start()
     {
@@ -93,6 +93,7 @@ public class LoadBaseSceneManager : IGameLoop
                 break;
         }
     }
+
     public void UnloadScene(string name)
     {
         Player.GetComponent<MovementController>().StopMoving();

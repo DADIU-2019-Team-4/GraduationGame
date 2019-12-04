@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
@@ -96,6 +96,8 @@ public class MovementController : MonoBehaviour
 
     public Vector3 TargetPosition { get; set; }
 
+    public Vector3 SpawnPosition { get; set; }
+
     public StoryProgression StoryProgression;
 
     #endregion
@@ -103,6 +105,8 @@ public class MovementController : MonoBehaviour
     #region Private Editor Fields
 
     private readonly float MaxFireAmount = 100f;
+    private readonly float MinLifeChargeValue = 0.02f;
+    private readonly float MaxLifeChargeValue = 1.02f;
 
     private GameController _gameController;
     private FireGirlAnimationController _anim;
@@ -117,8 +121,6 @@ public class MovementController : MonoBehaviour
     private float _damageTimer;
     private bool _dashIntent;
     private float _lifeChargeValue;
-    private float _minLifeChargeValue = 0.02f;
-    private float _maxLifeChargeValue = 1.02f;
     private Vector3 _startPosition;
     private Vector3 _goalPosition;
 
@@ -575,7 +577,7 @@ public class MovementController : MonoBehaviour
     /// </summary>
     private void UpdateLifeBar()
     {
-        _lifeChargeValue = (1 - _currentFireAmount / MaxFireAmount) + _minLifeChargeValue;
+        _lifeChargeValue = (1 - _currentFireAmount / MaxFireAmount) + MinLifeChargeValue;
         _lifeBar.material.SetFloat("_Charge", _lifeChargeValue);
 
         if (_currentFireAmount >= MaxFireAmount)
