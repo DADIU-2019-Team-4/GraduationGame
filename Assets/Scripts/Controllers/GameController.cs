@@ -129,7 +129,7 @@ public class GameController : MonoBehaviour
     /// </summary>
     public void NullifyBoxCollection() { _breakables = null; }
 
-    private void GetAllBoxReferencesInLevel()
+    public void GetAllBoxReferencesInLevel()
     {
         var interactibles = FindObjectsOfType<InteractibleObject>();
         if (interactibles == null || interactibles.Length == 0) return; // Await level is loaded.

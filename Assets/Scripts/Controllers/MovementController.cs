@@ -218,6 +218,15 @@ public class MovementController : MonoBehaviour
     }
 
     /// <summary>
+    /// Sets the player health to maximum.
+    /// </summary>
+    public void ResetHealth()
+    {
+        _currentFireAmount = MaxFireAmount;
+        UpdateFireAmount(0);
+    }
+
+    /// <summary>
     /// Call on every frame of charging. Handles charging and Animator
     /// </summary>
     public void Charge(bool dashIntent)

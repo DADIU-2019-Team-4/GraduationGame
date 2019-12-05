@@ -17,7 +17,7 @@ namespace MoMa
         //public const float RecalculationThreshold = Mathf.Infinity; // The maximum diff of two Trajectories before recalculating the Animation
         public const int CooldownTime = 500; // Number of frames that a Frame is on cooldown after being played
         public const int CandidateFramesSize = 20; // Number of candidate frames for a transition (tradeoff: fidelity/speed)
-        public const int ClipBlendPoints = 3; // Each Animation Clip is blended with the next one for smoother transition. The are both played for this num of Frames
+        public const int ClipBlendPoints = 0; // Each Animation Clip is blended with the next one for smoother transition. The are both played for this num of Frames
 
         // Frame/Point/Feature ratios
         // FeaturePoints % FeatureEveryPoints should be 0
