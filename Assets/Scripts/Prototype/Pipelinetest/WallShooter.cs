@@ -8,7 +8,7 @@ public class WallShooter : MonoBehaviour
     //public float detectionDistance = 5;
     public GameObject plane;
     public float spawnCooldown;
-    public float SetUpDistance = 7f;
+    public float SetUpDistance = 50f;
     private float currentSpawnCooldown;
     private Animator _anim;
     public float planeSpeed;
@@ -33,7 +33,7 @@ public class WallShooter : MonoBehaviour
     private void Update()
     {
         currentSpawnCooldown -= Time.deltaTime;
-        if (currentSpawnCooldown < 0 && Vector3.Distance(gameObject.transform.position, _player.transform.position)<SetUpDistance)
+        if (currentSpawnCooldown < 0 && (gameObject.transform.position - _player.transform.position).sqrMagnitude<(SetUpDistance))
         {
             SpawnPlane();
         }

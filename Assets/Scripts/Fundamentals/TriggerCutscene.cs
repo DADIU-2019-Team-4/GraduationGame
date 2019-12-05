@@ -27,6 +27,7 @@ public class TriggerCutscene : MonoBehaviour
     private PlayableDirector _timeline;
     private SalamanderController _salamanderController;
     private LoadBaseSceneManager _loadBaseSceneManager;
+    private GameObject _pauseButton;
 
     private void Awake()
     {
@@ -34,6 +35,7 @@ public class TriggerCutscene : MonoBehaviour
         _salamanderController = FindObjectOfType<SalamanderController>();
         _loadBaseSceneManager = FindObjectOfType<LoadBaseSceneManager>();
         if (!_salamanderController) Debug.LogWarning("TriggerCutscene: Unable to find Sally :(");
+        _pauseButton = GameObject.Find("PauseButton");
     }
 
     private void Start()
@@ -51,6 +53,7 @@ public class TriggerCutscene : MonoBehaviour
             //if (_loadBaseSceneManager.StoryProgression.Value == StoryProgression.EStoryProgression.At_Tutorial)
             //    TutorialText?.SetActive(true);
             InputManager.DisableInput = false;
+            _pauseButton.SetActive(true);
             _timeline.stopped -= OnCutSceneStopped;
             OnCutSceneEnd.Invoke();
             if (OnlyOnce)
@@ -71,6 +74,7 @@ public class TriggerCutscene : MonoBehaviour
     public void PlayCutScene()
     {
         InputManager.DisableInput = true;
+        _pauseButton.SetActive(false);
 
         // Disable MoMa in Sally
         _salamanderController?.InCutscene(true);
