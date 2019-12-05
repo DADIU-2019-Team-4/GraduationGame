@@ -6,6 +6,8 @@ using UnityEngine.Networking;
 
 public class LoadBaseSceneManager : IGameLoop
 {
+    public readonly Vector3 TutorialSpawnPosition = new Vector3(18, 0, -57);
+
     [SerializeField]
     public enum BaseScenes
     {
@@ -29,11 +31,13 @@ public class LoadBaseSceneManager : IGameLoop
     public AssetsInformation[] Room2Level2Assets;
     private AssetBundle _bundle;
 
-
+    private GameObject _loadingVisuals;
 
     private void Start()
     {
         _gamecontroller = FindObjectOfType<GameController>();
+
+        _loadingVisuals = GameObject.FindGameObjectWithTag("LoadVisuals");
 
         DownloadAssets();
 
@@ -93,6 +97,7 @@ public class LoadBaseSceneManager : IGameLoop
                 break;
         }
     }
+
     public void UnloadScene(string name)
     {
         Player.GetComponent<MovementController>().StopMoving();
@@ -114,22 +119,32 @@ public class LoadBaseSceneManager : IGameLoop
             SceneManager.GetSceneByName("MainPlayerScene"));
 
         AsyncOperation syncOperation = SceneManager.LoadSceneAsync(name, LoadSceneMode.Additive);
+
+        //syncOperation.allowSceneActivation = false;
+
         while (!syncOperation.isDone)
         {
+            _loadingVisuals.SetActive(true);
+
             yield return null;
         }
+
+        _loadingVisuals.SetActive(false);
         Time.timeScale = 1f;
         ResetPlayerPos(name);
         _gamecontroller.NullifyBoxCollection();
 
     }
+
     private void ResetPlayerPos(string sceneName)
     {
-        if (sceneName == "Hub_1.0" && StoryProgression.Value == StoryProgression.EStoryProgression.At_Tutorial)
-            Player.transform.position = new Vector3(18, 0, -57);
-        else
-            Player.transform.position = Vector3.zero;
+        Player.GetComponent<MovementController>().Spawn(
+            (sceneName == "Hub_1.0" && StoryProgression.Value == StoryProgression.EStoryProgression.At_Tutorial) ?
+                TutorialSpawnPosition :
+                Vector3.zero
+            );
     }
+
     private void DownloadAssets()
     {
         //Loads Common assets, used in all scenes (MainPlayerScene)

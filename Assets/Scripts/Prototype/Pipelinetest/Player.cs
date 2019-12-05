@@ -55,7 +55,7 @@ public class Player : IGameLoop
     {
         if (other.gameObject.CompareTag("Projectile"))
         {
-            Debug.Log("Collision with:" + other.gameObject.name);
+            //Debug.Log("Collision with:" + other.gameObject.name);
             gameObject.transform.SetParent(other.gameObject.transform);
             gameObject.transform.position = gameObject.transform.parent.position;
             gameObject.GetComponent<Rigidbody>().useGravity = false;
@@ -68,7 +68,7 @@ public class Player : IGameLoop
 
         if (collision.gameObject.CompareTag("Obsticle"))
         {
-            Debug.Log("Collision with:" + collision.gameObject.name);
+            //Debug.Log("Collision with:" + collision.gameObject.name);
             Detach(true);
         }
     }

@@ -40,6 +40,10 @@ public class AttachToPlane : MonoBehaviour
         if(parent != null)
         {
             AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.OffPlane, audioEvents, gameObject);
+
+            // Update Animator
+            GetComponent<MovementController>().StopMoving(InteractibleObject.InteractType.Projectile);
+
             //water temp fix
             Collider[] colls = Physics.OverlapSphere(transform.position, 0.3f);
 
@@ -50,7 +54,7 @@ public class AttachToPlane : MonoBehaviour
                     coll.gameObject.GetComponent<InteractibleObject>() != null
                     )
                 {
-                    Debug.Log(coll.gameObject.name + "was here");
+                    //Debug.Log(coll.gameObject.name + "was here");
                     coll.gameObject.GetComponent<InteractibleObject>().Interact(coll.transform.position);
                 }
             }
@@ -62,9 +66,6 @@ public class AttachToPlane : MonoBehaviour
             _attached = false;
 
             GetComponent<MovementController>().IsInvulnerable = false;
-
-            // Update Animator
-            GetComponent<MovementController>().StopMoving(InteractibleObject.InteractType.Projectile);
 
             _flameAttachToggler.FlameOff();
         }     

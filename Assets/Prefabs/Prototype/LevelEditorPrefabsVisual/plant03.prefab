@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7013410592691001005}
   - component: {fileID: -7184018573045475875}
   - component: {fileID: 422692452210951275}
-  - component: {fileID: 2328399871089849166}
+  - component: {fileID: 8766734668937996163}
   m_Layer: 0
   m_Name: plant03
   m_TagString: Untagged
@@ -112,6 +112,7 @@ MonoBehaviour:
   dissolveShader: {fileID: 2100000, guid: 46d9632cf3dabcb40a3f0686e45be8eb, type: 2}
   burnSpeed: 1.32
   destroyAtTheEndOfFire: 1
+  BurnLimit: 30
   firetype: 0
 --- !u!114 &422692452210951275
 MonoBehaviour:
@@ -129,7 +130,7 @@ MonoBehaviour:
   DamageValue: 0
   HealValue: 0
   BumpHeight: 0.3
---- !u!114 &2328399871089849166
+--- !u!114 &8766734668937996163
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -141,7 +142,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3f6a57ea9bb81040839eb22c9ccd632, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TriggerType: 5
+  TriggerType: 11
   WwiseType: 0
   EventName: BumpIntoPlants
   RTPCName: 

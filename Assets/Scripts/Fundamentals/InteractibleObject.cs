@@ -140,7 +140,7 @@ public class InteractibleObject : DashInteractable
             */
 
 
-            Vibration.Vibrate(80);
+           
             cameraShake2.setShakeElapsedTime(deathShake); 
             StartCoroutine(deathParticleSys()); 
 
@@ -151,13 +151,35 @@ public class InteractibleObject : DashInteractable
     IEnumerator deathParticleSys()
     {
         //yield return new WaitForSeconds(0.3f);
-        var particleSystemEN = gameObject.GetComponentInChildren<ParticleSystem>();
-        var em = particleSystemEN.emission;
-        em.enabled = true;
-        particleSystemEN.Play();
-        yield return new WaitForSeconds(2f);
-        em.enabled = false;
-        particleSystemEN.Stop();
+        if (gameObject.name == "gritPit_long")
+        {
+            var particleSystemEN = gameObject.GetComponentsInChildren<ParticleSystem>();
+            foreach (ParticleSystem par in particleSystemEN)
+            {
+                var em = par.emission;
+                em.enabled = true;
+                par.Play();
+            }
+            yield return new WaitForSeconds(2f);
+            foreach (ParticleSystem par in particleSystemEN)
+            {
+                var em = par.emission;
+                em.enabled = false;
+                par.Stop();
+            }
+
+        }
+        else
+        {
+            var particleSystemEN = gameObject.GetComponentInChildren<ParticleSystem>();
+            var em = particleSystemEN.emission;
+            em.enabled = true;
+            particleSystemEN.Play();
+            yield return new WaitForSeconds(2f);
+            em.enabled = false;
+            particleSystemEN.Stop();
+        }
+   
 
     }
 
@@ -210,6 +232,7 @@ public class InteractibleObject : DashInteractable
 
     private void BurnProp(Vector3 hitpoint)
     {
+        AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.BurningItem, audioEvents, gameObject);
         gameObject.GetComponent<BurnObject>().SetObjectOnFire(hitpoint);
         movementController.UpdateFireAmount(-HealValue);
     }
@@ -257,6 +280,7 @@ public class InteractibleObject : DashInteractable
     private void DamagePlayer(Vector3 hitpoint)
     {
         AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.Damage, audioEvents, gameObject);
+        Vibration.Vibrate(100); 
         movementController.UpdateFireAmount(DamageValue);
         movementController.CheckFireLeft();
     }

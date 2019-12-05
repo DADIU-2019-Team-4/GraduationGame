@@ -8,6 +8,7 @@ public class WallShooter : MonoBehaviour
     //public float detectionDistance = 5;
     public GameObject plane;
     public float spawnCooldown;
+    public float SetUpDistance = 7f;
     private float currentSpawnCooldown;
     private Animator _anim;
     public float planeSpeed;
@@ -15,6 +16,7 @@ public class WallShooter : MonoBehaviour
     public float distancePlaneCanTravel;
     public float startSpawnOffset;
     public float spawnYPosition = 0.75f;
+    private GameObject _player;
 
 
     // Start is called before the first frame update
@@ -22,6 +24,7 @@ public class WallShooter : MonoBehaviour
     {
         currentSpawnCooldown = spawnCooldown + startSpawnOffset;
         _anim = GetComponentInChildren<Animator>();
+        _player = GameObject.FindGameObjectWithTag("Player");
 
         if (_anim == null) throw new System.Exception("Unable to find Animator on Dispenser Machine");
     }
@@ -30,7 +33,7 @@ public class WallShooter : MonoBehaviour
     private void Update()
     {
         currentSpawnCooldown -= Time.deltaTime;
-        if (currentSpawnCooldown < 0)
+        if (currentSpawnCooldown < 0 && Vector3.Distance(gameObject.transform.position, _player.transform.position)<SetUpDistance)
         {
             SpawnPlane();
         }

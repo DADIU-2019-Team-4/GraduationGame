@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class FadeOut : MonoBehaviour
@@ -8,6 +9,7 @@ public class FadeOut : MonoBehaviour
     public int Seconds;
     private Image _image;
     public bool AutoReset = false;
+    public string SceneAfterFade;
 
     void Start()
     {
@@ -29,6 +31,11 @@ public class FadeOut : MonoBehaviour
         {
             _image.color = new Color(0, 0, 0, i / seconds);
             yield return null;
+        }
+
+        if (SceneAfterFade != null)
+        {
+            SceneManager.LoadScene(SceneAfterFade);
         }
     }
 

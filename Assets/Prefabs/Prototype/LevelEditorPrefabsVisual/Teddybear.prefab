@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5694333265010420778}
   - component: {fileID: 1566355270628631293}
   - component: {fileID: -821434141628588737}
-  - component: {fileID: 2526626352629019773}
+  - component: {fileID: 6402458863241537021}
   m_Layer: 0
   m_Name: Teddybear
   m_TagString: Untagged
@@ -97,8 +97,9 @@ MonoBehaviour:
     type: 3}
   _burnedAmount: 0.9
   dissolveShader: {fileID: 2100000, guid: 46d9632cf3dabcb40a3f0686e45be8eb, type: 2}
-  burnSpeed: 1.26
+  burnSpeed: 1
   destroyAtTheEndOfFire: 1
+  BurnLimit: 30
   firetype: 1
 --- !u!114 &1566355270628631293
 MonoBehaviour:
@@ -127,9 +128,9 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.024918081, y: 0.029860761, z: 0.015480429}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2526626352629019773
+  m_Size: {x: 0.041189153, y: 0.110678345, z: 0.020587876}
+  m_Center: {x: -0.002307876, y: 0.040408805, z: -0.0008637044}
+--- !u!114 &6402458863241537021
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -141,9 +142,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3f6a57ea9bb81040839eb22c9ccd632, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TriggerType: 5
+  TriggerType: 11
   WwiseType: 0
-  EventName: 
+  EventName: BumpIntoTeddyBear
   RTPCName: 
   RTPCValue: {fileID: 0}
   SetStateGroup: 

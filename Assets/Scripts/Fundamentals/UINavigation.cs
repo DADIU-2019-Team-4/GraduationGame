@@ -34,6 +34,8 @@ public class UINavigation : MonoBehaviour
     public TMP_FontAsset NoGlowFont;
 
     public StoryProgression storyProgression;
+
+    private GameObject _loadVisuals;
     // Start is called before the first frame update
     void Awake()
     {
@@ -52,6 +54,9 @@ public class UINavigation : MonoBehaviour
             {
                 _continueButton.GetComponentInChildren<TextMeshProUGUI>().font = GlowFont;
             }
+
+            _loadVisuals = GameObject.FindGameObjectWithTag("LoadVisuals");
+            _loadVisuals.SetActive(false);
         }
 
 
@@ -114,17 +119,22 @@ public class UINavigation : MonoBehaviour
 
     public void NewGame()
     {
+        _loadVisuals.SetActive(true);
         storyProgression.Value = StoryProgression.EStoryProgression.At_Tutorial;
         PlayerPrefs.SetInt("Progression", 0);
-
-        SceneManager.LoadScene("MainPlayerScene");
+        //SceneManager.LoadScene("Loading");
         AudioEvent.PostEvent("NewGame", gameObject);
+        SceneManager.LoadScene("MainPlayerScene");
+
     }
 
     public void ContinueGame()
     {
-        SceneManager.LoadScene("MainPlayerScene");
+        _loadVisuals.SetActive(true);
+        //SceneManager.LoadScene("Loading");
         AudioEvent.PostEvent("ContinueGame", gameObject);
+        SceneManager.LoadScene("MainPlayerScene");
+
     }
 
     public void OpenOptions()
@@ -135,6 +145,11 @@ public class UINavigation : MonoBehaviour
 
         StartCoroutine(BurnOptionsMenu(2));
         AudioEvent.PostEvent("OpenOptions", gameObject);
+    }
+
+    public void Credits()
+    {
+        SceneManager.LoadScene("Credits");
     }
 
     public void ExitOptions()
@@ -225,9 +240,10 @@ public class UINavigation : MonoBehaviour
 
     }
 
-    public void ExitPauseMenu()
+    public void EnterCreditsScene()
     {
 
+        SceneManager.LoadScene("Credits");
     }
 
     public void GoToMainMenu()
@@ -340,8 +356,8 @@ public class UINavigation : MonoBehaviour
             burnValue = Mathf.Lerp(dissolveStartValue, 1f, timer / duration);
             burnGlow = Mathf.Lerp(burnGlowStartValue, 1f, timer / duration);
 
-            Debug.Log("burnValue: " + burnValue);
-            Debug.Log("burnGlow: " + burnGlow);
+            //Debug.Log("burnValue: " + burnValue);
+            //Debug.Log("burnGlow: " + burnGlow);
 
             _pauseMenu.transform.Find("Burn").GetComponent<Image>().material.SetFloat("_DissolveAmount", burnValue);
             _pauseMenu.transform.Find("Burn").GetComponent<Image>().material.SetFloat("_BurnGlow", burnGlow);

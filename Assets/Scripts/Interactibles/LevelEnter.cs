@@ -37,7 +37,7 @@ public class LevelEnter : IGameLoop
 
     public void LoadNextLevel()
     {
-        Debug.Log("Should Load New Scene");
+        //Debug.Log("Should Load New Scene");
         var closeFile = FindObjectOfType<PlayerQALogs>();
         if (closeFile != null)
             closeFile.Close();
@@ -49,7 +49,7 @@ public class LevelEnter : IGameLoop
     private void CreateKeys(string name)
     {
         /// 0 - false, 1 - true as PlayerPrefs are not saving bool values;
-        Debug.Log("Create Keys");
+        //Debug.Log("Create Keys");
         if (name == "Door1")
         {
             PlayerPrefs.SetInt(name, 1);
@@ -64,7 +64,7 @@ public class LevelEnter : IGameLoop
     }
     private void ReadValues(string name)
     {
-        Debug.Log("Read Keys");
+        //Debug.Log("Read Keys");
         int value = PlayerPrefs.GetInt(name);
         if (value == 0)
             isOpened = false;

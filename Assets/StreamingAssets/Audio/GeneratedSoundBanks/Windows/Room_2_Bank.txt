@@ -8,6 +8,7 @@ Event	ID	Name			Wwise Object Path	Notes
 	384768216	BreakObjectMute			\Character\Objects\BreakObjectMute	
 	428947066	OffPlane			\Character\PaperPlane\OffPlane	
 	441114158	WaterSprayOn			\Environment\WaterStuff\WaterSpray\WaterSprayOn	
+	646625288	Huh			\CutsceneSound\Cutscene_01\Huh	
 	679539432	DeathObject			\Character\Objects\DeathObject	
 	735079116	ChargingDash			\Character\Dashing\ChargingDash	
 	742914115	ChargedDash			\Character\Dashing\ChargedDash	
@@ -16,7 +17,6 @@ Event	ID	Name			Wwise Object Path	Notes
 	889138964	ContinueGame			\Menu\OptionsMenu\ContinueGame	
 	943969687	NewGame			\Menu\MainMenu\NewGame	
 	948186658	PaperPlaneSpawn			\Character\PaperPlane\PaperPlaneSpawn	
-	991018855	DangerZoneIn			\Environment\DangerZone\DangerZoneIn	
 	1016929228	NormalDash			\Character\Dashing\NormalDash	
 	1029928262	BumpIntoBottles			\Environment\BumpInto\BumpIntoBottles	
 	1065411945	BurnSmallObjects			\Character\Objects\BurnSmallObjects	
@@ -25,6 +25,7 @@ Event	ID	Name			Wwise Object Path	Notes
 	1091851953	PictureOff_02			\Character\Objects\Pictures\PictureOff_02	
 	1091851954	PictureOff_01			\Character\Objects\Pictures\PictureOff_01	
 	1091851959	PictureOff_04			\Character\Objects\Pictures\PictureOff_04	
+	1121922920	Gate			\CutsceneSound\Cutscene_01\Gate	
 	1404152342	Fireplace			\Environment\Fireplace\Fireplace	
 	1429775881	BumpIntoTeddyBear			\Environment\BumpInto\BumpIntoTeddyBear	
 	1431983180	Room0202_Music			\Music\Room0202_Music	
@@ -35,6 +36,7 @@ Event	ID	Name			Wwise Object Path	Notes
 	1562868852	PictureOn_01			\Character\Objects\Pictures\PictureOn_01	
 	1562868854	PictureOn_03			\Character\Objects\Pictures\PictureOn_03	
 	1562868855	PictureOn_02			\Character\Objects\Pictures\PictureOn_02	
+	1577233363	TorchTurnOn			\CutsceneSound\Cutscene_04\TorchTurnOn	
 	1705735554	BumpIntoWalls			\Environment\BumpInto\BumpIntoWalls	
 	1750432780	DadsMouth			\Environment\Fireplace\DadsMouth	
 	1766390728	OffRope			\Character\RopeMechanic\OffRope	
@@ -45,18 +47,25 @@ Event	ID	Name			Wwise Object Path	Notes
 	1914703205	ChargingRejection			\Character\Dashing\ChargingRejection	
 	1915974646	RainFromAbove			\Environment\WaterStuff\RainFromAbove\RainFromAbove	
 	1933716535	PaperPlaneDead			\Character\PaperPlane\PaperPlaneDead	
+	1935470627	Light			\CutsceneSound\Cutscene_02\Light	
+	1991862712	MainMenuMusic			\Menu\MainMenu\MainMenuMusic	
 	1998000382	BumpIntoConcrete			\Environment\BumpInto\BumpIntoConcrete	
 	2041600939	Room0102_Music			\Music\Room0102_Music	
 	2044049779	Dead			\Character\PlayerHealth\Dead	
-	2096427994	DangerZoneOut			\Environment\DangerZone\DangerZoneOut	
+	2053164585	LastTorch			\CutsceneSound\Cutscene_04\LastTorch	
 	2312877492	WaterSprayOff			\Environment\WaterStuff\WaterSpray\WaterSprayOff	
 	2346684474	OnRope			\Character\RopeMechanic\OnRope	
 	2362129349	BumpIntoPlants			\Environment\BumpInto\BumpIntoPlants	
 	2499528146	GoToMainMenu			\Menu\OptionsMenu\GoToMainMenu	
+	2514321718	BurnBaby			\CutsceneSound\Cutscene_04\BurnBaby	
+	2548270042	Landing			\CutsceneSound\Cutscene_02\Landing	
 	2596983219	BreakObject			\Character\Objects\BreakObject	
+	2659566082	BumpIntoCarpet			\Environment\BumpInto\BumpIntoCarpet	
 	2758237675	ChangeLanguageToDanish			\Menu\OptionsMenu\ChangeLanguageToDanish	
+	2794399002	GridPitDeath			\Environment\WaterStuff\GridPitDeath	
 	2850533655	DashCancel			\Character\Dashing\DashCancel	
 	3044105157	WinPuzzle			\InGame_UI\WinPuzzle	
+	3068514774	StopFuse			\CutsceneSound\Cutscene_02\StopFuse	
 	3205496764	ChangeLanguageToEnglish			\Menu\OptionsMenu\ChangeLanguageToEnglish	
 	3602428572	EnterPauseMenu			\Menu\OptionsMenu\EnterPauseMenu	
 	3740361716	BumpIntoWood			\Environment\BumpInto\BumpIntoWood	
@@ -64,6 +73,7 @@ Event	ID	Name			Wwise Object Path	Notes
 	3806663565	OpenOptions			\Menu\MainMenu\OpenOptions	
 	3914625789	BlockObject			\Character\Objects\BlockObject	
 	3936711540	Room0101_Music			\Music\Room0101_Music	
+	3967533870	BurnMomsHair			\CutsceneSound\Cutscene_03\BurnMomsHair	
 	4018333041	ArrowPull			\Character\Dashing\ArrowPull	
 	4028171492	OnPlane			\Character\PaperPlane\OnPlane	
 
@@ -186,6 +196,7 @@ Source plug-ins	ID	Name	Type		Wwise Object Path	Notes
 	718682628	Wwise Silence	Wwise Silence		\Actor-Mixer Hierarchy\Default Work Unit\Player\Movement\NormalDash\DashVoice\Silence_02\Wwise Silence	
 	721616158	Wwise Silence	Wwise Silence		\Actor-Mixer Hierarchy\Default Work Unit\Player\Movement\ChargedDash\ChargedDash_Container\VoiceOnly-RandomContainer\Silence_04\Wwise Silence	
 	738699484	Wwise Silence	Wwise Silence		\Actor-Mixer Hierarchy\Default Work Unit\Player\Movement\ChargedDash\ChargedDash_Container\VoiceOnly-RandomContainer\Silence_15\Wwise Silence	
+	748254417	SoundSeed Air Wind	SoundSeed Air Wind		\Actor-Mixer Hierarchy\Default Work Unit\Rope\OnRope_Blend_Intro\OnRope_Container\OnRope_05\SoundSeed Air Wind	
 	751975096	Wwise Silence	Wwise Silence		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\BumpInto\BumpIntoLaugh_Random\Silence_14\Wwise Silence	
 	752693348	Wwise Silence	Wwise Silence		\Actor-Mixer Hierarchy\Default Work Unit\Player\Movement\ChargedDash\ChargedDash_Container\VoiceOnly-RandomContainer\Silence\Wwise Silence	
 	770463458	Wwise Silence	Wwise Silence		\Actor-Mixer Hierarchy\Default Work Unit\Player\Movement\NormalDash\DashVoice\Silence_07\Wwise Silence	
@@ -240,11 +251,14 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	86036977	Books_Paper_02	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\Books_on_Asphalt_Dropping_onto_Ground_Bouncing_OCP-1223-063-01_52A11AB2.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\BumpInto\BumpIntoBooks\Books_Pages\Books_Paper_02		12366
 	88307990	Books_Paper_03	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\Books_on_Asphalt_Dropping_onto_Ground_Bouncing_OCP-1223-063-01_D7637456.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\BumpInto\BumpIntoBooks\Books_Pages\Books_Paper_03		5714
 	96679322	charging_dash_voice_04	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\charging_dash_voice_04_27020439.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Movement\ChargingDash_Blend\ChargingVoice_Random\charging_dash_voice_04		37475
+	100853297	GateUnlock_reward	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\GateUnlock_reward_27020439.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\GateUnlock\GateUnlock_reward		76865
 	103645924	charging_dash_voice_03	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\charging_dash_voice_03_27020439.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Movement\ChargingDash_Blend\ChargingVoice_Random\charging_dash_voice_03		39153
 	111102888	charging_dash_voice_02	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\charging_dash_voice_02_27020439.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Movement\ChargingDash_Blend\ChargingVoice_Random\charging_dash_voice_02		38385
 	112392603	speak_reaction_16_laugh	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\speak_reaction_16_laugh_939F2E4D.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\BumpInto\BumpIntoLaugh_Random\speak_reaction_16_laugh		22142
+	119404079	IntroCutscene_gate	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\IntroCutscene_gate_27020439.wem		\Actor-Mixer Hierarchy\Default Work Unit\InGame_UI\Cutscenes\Cutscene_01\IntroCutscene_gate		30059
 	121675940	room0202_emotion01-112bpm	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\room0202_emotion01-112bpm_4EA6E607.wem		\Interactive Music Hierarchy\Default Work Unit\RoomMusic\Room0202\Room0202_emotion01\room0202_emotion01-112bpm\room0202_emotion01-112bpm		2114953
 	127877563	BurnObjectSweetner_02	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\BurnObjectSweetner_02_27020439.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\BreakObject\BreakObject_Random\BurnObjectSweetner_02		51479
+	130027379	Cutscene02_landing	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\Cutscene02_landing_27020439.wem		\Actor-Mixer Hierarchy\Default Work Unit\InGame_UI\Cutscenes\Cutscene_02\Cutscene02_landing		12454
 	132104140	TeddyBear01	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\TeddyBear01_27020439.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\BumpInto\BumpIntoTeddyBear\TeddyBear01		5573
 	138912597	power_dash_voice_05	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\power_dash_voice_05_27020439.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Movement\ChargedDash\ChargedDash_Container\VoiceOnly-RandomContainer\power_dash_voice_05		39729
 	141720890	speak_reaction_90_laugh	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\speak_reaction_90_laugh_27020439.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\BumpInto\BumpIntoLaugh_Random\speak_reaction_90_laugh		66013
@@ -300,7 +314,7 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	409849702	BurnObjectSweetner_03	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\BurnObjectSweetner_03_27020439.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\BreakObject\BreakObject_Random\BurnObjectSweetner_03		49479
 	410378989	AllButtons_Base	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\AllButtons_Base_CBEEB47B.wem		\Actor-Mixer Hierarchy\Default Work Unit\MenuUI\AllButtons\AllButtons_Base		31035
 	416268568	AcidBurn_02	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\Fire, Acid Burn Flesh SND22212_99DBB2EC.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\PlayerHealth\HurtPlayer_Blend\HurtPlayerBurn\AcidBurn_02		13995
-	426260354	TorchTurnOn_02	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\TorchTurnOn_02_7C86AA96.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\Fireplaces_&_Torches\TorchTurnOn\TorchTurnOn_02		16882
+	426260354	TorchTurnOn_02	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\TorchTurnOn_02_E9E547A8.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\Fireplaces_&_Torches\TorchTurnOn\TorchTurnOn_02		15086
 	444839901	power_dash_voice_04	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\power_dash_voice_04_27020439.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Movement\ChargedDash\ChargedDash_Container\VoiceOnly-RandomContainer\power_dash_voice_04		40027
 	445154093	Breaking_Wood_10	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\Breaking_Wood_10_F44D9525.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\BumpInto\BumpIntoWood\Breaking_Wood_10		16138
 	446683949	book_drop_03	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\book_drop_02_BCBE5436.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\BumpInto\BumpIntoBooks\Books_Cover\book_drop_03		4476
@@ -316,8 +330,10 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	488138508	OnRope_01	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\45650__elonen__fuse-burning-48khz_9111DBBB.wem		\Actor-Mixer Hierarchy\Default Work Unit\Rope\OnRope_Blend\OnRope_Container\OnRope_01		45532
 	494270366	ChargingDash20	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\ChargingDash20_27020439.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Movement\ChargingDash_Blend\ChargingDash20		23947
 	498432214	room0201_bassdrum01-112bpm	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\room0201_bassdrum01-112bpm_4EA6E607.wem		\Interactive Music Hierarchy\Default Work Unit\RoomMusic\Room0201\room0201_loop01_Intense\room0201_loop01-112bpm\room0201_bassdrum01-112bpm		918608
+	507083887	speak_reaction_14_huh	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\speak_reaction_14_huh_27020439.wem		\Actor-Mixer Hierarchy\Default Work Unit\InGame_UI\Cutscenes\Cutscene_01\speak_reaction_14_huh		10151
 	511621923	StopDash_06	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\StopDash_06_27020439.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Movement\NormalDash\StopDash_Container\StopDash_06		7842
-	512769563	SlowPropsBurn_03	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\SlowPropsBurn_03_27020439.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\BurningProps_Random\SlowPropsBurn_03		24914
+	512769563	SlowPropsBurn_03	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\SlowPropsBurn_03_4AAD0425.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\BurningProps_Random\SlowPropsBurn_03		25426
+	529448812	Cutscene02_lights	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\Cutscene02_lights_27020439.wem		\Actor-Mixer Hierarchy\Default Work Unit\InGame_UI\Cutscenes\Cutscene_02\Cutscene02_lights		34034
 	531031031	Books_Paper_04	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\Books_on_Asphalt_Dropping_onto_Ground_Bouncing_OCP-1223-063-01_84385A59.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\BumpInto\BumpIntoBooks\Books_Pages\Books_Paper_04		15473
 	535880893	introCutscene_105-bpm	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\introCutscene_105-bpm_4EA6E607.wem		\Interactive Music Hierarchy\Default Work Unit\TutorialMusic\Tutorial_startLoop\introCutscene_105-bpm\introCutscene_105-bpm		183912
 	547481029	ButtonMatches_05	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\ButtonMatches_05_27020439.wem		\Actor-Mixer Hierarchy\Default Work Unit\MenuUI\AllButtons\Buttons_RandomContainer\ButtonMatches_05		23348
@@ -329,12 +345,14 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	567660159	ButtonMatches_01	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\ButtonMatches_01_27020439.wem		\Actor-Mixer Hierarchy\Default Work Unit\MenuUI\AllButtons\Buttons_RandomContainer\ButtonMatches_01		45850
 	572276479	speak_reaction_40_hurt	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\speak_reaction_40_hurt_27020439.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\PlayerHealth\HurtPlayer_Blend\HurtPlayerVoice\speak_reaction_40_hurt		7072
 	576304305	HealthMediumLoop	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\HealthMediumLoop_4EA6E607.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\PlayerHealth\PlayerHealthContainer\HealthMediumLoop		113189
-	592958351	SlowPropsBurn_05	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\SlowPropsBurn_05_27020439.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\BurningProps_Random\SlowPropsBurn_05		23089
+	592958351	SlowPropsBurn_05	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\SlowPropsBurn_05_6C9AB5D4.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\BurningProps_Random\SlowPropsBurn_05		23212
 	594135009	room0201_loop01-112bpm	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\room0201_loop01-112bpm_4EA6E607.wem		\Interactive Music Hierarchy\Default Work Unit\RoomMusic\Room0201\room0201_loop01\room0201_loop01-112bpm\room0201_loop01-112bpm		1726007
 	600456334	speak_reaction_79_hm_power	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\speak_reaction_79_hm_power_27020439.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\BumpInto\BumpIntoLaugh_Random\speak_reaction_79_hm_power		13243
 	601610948	OnRope_04	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\OnRope_04_4EA6E607.wem		\Actor-Mixer Hierarchy\Default Work Unit\Rope\OnRope_Blend\OnRope_Container\OnRope_04		131632
 	606590411	TeddyBearHonk	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\TeddyBearHonk_27020439.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\BumpInto\BumpIntoTeddyBear\TeddyBearHonk		16914
+	611490854	Cutscene04_BurnBaby	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\Cutscene04_BurnBaby_2686C592.wem		\Actor-Mixer Hierarchy\Default Work Unit\InGame_UI\Cutscenes\Cutscene_04\Cutscene04_BurnBaby		477581
 	615102056	charging_dash_voice_01	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\charging_dash_voice_01_27020439.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Movement\ChargingDash_Blend\ChargingVoice_Random\charging_dash_voice_01		38418
+	618658422	OnRope_01	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\45650__elonen__fuse-burning-48khz_72979021.wem		\Actor-Mixer Hierarchy\Default Work Unit\Rope\OnRope_Blend_Intro\OnRope_Container\OnRope_01		45532
 	621661335	Books_Paper_05	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\Books_on_Asphalt_Dropping_onto_Ground_Bouncing_OCP-1223-063-01_0126F1DD.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\BumpInto\BumpIntoBooks\Books_Pages\Books_Paper_05		12283
 	639224267	speak_reaction_42_hurt	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\speak_reaction_42_hurt_27020439.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\PlayerHealth\HurtPlayer_Blend\HurtPlayerVoice\speak_reaction_42_hurt		9770
 	647394732	speak_reaction_32_hurt	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\speak_reaction_32_hurt_27020439.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\PlayerHealth\HurtPlayer_Blend\HurtPlayerVoice\speak_reaction_32_hurt		8578
@@ -342,6 +360,7 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	659610720	BumpIntoConcrete_02	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\BumpIntoConcrete_02_27020439.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\BumpInto\BumpIntoConcrete\BumpIntoConcrete_02		7505
 	663080986	DeathObject	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\DeathOneShot2_27020439.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\DeathObject_Blend\DeathObject		18840
 	668718055	BurnObjectSweetner_01	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\BurnObjectSweetner_01_27020439.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\BreakObject\BreakObject_Random\BurnObjectSweetner_01		56452
+	669144702	OnRope_02	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\316682__theneedle-tv__sparkler-fuse-nm_34B174B4.wem		\Actor-Mixer Hierarchy\Default Work Unit\Rope\OnRope_Blend_Intro\OnRope_Container\OnRope_02		166654
 	670956965	DadsMouthFire_02	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\Torch_01_4EA6E607.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\Fireplaces_&_Torches\DadsMouthFire_02		500570
 	686451585	BumpIntoConcrete_04	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\BumpIntoConcrete_04_27020439.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\BumpInto\BumpIntoConcrete\BumpIntoConcrete_04		8062
 	688228341	room0201_loop03-112bpm	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\room0201_loop03-112bpm_4EA6E607.wem		\Interactive Music Hierarchy\Default Work Unit\RoomMusic\Room0201\room0201_loop03\room0201_loop03-112bpm\room0201_loop03-112bpm		1470753
@@ -352,11 +371,12 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	736318896	room0101_loop02-75bpm	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\room0101_loop02-75bpm_4EA6E607.wem		\Interactive Music Hierarchy\Default Work Unit\RoomMusic\Room0101\Room0101_loop02\room0101_loop02-75bpm\room0101_loop02-75bpm		800614
 	736643159	tutorial_loop02-105bpm	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\tutorial_loop02-105bpm_4EA6E607.wem		\Interactive Music Hierarchy\Default Work Unit\TutorialMusic\Tutorial_hubLoop\tutorial_loop02-105bpm\tutorial_loop02-105bpm		768862
 	736952046	WallShooterStatic	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\WallShooterStatic_02_4EA6E607.wem		\Actor-Mixer Hierarchy\Default Work Unit\PaperPlane\WallShooterStatic		34872
-	742047314	SlowPropsBurn_02	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\SlowPropsBurn_02_27020439.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\BurningProps_Random\SlowPropsBurn_02		26359
+	742047314	SlowPropsBurn_02	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\SlowPropsBurn_02_BF909655.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\BurningProps_Random\SlowPropsBurn_02		26122
 	743729947	Fireplace_01	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\Fire, Burning, Wood, Crispy, Medium Intensity SND8761_996A0C94.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\Fireplaces_&_Torches\Torches_Container\Fireplace_01		226351
 	743992137	GateUnlock_06	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\GateUnlock_06_27020439.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\GateUnlock\GateUnlock_06		173304
 	746995757	StopDash_04	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\StopDash_04_27020439.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Movement\NormalDash\StopDash_Container\StopDash_04		5556
 	751548621	StopDash_07	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\StopDash_07_27020439.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Movement\NormalDash\StopDash_Container\StopDash_07		10390
+	759017616	OnRope_03	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\184519__soundslikewillem__fuse_CE124087.wem		\Actor-Mixer Hierarchy\Default Work Unit\Rope\OnRope_Blend_Intro\OnRope_Container\OnRope_03		130881
 	760175959	speak_reaction_47_hurt	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\speak_reaction_47_hurt_27020439.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\PlayerHealth\HurtPlayer_Blend\HurtPlayerVoice\speak_reaction_47_hurt		10221
 	761213576	Breaking_Wood_12	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\Breaking_Wood_10_1953DF54.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\BumpInto\BumpIntoWood\Breaking_Wood_12		13489
 	768064554	Breaking_Wood_9	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\Breaking_Wood_9_27020439.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\BumpInto\BumpIntoWood\Breaking_Wood_9		10623
@@ -374,14 +394,16 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	815495564	RainFromAbove_drip	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\RainFromAbove_drip_4EA6E607.wem		\Actor-Mixer Hierarchy\Default Work Unit\WaterStuff\RainFromAbove\RainFromAbove_drip		86057
 	815804527	charging_dash_voice_05	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\charging_dash_voice_05_27020439.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Movement\ChargingDash_Blend\ChargingVoice_Random\charging_dash_voice_05		37936
 	817637583	BumpIntoConcrete_05	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\BumpIntoConcrete_05_27020439.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\BumpInto\BumpIntoConcrete\BumpIntoConcrete_05		7207
-	817964240	credits_loop01-112bpm	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\credits_loop01-112bpm_4EA6E607.wem		\Interactive Music Hierarchy\Default Work Unit\RoomMusic\Room0202\Credits_loop\credits_loop01-112bpm\credits_loop01-112bpm		1061809
+	823987737	Cutscene03_BurnHair	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\Cutscene03_BurnHair_27020439.wem		\Actor-Mixer Hierarchy\Default Work Unit\InGame_UI\Cutscenes\Cutscene_03\Cutscene03_BurnHair		262785
+	829418808	OnRope_04	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\OnRope_04_27020439.wem		\Actor-Mixer Hierarchy\Default Work Unit\Rope\OnRope_Blend_Intro\OnRope_Container\OnRope_04		131632
 	835620909	BumpIntoConcrete_01	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\BumpIntoConcrete_01_27020439.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\BumpInto\BumpIntoConcrete\BumpIntoConcrete_01		10068
 	844444248	PlantLeaf_02	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\PlantLeaf_02_27020439.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\BumpInto\BumpIntoPlants\PlantLeaf_02		48812
 	855747821	OnRope_02	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\316682__theneedle-tv__sparkler-fuse-nm_49E98888.wem		\Actor-Mixer Hierarchy\Default Work Unit\Rope\OnRope_Blend\OnRope_Container\OnRope_02		166654
+	861748583	credits_loop01-112bpm_02	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\credits_loop01-112bpm_02_4EA6E607.wem		\Interactive Music Hierarchy\Default Work Unit\RoomMusic\Room0202\Credits_loop\credits_loop01-112bpm_02\credits_loop01-112bpm_02		1173974
 	863796581	tutorial_loop01-105bpm	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\tutorial_loop01-105bpm_4EA6E607.wem		\Interactive Music Hierarchy\Default Work Unit\TutorialMusic\Tutorial_startLoop\tutorial_loop01-105bpm\tutorial_loop01-105bpm		1544437
 	865999956	power_dash_voice_06	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\power_dash_voice_06_27020439.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\Movement\ChargedDash\ChargedDash_Container\VoiceOnly-RandomContainer\power_dash_voice_06		39372
 	871210915	BurnObjectSweetner_08	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\BurnObjectSweetner_08_27020439.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\BreakObject\BreakObject_Random\BurnObjectSweetner_08		53770
-	874878117	SlowPropsBurn_01	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\SlowPropsBurn_01_27020439.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\BurningProps_Random\SlowPropsBurn_01		20741
+	874878117	SlowPropsBurn_01	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\SlowPropsBurn_01_F7619064.wem		\Actor-Mixer Hierarchy\Default Work Unit\Objects\BurningProps_Random\SlowPropsBurn_01		20643
 	875734252	speak_reaction_62_hurt	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\speak_reaction_62_hurt_27020439.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player\PlayerHealth\HurtPlayer_Blend\HurtPlayerVoice\speak_reaction_62_hurt		7060
 	891173695	ButtonMatches_09	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\ButtonMatches_09_27020439.wem		\Actor-Mixer Hierarchy\Default Work Unit\MenuUI\AllButtons\Buttons_RandomContainer\ButtonMatches_09		25424
 	891761296	Bottle_03	C:\Users\patri\OneDrive\Dokumenter\WwiseProjects\GraduationGame_WwiseProject\.cache\Windows\SFX\105023__robinhood76__02091-brick-hits_6FE06856.wem		\Actor-Mixer Hierarchy\Default Work Unit\Ambience\BumpInto\BumpIntoBottles\Bottle_03		10744
