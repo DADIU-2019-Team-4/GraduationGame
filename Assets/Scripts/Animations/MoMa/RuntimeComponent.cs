@@ -26,11 +26,11 @@ namespace MoMa
 
             foreach (string filename in files)
             {
-                Animation loadedAnimation = recalculateFlag ?
+                Animation loadedAnimation = 
                     // Recalculate animations using Packer and .csv files in Resource
-                    Packer.Pack(filename, filename) :
+                    Packer.Pack(filename, filename);
                     // Don't recalculate animations. Load the existing assets
-                    LoadPackedAnimationFile(filename);
+                    //LoadPackedAnimationFile(filename);
 
                 this._anim.Add(loadedAnimation);
 
@@ -241,21 +241,21 @@ namespace MoMa
             }
         }
 
-        private Animation LoadPackedAnimationFile(string filename)
-        {
-            Animation anim = null;
+        //private Animation LoadPackedAnimationFile(string filename)
+        //{
+        //    Animation anim = null;
 
-            anim = (Animation) AssetDatabase.LoadAssetAtPath(
-                Packer.AssetPath + "/" + filename + Packer.AssetExtention, typeof(Animation)
-            );
+        //    anim = (Animation) AssetDatabase.LoadAssetAtPath(
+        //        Packer.AssetPath + "/" + filename + Packer.AssetExtention, typeof(Animation)
+        //    );
 
-            if (anim == null)
-            {
-                Debug.LogError("Unable to open MoMa Animation asset: " + Packer.AssetPath + "/" + filename + Packer.AssetExtention);
-            }
+        //    if (anim == null)
+        //    {
+        //        Debug.LogError("Unable to open MoMa Animation asset: " + Packer.AssetPath + "/" + filename + Packer.AssetExtention);
+        //    }
 
-            return anim;
-        }
+        //    return anim;
+        //}
 
         private class CandidateFeature
         {
