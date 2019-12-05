@@ -62,7 +62,6 @@ namespace AK
         static const AkUniqueID ONPLANE = 4028171492U;
         static const AkUniqueID ONROPE = 2346684474U;
         static const AkUniqueID OPENOPTIONS = 3806663565U;
-        static const AkUniqueID OPTIONSTONES = 744585444U;
         static const AkUniqueID PAPERPLANEDEAD = 1933716535U;
         static const AkUniqueID PAPERPLANESPAWN = 948186658U;
         static const AkUniqueID PICTUREOFF_01 = 1091851954U;
@@ -179,6 +178,7 @@ namespace AK
     namespace BANKS
     {
         static const AkUniqueID INIT = 1355168291U;
+        static const AkUniqueID MAINMENU_BANK = 133657300U;
         static const AkUniqueID ROOM_2_BANK = 22796248U;
     } // namespace BANKS
 
