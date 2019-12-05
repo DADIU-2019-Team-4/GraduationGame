@@ -54,6 +54,7 @@ namespace AK
         static const AkUniqueID LANDING = 2548270042U;
         static const AkUniqueID LASTTORCH = 2053164585U;
         static const AkUniqueID LIGHT = 1935470627U;
+        static const AkUniqueID MAINMENUMUSIC = 1991862712U;
         static const AkUniqueID NEWGAME = 943969687U;
         static const AkUniqueID NORMALDASH = 1016929228U;
         static const AkUniqueID OFFPLANE = 428947066U;
