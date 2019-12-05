@@ -228,6 +228,9 @@ public class MovementController : MonoBehaviour
             // Update Animator
             _anim.Charge();
 
+            // Play charging sound
+            AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.ChargingDash, _audioEvents, gameObject);
+
             // Update State
             IsCharging = true;
             IsDashing = false;
@@ -529,9 +532,6 @@ public class MovementController : MonoBehaviour
         // Update Animator
         _anim.SetIsDashing(true);
         _anim.SetDashCharged(true);
-
-        // Play sound
-        AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.ChargingDash, _audioEvents, gameObject);
 
         // Vibrate
         Vibration.Vibrate(80);
