@@ -56,20 +56,25 @@ public class Game : MonoBehaviour
 
     void Update()
     {
+#if UNITY_EDITOR
         try
         {
             if (!inErrorState)
                 foreach (var gameLoop in GameLoops)
                     gameLoop.GameLoopUpdate();
-
             UpdateGameLoopList();
-
         }
         catch (System.Exception e)
         {
             HandleGameLoopException(e);
             throw;
         }
+#else
+        foreach (var gameLoop in GameLoops)
+            gameLoop.GameLoopUpdate();
+
+        UpdateGameLoopList();
+#endif
     }
 
     private void UpdateGameLoopList()
