@@ -37,8 +37,10 @@ namespace MoMa
                 Debug.Log("Loaded MoMa file \"" + filename + "\" with " + loadedAnimation.frameList.Count + " frames");
             }
 
-            // TODO: This exists for dubugging. Maybe it needs to be removed.
+            // This exists for dubugging. Maybe it needs to be removed.
+            #if UNITY_EDITOR
             this._fc = fc;
+            #endif
         }
 
         public Animation.Clip QueryClip(Trajectory.Snippet currentSnippet)
@@ -242,11 +244,10 @@ namespace MoMa
         private Animation LoadPackedAnimationFile(string filename)
         {
             Animation anim = null;
-#if UNITY_EDITOR
+
             anim = (Animation) AssetDatabase.LoadAssetAtPath(
                 Packer.AssetPath + "/" + filename + Packer.AssetExtention, typeof(Animation)
             );
-#endif
 
             if (anim == null)
             {

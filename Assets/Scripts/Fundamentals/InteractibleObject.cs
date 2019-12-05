@@ -210,6 +210,7 @@ public class InteractibleObject : DashInteractable
 
     private void BurnProp(Vector3 hitpoint)
     {
+        AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.BurningItem, audioEvents, gameObject);
         gameObject.GetComponent<BurnObject>().SetObjectOnFire(hitpoint);
         movementController.UpdateFireAmount(-HealValue);
     }

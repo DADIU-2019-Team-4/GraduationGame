@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: -3847238814478592820}
   - component: {fileID: -8439634426201525449}
   - component: {fileID: 9138393877050741126}
+  - component: {fileID: 3924442768966582053}
   m_Layer: 0
   m_Name: chaiselong
   m_TagString: Untagged
@@ -115,6 +116,7 @@ MonoBehaviour:
   dissolveShader: {fileID: 2100000, guid: 46d9632cf3dabcb40a3f0686e45be8eb, type: 2}
   burnSpeed: 0.79
   destroyAtTheEndOfFire: 1
+  BurnLimit: 30
   firetype: 0
 --- !u!114 &-8439634426201525449
 MonoBehaviour:
@@ -148,3 +150,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.7896075, y: 1.47, z: 0.9}
   m_Center: {x: 0, y: 0, z: 0.01}
+--- !u!114 &3924442768966582053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5380006129640619138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3f6a57ea9bb81040839eb22c9ccd632, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TriggerType: 11
+  WwiseType: 0
+  EventName: BurnSmallObjects
+  RTPCName: 
+  RTPCValue: {fileID: 0}
+  SetStateGroup: 
+  SetStateValue: 
