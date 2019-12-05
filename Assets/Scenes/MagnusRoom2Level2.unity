@@ -2014,6 +2014,20 @@ PlayableDirector:
     value: {fileID: 156295117}
   - key: {fileID: 7331811994386965843, guid: 8d36caf928df64b4aad28378283ef9ec, type: 2}
     value: {fileID: 821386431}
+  - key: {fileID: 3622265937397270663, guid: 8d36caf928df64b4aad28378283ef9ec, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 7147153519319000141, guid: 8d36caf928df64b4aad28378283ef9ec, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -5849529256806249558, guid: 8d36caf928df64b4aad28378283ef9ec, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 4345029258781683279, guid: 8d36caf928df64b4aad28378283ef9ec, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -5969643899314394626, guid: 8d36caf928df64b4aad28378283ef9ec, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -1071195234838711019, guid: 8d36caf928df64b4aad28378283ef9ec, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 742728664210878194, guid: 8d36caf928df64b4aad28378283ef9ec, type: 2}
+    value: {fileID: 0}
   m_ExposedReferences:
     m_References:
     - f73a167b402244e5faaf77f3e4018910: {fileID: 0}
@@ -6805,6 +6819,8 @@ PlayableDirector:
     value: {fileID: 0}
   - key: {fileID: -241293758617259278, guid: 15a11055797304feba60b4276146a8d2, type: 2}
     value: {fileID: 744307590}
+  - key: {fileID: -5149178692854956082, guid: 15a11055797304feba60b4276146a8d2, type: 2}
+    value: {fileID: 0}
   m_ExposedReferences:
     m_References:
     - f73a167b402244e5faaf77f3e4018910: {fileID: 0}
@@ -9732,7 +9748,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh224404
+  m_Name: pb_Mesh302036
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -19934,6 +19950,35 @@ MonoBehaviour:
           m_CallState: 2
       m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
+--- !u!114 &744307591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 744307587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ce2f35c75ca9e84fb3474d32def3e6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 4
+  DamageValue: 0
+  HealValue: 0
+  BumpHeight: 0.3
+--- !u!65 &744307592
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 744307587}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.5712802, y: 7.592221, z: 0.49}
+  m_Center: {x: 0, y: 0, z: 0.61}
 --- !u!1001 &747440715
 PrefabInstance:
   m_ObjectHideFlags: 0
