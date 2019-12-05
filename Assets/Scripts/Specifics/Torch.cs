@@ -21,6 +21,7 @@ public class Torch : MonoBehaviour
         }
         
         flame.SetActive(false);
+        startflame.SetActive(false);
         /*var em = _flame.emission;
         em.enabled = false; */
      
