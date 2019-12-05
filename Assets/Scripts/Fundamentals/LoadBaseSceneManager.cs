@@ -21,6 +21,7 @@ public class LoadBaseSceneManager : IGameLoop
     public GameObject Player;
     public StoryProgression StoryProgression;
     private GameController _gamecontroller;
+    private MovementController _movementController;
 
     [Header("AssetsBundles:")]
     public AssetsInformation[] CommonAssets;
@@ -36,6 +37,7 @@ public class LoadBaseSceneManager : IGameLoop
     private void Start()
     {
         _gamecontroller = FindObjectOfType<GameController>();
+        _movementController = FindObjectOfType<MovementController>();
 
         _loadingVisuals = GameObject.FindGameObjectWithTag("LoadVisuals");
 
@@ -133,7 +135,8 @@ public class LoadBaseSceneManager : IGameLoop
         Time.timeScale = 1f;
         ResetPlayerPos(name);
         _gamecontroller.NullifyBoxCollection();
-
+        _gamecontroller.GetAllBoxReferencesInLevel();
+        _movementController.ResetHealth();
     }
 
     private void ResetPlayerPos(string sceneName)
