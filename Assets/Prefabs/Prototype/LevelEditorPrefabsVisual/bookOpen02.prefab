@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -3026612367377715136}
   - component: {fileID: -1539664029618494402}
   - component: {fileID: -5296117256870998871}
-  - component: {fileID: -678983044545742508}
+  - component: {fileID: 6393777111190935995}
   m_Layer: 0
   m_Name: bookOpen02
   m_TagString: Untagged
@@ -100,6 +100,7 @@ MonoBehaviour:
   dissolveShader: {fileID: 2100000, guid: 46d9632cf3dabcb40a3f0686e45be8eb, type: 2}
   burnSpeed: 0.95
   destroyAtTheEndOfFire: 1
+  BurnLimit: 30
   firetype: 0
 --- !u!65 &-3026612367377715136
 BoxCollider:
@@ -148,8 +149,9 @@ MonoBehaviour:
   dissolveShader: {fileID: 2100000, guid: 46d9632cf3dabcb40a3f0686e45be8eb, type: 2}
   burnSpeed: 1.2
   destroyAtTheEndOfFire: 1
+  BurnLimit: 30
   firetype: 1
---- !u!114 &-678983044545742508
+--- !u!114 &6393777111190935995
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -161,9 +163,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3f6a57ea9bb81040839eb22c9ccd632, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TriggerType: 5
+  TriggerType: 11
   WwiseType: 0
-  EventName: BumpIntoBooks
+  EventName: BurnSmallObjects
   RTPCName: 
   RTPCValue: {fileID: 0}
   SetStateGroup: 
