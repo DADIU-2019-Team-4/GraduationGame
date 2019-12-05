@@ -29,20 +29,24 @@ public class Torch : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag != "Player") return;
+        //if (other.gameObject.tag != "Player") return;
         /*var em = _flame.emission;
          em.enabled = true; */
-        if (gameObject.CompareTag("torchWall"))
+         if (other.CompareTag("cameraTrailer"))
         {
-            _light.enabled = true;
-        }
+            if (gameObject.CompareTag("torchWall"))
+            {
+                _light.enabled = true;
+            }
 
-        flame.SetActive(true);
-        startflame.SetActive(true); 
-        AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.Fireplace, audioEvents, gameObject);
-        AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.Torch, audioEvents, gameObject);
-       
-        Destroy(this);
+            flame.SetActive(true);
+            startflame.SetActive(true);
+            AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.Fireplace, audioEvents, gameObject);
+            AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.Torch, audioEvents, gameObject);
+
+            Destroy(this);
+        }
+        
     }
    /* private void OnCollisionEnter(Collision collision)
     {
