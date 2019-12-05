@@ -17,16 +17,16 @@ namespace MoMa
         //public const float RecalculationThreshold = Mathf.Infinity; // The maximum diff of two Trajectories before recalculating the Animation
         public const int CooldownTime = 500; // Number of frames that a Frame is on cooldown after being played
         public const int CandidateFramesSize = 20; // Number of candidate frames for a transition (tradeoff: fidelity/speed)
-        public const int ClipBlendPoints = 0; // Each Animation Clip is blended with the next one for smoother transition. The are both played for this num of Frames
+        public const int ClipBlendPoints = 3; // Each Animation Clip is blended with the next one for smoother transition. The are both played for this num of Frames
 
         // Frame/Point/Feature ratios
         // FeaturePoints % FeatureEveryPoints should be 0
         public const int SkipFrames = 3;  // 3; Take 1 Frame every SkipFrames in the Animation file
-        public const int FeaturePoints = 6;  // 3; Trajectory.Points per Feature. The lower the number, the shorter time the Feature covers
-        public const int FeaturePastPoints = 4;  // The number of Points in the past that is used in a Snippet. The lower the number, the lower the fidelity
+        public const int FeaturePoints = 4;  // 3; Trajectory.Points per Feature. The lower the number, the shorter time the Feature covers
+        public const int FeaturePastPoints = 2;  // The number of Points in the past that is used in a Snippet. The lower the number, the lower the fidelity
         public const int FeatureEveryPoints = 3;  // Trajectory.Points per Feature. The lower the nuber, the shorter time the Feature covers
         // FramesPerPoint % 2 should be 0
-        public const int FramesPerPoint = 20;    // 4; Animation.Frames per Trajectory.Point. The lower the number, the denser the Trajectory points will be.
+        public const int FramesPerPoint = 12;    // 4; Animation.Frames per Trajectory.Point. The lower the number, the denser the Trajectory points will be.
 
         public const int FramesPerFeature = FramesPerPoint * FeaturePoints;  // Animation.Frames per Feature
         public const int FeatureStep = FeaturePoints / FeatureEveryPoints;  // Features overlap generally. This is the distance between two matching Features.

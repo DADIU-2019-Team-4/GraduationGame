@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace MoMa
 {
-    public class MovementComponent : MonoBehaviour
+    public class MovementComponent
     {
         public static readonly Vector3 StartingOffset = new Vector3(0, 0, -1);
         public static readonly Vector3 DefaultScale = new Vector3(2, 2, 2);
@@ -80,6 +80,9 @@ namespace MoMa
 
         public void AddTarget(MovementController.EventType type, Vector3 position)
         {
+            // Set position to match Sally's height
+            position.y = _transform.position.y;
+
             switch (type)
             {
                 case MovementController.EventType.Move:
@@ -170,9 +173,10 @@ namespace MoMa
         private void Respawn(Vector3 position)
         {
             _targets.Clear();
+            _disappeared = false;
             _transform.position = position + StartingOffset;
             _transform.rotation = Quaternion.identity;
-            _disappeared = false;
+            _transform.localScale = DefaultScale;
         }
 
         /// <summary>
@@ -197,9 +201,8 @@ namespace MoMa
             if (_disappeared)
             {
                 _transform.position = position;
-
-                _disappeared = false;
                 _transform.localScale = DefaultScale;
+                _disappeared = false;
             }
         }
 
