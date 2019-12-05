@@ -13,13 +13,13 @@ public class Torch : MonoBehaviour
 
     void Awake()
     {
-        if (gameObject.CompareTag("torchWall"))
-        {
-            _light = gameObject.GetComponentInChildren<Light>();
-            _light.enabled = false;
-        }
+        // if (gameObject.CompareTag("torchWall"))
+        // {
+        //     _light = gameObject.GetComponentInChildren<Light>();
+        //     _light.enabled = false;
+        // }
         
-        flame.SetActive(false);
+       // flame.SetActive(false);
         /*var em = _flame.emission;
         em.enabled = false; */
      
