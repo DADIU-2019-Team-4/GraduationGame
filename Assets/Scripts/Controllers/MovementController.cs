@@ -109,6 +109,9 @@ public class MovementController : MonoBehaviour
     private readonly float MaxLifeChargeValue = 1.02f;
 
     private GameController _gameController;
+
+    //aded by Mathias, reference to gsmokeonGirl so it can be turned of on death
+    private SmokeOnGirl _smokeOnGirl;
     private FireGirlAnimationController _anim;
     private Rigidbody _rigidBody;
     private Tweener _moveTweener;
@@ -130,6 +133,7 @@ public class MovementController : MonoBehaviour
 
     void Awake()
     {
+        _smokeOnGirl = GetComponent<SmokeOnGirl>(); 
         _rigidBody = GetComponent<Rigidbody>();
         _anim = GetComponentInChildren<FireGirlAnimationController>();
         _gameController = FindObjectOfType<GameController>();
@@ -386,6 +390,7 @@ public class MovementController : MonoBehaviour
 
         // Play animation
         _anim.Die();
+        _smokeOnGirl.stopSmoke(); 
 
         // Notify Sally
         _salamanderController?.AddTarget(EventType.Die, targetPosition);
