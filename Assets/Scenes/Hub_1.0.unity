@@ -17836,7 +17836,7 @@ PrefabInstance:
     - target: {fileID: 7247513908416097754, guid: 0f09da6c274f603478251488c8ac9038,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.77
+      value: -7.95
       objectReference: {fileID: 0}
     - target: {fileID: 7247513908416097754, guid: 0f09da6c274f603478251488c8ac9038,
         type: 3}
@@ -17846,7 +17846,7 @@ PrefabInstance:
     - target: {fileID: 7247513908416097754, guid: 0f09da6c274f603478251488c8ac9038,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 27.36
+      value: 26.85
       objectReference: {fileID: 0}
     - target: {fileID: 7247513908416097754, guid: 0f09da6c274f603478251488c8ac9038,
         type: 3}
@@ -25782,6 +25782,17 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1727316957}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
@@ -44517,6 +44528,64 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3.2718804, y: 3.6617022, z: 0.6788458}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &1544068352
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1544068354}
+  - component: {fileID: 1544068353}
+  m_Layer: 0
+  m_Name: WwiseGlobal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1544068353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1544068352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ac000d1e99bff64aa60c0bb00316b24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InitializationSettings: {fileID: 11400000, guid: 915f080ec8346ef4c99a7c5eba2255a8,
+    type: 2}
+  basePath: 
+  language: 
+  defaultPoolSize: 0
+  lowerPoolSize: 0
+  streamingPoolSize: 0
+  memoryCutoffThreshold: 0
+  monitorPoolSize: 0
+  monitorQueuePoolSize: 0
+  callbackManagerBufferSize: 0
+  spatialAudioPoolSize: 0
+  maxSoundPropagationDepth: 0
+  diffractionFlags: 11
+  engineLogging: 0
+--- !u!4 &1544068354
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1544068352}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 39
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1548203722
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -49330,7 +49399,7 @@ PrefabInstance:
     - target: {fileID: 5939748589936556659, guid: a0b4c8e2d81edc54b88a41c97d63e6c3,
         type: 3}
       propertyPath: m_Name
-      value: BreakObject Unit (10)
+      value: Father
       objectReference: {fileID: 0}
     - target: {fileID: 5939748589936556663, guid: a0b4c8e2d81edc54b88a41c97d63e6c3,
         type: 3}
