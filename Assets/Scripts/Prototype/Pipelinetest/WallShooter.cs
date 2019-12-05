@@ -33,7 +33,7 @@ public class WallShooter : MonoBehaviour
     private void Update()
     {
         currentSpawnCooldown -= Time.deltaTime;
-        if (currentSpawnCooldown < 0 && (gameObject.transform.position - _player.transform.position).sqrMagnitude<(SetUpDistance))
+        if (currentSpawnCooldown < 0 && (gameObject.transform.position - _player.transform.position).sqrMagnitude < (SetUpDistance))
         {
             SpawnPlane();
         }

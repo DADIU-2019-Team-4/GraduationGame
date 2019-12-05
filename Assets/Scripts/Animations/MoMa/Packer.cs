@@ -37,7 +37,7 @@ namespace MoMa
 
             // Save asset
             #if UNITY_EDITOR
-            AssetDatabase.CreateAsset(anim, AssetPath + "/" + anim.animationName + AssetExtention);
+            //AssetDatabase.CreateAsset(anim, AssetPath + "/" + anim.animationName + AssetExtention);
             #endif
 
             return anim;

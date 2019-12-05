@@ -161,6 +161,7 @@ public class BurnObject : MonoBehaviour
             }
         }
     }
+
     private void InfinityFire()
     {
         if (fireFloat >= -0.42f)
