@@ -19,6 +19,7 @@ namespace AK
         static const AkUniqueID BREAKOBJECTMUTE = 384768216U;
         static const AkUniqueID BUMPINTOBOOKS = 382525071U;
         static const AkUniqueID BUMPINTOBOTTLES = 1029928262U;
+        static const AkUniqueID BUMPINTOCARPET = 2659566082U;
         static const AkUniqueID BUMPINTOCONCRETE = 1998000382U;
         static const AkUniqueID BUMPINTOHORSE = 1886113446U;
         static const AkUniqueID BUMPINTOPLANTS = 2362129349U;
@@ -47,6 +48,7 @@ namespace AK
         static const AkUniqueID GATE = 1121922920U;
         static const AkUniqueID GATEUNLOCKED = 1822606759U;
         static const AkUniqueID GOTOMAINMENU = 2499528146U;
+        static const AkUniqueID GRIDPITDEATH = 2794399002U;
         static const AkUniqueID HUH = 646625288U;
         static const AkUniqueID HURTPLAYER = 90462293U;
         static const AkUniqueID LANDING = 2548270042U;

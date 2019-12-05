@@ -22,6 +22,7 @@
 				<Event Id="384768216" Name="BreakObjectMute" ObjectPath="\Events\Character\Objects\BreakObjectMute" DurationType="OneShot" DurationMin="0.328096" DurationMax="1.823550"/>
 				<Event Id="382525071" Name="BumpIntoBooks" ObjectPath="\Events\Environment\BumpInto\BumpIntoBooks" DurationType="OneShot" DurationMin="1.222435" DurationMax="4.740915"/>
 				<Event Id="1029928262" Name="BumpIntoBottles" ObjectPath="\Events\Environment\BumpInto\BumpIntoBottles" DurationType="OneShot" DurationMin="0.266569" DurationMax="0.892348"/>
+				<Event Id="2659566082" Name="BumpIntoCarpet" ObjectPath="\Events\Environment\BumpInto\BumpIntoCarpet" DurationType="OneShot" DurationMin="1.222435" DurationMax="1.466959"/>
 				<Event Id="1998000382" Name="BumpIntoConcrete" ObjectPath="\Events\Environment\BumpInto\BumpIntoConcrete" DurationType="OneShot" DurationMin="0.435637" DurationMax="0.488986"/>
 				<Event Id="1886113446" Name="BumpIntoHorse" ObjectPath="\Events\Environment\BumpInto\BumpIntoHorse" DurationType="OneShot" DurationMin="1.222435" DurationMax="4.740915"/>
 				<Event Id="2362129349" Name="BumpIntoPlants" ObjectPath="\Events\Environment\BumpInto\BumpIntoPlants" DurationType="OneShot" DurationMin="3.249612" DurationMax="4.740915"/>
@@ -38,7 +39,7 @@
 				<Event Id="735079116" Name="ChargingDash" ObjectPath="\Events\Character\Dashing\ChargingDash" DurationType="Infinite"/>
 				<Event Id="1914703205" Name="ChargingRejection" ObjectPath="\Events\Character\Dashing\ChargingRejection" DurationType="OneShot" DurationMin="1.326893" DurationMax="1.326893"/>
 				<Event Id="889138964" Name="ContinueGame" ObjectPath="\Events\Menu\OptionsMenu\ContinueGame" DurationType="OneShot" DurationMin="1.525674" DurationMax="1.712512"/>
-				<Event Id="1522595433" Name="Credits_Music" ObjectPath="\Events\Music\Credits_Music" DurationType="Infinite"/>
+				<Event Id="1522595433" Name="Credits_Music" ObjectPath="\Events\Music\Credits_Music" DurationType="OneShot" DurationMin="84.868439" DurationMax="84.868439"/>
 				<Event Id="1750432780" Name="DadsMouth" ObjectPath="\Events\Environment\Fireplace\DadsMouth" MaxAttenuation="10.000000" DurationType="Infinite"/>
 				<Event Id="2850533655" Name="DashCancel" ObjectPath="\Events\Character\Dashing\DashCancel" MaxAttenuation="0.000000" DurationType="OneShot" DurationMin="0.000000" DurationMax="0.000000"/>
 				<Event Id="2044049779" Name="Dead" ObjectPath="\Events\Character\PlayerHealth\Dead" DurationType="OneShot" DurationMin="8.857146" DurationMax="8.857146"/>
@@ -50,6 +51,7 @@
 				<Event Id="1121922920" Name="Gate" ObjectPath="\Events\CutsceneSound\Cutscene_01\Gate" DurationType="OneShot" DurationMin="3.073750" DurationMax="3.073750"/>
 				<Event Id="1822606759" Name="GateUnlocked" ObjectPath="\Events\Character\Objects\GateUnlocked" DurationType="OneShot" DurationMin="10.328459" DurationMax="10.328459"/>
 				<Event Id="2499528146" Name="GoToMainMenu" ObjectPath="\Events\Menu\OptionsMenu\GoToMainMenu" DurationType="OneShot" DurationMin="1.525674" DurationMax="1.712512"/>
+				<Event Id="2794399002" Name="GridPitDeath" ObjectPath="\Events\Environment\WaterStuff\GridPitDeath" MaxAttenuation="0.000000" DurationType="OneShot" DurationMin="0.000000" DurationMax="0.000000"/>
 				<Event Id="646625288" Name="Huh" ObjectPath="\Events\CutsceneSound\Cutscene_01\Huh" DurationType="OneShot" DurationMin="0.737914" DurationMax="0.737914"/>
 				<Event Id="90462293" Name="HurtPlayer" ObjectPath="\Events\Character\PlayerHealth\HurtPlayer" DurationType="OneShot" DurationMin="0.533244" DurationMax="3.466058"/>
 				<Event Id="2548270042" Name="Landing" ObjectPath="\Events\CutsceneSound\Cutscene_02\Landing" DurationType="OneShot" DurationMin="1.384625" DurationMax="1.384625"/>
@@ -191,6 +193,10 @@
 				<File Id="96679322" Language="SFX">
 					<ShortName>charging_dash_voice_04.wav</ShortName>
 					<Path>SFX\charging_dash_voice_04_27020439.wem</Path>
+				</File>
+				<File Id="100853297" Language="SFX">
+					<ShortName>GateUnlock_reward.wav</ShortName>
+					<Path>SFX\GateUnlock_reward_27020439.wem</Path>
 				</File>
 				<File Id="103645924" Language="SFX">
 					<ShortName>charging_dash_voice_03.wav</ShortName>
@@ -442,7 +448,7 @@
 				</File>
 				<File Id="426260354" Language="SFX">
 					<ShortName>TorchTurnOn_02.wav</ShortName>
-					<Path>SFX\TorchTurnOn_02_7163A124.wem</Path>
+					<Path>SFX\TorchTurnOn_02_E9E547A8.wem</Path>
 				</File>
 				<File Id="444839901" Language="SFX">
 					<ShortName>power_dash_voice_04.wav</ShortName>
@@ -514,7 +520,7 @@
 				</File>
 				<File Id="512769563" Language="SFX">
 					<ShortName>SlowPropsBurn_03.wav</ShortName>
-					<Path>SFX\SlowPropsBurn_03_27020439.wem</Path>
+					<Path>SFX\SlowPropsBurn_03_4AAD0425.wem</Path>
 				</File>
 				<File Id="529448812" Language="SFX">
 					<ShortName>Cutscene02_lights.wav</ShortName>
@@ -566,7 +572,7 @@
 				</File>
 				<File Id="592958351" Language="SFX">
 					<ShortName>SlowPropsBurn_05.wav</ShortName>
-					<Path>SFX\SlowPropsBurn_05_27020439.wem</Path>
+					<Path>SFX\SlowPropsBurn_05_6C9AB5D4.wem</Path>
 				</File>
 				<File Id="594135009" Language="SFX">
 					<ShortName>room0201_loop01-112bpm.wav</ShortName>
@@ -586,7 +592,7 @@
 				</File>
 				<File Id="611490854" Language="SFX">
 					<ShortName>Cutscene04_BurnBaby.wav</ShortName>
-					<Path>SFX\Cutscene04_BurnBaby_6394F356.wem</Path>
+					<Path>SFX\Cutscene04_BurnBaby_2686C592.wem</Path>
 				</File>
 				<File Id="615102056" Language="SFX">
 					<ShortName>charging_dash_voice_01.wav</ShortName>
@@ -670,7 +676,7 @@
 				</File>
 				<File Id="742047314" Language="SFX">
 					<ShortName>SlowPropsBurn_02.wav</ShortName>
-					<Path>SFX\SlowPropsBurn_02_27020439.wem</Path>
+					<Path>SFX\SlowPropsBurn_02_BF909655.wem</Path>
 				</File>
 				<File Id="743729947" Language="SFX">
 					<ShortName>Fire, Burning, Wood, Crispy, Medium Intensity SND8761.wav</ShortName>
@@ -760,10 +766,6 @@
 					<ShortName>BumpIntoConcrete_05.wav</ShortName>
 					<Path>SFX\BumpIntoConcrete_05_27020439.wem</Path>
 				</File>
-				<File Id="817964240" Language="SFX">
-					<ShortName>credits_loop01-112bpm.wav</ShortName>
-					<Path>SFX\credits_loop01-112bpm_4EA6E607.wem</Path>
-				</File>
 				<File Id="823987737" Language="SFX">
 					<ShortName>Cutscene03_BurnHair.wav</ShortName>
 					<Path>SFX\Cutscene03_BurnHair_27020439.wem</Path>
@@ -784,6 +786,10 @@
 					<ShortName>316682__theneedle-tv__sparkler-fuse-nm.wav</ShortName>
 					<Path>SFX\316682__theneedle-tv__sparkler-fuse-nm_49E98888.wem</Path>
 				</File>
+				<File Id="861748583" Language="SFX">
+					<ShortName>credits_loop01-112bpm_02.wav</ShortName>
+					<Path>SFX\credits_loop01-112bpm_02_4EA6E607.wem</Path>
+				</File>
 				<File Id="863796581" Language="SFX">
 					<ShortName>tutorial_loop01-105bpm.wav</ShortName>
 					<Path>SFX\tutorial_loop01-105bpm_4EA6E607.wem</Path>
@@ -798,7 +804,7 @@
 				</File>
 				<File Id="874878117" Language="SFX">
 					<ShortName>SlowPropsBurn_01.wav</ShortName>
-					<Path>SFX\SlowPropsBurn_01_27020439.wem</Path>
+					<Path>SFX\SlowPropsBurn_01_F7619064.wem</Path>
 				</File>
 				<File Id="875734252" Language="SFX">
 					<ShortName>speak_reaction_62_hurt.wav</ShortName>
