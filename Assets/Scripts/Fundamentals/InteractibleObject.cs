@@ -49,6 +49,9 @@ public class InteractibleObject : DashInteractable
     //timeSlowdown
     TimeSlowdown timeSlowdown;
 
+    // bool for particles
+    //private bool isSmallObject = false; 
+
     private void Start()
     {
         if (type == InteractType.Break)
@@ -232,9 +235,11 @@ public class InteractibleObject : DashInteractable
 
     private void BurnProp(Vector3 hitpoint)
     {
+       
         AudioEvent.SendAudioEvent(AudioEvent.AudioEventType.BurningItem, audioEvents, gameObject);
         gameObject.GetComponent<BurnObject>().SetObjectOnFire(hitpoint);
         movementController.UpdateFireAmount(-HealValue);
+        _breakablesParticleManager.SmallPollBreakableParticles(hitpoint);
     }
 
     private void PopUp()
