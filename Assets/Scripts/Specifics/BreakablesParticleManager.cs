@@ -7,8 +7,14 @@ public class BreakablesParticleManager : MonoBehaviour
     private static List<GameObject> currentlyPlayingParticles = new List<GameObject>();
 
     public GameObject FireParticlePrefab;
-    public GameObject smallFireParticlePrefab; 
+    public GameObject smallFireParticlePrefab;
+    private ParticleSystem highlightUI;
 
+
+    public void Awake()
+    {
+        highlightUI = GameObject.Find("UiUpdate").GetComponent<ParticleSystem>(); 
+    }
     public const int MaxParticles = 3;
     public void PollBreakableParticles(Vector3 position)
     {
@@ -29,6 +35,7 @@ public class BreakablesParticleManager : MonoBehaviour
 
     IEnumerator PlayFireParticles(Vector3 position, GameObject particles)
     {
+        highlightUI.Play(); 
 
         var currentParticles = Instantiate(particles, position, Quaternion.identity);
         currentlyPlayingParticles.Add(currentParticles);
