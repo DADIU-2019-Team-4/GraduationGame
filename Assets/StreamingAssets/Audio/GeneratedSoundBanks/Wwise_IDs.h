@@ -81,6 +81,7 @@ namespace AK
         static const AkUniqueID ROOMTONE_01 = 1539660446U;
         static const AkUniqueID ROOMTONE_02 = 1539660445U;
         static const AkUniqueID ROOMTONE_HUB = 1090191588U;
+        static const AkUniqueID START_CUTSCENE_MUSIC = 1037519106U;
         static const AkUniqueID STOPFUSE = 3068514774U;
         static const AkUniqueID TORCH = 1904864137U;
         static const AkUniqueID TORCHTURNON = 1577233363U;
