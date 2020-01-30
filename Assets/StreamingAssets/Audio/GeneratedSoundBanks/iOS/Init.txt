@@ -1,0 +1,68 @@
+State Group	ID	Name			Wwise Object Path	Notes
+	3076310594	roomOneTwo			\Default Work Unit\MusicStates\roomOneTwo	
+	3223910544	roomOneOne			\Default Work Unit\MusicStates\roomOneOne	
+	3762955427	Tutorial			\Default Work Unit\MusicStates\Tutorial	
+	3909066446	roomTwoOne			\Default Work Unit\MusicStates\roomTwoOne	
+	4022817136	roomTwoTwo			\Default Work Unit\MusicStates\roomTwoTwo	
+
+State	ID	Name	State Group			Notes
+	0	None	roomOneTwo			
+	725143298	Room0102_loop02	roomOneTwo			
+	725143299	Room0102_loop03	roomOneTwo			
+	809663779	Room0102_outro	roomOneTwo			
+	3810612548	Room0102_intro	roomOneTwo			
+	0	None	roomOneOne			
+	3250108650	Room0101_loop03	roomOneOne			
+	3250108651	Room0101_loop02	roomOneOne			
+	3375149584	Room0101_outro	roomOneOne			
+	3567507059	Room0101_intro	roomOneOne			
+	0	None	Tutorial			
+	687730286	Tutorial_start	Tutorial			
+	2347071267	Tutorial_hub	Tutorial			
+	0	None	roomTwoOne			
+	1012249209	Room0201_loop01	roomTwoOne			
+	1012249210	Room0201_loop02	roomTwoOne			
+	1012249211	Room0201_loop03	roomTwoOne			
+	1568576654	Room0201_loop01_Intense	roomTwoOne			
+	0	None	roomTwoTwo			
+	481422214	Room0202_emotion	roomTwoTwo			
+	996042768	Room0202_emotionLoop	roomTwoTwo			
+	1222515547	Room0202_intro	roomTwoTwo			
+	1247947399	Room0202_credits	roomTwoTwo			
+	3344499011	Room0202_introIntense	roomTwoTwo			
+
+Game Parameter	ID	Name			Wwise Object Path	Notes
+	151362964	PlayerHealth			\Default Work Unit\PlayerHealth	
+	988953028	SFXVolume			\Default Work Unit\MenuRTPC's\SFXVolume	
+	1204480359	AmbienceVolume			\Default Work Unit\MenuRTPC's\AmbienceVolume	
+	2346531308	MusicVolume			\Default Work Unit\MenuRTPC's\MusicVolume	
+
+Audio Bus	ID	Name			Wwise Object Path	Notes
+	20270801	Menu_UI			\Default Work Unit\Master Audio Bus\SubMaster\SFX\Menu_UI	
+	393239870	SFX			\Default Work Unit\Master Audio Bus\SubMaster\SFX	
+	592691923	PlayerCharacter			\Default Work Unit\Master Audio Bus\SubMaster\SFX\PlayerCharacter	
+	1229948536	Environment			\Default Work Unit\Master Audio Bus\SubMaster\SFX\Environment	
+	2179486487	Heartbeat			\Default Work Unit\Master Audio Bus\Heartbeat	
+	2625406123	SubMaster			\Default Work Unit\Master Audio Bus\SubMaster	
+	3545700988	Reverbs			\Default Work Unit\Master Audio Bus\SubMaster\Reverbs	
+	3803692087	Master Audio Bus			\Default Work Unit\Master Audio Bus	
+	3991942870	Music			\Default Work Unit\Master Audio Bus\SubMaster\Music	
+	3995659996	In-Game_UI			\Default Work Unit\Master Audio Bus\SubMaster\SFX\In-Game_UI	
+
+Auxiliary Bus	ID	Name			Wwise Object Path	Notes
+	117523933	SmallVerb			\Default Work Unit\Master Audio Bus\SubMaster\Reverbs\SmallVerb	
+	2757439665	LargeVerb			\Default Work Unit\Master Audio Bus\SubMaster\Reverbs\LargeVerb	
+	3210245118	MidVerb			\Default Work Unit\Master Audio Bus\SubMaster\Reverbs\MidVerb	
+
+Effect plug-ins	ID	Name	Type				Notes
+	602546716	Room_Large	Wwise RoomVerb			
+	720514353	MasterLimiter	Wwise Peak Limiter			
+	886753103	SFX_Limiter	Wwise Peak Limiter			
+	1159390747	Room_Medium_Tiled	Wwise RoomVerb			
+	1399739703	Music_Limiter	Wwise Peak Limiter			
+	2995775460	Room_Small	Wwise RoomVerb			
+
+Audio Devices	ID	Name	Type				Notes
+	2317455096	No_Output	No Output			
+	3859886410	System	System			
+
