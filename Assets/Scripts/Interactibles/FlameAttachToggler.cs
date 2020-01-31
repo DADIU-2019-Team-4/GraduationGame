@@ -11,6 +11,7 @@ public class FlameAttachToggler : MonoBehaviour
     public GameObject Flame;
     public GameObject FireMesh;
     public GameObject BodyMesh;
+    public GameObject SeeThroughMesh;
     public GameObject Trail;
 
     // Start is called before the first frame update
@@ -34,6 +35,7 @@ public class FlameAttachToggler : MonoBehaviour
     {
         FireMesh.SetActive(false);
         BodyMesh.SetActive(false);
+        SeeThroughMesh.SetActive(false);
         Flame.SetActive(true);
         Trail.SetActive(false);
     }
@@ -42,7 +44,7 @@ public class FlameAttachToggler : MonoBehaviour
     {
         FireMesh.SetActive(true);
         BodyMesh.SetActive(true);
-
+        SeeThroughMesh.SetActive(true);
         Flame.SetActive(false);
         Trail.SetActive(true);
     }

@@ -24,7 +24,12 @@ public class CreditsScroll : MonoBehaviour
 
         if (rectTransform.anchoredPosition3D.y > EndPos)
         {
-            SceneManager.LoadScene("MainMenu");
+            GoToMainMenu();
         }
+    }
+
+    public void GoToMainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 }
