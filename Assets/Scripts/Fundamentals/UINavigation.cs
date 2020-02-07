@@ -22,6 +22,8 @@ public class UINavigation : MonoBehaviour
     private GameObject _flagGlowUK;
     private GameObject _flagGlowDK;
 
+    private GameObject _performanceIcon;
+
     [HideInInspector]
     public static bool IsPaused = false;
 
@@ -87,6 +89,13 @@ public class UINavigation : MonoBehaviour
 
                 _knob.transform.localEulerAngles = new Vector3(0, 0, -40);
             }
+
+            _performanceIcon = GameObject.Find("PerformanceIcon");
+            if (!PlayerPrefs.HasKey("Quality"))
+                PlayerPrefs.SetInt("Quality", 2);
+            int q = PlayerPrefs.GetInt("Quality");
+            QualitySettings.SetQualityLevel(q);
+            _performanceIcon.GetComponent<Image>().enabled = (q == 2);
         }
 
         if (this.tag != "OptionsMenu")
@@ -187,6 +196,22 @@ public class UINavigation : MonoBehaviour
 
         if(_pauseMenu != null)
             _pauseMenu.transform.Find("Burn").GetComponent<Image>().material = PauseBurnEnglish;
+    }
+
+    public void TogglePerformance()
+    {
+        if (PlayerPrefs.GetInt("Quality") != 0)
+        {
+            QualitySettings.SetQualityLevel(0);
+            PlayerPrefs.SetInt("Quality", 0);
+            _performanceIcon.GetComponent<Image>().enabled = false;
+        }
+        else
+        {
+            QualitySettings.SetQualityLevel(2);
+            PlayerPrefs.SetInt("Quality", 2);
+            _performanceIcon.GetComponent<Image>().enabled = true;
+        }
     }
 
     public void UpdateSFXVolume(float value)
